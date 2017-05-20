@@ -1,3 +1,4 @@
+
 /* Bootstrap Variables Goes Here */
 
 $brand-primary: #0d9dff !default;
@@ -9,9 +10,20 @@ $brand-info: #000072 !default;
 
 /* Bootstrap Variables Goes Here */
 
+@font-face {
+    font-family: 'NimbusSanL-Reg';
+    src: url("../fonts/NimbusSanL-Reg.otf");
+}
+
+@font-face {
+    font-family: 'NimbusSanL-Bold';
+    src: url("../fonts/NimbusSanL-Bol.otf");
+}
+
 @import "other/font-fix";
 body {
-    padding-top: 70px;
+    padding-top: 0px;
+    font-family: NimbusSanL-Reg;
 }
 
 img.loading {
@@ -43,15 +55,6 @@ a,
 [ui-sref] {
     cursor: pointer;
     transition: all ease 300ms;
-}
-
-footer {
-    font-size: 12px;
-    background-color: #eee;
-    padding: 10px 0;
-    p {
-        margin: 0;
-    }
 }
 
 //bootstrap forms
@@ -112,10 +115,211 @@ footer {
     display: block;
 }
 
-header {
-    transition: all 300ms ease;
+.inline-block {
+    display: inline-block;
 }
 
-.nav-up {
-    transform: translateY(-100%);
+//common classes
+.m0 {
+    margin: 0;
 }
+
+.p0 {
+    padding: 0;
+}
+
+//end of common classes
+//start of scss for header
+header {
+    font-family: NimbusSanL-Reg;
+    transition: all 300ms ease;
+    .main-menu>li>a {
+        color: #fff !important;
+        &:hover {
+            color: #D4A900 !important;
+        }
+    }
+    .navbar-default {
+        background: transparent;
+        border-color: transparent;
+    }
+    .navbar {
+        margin-bottom: 0px;
+    }
+    .navbar-collapse.collapse {
+        padding: 20px 0;
+    }
+    .nav-up {
+        transform: translateY(-100%);
+    }
+}
+
+//scss for footer
+footer {
+    font-size: 13px;
+    background-color: #D4A900;
+    padding: 10px 0;
+    font-family: NimbusSanL-Reg;
+    color: #000;
+    a {
+        color: #000 !important;
+    }
+    p {
+        margin: 0;
+    }
+    .list-footer {
+        padding: 0 68px 0 68px;
+        li {
+            padding-bottom: 10px;
+        }
+        ul {
+            padding-right: 65px;
+        }
+    }
+    .list-first {
+        padding-right: 125px !important;
+    }
+    .border-white {
+        border-bottom: 5px solid #fff;
+    }
+    .footer-bottom {
+        margin: 15px 0 0;
+    }
+}
+
+//end of scss for footer
+//end of scss for header
+//scss for home
+.education-background img {
+    width: 100%;
+}
+
+.gallery-bg {
+    background-image: url("../img/green_chalkboard_wallpaper.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.yellow-slide {
+    background-color: #D4A900;
+    h2 {
+        padding: 15px 0 5px;
+        color: #fff;
+        letter-spacing: 13px;
+        font-size: 38px;
+    }
+}
+
+.small-episode {
+    width: 172px;
+    overflow: hidden;
+    height: auto;
+    padding: 0 10px 30px 0;
+}
+
+.anchors-img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 190px;
+    border-radius: 50%;
+    height: 190px
+}
+
+.alok-img {
+    background-image: url("../img/Alok-Joshi.jpg");
+}
+
+.anil-img {
+    background-image: url("../img/Anil-Singhvi.jpg");
+}
+
+.harshada-img {
+    background-image: url("../img/Harshada-Sawant.jpg");
+}
+
+.kavita-img {
+    background-image: url("../img/Kavita-Thapliyal.jpg");
+}
+
+.neha-img {
+    background-image: url("../img/Neha-Anand.jpg");
+}
+
+.anchors-section {
+    background-image: url("../img/green_chalkboard_wallpaper.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px 0 30px;
+    p {
+        padding: 15px 0 0;
+        color: #fff;
+        font-size: 25px;
+    }
+}
+
+.anchors-padding {
+    padding: 20px 28px;
+}
+
+.update-bg {
+    background-image: url("../img/cnbc-tv.jpeg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.three-icon {
+    padding: 50px 0;
+    h2 {
+        font-family: NimbusSanL-Bold;
+        color: #000;
+        margin: 40px 0 0 0;
+    }
+    img {
+        margin: 0 auto;
+    }
+}
+
+.socilahub {
+    padding-bottom: 80px;
+    img {
+        margin: 0 auto;
+    }
+    .small-socialicon {
+        padding: 20px 0;
+    }
+}
+
+.episode-1 {
+    background-image: url("../img/1.JPG");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 580px;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.episode-2 {
+    padding: 30px 0;
+    h1 {
+        font-size: 60px;
+        color: black;
+    }
+    h2 {
+        font-size: 32px;
+        color: black;
+    }
+}
+
+.sponsor-icon {
+    padding: 55px 0;
+}
+
+.previous-episode {}
