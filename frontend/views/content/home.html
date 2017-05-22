@@ -35,6 +35,7 @@
             <a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1" fancybox><img ng-src="http://img.youtube.com/vi/L9szn1QQfas/maxresdefault.jpg" class="img-full"></a>
         </div>
     </div>-->
+
 <div class="education-background">
     <img src="/img/education-ppt-background.jpg" class="img-responsive">
 </div>
@@ -47,7 +48,7 @@
             </div>
             <div class="col-md-4 text-center">
                 <img src="img/cources.png" class="img-responsive">
-                <h2>DIGITAL COURCES</h2>
+                <h2>DIGITAL COURSES</h2>
             </div>
             <div class="col-md-4 text-center"> <img src="img/comp.png" class="img-responsive">
                 <h2>CONTESTS</h2>
@@ -62,15 +63,19 @@
 <div class="gallery-bg">
     <div class="container">
         <div class="home-slider">
-            <flex-slider flex-slide="s in mySlides" prev-text="" next-text="">
-                <li>
-                    <img ng-src="{{s}}" class="img-full">
-                </li>
-            </flex-slider>
-            <div class="view-more-btn text-center">
-                <button class="">view more</button>
+
+            <swiper autoplay="5000" effect="slide" slides-per-view="2" loop="true">
+                <slides>
+                    <slide ng-repeat="s in homeSlide">
+                        <img ng-src="{{s}}" class="img-full" noloading="true">
+                    </slide>
+                </slides>
+            </swiper>
+            <div class="text-center">
+                <button class="btn-view-more">VIEW MORE</button>
             </div>
         </div>
+
     </div>
 </div>
 <div class="yellow-slide text-center">
@@ -99,38 +104,89 @@
 </div>
 <div class="episodes">
     <div class="episode-1">
-    </div>
-    <div class="container">
-        <div class="episode-section">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="latest">
-                        <img src="img/2.JPG" class="img-responsive">
+        <div class="container">
+            <div class="episode-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="text-center latest-line">LATEST</h2>
+                        <div class="episode-border latest-episode">
+                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                <img src="http://img.youtube.com/vi/FrReHEBFELc/maxresdefault.jpg" class="img-responsive">
+                            </a>
+
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                    <img src="img/youtube-icon.png" class="img-responsive">
+                                </a>
+                            </div>
+
+                        </div>
+                        <h4 class="text-center latest-line-2">31st MAY 2017</h4>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="previous-episode">
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <div class="inline-block small-episode"><img src="img/1.JPG" class="img-responsive"></div>
-                        <!--<div class="row">
+                    <div class="col-md-6">
+                        <h2 class="text-center previous-line">PREVIOUS</h2>
+                        <div class="episode-border">
+                            <div class="inline-block small-episode">
+                                <img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                                <div class="video-icon">
+                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <!--<div class="row">
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                         </div>-->
-                        <!--<div class="row">
+                            <!--<div class="row">
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                         </div>-->
+                        </div>
+                        <h4 class="text-center previous-line-2">VIEW MORE</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="episode-2">
             <div class="row">
@@ -143,19 +199,19 @@
                 <div class="col-md-3">
                     <div class="text-center text-uppercase">
                         <h1>75</h1>
-                        <h2>cities</h2>
+                        <h2>episodes</h2>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center text-uppercase">
                         <h1>1 M+</h1>
-                        <h2>cities</h2>
+                        <h2>viewers</h2>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center text-uppercase">
                         <h1>1000</h1>
-                        <h2>cities</h2>
+                        <h2>questions answered</h2>
                     </div>
                 </div>
             </div>
@@ -169,27 +225,27 @@
 <div class="anchors-section">
     <div class="container-fluid">
         <div class="inline-block text-center anchors-padding">
-            <div class="anchors-img alok-img ">
+            <div class="anchors-img alok-img anchors-hover" ng-click="alokopen();">
             </div>
             <p>Alok Joshi</p>
         </div>
         <div class="inline-block text-center anchors-padding">
-            <div class="anchors-img anil-img">
+            <div class="anchors-img anil-img anchors-hover" ng-click="anilopen();">
             </div>
             <p>Anil Singhavi</p>
         </div>
         <div class="inline-block text-center anchors-padding">
-            <div class="anchors-img harshada-img">
+            <div class="anchors-img harshada-img anchors-hover" ng-click="harshadaopen();">
             </div>
             <p>Harshada Savant</p>
         </div>
         <div class="inline-block text-center anchors-padding">
-            <div class="anchors-img kavita-img">
+            <div class="anchors-img kavita-img anchors-hover" ng-click="kavitaopen();">
             </div>
             <p>Kavita Thapliyal</p>
         </div>
         <div class="inline-block text-center anchors-padding">
-            <div class="anchors-img neha-img">
+            <div class="anchors-img neha-img anchors-hover" ng-click="nehaopen();">
             </div>
             <p>Neha Anand</p>
         </div>

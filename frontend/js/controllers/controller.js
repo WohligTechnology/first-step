@@ -1,4 +1,4 @@
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -8,6 +8,12 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
             'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
             'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+        ];
+        $scope.homeSlide = [
+            'http://lorempixel.com/600/600/nature/1',
+            'http://lorempixel.com/600/600/nature/2',
+            'http://lorempixel.com/600/600/nature/3',
+            'http://lorempixel.com/600/600/nature/4'
         ];
         var abc = _.times(100, function (n) {
             return n;
@@ -19,6 +25,58 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             console.log("This is a button Click");
         };
 
+        $scope.alokopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/alokmodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+        $scope.anilopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/anilmodal.html',
+                scope: $scope,
+                size: 'lg',
+            });
+        };
+
+        $scope.harshadaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/harshadamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+
+        $scope.kavitaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/kavitamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+
+        $scope.nehaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/nehamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
 
 
     })
