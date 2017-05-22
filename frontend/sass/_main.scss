@@ -265,6 +265,7 @@ footer {
     cursor: pointer;
     .fa {
         font-size: 20px;
+        color: #ccc;
     }
 }
 
@@ -628,6 +629,25 @@ footer {
 }
 
 //end of scss for minutestips
+//scss for contact-modal
+.contact-modal-bg {
+    background-image: url("../img/contact.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 0 70px;
+    position: relative;
+    p,
+    .contact-address {
+        margin-top: 10px;
+        color: #fff;
+        font-size: 32px;
+    }
+    p {
+        margin-top: 15px;
+    }
+}
+
 //scss for swiper
 .swiper-container {
     width: 100%;
