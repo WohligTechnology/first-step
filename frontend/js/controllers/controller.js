@@ -13,7 +13,10 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'http://lorempixel.com/600/600/nature/1',
             'http://lorempixel.com/600/600/nature/2',
             'http://lorempixel.com/600/600/nature/3',
-            'http://lorempixel.com/600/600/nature/4'
+            'http://lorempixel.com/600/600/nature/4',
+            'http://lorempixel.com/600/600/nature/5',
+            'http://lorempixel.com/600/600/nature/6',
+            'http://lorempixel.com/600/600/nature/7'
         ];
         var abc = _.times(100, function (n) {
             return n;

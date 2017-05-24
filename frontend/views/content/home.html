@@ -42,15 +42,15 @@
 <div class="container">
     <div class="three-icon">
         <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="img/bulb.png" class="img-responsive">
-                <h2>#1MINUTESTIPS</h2>
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <img src="img/bulb.png" class="img-responsive" ui-sref="minutestips">
+                <h2 ui-sref="minutestips">#1MINUTESTIPS</h2>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
                 <img src="img/cources.png" class="img-responsive">
                 <h2>DIGITAL COURSES</h2>
             </div>
-            <div class="col-md-4 text-center"> <img src="img/comp.png" class="img-responsive">
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center"> <img src="img/comp.png" class="img-responsive">
                 <h2>CONTESTS</h2>
             </div>
         </div>
@@ -63,13 +63,23 @@
 <div class="gallery-bg">
     <div class="container">
         <div class="home-slider">
-
-            <swiper autoplay="5000" effect="slide" slides-per-view="2" loop="true">
+            <!--<swiper ng-transclude="" effect="coverflow" grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", cube="{rotate: 50,
+            stretch: 0,
+            depth: 500,
+            modifier: 1,
+            slideShadows : true}">-->
+            <swiper ng-transclude="" effect: 'coverflow',grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", cube="{rotate: 50,
+            stretch: 0,
+            depth: 500,
+            modifier: 1,
+            slideShadows : true}">
                 <slides>
                     <slide ng-repeat="s in homeSlide">
                         <img ng-src="{{s}}" class="img-full" noloading="true">
                     </slide>
                 </slides>
+                <prev></prev>
+                <next></next>
             </swiper>
             <div class="text-center">
                 <button class="btn-view-more">VIEW MORE</button>
@@ -84,17 +94,24 @@
 </div>
 <div class="container">
     <div class="socilahub">
-        <div class="small-socialicon">
-            <div class="row">
-                <div class="col-md-4"> <img src="img/facebook.png" class="img-responsive"></div>
-                <div class="col-md-4"> <img src="img/twitter.png" class="img-responsive"></div>
-                <div class="col-md-4"> <img src="img/instagram.png" class="img-responsive"></div>
-            </div>
-        </div>
+
         <div class="row">
-            <div class="col-md-4"><img src="img/fb-timeline.jpg" class="img-responsive"></div>
-            <div class="col-md-4"><img src="img/twitter-timeline.jpg" class="img-responsive"></div>
-            <div class="col-md-4"><img src="img/instragram-timeline.jpg" class="img-responsive"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="small-socialicon"><img src="img/facebook.png" class="img-responsive"></div>
+                <img src="img/fb-timeline.jpg" class="img-responsive">
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="small-socialicon"><img src="img/twitter.png" class="img-responsive"></div>
+                <img src="img/twitter-timeline.jpg" class="img-responsive">
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="small-socialicon"><img src="img/instagram.png" class="img-responsive"></div>
+                <img src="img/instragram-timeline.jpg" class="img-responsive">
+                <!--<div class="wdgett text-center">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSmaaashUSA%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=199489793739917"
+                        width="340" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                </div>-->
+            </div>
         </div>
     </div>
 </div>
@@ -102,121 +119,138 @@
     <h2 class="m0">EPISODES
     </h2>
 </div>
-<div class="episodes">
-    <div class="episode-1">
-        <div class="container">
-            <div class="episode-section">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="text-center latest-line">LATEST</h2>
-                        <div class="episode-border latest-episode">
-                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                <img src="http://img.youtube.com/vi/FrReHEBFELc/maxresdefault.jpg" class="img-responsive">
-                            </a>
+<div class="episode-1">
+    <div class="container">
+        <div class="episode-section">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2 class="text-center latest-line">LATEST</h2>
+                    <div class="episode-border latest-episode">
+                        <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                            <img src="http://img.youtube.com/vi/FrReHEBFELc/maxresdefault.jpg" class="img-responsive">
+                        </a>
 
+                        <div class="video-icon">
+                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                <img src="img/youtube-icon.png" class="img-responsive">
+                            </a>
+                        </div>
+
+                    </div>
+                    <h4 class="text-center latest-line-2">31st MAY 2017</h4>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2 class="text-center previous-line">PREVIOUS</h2>
+                    <div class="episode-border">
+                        <div class="inline-block small-episode">
+                            <img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
                             <div class="video-icon">
-                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                    <img src="img/youtube-icon.png" class="img-responsive">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
                                 </a>
                             </div>
-
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
+                            </div>
                         </div>
-                        <h4 class="text-center latest-line-2">31st MAY 2017</h4>
-                    </div>
-                    <div class="col-md-6">
-                        <h2 class="text-center previous-line">PREVIOUS</h2>
-                        <div class="episode-border">
-                            <div class="inline-block small-episode">
-                                <img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                        <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
+                                </a>
                             </div>
-                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
                             </div>
-                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                        </div>
+                        <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
+                                </a>
                             </div>
-                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
                             </div>
-                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                        </div>
+                        <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
+                                </a>
                             </div>
-                            <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
-                                <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
-                                        <img src="img/youtube-small.png" class="img-responsive">
-                                    </a>
-                                </div>
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
                             </div>
-                            <!--<div class="row">
+                        </div>
+                        <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
+                            </div>
+                        </div>
+                        <div class="inline-block small-episode"><img src="http://img.youtube.com/vi/FrReHEBFELc/1.jpg" class="img-responsive">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" href="https://www.youtube.com/embed/nTjYfTrEYR0?autoplay=1" fancybox="">
+                                    <img src="img/youtube-small.png" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="date-video text-center">
+                                <p>22/12/2017</p>
+                            </div>
+                        </div>
+                        <!--<div class="row">
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive img-bottom"></div>
                         </div>-->
-                            <!--<div class="row">
+                        <!--<div class="row">
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                             <div class="col-md-4"> <img src="img/1.JPG" class="img-responsive"></div>
                         </div>-->
-                        </div>
-                        <h4 class="text-center previous-line-2">VIEW MORE</h4>
                     </div>
+                    <h4 class="text-center previous-line-2">VIEW MORE</h4>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container">
-        <div class="episode-2">
-            <div class="row">
-                <div class="col-md-3 ">
-                    <div class="text-center text-uppercase">
-                        <h1>200</h1>
-                        <h2>cities</h2>
-                    </div>
+<div class="container">
+    <div class="episode-2">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center text-uppercase">
+                    <h1>200</h1>
+                    <h2>cities</h2>
                 </div>
-                <div class="col-md-3">
-                    <div class="text-center text-uppercase">
-                        <h1>75</h1>
-                        <h2>episodes</h2>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center text-uppercase">
+                    <h1>75</h1>
+                    <h2>episodes</h2>
                 </div>
-                <div class="col-md-3">
-                    <div class="text-center text-uppercase">
-                        <h1>1 M+</h1>
-                        <h2>viewers</h2>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center text-uppercase">
+                    <h1>1 M+</h1>
+                    <h2>viewers</h2>
                 </div>
-                <div class="col-md-3">
-                    <div class="text-center text-uppercase">
-                        <h1>1000</h1>
-                        <h2>questions answered</h2>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center text-uppercase">
+                    <h1>1000</h1>
+                    <h2>questions answered</h2>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <div class="yellow-slide text-center">
     <h2 class="m0">OUR ANCHORS
@@ -239,7 +273,7 @@
             </div>
             <p>Harshada Savant</p>
         </div>
-        <div class="inline-block text-center anchors-padding">
+        <div class="inline-block text-center anchors-padding kavita-tab">
             <div class="anchors-img kavita-img anchors-hover" ng-click="kavitaopen();">
             </div>
             <p>Kavita Thapliyal</p>
@@ -264,10 +298,10 @@
 <div class="container">
     <div class="sponsor-icon">
         <div class="row">
-            <div class="col-md-offset-1 col-md-5">
+            <div class="col-md-offset-1 col-md-5 col-sm-6 col-xs-6">
                 <img src="img/logo9.png" class="img-responsive pull-right">
             </div>
-            <div class="col-md-offset-1 col-md-5">
+            <div class="col-md-offset-1 col-md-5 col-sm-6 col-xs-6">
                 <img src="img/logo2.png" class="img-responsive">
             </div>
         </div>

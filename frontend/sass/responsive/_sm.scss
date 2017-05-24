@@ -1,3 +1,60 @@
  @media (max-width: $screen-sm-max) {
      // Tablet
+     footer .list-footer ul {
+         padding-right: 120px;
+     }
+     //scss for home
+     .three-icon h2 {
+         font-size: 24px;
+     }
+     .home-slider {
+         padding: 55px 0 40px;
+     }
+     .small-episode {
+         width: 222px;
+     }
+     .latest-line:before,
+     .latest-line:after,
+     .latest-line-2:after,
+     .latest-line-2:before,
+     .previous-line-2:before,
+     .previous-line-2:after {
+         width: 37%;
+     }
+     .previous-line:after,
+     .previous-line:before {
+         width: 36%;
+     }
+     .anchors-padding {
+         padding: 20px 26px;
+     }
+     .kavita-tab {
+         padding-left: 150px;
+     }
+     .anchors-img {
+         margin: 0 auto;
+     }
+     //scss for minutestips
+     .minute-video {
+         width: 358px;
+     }
+     .minute-first {
+         margin: 0;
+         padding-top: 0px;
+         h1 {
+             font-size: 32px;
+         }
+     }
+     .minute-query h3,
+     .minute-query a {
+         font-size: 22px;
+     }
+     .name-plate {
+         width: 221px;
+         margin-left: 0px;
+     }
+     .name-plate {
+         width: 280px;
+         margin-left: 50px;
+     }
  }

@@ -1,3 +1,134 @@
  @media (max-width: $screen-xs-max) {
      // Mobile
+     //scss for header
+     .navbar-nav {
+         text-align: center !important;
+         float: none !important;
+     }
+     .navbar-nav>li>a {
+         padding: 5px 0px;
+     }
+     header .navbar-collapse.collapse {
+         padding: 0px;
+     }
+     header div#nav-collapse:after {
+         border-bottom: none;
+     }
+     .navbar-brand {
+         padding: 8px 15px;
+         img {
+             width: 40px;
+         }
+     }
+     //scss for home page
+     .three-icon {
+         padding: 20px 0;
+         h2 {
+             margin: 10px 0;
+             font-size: 10px;
+         }
+     }
+     .gallery-bg .swiper-slide {
+         width: 200px !important;
+         height: 80px;
+     }
+     .latest-line:before,
+     .latest-line:after,
+     .latest-line-2:after,
+     .latest-line-2:before,
+     .previous-line-2:before,
+     .previous-line-2:after {
+         width: 26%;
+     }
+     .previous-line:after,
+     .previous-line:before {
+         width: 20%;
+     }
+     .kavita-tab {
+         padding-left: 20px;
+     }
+     .episode-section {
+         padding: 30px 0;
+     }
+     .anchors-section {
+         .inline-block {
+             display: block;
+         }
+         .anchors-img {
+             margin: 0 auto;
+         }
+     }
+     .yellow-slide h2 {
+         padding: 10px 0 3px;
+         font-size: 30px;
+         letter-spacing: 5px;
+     }
+     .home-slider {
+         padding: 30px 0 15px;
+     }
+     .btn-view-more {
+         padding-top: 20px;
+     }
+     .small-episode {
+         width: 100% !important;
+         padding: 10px 15px 10px;
+     }
+     .episode-2 {
+         padding: 0px;
+         h1 {
+             font-size: 30px;
+         }
+         h2 {
+             font-size: 15px;
+         }
+     }
+     //scss for footer
+     footer {
+         .inline-block {
+             width: 49%;
+         }
+         p {
+             text-align: center;
+         }
+         .design-by {
+             float: none !important;
+         }
+         .list-footer {
+             padding: 0 20px 0 20px;
+         }
+         .list-footer ul {
+             padding-right: 34px !important;
+         }
+     }
+     //scss for minutestips
+     .minute-video {
+         width: 100%;
+     }
+     .minute-first {
+         padding: 0px;
+         margin: 0;
+         border: none;
+     }
+     .minute-first:before,
+     .minute-first:after {
+         border: none;
+     }
+     .minute-query h3:before {
+         border: none;
+     }
+     .name-plate {
+         width: 85%;
+         margin-left: 7%;
+     }
+     //scss for contact
+     .contact-modal-bg p,
+     .contact-modal-bg .contact-address {
+         font-size: 12px;
+     }
+     .expert-img {
+         margin-top: 0px;
+     }
+     .minute-main {
+         margin: 70px 0 50px;
+     }
  }

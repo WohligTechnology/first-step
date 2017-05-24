@@ -512,6 +512,15 @@ footer {
     transform: translate(-50%, -50%);
 }
 
+.date-video {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+}
+
 //scss for minutestips
 .minutestips-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
@@ -546,7 +555,7 @@ footer {
 }
 
 .minute-main {
-    margin: 100px 0;
+    margin: 100px 0 80px;
 }
 
 .minute-first {
@@ -610,11 +619,11 @@ footer {
 
 .name-plate {
     background: #ffcc00;
-    width: 280px;
+    width: 77%;
     padding: 20px 0 10px;
     text-align: center;
     font-size: 20px;
-    margin-left: 40px;
+    margin-left: 11%;
 }
 
 .ask-expert {
@@ -632,32 +641,29 @@ footer {
 //scss for contact-modal
 .contact-modal-bg {
     background-image: url("../img/contact.jpg");
-    background-position: center center;
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 40px 0 70px;
-    position: relative;
-    p,
-    .contact-address {
+    // margin: 62px 20px 0 0px;
+    // padding: 22px 0;
+    li {
         margin-top: 10px;
         color: #fff;
-        font-size: 32px;
-    }
-    p {
-        margin-top: 15px;
+        font-size: 12px;
     }
 }
 
 //scss for swiper
-.swiper-container {
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    height: 300px;
+.gallery-bg {
+    .swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 400px!important;
+        height: 300px;
+    }
 }
