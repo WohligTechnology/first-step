@@ -63,14 +63,9 @@
 <div class="gallery-bg">
     <div class="container">
         <div class="home-slider">
-            <!--<swiper ng-transclude="" effect="coverflow" grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", cube="{rotate: 50,
+            <!--<swiper ng-transclude="" effect: 'coverflow',grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", coverflow="{rotate: 50,
             stretch: 0,
-            depth: 500,
-            modifier: 1,
-            slideShadows : true}">-->
-            <swiper ng-transclude="" effect: 'coverflow',grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", cube="{rotate: 50,
-            stretch: 0,
-            depth: 500,
+            depth: 100,
             modifier: 1,
             slideShadows : true}">
                 <slides>
@@ -80,7 +75,16 @@
                 </slides>
                 <prev></prev>
                 <next></next>
-            </swiper>
+            </swiper>-->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" style="background-image:url({{s}})" ng-repeat="s in homeSlide"></div>
+
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
             <div class="text-center">
                 <button class="btn-view-more">VIEW MORE</button>
             </div>

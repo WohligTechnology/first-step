@@ -143,6 +143,9 @@ header {
             color: #d4aa00 !important;
         }
     }
+    .main-menu {
+        position: relative;
+    }
     .navbar-default {
         background: transparent;
         border-color: transparent;
@@ -150,23 +153,17 @@ header {
     .navbar {
         margin-bottom: 0px;
     }
-    .navbar-collapse.collapse {
-        padding: 20px 0;
+    .navbar-nav>li>a {
+        padding: 45px 8px 25px 8px;
     }
     .nav-up {
         transform: translateY(-100%);
     }
-    div#nav-collapse {
-        position: relative;
-        &:after {
-            content: '';
-            width: 72%;
-            height: 20px;
-            border-bottom: 2px solid #fff;
-            position: absolute;
-            bottom: -40px;
-            right: 20px;
-        }
+    .header-border {
+        border: 1px solid white;
+        width: 70%;
+        margin-left: 30%;
+        margin-right: auto;
     }
 }
 
@@ -425,7 +422,7 @@ footer {
     color: #000;
     &:before {
         content: '';
-        width: 200px;
+        width: 35%;
         height: 20px;
         position: absolute;
         bottom: 19px;
@@ -434,7 +431,7 @@ footer {
     }
     &:after {
         content: '';
-        width: 200px;
+        width: 35%;
         height: 20px;
         position: absolute;
         bottom: 19px;
@@ -450,7 +447,7 @@ footer {
     color: #000;
     &:before {
         content: '';
-        width: 200px;
+        width: 35%;
         position: absolute;
         bottom: 14px;
         left: 0px;
@@ -458,7 +455,7 @@ footer {
     }
     &:after {
         content: '';
-        width: 200px;
+        width: 35%;
         position: absolute;
         bottom: 14px;
         right: 0px;
@@ -472,7 +469,7 @@ footer {
     color: #000;
     &:before {
         content: '';
-        width: 180px;
+        width: 32%;
         position: absolute;
         bottom: 19px;
         left: 0px;
@@ -480,7 +477,7 @@ footer {
     }
     &:after {
         content: '';
-        width: 180px;
+        width: 32%;
         position: absolute;
         bottom: 19px;
         right: 0px;
@@ -489,7 +486,7 @@ footer {
 }
 
 .home-slider {
-    padding: 110px 0 70px;
+    padding: 55px 0 70px;
 }
 
 .btn-view-more {
@@ -497,7 +494,6 @@ footer {
     border: none;
     font-size: 20px;
     color: #fff;
-    padding-top: 40px;
 }
 
 .latest-episode,
@@ -579,7 +575,7 @@ footer {
     &:before {
         content: '';
         left: 0;
-        height: 70%;
+        height: 71%;
         bottom: 0;
         position: absolute;
         border-left: 5px solid #e9e72b;
@@ -640,7 +636,7 @@ footer {
 //end of scss for minutestips
 //scss for contact-modal
 .contact-modal-bg {
-    background-image: url("../img/contact.jpg");
+    background-image: url("../img/contact.png");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -663,7 +659,11 @@ footer {
     .swiper-slide {
         background-position: center;
         background-size: cover;
-        width: 400px!important;
-        height: 300px;
+        width: 500px!important;
+        height: 350px;
+        border: 7px solid white;
+    }
+    .swiper-pagination-bullets {
+        display: none;
     }
 }

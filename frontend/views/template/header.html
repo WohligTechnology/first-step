@@ -10,55 +10,35 @@
                </button>
                 <a class="navbar-brand" ui-sref="home"><img src="/img/logo.png" alt="logo" width="80"> </a>
             </div>
-            <div class="collapse navbar-collapse " id="nav-collapse" ng-init="contact=false">
+            <div class="collapse navbar-collapse " id="nav-collapse">
                 <!--<div ng-include="template.menu" class="template menu"></div>-->
-                <!--<div class="main-menu pull-right">-->
                 <ui class="nav navbar-nav pull-right main-menu">
                     <li><a href="">Gallery</a></li>
                     <li><a href="">Knowledge Center</a></li>
                     <li><a href="">Episodes</a></li>
                     <li><a href="">About</a></li>
-                    <li ng-click="contact=!contact"><a href="">Contact</a></li>
-                    <ul class="list-unstyled text-center contact-modal-bg " ng-if="contact">
+                    <li class="dropdown dropdown-toggle" data-toggle="dropdown"><a href="">Contact</a></li>
+                    <ul class="list-unstyled  contact-modal-bg  dropdown-menu">
                         <li>
                             <div class=" location ">
                                 <img src="img/map-location.png " class="img-responsive m-auto ">
                             </div>
                         </li>
-                        <li>CNBC TV18</li>
-                        <li>EMPIRE COMPLEX</li>
-                        <li>1st FLOOR, 414 SENAPATI BAPAT MARG</li>
-                        <li>NEAR KAMALA MILLS, MUMBAI</li>
-                        <li>MAHARASHTRA 400013</li>
+                        <li class="text-center">CNBC TV18</li>
+                        <li class="text-center">EMPIRE COMPLEX</li>
+                        <li class="text-center">1st FLOOR, 414 SENAPATI BAPAT MARG</li>
+                        <li class="text-center">NEAR KAMALA MILLS, MUMBAI</li>
+                        <li class="text-center">MAHARASHTRA 400013</li>
                         <li>
                             <div class="letter-box ">
                                 <img src="img/letter.png " class="img-responsive m-auto ">
                             </div>
                         </li>
-                        <li>cnbcawaaz@network18online.com</li>
+                        <li class="text-center">cnbcawaaz@network18online.com</li>
                     </ul>
-                    <!--<div class="contact-modal-bg ">
-                        <div class="location ">NEAR KAMALA MILLS, MUMBAI
-                            <img src="img/map-location.png " class="img-responsive m-auto ">
-                        </div>
-                        <address class="contact-address ">
-                            CNBC TV18
-                            <br> EMPIRE COMPLEX
-                            <br> 1st FLOOR, 414 SENAPATI BAPAT MARG
-                            <br> NEAR KAMALA MILLS, MUMBAI
-                            <br> MAHARASHTRA 400013
-                        </address>
-                        <div class="letter-box ">
-                            <img src="img/letter.png " class="img-responsive m-auto ">
-                        </div>
-                        <p>cnbcawaaz@network18online.com</p>
-                        <div class="close-modal " ng-click="$dismiss() ">
-                            <i class=" fa fa-times-circle " aria-hidden="true "></i>
-                        </div>
-                    </div>-->
                 </ui>
-                <!--</div>-->
             </div>
+            <div class="header-border hidden-xs"></div>
         </div>
     </nav>
 </header>

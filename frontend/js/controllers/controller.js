@@ -1,3 +1,4 @@
+var mySwiper;
 myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
@@ -18,6 +19,26 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'http://lorempixel.com/600/600/nature/6',
             'http://lorempixel.com/600/600/nature/7'
         ];
+
+        $scope.$on('$viewContentLoaded', function (event) {
+            $timeout(function () {
+                mySwiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflow: {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 1200,
+                        modifier: 1,
+                        slideShadows: true
+                    }
+                });
+            }, 300);
+        });
+
         var abc = _.times(100, function (n) {
             return n;
         });

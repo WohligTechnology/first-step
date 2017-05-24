@@ -6,13 +6,12 @@
          float: none !important;
      }
      .navbar-nav>li>a {
-         padding: 5px 0px;
+         padding: 5px 0px !important;
      }
-     header .navbar-collapse.collapse {
-         padding: 0px;
-     }
-     header div#nav-collapse:after {
-         border-bottom: none;
+     .dropdown-menu {
+         position: static;
+         margin: 0 10%;
+         float: none;
      }
      .navbar-brand {
          padding: 8px 15px;
