@@ -24,6 +24,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             $timeout(function () {
                 mySwiper = new Swiper('.swiper-container', {
                     pagination: '.swiper-pagination',
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
                     effect: 'coverflow',
                     grabCursor: true,
                     centeredSlides: true,
@@ -33,7 +35,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                         stretch: 0,
                         depth: 1200,
                         modifier: 1,
-                        slideShadows: true
+                        slideShadows: true,
+
                     }
                 });
             }, 300);
@@ -59,6 +62,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
             });
         };
+
         $scope.anilopen = function () {
             console.log("clla");
             $uibModal.open({

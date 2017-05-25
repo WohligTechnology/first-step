@@ -487,6 +487,18 @@ footer {
 
 .home-slider {
     padding: 55px 0 70px;
+    .direction-previous {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        right: 0;
+    }
+    .direction-next {
+        position: absolute;
+        top: 50%;
+        left: 4%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .btn-view-more {

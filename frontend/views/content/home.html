@@ -82,11 +82,13 @@
                     <div class="swiper-slide" style="background-image:url({{s}})" ng-repeat="s in homeSlide"></div>
 
                 </div>
+                <!--<div class="direction-next"><img src="img/previous.jpg" class="img-responsive"></div>
+                <div class="direction-previous"><img src="img/next.jpg" class="img-responsive"></div>-->
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
             </div>
             <div class="text-center">
-                <button class="btn-view-more">VIEW MORE</button>
+                <button class="btn-view-more" ng-click="homeSlide.slideNext(2000)">VIEW MORE</button>
             </div>
         </div>
 

@@ -39,8 +39,8 @@
          width: 358px;
      }
      .minute-first {
-         margin: 0;
-         padding-top: 0px;
+         margin-top: 34px;
+         padding-top: 0;
          h1 {
              font-size: 32px;
          }
@@ -53,8 +53,10 @@
          width: 221px;
          margin-left: 0px;
      }
-     .name-plate {
-         width: 280px;
-         margin-left: 50px;
+     #fancybox-loading,
+     .fancybox-close,
+     .fancybox-next span,
+     .fancybox-prev span {
+         background-image: url("../img/fancybox_sprite.png");
      }
  }
