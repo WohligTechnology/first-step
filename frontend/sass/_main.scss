@@ -350,14 +350,24 @@ footer {
     padding: 20px 28px;
 }
 
-.update-bg {
+.latest-buzz-bg {
     background-image: url("../img/cnbc-tv.jpeg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
     width: 100%;
-    opacity: 0.5;
+    padding: 30px 0;
+}
+
+.latest-buzz-content {
+    padding: 50px 0px;
+    background: rgba(255, 255, 255, 0.72);
+    text-align: justify;
+    a {
+        font-size: 20px;
+        color: black;
+        // font-weight: 600;
+    }
 }
 
 .three-icon {
@@ -487,18 +497,6 @@ footer {
 
 .home-slider {
     padding: 55px 0 70px;
-    .direction-previous {
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        right: 0;
-    }
-    .direction-next {
-        position: absolute;
-        top: 50%;
-        left: 4%;
-        transform: translate(-50%, -50%);
-    }
 }
 
 .btn-view-more {
@@ -677,5 +675,15 @@ footer {
     }
     .swiper-pagination-bullets {
         display: none;
+    }
+    .swiper-button-prev {
+        background: url("../img/previous.jpg");
+        width: 57px;
+        height: 65px
+    }
+    .swiper-button-next {
+        background: url("../img/next.jpg");
+        width: 57px;
+        height: 65px
     }
 }

@@ -29,7 +29,16 @@
      }
      .gallery-bg .swiper-slide {
          width: 200px !important;
-         height: 80px;
+         height: 150px;
+     }
+     .gallery-bg .swiper-container {
+         padding: 0;
+     }
+     .anchors-padding {
+         padding: 0;
+     }
+     .swiper-pagination-bullets {
+         display: block !important;
      }
      .latest-line:before,
      .latest-line:after,
@@ -81,6 +90,12 @@
              font-size: 15px;
          }
      }
+     .latest-buzz-content {
+         text-align: center;
+         a {
+             font-size: 12px;
+         }
+     }
      //scss for footer
      footer {
          .inline-block {
@@ -100,6 +115,20 @@
          }
      }
      //scss for minutestips
+     .minute-first {
+         h1 {
+             font-size: 28px;
+         }
+         p {
+             font-size: 12px;
+         }
+     }
+     //  .bulb {
+     //      position: absolute;
+     //      bottom: 87%;
+     //      right: 5%!important;
+     //      width: 16%;
+     //  }
      .minute-video {
          width: 100%;
      }

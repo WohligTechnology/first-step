@@ -63,30 +63,16 @@
 <div class="gallery-bg">
     <div class="container">
         <div class="home-slider">
-            <!--<swiper ng-transclude="" effect: 'coverflow',grab-cursor="true" centeredSlides: "true", slidesPerView: "auto", coverflow="{rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true}">
-                <slides>
-                    <slide ng-repeat="s in homeSlide">
-                        <img ng-src="{{s}}" class="img-full" noloading="true">
-                    </slide>
-                </slides>
-                <prev></prev>
-                <next></next>
-            </swiper>-->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-
                     <div class="swiper-slide" style="background-image:url({{s}})" ng-repeat="s in homeSlide"></div>
-
                 </div>
-                <!--<div class="direction-next"><img src="img/previous.jpg" class="img-responsive"></div>
-                <div class="direction-previous"><img src="img/next.jpg" class="img-responsive"></div>-->
+                <div class="swiper-button-prev hidden-sm hidden-xs"></div>
+                <div class="swiper-button-next hidden-sm hidden-xs"></div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
             </div>
+
             <div class="text-center">
                 <button class="btn-view-more" ng-click="homeSlide.slideNext(2000)">VIEW MORE</button>
             </div>
@@ -292,10 +278,28 @@
     </div>
 </div>
 <div class="yellow-slide text-center">
-    <h2 class="m0">UPDATES
+    <h2 class="m0">LATEST BUZZ
     </h2>
 </div>
-<div class="update-bg">
+<div class="latest-buzz-bg">
+    <div class="latest-buzz-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <a href="http://www.moneycontrol.com/news/business/markets-business/fii-betting-on-leverage-play-top-10-stocks-which-have-given-up-to-120-return-in-last-1-year-2288189.html"
+                        target="blank">FIIs betting on leverage play! 10 stocks that have returned up to 120% in past year</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <a href="http://www.moneycontrol.com/news/business/stocks-business/why-this-smallcap-is-a-rare-combination-of-quality-consistency-and-value-2288317.html"
+                        target="blank">Why this smallcap is a rare combination of quality, consistency and value</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <a href="http://www.moneycontrol.com/news/business/markets-business/when-rakesh-jhunjhunwala-grilled-lupin-top-brass-after-muted-q4-results-2288585.html"
+                        target="blank">When Rakesh Jhunjhunwala grilled Lupin top brass after muted Q4 results</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="yellow-slide text-center">
     <h2 class="m0">OUR PARTNER
