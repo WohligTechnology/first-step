@@ -149,20 +149,25 @@ header {
     .navbar-default {
         background: transparent;
         border-color: transparent;
+        .navbar-brand {
+            height: 25px;
+            padding: 0;
+            margin: 10px 0px 0px 0 !important;
+        }
     }
     .navbar {
         margin-bottom: 0px;
     }
     .navbar-nav>li>a {
-        padding: 45px 8px 25px 8px;
+        padding: 0px 20px 25px 20px;
     }
     .nav-up {
         transform: translateY(-100%);
     }
     .header-border {
         border: 1px solid white;
-        width: 70%;
-        margin-left: 30%;
+        width: 78%;
+        margin-left: 21%;
         margin-right: auto;
     }
 }
@@ -172,7 +177,7 @@ header {
 footer {
     font-size: 13px;
     background-color: #d4aa00;
-    padding: 10px 0;
+    padding: 0px;
     font-family: NimbusSanL-Reg;
     color: #000;
     a {
@@ -197,7 +202,7 @@ footer {
         border-bottom: 5px solid #fff;
     }
     .footer-bottom {
-        margin: 15px 0 0;
+        margin: 10px 0 0;
     }
 }
 
@@ -269,6 +274,7 @@ footer {
 //scss for home
 .education-background img {
     width: 100%;
+    height: 700px;
 }
 
 .gallery-bg {
@@ -364,7 +370,7 @@ footer {
     background: rgba(255, 255, 255, 0.72);
     text-align: justify;
     a {
-        font-size: 20px;
+        font-size: 19px;
         color: black;
         // font-weight: 600;
     }
@@ -527,6 +533,19 @@ footer {
     font-size: 18px;
 }
 
+.latest-buzz-img {
+    width: 90px;
+    vertical-align: middle;
+    img {
+        width: 100%;
+    }
+}
+
+.latest-buzz-detail {
+    width: 250px;
+    vertical-align: middle;
+}
+
 //scss for minutestips
 .minutestips-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
@@ -639,6 +658,7 @@ footer {
         &:hover,
         &:focus {
             text-decoration: none;
+            outline: none;
         }
     }
 }
@@ -656,6 +676,64 @@ footer {
         margin-top: 10px;
         color: #fff;
         font-size: 12px;
+    }
+}
+
+.ask-expert-bg {
+    background-image: url("../img/expert-modal.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 14px 20px;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    .textarea-bg {
+        background: #f2f2f2;
+        border: none;
+    }
+}
+
+.ask-modal {
+    .modal-dialog {
+        width: 700px;
+    }
+    label {
+        font-weight: 400 !important;
+        padding: 0px 0px;
+    }
+    input {
+        display: inline-block;
+        width: 236px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid white;
+    }
+    img {
+        margin: 35px auto;
+    }
+    .form-control:focus {
+        border-color: white;
+    }
+    .question-left {
+        margin-left: 18px;
+    }
+    .input-width {
+        width: 280px;
+    }
+    .form-horizontal .control-label {
+        text-align: left;
+    }
+    button,
+    button:hover,
+    button:active,
+    button:focus {
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 20px;
+        padding-right: 17px;
+        outline: none;
     }
 }
 

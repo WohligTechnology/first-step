@@ -4,6 +4,9 @@
          padding-right: 120px;
      }
      //scss for home
+     .education-background img {
+         height: auto;
+     }
      .three-icon h2 {
          font-size: 24px;
      }
@@ -39,6 +42,9 @@
      }
      .swiper-pagination-bullets {
          display: block !important;
+     }
+     .latest-buzz-detail {
+         width: 100%;
      }
      //scss for minutestips
      .minute-video {

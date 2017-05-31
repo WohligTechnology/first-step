@@ -5,6 +5,9 @@
          text-align: center !important;
          float: none !important;
      }
+     .navbar-brand img {
+         width: 40px !important;
+     }
      .navbar-nav>li>a {
          padding: 5px 0px !important;
      }
@@ -15,11 +18,15 @@
      }
      .navbar-brand {
          padding: 8px 15px;
+         margin: 10px 0px 0px 15px !important;
          img {
              width: 40px;
          }
      }
      //scss for home page
+     .education-background img {
+         height: auto;
+     }
      .three-icon {
          padding: 20px 0;
          h2 {
@@ -96,6 +103,9 @@
              font-size: 12px;
          }
      }
+     .latest-buzz-detail {
+         width: 100%;
+     }
      //scss for footer
      footer {
          .inline-block {
@@ -112,6 +122,11 @@
          }
          .list-footer ul {
              padding-right: 34px !important;
+         }
+         .footer-img {
+             img {
+                 margin: 0 auto;
+             }
          }
      }
      //scss for minutestips
@@ -158,5 +173,21 @@
      }
      .minute-main {
          margin: 70px 0 50px;
+     }
+     //scss for ask-expert modal
+     .ask-expert-bg {
+         font-size: 16px;
+     }
+     .ask-modal .modal-dialog {
+         width: auto;
+     }
+     .ask-modal input {
+         width: 170px;
+     }
+     .ask-modal .input-width {
+         width: 200px;
+     }
+     .ask-modal .question-left {
+         margin-left: 8px;
      }
  }
