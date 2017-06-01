@@ -11,13 +11,25 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
         ];
         $scope.homeSlide = [
-            'http://lorempixel.com/600/600/nature/1',
-            'http://lorempixel.com/600/600/nature/2',
-            'http://lorempixel.com/600/600/nature/3',
-            'http://lorempixel.com/600/600/nature/4',
-            'http://lorempixel.com/600/600/nature/5',
-            'http://lorempixel.com/600/600/nature/6',
-            'http://lorempixel.com/600/600/nature/7'
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+            'frontend/img/gallery/1.jpg',
+
         ];
 
         $scope.$on('$viewContentLoaded', function (event) {
@@ -26,6 +38,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                     pagination: '.swiper-pagination',
                     nextButton: '.swiper-button-next',
                     prevButton: '.swiper-button-prev',
+                    loop: true,
                     effect: 'coverflow',
                     grabCursor: true,
                     centeredSlides: true,
@@ -36,6 +49,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                         depth: 1200,
                         modifier: 1,
                         slideShadows: true,
+
 
                     }
                 });

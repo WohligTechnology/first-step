@@ -1,7 +1,10 @@
  @media (max-width: $screen-sm-max) {
      // Tablet
      footer .list-footer ul {
-         padding-right: 120px;
+         padding-right: 100px;
+     }
+     .footer-pd-tab {
+         padding-right: 122px !important;
      }
      //scss for home
      .education-background img {
@@ -46,6 +49,9 @@
      .latest-buzz-detail {
          width: 100%;
      }
+     .latest-buzz-img {
+         margin: 0 65px
+     }
      //scss for minutestips
      .minute-video {
          width: 358px;
@@ -70,5 +76,12 @@
      .fancybox-next span,
      .fancybox-prev span {
          background-image: url("../img/fancybox_sprite.png");
+     }
+     //scss for gallery
+     .gallery-inside {
+         margin: 220px 0px 60px 0px;
+     }
+     .season-common:before {
+         width: 47%;
      }
  }

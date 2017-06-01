@@ -1,265 +1,65 @@
 <div class="gallery-inside-bg ">
     <div class="container">
         <div class="gallery-inside">
+
             <div class="season-common">
-                <div class="season-opacity">
+                <div class="season-opacity ">
                     <div class="season-text">
                         <h3>Season 3</h3>
                     </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
+                    <div class="row ">
+                        <div class="col-md-2 col-sm-6  col-xs-6 gallery-pic-bottom" ng-repeat="img in season3 track by $index ">
+                            <a fancybox href="{{img}}">
+                                <img ng-src="{{img}}" class="img-responsive">
+                            </a>
                         </div>
                     </div>
-
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
+                    <div class="pull-right gallery-btn">
+                        <button ng-if="readmore3" ng-click="viewMore3();">View More</button>
+                        <button ng-if="!readmore3" ng-click="viewLess3();">View Less</button>
                     </div>
                 </div>
             </div>
 
             <div class="season-common">
-                <div class="season-opacity">
+                <div class="season-opacity ">
                     <div class="season-text">
                         <h3>Season 2</h3>
                     </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
+                    <div class="row ">
+                        <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom" ng-repeat="img in season2 track by $index ">
+                            <a fancybox href="{{img}}">
+                                <img ng-src="{{img}}" class="img-responsive">
+                            </a>
                         </div>
                     </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
+                    <div class="pull-right gallery-btn">
+                        <button ng-if="readmore2" ng-click="viewMore2();">View More</button>
+                        <button ng-if="!readmore2" ng-click="viewLess2();">View Less</button>
                     </div>
                 </div>
             </div>
+
+
             <div class="season-common">
                 <div class="season-opacity">
                     <div class="season-text">
                         <h3>Season 1</h3>
                     </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-pic-bottom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/gallery/1.JPG" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
+                        <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom" ng-repeat="img in season1 track by $index ">
+                            <a fancybox href="{{img}}">
+                                <img ng-src="{{img}}" class="img-responsive">
+                            </a>
                         </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
-                        <div class="col-md-2">
-                            <img src="img/gallery/1.JPG" class="img-responsive">
-                        </div>
+                    </div>
+                    <div class="pull-right gallery-btn">
+                        <button ng-if="readmore1" ng-click="viewMore1();">View More</button>
+                        <button ng-if="!readmore1" ng-click="viewLess1();">View Less</button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

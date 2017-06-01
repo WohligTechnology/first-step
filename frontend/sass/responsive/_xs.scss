@@ -21,6 +21,7 @@
          margin: 10px 0px 0px 15px !important;
          img {
              width: 40px;
+             margin: 0 0 0 14px;
          }
      }
      //scss for home page
@@ -106,6 +107,9 @@
      .latest-buzz-detail {
          width: 100%;
      }
+     .latest-buzz-img {
+         margin: 0px
+     }
      //scss for footer
      footer {
          .inline-block {
@@ -118,7 +122,7 @@
              float: none !important;
          }
          .list-footer {
-             padding: 0 20px 0 20px;
+             padding: 0 12px 0 35px;
          }
          .list-footer ul {
              padding-right: 34px !important;
@@ -189,5 +193,38 @@
      }
      .ask-modal .question-left {
          margin-left: 8px;
+     }
+     //scss for gallery page
+     .season-common {
+         border: 3px solid #fef424;
+         padding: 15px 10px 20px;
+         &:after {
+             width: 22%;
+             border-bottom: 3px solid #fef424;
+         }
+         &:before {
+             width: 20%;
+             border-bottom: 3px solid #fef424;
+         }
+     }
+     .season-opacity {
+         padding: 10px 10px 0;
+     }
+     .season-text {
+         left: 50%;
+         top: -28px;
+         transform: translate(-50%);
+         h3 {
+             font-size: 22px;
+         }
+     }
+     .gallery-pic-bottom {
+         margin-bottom: 15px;
+     }
+     .gallery-btn button {
+         margin-top: 0;
+     }
+     .gallery-inside {
+         margin: 100px 0 0 0;
      }
  }
