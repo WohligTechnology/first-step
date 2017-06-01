@@ -15,7 +15,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
         });
     };
     $(window).scroll(function () {
-        if ($(document).scrollTop() > 200) {
+        if ($(document).scrollTop() > 100) {
             $(".header-border").css("opacity", '0');
             $(".img-width-change").css("width", '10%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
