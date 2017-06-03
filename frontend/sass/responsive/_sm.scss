@@ -1,10 +1,22 @@
  @media (max-width: $screen-sm-max) {
      // Tablet
-     footer .list-footer ul {
-         padding-right: 100px;
-     }
-     .footer-pd-tab {
-         padding-right: 122px !important;
+     footer {
+         .footer-quick-link {
+             margin: 0;
+         }
+         .row-flex {
+             display: flex;
+             width: 100%;
+         }
+         .col-flex {
+             display: flex;
+             flex: 1;
+             padding: 0 0px!important;
+             width: 50%;
+         }
+         .footer-list-padd {
+             padding: 0;
+         }
      }
      //scss for home
      .education-background img {
@@ -35,7 +47,7 @@
          padding: 20px 26px;
      }
      .kavita-tab {
-         padding-left: 150px;
+         padding-left: 50px;
      }
      .anchors-img {
          margin: 0 auto;

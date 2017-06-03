@@ -1,67 +1,47 @@
-<footer>
+<footer ng-controller="headerCtrl">
     <div class="border-white">
         <div class="container">
 
             <div class="list-footer">
                 <div class="row">
-                    <div class="">
+                    <div class="footer-quick-link">
                         <h5>Quick links</h5>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="inline-block ">
-
-                        <ul class="list-unstyled list-first">
-                            <li>- About Us</li>
-                            <li>- Testimonials </li>
-                            <li>- #1 Minuts Tips</li>
-                            <li>- Gallery</li>
-
-                        </ul>
-
-                    </div>
-                    <div class="inline-block ">
-                        <ul class="list-unstyled">
-                            <li>- Ask the Expert</li>
-                            <li>- Episodes </li>
-                            <li>- Social Hub</li>
-                            <li>- Contests </li>
+                <div class="row-flex">
+                    <div class="col-flex">
+                        <ul class="footer-list-padd">
+                            <li><a href="">Gallery</a></li>
+                            <li><a ng-click="changeURL('home-episodes')">Episodes</a></li>
 
                         </ul>
                     </div>
-                    <div class="inline-block ">
-                        <ul class="list-unstyled">
-                            <li>- Digital Courses</li>
-                            <li>- Episodes</li>
-                            <li>- Testimonials</li>
-                            <li>- #1 Minute Tips</li>
+                    <div class="col-flex">
+                        <ul class="footer-list-padd">
+                            <li><a href="" ng-click="openAbout();">About Us</a></li>
+                            <li><a href="">Contact</a></li>
 
                         </ul>
                     </div>
-                    <div class="inline-block ">
-                        <ul class="list-unstyled footer-pd-tab">
-                            <li>- Ask the Expert</li>
-                            <li>- Episodes</li>
-                            <li>- Social Hub</li>
-                            <li>- Contests</li>
+                    <div class="col-flex">
+                        <ul class="footer-list-padd">
+                            <li><a href="">#1 Minute Tips</a></li>
+                            <li><a href="">Digital Courses</a> </li>
+
 
                         </ul>
                     </div>
-                    <div class="inline-block ">
-                        <ul class="list-unstyled">
-                            <li>- Digital Courses</li>
-                            <li>- Episodes </li>
-                            <li>- Testimonials</li>
-                            <li>- #1 Minute Tips</li>
+                    <div class="col-flex">
+                        <ul class="footer-list-padd">
+                            <li><a href="">Contests</a></li>
+                            <li><a href="">Social Hub</a></li>
 
                         </ul>
                     </div>
-                    <div class="inline-block ">
-                        <ul class="list-unstyled">
-                            <li>- Digital Courses</li>
-                            <li>- Episodes </li>
-                            <li>- Testimonials</li>
-                            <li>- #1 Minute Tips</li>
+                    <div class="col-flex">
+                        <ul class="footer-list-padd">
+                            <li><a ng-click="changeURL('home-anchor')">Our Anchors</a></li>
+                            <li><a ng-click="changeURL('home-latest-buzz')">Latest Buzz</a></li>
                         </ul>
                     </div>
                 </div>
@@ -69,24 +49,19 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1 col-sm-1 col-xs-12">
-                <div class="footer-img">
-                    <img src="img/footer-icon.png" class="img-responsive">
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="col-md-5  col-sm-5 col-xs-12">
-                    <p>@Pehela Kadam.{{template.year}} Right Reserved.</p>
-                </div>
-                <div class="col-md-6  col-sm-6 col-xs-12">
-                    <div class="pull-right design-by">
-                        <p>Designed & Developed by <a href="http://www.wohlig.com" target="_blank">WOHLIG TECHNOLOGY</a></p>
-                    </div>
-                </div>
-            </div>
 
+        <div class="footer-img pull-left">
+            <img src="img/footer-icon.png" class="img-responsive">
         </div>
+        <div class="footer-bottom pull-left">
+
+            <p>@Pehela Kadam.{{template.year}} Right Reserved.</p>
+        </div>
+
+        <div class=" pull-right design-by">
+            <p>Designed & Developed by <a href="http://www.wohlig.com" target="_blank">WOHLIG TECHNOLOGY</a></p>
+        </div>
+
     </div>
 
 </footer>

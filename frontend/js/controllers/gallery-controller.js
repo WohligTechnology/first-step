@@ -9,6 +9,10 @@
          $.fancybox.close(true);
      };
 
+     $scope.changeURL = function (id) {
+         console.log(id);
+         $location.path("" + id);
+     };
 
      $scope.viewLess3 = function () {
          $scope.readmore3 = true;

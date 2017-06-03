@@ -7,7 +7,8 @@ var myApp = angular.module('myApp', [
     'ui.bootstrap',
     // 'ngAnimate',
     // 'ngSanitize',
-    'angular-flexslider'
+    'angular-flexslider',
+    'duScroll'
 ]);
 
 // Define all the routes below
@@ -21,8 +22,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
-
         })
+
+        .state('homeid', {
+            url: "/:id",
+            templateUrl: tempateURL,
+            controller: 'HomeCtrl'
+        })
+
         .state('minutestips', {
             url: "/minutestips",
             templateUrl: tempateURL,

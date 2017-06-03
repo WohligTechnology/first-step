@@ -118,25 +118,21 @@
      }
      //scss for footer
      footer {
-         .inline-block {
-             width: 49%;
+         .footer-quick-link {
+             margin: 0;
          }
-         p {
-             text-align: center;
+         .row-flex {
+             display: flex;
+             width: 100%;
          }
-         .design-by {
-             float: none !important;
+         .col-flex {
+             display: flex;
+             flex: 1;
+             padding: 0 0px!important;
+             width: 50%;
          }
-         .list-footer {
-             padding: 0 12px 0 35px;
-         }
-         .list-footer ul {
-             padding-right: 34px !important;
-         }
-         .footer-img {
-             img {
-                 margin: 0 auto;
-             }
+         .footer-list-padd {
+             padding: 0;
          }
      }
      //scss for minutestips

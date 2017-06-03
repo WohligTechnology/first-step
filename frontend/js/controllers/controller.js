@@ -1,5 +1,5 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -31,6 +31,32 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             // 'img/gallery/1.jpg',
 
         ];
+
+        function makeAnimation(id) {
+            if (_.isEmpty(id)) {
+                id = "home";
+            }
+            var someElement = angular.element(document.getElementById(id));
+            $document.scrollToElement(someElement, 73, 1000);
+        }
+
+        $scope.$on('$viewContentLoaded', function (event) {
+            setTimeout(function () {
+                makeAnimation($stateParams.id);
+            }, 1000);
+        });
+
+
+        $scope.changeURL = function (id) {
+            $scope.menutitle = NavigationService.getNavigation(id);
+            $state.transitionTo('homeid', {
+                id: id
+            }, {
+                notify: false
+            });
+            makeAnimation(id);
+            $location.replace();
+        };
 
         $scope.$on('$viewContentLoaded', function (event) {
             $timeout(function () {
@@ -119,7 +145,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
             });
         };
-
 
     })
 

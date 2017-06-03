@@ -63,6 +63,7 @@
     "tinymce": "4.3.12",
     "angular-ui-swiper": "^2.3.6",
     "textAngular": "^1.5.16",
-    "swiper": "^3.4.2"
+    "swiper": "^3.4.2",
+    "angular-scroll": "^1.0.2"
   }
 }

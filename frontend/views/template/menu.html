@@ -1,6 +1,8 @@
 <ul class="nav navbar-nav">
-  <li ng-repeat="menu in navigation" ui-sref-active="active">
-    <a ui-sref="{{menu.anchor}}" ng-if="menu.anchor">{{menu.name}}</a>
+  <li ng-repeat="menu in navigation" ui-sref-active="active" class="{{menu.classis}}">
+    <!--<a ui-sref="{{menu.anchor}}" ng-if="menu.anchor">{{menu.name}}</a>-->
+    <a ng-click="changeURL(menu.anchor)" ng-if="menu.anchor">{{menu.name}}</a>
+    <a ng-click="openAbout()" ng-if="menu.clickName">{{menu.name}}</a>
     <a href="{{menu.link}}" ng-if="menu.link">{{menu.name}}</a>
     <ul class="dropdown-menu" ng-if="menu.subnav!='';">
       <li ng-repeat="submenu in menu.subnav" ui-sref-active="active">
@@ -8,5 +10,24 @@
         <a herf="{{submenu.link}}" ng-if="submenu.link">{{submenu.name}}</a>
       </li>
     </ul>
+    <ul class="list-unstyled  contact-modal-bg  dropdown-menu" ng-if="menu.subnavlist">
+      <li>
+        <div class=" location ">
+          <img src="img/map-location.png " class="img-responsive m-auto ">
+        </div>
+      </li>}}
+      <li class="text-center">CNBC TV18</li>
+      <li class="text-center">EMPIRE COMPLEX</li>
+      <li class="text-center">1st FLOOR, 414 SENAPATI BAPAT MARG</li>
+      <li class="text-center">NEAR KAMALA MILLS, MUMBAI</li>
+      <li class="text-center">MAHARASHTRA 400013</li>
+      <li>
+        <div class="letter-box ">
+          <img src="img/letter.png " class="img-responsive m-auto ">
+        </div>
+      </li>
+      <li class="text-center contact-letter"><a href="mailto:cnbcawaaz@network18online.com">cnbcawaaz@network18online.com</a></li>
+    </ul>
+
   </li>
 </ul>
