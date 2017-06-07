@@ -4,19 +4,24 @@
          .footer-quick-link {
              margin: 0;
          }
-         .row-flex {
-             display: flex;
-             width: 100%;
-         }
-         .col-flex {
-             display: flex;
-             flex: 1;
-             padding: 0 0px!important;
-             width: 50%;
-         }
+         //  .row-flex {
+         //      display: flex;
+         //      width: 100%;
+         //  }
+         //  .col-flex {
+         //      display: flex;
+         //      flex: 1;
+         //      padding: 0 0px!important;
+         //      width: 50%;
+         //  }
          .footer-list-padd {
-             padding: 0;
+             padding: 0px 10px 0 35px;
          }
+     }
+     //scss for header
+     header .header-border {
+         width: 65%;
+         margin-left: 32%;
      }
      //scss for home
      .education-background img {
@@ -95,5 +100,10 @@
      }
      .season-common:before {
          width: 47%;
+     }
+     //scss for about us 
+     .about-modal-bg h1:after {
+         width: 400px;
+         bottom: 0;
      }
  }

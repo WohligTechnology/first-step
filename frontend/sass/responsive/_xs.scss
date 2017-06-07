@@ -6,7 +6,7 @@
          float: none !important;
      }
      .navbar-brand img {
-         width: 40px !important;
+         width: 65px !important;
      }
      .navbar-nav>li>a {
          padding: 5px 0px !important;
@@ -15,14 +15,6 @@
          position: static;
          margin: 0 10%;
          float: none;
-     }
-     .navbar-brand {
-         padding: 8px 15px;
-         margin: 10px 0px 0px 15px !important;
-         img {
-             width: 40px;
-             margin: 0 0 0 14px;
-         }
      }
      //scss for home page
      .education-background img {
@@ -118,22 +110,29 @@
      }
      //scss for footer
      footer {
-         .footer-quick-link {
-             margin: 0;
+         font-size: 12px;
+     }
+     .footer-list-padd {
+         padding: 0px 10px 10px 45px;
+     }
+     .footer-quick-link {
+         margin: 15px 0 0 30px !important;
+     }
+     .footer-img {
+         float: none !important;
+         img {
+             margin: 0 auto;
          }
-         .row-flex {
-             display: flex;
-             width: 100%;
-         }
-         .col-flex {
-             display: flex;
-             flex: 1;
-             padding: 0 0px!important;
-             width: 50%;
-         }
-         .footer-list-padd {
-             padding: 0;
-         }
+     }
+     .design-by {
+         text-align: center;
+         float: none !important;
+         margin-top: -10px !important;
+     }
+     .footer-bottom {
+         text-align: center !important;
+         float: none !important;
+         margin: 0 !important;
      }
      //scss for minutestips
      .minute-first {

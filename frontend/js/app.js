@@ -40,6 +40,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'GalleryCtrl'
         })
+        .state('digitalcourse', {
+            url: "/digitalcourse",
+            templateUrl: tempateURL,
+            controller: 'DigitalCourseCtrl'
+        })
         .state('form', {
             url: "/form",
             templateUrl: tempateURL,

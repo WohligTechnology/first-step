@@ -1,4 +1,4 @@
- myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location) {
      $scope.template = TemplateService.getHTML("content/gallery.html");
      TemplateService.title = "Gallery"; //This is the Title of the Website
      $scope.navigation = NavigationService.getNavigation();

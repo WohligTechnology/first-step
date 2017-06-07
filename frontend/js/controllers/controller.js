@@ -4,6 +4,11 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         TemplateService.title = "Home"; //This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
 
+
+        $scope.changeURL = function (id) {
+            console.log(id);
+            $location.path("" + id);
+        };
         $scope.mySlides = [
             'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
             'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',

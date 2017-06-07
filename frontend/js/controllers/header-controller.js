@@ -13,6 +13,11 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             size: 'lg',
         });
     };
+
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
             $(".header-border").css("opacity", '0');
