@@ -1,4 +1,4 @@
- myApp.controller('DigitalCourseCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+ myApp.controller('DigitalCourseCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location) {
      $scope.template = TemplateService.getHTML("content/digitalcourse.html");
      TemplateService.title = "Digitalcourse"; //This is the Title of the Website
      $scope.navigation = NavigationService.getNavigation();

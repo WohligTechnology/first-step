@@ -24,12 +24,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'HomeCtrl'
         })
 
-        .state('homeid', {
-            url: "/:id",
-            templateUrl: tempateURL,
-            controller: 'HomeCtrl'
-        })
-
         .state('minutestips', {
             url: "/minutestips",
             templateUrl: tempateURL,
@@ -49,6 +43,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/form",
             templateUrl: tempateURL,
             controller: 'FormCtrl'
+        })
+
+
+        .state('homeid', {
+            url: "/:id",
+            templateUrl: tempateURL,
+            controller: 'HomeCtrl'
         });
     $urlRouterProvider.otherwise("/");
     $locationProvider.html5Mode(isproduction);

@@ -42,7 +42,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 id = "home";
             }
             var someElement = angular.element(document.getElementById(id));
-            $document.scrollToElement(someElement, 73, 1000);
+            $document.scrollToElement(someElement, 75, 1000);
         }
 
         $scope.$on('$viewContentLoaded', function (event) {
