@@ -132,6 +132,9 @@ a,
     margin: 0 auto;
 }
 
+.pointer{
+    cursor: pointer;
+}
 //end of common classes
 //start of scss for header
 header {
@@ -410,6 +413,7 @@ footer {
 
 .three-icon {
     padding: 50px 0;
+    cursor: pointer;
     h2 {
         font-family: NimbusSanL-Bold;
         color: #000;
@@ -966,6 +970,15 @@ footer {
 .course-google {
     margin: 50px 0px 0 20px;
 }
+
+//Modal Contest Enter
+.contact-modal-bg {
+    background-image: url("../img/contest-bg.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+//End Modal Contest Enter
 
 // .scoll-on {
 //     .panel-body {
