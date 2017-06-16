@@ -49,5 +49,6 @@ module.exports = [
   'frontend/js/controllers/digitalcourse-controller.js',
   'frontend/js/controllers/gallery-controller.js',
   'frontend/js/controllers/header-controller.js',
+  'frontend/js/controllers/episode.js',
   'frontend/js/controllers/language-controller.js',
 ];

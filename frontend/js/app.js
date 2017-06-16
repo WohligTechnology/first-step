@@ -24,7 +24,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'HomeCtrl'
         })
 
-        .state('minutestips', {
+    .state('minutestips', {
             url: "/minutestips",
             templateUrl: tempateURL,
             controller: 'MinutestipsCtrl'
@@ -33,6 +33,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/gallery",
             templateUrl: tempateURL,
             controller: 'GalleryCtrl'
+        })
+        .state('episode', {
+            url: "/episode",
+            templateUrl: tempateURL,
+            controller: 'EpisodeCtrl'
         })
         .state('digitalcourse', {
             url: "/digitalcourse",
@@ -46,11 +51,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
         })
 
 
-        .state('homeid', {
-            url: "/:id",
-            templateUrl: tempateURL,
-            controller: 'HomeCtrl'
-        });
+    .state('homeid', {
+        url: "/:id",
+        templateUrl: tempateURL,
+        controller: 'HomeCtrl'
+    });
     $urlRouterProvider.otherwise("/");
     $locationProvider.html5Mode(isproduction);
 });

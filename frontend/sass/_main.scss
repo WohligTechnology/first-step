@@ -1,4 +1,3 @@
-
 /* Bootstrap Variables Goes Here */
 
 $brand-primary: #0d9dff !default;
@@ -13,6 +12,11 @@ $brand-info: #000072 !default;
 @font-face {
     font-family: 'NimbusSanL-Reg';
     src: url("../fonts/NimbusSanL-Reg.otf");
+}
+
+@font-face {
+    font-family: 'kg-second-chances';
+    src: url("../fonts/kg-second-chances.ketch.ttf");
 }
 
 @font-face {
@@ -132,9 +136,10 @@ a,
     margin: 0 auto;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
+
 //end of common classes
 //start of scss for header
 header {
@@ -978,7 +983,61 @@ footer {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.contest-modal-bg {
+    background-image: url("../img/contest-bg.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 35px 20px 50px;
+    h1,
+    li {
+        color: #cccd7f;
+    }
+    .button-enter button {
+        font-size: 40px;
+        font-family: kg-second-chances;
+        background-image: url("../img/contest-bg.jpg");
+        border: none;
+        //margin: 45px 0 30px;
+    }
+}
+
+.contest-modal-heading h1 {
+    position: relative;
+    font-size: 40px;
+    font-family: kg-second-chances;
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        border-bottom: 2px solid #cccd7f;
+        width: 63%;
+    }
+}
+
+.contest-modal-img {
+    margin-top: 45px;
+}
+
+.list-content-order {
+    margin-top: 65px;
+    li {
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-align: left;
+        font-family: kg-second-chances;
+    }
+}
+
 //End Modal Contest Enter
+//scss for episode page
+.episodes {
+    position: relative;
+    p {
+        color: white;
+    }
+}
 
 // .scoll-on {
 //     .panel-body {
