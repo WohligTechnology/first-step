@@ -1,5 +1,8 @@
  @media (max-width: $screen-sm-max) {
      // Tablet
+     .img-height{
+         height: 200px;
+     }
      footer {
          .footer-quick-link {
              margin: 0;
@@ -106,4 +109,6 @@
          width: 400px;
          bottom: 0;
      }
+    .about-modal-bg{    padding: 30px 10px;
+}
  }

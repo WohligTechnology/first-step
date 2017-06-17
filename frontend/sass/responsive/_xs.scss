@@ -1,5 +1,8 @@
  @media (max-width: $screen-xs-max) {
      // Mobile
+     .img-height{
+         height: 100px;
+     }
      //scss for header
      .navbar-nav {
          text-align: center !important;
@@ -9,7 +12,7 @@
          width: 65px !important;
      }
      .navbar-nav>li>a {
-         padding: 5px 0px !important;
+       padding: 5px 175px !important;
      }
      .dropdown-menu {
          position: static;
@@ -228,4 +231,9 @@
      .gallery-inside {
          margin: 100px 0 0 0;
      }
+     //about us scss
+      .about-modal-bg h1:after {
+    width: 200px;
+    bottom: 0;
+}
  }
