@@ -219,35 +219,36 @@ footer {
         margin-top: 15px;
     }
     .footer-list-padd {
-        padding: 0 40px 0 80px;
-        margin-bottom: 5px;
-        list-style-type: none;
-    }
-    // .row-flex {
-    //     width: 100%;
-    //     display: flex;
-    //     .col-flex {
-    //         padding: 0 40px;
-    //     }
-    // }
-    .footer-quick-link {
-        margin: 20px 0 0 85px;
+          margin-bottom: 0px;
+    list-style-type: none;
+    padding: 15px 0;
     }
     li {
-        width: 100px;
-        padding-bottom: 8px;
-        position: relative;
-        &:before {
-            content: '';
-            position: absolute;
-            width: 8px;
-            top: 40%;
-            left: -10%;
-            transform: translate(-50%, -50%);
-            border-bottom: 1px solid black;
-        }
+       position: relative;
+    display: inline;
+    padding: 0 25px;
+           &:before{
+    content: '';
+    position: absolute;
+    width: auto;
+    border-right: 2px solid black;
+    height: 18px;
+    right: 0px;
+           } 
+ 
+}
+li:last-child{
+ &:before{
+     content:'';
+    position: absolute;
+    width: auto;
+    border-right: 2px solid transparent !important;
+    height: 18px;
+    right: 0px;
+           }
     }
 }
+
 
 //end of scss for footer
 //scss for modal
@@ -698,13 +699,12 @@ footer {
 
 .ask-expert {
     margin-top: 20px;
-    a {
-        border-bottom: 3px solid #fff;
-        &:hover,
-        &:focus {
-            text-decoration: none;
-            outline: none;
-        }
+    button {
+    background: #ffcc00;
+    color: black;
+    width: 225px;
+    font-size: 20px;
+    padding: 8px 0;
     }
 }
 
@@ -1022,7 +1022,7 @@ footer {
         position: absolute;
         bottom: -5px;
         border-bottom: 2px solid #cccd7f;
-        width: 63%;
+        width: 66%;
     }
 }
 
