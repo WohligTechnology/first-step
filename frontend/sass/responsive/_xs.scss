@@ -20,9 +20,16 @@
          float: none;
      }
      //scss for home page
+     .modal-bg{
+            background-image: url("../img/modal-bg-mobile.jpg");
+                padding: 50px 15px 70px 25px;
+     }
      .education-background img {
          height: auto;
      }
+     .modal-pt {
+padding-top: 0px;
+}
      .three-icon {
          padding: 20px 0;
          h2 {
@@ -114,13 +121,12 @@
      //scss for footer
      footer {
          font-size: 12px;
+          li{
+            
+              display: block;
+      }
      }
-     .footer-list-padd {
-         padding: 0px 10px 10px 45px;
-     }
-     .footer-quick-link {
-         margin: 15px 0 0 30px !important;
-     }
+
      .footer-img {
          float: none !important;
          img {
@@ -235,5 +241,8 @@
       .about-modal-bg h1:after {
     width: 200px;
     bottom: 0;
+}
+.comming-soon h2{
+        margin-bottom: 30px;
 }
  }

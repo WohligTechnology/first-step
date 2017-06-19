@@ -4,22 +4,11 @@
          height: 200px;
      }
      footer {
-         .footer-quick-link {
-             margin: 0;
-         }
-         //  .row-flex {
-         //      display: flex;
-         //      width: 100%;
-         //  }
-         //  .col-flex {
-         //      display: flex;
-         //      flex: 1;
-         //      padding: 0 0px!important;
-         //      width: 50%;
-         //  }
-         .footer-list-padd {
-             padding: 0px 10px 0 35px;
-         }
+     
+           li{
+            
+              display: block;
+      }
      }
      //scss for header
      header .header-border {

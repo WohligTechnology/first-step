@@ -129,8 +129,6 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     ]
     $scope.viewMore2 = function () {
         $scope.readmore2 = false;
-        // $scope.season2 = [];
-        // $scope.season2 = _.cloneDeep($scope.season2viewmore2);
         _.each($scope.season2viewmore2, function (n) {
             $scope.season2.push(n);
         })
@@ -192,12 +190,11 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     ]
     $scope.viewMore1 = function () {
         $scope.readmore1 = false;
-        // $scope.season1 = [];
-        // $scope.season1 = _.cloneDeep($scope.season1viewmore1);
         _.each($scope.season1viewmore1, function (n) {
             $scope.season1.push(n);
         })
 
     }
-
+    //for mobile for 
+    //end of mobile
 })

@@ -23,6 +23,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             $(".header-border").css("opacity", '0');
             $(".img-width-change").css("width", '10%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
+
         } else {
             $(".header-border").css("opacity", '1');
             $(".navbar-color-change").css("background", 'transparent');
