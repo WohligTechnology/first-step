@@ -821,13 +821,13 @@ padding: 10px;
     }
 }
 
-//scss for .gallery-inside 
+//scss for gallery
 .gallery-inside {
     margin: 280px 0px 170px 0px;
 }
 
 .gallery-pic-bottom {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .gallery-btn button {
@@ -849,7 +849,7 @@ padding: 10px;
     }
 }
 
-.season-opacity {
+.seasonOpacity {
     padding: 22px 22px 0;
     background: rgba(0, 0, 0, 0.59);
     width: 100%;
@@ -878,7 +878,14 @@ padding: 10px;
         border-bottom: 8px solid #fef424;
     }
 }
+.max-height-gallery{
+height:auto;
+}
+.min-height-gallery{
+    height: 482px;
+overflow: hidden;
 
+}
 //scss for about-modal
 .about-modal-bg {
     background-image: url("../img/about-modal-bg.jpg");
@@ -1049,7 +1056,11 @@ padding: 10px;
     position: relative;
     p {
         color: white;
+        margin-top: 10px;
     }
+}
+.episode-bottom{
+margin-bottom: 5px;
 }
 .comming-soon{
     h2{
@@ -1057,31 +1068,13 @@ color: #fef424;
 margin-bottom: 45px;
     }
 }
-// .scoll-on {
-//     .panel-body {
-//         height: 385px;
-//         overflow-y: scroll;
-//         overflow-x: hidden;
-//     }
-//      ::-webkit-scrollbar {
-//         width: 8px;
-//     }
-//     -webkit-scrollbar-track {
-//         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-//         background-color: rgba(254, 244, 36, 0.58);
-//         border-radius: 10px;
-//     }
-//      ::-webkit-scrollbar-track {
-//         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); // -webkit-border-radius: 10px;
-//         // border-radius: 10px;
-//     }
-//      ::-webkit-scrollbar-thumb {
-//         -webkit-border-radius: 17px;
-//         border-radius: 17px;
-//         background: rgba(254, 244, 36, 0.58);
-//         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-//     }
-//      ::-webkit-scrollbar-thumb:window-inactive {
-//         background: rgba(254, 244, 36, 0.58);
-//     }
-// }
+.max-height-season{
+height:auto;
+}
+.min-height-season{
+    height: 482px;
+overflow: hidden;
+
+}
+
+

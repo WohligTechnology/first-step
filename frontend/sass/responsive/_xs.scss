@@ -1,7 +1,7 @@
  @media (max-width: $screen-xs-max) {
      // Mobile
      .img-height{
-         height: 100px;
+           height: 13vh;
      }
      //scss for header
      .navbar-nav {
@@ -122,11 +122,19 @@ padding-top: 0px;
      footer {
          font-size: 12px;
           li{
-            
-              display: block;
+    position: relative;
+    display: inline;
+    padding: 3px;
+      &:before{
+       display:none;
       }
-     }
-
+ 
+   }
+      }
+     
+   .footer-list-padd{
+          text-align: center;
+}
      .footer-img {
          float: none !important;
          img {
@@ -152,12 +160,6 @@ padding-top: 0px;
              font-size: 12px;
          }
      }
-     //  .bulb {
-     //      position: absolute;
-     //      bottom: 87%;
-     //      right: 5%!important;
-     //      width: 16%;
-     //  }
      .minute-video {
          width: 100%;
      }
@@ -229,7 +231,7 @@ padding-top: 0px;
          }
      }
      .gallery-pic-bottom {
-         margin-bottom: 15px;
+         margin-bottom: 20px;
      }
      .gallery-btn button {
          margin-top: 0;
@@ -237,12 +239,21 @@ padding-top: 0px;
      .gallery-inside {
          margin: 100px 0 0 0;
      }
+       .min-height-gallery {
+        height: 18.6vh;
+    overflow: hidden;
+}
      //about us scss
       .about-modal-bg h1:after {
     width: 200px;
     bottom: 0;
 }
 .comming-soon h2{
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+}
+//scss for episode
+.min-height-season {
+    height: 23vh;
+    overflow: hidden;
 }
  }

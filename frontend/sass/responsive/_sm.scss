@@ -4,11 +4,14 @@
          height: 200px;
      }
      footer {
-     
-           li{
-            
-              display: block;
-      }
+     .footer-list-padd{
+    text-align: center;
+     }
+        li{
+            &:before{
+                display: none;
+            }
+        }
      }
      //scss for header
      header .header-border {
@@ -93,11 +96,26 @@
      .season-common:before {
          width: 47%;
      }
+     .min-height-gallery {
+       height: 242px;
+    overflow: hidden;
+}
      //scss for about us 
      .about-modal-bg h1:after {
          width: 400px;
          bottom: 0;
      }
-    .about-modal-bg{    padding: 30px 10px;
+    .about-modal-bg{    
+        padding: 45px 50px;
+}
+//scss for episode
+.min-height-season {
+    height: 535px;
+    overflow: hidden;
+}
+.season-common{
+    .video-icon{
+        top: 38%;
+}
 }
  }

@@ -13,7 +13,15 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             size: 'lg',
         });
     };
-
+    $scope.openContact = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/contact-modal.html',
+            scope: $scope,
+            size: 'sm',
+        });
+    };
     $scope.changeURL = function (id) {
         console.log(id);
         $location.path("" + id);

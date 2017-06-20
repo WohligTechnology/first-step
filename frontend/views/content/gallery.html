@@ -3,7 +3,7 @@
         <div class="gallery-inside">
 
             <div class="season-common">
-                <div class="season-opacity ">
+                <div class="seasonOpacity ">
                     <div class="season-text">
                         <h3>Season 3</h3>
                     </div>
@@ -23,9 +23,8 @@
                     </div>-->
                 </div>
             </div>
-
             <div class="season-common">
-                <div class="season-opacity ">
+                <div ng-class="{'max-height-gallery' : more2 == true , 'min-height-gallery':more2 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 2</h3>
                     </div>
@@ -36,30 +35,28 @@
                             </a>
                         </div>
                     </div>
-                    <div class="pull-right gallery-btn">
-                        <button ng-if="readmore2" ng-click="viewMore2();">View More</button>
-                        <button ng-if="!readmore2" ng-click="viewLess2();">View Less</button>
-                    </div>
+                </div>
+                <div class="pull-right gallery-btn">
+                    <button ng-click="viewMore2()" ng-if="view2">View More</button>
+                    <button ng-click="viewLess2()" ng-if="!view2">View Less</button>
                 </div>
             </div>
-
-
             <div class="season-common">
-                <div class="season-opacity">
+                <div ng-class="{'max-height-gallery' : more1 == true , 'min-height-gallery':more1 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 1</h3>
                     </div>
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season1 track by $index ">
                             <a fancybox href="{{img}}">
-                                <img ng-src="{{img}}" class="img-responsive">
+                                <img ng-src="{{img}}" class="img-responsive ">
                             </a>
                         </div>
                     </div>
-                    <div class="pull-right gallery-btn">
-                        <button ng-if="readmore1" ng-click="viewMore1();">View More</button>
-                        <button ng-if="!readmore1" ng-click="viewLess1();">View Less</button>
-                    </div>
+                </div>
+                <div class="pull-right gallery-btn">
+                    <button ng-click="viewMore1()" ng-if="view1">View More</button>
+                    <button ng-click="viewLess1()" ng-if="!view1">View Less</button>
                 </div>
             </div>
 
