@@ -741,7 +741,9 @@ padding: 10px;
         }
     }
 }
-
+.location {
+margin-top: 20px;
+}
 .ask-expert-bg {
     background-image: url("../img/expert-modal.png");
     background-position: center center;
@@ -1001,7 +1003,7 @@ overflow: hidden;
     margin: 50px 0px 0 20px;
 }
 
-//Modal Contest Enter
+//Modal Contest 
 .contact-modal-bg {
     background-image: url("../img/contest-bg.jpg");
     background-position: center top;
@@ -1083,5 +1085,33 @@ height:auto;
 overflow: hidden;
 
 }
-
+.search-episode{
+    padding: 0px 0 30px;
+    .form-control{
+    color: white;
+    border: 2px solid #fef424;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.59);
+    }
+    .btn-search{
+    border: 2px solid #fef424;
+    padding: 16px;
+    border-left: none;
+    border-right: none;
+    background: transparent;
+    background-image: url("../img/search-icon-mobile.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+ .input-group{
+  width:100%;
+  input::-webkit-input-placeholder {color: #fef424 !important;} 
+ }
+ .input-group-btn{
+    position: absolute;
+    right: 32px;
+        z-index: 2;
+ }
+}
 
