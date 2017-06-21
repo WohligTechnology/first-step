@@ -170,6 +170,16 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
         });
     };
+    $scope.digitalcourseopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/digitalcourse-modal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
 
 })
 

@@ -926,7 +926,7 @@ overflow: hidden;
 
 //scss for Digital courses
 .digital-main {
-    margin: 100px 0 110px;
+        margin: 25px 0 60px;
 }
 
 .digital-login {
@@ -936,13 +936,17 @@ overflow: hidden;
 .digital-course {
     margin-left: 80px;
     margin-top: 55px;
-    padding: 70px 40px 50px 100px;
+    padding: 40px 40px 50px 100px;
     border-bottom: 5px solid #e9e72b;
     border-right: 5px solid #e9e72b;
     position: relative;
     text-align: justify;
 }
-
+.computer{ 
+    position: absolute;
+    top: 35%;
+    left: -75px;
+    }
 .digital-course:before {
     content: '';
     left: 0;
@@ -961,7 +965,7 @@ overflow: hidden;
 }
 
 .digital-course h1 {
-    font-size: 45px;
+    font-size: 35px;
     color: #e9e72b;
     margin-bottom: 25px;
 }

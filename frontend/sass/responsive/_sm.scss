@@ -120,6 +120,17 @@
 }
 //scss for contests
 .contest-modal-heading h1 {
-    font-size: 37px;}
-
+    font-size: 37px;
+    }
+    //scss for digital course
+    .digital-course{
+        margin-left: 66px;
+            padding: 40px 40px 50px 80px;
+    }
+.digital-login h3:before{
+        width: 30%;
+}
+.digital-course:after{
+     width: 25%;
+}
  }
