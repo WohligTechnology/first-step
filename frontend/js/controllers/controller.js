@@ -57,8 +57,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $state.transitionTo('homeid', {
             id: id
         }, {
-            notify: false
-        });
+                notify: false
+            });
         makeAnimation(id);
         $location.replace();
     };
@@ -150,6 +150,16 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
         });
     };
+    $scope.pradeepopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/pradeepmodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
     $scope.contestopen = function () {
         console.log("clla");
         $uibModal.open({
@@ -163,20 +173,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
 })
 
-.controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
-    $scope.template = TemplateService.getHTML("content/form.html");
-    TemplateService.title = "Form"; //This is the Title of the Website
-    $scope.navigation = NavigationService.getNavigation();
-    $scope.formSubmitted = false;
-    $scope.submitForm = function (data) {
-        console.log(data);
-        $scope.formSubmitted = true;
-    };
-})
+    .controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
+        $scope.template = TemplateService.getHTML("content/form.html");
+        TemplateService.title = "Form"; //This is the Title of the Website
+        $scope.navigation = NavigationService.getNavigation();
+        $scope.formSubmitted = false;
+        $scope.submitForm = function (data) {
+            console.log(data);
+            $scope.formSubmitted = true;
+        };
+    })
 
-//Example API Controller
-.controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
-    apiService.getDemo($scope.formData, function (data) {
-        console.log(data);
+    //Example API Controller
+    .controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
+        apiService.getDemo($scope.formData, function (data) {
+            console.log(data);
+        });
     });
-});

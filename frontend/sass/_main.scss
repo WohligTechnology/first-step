@@ -349,16 +349,19 @@ li:last-child{
 }
 
 .anchors-img {
+    margin: 0 auto;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 190px;
+    width: 170px;
     border-radius: 50%;
-    height: 190px;
-    cursor: pointer;
-    @include transition (all ease 300ms);
+    height: 170px;
+    
+    transition: all ease 300ms;
 }
-
+.anchor-pointer{
+cursor: pointer;
+}
 .anchors-hover:hover {
     @include transform (scale(1.1));
 }
@@ -382,7 +385,9 @@ li:last-child{
 .neha-img {
     background-image: url("../img/Neha-Anand.jpg");
 }
-
+.pradeep-img {
+    background-image: url("../img/Pradeep-Pandya.jpg");
+}
 .anchors-section {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
@@ -465,6 +470,9 @@ li:last-child{
 
 .sponsor-icon {
     padding: 55px 0;
+    img{
+        margin:0 auto;
+    }
 }
 
 .episode-border {
@@ -1024,16 +1032,11 @@ overflow: hidden;
 }
 
 .contest-modal-heading h1 {
-    position: relative;
     font-size: 40px;
+    padding: 5px 0;
     font-family: kg-second-chances;
-    &:before {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        border-bottom: 2px solid #cccd7f;
-        width: 66%;
-    }
+    display: inline-block;
+    border-bottom: 2px solid #cccd7f;
 }
 
 .contest-modal-img {
