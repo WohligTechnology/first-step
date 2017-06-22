@@ -291,4 +291,27 @@ padding-top: 0px;
 .digital-course:after{
      display: none;
 }
+
+//scss for digital-inside page
+.digital-heading{
+     border-left:none;
+    h1{
+        font-size: 28px;
+    }
+    &:before,&:after{
+     display:none;
+    }
+}
+.computer-digital:before{
+     display:none;
+}
+.digitalinside-main{
+    margin: 100px 0 35px 0;
+    .inline-block{
+     display: block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    }
+}
  }

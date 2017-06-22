@@ -180,6 +180,16 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
         });
     };
+    $scope.ourpartneropen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ourpartner.html',
+            scope: $scope,
+            size: 'md',
+
+        });
+    };
 
 })
 
