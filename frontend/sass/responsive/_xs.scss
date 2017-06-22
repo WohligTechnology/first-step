@@ -7,12 +7,20 @@
      .navbar-nav {
          text-align: center !important;
          float: none !important;
+         
+     }
+     .navbar-collapse {
+ .pull-right{
+              float: none !important;
+         }
      }
      .navbar-brand img {
          width: 65px !important;
      }
      .navbar-nav>li>a {
-       padding: 5px 175px !important;
+       padding: 5px 0px !important;
+       display: block;
+       text-align: center;
      }
      .dropdown-menu {
          position: static;
@@ -244,9 +252,16 @@ padding-top: 0px;
     overflow: hidden;
 }
      //about us scss
-      .about-modal-bg h1:after {
+   
+.about-modal-bg h1{
+    text-align: center;
+&:after {
     width: 200px;
     bottom: 0;
+   }
+}
+.about-modal-bg {
+    padding: 40px 10px;
 }
 .comming-soon h2{
         margin-bottom: 40px;
@@ -312,6 +327,13 @@ padding-top: 0px;
     padding: 0;
     margin: 0;
     text-align: center;
+    }
+}
+//scss for ourpartner-modal
+.ourpartner-modal {
+    margin: 40px 0 0px;
+    h1{
+        font-size: 60px;
     }
 }
  }
