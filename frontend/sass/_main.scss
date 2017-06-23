@@ -1130,6 +1130,7 @@ overflow: hidden;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: calc(100vh - 96px);
     }
 .digital-course-type{
     padding: 13px;
@@ -1140,12 +1141,12 @@ overflow: hidden;
     color: #fef424;
     }
  img{
- transition:all 2s ease-in-out;
+ transition:all 1s ease-in-out;
   perspective: 500px;
   perspective-origin: 50% 100px;
   cursor: pointer;
   &:hover{
-       transform:rotateZ(50deg);
+       transform:rotateY(180deg);
   }
 }
 }
