@@ -19,9 +19,17 @@
          margin-left: 32%;
      }
      //scss for home
-     .education-background img {
+     .education-background {
+         .education-img-size {
          height: auto;
      }
+      .eraser{
+       img{
+           width:55px;
+       }
+   }
+     }
+
      .three-icon h2 {
          font-size: 24px;
      }
@@ -143,6 +151,10 @@
  }
  .digital-heading:before{
          width: 500px;
+ }
+ //scss for ask expert modal
+ .ask-expert-bg{
+     padding: 45px;
  }
  }
  

@@ -316,10 +316,19 @@ li:last-child{
 }
 
 //scss for home
-.education-background img {
+.education-background {
+    position: relative;
+    .education-img-size {
     width: 100%;
     height: 700px;
 }
+.eraser{   
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);}
+}
+
 
 .gallery-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
@@ -741,7 +750,10 @@ cursor: pointer;
 }
 .note{
     p{ font-size: 16px;}
-    .span-font{ font-size: 12px; }
+    .span-font{ 
+        font-size: 12px; 
+        letter-spacing: 1px;
+        }
 }
 .header-change{
 padding: 10px;

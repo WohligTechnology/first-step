@@ -32,8 +32,15 @@
             background-image: url("../img/modal-bg-mobile.jpg");
                 padding: 50px 15px 70px 25px;
      }
-     .education-background img {
+     .education-background {
+         .education-img-size {
          height: auto;
+     }
+   .eraser{
+       img{
+           width:35px;
+       }
+   }
      }
      .modal-pt {
 padding-top: 0px;
@@ -201,10 +208,14 @@ padding-top: 0px;
      //scss for ask-expert modal
      .ask-expert-bg {
          font-size: 16px;
+         padding:10px;
      }
      .ask-modal .modal-dialog {
          width: auto;
      }
+     .note p {
+    font-size: 14px;
+   }
      .ask-modal input {
          width: 170px;
      }
