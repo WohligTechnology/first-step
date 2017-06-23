@@ -1139,11 +1139,13 @@ overflow: hidden;
     letter-spacing: 2px;
     color: #fef424;
     }
- img{transition:all 2s ease-in-out;
+ img{
+ transition:all 2s ease-in-out;
   perspective: 500px;
   perspective-origin: 50% 100px;
+  cursor: pointer;
   &:hover{
-       transform:rotateZ(90deg);
+       transform:rotateZ(50deg);
   }
 }
 }
