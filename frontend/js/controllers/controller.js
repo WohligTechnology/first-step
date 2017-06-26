@@ -46,15 +46,15 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }
         setTimeout(function () {
             $(".loaders-made .element-one").typed({
-                strings: ["Ldwy pys ge ^100"],
-                startDelay: 20,
-                typeSpeed: 100, 
+                strings: ["Ldwy pysa D;k ^100"],
+                startDelay: 10,
+                typeSpeed: 50, 
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-two").typed({
                 strings: ["?kj pys ge",],
-                startDelay: 7000,
+                startDelay: 2000,
                 typeSpeed: 100, 
                 showCursor: true,
                 loop: false
