@@ -322,11 +322,12 @@ footer {
 
 //scss for home
 .education-background {
+    background-image: url("../img/education-ppt-background.jpg");
+    //background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
-    .education-img-size {
-        width: 100%;
-        height: 700px;
-    }
+    min-height: 800px;
     .eraser {
         position: absolute;
         bottom: -70px;
