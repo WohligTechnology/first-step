@@ -17,11 +17,24 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="digital-login">
                         <h3 class="text-center">LOGIN</h3>
-                        <div class="course-fb m-auto" ng-click="openFacebook();">
-                            <img src="img/fblogin.png" class="img-responsive">
-                        </div>
-                        <div class="course-google m-auto" ng-click="openGoogle();">
-                            <img src="img/login-google.png" class="img-responsive">
+                        <div class="login-digital">
+                            <form name="login-digital-form">
+                                <div class="form-group" ng-class="{'form-invalid': login-digital-form.name.$invalid && login-digital-form.name.$touched}">
+                                    <label>Full Name:</label>
+                                    <input type="text" ng-maxlength='35' name="name" placeholder="Enter Full Name" ng-model="formData.name" ng-pattern="template.onlyAplha"
+                                        replace="[^a-zA-Z_-]" with="" class="form-control" required>
+                                    <div class="error-msg" ng-show="login-digital-form.name.$touched && login-digital-form.name.$invalid"> Invalid Full Name </div>
+                                </div>
+                                <div class="form-group" ng-class="{'form-invalid': login-digital-form.email.$invalid && login-digital-form.email.$touched}">
+                                    <label>Email Address:</label>
+                                    <input type="email" ng-maxlength='255' name="email" placeholder="Enter Email" ng-model="formData.email" ng-pattern="template.validEmail"
+                                        class="form-control" required>
+                                    <div class="error-msg" ng-show="login-digital-form.email.$touched && login-digital-form.email.$invalid"> Invalid EMAIL ID</div>
+                                </div>
+                                <div class="digital-submit">
+                                    <button type="submit" class="btn btn-default" ui-sref="digitalinside">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 

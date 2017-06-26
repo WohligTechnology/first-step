@@ -30,8 +30,8 @@
                     </div>
                     <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season2 track by $index ">
-                            <a class="fancybox" href="{{img}}" fancybox  rel='gallery'>
-                                <img ng-src="{{img}}" class="img-responsive ">
+                            <a fancybox href="{{img.img1}}">
+                                <img ng-src="{{img.img2}}" class="img-responsive ">
                             </a>
                         </div>
                     </div>
@@ -48,8 +48,8 @@
                     </div>
                     <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season1 track by $index ">
-                            <a fancybox href="{{img}}">
-                                <img ng-src="{{img}}" class="img-responsive ">
+                            <a fancybox href="{{img.img1}}">
+                                <img ng-src="{{img.img2}}" class="img-responsive ">
                             </a>
                         </div>
                     </div>
