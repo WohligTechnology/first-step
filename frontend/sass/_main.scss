@@ -389,9 +389,9 @@ footer {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 170px;
+    width: 140px;
     border-radius: 50%;
-    height: 170px;
+    height: 140px;
     transition: all ease 300ms;
 }
 
@@ -524,6 +524,9 @@ footer {
     padding: 30px 20px;
     border-left: 3px solid #000;
     border-right: 3px solid #000;
+    height: 328px;
+    text-align: center;
+    overflow: hidden;
 }
 
 .episode-section {
