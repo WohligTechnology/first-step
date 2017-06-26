@@ -1,28 +1,39 @@
-.eraser {
+.eraser-one,.eraser-two,.eraser-three ,.eraser-four   {
 	opacity: 0;
-	@include animation(erase-duster 3.1s ease 2.5s forwards);
+}
+.eraser-one {
+	@include animation(erase-duster 3.5s linear 0s forwards);
 	@include animation-delay(3s);
 }
 
-.education-background .loaders-made .element-loader{
-	@include animation(erase-content 1.5s ease 0.8s forwards);
-	@include animation-delay(3.3s);
+.education-background .loaders-made .element-one{
+	@include animation(erase-content 2.6s linear 0ms forwards);
+	@include animation-delay(2.8s);
 }
 
-// @include keyframes (erase-duster) {
-// 	0% {
-// 		@include transform(translateX(-50%) rotate(-90deg));
-// 	}
-// 	20% {
-// 		@include transform(translate(110%, -150%)rotate(-0deg));
-// 	}
-// 	80% {
-// 		@include transform(translate(-803%, -135%) rotate(0deg));
-// 	}
-// 	100% {
-// 		@include transform(translateX(-50%) rotate(-90deg));
-// 	}
-// }
+.eraser-two {
+	opacity: 0;
+	@include animation(erase-duster 3.5s linear 0s forwards);
+	@include animation-delay(10.1s);
+	z-index: 9;
+}
+.education-background .loaders-made .element-two{
+	@include animation(erase-content 2.75s linear 0ms forwards);
+	@include animation-delay(9.8s);
+	z-index: 0;
+}
+
+.eraser-three {
+	opacity: 0;
+	@include animation(erase-duster 3.5s linear 0s forwards);
+	@include animation-delay(16.5s);
+	z-index: 9;
+}
+.education-background .loaders-made .element-three{
+	@include animation(erase-content 2.75s linear 0ms forwards);
+	@include animation-delay(16.2s);
+	z-index: 0;
+}
 
 @include keyframes (erase-duster) {
 	0% {
@@ -43,9 +54,18 @@
 
 @include keyframes (erase-content) {
 	0% {
-		width: 500px;
+		width: 900px;
 	}
 	100% {
 		width: 0px;
+	}
+}
+
+@include keyframes (show-content) {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
 	}
 }

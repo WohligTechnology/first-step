@@ -46,16 +46,30 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }
         setTimeout(function () {
             $(".loaders-made .element-one").typed({
-                strings: ["Ldwy pysa D;k ^100"],
-                startDelay: 10,
-                typeSpeed: 50, 
+                strings: ["Ldwy pysa D;k <span>?</span>"],
+                startDelay: 0,
+                typeSpeed: 30, 
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-two").typed({
-                strings: ["?kj pys ge",],
-                startDelay: 2000,
-                typeSpeed: 100, 
+                strings: ["rjDdh dh vksj igyk dne",],
+                startDelay: 5500,
+                typeSpeed: 30, 
+                showCursor: true,
+                loop: false
+            });
+                $(".loaders-made .element-three").typed({
+                strings: ["<span> Finance </span> dh <span> A B C D </span>",],
+                startDelay: 13500,
+                typeSpeed: 30, 
+                showCursor: true,
+                loop: false
+            });
+            $(".loaders-made .element-four").typed({
+                strings: ["iMksxs]fy[kksxs]cuksxs uokc",],
+                startDelay: 20000,
+                typeSpeed: 30, 
                 showCursor: true,
                 loop: false
             });

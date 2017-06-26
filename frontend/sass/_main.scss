@@ -29,6 +29,11 @@ $brand-info: #000072 !default;
     src: url("../fonts/KrutiDev.ttf");
 }
 
+@font-face {
+    font-family: 'Eraser';
+    src: url("../fonts/Eraser.ttf");
+}
+
 @import "other/font-fix";
 body {
     padding-top: 0px;
@@ -335,9 +340,9 @@ footer {
         position: absolute;
         top: 0px;
         right: 0px;
-        z-index: 2;
+        z-index: 9;
         img {
-            width: 110px;
+            width: 120px;
         }
     }
     .loaders-made {
@@ -345,18 +350,43 @@ footer {
         top: 30%;
         left: 0%;
         @include transform(translateX(0%));
-        width: 900px;
+        width: 1000px;
         height: 300px;
         padding-left: 150px;
         overflow: hidden;
         .element-loader {
-            font-size: 150px;
+            font-size: 120px;
             color: #fff;
             font-family: 'KrutiDev';
             width: 900px;
-            font-weight: 700;
+            padding-top: 30px;
             white-space: nowrap;
             overflow: hidden;
+            span {
+                font-family: Eraser;
+                font-weight: 700;
+            }
+            &.element-one {
+                span {
+                    font-size: 100px;
+                }
+            }
+            &.element-two {
+                font-size: 78px;
+                padding-top: 60px;
+                position: relative;
+            }
+            &.element-three {
+                padding-top: 60px;
+                font-size: 85px;
+                span {
+                    font-size: 70px;
+                }
+            }
+            &.element-four {
+                padding-top: 60px;
+                font-size: 85px;
+            }
         }
         span.typed-cursor {
             display: none;
