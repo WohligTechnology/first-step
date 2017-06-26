@@ -53,7 +53,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 loop: false
             });
             $(".loaders-made .element-two").typed({
-                strings: ["?kj pys ge"],
+                strings: ["?kj pys ge",],
                 startDelay: 7000,
                 typeSpeed: 100, 
                 showCursor: true,
