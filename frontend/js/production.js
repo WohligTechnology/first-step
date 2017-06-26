@@ -65337,6 +65337,7 @@ function Dom7Service () {
 var duScrollDefaultEasing=function(e){"use strict";return e<.5?Math.pow(2*e,2)/2:1-Math.pow(2*(1-e),2)/2},duScroll=angular.module("duScroll",["duScroll.scrollspy","duScroll.smoothScroll","duScroll.scrollContainer","duScroll.spyContext","duScroll.scrollHelpers"]).value("duScrollDuration",350).value("duScrollSpyWait",100).value("duScrollSpyRefreshInterval",0).value("duScrollGreedy",!1).value("duScrollOffset",0).value("duScrollEasing",duScrollDefaultEasing).value("duScrollCancelOnEvents","scroll mousedown mousewheel touchmove keydown").value("duScrollBottomSpy",!1).value("duScrollActiveClass","active");"undefined"!=typeof module&&module&&module.exports&&(module.exports=duScroll),angular.module("duScroll.scrollHelpers",["duScroll.requestAnimation"]).run(["$window","$q","cancelAnimation","requestAnimation","duScrollEasing","duScrollDuration","duScrollOffset","duScrollCancelOnEvents",function(e,t,n,r,o,l,u,i){"use strict";var c={},a=function(e){return"undefined"!=typeof HTMLDocument&&e instanceof HTMLDocument||e.nodeType&&e.nodeType===e.DOCUMENT_NODE},s=function(e){return"undefined"!=typeof HTMLElement&&e instanceof HTMLElement||e.nodeType&&e.nodeType===e.ELEMENT_NODE},d=function(e){return s(e)||a(e)?e:e[0]};c.duScrollTo=function(t,n,r,o){var l;if(angular.isElement(t)?l=this.duScrollToElement:angular.isDefined(r)&&(l=this.duScrollToAnimated),l)return l.apply(this,arguments);var u=d(this);return a(u)?e.scrollTo(t,n):(u.scrollLeft=t,void(u.scrollTop=n))};var f,m;c.duScrollToAnimated=function(e,l,u,c){u&&!c&&(c=o);var a=this.duScrollLeft(),s=this.duScrollTop(),d=Math.round(e-a),p=Math.round(l-s),S=null,g=0,v=this,h=function(e){(!e||g&&e.which>0)&&(i&&v.unbind(i,h),n(f),m.reject(),f=null)};if(f&&h(),m=t.defer(),0===u||!d&&!p)return 0===u&&v.duScrollTo(e,l),m.resolve(),m.promise;var y=function(e){null===S&&(S=e),g=e-S;var t=g>=u?1:c(g/u);v.scrollTo(a+Math.ceil(d*t),s+Math.ceil(p*t)),t<1?f=r(y):(i&&v.unbind(i,h),f=null,m.resolve())};return v.duScrollTo(a,s),i&&v.bind(i,h),f=r(y),m.promise},c.duScrollToElement=function(e,t,n,r){var o=d(this);angular.isNumber(t)&&!isNaN(t)||(t=u);var l=this.duScrollTop()+d(e).getBoundingClientRect().top-t;return s(o)&&(l-=o.getBoundingClientRect().top),this.duScrollTo(0,l,n,r)},c.duScrollLeft=function(t,n,r){if(angular.isNumber(t))return this.duScrollTo(t,this.duScrollTop(),n,r);var o=d(this);return a(o)?e.scrollX||document.documentElement.scrollLeft||document.body.scrollLeft:o.scrollLeft},c.duScrollTop=function(t,n,r){if(angular.isNumber(t))return this.duScrollTo(this.duScrollLeft(),t,n,r);var o=d(this);return a(o)?e.scrollY||document.documentElement.scrollTop||document.body.scrollTop:o.scrollTop},c.duScrollToElementAnimated=function(e,t,n,r){return this.duScrollToElement(e,t,n||l,r)},c.duScrollTopAnimated=function(e,t,n){return this.duScrollTop(e,t||l,n)},c.duScrollLeftAnimated=function(e,t,n){return this.duScrollLeft(e,t||l,n)},angular.forEach(c,function(e,t){angular.element.prototype[t]=e;var n=t.replace(/^duScroll/,"scroll");angular.isUndefined(angular.element.prototype[n])&&(angular.element.prototype[n]=e)})}]),angular.module("duScroll.polyfill",[]).factory("polyfill",["$window",function(e){"use strict";var t=["webkit","moz","o","ms"];return function(n,r){if(e[n])return e[n];for(var o,l=n.substr(0,1).toUpperCase()+n.substr(1),u=0;u<t.length;u++)if(o=t[u]+l,e[o])return e[o];return r}}]),angular.module("duScroll.requestAnimation",["duScroll.polyfill"]).factory("requestAnimation",["polyfill","$timeout",function(e,t){"use strict";var n=0,r=function(e,r){var o=(new Date).getTime(),l=Math.max(0,16-(o-n)),u=t(function(){e(o+l)},l);return n=o+l,u};return e("requestAnimationFrame",r)}]).factory("cancelAnimation",["polyfill","$timeout",function(e,t){"use strict";var n=function(e){t.cancel(e)};return e("cancelAnimationFrame",n)}]),angular.module("duScroll.spyAPI",["duScroll.scrollContainerAPI"]).factory("spyAPI",["$rootScope","$timeout","$interval","$window","$document","scrollContainerAPI","duScrollGreedy","duScrollSpyWait","duScrollSpyRefreshInterval","duScrollBottomSpy","duScrollActiveClass",function(e,t,n,r,o,l,u,i,c,a,s){"use strict";var d=function(n){var l=!1,c=!1,d=function(){c=!1;var t,l=n.container,i=l[0],d=0;if("undefined"!=typeof HTMLElement&&i instanceof HTMLElement||i.nodeType&&i.nodeType===i.ELEMENT_NODE)d=i.getBoundingClientRect().top,t=Math.round(i.scrollTop+i.clientHeight)>=i.scrollHeight;else{var f=o[0].body.scrollHeight||o[0].documentElement.scrollHeight;t=Math.round(r.pageYOffset+r.innerHeight)>=f}var m,p,S,g,v,h,y=a&&t?"bottom":"top";for(g=n.spies,p=n.currentlyActive,S=void 0,m=0;m<g.length;m++)v=g[m],h=v.getTargetPosition(),h&&v.$element&&(a&&t||h.top+v.offset-d<20&&(u||h.top*-1+d)<h.height)&&(!S||S[y]<h[y])&&(S={spy:v},S[y]=h[y]);S&&(S=S.spy),p===S||u&&!S||(p&&p.$element&&(p.$element.removeClass(s),e.$broadcast("duScrollspy:becameInactive",p.$element,angular.element(p.getTargetElement()))),S&&(S.$element.addClass(s),e.$broadcast("duScrollspy:becameActive",S.$element,angular.element(S.getTargetElement()))),n.currentlyActive=S)};return i?function(){l?c=!0:(d(),l=t(function(){l=!1,c&&d()},i,!1))}:d},f={},m=function(e){var t=e.$id,n={spies:[]};return n.handler=d(n),f[t]=n,e.$on("$destroy",function(){p(e)}),t},p=function(e){var t=e.$id,r=f[t],o=r.container;r.intervalPromise&&n.cancel(r.intervalPromise),o&&o.off("scroll",r.handler),delete f[t]},S=m(e),g=function(e){return f[e.$id]?f[e.$id]:e.$parent?g(e.$parent):f[S]},v=function(e){var t,n,r=e.$scope;if(r)return g(r);for(n in f)if(t=f[n],t.spies.indexOf(e)!==-1)return t},h=function(e){for(;e.parentNode;)if(e=e.parentNode,e===document)return!0;return!1},y=function(e){var t=v(e);t&&(t.spies.push(e),t.container&&h(t.container)||(t.container&&t.container.off("scroll",t.handler),t.container=l.getContainer(e.$scope),c&&!t.intervalPromise&&(t.intervalPromise=n(t.handler,c,0,!1)),t.container.on("scroll",t.handler).triggerHandler("scroll")))},$=function(t){var n=v(t);t===n.currentlyActive&&(e.$broadcast("duScrollspy:becameInactive",n.currentlyActive.$element),n.currentlyActive=null);var r=n.spies.indexOf(t);r!==-1&&n.spies.splice(r,1),t.$element=null};return{addSpy:y,removeSpy:$,createContext:m,destroyContext:p,getContextForScope:g}}]),angular.module("duScroll.scrollContainerAPI",[]).factory("scrollContainerAPI",["$document",function(e){"use strict";var t={},n=function(e,n){var r=e.$id;return t[r]=n,r},r=function(e){return t[e.$id]?e.$id:e.$parent?r(e.$parent):void 0},o=function(n){var o=r(n);return o?t[o]:e},l=function(e){var n=r(e);n&&delete t[n]};return{getContainerId:r,getContainer:o,setContainer:n,removeContainer:l}}]),angular.module("duScroll.smoothScroll",["duScroll.scrollHelpers","duScroll.scrollContainerAPI"]).directive("duSmoothScroll",["duScrollDuration","duScrollOffset","scrollContainerAPI",function(e,t,n){"use strict";return{link:function(r,o,l){o.on("click",function(o){if(l.href&&l.href.indexOf("#")!==-1||""!==l.duSmoothScroll){var u=l.href?l.href.replace(/.*(?=#[^\s]+$)/,"").substring(1):l.duSmoothScroll,i=document.getElementById(u)||document.getElementsByName(u)[0];if(i&&i.getBoundingClientRect){o.stopPropagation&&o.stopPropagation(),o.preventDefault&&o.preventDefault();var c=l.offset?parseInt(l.offset,10):t,a=l.duration?parseInt(l.duration,10):e,s=n.getContainer(r);s.duScrollToElement(angular.element(i),isNaN(c)?0:c,isNaN(a)?0:a)}}})}}}]),angular.module("duScroll.spyContext",["duScroll.spyAPI"]).directive("duSpyContext",["spyAPI",function(e){"use strict";return{restrict:"A",scope:!0,compile:function(t,n,r){return{pre:function(t,n,r,o){e.createContext(t)}}}}}]),angular.module("duScroll.scrollContainer",["duScroll.scrollContainerAPI"]).directive("duScrollContainer",["scrollContainerAPI",function(e){"use strict";return{restrict:"A",scope:!0,compile:function(t,n,r){return{pre:function(t,n,r,o){r.$observe("duScrollContainer",function(r){angular.isString(r)&&(r=document.getElementById(r)),r=angular.isElement(r)?angular.element(r):n,e.setContainer(t,r),t.$on("$destroy",function(){e.removeContainer(t)})})}}}}}]),angular.module("duScroll.scrollspy",["duScroll.spyAPI"]).directive("duScrollspy",["spyAPI","duScrollOffset","$timeout","$rootScope",function(e,t,n,r){"use strict";var o=function(e,t,n,r){angular.isElement(e)?this.target=e:angular.isString(e)&&(this.targetId=e),this.$scope=t,this.$element=n,this.offset=r};return o.prototype.getTargetElement=function(){return!this.target&&this.targetId&&(this.target=document.getElementById(this.targetId)||document.getElementsByName(this.targetId)[0]),this.target},o.prototype.getTargetPosition=function(){var e=this.getTargetElement();if(e)return e.getBoundingClientRect()},o.prototype.flushTargetCache=function(){this.targetId&&(this.target=void 0)},{link:function(l,u,i){var c,a=i.ngHref||i.href;if(a&&a.indexOf("#")!==-1?c=a.replace(/.*(?=#[^\s]+$)/,"").substring(1):i.duScrollspy?c=i.duScrollspy:i.duSmoothScroll&&(c=i.duSmoothScroll),c){var s=n(function(){var n=new o(c,l,u,(-(i.offset?parseInt(i.offset,10):t)));e.addSpy(n),l.$on("$locationChangeSuccess",n.flushTargetCache.bind(n));var a=r.$on("$stateChangeSuccess",n.flushTargetCache.bind(n));l.$on("$destroy",function(){e.removeSpy(n),a()})},0,!1);l.$on("$destroy",function(){n.cancel(s)})}}}}]);
 //# sourceMappingURL=angular-scroll.min.js.map
 
+!function(t,s,e){"use strict";var i=function(t,s){var i=this;this.el=t,this.options={},Object.keys(r).forEach(function(t){i.options[t]=r[t]}),Object.keys(s).forEach(function(t){i.options[t]=s[t]}),this.isInput="input"===this.el.tagName.toLowerCase(),this.attr=this.options.attr,this.showCursor=!this.isInput&&this.options.showCursor,this.elContent=this.attr?this.el.getAttribute(this.attr):this.el.textContent,this.contentType=this.options.contentType,this.typeSpeed=this.options.typeSpeed,this.startDelay=this.options.startDelay,this.backSpeed=this.options.backSpeed,this.backDelay=this.options.backDelay,this.fadeOut=this.options.fadeOut,this.fadeOutClass=this.options.fadeOutClass,this.fadeOutDelay=this.options.fadeOutDelay,e&&this.options.stringsElement instanceof e?this.stringsElement=this.options.stringsElement[0]:this.stringsElement=this.options.stringsElement,this.strings=this.options.strings,this.strPos=0,this.arrayPos=0,this.stopNum=0,this.loop=this.options.loop,this.loopCount=this.options.loopCount,this.curLoop=0,this.stop=!1,this.cursorChar=this.options.cursorChar,this.shuffle=this.options.shuffle,this.sequence=[],this.build()};i.prototype={constructor:i,init:function(){var t=this;t.timeout=setTimeout(function(){for(var s=0;s<t.strings.length;++s)t.sequence[s]=s;t.shuffle&&(t.sequence=t.shuffleArray(t.sequence)),t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},t.startDelay)},build:function(){var t=this;if(this.showCursor===!0&&(this.cursor=s.createElement("span"),this.cursor.className="typed-cursor",this.cursor.innerHTML=this.cursorChar,this.el.parentNode&&this.el.parentNode.insertBefore(this.cursor,this.el.nextSibling)),this.stringsElement){this.strings=[],this.stringsElement.style.display="none";var e=Array.prototype.slice.apply(this.stringsElement.children);e.forEach(function(s){t.strings.push(s.innerHTML)})}this.init()},typewrite:function(t,s){if(this.stop!==!0){this.fadeOut&&this.el.classList.contains(this.fadeOutClass)&&(this.el.classList.remove(this.fadeOutClass),this.cursor.classList.remove(this.fadeOutClass));var e=Math.round(70*Math.random())+this.typeSpeed,i=this;i.timeout=setTimeout(function(){var e=0,r=t.substr(s);if("^"===r.charAt(0)){var o=1;/^\^\d+/.test(r)&&(r=/\d+/.exec(r)[0],o+=r.length,e=parseInt(r)),t=t.substring(0,s)+t.substring(s+o)}if("html"===i.contentType){var n=t.substr(s).charAt(0);if("<"===n||"&"===n){var a="",h="";for(h="<"===n?">":";";t.substr(s+1).charAt(0)!==h&&(a+=t.substr(s).charAt(0),s++,!(s+1>t.length)););s++,a+=h}}i.timeout=setTimeout(function(){if(s===t.length){if(i.options.onStringTyped(i.arrayPos),i.arrayPos===i.strings.length-1&&(i.options.callback(),i.curLoop++,i.loop===!1||i.curLoop===i.loopCount))return;i.timeout=setTimeout(function(){i.backspace(t,s)},i.backDelay)}else{0===s&&i.options.preStringTyped(i.arrayPos);var e=t.substr(0,s+1);i.attr?i.el.setAttribute(i.attr,e):i.isInput?i.el.value=e:"html"===i.contentType?i.el.innerHTML=e:i.el.textContent=e,s++,i.typewrite(t,s)}},e)},e)}},backspace:function(t,s){var e=this;if(this.stop!==!0){if(this.fadeOut)return void this.initFadeOut();var i=Math.round(70*Math.random())+this.backSpeed;e.timeout=setTimeout(function(){if("html"===e.contentType&&">"===t.substr(s).charAt(0)){for(var i="";"<"!==t.substr(s-1).charAt(0)&&(i-=t.substr(s).charAt(0),s--,!(s<0)););s--,i+="<"}var r=t.substr(0,s);e.replaceText(r),s>e.stopNum?(s--,e.backspace(t,s)):s<=e.stopNum&&(e.arrayPos++,e.arrayPos===e.strings.length?(e.arrayPos=0,e.shuffle&&(e.sequence=e.shuffleArray(e.sequence)),e.init()):e.typewrite(e.strings[e.sequence[e.arrayPos]],s))},i)}},initFadeOut:function(){return self=this,this.el.className+=" "+this.fadeOutClass,this.cursor.className+=" "+this.fadeOutClass,setTimeout(function(){self.arrayPos++,self.replaceText(""),self.typewrite(self.strings[self.sequence[self.arrayPos]],0)},self.fadeOutDelay)},replaceText:function(t){this.attr?this.el.setAttribute(this.attr,t):this.isInput?this.el.value=t:"html"===this.contentType?this.el.innerHTML=t:this.el.textContent=t},shuffleArray:function(t){var s,e,i=t.length;if(i)for(;--i;)e=Math.floor(Math.random()*(i+1)),s=t[e],t[e]=t[i],t[i]=s;return t},reset:function(){var t=this;clearInterval(t.timeout);this.el.getAttribute("id");this.el.textContent="","undefined"!=typeof this.cursor&&"undefined"!=typeof this.cursor.parentNode&&this.cursor.parentNode.removeChild(this.cursor),this.strPos=0,this.arrayPos=0,this.curLoop=0,this.options.resetCallback()}},i["new"]=function(t,e){var r=Array.prototype.slice.apply(s.querySelectorAll(t));r.forEach(function(t){var s=t._typed,r="object"==typeof e&&e;s&&s.reset(),t._typed=s=new i(t,r),"string"==typeof e&&s[e]()})},e&&(e.fn.typed=function(t){return this.each(function(){var s=e(this),r=s.data("typed"),o="object"==typeof t&&t;r&&r.reset(),s.data("typed",r=new i(this,o)),"string"==typeof t&&r[t]()})}),t.Typed=i;var r={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,shuffle:!1,backDelay:500,fadeOut:!1,fadeOutClass:"typed-fade-out",fadeOutDelay:500,loop:!1,loopCount:!1,showCursor:!0,cursorChar:"|",attr:null,contentType:"html",callback:function(){},preStringTyped:function(){},onStringTyped:function(){},resetCallback:function(){}}}(window,document,window.jQuery);
 // Link all the JS Docs here
 var myApp = angular.module('myApp', [
     'ui.router',
@@ -65363,7 +65364,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'HomeCtrl'
         })
 
-    .state('minutestips', {
+        .state('minutestips', {
             url: "/minutestips",
             templateUrl: tempateURL,
             controller: 'MinutestipsCtrl'
@@ -65383,6 +65384,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'DigitalCourseCtrl'
         })
+        .state('digitalinside', {
+            url: "/digitalinside",
+            templateUrl: tempateURL,
+            controller: 'DigitalInsideCtrl'
+        })
         .state('form', {
             url: "/form",
             templateUrl: tempateURL,
@@ -65390,11 +65396,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
         })
 
 
-    .state('homeid', {
-        url: "/:id",
-        templateUrl: tempateURL,
-        controller: 'HomeCtrl'
-    });
+        .state('homeid', {
+            url: "/:id",
+            templateUrl: tempateURL,
+            controller: 'HomeCtrl'
+        });
     $urlRouterProvider.otherwise("/");
     $locationProvider.html5Mode(isproduction);
 });
@@ -65488,6 +65494,7 @@ myApp.directive('img', function ($compile, $parse) {
                 var target;
                 if (attr.rel) {
                     target = $("[rel='" + attr.rel + "']");
+                    console.log("inside" , attr.rel);
                 } else {
                     target = element;
                 }
@@ -65636,186 +65643,223 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 });
 var mySwiper;
 myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state) {
-    $scope.template = TemplateService.getHTML("content/home.html");
-    TemplateService.title = "Home"; //This is the Title of the Website
-    $scope.navigation = NavigationService.getNavigation();
+        $scope.template = TemplateService.getHTML("content/home.html");
+        TemplateService.title = "Home"; //This is the Title of the Website
+        $scope.navigation = NavigationService.getNavigation();
 
 
-    $scope.changeURL = function (id) {
-        console.log(id);
-        $location.path("" + id);
-    };
-    $scope.mySlides = [
-        'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
-        'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
-        'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
-        'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
-    ];
-    $scope.homeSlide = [
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
-        // 'img/gallery/1.jpg',
+        $scope.changeURL = function (id) {
+            console.log(id);
+            $location.path("" + id);
+        };
+        $scope.mySlides = [
+            'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+            'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+            'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+            'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+        ];
+        $scope.homeSlide = [
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
+            // 'img/gallery/1.jpg',
 
-    ];
+        ];
 
-    function makeAnimation(id) {
-        if (_.isEmpty(id)) {
-            id = "home";
+        function makeAnimation(id) {
+            if (_.isEmpty(id)) {
+                id = "home";
+            }
+            var someElement = angular.element(document.getElementById(id));
+            $document.scrollToElement(someElement, 75, 1000);
         }
-        var someElement = angular.element(document.getElementById(id));
-        $document.scrollToElement(someElement, 75, 1000);
-    }
-
-    $scope.$on('$viewContentLoaded', function (event) {
-        setTimeout(function () {
-            makeAnimation($stateParams.id);
-        }, 1000);
-    });
-
-
-    $scope.changeURL = function (id) {
-        $scope.menutitle = NavigationService.getNavigation(id);
-        $state.transitionTo('homeid', {
-            id: id
-        }, {
-            notify: false
+            setTimeout(function () {
+                $(".loaders-made .element-loader").typed({
+                    strings: ["स्कूल चाले हम"],
+                    startDelay: 20,
+                    typeSpeed: 100,
+                    loop: false
+                });
+            }, 500);
+        $scope.$on('$viewContentLoaded', function (event) {
+            setTimeout(function () {
+                makeAnimation($stateParams.id);
+            }, 1000);
         });
-        makeAnimation(id);
-        $location.replace();
-    };
-
-    $scope.$on('$viewContentLoaded', function (event) {
-        $timeout(function () {
-            mySwiper = new Swiper('.swiper-container', {
-                pagination: '.swiper-pagination',
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
-                loop: true,
-                effect: 'coverflow',
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                coverflow: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 1200,
-                    modifier: 1,
-                    slideShadows: true,
 
 
-                }
+        $scope.changeURL = function (id) {
+            $scope.menutitle = NavigationService.getNavigation(id);
+            $state.transitionTo('homeid', {
+                id: id
+            }, {
+                notify: false
             });
-        }, 300);
+            makeAnimation(id);
+            $location.replace();
+        };
+
+        $scope.$on('$viewContentLoaded', function (event) {
+            $timeout(function () {
+                mySwiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
+                    loop: true,
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflow: {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 1200,
+                        modifier: 1,
+                        slideShadows: true,
+
+
+                    }
+                });
+            }, 300);
+        });
+
+        var abc = _.times(100, function (n) {
+            return n;
+        });
+
+        var i = 0;
+        $scope.buttonClick = function () {
+            i++;
+            console.log("This is a button Click");
+        };
+
+        $scope.alokopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/alokmodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+
+        $scope.anilopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/anilmodal.html',
+                scope: $scope,
+                size: 'lg',
+            });
+        };
+
+        $scope.harshadaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/harshadamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+
+        $scope.kavitaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/kavitamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+
+        $scope.nehaopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/nehamodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+        $scope.pradeepopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/pradeepmodal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+        $scope.contestopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/contest.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+        $scope.digitalcourseopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/digitalcourse-modal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
+        $scope.ourpartneropen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/ourpartner.html',
+                scope: $scope,
+                size: 'md',
+
+            });
+        };
+
+    })
+
+    .controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
+        $scope.template = TemplateService.getHTML("content/form.html");
+        TemplateService.title = "Form"; //This is the Title of the Website
+        $scope.navigation = NavigationService.getNavigation();
+        $scope.formSubmitted = false;
+        $scope.submitForm = function (data) {
+            console.log(data);
+            $scope.formSubmitted = true;
+        };
+    })
+
+    //Example API Controller
+    .controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
+        apiService.getDemo($scope.formData, function (data) {
+            console.log(data);
+        });
     });
-
-    var abc = _.times(100, function (n) {
-        return n;
-    });
-
-    var i = 0;
-    $scope.buttonClick = function () {
-        i++;
-        console.log("This is a button Click");
-    };
-
-    $scope.alokopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/alokmodal.html',
-            scope: $scope,
-            size: 'lg',
-
-        });
-    };
-
-    $scope.anilopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/anilmodal.html',
-            scope: $scope,
-            size: 'lg',
-        });
-    };
-
-    $scope.harshadaopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/harshadamodal.html',
-            scope: $scope,
-            size: 'lg',
-
-        });
-    };
-
-    $scope.kavitaopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/kavitamodal.html',
-            scope: $scope,
-            size: 'lg',
-
-        });
-    };
-
-    $scope.nehaopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/nehamodal.html',
-            scope: $scope,
-            size: 'lg',
-
-        });
-    };
-    $scope.contestopen = function () {
-        console.log("clla");
-        $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modal/contest.html',
-            scope: $scope,
-            size: 'lg',
-
-        });
-    };
-
-})
-
-.controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
-    $scope.template = TemplateService.getHTML("content/form.html");
-    TemplateService.title = "Form"; //This is the Title of the Website
-    $scope.navigation = NavigationService.getNavigation();
-    $scope.formSubmitted = false;
-    $scope.submitForm = function (data) {
-        console.log(data);
-        $scope.formSubmitted = true;
-    };
-})
-
-//Example API Controller
-.controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
-    apiService.getDemo($scope.formData, function (data) {
-        console.log(data);
-    });
-});
  myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
      $scope.template = TemplateService.getHTML("content/minutestips.html");
      TemplateService.title = "Minutestips"; //This is the Title of the Website
@@ -65869,6 +65913,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
      };
 
  })
+myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+    $scope.template = TemplateService.getHTML("content/digitalinside.html");
+    TemplateService.title = "Digitalinside"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
+    $scope.formSubmitted = false;
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
+    $scope.submitForm = function (data) {
+        console.log(data);
+        $scope.formSubmitted = true;
+    };
+})
 myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location) {
     $scope.template = TemplateService.getHTML("content/gallery.html");
     TemplateService.title = "Gallery"; //This is the Title of the Website
@@ -65880,10 +65938,10 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         $.fancybox.close(true);
     };
 
-    $scope.changeURL = function (id) {
-        console.log(id);
-        $location.path("" + id);
-    };
+    // $scope.changeURL = function (id) {
+    //     console.log(id);
+    //     $location.path("" + id);
+    // };
 
     //  $scope.viewLess3 = function () {
     //      $scope.readmore3 = true;
@@ -65956,32 +66014,25 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
 
     //  }
 
-
-    $scope.viewLess2 = function () {
-        $scope.readmore2 = true;
-        $scope.season2 = [
-            'img/season2/1.jpg',
-            'img/season2/2.jpg',
-            'img/season2/3.jpg',
-            'img/season2/4.jpg',
-            'img/season2/5.jpg',
-            'img/season2/6.jpg',
-            'img/season2/7.jpg',
-            'img/season2/8.jpg',
-            'img/season2/9.jpg',
-            'img/season2/10.jpg',
-            'img/season2/11.jpg',
-            'img/season2/12.jpg',
-            'img/season2/13.jpg',
-            'img/season2/14.jpg',
-            'img/season2/15.jpg',
-            'img/season2/16.jpg',
-            'img/season2/17.jpg',
-            'img/season2/18.jpg',
-        ];
-    }
-    $scope.viewLess2();
-    $scope.season2viewmore2 = [
+    //for season2
+    $scope.season2 = ['img/season2/1.jpg',
+        'img/season2/2.jpg',
+        'img/season2/3.jpg',
+        'img/season2/4.jpg',
+        'img/season2/5.jpg',
+        'img/season2/6.jpg',
+        'img/season2/7.jpg',
+        'img/season2/8.jpg',
+        'img/season2/9.jpg',
+        'img/season2/10.jpg',
+        'img/season2/11.jpg',
+        'img/season2/12.jpg',
+        'img/season2/13.jpg',
+        'img/season2/14.jpg',
+        'img/season2/15.jpg',
+        'img/season2/16.jpg',
+        'img/season2/17.jpg',
+        'img/season2/18.jpg',
         'img/season2/19.jpg',
         'img/season2/20.jpg',
         'img/season2/21.jpg',
@@ -65997,43 +66048,40 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         'img/season2/31.jpg',
         'img/season2/32.jpg',
 
-    ]
+    ];
+
+    $scope.more2 = false;
+    $scope.view2 = true;
+
     $scope.viewMore2 = function () {
-        $scope.readmore2 = false;
-        // $scope.season2 = [];
-        // $scope.season2 = _.cloneDeep($scope.season2viewmore2);
-        _.each($scope.season2viewmore2, function (n) {
-            $scope.season2.push(n);
-        })
+        $scope.more2 = true;
+        $scope.view2 = false;
     }
-
-
-    $scope.viewLess1 = function () {
-        $scope.readmore1 = true;
-        $scope.season1 = [
-            'img/season1/1.jpg',
-            'img/season1/2.jpg',
-            'img/season1/3.jpg',
-            'img/season1/4.jpg',
-            'img/season1/6.jpg',
-            'img/season1/7.jpg',
-            'img/season1/8.jpg',
-            'img/season1/9.jpg',
-            'img/season1/10.jpg',
-            'img/season1/11.jpg',
-            'img/season1/12.jpg',
-            'img/season1/13.jpg',
-            'img/season1/14.jpg',
-            'img/season1/15.jpg',
-            'img/season1/16.jpg',
-            'img/season1/17.jpg',
-            'img/season1/18.jpg',
-            'img/season1/19.jpg',
-        ];
+    $scope.viewLess2 = function () {
+        $scope.more2 = false;
+        $scope.view2 = true;
     }
-    $scope.viewLess1();
-    $scope.season1viewmore1 = [
+    //end of season2
 
+    //for season1
+    $scope.season1 = ['img/season1/1.jpg',
+        'img/season1/2.jpg',
+        'img/season1/3.jpg',
+        'img/season1/4.jpg',
+        'img/season1/6.jpg',
+        'img/season1/7.jpg',
+        'img/season1/8.jpg',
+        'img/season1/9.jpg',
+        'img/season1/10.jpg',
+        'img/season1/11.jpg',
+        'img/season1/12.jpg',
+        'img/season1/13.jpg',
+        'img/season1/14.jpg',
+        'img/season1/15.jpg',
+        'img/season1/16.jpg',
+        'img/season1/17.jpg',
+        'img/season1/18.jpg',
+        'img/season1/19.jpg',
         'img/season1/20.jpg',
         'img/season1/21.jpg',
         'img/season1/22.jpg',
@@ -66060,16 +66108,20 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         'img/season1/43.jpg',
         'img/season1/44.jpg',
         'img/season1/5.jpg',
-    ]
-    $scope.viewMore1 = function () {
-        $scope.readmore1 = false;
-        // $scope.season1 = [];
-        // $scope.season1 = _.cloneDeep($scope.season1viewmore1);
-        _.each($scope.season1viewmore1, function (n) {
-            $scope.season1.push(n);
-        })
+    ];
 
+    $scope.more1 = false;
+    $scope.view1 = true;
+
+    $scope.viewMore1 = function () {
+        $scope.more1 = true;
+        $scope.view1 = false;
     }
+    $scope.viewLess1 = function () {
+        $scope.more1 = false;
+        $scope.view1 = true;
+    }
+    //end of season1
 
 })
 myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location) {
@@ -66087,7 +66139,15 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             size: 'lg',
         });
     };
-
+    $scope.openContact = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/contact-modal.html',
+            scope: $scope,
+            size: 'sm',
+        });
+    };
     $scope.changeURL = function (id) {
         console.log(id);
         $location.path("" + id);
@@ -66097,6 +66157,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             $(".header-border").css("opacity", '0');
             $(".img-width-change").css("width", '10%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
+
         } else {
             $(".header-border").css("opacity", '1');
             $(".navbar-color-change").css("background", 'transparent');
@@ -66117,177 +66178,82 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         console.log(data);
         $scope.formSubmitted = true;
     };
-    // $scope.viewLess3 = function () {
-    //     $scope.readmore3 = true;
-    //     $scope.season3 = [{
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 1",
-    //     }, {
-    //         imageUrl: "OqT3D60MZVk",
-    //         videoUrl: "OqT3D60MZVk",
-    //         episodeno: "Episode 2",
-    //     }, {
-    //         imageUrl: "47VM_wfNUdQ",
-    //         videoUrl: "47VM_wfNUdQ",
-    //         episodeno: "Episode 3",
-    //     }, {
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 4",
-    //     }, {
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 5",
-    //     }, {
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 6",
-    //     }, {
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 7",
-    //     }, {
-    //         imageUrl: "x4nlGY36J-s",
-    //         videoUrl: "x4nlGY36J-s",
-    //         episodeno: "Episode 8",
-    //     },
-
-    //     ];
-    // }
-    // $scope.viewLess3();
-    // $scope.season3viewmore3 = [{
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // }, {
-    //     imageUrl: "x4nlGY36J-s",
-    //     videoUrl: "x4nlGY36J-s",
-    //     episodeno: "Episode 5",
-    // },]
-    // $scope.viewMore3 = function () {
-    //     $scope.readmore3 = false;
-    //     //$scope.season3 = [];
-    //     //  $scope.season3 = _.cloneDeep($scope.season3viewmore3);
-    //     _.each($scope.season3viewmore3, function (n) {
-    //         $scope.season3.push(n);
-    //     })
-
-    // }
 
 
-    $scope.viewLess2 = function () {
-        $scope.readmore2 = true;
-        $scope.season2 = [{
-            imageUrl: "6e1SJEJJyBw",
-            videoUrl: "6e1SJEJJyBw",
-            episodeno: "Episode 1",
-        }, {
-            imageUrl: "Rl0pNdNDpfo",
-            videoUrl: "Rl0pNdNDpfo",
-            episodeno: "Episode 2",
-        }, {
-            imageUrl: "9fPdYPvYhL4",
-            videoUrl: "9fPdYPvYhL4",
-            episodeno: "Episode 3",
-        }, {
-            imageUrl: "WApywMO9Wl0",
-            videoUrl: "WApywMO9Wl0",
-            episodeno: "Episode 4",
-        }, {
-            imageUrl: "OrX0r5K8ma4",
-            videoUrl: "OrX0r5K8ma4",
-            episodeno: "Episode 5",
-        }, {
-            imageUrl: "HYsU0cSTRDY",
-            videoUrl: "HYsU0cSTRDY",
-            episodeno: "Episode 6",
-        }, {
-            imageUrl: "yTCQc0cI8sg",
-            videoUrl: "yTCQc0cI8sg",
-            episodeno: "Episode 7",
-        }, {
-            imageUrl: "4ToAgejb1bo",
-            videoUrl: "4ToAgejb1bo",
-            episodeno: "Episode 8",
-        }, {
-            imageUrl: "Eu1lLdio33s",
-            videoUrl: "Eu1lLdio33s",
-            episodeno: "Episode 9",
-        }, {
-            imageUrl: "zUITRJTKDok",
-            videoUrl: "zUITRJTKDok",
-            episodeno: "Episode 10",
-        }, {
-            imageUrl: "y5X8BYujJ3s",
-            videoUrl: "y5X8BYujJ3s",
-            episodeno: "Episode 11",
-        }, {
-            imageUrl: "BoIy7MPxSBU",
-            videoUrl: "BoIy7MPxSBU",
-            episodeno: "Episode 12",
-        }, {
-            imageUrl: "Q-iBDeA4Hz0",
-            videoUrl: "Q-iBDeA4Hz0",
-            episodeno: "Episode 13",
-        }, {
-            imageUrl: "H4pnL0Lmlzc",
-            videoUrl: "H4pnL0Lmlzc",
-            episodeno: "Episode 14",
-        }, {
-            imageUrl: "CZ-hAHp42-8",
-            videoUrl: "CZ-hAHp42-8",
-            episodeno: "Episode 15",
-        }, {
-            imageUrl: "FEFEJ_HJq2o",
-            videoUrl: "FEFEJ_HJq2o",
-            episodeno: "Episode 16",
-        }, {
-            imageUrl: "B034I1zal0w",
-            videoUrl: "B034I1zal0w",
-            episodeno: "Episode 17",
-        }, {
-            imageUrl: "buTCKyeM-zg",
-            videoUrl: "buTCKyeM-zg",
-            episodeno: "Episode 18",
-        },
-
-        ];
-    }
-    $scope.viewLess2();
-    $scope.season2viewmore2 = [{
+    //for season2
+    $scope.season2 = [{
+        imageUrl: "6e1SJEJJyBw",
+        videoUrl: "6e1SJEJJyBw",
+        episodeno: "Episode 1",
+    }, {
+        imageUrl: "Rl0pNdNDpfo",
+        videoUrl: "Rl0pNdNDpfo",
+        episodeno: "Episode 2",
+    }, {
+        imageUrl: "9fPdYPvYhL4",
+        videoUrl: "9fPdYPvYhL4",
+        episodeno: "Episode 3",
+    }, {
+        imageUrl: "WApywMO9Wl0",
+        videoUrl: "WApywMO9Wl0",
+        episodeno: "Episode 4",
+    }, {
+        imageUrl: "OrX0r5K8ma4",
+        videoUrl: "OrX0r5K8ma4",
+        episodeno: "Episode 5",
+    }, {
+        imageUrl: "HYsU0cSTRDY",
+        videoUrl: "HYsU0cSTRDY",
+        episodeno: "Episode 6",
+    }, {
+        imageUrl: "yTCQc0cI8sg",
+        videoUrl: "yTCQc0cI8sg",
+        episodeno: "Episode 7",
+    }, {
+        imageUrl: "4ToAgejb1bo",
+        videoUrl: "4ToAgejb1bo",
+        episodeno: "Episode 8",
+    }, {
+        imageUrl: "Eu1lLdio33s",
+        videoUrl: "Eu1lLdio33s",
+        episodeno: "Episode 9",
+    }, {
+        imageUrl: "zUITRJTKDok",
+        videoUrl: "zUITRJTKDok",
+        episodeno: "Episode 10",
+    }, {
+        imageUrl: "y5X8BYujJ3s",
+        videoUrl: "y5X8BYujJ3s",
+        episodeno: "Episode 11",
+    }, {
+        imageUrl: "BoIy7MPxSBU",
+        videoUrl: "BoIy7MPxSBU",
+        episodeno: "Episode 12",
+    }, {
+        imageUrl: "Q-iBDeA4Hz0",
+        videoUrl: "Q-iBDeA4Hz0",
+        episodeno: "Episode 13",
+    }, {
+        imageUrl: "H4pnL0Lmlzc",
+        videoUrl: "H4pnL0Lmlzc",
+        episodeno: "Episode 14",
+    }, {
+        imageUrl: "CZ-hAHp42-8",
+        videoUrl: "CZ-hAHp42-8",
+        episodeno: "Episode 15",
+    }, {
+        imageUrl: "FEFEJ_HJq2o",
+        videoUrl: "FEFEJ_HJq2o",
+        episodeno: "Episode 16",
+    }, {
+        imageUrl: "B034I1zal0w",
+        videoUrl: "B034I1zal0w",
+        episodeno: "Episode 17",
+    }, {
+        imageUrl: "buTCKyeM-zg",
+        videoUrl: "buTCKyeM-zg",
+        episodeno: "Episode 18",
+    }, {
         imageUrl: "jf39ex_CbFU",
         videoUrl: "jf39ex_CbFU",
         episodeno: "Episode 19",
@@ -66315,98 +66281,98 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "MYo4T_2TckQ",
         videoUrl: "MYo4T_2TckQ",
         episodeno: "Episode 25",
-    },]
+    }
+
+    ];
+
+    $scope.more2 = false;
+    $scope.view2 = true;
+
     $scope.viewMore2 = function () {
-        $scope.readmore2 = false;
-        //  $scope.season2 = [];
-        //  $scope.season2 = _.cloneDeep($scope.season2viewmore2);
-        _.each($scope.season2viewmore2, function (n) {
-            $scope.season2.push(n);
-        })
-
+        $scope.more2 = true;
+        $scope.view2 = false;
     }
-
-
-    $scope.viewLess1 = function () {
-        $scope.readmore1 = true;
-        $scope.season1 = [{
-            imageUrl: "OqT3D60MZVk",
-            videoUrl: "OqT3D60MZVk",
-            episodeno: "Episode 1",
-        }, {
-            imageUrl: "47VM_wfNUdQ",
-            videoUrl: "47VM_wfNUdQ",
-            episodeno: "Episode 2",
-        }, {
-            imageUrl: "x4nlGY36J-s",
-            videoUrl: "x4nlGY36J-s",
-            episodeno: "Episode 3",
-        }, {
-            imageUrl: "nrWcU0iPTrg",
-            videoUrl: "nrWcU0iPTrg",
-            episodeno: "Episode 4",
-        }, {
-            imageUrl: "yqX09Ai8bdw",
-            videoUrl: "yqX09Ai8bdw",
-            episodeno: "Episode 5",
-        }, {
-            imageUrl: "vf8Z_0dk3tQ",
-            videoUrl: "vf8Z_0dk3tQ",
-            episodeno: "Episode 6",
-        }, {
-            imageUrl: "YnauodrRqpw",
-            videoUrl: "YnauodrRqpw",
-            episodeno: "Episode 7",
-        }, {
-            imageUrl: "KurI8w6hteg",
-            videoUrl: "KurI8w6hteg",
-            episodeno: "Episode 8",
-        }, {
-            imageUrl: "d2b_Kv_d3Cs",
-            videoUrl: "d2b_Kv_d3Cs",
-            episodeno: "Episode 9",
-        }, {
-            imageUrl: "Umnq0EDKjcE",
-            videoUrl: "Umnq0EDKjcE",
-            episodeno: "Episode 10",
-        }, {
-            imageUrl: "g20d_8D-G3k",
-            videoUrl: "g20d_8D-G3k",
-            episodeno: "Episode 11",
-        }, {
-            imageUrl: "AkZwkJnwoBw",
-            videoUrl: "AkZwkJnwoBw",
-            episodeno: "Episode 12",
-        }, {
-            imageUrl: "b0trRrnppkQ",
-            videoUrl: "b0trRrnppkQ",
-            episodeno: "Episode 13",
-        }, {
-            imageUrl: "ss8EycBDSfc",
-            videoUrl: "ss8EycBDSfc",
-            episodeno: "Episode 14",
-        }, {
-            imageUrl: "cq0FB8O-SXk",
-            videoUrl: "cq0FB8O-SXk",
-            episodeno: "Episode 15",
-        }, {
-            imageUrl: "ZqKaGWON_ZE",
-            videoUrl: "ZqKaGWON_ZE",
-            episodeno: "Episode 16",
-        }, {
-            imageUrl: "HV5u_wwPj3Y",
-            videoUrl: "HV5u_wwPj3Y",
-            episodeno: "Episode 17",
-        }, {
-            imageUrl: "66NU5Ip_jMA",
-            videoUrl: "66NU5Ip_jMA",
-            episodeno: "Episode 18",
-        },
-
-        ];
+    $scope.viewLess2 = function () {
+        $scope.more2 = false;
+        $scope.view2 = true;
     }
-    $scope.viewLess1();
-    $scope.season1viewmore1 = [{
+    //end of season2
+
+    //for season1
+    $scope.season1 = [{
+        imageUrl: "OqT3D60MZVk",
+        videoUrl: "OqT3D60MZVk",
+        episodeno: "Episode 1",
+    }, {
+        imageUrl: "47VM_wfNUdQ",
+        videoUrl: "47VM_wfNUdQ",
+        episodeno: "Episode 2",
+    }, {
+        imageUrl: "x4nlGY36J-s",
+        videoUrl: "x4nlGY36J-s",
+        episodeno: "Episode 3",
+    }, {
+        imageUrl: "nrWcU0iPTrg",
+        videoUrl: "nrWcU0iPTrg",
+        episodeno: "Episode 4",
+    }, {
+        imageUrl: "yqX09Ai8bdw",
+        videoUrl: "yqX09Ai8bdw",
+        episodeno: "Episode 5",
+    }, {
+        imageUrl: "vf8Z_0dk3tQ",
+        videoUrl: "vf8Z_0dk3tQ",
+        episodeno: "Episode 6",
+    }, {
+        imageUrl: "YnauodrRqpw",
+        videoUrl: "YnauodrRqpw",
+        episodeno: "Episode 7",
+    }, {
+        imageUrl: "KurI8w6hteg",
+        videoUrl: "KurI8w6hteg",
+        episodeno: "Episode 8",
+    }, {
+        imageUrl: "d2b_Kv_d3Cs",
+        videoUrl: "d2b_Kv_d3Cs",
+        episodeno: "Episode 9",
+    }, {
+        imageUrl: "Umnq0EDKjcE",
+        videoUrl: "Umnq0EDKjcE",
+        episodeno: "Episode 10",
+    }, {
+        imageUrl: "g20d_8D-G3k",
+        videoUrl: "g20d_8D-G3k",
+        episodeno: "Episode 11",
+    }, {
+        imageUrl: "AkZwkJnwoBw",
+        videoUrl: "AkZwkJnwoBw",
+        episodeno: "Episode 12",
+    }, {
+        imageUrl: "b0trRrnppkQ",
+        videoUrl: "b0trRrnppkQ",
+        episodeno: "Episode 13",
+    }, {
+        imageUrl: "ss8EycBDSfc",
+        videoUrl: "ss8EycBDSfc",
+        episodeno: "Episode 14",
+    }, {
+        imageUrl: "cq0FB8O-SXk",
+        videoUrl: "cq0FB8O-SXk",
+        episodeno: "Episode 15",
+    }, {
+        imageUrl: "ZqKaGWON_ZE",
+        videoUrl: "ZqKaGWON_ZE",
+        episodeno: "Episode 16",
+    }, {
+        imageUrl: "HV5u_wwPj3Y",
+        videoUrl: "HV5u_wwPj3Y",
+        episodeno: "Episode 17",
+    }, {
+        imageUrl: "66NU5Ip_jMA",
+        videoUrl: "66NU5Ip_jMA",
+        episodeno: "Episode 18",
+    },
+    {
         imageUrl: "NxSM8956Hfo",
         videoUrl: "NxSM8956Hfo",
         episodeno: "Episode 19",
@@ -66666,15 +66632,370 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "aQz0Gsd2oBo",
         videoUrl: "aQz0Gsd2oBo",
         episodeno: "Episode 83",
-    },]
+    },
+
+    ];
+
+    $scope.more1 = false;
+    $scope.view1 = true;
+
     $scope.viewMore1 = function () {
-        $scope.readmore1 = false;
-        //  $scope.season1 = [];
-        //  $scope.season1 = _.cloneDeep($scope.season1viewmore1);
-        _.each($scope.season1viewmore1, function (n) {
-            $scope.season1.push(n);
-        })
+        $scope.more1 = true;
+        $scope.view1 = false;
     }
+    $scope.viewLess1 = function () {
+        $scope.more1 = false;
+        $scope.view1 = true;
+    }
+    //end of season1
+    // $scope.viewLess1 = function () {
+    //     $scope.readmore1 = true;
+    //     $scope.season1 = [{
+    //         imageUrl: "OqT3D60MZVk",
+    //         videoUrl: "OqT3D60MZVk",
+    //         episodeno: "Episode 1",
+    //     }, {
+    //         imageUrl: "47VM_wfNUdQ",
+    //         videoUrl: "47VM_wfNUdQ",
+    //         episodeno: "Episode 2",
+    //     }, {
+    //         imageUrl: "x4nlGY36J-s",
+    //         videoUrl: "x4nlGY36J-s",
+    //         episodeno: "Episode 3",
+    //     }, {
+    //         imageUrl: "nrWcU0iPTrg",
+    //         videoUrl: "nrWcU0iPTrg",
+    //         episodeno: "Episode 4",
+    //     }, {
+    //         imageUrl: "yqX09Ai8bdw",
+    //         videoUrl: "yqX09Ai8bdw",
+    //         episodeno: "Episode 5",
+    //     }, {
+    //         imageUrl: "vf8Z_0dk3tQ",
+    //         videoUrl: "vf8Z_0dk3tQ",
+    //         episodeno: "Episode 6",
+    //     }, {
+    //         imageUrl: "YnauodrRqpw",
+    //         videoUrl: "YnauodrRqpw",
+    //         episodeno: "Episode 7",
+    //     }, {
+    //         imageUrl: "KurI8w6hteg",
+    //         videoUrl: "KurI8w6hteg",
+    //         episodeno: "Episode 8",
+    //     }, {
+    //         imageUrl: "d2b_Kv_d3Cs",
+    //         videoUrl: "d2b_Kv_d3Cs",
+    //         episodeno: "Episode 9",
+    //     }, {
+    //         imageUrl: "Umnq0EDKjcE",
+    //         videoUrl: "Umnq0EDKjcE",
+    //         episodeno: "Episode 10",
+    //     }, {
+    //         imageUrl: "g20d_8D-G3k",
+    //         videoUrl: "g20d_8D-G3k",
+    //         episodeno: "Episode 11",
+    //     }, {
+    //         imageUrl: "AkZwkJnwoBw",
+    //         videoUrl: "AkZwkJnwoBw",
+    //         episodeno: "Episode 12",
+    //     }, {
+    //         imageUrl: "b0trRrnppkQ",
+    //         videoUrl: "b0trRrnppkQ",
+    //         episodeno: "Episode 13",
+    //     }, {
+    //         imageUrl: "ss8EycBDSfc",
+    //         videoUrl: "ss8EycBDSfc",
+    //         episodeno: "Episode 14",
+    //     }, {
+    //         imageUrl: "cq0FB8O-SXk",
+    //         videoUrl: "cq0FB8O-SXk",
+    //         episodeno: "Episode 15",
+    //     }, {
+    //         imageUrl: "ZqKaGWON_ZE",
+    //         videoUrl: "ZqKaGWON_ZE",
+    //         episodeno: "Episode 16",
+    //     }, {
+    //         imageUrl: "HV5u_wwPj3Y",
+    //         videoUrl: "HV5u_wwPj3Y",
+    //         episodeno: "Episode 17",
+    //     }, {
+    //         imageUrl: "66NU5Ip_jMA",
+    //         videoUrl: "66NU5Ip_jMA",
+    //         episodeno: "Episode 18",
+    //     },
+
+    //     ];
+    // }
+    // $scope.viewLess1();
+    // $scope.season1viewmore1 = [{
+    //     imageUrl: "NxSM8956Hfo",
+    //     videoUrl: "NxSM8956Hfo",
+    //     episodeno: "Episode 19",
+    // }, {
+    //     imageUrl: "rHFbbltTOiY",
+    //     videoUrl: "rHFbbltTOiY",
+    //     episodeno: "Episode 20",
+    // }, {
+    //     imageUrl: "BT4u-shAQew",
+    //     videoUrl: "BT4u-shAQew",
+    //     episodeno: "Episode 21",
+    // }, {
+    //     imageUrl: "uyLSt9UfOxA",
+    //     videoUrl: "uyLSt9UfOxA",
+    //     episodeno: "Episode 22",
+    // }, {
+    //     imageUrl: "tM92E1YmsI0",
+    //     videoUrl: "tM92E1YmsI0",
+    //     episodeno: "Episode 23",
+    // }, {
+    //     imageUrl: "mM7M_DVh8Z0",
+    //     videoUrl: "mM7M_DVh8Z0",
+    //     episodeno: "Episode 24",
+    // }, {
+    //     imageUrl: "AL18u09wUZI",
+    //     videoUrl: "AL18u09wUZI",
+    //     episodeno: "Episode 25",
+    // }, {
+    //     imageUrl: "mM7M_DVh8Z0",
+    //     videoUrl: "mM7M_DVh8Z0",
+    //     episodeno: "Episode 26",
+    // }, {
+    //     imageUrl: "809LBgNmgDk",
+    //     videoUrl: "809LBgNmgDk",
+    //     episodeno: "Episode 27",
+    // }, {
+    //     imageUrl: "mUqTxh4g3_g",
+    //     videoUrl: "mUqTxh4g3_g",
+    //     episodeno: "Episode 28",
+    // }, {
+    //     imageUrl: "SZ8EjsGNxpM",
+    //     videoUrl: "SZ8EjsGNxpM",
+    //     episodeno: "Episode 29",
+    // }, {
+    //     imageUrl: "GppqPhUxObc",
+    //     videoUrl: "GppqPhUxObc",
+    //     episodeno: "Episode 30",
+    // }, {
+    //     imageUrl: "6HaoOD0f9vo",
+    //     videoUrl: "6HaoOD0f9vo",
+    //     episodeno: "Episode 31",
+    // }, {
+    //     imageUrl: "OeUN0DMDDKA",
+    //     videoUrl: "OeUN0DMDDKA",
+    //     episodeno: "Episode 32",
+    // }, {
+    //     imageUrl: "Qgc1-zs03J4",
+    //     videoUrl: "Qgc1-zs03J4",
+    //     episodeno: "Episode 33",
+    // }, {
+    //     imageUrl: "QbKSL3dbpfw",
+    //     videoUrl: "QbKSL3dbpfw",
+    //     episodeno: "Episode 34",
+    // }, {
+    //     imageUrl: "dhDAbtv81DE",
+    //     videoUrl: "dhDAbtv81DE",
+    //     episodeno: "Episode 35",
+    // }, {
+    //     imageUrl: "1ubwYZ-kfGM",
+    //     videoUrl: "1ubwYZ-kfGM",
+    //     episodeno: "Episode 36",
+    // }, {
+    //     imageUrl: "Uu4ZcHS87BI",
+    //     videoUrl: "Uu4ZcHS87BI",
+    //     episodeno: "Episode 37",
+    // }, {
+    //     imageUrl: "1kxH_-hl1Cc",
+    //     videoUrl: "1kxH_-hl1Cc",
+    //     episodeno: "Episode 38",
+    // }, {
+    //     imageUrl: "zwjQJeoxDOI",
+    //     videoUrl: "zwjQJeoxDOI",
+    //     episodeno: "Episode 39",
+    // }, {
+    //     imageUrl: "0MDwbSFGsmQ",
+    //     videoUrl: "0MDwbSFGsmQ",
+    //     episodeno: "Episode 40",
+    // }, {
+    //     imageUrl: "TdTwc6gHX-c",
+    //     videoUrl: "TdTwc6gHX-c",
+    //     episodeno: "Episode 41",
+    // }, {
+    //     imageUrl: "_0Wf0M5DVjg",
+    //     videoUrl: "_0Wf0M5DVjg",
+    //     episodeno: "Episode 42",
+    // }, {
+    //     imageUrl: "QDC3Zc_VUmg",
+    //     videoUrl: "QDC3Zc_VUmg",
+    //     episodeno: "Episode 43",
+    // }, {
+    //     imageUrl: "_bXoAl5t1_E",
+    //     videoUrl: "_bXoAl5t1_E",
+    //     episodeno: "Episode 44",
+    // }, {
+    //     imageUrl: "hHnCc429ic0",
+    //     videoUrl: "hHnCc429ic0",
+    //     episodeno: "Episode 45",
+    // }, {
+    //     imageUrl: "IzMkQkHF7Zo",
+    //     videoUrl: "IzMkQkHF7Zo",
+    //     episodeno: "Episode 46",
+    // }, {
+    //     imageUrl: "i8tUlIOaL0A",
+    //     videoUrl: "i8tUlIOaL0A",
+    //     episodeno: "Episode 47",
+    // }, {
+    //     imageUrl: "2J2jCdchSTI",
+    //     videoUrl: "2J2jCdchSTI",
+    //     episodeno: "Episode 48",
+    // }, {
+    //     imageUrl: "OacVRhckWpc",
+    //     videoUrl: "OacVRhckWpc",
+    //     episodeno: "Episode 49",
+    // }, {
+    //     imageUrl: "D55jjilaqTc",
+    //     videoUrl: "D55jjilaqTc",
+    //     episodeno: "Episode 50",
+    // }, {
+    //     imageUrl: "ZMRG8JjIsBY",
+    //     videoUrl: "ZMRG8JjIsBY",
+    //     episodeno: "Episode 51",
+    // }, {
+    //     imageUrl: "DW9ElKEEamE",
+    //     videoUrl: "DW9ElKEEamE",
+    //     episodeno: "Episode 52",
+    // }, {
+    //     imageUrl: "s14042sqIQM",
+    //     videoUrl: "s14042sqIQM",
+    //     episodeno: "Episode 53",
+    // }, {
+    //     imageUrl: "QeOPszD1mak",
+    //     videoUrl: "QeOPszD1mak",
+    //     episodeno: "Episode 54",
+    // }, {
+    //     imageUrl: "W7Gz0bqfaUc",
+    //     videoUrl: "W7Gz0bqfaUc",
+    //     episodeno: "Episode 55",
+    // }, {
+    //     imageUrl: "PUGZ3_6D1pk",
+    //     videoUrl: "PUGZ3_6D1pk",
+    //     episodeno: "Episode 56",
+    // }, {
+    //     imageUrl: "24fffiDkkVU",
+    //     videoUrl: "24fffiDkkVU",
+    //     episodeno: "Episode 57",
+    // }, {
+    //     imageUrl: "1s-ZssxHuy4",
+    //     videoUrl: "1s-ZssxHuy4",
+    //     episodeno: "Episode 58",
+    // }, {
+    //     imageUrl: "LjUbBWXyIvU",
+    //     videoUrl: "LjUbBWXyIvU",
+    //     episodeno: "Episode 59",
+    // }, {
+    //     imageUrl: "k41uhc9qO3A",
+    //     videoUrl: "k41uhc9qO3A",
+    //     episodeno: "Episode 60",
+    // }, {
+    //     imageUrl: "PDr3qVnXZ8s",
+    //     videoUrl: "PDr3qVnXZ8s",
+    //     episodeno: "Episode 61",
+    // }, {
+    //     imageUrl: "Ymcoo0QW7hQ",
+    //     videoUrl: "Ymcoo0QW7hQ",
+    //     episodeno: "Episode 62",
+    // }, {
+    //     imageUrl: "Yrgr1b3Ad6g",
+    //     videoUrl: "Yrgr1b3Ad6g",
+    //     episodeno: "Episode 63",
+    // }, {
+    //     imageUrl: "sfTvseID06E",
+    //     videoUrl: "sfTvseID06E",
+    //     episodeno: "Episode 64",
+    // }, {
+    //     imageUrl: "IcDQLVZp0rg",
+    //     videoUrl: "IcDQLVZp0rg",
+    //     episodeno: "Episode 65",
+    // }, {
+    //     imageUrl: "_kK9V9CJmVI",
+    //     videoUrl: "_kK9V9CJmVI",
+    //     episodeno: "Episode 66",
+    // }, {
+    //     imageUrl: "DmxsgZI3BJg",
+    //     videoUrl: "DmxsgZI3BJg",
+    //     episodeno: "Episode 67",
+    // }, {
+    //     imageUrl: "SZtB0Qk_EKw",
+    //     videoUrl: "SZtB0Qk_EKw",
+    //     episodeno: "Episode 68",
+    // }, {
+    //     imageUrl: "lAvQsdNCc_s",
+    //     videoUrl: "lAvQsdNCc_s",
+    //     episodeno: "Episode 69",
+    // }, {
+    //     imageUrl: "Ra9lv36JG-U",
+    //     videoUrl: "Ra9lv36JG-U",
+    //     episodeno: "Episode 70",
+    // }, {
+    //     imageUrl: "qPDXLDK0aBY",
+    //     videoUrl: "qPDXLDK0aBY",
+    //     episodeno: "Episode 71",
+    // }, {
+    //     imageUrl: "1DP9_PYWlJE",
+    //     videoUrl: "1DP9_PYWlJE",
+    //     episodeno: "Episode 72",
+    // }, {
+    //     imageUrl: "UO-i7elCWCI",
+    //     videoUrl: "UO-i7elCWCI",
+    //     episodeno: "Episode 73",
+    // }, {
+    //     imageUrl: "FahtReKv-u8",
+    //     videoUrl: "FahtReKv-u8",
+    //     episodeno: "Episode 74",
+    // }, {
+    //     imageUrl: "jb8Buwo3rco",
+    //     videoUrl: "jb8Buwo3rco",
+    //     episodeno: "Episode 75",
+    // }, {
+    //     imageUrl: "FGueOhY6HJg",
+    //     videoUrl: "FGueOhY6HJg",
+    //     episodeno: "Episode 76",
+    // }, {
+    //     imageUrl: "DEEmpminlBU",
+    //     videoUrl: "DEEmpminlBU",
+    //     episodeno: "Episode 77",
+    // }, {
+    //     imageUrl: "s3ZwGWcw9xg",
+    //     videoUrl: "s3ZwGWcw9xg",
+    //     episodeno: "Episode 78",
+    // }, {
+    //     imageUrl: "1y5O7ogDOJ0",
+    //     videoUrl: "1y5O7ogDOJ0",
+    //     episodeno: "Episode 79",
+    // }, {
+    //     imageUrl: "GSIH0jXVSD8",
+    //     videoUrl: "GSIH0jXVSD8",
+    //     episodeno: "Episode 80",
+    // }, {
+    //     imageUrl: "-zWklRlJ_e8",
+    //     videoUrl: "-zWklRlJ_e8",
+    //     episodeno: "Episode 81",
+    // }, {
+    //     imageUrl: "kHQwdznO7tE",
+    //     videoUrl: "kHQwdznO7tE",
+    //     episodeno: "Episode 82",
+    // }, {
+    //     imageUrl: "aQz0Gsd2oBo",
+    //     videoUrl: "aQz0Gsd2oBo",
+    //     episodeno: "Episode 83",
+    // },]
+    // $scope.viewMore1 = function () {
+    //     $scope.readmore1 = false;
+    //     //  $scope.season1 = [];
+    //     //  $scope.season1 = _.cloneDeep($scope.season1viewmore1);
+    //     _.each($scope.season1viewmore1, function (n) {
+    //         $scope.season1.push(n);
+    //     })
+    // }
 
 })
 myApp.controller('languageCtrl', function ($scope, TemplateService, $translate, $rootScope) {

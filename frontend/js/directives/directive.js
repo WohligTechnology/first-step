@@ -48,6 +48,7 @@ myApp.directive('img', function ($compile, $parse) {
                 var target;
                 if (attr.rel) {
                     target = $("[rel='" + attr.rel + "']");
+                    console.log("inside" , attr.rel);
                 } else {
                     target = element;
                 }

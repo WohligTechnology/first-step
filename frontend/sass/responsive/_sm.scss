@@ -1,35 +1,33 @@
  @media (max-width: $screen-sm-max) {
      // Tablet
-     .img-height{
+     .img-height {
          height: 200px;
      }
      footer {
-     .footer-list-padd{
-    text-align: center;
-     }
-        li{
-            &:before{
-                display: none;
-            }
-        }
-     }
-     //scss for header
+         .footer-list-padd {
+             text-align: center;
+         }
+         li {
+             &:before {
+                 display: none;
+             }
+         }
+     } //scss for header
      header .header-border {
          width: 65%;
          margin-left: 32%;
-     }
-     //scss for home
+     } //scss for home
      .education-background {
          .education-img-size {
-         height: auto;
+             height: auto;
+         }
+        //  .eraser {
+        //      bottom: -60px;
+        //      img {
+        //          width: 75px;
+        //      }
+        //  }
      }
-      .eraser{
-       img{
-           width:75px;
-       }
-   }
-     }
-
      .three-icon h2 {
          font-size: 24px;
      }
@@ -72,8 +70,7 @@
      }
      .latest-buzz-img {
          margin: 0 65px
-     }
-     //scss for minutestips
+     } //scss for minutestips
      .minute-video {
          width: 358px;
      }
@@ -97,8 +94,7 @@
      .fancybox-next span,
      .fancybox-prev span {
          background-image: url("../img/fancybox_sprite.png");
-     }
-     //scss for gallery
+     } //scss for gallery
      .gallery-inside {
          margin: 220px 0px 60px 0px;
      }
@@ -106,55 +102,51 @@
          width: 47%;
      }
      .min-height-gallery {
-       height: 242px;
-    overflow: hidden;
-}
-     //scss for about us 
+         height: 242px;
+         overflow: hidden;
+     } //scss for about us 
      .about-modal-bg h1:after {
          width: 400px;
          bottom: 0;
      }
-    .about-modal-bg{    
-        padding: 45px 50px;
-}
-//scss for episode
-.min-height-season {
-    height: 535px;
-    overflow: hidden;
-}
-.season-common{
-    .video-icon{
-        top: 38%;
-}
-}
-.search-episode{
-    padding: 0 0 50px;
-}
-//scss for contests
-.contest-modal-heading h1 {
-    font-size: 37px;
-    }
-    //scss for digital course
-    .digital-course{
-        margin-left: 66px;
-            padding: 40px 40px 50px 80px;
-    }
-.digital-login h3:before{
-        width: 30%;
-}
-.digital-course:after{
-     width: 25%;
-}
-//scss for digital-inside page
- .digital-heading h1{
+     .about-modal-bg {
+         padding: 45px 50px;
+     }
+     //scss for episode
+     .min-height-season {
+         height: 535px;
+         overflow: hidden;
+     }
+     .season-common {
+         .video-icon {
+             top: 38%;
+         }
+     }
+     .search-episode {
+         padding: 0 0 50px;
+     }
+     //scss for contests
+     .contest-modal-heading h1 {
+         font-size: 37px;
+     } //scss for digital course
+     .digital-course {
+         margin-left: 66px;
+         padding: 40px 40px 50px 80px;
+     }
+     .digital-login h3:before {
+         width: 30%;
+     }
+     .digital-course:after {
+         width: 25%;
+     }
+     //scss for digital-inside page
+     .digital-heading h1 {
          font-size: 35px;
- }
- .digital-heading:before{
+     }
+     .digital-heading:before {
          width: 500px;
+     } //scss for ask expert modal
+     .ask-expert-bg {
+         padding: 45px;
+     }
  }
- //scss for ask expert modal
- .ask-expert-bg{
-     padding: 45px;
- }
- }
- 

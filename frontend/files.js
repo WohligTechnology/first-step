@@ -8,6 +8,7 @@ module.exports = [
   "bower_components/moment/min/moment.min.js",
   "bower_components/swiper/dist/js/swiper.jquery.js",
 
+
   //Angular Libs
   'bower_components/angular/angular.js',
   // 'bower_components/angular-sanitize/angular-sanitize.js',
@@ -22,7 +23,7 @@ module.exports = [
   'bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js',
   'bower_components/angular-ui-swiper/dist/angular-ui-swiper.js',
   'bower_components/angular-scroll/angular-scroll.min.js',
-
+  'bower_components/typed.js/dist/typed.min.js',
   //App.js
   'frontend/js/app.js',
 
