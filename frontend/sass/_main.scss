@@ -998,7 +998,11 @@ footer {
     background: rgba(0, 0, 0, 0.59);
     width: 100%;
 }
-
+.season-common{
+    a {
+        display: block;
+    }
+}
 .season-common {
     position: relative;
     border-top: none !important;

@@ -5,7 +5,7 @@
 .education-background .loaders-made{
 	.eraser-one {
 	@include animation(erase-duster 2.9s linear 0s forwards);
-	@include animation-delay(3s);
+	@include animation-delay(4.5s);
 }
 
 .eraser-two {
@@ -27,7 +27,7 @@
 
 .element-one-animation{
 	@include animation(erase-content 2.5s linear 0ms forwards);
-	@include animation-delay(2.8s);
+	@include animation-delay(4.3s);
 }
  .element-two-animation{
 	@include animation(erase-content 2.5s linear 0ms forwards);

@@ -65,31 +65,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $locationProvider.html5Mode(isproduction);
 });
 
-myApp.directive('fancyboxBox', function ($document) {
-    return {
-        restrict: 'EA',
-        replace: false,
-        link: function (scope, element, attr) {
-            var $element = $(element);
-            var target;
-            if (attr.rel) {
-                target = $("[rel='" + attr.rel + "']");
-            } else {
-                target = element;
-            }
-
-            target.fancybox({
-                openEffect: 'fade',
-                closeEffect: 'fade',
-                closeBtn: true,
-                helpers: {
-                    media: {}
-                }
-            });
-        }
-    };
-});
-
 // For Language JS
 myApp.config(function ($translateProvider) {
     $translateProvider.translations('en', LanguageEnglish);

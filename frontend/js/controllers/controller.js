@@ -44,57 +44,59 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             var someElement = angular.element(document.getElementById(id));
             $document.scrollToElement(someElement, 75, 1000);
         }
-        setTimeout(function () {
-            $(".loaders-made .element-one").typed({
-                strings: ["Ldwy pysa D;k <span>?</span>"],
-                startDelay: 0,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-two").typed({
-                strings: ["rjDdh dh vksj", ],
-                startDelay: 5600,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-two-one").typed({
-                strings: ["igyk dne", ],
-                startDelay: 6600,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-three").typed({
-                strings: ["Qkbusal dh", ],
-                startDelay: 13400,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-three-one").typed({
-                strings: ["<span> A B C D </span>", ],
-                startDelay: 14100,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-four").typed({
-                strings: ["iMksxs]fy[kksxs]", ],
-                startDelay: 20000,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-            $(".loaders-made .element-four-one").typed({
-                strings: ["cuksxs uokc", ],
-                startDelay: 22000,
-                typeSpeed: 30,
-                showCursor: true,
-                loop: false
-            });
-        }, 500);
+        $scope.$on('$viewContentLoaded', function (event) {
+            setTimeout(function () {
+                $(".loaders-made .element-one").typed({
+                    strings: ["Ldwy pysa D;k <span>?</span>"],
+                    startDelay: 0,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-two").typed({
+                    strings: ["rjDdh dh vksj", ],
+                    startDelay: 5600,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-two-one").typed({
+                    strings: ["igyk dne", ],
+                    startDelay: 6600,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-three").typed({
+                    strings: ["Qkbusal dh", ],
+                    startDelay: 12000,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-three-one").typed({
+                    strings: ["<span> A B C D </span>", ],
+                    startDelay: 13000,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-four").typed({
+                    strings: ["iMksxs]fy[kksxs]", ],
+                    startDelay: 19000,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+                $(".loaders-made .element-four-one").typed({
+                    strings: ["cuksxs uokc", ],
+                    startDelay: 21500,
+                    typeSpeed: 30,
+                    showCursor: true,
+                    loop: false
+                });
+            }, 2000);
+        });
         $scope.$on('$viewContentLoaded', function (event) {
             setTimeout(function () {
                 makeAnimation($stateParams.id);
