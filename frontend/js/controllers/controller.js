@@ -54,7 +54,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             });
             $(".loaders-made .element-two").typed({
                 strings: ["rjDdh dh vksj", ],
-                startDelay: 5500,
+                startDelay: 5600,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
