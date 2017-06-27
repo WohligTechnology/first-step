@@ -354,14 +354,22 @@ footer {
         height: 300px;
         padding-left: 150px;
         overflow: hidden;
+        .element-in,
+        .element-one-animation,
+        .element-two-animation,
+        .element-three-animation {
+            width: 800px;
+            overflow: hidden;
+        }
         .element-loader {
-            font-size: 120px;
+            font-size: 150px;
             color: #fff;
             font-family: 'KrutiDev';
-            width: 900px;
+            width: 800px;
             padding-top: 30px;
             white-space: nowrap;
             overflow: hidden;
+            text-align: center;
             span {
                 font-family: Eraser;
                 font-weight: 700;
@@ -371,21 +379,23 @@ footer {
                     font-size: 100px;
                 }
             }
-            &.element-two {
-                font-size: 78px;
-                padding-top: 60px;
+            &.element-two,
+            &.element-two-one,
+            &.element-four,
+            &.element-four-one {
+                font-size: 140px;
                 position: relative;
+                padding-top: 2px;
+                line-height: 1;
             }
+            &.element-three-one,
             &.element-three {
-                padding-top: 60px;
-                font-size: 85px;
+                padding-top: 2px;
+                line-height: 1;
                 span {
-                    font-size: 70px;
+                    font-size: 115px;
+                    line-height: 0.6;
                 }
-            }
-            &.element-four {
-                padding-top: 60px;
-                font-size: 85px;
             }
         }
         span.typed-cursor {

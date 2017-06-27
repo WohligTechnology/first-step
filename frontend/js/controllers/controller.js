@@ -48,28 +48,49 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             $(".loaders-made .element-one").typed({
                 strings: ["Ldwy pysa D;k <span>?</span>"],
                 startDelay: 0,
-                typeSpeed: 30, 
+                typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-two").typed({
-                strings: ["rjDdh dh vksj igyk dne",],
+                strings: ["rjDdh dh vksj", ],
                 startDelay: 5500,
-                typeSpeed: 30, 
+                typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
-                $(".loaders-made .element-three").typed({
-                strings: ["<span> Finance </span> dh <span> A B C D </span>",],
-                startDelay: 13500,
-                typeSpeed: 30, 
+            $(".loaders-made .element-two-one").typed({
+                strings: ["igyk dne", ],
+                startDelay: 6600,
+                typeSpeed: 30,
+                showCursor: true,
+                loop: false
+            });
+            $(".loaders-made .element-three").typed({
+                strings: ["Qkbusal dh", ],
+                startDelay: 13400,
+                typeSpeed: 30,
+                showCursor: true,
+                loop: false
+            });
+            $(".loaders-made .element-three-one").typed({
+                strings: ["<span> A B C D </span>", ],
+                startDelay: 14100,
+                typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-four").typed({
-                strings: ["iMksxs]fy[kksxs]cuksxs uokc",],
+                strings: ["iMksxs]fy[kksxs]", ],
                 startDelay: 20000,
-                typeSpeed: 30, 
+                typeSpeed: 30,
+                showCursor: true,
+                loop: false
+            });
+            $(".loaders-made .element-four-one").typed({
+                strings: ["cuksxs uokc", ],
+                startDelay: 22000,
+                typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
@@ -109,8 +130,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                         depth: 1200,
                         modifier: 1,
                         slideShadows: true,
-
-
                     }
                 });
             }, 300);
