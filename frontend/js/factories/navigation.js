@@ -1,9 +1,11 @@
 myApp.factory('NavigationService', function () {
-    var navigation = [{
-            name: "Home",
-            classis: "active",
-            anchor: "home",
-        }, {
+    var navigation = [
+        // {
+        //     name: "Home",
+        //     classis: "active",
+        //     anchor: "home",
+        // }, 
+        {
             name: "Gallery",
             classis: "active",
             anchor: "home-gallery",
@@ -12,6 +14,12 @@ myApp.factory('NavigationService', function () {
             name: "Episodes",
             classis: "active",
             anchor: "home-episodes",
+        }
+        ,
+        {
+            name: "Ask The Expert",
+            classis: "active",
+            anchor: "openExpertMain",
         },
         {
             name: "About",

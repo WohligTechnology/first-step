@@ -13,6 +13,15 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             size: 'lg',
         });
     };
+    $scope.openExpertMain = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ask-expert-main.html',
+            scope: $scope,
+            size: 'md',
+        });
+    };
     $scope.openContact = function () {
         console.log("clla");
         $uibModal.open({
