@@ -22,6 +22,16 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             size: 'md',
         });
     };
+    $scope.askexpertopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ask-expert.html',
+            scope: $scope,
+            windowClass: 'ask-modal'
+
+        });
+    };
     $scope.openContact = function () {
         console.log("clla");
         $uibModal.open({
