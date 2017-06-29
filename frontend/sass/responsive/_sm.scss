@@ -14,18 +14,18 @@
          }
      } //scss for header
      header .header-border {
-         width: 65%;
-         margin-left: 32%;
+         width: 80%;
+         margin-left: 20%;
      } //scss for home
      .education-background {
          .education-img-size {
              height: auto;
          }
      }
-     .episode-border{
+     .episode-border {
          height: auto;
      }
-     .latest-episode{
+     .latest-episode {
          margin-bottom: 30px;
      }
      .three-icon h2 {
@@ -62,7 +62,7 @@
          font-size: 17px;
      }
      .swiper-pagination-bullets {
-         display: block !important;
+         //  display: block !important;
      }
      .latest-buzz-detail {
          width: 100%;
@@ -70,7 +70,8 @@
      }
      .latest-buzz-img {
          margin: 0 65px
-     } //scss for minutestips
+     } 
+     //scss for minutestips
      .minute-video {
          width: 358px;
      }
@@ -80,23 +81,30 @@
          h1 {
              font-size: 32px;
          }
+             &:before{
+                 height: 260px;
+                 }
      }
      .minute-query h3,
      .minute-query a {
          font-size: 22px;
      }
      .name-plate {
-           width: 250px;
-           margin-left: 28%;
+         width: 250px;
+         margin-left: 28%;
      }
      #fancybox-loading,
      .fancybox-close,
      .fancybox-next span,
      .fancybox-prev span {
          background-image: url("../img/fancybox_sprite.png");
-     } //scss for gallery
+     }
+     .minute-main .minutetips-heading:before{
+       width: 530px;
+     }
+      //scss for gallery
      .gallery-inside {
-         margin: 220px 0px 60px 0px;
+         margin: 150px 0px 60px 0px;
      }
      .season-common:before {
          width: 47%;

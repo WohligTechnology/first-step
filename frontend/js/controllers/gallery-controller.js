@@ -378,7 +378,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         },
         {
             img1: 'img/season1/37.jpg',
-            img2: 'img/small-season1/37jpg',
+            img2: 'img/small-season1/37.jpg',
         },
         {
             img1: 'img/season1/38.jpg',

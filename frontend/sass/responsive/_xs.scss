@@ -1,26 +1,25 @@
  @media (max-width: $screen-xs-max) {
      // Mobile
-     .img-height{
-           height: 13vh;
+     .img-height {
+         height: 13vh;
      }
      //scss for header
      .navbar-nav {
          text-align: center !important;
          float: none !important;
-         
      }
      .navbar-collapse {
- .pull-right{
-              float: none !important;
+         .pull-right {
+             float: none !important;
          }
      }
      .navbar-brand img {
          width: 65px !important;
      }
      .navbar-nav>li>a {
-       padding: 5px 0px !important;
-       display: block;
-       text-align: center;
+         padding: 5px 0px !important;
+         display: block;
+         text-align: center;
      }
      .dropdown-menu {
          position: static;
@@ -28,26 +27,26 @@
          float: none;
      }
      //scss for home page
-     .modal-bg{
-            background-image: url("../img/modal-bg-mobile.jpg");
-                padding: 50px 15px 70px 25px;
+     .modal-bg {
+         background-image: url("../img/modal-bg-mobile.jpg");
+         padding: 50px 15px 70px 25px;
      }
      .education-background {
          .education-img-size {
-         height: auto;
-     }
-     .episode-border{
-         height: auto;
-     }
-   .eraser{
-       img{
-           width:45px;
-       }
-   }
+             height: auto;
+         }
+         .episode-border {
+             height: auto;
+         }
+         .eraser {
+             img {
+                 width: 45px;
+             }
+         }
      }
      .modal-pt {
-padding-top: 0px;
-}
+         padding-top: 0px;
+     }
      .three-icon {
          padding: 20px 0;
          h2 {
@@ -66,7 +65,7 @@ padding-top: 0px;
          padding: 0;
      }
      .swiper-pagination-bullets {
-         display: block !important;
+         //  display: block !important;
      }
      .latest-line:before,
      .latest-line:after,
@@ -118,8 +117,9 @@ padding-top: 0px;
              font-size: 15px;
          }
      }
-     .latest-episode .latest-commingsoon{
-         margin: 50px 0;
+     .latest-episode .latest-commingsoon {
+         margin: 0px 0;
+         padding: 50px 0
      }
      .latest-buzz-content {
          text-align: center;
@@ -142,20 +142,18 @@ padding-top: 0px;
      //scss for footer
      footer {
          font-size: 10px;
-          li{
-    position: relative;
-    display: inline;
-    padding: 3px;
-      &:before{
-       display:none;
-      }
- 
-   }
-      }
-     
-   .footer-list-padd{
-          text-align: center;
-}
+         li {
+             position: relative;
+             display: inline;
+             padding: 3px;
+             &:before {
+                 display: none;
+             }
+         }
+     }
+     .footer-list-padd {
+         text-align: center;
+     }
      .footer-img {
          float: none !important;
          img {
@@ -210,31 +208,31 @@ padding-top: 0px;
      }
      .minute-main {
          margin: 100px 0 50px;
-         .inline-block{
-        display: block;
-    }
-.minutetips-heading{
-     text-align: center;
-    border: none;
-    padding: 0;
-    margin: 0;
-    
-       &:before,&:after{
-      display: none;
+         .inline-block {
+             display: block;
          }
-      }
+         .minutetips-heading {
+             text-align: center;
+             border: none;
+             padding: 0;
+             margin: 0;
+             &:before,
+             &:after {
+                 display: none;
+             }
+         }
      }
      //scss for ask-expert modal
      .ask-expert-bg {
          font-size: 16px;
-         padding:10px;
+         padding: 10px;
      }
      .ask-modal .modal-dialog {
          width: auto;
      }
      .note p {
-    font-size: 14px;
-   }
+         font-size: 14px;
+     }
      .ask-modal input {
          width: 170px;
      }
@@ -277,93 +275,103 @@ padding-top: 0px;
      .gallery-inside {
          margin: 100px 0 0 0;
      }
-       .min-height-gallery {
-        height: 18.6vh;
-    overflow: hidden;
-}
+     .min-height-gallery {
+         height: 18.6vh;
+         overflow: hidden;
+     }
      //about us scss
-   
-.about-modal-bg h1{
-    text-align: center;
-&:after {
-    width: 200px;
-    bottom: 0;
-   }
-}
-.about-modal-bg {
-    padding: 40px 10px;
-}
-.comming-soon h2{
-        margin-bottom: 40px;
-}
-//scss for episode
-.min-height-season {
-    height: 23vh;
-    overflow: hidden;
-}
-.search-episode {
-    padding: 0px 0 35px;
-}
-//scss for contest
-.contest-modal-heading h1{
-        font-size: 16px;
-}
-.list-content-order {
-    margin-top: 25px;
-}
-.contest-modal-img {
-    margin-top: 25px;
-    width: 200px;
-    margin: 0 auto;
-}
-.contest-modal-bg .button-enter {
-    margin: 40px 0px;
-}
-//digital course
-.digital-course{
-    margin-left: 0;
-    padding: 0;
-    border:none;
-    h1{
-        text-align: center;
-        }
-}
-.course-fb, .course-google {
-        margin: 30px 0px 0 0px;
-}
-.digital-login h3:before,
-.digital-course:before,
-.digital-course:after{
-     display: none;
-}
-
-//scss for digital-inside page
-.digital-heading{
-     border-left:none;
-    h1{
-        font-size: 28px;
-    }
-    &:before,&:after{
-     display:none;
-    }
-}
-.computer-digital:before{
-     display:none;
-}
-.digitalinside-main{
-    margin: 100px 0 35px 0;
-    .inline-block{
-     display: block;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    }
-}
-//scss for ourpartner-modal
-.ourpartner-modal {
-    margin: 40px 0 0px;
-    h1{
-        font-size: 55px;
-    }
-}
+     .about-modal-bg h1 {
+         text-align: center;
+         &:after {
+             width: 200px;
+             bottom: 0;
+         }
+     }
+     .about-modal-bg {
+         padding: 40px 10px;
+     }
+     .comming-soon h2 {
+         margin-bottom: 40px;
+     }
+     //scss for episode
+     .min-height-season {
+         height: 23vh;
+         overflow: hidden;
+     }
+     .search-episode {
+         padding: 0px 0 35px;
+     }
+     //scss for contest
+     .contest-modal-heading h1 {
+         font-size: 16px;
+     }
+     .list-content-order {
+         margin-top: 25px;
+     }
+     .contest-modal-img {
+         margin-top: 25px;
+         width: 200px;
+         margin: 0 auto;
+     }
+     .contest-modal-bg .button-enter {
+         margin: 40px 0px;
+     }
+     //digital course
+     .digital-course {
+         margin-left: 0;
+         padding: 0;
+         border: none;
+         h1 {
+             text-align: center;
+             font-size: 25px;
+         }
+         h3 {
+             font-size: 20px;
+         }
+     }
+     .digital-login {
+         margin-top: 0px;
+     }
+     .login-digital {
+         padding: 0px 5px;
+     }
+     .course-fb,
+     .course-google {
+         margin: 30px 0px 0 0px;
+     }
+     .digital-login h3:before,
+     .digital-course:before,
+     .digital-course:after {
+         display: none;
+     }
+     //scss for digital-inside page
+     .digital-heading {
+         border-left: none;
+         h1 {
+             font-size: 28px;
+         }
+         &:before,
+         &:after {
+             display: none;
+         }
+     }
+     .computer-digital:before {
+         display: none;
+     }
+     .digitalinside-main {
+         margin: 100px 0 35px 0;
+         .inline-block {
+             display: block;
+             padding: 0;
+             margin: 0;
+             text-align: center;
+         }
+     }
+     //scss for ourpartner-modal
+     .ourpartner-modal {
+         margin: 40px 0 0px;
+         h1 {
+             font-size: 55px;
+         }
+     }
  }

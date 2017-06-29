@@ -11,7 +11,7 @@ $brand-info: #000072 !default;
 
 @font-face {
     font-family: 'NimbusSanL-Reg';
-    src: url("../fonts/NimbusSanL-Reg.otf");
+    src: url("../fonts/nimbussanl-reg-5954a68236d64.otf");
 }
 
 @font-face {
@@ -207,15 +207,14 @@ header {
         margin-left: 21%;
         margin-right: auto;
     }
-    .header-socialmedia{
-a{
-    padding: 21px 20px !important;
-    .social-icon{
-font-size: 25px;
-}
-}
-
-    }
+    .header-socialmedia {
+        a {
+            padding: 21px 20px !important;
+            .social-icon {
+                font-size: 25px;
+            }
+        }
+     }
 }
 
 //end of scss for header
@@ -725,18 +724,21 @@ footer {
     color: #fff;
 }
 
-
 .small-episode {
     position: relative;
 }
-.latest-episode{
-        border-bottom: 3px solid black;
-        .latest-commingsoon{
-         padding: 100px 0;
-            background: rgba(70, 70, 70, 0.56);
-            h1{    color: black;}
+
+.latest-episode {
+    border-bottom: 3px solid black;
+    .latest-commingsoon {
+        padding: 100px 0;
+        background: rgba(70, 70, 70, 0.56);
+        h1 {
+            color: black;
         }
+    }
 }
+
 .video-icon {
     position: absolute;
     top: 50%;
@@ -804,37 +806,37 @@ footer {
 .minute-main {
     margin: 200px 0 100px 60px;
     .minutetips-heading {
-    position: relative;
-    margin-left: 30px;
-    padding: 0px 0px 0px 20px;
-    border-left: 5px solid white;
-    h1{
-        font-size: 30px;
-    font-family: NimbusSanL-Reg;
-    color: #fef424;
-    letter-spacing: 3px;
+        position: relative;
+        margin-left: 30px;
+        padding: 0px 0px 0px 20px;
+        border-left: 5px solid white;
+        h1 {
+            font-size: 30px;
+            font-family: NimbusSanL-Reg;
+            color: #fef424;
+            letter-spacing: 3px;
+        }
+        &:before {
+            content: '';
+            border-bottom: 5px solid white;
+            width: 946px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            border-bottom: 5px solid white;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
     }
-    &:before{
-    content: '';
-    border-bottom: 5px solid white;
-    width: 946px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    }
-    &:after{
-    content: '';
-    position: absolute;
-    border-bottom: 5px solid white;
-    width: 100%;
-    top: 0;
-    left: 0;
-    }
-}
 }
 
 .minute-first {
-      margin-left: 130px;
+    margin-left: 130px;
     padding: 0px 25px 10px 0px;
     border-bottom: 5px solid #fff;
     position: relative;
@@ -846,13 +848,13 @@ footer {
         line-height: 2;
     }
     &:before {
-    content: '';
-    position: absolute;
-    border-right: 5px solid #fff;
-    height: 136px;
-    right: 0;
-    bottom: 0;
-}
+        content: '';
+        position: absolute;
+        border-right: 5px solid #fff;
+        height: 136px;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 // .bulb {
@@ -860,7 +862,6 @@ footer {
 //     top: 42%;
 //     left: -75px;
 // }
-
 .minute-query {
     position: relative;
     padding: 30px 0;
@@ -872,7 +873,7 @@ footer {
 }
 
 .name-plate {
-   background: #ffcc00;
+    background: #ffcc00;
     width: 46%;
     padding: 20px 0 10px;
     text-align: center;
