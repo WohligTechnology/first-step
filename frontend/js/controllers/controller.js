@@ -125,7 +125,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                fadeIn: 500,
             duration: 800,
             fadeOut: 500,
-            pause: 500,
             strings: ['EQUITY','MUTUAL FUNDS', 'COMMODITIES', 'INSURANCE','BANKING']
          });
         }, 1000);
