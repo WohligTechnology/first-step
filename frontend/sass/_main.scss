@@ -214,7 +214,7 @@ header {
                 font-size: 25px;
             }
         }
-     }
+    }
 }
 
 //end of scss for header
@@ -352,51 +352,77 @@ footer {
         img {
             width: 120px;
         }
-    }
+    } //mixin flash position
+    @mixin animationflash ($top, $left, $right, $bottom) {
+        position: absolute;
+        top: $top;
+        left:  $left;
+        right: $right;
+        bottom: $bottom;
+        @include transform (scale(0));
+    } //End mixin flash position
     .new-flash-animation {
         position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    padding: 150px 150px 150px 50px;
-    color: #fff;
-    font-size: 60px;
-    font-family: Eraser;
-    font-weight: 700;
-    .half-box{
-width: 100%;
-    height: 100%;
-    top: 0;
-    }
+        height: 100%;
+        width: 100%;
+        top: 0;
+        color: #fff;
+        font-size: 40px;
+        font-family: Eraser;
+        font-weight: 700;
         .text-flash1 {
-            position: absolute;
-            top: 25px;
-            left: 5%;
-            @include transform (scale(0));
+            @include animationflash (24%,5%,null,null);
         }
         .text-flash2 {
-            position: absolute;
-            right: 13%;
-            @include transform (scale(0));
+            @include animationflash (24%,null,13%,null);
         }
         .text-flash3 {
-            position: absolute;
-            right: 13%;
-            position: absolute;
-            bottom: 45%;
-            @include transform (scale(0));
+            @include animationflash (null,null,21%,30%);
         }
         .text-flash4 {
-            position: absolute;
-            top: 25%;
-            left: 30%;
-            @include transform (scale(0));
+             @include animationflash (42%,30%,null,null);
         }
         .text-flash5 {
-            left: 5%;
-            position: absolute;
-            bottom: 45%;
-            @include transform (scale(0));
+            @include animationflash (37%,50%,null,null);
+        }
+        .text-flash6 {
+           @include animationflash (21%,20%,null,null);
+        }
+        .text-flash7 {
+            @include animationflash (50%,30%,null,null);
+        }
+        .text-flash8 {
+            @include animationflash (null,5%,null,35%);
+        }
+        .text-flash9 {
+            @include animationflash (null,38%,null,36%);
+        }
+        .text-flash10 {
+            @include animationflash (null,38%,null,13%);
+        }
+        .text-flash11 {
+            @include animationflash (34%,5%,null,null);
+        }
+        .text-flash12 {
+            @include animationflash (null,5%,null,43%);
+        }
+        .text-flash13 {
+            @include animationflash (41%,5%,null,null);
+        }
+        .text-flash14 {
+            @include animationflash (null,null,14%,44%);
+        }
+        .text-flash15 {
+            @include animationflash (null,null,18%,37%);
+        }
+        .text-flash16 {
+            @include animationflash (30%,null,45%,null);
+        }
+        .text-flash17 {
+            @include animationflash (null,5%,null,27%);
+        }
+        .text-flash18 {
+            @include animationflash (null,5%,null,18%);
         }
     } // .loaders-made {
     //     position: absolute;
