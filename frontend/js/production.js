@@ -6765,6 +6765,434 @@ else if (typeof define === 'function' && define.amd) {
 
 //# sourceMappingURL=maps/swiper.jquery.js.map
 
+'use strict';
+
+(function(factory) {
+   if (typeof define === 'function' && define.amd) {
+      define(['jquery'], factory);
+   } else if (typeof module === 'object' && module.exports) {
+      module.exports = function(root, jQuery) {
+         if (jQuery === undefined) {
+            jQuery = typeof window !== 'undefined' ? require('jquery') : require('jquery')(root);
+         }
+
+         factory(jQuery);
+
+         return jQuery;
+      };
+   } else {
+      factory(jQuery);
+   }
+}(function($) {
+   /**
+    * The jQuery plugin namespace
+    *
+    * @external "jQuery.fn"
+    * @see {@link http://learn.jquery.com/plugins/|jQuery Plugins}
+    */
+
+   /**
+    * @typedef SettingsHash
+    * @type {Object}
+    * @property {?string[]} [strings=null] A set of strings to show.
+    * @property {boolean} [isEnabled=true] The state of the animation. If the value is <code>false</code>, the
+    * animation is in a pause state.
+    * @property {number} [fadeIn=300] The number of milliseconds the element appears by fading to opaque
+    * @property {number} [duration=500] The number of milliseconds the element stays visible
+    * @property {number} [fadeOut=300] The number of milliseconds the element disappears by fading to transparent
+    * @property {string} [selection="random"] The order of selection of the strings. The possible values are:
+    * <code>"random"</code>, <code>"ascending"</code>, <code>"descending"</code>
+    * @property {number} [repeat=-1] The number of times to repeat the animation. <code>-1</code> means unlimited
+    * @property {number} [pause=0] The time (milliseconds) between animations. Set to <code>"random"</code> to have
+    * a random time
+    * @property {number} [fontMinSize=7] The minimum font size of the strings
+    * @property {number} [fontMaxSize=28] The maximum font size of the strings
+    * @property {string} [fontUnit="px"] The unit to use for the font's size. The value accepted are all those
+    * accepted by the browsers, for example: <code>"px"</code>, <code>"em"</code>, <code>"rem"</code> and so on.
+    */
+
+   /**
+    * @typedef MethodsHash
+    * @type {Object}
+    * @property {init} init The method to initialize the plugin
+    * @property {destroy} destroy The method to stop the animation and clean all the resources
+    * @property {disable} disable The method to disable the animation
+    * @property {enable} enable The method to enable the animation
+    * @property {toggle} toggle The method to toggle the animation
+    */
+
+   /**
+    * The namespace used to store the data
+    *
+    * @type {string}
+    */
+   var namespace = 'audero-flashing-text';
+
+   /**
+    * Calculates the index of the string to show next
+    *
+    * @param {number} index The index of the currently shown string
+    * @param {SettingsHash} options An object of options to customize the plugin
+    *
+    * @return {number}
+    */
+   function getNextIndex(index, options) {
+      var nextIndex;
+
+      if (options.selection === 'ascending') {
+         nextIndex = (index + 1) % options.strings.length;
+      } else if (options.selection === 'descending') {
+         nextIndex = index === 0 ? options.strings.length : index - 1;
+      } else {
+         nextIndex = Math.floor(Math.random() * options.strings.length);
+      }
+
+      return nextIndex;
+   }
+
+   /**
+    * Creates the animation for the element provided
+    *
+    * @param {jQuery} $element The jQuery collection, containing a single element,
+    * on which the string will be shown
+    * @param {number} index The index of the string to show
+    */
+   function animateText($element, index) {
+      // Save the last used index. In this way, if the user disables the animation,
+      // once it run again, the plugin know the last used string
+      var options = $.extend(
+         $element.data(namespace),
+         {
+            lastIndex: index
+         }
+      );
+      var $text = $('<span>')
+         .text(options.strings[index])
+         .css({
+            position: 'absolute',
+            display: 'none',
+            fontSize: Math.random() * options.fontMaxSize + options.fontMinSize + options.fontUnit
+         })
+         .appendTo($element)
+         .fadeIn(options.fadeIn)
+         .animate(
+            {
+               opacity: 1
+            },
+            options.duration // Simulate delay
+         )
+         .fadeOut(options.fadeOut, function() {
+            var nextIndex = getNextIndex(index, options);
+
+            // Remove the current element
+            $(this).remove();
+
+            if (options.repeat > 0) {
+               options.repeat--;
+            }
+
+            // Generate a random pause
+            var time = options.pause === 'random' ? Math.random() * 3000 : options.pause;
+
+            $element.data(namespace, options);
+
+            // If the animation is enabled test if it should run again
+            if (options.isEnabled === true) {
+               // If the repetition limit is not reached, the animation method will run again
+               if (options.repeat !== 0) {
+                  setTimeout(function() {
+                     animateText($element, nextIndex);
+                  }, time);
+               } else {
+                  destroy($element);
+               }
+            }
+         });
+
+      // Set the position so the element will fit the box's size
+      var posX = Math.floor(Math.random() * ($element.width() - $text.outerWidth()));
+      var posY = Math.floor(Math.random() * ($element.height() - $text.outerHeight()));
+
+      // Set the position of the text
+      $text.css({
+         left: posX,
+         top: posY
+      });
+   }
+
+   /**
+    * Tests if the element has an animation running
+    *
+    * @param {jQuery} $element The jQuery collection, containing a single element, to test
+    *
+    * @return {boolean}
+    */
+   function isRunning($element) {
+      var options = $element.data(namespace);
+
+      return $.type(options) === 'object' && options.isEnabled === true;
+   }
+
+   /**
+    * Checks if the options have valid values
+    *
+    * @param {SettingsHash} options An object of options to customize the plugin
+    */
+   function validateOptions(options) {
+      /* jshint -W074 */
+      if (options.fadeIn < 0) {
+         $.error('The fadeIn property of jQuery.auderoFlashingText can\'t be a negative number');
+      }
+
+      if (options.duration < 0) {
+         $.error('The duration property of jQuery.auderoFlashingText can\'t be a negative number');
+      }
+
+      if (options.fadeOut < 0) {
+         $.error('The fadeOut property of jQuery.auderoFlashingText can\'t be a negative number');
+      }
+
+      if ($.inArray(options.selection, ['random', 'ascending', 'descending']) < 0) {
+         $.error('The selection property of jQuery.auderoFlashingText should have one of these values: random, ascending, descending');
+      }
+
+      if (options.repeat <= 0 && options.repeat !== -1) {
+         $.error('jQuery.auderoFlashingText should run at least one time');
+      }
+
+      if (options.pause !== 'random' && options.pause < 0) {
+         $.error('jQuery.auderoFlashingText should run the animation with a pause equal to or greater than zero');
+      }
+
+      if (options.speed <= 0) {
+         $.error('jQuery.auderoFlashingText should run the animation with a speed greater than zero');
+      }
+
+      if (options.fontMinSize <= 0) {
+         $.error('The fontMinSize property of jQuery.auderoFlashingText can\'t be a negative number');
+      }
+
+      if (options.fontMaxSize <= 0) {
+         $.error('The fontMaxSize property of jQuery.auderoFlashingText can\'t be a negative number');
+      }
+   }
+
+   /**
+    * Initializes the plugin
+    *
+    * @callback init
+    *
+    * @param {jQuery} $elements The jQuery collection to work with
+    * @param {SettingsHash} options An object of options to customize the plugin
+    *
+    * @return {jQuery}
+    */
+   function init($elements, options) {
+      /* jshint +W074 */
+      if ($.type(options) !== 'object') {
+         options = {};
+      }
+
+      if (!options.strings && $elements.find(':first').length !== $elements.length) {
+         $.error('To run jQuery.auderoFlashingText if you don\'t specify the texts to show, each element must have at least a child');
+      }
+
+      // By default the order is ascending
+      var index = 0;
+
+      if (options.selection === 'descending') {
+         index = options.strings.length - 1;
+      } else if (options.selection === 'random') {
+         index = Math.floor(Math.random() * options.strings.length);
+      }
+
+      options = $.extend({}, $.fn.auderoFlashingText.defaults, options);
+
+      // Check if the properties have valid values
+      validateOptions(options);
+      $elements
+         .css('position', 'relative')
+         .children()
+         .css('visibility', 'hidden');
+      var $current;
+
+      $elements.each(function() {
+         $current = $(this);
+
+         if (options.strings === null) {
+            options.strings = $current.children().map(function() {
+               return $(this).text();
+            });
+         }
+
+         // Clone the options object so elements will have the same values without sharing the same object
+         $current.data(namespace, $.extend({}, options));
+
+         if (options.isEnabled === true) {
+            animateText($current, index);
+         }
+      });
+
+      return $elements;
+   }
+
+   /**
+    * Immediately completes the currently running animation for each element
+    * in the jQuery collection and blocks those left
+    *
+    * @callback disable
+    *
+    * @param {jQuery} $elements The jQuery collection to work with
+    *
+    * @return {jQuery}
+    */
+   function disable($elements) {
+      $elements.each(function() {
+         var $current = $(this);
+
+         if (isRunning($current)) {
+            $current.data(namespace).isEnabled = false;
+            $current.stop(true, true);
+         }
+      });
+
+      return $elements;
+   }
+
+   /**
+    * Restarts the animation for each element in the jQuery collection
+    *
+    * @callback enable
+    *
+    * @param {jQuery} $elements The jQuery collection to work with
+    *
+    * @return {jQuery}
+    */
+   function enable($elements) {
+      $elements.each(function() {
+         var $current = $(this);
+
+         if (!isRunning($current)) {
+            $current.data(namespace).isEnabled = true;
+            animateText($current, $current.data(namespace).lastIndex);
+         }
+      });
+
+      return $elements;
+   }
+
+   /**
+    * Disables the animation for elements that are currently running it and
+    * enables the animation again for elements that are not running it
+    *
+    * @callback toggle
+    *
+    * @param {jQuery} $elements The jQuery collection to work with
+    *
+    * @return {jQuery}
+    */
+   function toggle($elements) {
+      $elements.each(function() {
+         var $current = $(this);
+
+         if (isRunning($current)) {
+            disable($current);
+         } else {
+            enable($current);
+         }
+      });
+
+      return $elements;
+   }
+
+   /**
+    * Stops the animation and clean all the resources
+    *
+    * @callback destroy
+    *
+    * @param {jQuery} $elements The jQuery collection to work with
+    *
+    * @return {jQuery}
+    */
+   function destroy($elements) {
+      $elements.each(function() {
+         var $current = $(this);
+
+         if (isRunning($current)) {
+            // Removes the floating text
+            $current
+               .children(':animated')
+               .stop(true)
+               .fadeOut($current.data(namespace).fadeOut)
+               .remove();
+         }
+
+         $current
+            .css('position', 'inherit')
+            .removeData(namespace);
+      });
+
+      // Restore the default visibility
+      $elements
+         .children()
+         .css('visibility', 'visible');
+
+      return $elements;
+   }
+
+   /**
+    * The object containing all the public methods
+    *
+    * @type {MethodsHash}
+    */
+   var methods = {
+      init: init,
+      enable: enable,
+      disable: disable,
+      toggle: toggle,
+      destroy: destroy
+   };
+
+   /**
+    * Creates a flashing text effect for one or more elements
+    *
+    * @function external:"jQuery.fn".auderoFlashingText
+    *
+    * @param {(SettingsHash|string)} [method] The options to initialize the plugin or the name of the method to call
+    *
+    * @return {jQuery}
+    */
+   $.fn.auderoFlashingText = function(method) {
+      var args = Array.prototype.slice.call(arguments);
+
+      if (methods[method]) {
+         return methods[method].apply(this, [this].concat(args.splice(0, 1)));
+      } else if ($.type(method) === 'object' || !method) {
+         return methods.init.apply(this, [this].concat(args));
+      } else {
+         $.error('Method ' + method + ' does not exist on jQuery.auderoFlashingText');
+      }
+   };
+
+   /**
+    * The default options of the plugin
+    *
+    * @type {SettingsHash}
+    */
+   $.fn.auderoFlashingText.defaults = {
+      strings: null,
+      isEnabled: true,
+      fadeIn: 300,
+      duration: 500,
+      fadeOut: 300,
+      selection: 'random',
+      repeat: -1,
+      pause: 0,
+      fontMinSize: 7,
+      fontMaxSize: 28,
+      fontUnit: 'px'
+   };
+}));
 /**
  * @license AngularJS v1.6.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -65405,31 +65833,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $locationProvider.html5Mode(isproduction);
 });
 
-myApp.directive('fancyboxBox', function ($document) {
-    return {
-        restrict: 'EA',
-        replace: false,
-        link: function (scope, element, attr) {
-            var $element = $(element);
-            var target;
-            if (attr.rel) {
-                target = $("[rel='" + attr.rel + "']");
-            } else {
-                target = element;
-            }
-
-            target.fancybox({
-                openEffect: 'fade',
-                closeEffect: 'fade',
-                closeBtn: true,
-                helpers: {
-                    media: {}
-                }
-            });
-        }
-    };
-});
-
 // For Language JS
 myApp.config(function ($translateProvider) {
     $translateProvider.translations('en', LanguageEnglish);
@@ -65592,11 +65995,13 @@ myApp.service('TemplateService', function () {
 
 });
 myApp.factory('NavigationService', function () {
-    var navigation = [{
-            name: "Home",
-            classis: "active",
-            anchor: "home",
-        }, {
+    var navigation = [
+        // {
+        //     name: "Home",
+        //     classis: "active",
+        //     anchor: "home",
+        // }, 
+        {
             name: "Gallery",
             classis: "active",
             anchor: "home-gallery",
@@ -65605,6 +66010,12 @@ myApp.factory('NavigationService', function () {
             name: "Episodes",
             classis: "active",
             anchor: "home-episodes",
+        }
+        ,
+        {
+            name: "Ask The Expert",
+            classis: "active",
+            anchor: "openExpertMain",
         },
         {
             name: "About",
@@ -65643,51 +66054,65 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 });
 var mySwiper;
 myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state) {
-        $scope.template = TemplateService.getHTML("content/home.html");
-        TemplateService.title = "Home"; //This is the Title of the Website
-        $scope.navigation = NavigationService.getNavigation();
+    $scope.template = TemplateService.getHTML("content/home.html");
+    TemplateService.title = "Home"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
 
 
-        $scope.changeURL = function (id) {
-            console.log(id);
-            $location.path("" + id);
-        };
-        $scope.mySlides = [
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
-        ];
-        $scope.homeSlide = [
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
-            // 'img/gallery/1.jpg',
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
+    $scope.mySlides = [
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+    ];
+    $scope.homeSlide = [
+        'img/small-season2/1.jpg',
+        'img/small-season2/2.jpg',
+        'img/small-season2/3.jpg',
+        'img/small-season2/4.jpg',
+        'img/small-season2/5.jpg',
+        'img/small-season2/6.jpg',
+        'img/small-season2/7.jpg',
+        'img/small-season2/8.jpg',
+        'img/small-season2/9.jpg',
+        'img/small-season2/10.jpg',
+        'img/small-season2/11.jpg',
+        'img/small-season2/12.jpg',
+        'img/small-season2/13.jpg',
+        'img/small-season2/14.jpg',
+        'img/small-season2/15.jpg',
+        'img/small-season2/16.jpg',
+        'img/small-season2/17.jpg',
+        'img/small-season2/18.jpg',
+        'img/small-season2/19.jpg',
+        'img/small-season2/20.jpg',
+        'img/small-season2/21.jpg',
+        'img/small-season2/22.jpg',
+        'img/small-season2/23.jpg',
+        'img/small-season2/24.jpg',
+        'img/small-season2/25.jpg',
+        'img/small-season2/26.jpg',
+        'img/small-season2/27.jpg',
+        'img/small-season2/28.jpg',
+        'img/small-season2/29.jpg',
+        'img/small-season2/30.jpg',
+        'img/small-season2/31.jpg',
+        'img/small-season2/32.jpg',
 
-        ];
+    ];
 
-        function makeAnimation(id) {
-            if (_.isEmpty(id)) {
-                id = "home";
-            }
-            var someElement = angular.element(document.getElementById(id));
-            $document.scrollToElement(someElement, 75, 1000);
+    function makeAnimation(id) {
+        if (_.isEmpty(id)) {
+            id = "home";
         }
-         $scope.$on('$viewContentLoaded', function (event) {
+        var someElement = angular.element(document.getElementById(id));
+        $document.scrollToElement(someElement, 75, 1000);
+    }
+    $scope.$on('$viewContentLoaded', function (event) {
         setTimeout(function () {
             $(".loaders-made .element-one").typed({
                 strings: ["Ldwy pysa D;k <span>?</span>"],
@@ -65697,194 +66122,206 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 loop: false
             });
             $(".loaders-made .element-two").typed({
-                strings: ["rjDdh dh vksj", ],
+                strings: ["rjDdh dh vksj",],
                 startDelay: 5600,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-two-one").typed({
-                strings: ["igyk dne", ],
+                strings: ["igyk dne",],
                 startDelay: 6600,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-three").typed({
-                strings: ["Qkbusal dh", ],
+                strings: ["Qkbusal dh",],
                 startDelay: 12000,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-three-one").typed({
-                strings: ["<span> A B C D </span>", ],
+                strings: ["<span> A B C D </span>",],
                 startDelay: 13000,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-four").typed({
-                strings: ["iMksxs]fy[kksxs]", ],
+                strings: ["iMksxs]fy[kksxs]",],
                 startDelay: 19000,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
             $(".loaders-made .element-four-one").typed({
-                strings: ["cuksxs uokc", ],
+                strings: ["cuksxs uokc",],
                 startDelay: 21500,
                 typeSpeed: 30,
                 showCursor: true,
                 loop: false
             });
         }, 2000);
+    });
+    $scope.$on('$viewContentLoaded', function (event) {
+        setTimeout(function () {
+            makeAnimation($stateParams.id);
+        }, 1000);
+    });
+
+    setTimeout(function () {
+          $('.half-box').auderoFlashingText({
+            selection: 'descending',          
+            fontMinSize: 20,
+            fontMaxSize: 70,
+               fadeIn: 500,
+            duration: 800,
+            fadeOut: 500,
+            pause: 500,
+            strings: ['EQUITY','MUTUAL FUNDS', 'COMMODITIES', 'INSURANCE','BANKING']
          });
-        $scope.$on('$viewContentLoaded', function (event) {
-            setTimeout(function () {
-                makeAnimation($stateParams.id);
-            }, 1000);
-        });
+        }, 1000);
 
-
-        $scope.changeURL = function (id) {
-            $scope.menutitle = NavigationService.getNavigation(id);
-            $state.transitionTo('homeid', {
-                id: id
-            }, {
+    $scope.changeURL = function (id) {
+        $scope.menutitle = NavigationService.getNavigation(id);
+        $state.transitionTo('homeid', {
+            id: id
+        }, {
                 notify: false
             });
-            makeAnimation(id);
-            $location.replace();
-        };
+        makeAnimation(id);
+        $location.replace();
+    };
 
-        $scope.$on('$viewContentLoaded', function (event) {
-            $timeout(function () {
-                mySwiper = new Swiper('.swiper-container', {
-                    pagination: '.swiper-pagination',
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    loop: true,
-                    effect: 'coverflow',
-                    grabCursor: true,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    coverflow: {
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 1200,
-                        modifier: 1,
-                        slideShadows: true,
-                    }
-                });
-            }, 300);
+    $scope.$on('$viewContentLoaded', function (event) {
+        $timeout(function () {
+            mySwiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                loop: true,
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflow: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 1200,
+                    modifier: 1,
+                    slideShadows: true,
+                }
+            });
+        }, 300);
+    });
+
+    var abc = _.times(100, function (n) {
+        return n;
+    });
+
+    var i = 0;
+    $scope.buttonClick = function () {
+        i++;
+        console.log("This is a button Click");
+    };
+
+    $scope.alokopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/alokmodal.html',
+            scope: $scope,
+            size: 'lg',
+
         });
+    };
 
-        var abc = _.times(100, function (n) {
-            return n;
+    $scope.anilopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/anilmodal.html',
+            scope: $scope,
+            size: 'lg',
         });
+    };
 
-        var i = 0;
-        $scope.buttonClick = function () {
-            i++;
-            console.log("This is a button Click");
-        };
+    $scope.harshadaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/harshadamodal.html',
+            scope: $scope,
+            size: 'lg',
 
-        $scope.alokopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/alokmodal.html',
-                scope: $scope,
-                size: 'lg',
+        });
+    };
 
-            });
-        };
+    $scope.kavitaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/kavitamodal.html',
+            scope: $scope,
+            size: 'lg',
 
-        $scope.anilopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/anilmodal.html',
-                scope: $scope,
-                size: 'lg',
-            });
-        };
+        });
+    };
 
-        $scope.harshadaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/harshadamodal.html',
-                scope: $scope,
-                size: 'lg',
+    $scope.nehaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/nehamodal.html',
+            scope: $scope,
+            size: 'lg',
 
-            });
-        };
+        });
+    };
+    $scope.pradeepopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/pradeepmodal.html',
+            scope: $scope,
+            size: 'lg',
 
-        $scope.kavitaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/kavitamodal.html',
-                scope: $scope,
-                size: 'lg',
+        });
+    };
+    $scope.contestopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/contest.html',
+            scope: $scope,
+            size: 'lg',
 
-            });
-        };
+        });
+    };
+    $scope.digitalcourseopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/digitalcourse-modal.html',
+            scope: $scope,
+            size: 'lg',
 
-        $scope.nehaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/nehamodal.html',
-                scope: $scope,
-                size: 'lg',
+        });
+    };
+    $scope.ourpartneropen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ourpartner.html',
+            scope: $scope,
+            size: 'md',
 
-            });
-        };
-        $scope.pradeepopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/pradeepmodal.html',
-                scope: $scope,
-                size: 'lg',
+        });
+    };
 
-            });
-        };
-        $scope.contestopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/contest.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.digitalcourseopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/digitalcourse-modal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.ourpartneropen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/ourpartner.html',
-                scope: $scope,
-                size: 'md',
-
-            });
-        };
-
-    })
+})
 
     .controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
         $scope.template = TemplateService.getHTML("content/form.html");
@@ -65903,30 +66340,21 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             console.log(data);
         });
     });
- myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
-     $scope.template = TemplateService.getHTML("content/minutestips.html");
-     TemplateService.title = "Minutestips"; //This is the Title of the Website
-     $scope.navigation = NavigationService.getNavigation();
-     $scope.formSubmitted = false;
-     $scope.changeURL = function (id) {
-         console.log(id);
-         $location.path("" + id);
-     };
-     $scope.submitForm = function (data) {
-         console.log(data);
-         $scope.formSubmitted = true;
-     };
-     $scope.askexpertopen = function () {
-         console.log("clla");
-         $uibModal.open({
-             animation: true,
-             templateUrl: 'views/modal/ask-expert.html',
-             scope: $scope,
-             windowClass: 'ask-modal'
+myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+    $scope.template = TemplateService.getHTML("content/minutestips.html");
+    TemplateService.title = "Minutestips"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
+    $scope.formSubmitted = false;
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
+    $scope.submitForm = function (data) {
+        console.log(data);
+        $scope.formSubmitted = true;
+    };
 
-         });
-     };
- })
+})
  myApp.controller('DigitalCourseCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location) {
      $scope.template = TemplateService.getHTML("content/digitalcourse.html");
      TemplateService.title = "Digitalcourse"; //This is the Title of the Website
@@ -66350,7 +66778,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         },
         {
             img1: 'img/season1/37.jpg',
-            img2: 'img/small-season1/37jpg',
+            img2: 'img/small-season1/37.jpg',
         },
         {
             img1: 'img/season1/38.jpg',
@@ -66409,6 +66837,25 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             templateUrl: 'views/modal/about-modal.html',
             scope: $scope,
             size: 'lg',
+        });
+    };
+    $scope.openExpertMain = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ask-expert-main.html',
+            scope: $scope,
+            size: 'md',
+        });
+    };
+    $scope.askexpertopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ask-expert.html',
+            scope: $scope,
+            windowClass: 'ask-modal'
+
         });
     };
     $scope.openContact = function () {

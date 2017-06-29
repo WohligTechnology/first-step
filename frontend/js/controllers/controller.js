@@ -117,6 +117,18 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }, 1000);
     });
 
+    setTimeout(function () {
+          $('.half-box').auderoFlashingText({
+            selection: 'descending',          
+            fontMinSize: 20,
+            fontMaxSize: 70,
+               fadeIn: 500,
+            duration: 800,
+            fadeOut: 500,
+            pause: 500,
+            strings: ['EQUITY','MUTUAL FUNDS', 'COMMODITIES', 'INSURANCE','BANKING']
+         });
+        }, 1000);
 
     $scope.changeURL = function (id) {
         $scope.menutitle = NavigationService.getNavigation(id);
