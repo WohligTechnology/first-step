@@ -128,6 +128,19 @@
 		@include animation(flash-animation 2.9s linear 300ms infinite alternate);
 		@include animation-delay(35s);
 	}
+		.text-flash16 {
+		@include animation(flash-animation 2.9s linear 300ms infinite alternate);
+		@include animation-delay(40s);
+	}
+		.text-flash17 {
+		@include animation(flash-animation 3.5s linear 300ms infinite alternate);
+		@include animation-delay(37s);
+	}
+		.text-flash18 {
+		@include animation(flash-animation 5s linear 300ms infinite alternate);
+		@include animation-delay(50s);
+	}
+	
 }
 
 @include keyframes (flash-animation) {
