@@ -5,14 +5,16 @@
                 <img src="img/expert-bulb.png" class="img-responsive">
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label" for="email">Full Name :</label>
-                        <input type="text" class="form-control" id="email" placeholder="" name="full name">
+                <form name="askExpertForm" class="form-horizontal" ng-submit="submitForm(formData);">
+                    <div class="form-group" ng-class="{'form-invalid': askExpertForm.name.$invalid && askExpertForm.name.$touched}">
+                        <label>Full Name :</label>
+                        <input type="text" name="name" class="form-control" ng-model="formData.name" required>
+                        <span ng-show="askExpertForm.name.$touched && askExpertForm.name.$invalid">The name is required.</span>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="email">Email : </label>
-                        <input type="email" class="form-control input-width" id="email" placeholder="" name="email">
+                    <div class="form-group" ng-class="{'form-invalid':askExpertForm.email.$invalid && askExpertForm.email.$touched}">
+                        <label>Email Address :</label>
+                        <input type="email" name="email" class="form-control" ng-model="formData.email" required>
+                        <span ng-show="askExpertForm.email.$touched && askExpertForm.email.$invalid">Please enter vaild email.</span>
                     </div>
                     <div class="form-group">
                         <label class="control-label pull-left col-sm-12 question-left" for="email">Question :</label>
@@ -22,10 +24,9 @@
                     </div>
                     <div class="form-group">
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-default">SUBMIT</button>
+                            <button type="submit" class="btn" ng-disabled="askExpertForm.$invalid">SUBMIT</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
