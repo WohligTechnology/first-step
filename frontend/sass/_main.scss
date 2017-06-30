@@ -372,6 +372,9 @@ footer {
         font-family: Eraser;
         font-weight: 700;
         text-transform: uppercase;
+        img {
+                height: 80px;
+            }
         .text-flash1 {
             @include animationflash (24%,5%,null,null,#ed7777);
         }
@@ -425,6 +428,27 @@ footer {
         }
         .text-flash18 {
             @include animationflash (null,5%,null,15%,#f5f9ad);
+        }
+        .text-flash18 {
+            @include animationflash (null,5%,null,15%,#f5f9ad);
+        }
+        .text-flash19 {
+            @include animationflash (24%,25%,null,null,#f5f9ad);
+        }
+        .text-flash20 {
+            @include animationflash (null,44%,null,31%,#f5f9ad);
+        }
+        .text-flash21 {
+            @include animationflash (null,25%,null,24%,#f5f9ad);
+        }
+        .text-flash22 {
+            @include animationflash (11%,null,15%,null,#f5f9ad);
+        }
+        .text-flash23 {
+            @include animationflash (48%,16%,null,null,#f5f9ad);
+        }
+        .text-flash24 {
+            @include animationflash (null,null,20%,11%,#f5f9ad);
         }
     } 
 }
