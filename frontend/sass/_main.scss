@@ -121,7 +121,7 @@ a,
 }
 
 .content {
-    min-height: 450px;
+    min-height: calc(100vh - 96px);
 }
 
 .img-full {
@@ -756,6 +756,10 @@ footer {
     background-size: cover;
 }
 
+.min-hght{
+min-height: calc(100vh - 96px);
+}
+
 .minute-video {
     width: 282px;
     overflow: hidden;
@@ -770,6 +774,10 @@ footer {
 .minutestips-video-section {
     background: rgba(0, 0, 0, 0.58);
     padding: 60px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 96px;
+    left: 0;
 }
 
 .expert-img {
@@ -890,93 +898,107 @@ footer {
 //end of scss for minutestips
 //scss for contact-modal
 .contact-modal-bg {
-    background-image: url("../img/contact.png");
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    left: auto;
-    right: 0;
-    li {
-        margin: 10px 0;
-        color: #fff;
-        font-size: 12px;
-    }
-    .contact-letter {
-        a,
-        a:hover {
-            color: #f2f2f2;
-            background: transparent;
-        }
-    }
+   background-image: url("../img/contact.png");
+   background-position: center top;
+   background-repeat: no-repeat;
+   background-size: cover;
+   left: auto;
+   right: 0;
+   li {
+       margin: 10px 0;
+       color: #fff;
+       font-size: 12px;
+   }
+   .contact-letter {
+       a,
+       a:hover {
+           color: #f2f2f2;
+           background: transparent;
+       }
+   }
 }
 
 .location {
-    margin-top: 20px;
+   margin-top: 20px;
 }
 
 .ask-expert-bg {
-    background-image: url("../img/expert-modal.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 14px 20px;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    .textarea-bg {
-        background: #f2f2f2;
-        border: none;
-    }
+   background-image: url("../img/expert-modal.png");
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   padding: 14px 20px;
+   color: white;
+   font-size: 20px;
+   position: relative;
+   .textarea-bg {
+       background: #f2f2f2;
+       border: none;
+   }
+       .form-invalid span {
+           color: white;
+   font-size: 12px;
+   position: absolute;
+   padding: 0 10px;
+   bottom: -20px;
+   left: 63%;
+   transform: translate(-50%);
+   min-width: 155px;
+}
 }
 
 .contact {
-    color: white;
+   color: white;
 }
 
 .ask-modal {
-    .modal-dialog {
-        width: 700px;
-    }
-    label {
-        font-weight: 400 !important;
-        padding: 0px 0px;
-    }
-    input {
-        display: inline-block;
-        width: 236px;
-        color:white;
-        background-color: transparent;
-        border: none;
-        border-bottom: 2px solid white;
-    }
-    img {
-        margin: 35px auto;
-    }
-    .form-control:focus {
-        border-color: white;
-    }
-    .question-left {
-        margin-left: 18px;
-    }
-    .input-width {
-        width: 280px;
-    }
-    .form-horizontal .control-label {
-        text-align: left;
-    }
-    button,
-    button:hover,
-    button:active,
-    button:focus {
-        background-color: transparent;
-        color: white;
-        border: none;
-        font-size: 20px;
-        padding-right: 17px;
-        outline: none;
-    }
+   .modal-dialog {
+       width: 700px;
+   }
+   label {
+       font-weight: 400 !important;
+       padding: 0px 0px;
+           color: white;
+   }
+   input {
+       display: inline-block;
+       width: 237px;
+       color:white !important;
+       background-color: transparent;
+       border: none;
+       border-bottom: 2px solid white;
+           border-color: white !important;
+   }
+   img {
+       margin: 35px auto;
+   }
+   .form-control:focus {
+       border-color: white;
+   }
+   .question-left {
+       margin-left: 18px;
+   }
+   .input-width {
+       width: 280px;
+   }
+   .form-horizontal .control-label {
+       text-align: left;
+   }
+   button,
+   button:hover,
+   button:active,
+   button:focus {
+       background-color: transparent;
+       color: white;
+       border: none;
+       font-size: 20px;
+       padding-right: 17px;
+       outline: none !important;
+   }
+   .form-invalid .form-control{
+           border-color: #fff;
+   }
 }
-
 //scss for swiper
 .gallery-bg {
     .swiper-container {
@@ -1254,7 +1276,7 @@ footer {
 .comming-soon {
     h2 {
         color: #fef424;
-        margin-bottom: 45px;
+        margin: 30px 0;
     }
 }
 
@@ -1391,16 +1413,25 @@ footer {
 
 //scss for digital courses
 .login-digital {
-    color: #e9e72b;
-    padding: 20px 5px;
-    .form-group {
-        text-align: left;
-    }
+   color: #e9e72b;
+   padding: 20px 5px;
+   .form-invalid, {
+   color: #e9e72b !important;
+  
+}
+.form-control{
+border-color: #fff !important;
+color: #000;
+}
+
+   .form-group {
+       text-align: left;
+   }
 }
 
 .digital-submit {
-    button {
-        color: #000;
-        background: #e9e72b;
-    }
+   button {
+       color: #000;
+       background: #e9e72b;
+   }
 }
