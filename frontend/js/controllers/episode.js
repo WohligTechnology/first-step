@@ -48,7 +48,7 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "yTCQc0cI8sg",
         videoUrl: "yTCQc0cI8sg",
         episodeno: "Episode 7",
-         searchname:"Intricacies of Budget",
+         searchname:"Budget",
     }, {
         imageUrl: "4ToAgejb1bo",
         videoUrl: "4ToAgejb1bo",
@@ -63,12 +63,12 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "zUITRJTKDok",
         videoUrl: "zUITRJTKDok",
         episodeno: "Episode 10",
-         searchname:"Budget and its importance to investors",
+         searchname:"Budget",
     }, {
         imageUrl: "y5X8BYujJ3s",
         videoUrl: "y5X8BYujJ3s",
         episodeno: "Episode 11",
-         searchname:"Financial Planning for Businessmen",
+         searchname:"Financial Planning",
     }, {
         imageUrl: "BoIy7MPxSBU",
         videoUrl: "BoIy7MPxSBU",
@@ -272,7 +272,7 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "tM92E1YmsI0",
         videoUrl: "tM92E1YmsI0",
         episodeno: "Episode 23",
-         searchname:"How to Withdraw Mutual Funds",
+         searchname:"Mutual Funds",
     }, {
         imageUrl: "mM7M_DVh8Z0",
         videoUrl: "mM7M_DVh8Z0",
@@ -447,22 +447,22 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "1s-ZssxHuy4",
         videoUrl: "1s-ZssxHuy4",
         episodeno: "Episode 58",
-         searchname:"Young Investors Program - HR College",
+         searchname:"",
     }, {
         imageUrl: "LjUbBWXyIvU",
         videoUrl: "LjUbBWXyIvU",
         episodeno: "Episode 59",
-         searchname:"Young Investors Program - Balbharati School",
+         searchname:"Young Investors Program ",
     }, {
         imageUrl: "k41uhc9qO3A",
         videoUrl: "k41uhc9qO3A",
         episodeno: "Episode 60",
-         searchname:"Young Investors Program - SIES College",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "PDr3qVnXZ8s",
         videoUrl: "PDr3qVnXZ8s",
         episodeno: "Episode 61",
-         searchname:"Financial Planning for Corporates",
+         searchname:"Financial Planning",
     }, {
         imageUrl: "Ymcoo0QW7hQ",
         videoUrl: "Ymcoo0QW7hQ",
@@ -477,7 +477,7 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "sfTvseID06E",
         videoUrl: "sfTvseID06E",
         episodeno: "Episode 64",
-         searchname:"Young Investors Program - Rainbow International School",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "IcDQLVZp0rg",
         videoUrl: "IcDQLVZp0rg",
@@ -492,7 +492,7 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "DmxsgZI3BJg",
         videoUrl: "DmxsgZI3BJg",
         episodeno: "Episode 67",
-         searchname:"Young Investors Program - Gujrati Samaj College",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "SZtB0Qk_EKw",
         videoUrl: "SZtB0Qk_EKw",
@@ -502,7 +502,7 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "lAvQsdNCc_s",
         videoUrl: "lAvQsdNCc_s",
         episodeno: "Episode 69",
-         searchname:"Financial Planning for Corporates",
+         searchname:"Financial Planning",
     }, {
         imageUrl: "Ra9lv36JG-U",
         videoUrl: "Ra9lv36JG-U",
@@ -527,17 +527,17 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "FahtReKv-u8",
         videoUrl: "FahtReKv-u8",
         episodeno: "Episode 74",
-         searchname:"Young Investors Program - Khalsa College",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "jb8Buwo3rco",
         videoUrl: "jb8Buwo3rco",
         episodeno: "Episode 75",
-         searchname:"Young Investors Program - BHU",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "FGueOhY6HJg",
         videoUrl: "FGueOhY6HJg",
         episodeno: "Episode 76",
-         searchname:"Young Investors Program - BHU",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "DEEmpminlBU",
         videoUrl: "DEEmpminlBU",
@@ -547,17 +547,17 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "s3ZwGWcw9xg",
         videoUrl: "s3ZwGWcw9xg",
         episodeno: "Episode 78",
-         searchname:"Young Investors Program - NITTE School of Management",
+         searchname:"Young Investors Program",
     }, {
         imageUrl: "1y5O7ogDOJ0",
         videoUrl: "1y5O7ogDOJ0",
         episodeno: "Episode 79",
-         searchname:"Financial Planning for Corporates",
+         searchname:"Financial Planning",
     }, {
         imageUrl: "GSIH0jXVSD8",
         videoUrl: "GSIH0jXVSD8",
         episodeno: "Episode 80",
-         searchname:"Financial Planning For Global Managemnt Students",
+         searchname:"Financial Planning",
     }, {
         imageUrl: "-zWklRlJ_e8",
         videoUrl: "-zWklRlJ_e8",
