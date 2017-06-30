@@ -70,8 +70,7 @@
      }
      .latest-buzz-img {
          margin: 0 65px
-     } 
-     //scss for minutestips
+     } //scss for minutestips
      .minute-video {
          width: 358px;
      }
@@ -81,9 +80,9 @@
          h1 {
              font-size: 32px;
          }
-             &:before{
-                 height: 260px;
-                 }
+         &:before {
+             height: 260px;
+         }
      }
      .minute-query h3,
      .minute-query a {
@@ -99,10 +98,9 @@
      .fancybox-prev span {
          background-image: url("../img/fancybox_sprite.png");
      }
-     .minute-main .minutetips-heading:before{
-       width: 530px;
-     }
-      //scss for gallery
+     .minute-main .minutetips-heading:before {
+         width: 530px;
+     } //scss for gallery
      .gallery-inside {
          margin: 150px 0px 60px 0px;
      }
@@ -119,8 +117,7 @@
      }
      .about-modal-bg {
          padding: 45px 50px;
-     }
-     //scss for episode
+     } //scss for episode
      .min-height-season {
          height: 535px;
          overflow: hidden;
@@ -132,8 +129,7 @@
      }
      .search-episode {
          padding: 0 0 50px;
-     }
-     //scss for contests
+     } //scss for contests
      .contest-modal-heading h1 {
          font-size: 37px;
      } //scss for digital course
@@ -146,8 +142,7 @@
      }
      .digital-course:after {
          width: 25%;
-     }
-     //scss for digital-inside page
+     } //scss for digital-inside page
      .digital-heading h1 {
          font-size: 35px;
      }
@@ -156,5 +151,8 @@
      } //scss for ask expert modal
      .ask-expert-bg {
          padding: 45px;
+     }
+    .education-background .new-flash-animation {
+         font-size: 22px;
      }
  }

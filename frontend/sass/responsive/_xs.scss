@@ -2,8 +2,7 @@
      // Mobile
      .img-height {
          height: 13vh;
-     }
-     //scss for header
+     } //scss for header
      .navbar-nav {
          text-align: center !important;
          float: none !important;
@@ -25,8 +24,7 @@
          position: static;
          margin: 0 10%;
          float: none;
-     }
-     //scss for home page
+     } //scss for home page
      .modal-bg {
          background-image: url("../img/modal-bg-mobile.jpg");
          padding: 50px 15px 70px 25px;
@@ -138,8 +136,7 @@
      }
      .p0-mobile {
          padding: 0;
-     }
-     //scss for footer
+     } //scss for footer
      footer {
          font-size: 10px;
          li {
@@ -169,8 +166,7 @@
          text-align: center !important;
          float: none !important;
          margin: 0 !important;
-     }
-     //scss for minutestips
+     } //scss for minutestips
      .minute-first {
          h1 {
              font-size: 28px;
@@ -197,8 +193,7 @@
      .name-plate {
          width: 85%;
          margin-left: 7%;
-     }
-     //scss for contact
+     } //scss for contact
      .contact-modal-bg p,
      .contact-modal-bg .contact-address {
          font-size: 12px;
@@ -221,8 +216,7 @@
                  display: none;
              }
          }
-     }
-     //scss for ask-expert modal
+     } //scss for ask-expert modal
      .ask-expert-bg {
          font-size: 16px;
          padding: 10px;
@@ -241,8 +235,7 @@
      }
      .ask-modal .question-left {
          margin-left: 8px;
-     }
-     //scss for gallery page
+     } //scss for gallery page
      .season-common {
          border: 3px solid #fef424;
          padding: 15px 10px 20px;
@@ -278,8 +271,7 @@
      .min-height-gallery {
          height: 18.6vh;
          overflow: hidden;
-     }
-     //about us scss
+     } //about us scss
      .about-modal-bg h1 {
          text-align: center;
          &:after {
@@ -292,16 +284,14 @@
      }
      .comming-soon h2 {
          margin-bottom: 40px;
-     }
-     //scss for episode
+     } //scss for episode
      .min-height-season {
          height: 23vh;
          overflow: hidden;
      }
      .search-episode {
          padding: 0px 0 35px;
-     }
-     //scss for contest
+     } //scss for contest
      .contest-modal-heading h1 {
          font-size: 16px;
      }
@@ -315,8 +305,7 @@
      }
      .contest-modal-bg .button-enter {
          margin: 40px 0px;
-     }
-     //digital course
+     } //digital course
      .digital-course {
          margin-left: 0;
          padding: 0;
@@ -343,8 +332,7 @@
      .digital-course:before,
      .digital-course:after {
          display: none;
-     }
-     //scss for digital-inside page
+     } //scss for digital-inside page
      .digital-heading {
          border-left: none;
          h1 {
@@ -366,12 +354,14 @@
              margin: 0;
              text-align: center;
          }
-     }
-     //scss for ourpartner-modal
+     } //scss for ourpartner-modal
      .ourpartner-modal {
          margin: 40px 0 0px;
          h1 {
              font-size: 55px;
          }
+     }
+     .education-background .new-flash-animation {
+         font-size: 14px;
      }
  }
