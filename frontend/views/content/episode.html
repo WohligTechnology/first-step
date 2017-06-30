@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-6 col-xs-offset-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" ng-model="searchText">
                             <div class="input-group-btn">
                                 <button class="btn-search" type="submit">
                               </button>
@@ -47,7 +47,7 @@
                         <h3>Season 2</h3>
                     </div>
                     <div class="row ">
-                        <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season2 track by $index ">
+                        <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season2 track by $index | filter:search:strict">
                             <div class="episodes">
                                 <img src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">

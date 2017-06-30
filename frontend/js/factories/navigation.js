@@ -19,12 +19,12 @@ myApp.factory('NavigationService', function () {
         {
             name: "Ask The Expert",
             classis: "active",
-            anchor: "openExpertMain",
+            clickName1: "true",
         },
         {
             name: "About",
             classis: "active",
-            clickName: "openAbout",
+            clickName: "true",
         },
         {
             name: "Contact",

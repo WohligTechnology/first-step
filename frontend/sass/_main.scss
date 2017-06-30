@@ -385,19 +385,19 @@ footer {
              @include animationflash (42%,30%,null,null,#94c0cc);
         }
         .text-flash5 {
-            @include animationflash (37%,50%,null,null,#f5f9ad);
+            @include animationflash (36%,50%,null,null,#f5f9ad);
         }
         .text-flash6 {
-           @include animationflash (21%,20%,null,null,#94c0cc);
+           @include animationflash (16%,25%,null,null,#94c0cc);
         }
         .text-flash7 {
-            @include animationflash (50%,30%,null,null,#f5f9ad);
+            @include animationflash (50%,24%,null,null,#f5f9ad);
         }
         .text-flash8 {
             @include animationflash (null,5%,null,35%,#94c0cc);
         }
         .text-flash9 {
-            @include animationflash (null,38%,null,36%,#f5f9ad);
+            @include animationflash (null,38%,null,44%,#ed7777);
         }
         .text-flash10 {
             @include animationflash (null,38%,null,13%,#ed7777);
@@ -424,65 +424,9 @@ footer {
             @include animationflash (null,5%,null,27%,#f6f4f1);
         }
         .text-flash18 {
-            @include animationflash (null,5%,null,18%,#f5f9ad);
+            @include animationflash (null,5%,null,15%,#f5f9ad);
         }
-    } // .loaders-made {
-    //     position: absolute;
-    //     top: 30%;
-    //     left: 0%;
-    //     @include transform(translateX(0%));
-    //     width: 1000px;
-    //     height: 300px;
-    //     padding-left: 150px;
-    //     overflow: hidden;
-    //     .element-in,
-    //     .element-one-animation,
-    //     .element-two-animation,
-    //     .element-three-animation {
-    //         width: 800px;
-    //         overflow: hidden;
-    //     }
-    //     .element-loader {
-    //         font-size: 150px;
-    //         color: #fff;
-    //         font-family: 'KrutiDev';
-    //         width: 800px;
-    //         padding-top: 30px;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-align: center;
-    //         span {
-    //             font-family: Eraser;
-    //             font-weight: 700;
-    //         }
-    //         &.element-one {
-    //             span {
-    //                 font-size: 100px;
-    //             }
-    //         }
-    //         &.element-two,
-    //         &.element-two-one,
-    //         &.element-four,
-    //         &.element-four-one {
-    //             font-size: 140px;
-    //             position: relative;
-    //             padding-top: 2px;
-    //             line-height: 1;
-    //         }
-    //         &.element-three-one,
-    //         &.element-three {
-    //             padding-top: 2px;
-    //             line-height: 1;
-    //             span {
-    //                 font-size: 115px;
-    //                 line-height: 0.6;
-    //             }
-    //         }
-    //     }
-    //     span.typed-cursor {
-    //         display: none;
-    //     }
-    // }
+    } 
 }
 
 .gallery-bg {

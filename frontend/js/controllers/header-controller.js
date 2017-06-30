@@ -5,7 +5,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
     });
     $.fancybox.close(true);
     $scope.openAbout = function () {
-        console.log("clla");
         $uibModal.open({
             animation: true,
             templateUrl: 'views/modal/about-modal.html',
@@ -14,7 +13,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
         });
     };
     $scope.openExpertMain = function () {
-        console.log("clla");
         $uibModal.open({
             animation: true,
             templateUrl: 'views/modal/ask-expert-main.html',
