@@ -49,9 +49,9 @@
                     <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season2 | filter: searchName">
                             <div class="episodes">
-                                <img src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
+                                <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
+                                    <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
                                         <img src="img/youtube-small.png" class="img-responsive">
                                     </a>
                                 </div>
@@ -74,9 +74,9 @@
                     <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season1 | filter: searchName ">
                             <div class="episodes">
-                                <img src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
+                                <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
+                                    <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
                                         <img src="img/youtube-small.png" class="img-responsive">
                                     </a>
                                 </div>

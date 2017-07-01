@@ -35,6 +35,7 @@ w/
 production/
 *.zip
 css/
+.tmp
 # Thumbnails
 ._*
 

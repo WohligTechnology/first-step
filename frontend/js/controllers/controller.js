@@ -1,5 +1,5 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state,apiService) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -187,6 +187,15 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 scope: $scope,
                 size: 'md',
 
+            });
+        };
+
+                 //Login
+        $scope.submitForm = function (formData) {
+            console.log(formData);
+             $state.go('digitalinside');
+            apiService.sendLogin(formData, function (data) {
+                    $state.go('digitalinside');
             });
         };
 

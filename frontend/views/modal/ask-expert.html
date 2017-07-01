@@ -6,20 +6,28 @@
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">
                 <form name="askExpertForm" class="form-horizontal" ng-submit="submitForm(formData);">
+                    <div class="form-group" hidden>
+                        <label>Expert Name:</label>
+                        <input type="text" name="nameexpert" class="form-control" value="MR.ANIL SINGHVI" ng-model="formData.nameexpert">
+                    </div>
                     <div class="form-group" ng-class="{'form-invalid': askExpertForm.name.$invalid && askExpertForm.name.$touched}">
-                        <label>Full Name :</label>
+                        <label>Full Name:</label>
                         <input type="text" name="name" class="form-control" ng-model="formData.name" required>
                         <span ng-show="askExpertForm.name.$touched && askExpertForm.name.$invalid">The name is required.</span>
                     </div>
                     <div class="form-group" ng-class="{'form-invalid':askExpertForm.email.$invalid && askExpertForm.email.$touched}">
-                        <label>Email Address :</label>
+                        <label>Email:</label>
                         <input type="email" name="email" class="form-control" ng-model="formData.email" required>
                         <span ng-show="askExpertForm.email.$touched && askExpertForm.email.$invalid">Please enter vaild email.</span>
                     </div>
                     <div class="form-group">
-                        <label class="control-label pull-left col-sm-12 question-left" for="email">Question :</label>
                         <div class="col-sm-12">
-                            <textarea class="form-control textarea-bg " rows="7" id="comment"></textarea>
+                            <label class="control-label pull-left question-left" for="question" ng-class="{'form-invalid':askExpertForm.question.$invalid && askExpertForm.question.$touched}">Question :</label>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea class="form-control textarea-bg " rows="7" id="comment" ng-model="formData.question" required></textarea>
+                            <span ng-show="askExpertForm.question.$touched && askExpertForm.question.$invalid">Please enter Question.</span>
                         </div>
                     </div>
                     <div class="form-group">

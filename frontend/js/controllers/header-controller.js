@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location,apiService) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -55,4 +55,14 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
             $(".img-width-change").css("width", '25%');
         }
     });
+
+
+    //Expert Questioner
+        $scope.submitForm = function (formData) {
+            formData.nameexpert="MR.ANIL SINGHVI";
+            console.log(formData);
+            apiService.sendEnquiry(formData, function (data) {
+            });
+        };
+
 });

@@ -1,0 +1,50 @@
+{
+    "title": "Expert Questions",
+    "description": "List of Question",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "isSort": "",
+        "tableRef": "name"
+    },{
+        "name": "Expert Name",
+        "isSort": "",
+        "tableRef": "nameexpert"
+    }, {
+        "name": "Email",
+        "isSort": "",
+        "tableRef": "email"
+    }, {
+        "name": "Question",
+        "isSort": "",
+        "tableRef": "question"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editExpert",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete Expert Questions",
+        "content": "Are you sure you want to delete Question?",
+        "api": "expert/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "apiCall": {
+        "url": "Expert/search",
+        "params": "_id"
+    }
+}
