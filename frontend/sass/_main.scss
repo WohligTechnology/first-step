@@ -33,7 +33,16 @@ $brand-info: #000072 !default;
     font-family: 'Eraser';
     src: url("../fonts/Eraser.ttf");
 }
-
+//mixin flash position
+    @mixin animationflash ($top, $left, $right, $bottom, $chalk-color) {
+        position: absolute;
+        top: $top;
+        left:  $left;
+        right: $right;
+        bottom: $bottom;
+        @include transform (scale(0));
+        color: $chalk-color;
+    } //End mixin flash position
 @import "other/font-fix";
 body {
     padding-top: 0px;
@@ -352,16 +361,7 @@ footer {
         img {
             width: 120px;
         }
-    } //mixin flash position
-    @mixin animationflash ($top, $left, $right, $bottom, $chalk-color) {
-        position: absolute;
-        top: $top;
-        left:  $left;
-        right: $right;
-        bottom: $bottom;
-        @include transform (scale(0));
-        color: $chalk-color;
-    } //End mixin flash position
+    } 
     .new-flash-animation {
         position: absolute;
         height: 100%;
@@ -373,7 +373,7 @@ footer {
         font-weight: 700;
         text-transform: uppercase;
         img {
-                height: 80px;
+                height: 78px;
             }
         .text-flash1 {
             @include animationflash (24%,5%,null,null,#ed7777);

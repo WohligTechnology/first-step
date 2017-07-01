@@ -363,13 +363,18 @@
      }
      .education-background .new-flash-animation {
          font-size: 14px;
+         img {
+             display: none;
+         }
      }
      .minutestips-video-section {
          position: static;
      }
      header .navbar-default {
-         background: #1e6558;
          border-color: transparent;
+        .navbar-collapse{
+             background: #2a755f;
+         }
      }
      li.header-socialmedia {
          display: inline-block;

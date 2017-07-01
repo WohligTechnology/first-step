@@ -152,7 +152,18 @@
      .ask-expert-bg {
          padding: 45px;
      }
-    .education-background .new-flash-animation {
-         font-size: 22px;
+     .education-background {
+         .new-flash-animation {
+             font-size: 22px;
+            .text-flash2 {
+                 top: 29%;
+             }
+            .text-flash22 {
+                 top: 17%;
+             }
+             img {
+                 height: 50px;
+             }
+         }
      }
  }
