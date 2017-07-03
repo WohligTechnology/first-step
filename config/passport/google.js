@@ -1,6 +1,6 @@
-global["GoogleKey"] = "AIzaSyBLF8LU71d9tNQivuGEuDSLMhTgbQTmstw";
-global["GoogleclientId"] = "451010882805-h42ccn1jqsohkocmv2qmmklgmfk7vm9a.apps.googleusercontent.com";
-global["GoogleclientSecret"] = "cwE3oa-ie9CoI-4pLxeVmd8J";
+global["GoogleKey"] = "AIzaSyBxB_DBCMtQwonw0r5a9an1b2nMg_T2jG0";
+global["GoogleclientId"] = "451010882805-pie8h5cnsue0p1qooibueomvcpj8nu34.apps.googleusercontent.com";
+global["GoogleclientSecret"] = "0pWugpSEGX0DnR822CR6UvwN";
 
 passport.use(new GoogleStrategy({
         clientId: GoogleclientId,
