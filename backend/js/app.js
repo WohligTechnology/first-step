@@ -89,7 +89,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'JagzCtrl'
         });
 
-    $urlRouterProvider.otherwise("/dashboard");
+    $urlRouterProvider.otherwise("/Userweb");
     $locationProvider.html5Mode(isproduction);
 });
 
