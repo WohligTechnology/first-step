@@ -47,8 +47,13 @@
                         <h3>Season 2</h3>
                     </div>
                     <div class="row ">
+                        <!--<pre>{{season2}}</pre>-->
+                               <div class="col-md-12" ng-show="season2.length == 0">
+                                    <h4> No Data found</h4>
+                                </div>
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season2 | filter: searchName">
                             <div class="episodes">
+                         
                                 <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
                                     <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
@@ -56,7 +61,7 @@
                                     </a>
                                 </div>
                                 <p class="text-center">{{itemSeason.episodeno}}</p>
-                                 <p class="text-center hidden">{{itemSeason.searchName}}</p>
+                                <p class="text-center hidden">{{itemSeason.searchName}}</p>
                             </div>
                         </div>
                     </div>
@@ -74,6 +79,9 @@
                     <div class="row ">
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season1 | filter: searchName ">
                             <div class="episodes">
+                                <div class="col-md-12" ng-show="searchName.length == 0">
+                                    <h4> No Data found</h4>
+                                </div>
                                 <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
                                     <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>

@@ -29,37 +29,37 @@
                         <h3>Season 2</h3>
                     </div>
                     <div class="row ">
-                        <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season2 track by $index ">
-                            <a fancybox href="{{img.img1}}">
+                            <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season2 track by $index ">
+                                <a fancybox href="{{img.img1}}">
                                 <img ng-src="{{img.img2}}" class="img-responsive ">
                             </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pull-right gallery-btn">
-                    <button ng-click="viewMore2()" ng-if="view2">View More</button>
-                    <button ng-click="viewLess2()" ng-if="!view2">View Less</button>
-                </div>
-            </div>
-            <div class="season-common">
-                <div ng-class="{'max-height-gallery' : more1 == true , 'min-height-gallery':more1 == false}" class="seasonOpacity">
-                    <div class="season-text">
-                        <h3>Season 1</h3>
+                    <div class="pull-right gallery-btn">
+                        <button ng-click="viewMore2()" ng-if="view2">View More</button>
+                        <button ng-click="viewLess2()" ng-if="!view2">View Less</button>
                     </div>
-                    <div class="row ">
-                        <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season1 track by $index ">
-                            <a fancybox href="{{img.img1}}">
+                </div>
+                <div class="season-common">
+                    <div ng-class="{'max-height-gallery' : more1 == true , 'min-height-gallery':more1 == false}" class="seasonOpacity">
+                        <div class="season-text">
+                            <h3>Season 1</h3>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season1 track by $index ">
+                                <a fancybox href="{{img.img1}}">
                                 <img ng-src="{{img.img2}}" class="img-responsive ">
                             </a>
+                            </div>
                         </div>
                     </div>
+                    <div class="pull-right gallery-btn">
+                        <button ng-click="viewMore1()" ng-if="view1">View More</button>
+                        <button ng-click="viewLess1()" ng-if="!view1">View Less</button>
+                    </div>
                 </div>
-                <div class="pull-right gallery-btn">
-                    <button ng-click="viewMore1()" ng-if="view1">View More</button>
-                    <button ng-click="viewLess1()" ng-if="!view1">View Less</button>
-                </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>

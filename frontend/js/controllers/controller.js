@@ -190,11 +190,12 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             });
         };
 
-                 //Login
+        //Login
         $scope.submitForm = function (formData) {
             console.log(formData);
              $state.go('digitalinside');
-            apiService.sendLogin(formData, function (data) {
+            apiService.sendLogin(formData, function (formData) {
+                  console.log(formData);
                     $state.go('digitalinside');
             });
         };

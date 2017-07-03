@@ -1,5 +1,5 @@
 {
-    "title": "Expert Questions",
+    "title": "Expert Question",
     "description": "List of Question",
     "pageType": "view",
     "sendIdWithCreate": true,
@@ -22,7 +22,7 @@
         "tableRef": "question"
     }],
     "action": [{
-        "name": "edit",
+        "name": "View",
         "icon": "fa-pencil",
         "buttonClass": "btn-primary",
         "type": "page",

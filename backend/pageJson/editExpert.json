@@ -1,0 +1,73 @@
+{
+    "title": "View Question",
+    "name": "Question",
+    "jsonPage": "viewUser",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "disabled":"true"
+    },{
+        "name": "Expert Name",
+        "type": "text",
+        "tableRef": "nameexpert",
+        "placeholder": "Enter Expert Name",
+        "id": "nameexpert",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "disabled":"true"
+    },{
+        "name": "Email",
+        "type": "text",
+        "tableRef": "email",
+        "placeholder": "Enter Email",
+        "id": "email",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "disabled":"true"
+    },{
+        "name": "Question",
+        "type": "textarea",
+        "tableRef": "question",
+        "placeholder": "Enter Question",
+        "id": "question",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "disabled":"true"
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitUser",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewExpert"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewExpert"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Expert/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Expert/getOne",
+        "params": "_id"
+    }
+
+}

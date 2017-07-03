@@ -14,15 +14,6 @@
         "tableRef": "email"
     }],
     "action": [{
-        "name": "edit",
-        "icon": "fa-pencil",
-        "buttonClass": "btn-primary",
-        "type": "page",
-        "action": "editUserweb",
-        "fieldsToSend": {
-            "_id": "_id"
-        }
-    }, {
         "name": "delete",
         "icon": "fa-trash",
         "buttonClass": "btn-danger",
