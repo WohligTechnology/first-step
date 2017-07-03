@@ -1,5 +1,5 @@
 apps:
   - script: "app.js"
-    name: "PehlaKadam 80"
+    name: "PehlaKadam 8080"
     watch: false
     args: "--prod"
