@@ -8,7 +8,7 @@ myApp.directive('dateModel', function ($filter, $timeout) {
             $timeout(function () {
                 console.log($filter('date')(new Date($scope.model), 'dd/MM/yyyy'));
                 $scope.model = new Date($scope.model);
-            }, 100)
+            }, 100);
 
         }
     };
@@ -131,7 +131,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                             $scope.type = "image";
                         }
                         $scope.model = data.data[0];
-                        console.log($scope.model, 'model means blob')
+                        console.log($scope.model, 'model means blob');
 
                     }
                     $timeout(function () {
@@ -441,7 +441,7 @@ myApp.directive('viewField', function ($http, $filter) {
             $scope.objectDepth = function () {
                 if (_.isObjectLike($scope.storeObj)) {
                     if ($scope.storeValue[$scope.storeObj.field]) {
-                        $scope.form.model = $scope.storeValue[$scope.storeObj.field][$scope.storeObj.tableRef];
+                        $scope.form.model = $scope.storeValue[$scope.storeObj.tableRef][$scope.storeObj.field];
                         $scope.storeObj = $scope.storeObj.tableRef;
                         if (_.isObjectLike($scope.storeObj)) {
                             $scope.objectDepth();
@@ -449,8 +449,8 @@ myApp.directive('viewField', function ($http, $filter) {
                     }
                 }
             };
-            if (_.isObjectLike($scope.type.tableRef)) {
-                $scope.storeObj = $scope.type.tableRef;
+            if (_.isObjectLike($scope.value[$scope.type.tableRef])) {
+                $scope.storeObj = $scope.type;
                 $scope.storeValue = $scope.value;
                 $scope.objectDepth();
 
@@ -481,11 +481,8 @@ myApp.directive('detailField', function ($http, $filter, JsonService) {
             value: "=value",
             detailForm: "=form",
             formData: "=data",
-
         },
         controller: 'DetailFieldCtrl',
-        link: function ($scope, element, attrs) {
-
-        }
+        link: function ($scope, element, attrs) {}
     };
 });
