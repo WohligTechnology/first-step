@@ -1,4 +1,4 @@
-global["GoogleKey"] = "AIzaSyC0dbPUpeoH3SADDU0Lmi1ONd-qFdfeEy4";
+global["GoogleKey"] = "AIzaSyBLF8LU71d9tNQivuGEuDSLMhTgbQTmstw";
 global["GoogleclientId"] = "451010882805-h42ccn1jqsohkocmv2qmmklgmfk7vm9a.apps.googleusercontent.com";
 global["GoogleclientSecret"] = "cwE3oa-ie9CoI-4pLxeVmd8J";
 
