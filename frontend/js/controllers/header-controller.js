@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location,apiService) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location, apiService) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -56,13 +56,23 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
         }
     });
 
-
+    $scope.formData = {};
     //Expert Questioner
-        $scope.submitForm = function (formData) {
-            formData.nameexpert="MR.ANIL SINGHVI";
-            console.log(formData);
-            apiService.sendEnquiry(formData, function (data) {
-            });
-        };
-
+    $scope.submitForm = function (formData, askExpertForm) {
+        formData.nameexpert = "MR.ANIL SINGHVI";
+        console.log($scope.formData);
+        apiService.sendEnquiry($scope.formData, function (data) {
+            console.log(data);
+            if (data.value === true) {
+                $scope.formComplete = true;
+                $timeout(function () {
+                    $scope.formComplete = false;
+                }, 3000)
+                $scope.formData = {};
+                formData.name.$touched = false;
+                formData.question.$touched = false;
+                formData.email.$touched = false;
+            }
+        });
+    };
 });

@@ -1470,3 +1470,16 @@ color: #000;
        }
    }
 }
+
+.form-expert {
+    min-height: 300px;
+    position: relative;
+    .thank-u {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    @include transform (translateY(-50%));
+}
+}
+
+

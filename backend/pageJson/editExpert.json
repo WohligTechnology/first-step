@@ -41,6 +41,14 @@
         "validation": ["", "trim", ""],
         "url": "",
         "disabled":"true"
+    },{
+        "name": "Answer",
+        "type": "textarea",
+        "tableRef": "answer",
+        "placeholder": "Enter Answer",
+        "id": "answer",
+        "validation": ["", "trim", ""],
+        "url": ""
     }],
     "action": [{
         "name": "submit",

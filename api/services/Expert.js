@@ -15,6 +15,10 @@ var schema = new Schema({
         type: String,
         required: true,
         excel: "Question"
+    },
+    answer: {
+        type: String,
+        excel: "Answer"
     }
 });
 

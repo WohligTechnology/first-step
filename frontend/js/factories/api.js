@@ -10,37 +10,19 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
             }).success(callback);
         },
         // This is a demo Service for POST Method.
+        sendEnquiry: function (formData, callback) {
+            $http.post(adminurl + 'Expert/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
 
-            sendEnquiry: function (formData, callback) {
-                $http({
-                    url: adminurl + 'Expert/save',
-                    method: 'POST',
-                    data: formData,
-                    withCredentials: true
-                }).then(function (data) {
-                    // $http({
-                    //     url: adminurl + 'Expert/sendEnquiry',
-                    //     method: 'POST',
-                    //     data: formData,
-                    //     withCredentials: true
-                    // }).then(callback);
-                });
-            },
+            });
+        },
+        sendLogin: function (formData, callback) {
+            $http.post(adminurl + 'Userweb/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
 
-            sendLogin: function (formData, callback) {
-                $http({
-                    url: adminurl + 'Userweb/save',
-                    method: 'POST',
-                    data: formData,
-                    withCredentials: true
-                }).then(function (data) {
-                    // $http({
-                    //     url: adminurl + 'Expert/sendEnquiry',
-                    //     method: 'POST',
-                    //     data: formData,
-                    //     withCredentials: true
-                    // }).then(callback);
-                });
-            }
+            });
+        },
     };
 });
