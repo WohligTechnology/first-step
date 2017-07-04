@@ -211,7 +211,7 @@ header {
         margin-bottom: 0px;
     }
     .navbar-nav>li>a {
-        padding: 25px 20px;
+        padding: 13px 20px;
     }
     .nav-up {
         @include transform(translateY(-100%));
@@ -224,12 +224,15 @@ header {
     }
     .header-socialmedia {
         a {
-            padding: 21px 20px !important;
+            padding: 10px 20px !important;
             .social-icon {
                 font-size: 25px;
             }
         }
-    }
+    }  
+    .navbar-one{
+        margin-left: 45%;
+        }
 }
 
 //end of scss for header
@@ -448,7 +451,7 @@ footer {
             @include animationflash (null,25%,null,24%,#f5f9ad);
         }
         .text-flash22 {
-            @include animationflash (49%,null,39%,null,#f5f9ad);
+            @include animationflash (32%,null,22%,null,#f5f9ad);
         }
         .text-flash23 {
             @include animationflash (48%,16%,null,null,#f5f9ad);
@@ -458,7 +461,6 @@ footer {
         }
     } 
 }
-
 .gallery-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
@@ -1481,5 +1483,11 @@ color: #000;
     @include transform (translateY(-50%));
 }
 }
-
+//scss for thanks modal
+.thank-bg{  
+      background-image: url(../img/contest-bg.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
 

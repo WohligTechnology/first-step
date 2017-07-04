@@ -22,15 +22,16 @@
                                 <div class="form-group" ng-class="{'form-invalid': loginDigitalform.name.$invalid && loginDigitalform.name.$touched}">
                                     <label>Full Name :</label>
                                     <input type="text" name="name" class="form-control" ng-model="formData.name" required>
-                                    <span ng-show="loginDigitalform.name.$touched && loginDigitalform.name.$invalid">The name is required.</span>
+                                    <span ng-show="loginDigitalform.name.$touched && loginDigitalform.name.$invalid ">The name is required.</span>
                                 </div>
                                 <div class="form-group" ng-class="{'form-invalid':loginDigitalform.email.$invalid && loginDigitalform.email.$touched}">
                                     <label>Email Address :</label>
                                     <input type="email" name="email" class="form-control" ng-model="formData.email" required>
-                                    <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid">Please enter vaild email.</span>
+             
+                                    <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">Please enter vaild email.</span>
                                 </div>
                                 <div class="digital-submit">
-                                    <button type="submit" class="btn btn-default" ng-disabled="loginDigitalform.$invalid">Submit</button>
+                                    <button type="submit" class="btn btn-default" ng-disabled="loginDigitalform.$invalid" >Submit</button>
                                 </div>
                             </form>
                         </div>
