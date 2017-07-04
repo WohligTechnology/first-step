@@ -1,3 +1,16 @@
 module.exports = _.cloneDeep(require("sails-wohlig-controller"));
-var controller = {};
+var controller = {
+    saveMailData: function (req, res) {
+        if (req.body) {
+            Expert.saveMailData(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: "User Not logged in"
+            });
+        }
+
+    },
+
+};
 module.exports = _.assign(module.exports, controller);

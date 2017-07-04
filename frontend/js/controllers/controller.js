@@ -199,8 +199,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 console.log(data);
                 if (data.value === true) {
                     $state.go('digitalinside');
-                }
-                  else {
+                } else {
                     $state.go('digitalinside');
                 }
             });
