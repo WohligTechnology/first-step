@@ -357,7 +357,7 @@ footer {
     position: relative;
     .education-img-size {
         width: 100%;
-        height: 90vh;
+        height: 67vh;
     }
     .eraser {
         position: absolute;
@@ -374,12 +374,12 @@ footer {
         width: 100%;
         top: 0;
         color: #fff;
-        font-size: 42px;
+        font-size: 25px;
         font-family: Eraser;
         font-weight: 700;
         text-transform: uppercase;
         img {
-                height: 78px;
+                height: 50px;
             }
         .text-flash1 {
             @include animationflash (24%,5%,null,null,#ed7777);
@@ -448,7 +448,7 @@ footer {
             @include animationflash (null,25%,null,24%,#f5f9ad);
         }
         .text-flash22 {
-            @include animationflash (11%,null,15%,null,#f5f9ad);
+            @include animationflash (49%,null,39%,null,#f5f9ad);
         }
         .text-flash23 {
             @include animationflash (48%,16%,null,null,#f5f9ad);
@@ -566,12 +566,12 @@ footer {
 }
 
 .three-icon {
-    padding: 50px 0;
+    padding: 20px 0 15px;
     cursor: pointer;
     h2 {
         font-family: NimbusSanL-Bold;
         color: #000;
-        margin: 40px 0 0 0;
+        margin: 10px 0 0 0;
     }
     img {
         margin: 0 auto;

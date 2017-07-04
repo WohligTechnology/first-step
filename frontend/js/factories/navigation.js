@@ -5,26 +5,25 @@ myApp.factory('NavigationService', function () {
         //     classis: "active",
         //     anchor: "home",
         // }, 
-        {
-            name: "Gallery",
-            classis: "active",
-            anchor: "home-gallery",
-        },
-        {
+         {
             name: "Episodes",
             classis: "active",
             anchor: "home-episodes",
-        }
-        ,
+        },
         {
             name: "Ask The Expert",
             classis: "active",
             clickName1: "true",
-        },
-        {
+        }
+        , {
             name: "About",
             classis: "active",
             clickName: "true",
+        },
+        {
+            name: "Gallery",
+            classis: "active",
+            anchor: "home-gallery",
         },
         {
             name: "Contact",
