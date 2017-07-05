@@ -231,10 +231,14 @@ header {
         }
     }  
     .navbar-one{
-          margin: 0 auto;
-    float: none;
-    text-align: center;
+ text-align: center;
+ float: none;
+ li{
+     float: none;
+     display: inline-block;
+ }
         }
+
 }
 
 //end of scss for header
@@ -387,16 +391,16 @@ footer {
                 height: 50px;
             }
         .text-flash1 {
-            @include animationflash (24%,5%,null,null,#ed7777);
+            @include animationflash (41%,5%,null,null,#ed7777);
         }
         .text-flash2 {
-            @include animationflash (24%,null,13%,null,#94c0cc);
+            @include animationflash (18%,null,13%,null,#94c0cc);
         }
         .text-flash3 {
             @include animationflash (null,null,21%,24%,#f6f4f1);
         }
         .text-flash4 {
-             @include animationflash (42%,30%,null,null,#94c0cc);
+             @include animationflash (38%,30%,null,null,#94c0cc);
         }
         .text-flash5 {
             @include animationflash (36%,50%,null,null,#f5f9ad);
@@ -405,43 +409,43 @@ footer {
            @include animationflash (16%,25%,null,null,#94c0cc);
         }
         .text-flash7 {
-            @include animationflash (50%,24%,null,null,#f5f9ad);
+            @include animationflash (61%,33%,null,null,#f5f9ad);
         }
         .text-flash8 {
-            @include animationflash (null,5%,null,35%,#94c0cc);
+            @include animationflash (null,8%,null,31%,#94c0cc);
         }
         .text-flash9 {
             @include animationflash (null,38%,null,44%,#ed7777);
         }
         .text-flash10 {
-            @include animationflash (null,38%,null,13%,#ed7777);
+            @include animationflash (null,30%,null,13%,#ed7777);
         }
-        .text-flash11 {
-            @include animationflash (34%,5%,null,null,#f5f9ad);
-        }
+        // .text-flash11 {
+        //     @include animationflash (34%,5%,null,null,#f5f9ad);
+        // }
         .text-flash12 {
-            @include animationflash (null,5%,null,43%,#f6f4f1);
+            @include animationflash (null,59%,null,43%,#f6f4f1);
         }
-        .text-flash13 {
-            @include animationflash (41%,5%,null,null,#ed7777);
-        }
+        // .text-flash13 {
+        //     @include animationflash (41%,5%,null,null,#ed7777);
+        // }
         .text-flash14 {
-            @include animationflash (null,null,14%,44%,#f6f4f1);
+            @include animationflash (null,null,71%,44%,#f6f4f1);
         }
         .text-flash15 {
-            @include animationflash (null,null,18%,37%,#f5f9ad);
+            @include animationflash (null,null,18%,40%,#f5f9ad);
         }
         .text-flash16 {
-            @include animationflash (30%,null,45%,null,#ed7777);
+            @include animationflash (21%,null,39%,null,#ed7777);
         }
         .text-flash17 {
-            @include animationflash (null,5%,null,27%,#f6f4f1);
+            @include animationflash (null,5%,null,18%,#f6f4f1);
         }
         .text-flash18 {
-            @include animationflash (null,5%,null,15%,#f5f9ad);
+            @include animationflash (null,47%,null,15%,#f5f9ad);
         }
         .text-flash18 {
-            @include animationflash (null,5%,null,15%,#f5f9ad);
+            @include animationflash (null,47%,null,15%,#f5f9ad);
         }
         .text-flash19 {
             @include animationflash (24%,25%,null,null,#f5f9ad);
@@ -450,10 +454,10 @@ footer {
             @include animationflash (null,44%,null,31%,#f5f9ad);
         }
         .text-flash21 {
-            @include animationflash (null,25%,null,24%,#f5f9ad);
+            @include animationflash (null,21%,null,20%,#f5f9ad);
         }
         .text-flash22 {
-            @include animationflash (32%,null,22%,null,#f5f9ad);
+            @include animationflash (32%,null,17%,null,#f5f9ad);
         }
         .text-flash23 {
             @include animationflash (48%,16%,null,null,#f5f9ad);
@@ -479,7 +483,19 @@ footer {
         font-size: 38px;
     }
 }
-
+.scroll-down{
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    p{
+        color: white;
+    }
+    .mouse{
+        img{
+            margin-bottom: 10px;
+        }
+    }
+}
 .small-episode {
     width: 167px;
     overflow: hidden;
