@@ -1,31 +1,18 @@
-/**
- * Config.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
- */
-
-
-var MaxImageSize = 1600;
-
-
-
 var schema = new Schema({
-    name: String,
-    content: String,
+    name: {
+        type: String,
+    }
 });
 
-// var client = new Twitter({
-//     consumer_key: 'w0Mizb3YKniG8GfZmhQJbMvER',
-//     consumer_secret: '6wnwpnm6a475ROm3aY8aOy8YXynQxQgZkcoJ05Y8D9EvL0Duov',
-//     access_token_key: '121427044-PJTEM2zmqwcRu4K0FBotK9jtTibsNOiomyVlkSo0',
-//     access_token_secret: 'TvMPCXaXpJOvpu8hCGc61kzp5EpIPbrAgOT7u6lDnastg'
-// });
-
+schema.plugin(deepPopulate, {});
+schema.plugin(uniqueValidator);
+schema.plugin(timestamps);
 module.exports = mongoose.model('Config', schema);
+var requrl = "http://wohlig.io/api/";
 
-var models = {
-    maxRow: 10,
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var model = {
+    maxRow: 20,
     getForeignKeys: function (schema) {
         var arr = [];
         _.each(schema.tree, function (n, name) {
@@ -111,6 +98,7 @@ var models = {
             extension = "jpg";
         }
         var newFilename = id + "." + extension;
+        var MaxImageSize = 1200;
 
         var writestream = gfs.createWriteStream({
             filename: newFilename
@@ -303,19 +291,21 @@ var models = {
         });
     },
     generateExcel: function (name, found, res) {
-        // name = _.kebabCase(name);
+        name = _.kebabCase(name);
         var excelData = [];
         _.each(found, function (singleData) {
             var singleExcel = {};
             _.each(singleData, function (n, key) {
                 if (key != "__v" && key != "createdAt" && key != "updatedAt") {
+                    // singleExcel[_.capitalize(key)] = n;
+                    // console.log("in excel", n);
                     singleExcel[key] = n;
                 }
             });
             excelData.push(singleExcel);
         });
         var xls = json2xls(excelData);
-        var folder = "./.tmp/";
+        var folder = "././.tmp/";
         var path = name + "-" + moment().format("MMM-DD-YYYY-hh-mm-ss-a") + ".xlsx";
         var finalPath = folder + path;
         fs.writeFile(finalPath, xls, 'binary', function (err) {
@@ -336,7 +326,42 @@ var models = {
         });
 
     },
+    generateExcelOld: function (name, found, res) {
+        name = _.kebabCase(name);
+        var excelData = [];
+        _.each(found, function (singleData) {
+            var singleExcel = {};
+            _.each(singleData, function (n, key) {
+                if (key != "__v" && key != "createdAt" && key != "updatedAt") {
+                    // singleExcel[_.capitalize(key)] = n;
+                    // console.log("in excel", n);
+                    singleExcel[key] = n;
+                }
+            });
+            excelData.push(singleExcel);
+        });
+        var xls = json2xls(excelData);
+        var folder = "././.tmp/";
+        var path = name + "-" + moment().format("MMM-DD-YYYY-hh-mm-ss-a") + ".xlsx";
+        var finalPath = folder + path;
+        fs.writeFile(finalPath, xls, 'binary', function (err) {
+            if (err) {
+                res.callback(err, null);
+            } else {
+                fs.readFile(finalPath, function (err, excel) {
+                    if (err) {
+                        res.callback(err, null);
+                    } else {
+                        res.set('Content-Type', "application/octet-stream");
+                        res.set('Content-Disposition', "attachment;filename=" + path);
+                        res.send(excel);
+                        fs.unlink(finalPath);
+                    }
+                });
+            }
+        });
 
+    },
     excelDateToDate: function isDate(value) {
         value = (value - (25567 + 1)) * 86400 * 1000;
         var mom = moment(value);
@@ -346,6 +371,142 @@ var models = {
             return undefined;
         }
     },
+
+    email: function (data, callback) {
+        Password.find().exec(function (err, userdata) {
+            if (err) {
+                console.log(err);
+                callback(err, null);
+            } else if (userdata && userdata.length > 0) {
+                if (data.filename && data.filename != "") {
+                    console.log("Email data: ", data);
+                    request.post({
+                        url: requrl + "config/emailReader/",
+                        json: data
+                    }, function (err, http, body) {
+                        console.log("body : ", body);
+                        if (err) {
+                            console.log(err);
+                            callback(err, null);
+                        } else {
+                            if (body && body.value != false) {
+                                var helper = require('sendgrid').mail
+
+                                from_email = new helper.Email(data.from)
+                                to_email = new helper.Email(data.email)
+                                subject = data.subject
+                                content = new helper.Content("text/html", body)
+                                mail = new helper.Mail(from_email, subject, to_email, content)
+                                // console.log("api_key", userdata[0].name);
+                                var sg = require('sendgrid')(userdata[0].name);
+                                var request = sg.emptyRequest({
+                                    method: 'POST',
+                                    path: '/v3/mail/send',
+                                    body: mail.toJSON()
+                                });
+
+                                sg.API(request, function (error, response) {
+                                    if (error) {
+                                        console.log('Error response received', error);
+                                        callback(error, null);
+                                    } else {
+                                        callback(null, response);
+                                    }
+                                })
+                            } else {
+                                callback({
+                                    message: "Error while sending mail."
+                                }, null);
+                            }
+                        }
+                    });
+                } else {
+                    callback({
+                        message: "Please provide params"
+                    }, null);
+                }
+            } else {
+                callback({
+                    message: "No api keys found"
+                }, null);
+            }
+        });
+    },
+
+    emailTo: function (data, callback) {
+        Password.find().exec(function (err, userdata) {
+            if (err) {
+                console.log(err);
+                callback(err, null);
+            } else if (userdata && userdata.length > 0) {
+                if (data.filename && data.filename != "") {
+                    //console.log("filename ", data.filename);
+                    request.post({
+                        url: requrl + "config/emailReader/",
+                        json: data
+                    }, function (err, http, body) {
+                        console.log("body : ", body);
+                        if (err) {
+                            console.log(err);
+                            callback(err, null);
+                        } else {
+                            //console.log('email else');
+                            if (body && body.value != false) {
+                                var sg = require('sendgrid')(userdata[0].name);
+
+                                var request = sg.emptyRequest({
+                                    method: 'POST',
+                                    path: '/v3/mail/send',
+                                    body: {
+                                        personalizations: [{
+                                            to: data.email1,
+                                            cc: data.cc1,
+                                            bcc: data.bcc1,
+                                            subject: data.subject
+                                        }],
+                                        from: {
+                                            email: data.from
+                                            // ,name: "Tagboss"
+                                        },
+
+                                        content: [{
+                                            type: 'text/html',
+                                            value: body,
+                                        }],
+                                    },
+                                });
+
+                                sg.API(request, function (error, response) {
+                                    if (error) {
+                                        callback(null, error);
+                                        console.log('Error response received');
+                                    } else {
+                                        // console.log(response.statusCode)
+                                        // console.log(response.body)
+                                        // console.log(response.headers)
+                                        callback(null, response);
+                                    }
+                                })
+                            } else {
+                                callback({
+                                    message: "Error while sending mail."
+                                }, null);
+                            }
+                        }
+                    });
+                } else {
+                    callback({
+                        message: "Please provide params"
+                    }, null);
+                }
+            } else {
+                callback({
+                    message: "No api keys found"
+                }, null);
+            }
+        });
+    },
+
     downloadFromUrl: function (url, callback) {
         var dest = "./.tmp/" + moment().valueOf() + "-" + _.last(url.split("/"));
         var file = fs.createWriteStream(dest);
@@ -358,27 +519,6 @@ var models = {
             fs.unlink(dest);
             callback(err);
         });
-    },
-    sendEmail: function (fromEmail, toEmail, subject, filename, data) {
-        var helper = require('sendgrid').mail;
-        var from_email = new helper.Email(fromEmail);
-        var to_email = new helper.Email(toEmail);
-        sails.hooks.views.render("email/" + filename, data, function (err, html) {
-            var content = new helper.Content('text/html', html);
-            var mail = new helper.Mail(from_email, subject, to_email, content);
-            var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-            var request = sg.emptyRequest({
-                method: 'POST',
-                path: '/v3/mail/send',
-                body: mail.toJSON(),
-            });
-            sg.API(request, function (error, response) {
-                console.log(response.statusCode);
-                console.log(response.body);
-                console.log(response.headers);
-            });
-        });
-
     }
 };
-module.exports = _.assign(module.exports, models);
+module.exports = _.assign(module.exports, exports, model);
