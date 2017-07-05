@@ -50,6 +50,7 @@ var model = {
                 function (complete, cbWaterfall1) {
                     var emailData = {};
                     console.log("data: ", data);
+                    emailData.name = data.name;
                     emailData.question = data.question;
                     emailData.answer = data.answer;
                     emailData.from = "pehlakadam@nw18.com";
