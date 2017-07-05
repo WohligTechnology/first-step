@@ -9,7 +9,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Config', schema);
 // var requrl = "http://wohlig.io/api/";
-var requrl = "http://pehla.wohlig.co.in/api";
+var requrl = "http://pehla.wohlig.co.in/api/";
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
     maxRow: 20,
