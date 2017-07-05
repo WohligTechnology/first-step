@@ -20,6 +20,10 @@
          display: block;
          text-align: center;
      }
+     header .navbar-one li {
+    float: none;
+    display: block;
+        }
      .dropdown-menu {
          position: static;
          margin: 0 10%;
@@ -362,7 +366,7 @@
          }
      }
      .education-background .new-flash-animation {
-         font-size: 14px;
+         font-size: 10px;
          img {
              display: none;
          }

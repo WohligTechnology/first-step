@@ -16,10 +16,7 @@
      header .header-border {
          width: 80%;
          margin-left: 20%;
-     } 
-     header .navbar-one {
-    margin-left: 17%;
-        }
+     }
      
      //scss for home
      .education-background {
@@ -27,6 +24,9 @@
              height: auto;
          }
      }
+     .education-background .new-flash-animation {
+    font-size: 15px;
+      }
      .episode-border {
          height: auto;
      }
