@@ -89,7 +89,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'JagzCtrl'
         });
 
-    $urlRouterProvider.otherwise("/page/viewExpert//");
+    $urlRouterProvider.otherwise("/page/viewUserweb//");
     $locationProvider.html5Mode(isproduction);
 });
 
