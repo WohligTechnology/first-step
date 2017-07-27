@@ -1,0 +1,40 @@
+<div class="minutestips-bg min-hght">
+    <div class="container">
+        <div class="minute-main">
+            <div class="text-uppercase minute-main-div">
+                <div class="inline-block computer-digital hidden-xs">
+                    <img src="img/knowledge.png" alt="" width="100" height="100">
+                </div>
+                <div class="inline-block minutetips-heading">
+                    <h1>KNOWLEDGE DESK</h1>
+                </div>
+            </div>
+
+            <uib-accordion class="accordian_style">
+                <div uib-accordion-group class="panel-default accordian_panel" ng-repeat="info in information">
+                    <uib-accordion-heading>
+                        <div><img src="img/NOTE.png" alt="" width="30" height="30"> {{info.name}}</div>
+                    </uib-accordion-heading>
+                    <p ng-bind-html="info.desc"></p>
+                </div>
+            </uib-accordion>
+
+            <div class="text-uppercase minute-main-div">
+                <div class="inline-block computer-digital hidden-xs">
+                    <img src="img/expertmind.png" alt="" width="100" height="100">
+                </div>
+                <div class="inline-block minutetips-heading">
+                    <h1>EXPERT'S SPEAK</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="minutestips-video-section">
+        <div class="container">
+            <div class="comming-soon text-center">
+                <h2>Coming Soon</h2>
+            </div>
+        </div>
+    </div>
+</div>
