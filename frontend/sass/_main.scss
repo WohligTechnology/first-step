@@ -1264,6 +1264,8 @@ footer {
 
 .panel-default .panel-heading {
     color: #e9e72b;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
     background-color: rgba(0, 0, 0, 0.5);
     border: 0;
 }
