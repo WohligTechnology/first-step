@@ -6,7 +6,7 @@ var myApp = angular.module('myApp', [
     'angulartics.google.analytics',
     'ui.bootstrap',
     // 'ngAnimate',
-    // 'ngSanitize',
+    'ngSanitize',
     'angular-flexslider',
     'duScroll'
 ]);
@@ -53,6 +53,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/form",
             templateUrl: tempateURL,
             controller: 'FormCtrl'
+        })
+        .state('partnerspage', {
+            url: "/partnerspage",
+            templateUrl: tempateURL,
+            controller: 'PartnersCtrl'
         })
 
 

@@ -33,16 +33,21 @@ $brand-info: #000072 !default;
     font-family: 'Eraser';
     src: url("../fonts/Eraser.ttf");
 }
+
 //mixin flash position
-    @mixin animationflash ($top, $left, $right, $bottom, $chalk-color) {
-        position: absolute;
-        top: $top;
-        left:  $left;
-        right: $right;
-        bottom: $bottom;
-        @include transform (scale(0));
-        color: $chalk-color;
-    } //End mixin flash position
+@mixin animationflash ($top,
+$left,
+$right,
+$bottom,
+$chalk-color) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+    @include transform (scale(0));
+    color: $chalk-color;
+} //End mixin flash position
 @import "other/font-fix";
 body {
     padding-top: 0px;
@@ -74,14 +79,16 @@ nav li:hover .dropdown-menu {
 }
 
 a,
-.btn,button,
+.btn,
+button,
 [ui-sref] {
-cursor: pointer;
-transition: all ease 300ms;
-&:focus {
-outline: none;
+    cursor: pointer;
+    transition: all ease 300ms;
+    &:focus {
+        outline: none;
+    }
 }
-}
+
 //bootstrap forms
 .input-lg,
 .input-group-lg>.form-control,
@@ -189,7 +196,7 @@ header {
         border: 1px solid transparent;
         right: 0;
         min-width: 200px;
-        &.contact-modal-bg{
+        &.contact-modal-bg {
             padding: 20px 5px;
         }
     }
@@ -229,16 +236,14 @@ header {
                 font-size: 25px;
             }
         }
-    }  
-//     .navbar-one{
-//  text-align: center;
-//  float: none;
-//  li{
-//      float: none;
-//      display: inline-block;
-//  }
-//         }
-
+    } //     .navbar-one{
+    //  text-align: center;
+    //  float: none;
+    //  li{
+    //      float: none;
+    //      display: inline-block;
+    //  }
+    //         }
 }
 
 //end of scss for header
@@ -376,7 +381,7 @@ footer {
         img {
             width: 120px;
         }
-    } 
+    }
     .new-flash-animation {
         position: absolute;
         height: 100%;
@@ -388,85 +393,176 @@ footer {
         font-weight: 700;
         text-transform: uppercase;
         img {
-                height: 50px;
-            }
+            height: 50px;
+        }
         .text-flash1 {
-            @include animationflash (41%,5%,null,null,#ed7777);
+            @include animationflash (41%,
+            5%,
+            null,
+            null,
+            #ed7777);
         }
         .text-flash2 {
-            @include animationflash (18%,null,13%,null,#94c0cc);
+            @include animationflash (18%,
+            null,
+            13%,
+            null,
+            #94c0cc);
         }
         .text-flash3 {
-            @include animationflash (null,null,21%,24%,#f6f4f1);
+            @include animationflash (null,
+            null,
+            21%,
+            24%,
+            #f6f4f1);
         }
         .text-flash4 {
-             @include animationflash (38%,30%,null,null,#94c0cc);
+            @include animationflash (38%,
+            30%,
+            null,
+            null,
+            #94c0cc);
         }
         .text-flash5 {
-            @include animationflash (36%,50%,null,null,#f5f9ad);
+            @include animationflash (36%,
+            50%,
+            null,
+            null,
+            #f5f9ad);
         }
         .text-flash6 {
-           @include animationflash (16%,25%,null,null,#94c0cc);
+            @include animationflash (16%,
+            25%,
+            null,
+            null,
+            #94c0cc);
         }
         .text-flash7 {
-            @include animationflash (61%,33%,null,null,#f5f9ad);
+            @include animationflash (61%,
+            33%,
+            null,
+            null,
+            #f5f9ad);
         }
         .text-flash8 {
-            @include animationflash (null,8%,null,31%,#94c0cc);
+            @include animationflash (null,
+            8%,
+            null,
+            31%,
+            #94c0cc);
         }
         .text-flash9 {
-            @include animationflash (null,38%,null,44%,#ed7777);
+            @include animationflash (null,
+            38%,
+            null,
+            44%,
+            #ed7777);
         }
         .text-flash10 {
-            @include animationflash (null,30%,null,13%,#ed7777);
-        }
-        // .text-flash11 {
+            @include animationflash (null,
+            30%,
+            null,
+            13%,
+            #ed7777);
+        } // .text-flash11 {
         //     @include animationflash (34%,5%,null,null,#f5f9ad);
         // }
         .text-flash12 {
-            @include animationflash (null,59%,null,43%,#f6f4f1);
-        }
-        // .text-flash13 {
+            @include animationflash (null,
+            59%,
+            null,
+            43%,
+            #f6f4f1);
+        } // .text-flash13 {
         //     @include animationflash (41%,5%,null,null,#ed7777);
         // }
         .text-flash14 {
-            @include animationflash (null,null,71%,44%,#f6f4f1);
+            @include animationflash (null,
+            null,
+            71%,
+            44%,
+            #f6f4f1);
         }
         .text-flash15 {
-            @include animationflash (null,null,18%,40%,#f5f9ad);
+            @include animationflash (null,
+            null,
+            18%,
+            40%,
+            #f5f9ad);
         }
         .text-flash16 {
-            @include animationflash (21%,null,39%,null,#ed7777);
+            @include animationflash (21%,
+            null,
+            39%,
+            null,
+            #ed7777);
         }
         .text-flash17 {
-            @include animationflash (null,5%,null,18%,#f6f4f1);
+            @include animationflash (null,
+            5%,
+            null,
+            18%,
+            #f6f4f1);
         }
         .text-flash18 {
-            @include animationflash (null,47%,null,15%,#f5f9ad);
+            @include animationflash (null,
+            47%,
+            null,
+            15%,
+            #f5f9ad);
         }
         .text-flash18 {
-            @include animationflash (null,47%,null,15%,#f5f9ad);
+            @include animationflash (null,
+            47%,
+            null,
+            15%,
+            #f5f9ad);
         }
         .text-flash19 {
-            @include animationflash (24%,25%,null,null,#f5f9ad);
+            @include animationflash (24%,
+            25%,
+            null,
+            null,
+            #f5f9ad);
         }
         .text-flash20 {
-            @include animationflash (null,44%,null,31%,#f5f9ad);
+            @include animationflash (null,
+            44%,
+            null,
+            31%,
+            #f5f9ad);
         }
         .text-flash21 {
-            @include animationflash (null,21%,null,20%,#f5f9ad);
+            @include animationflash (null,
+            21%,
+            null,
+            20%,
+            #f5f9ad);
         }
         .text-flash22 {
-            @include animationflash (32%,null,17%,null,#f5f9ad);
+            @include animationflash (32%,
+            null,
+            17%,
+            null,
+            #f5f9ad);
         }
         .text-flash23 {
-            @include animationflash (48%,16%,null,null,#f5f9ad);
+            @include animationflash (48%,
+            16%,
+            null,
+            null,
+            #f5f9ad);
         }
         .text-flash24 {
-            @include animationflash (null,null,20%,11%,#f5f9ad);
+            @include animationflash (null,
+            null,
+            20%,
+            11%,
+            #f5f9ad);
         }
-    } 
+    }
 }
+
 .gallery-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
@@ -483,6 +579,7 @@ footer {
         font-size: 38px;
     }
 }
+
 .small-episode {
     width: 167px;
     overflow: hidden;
@@ -568,7 +665,7 @@ footer {
     text-align: justify;
     a {
         font-size: 25px;
-        color: white; 
+        color: white;
     }
 }
 
@@ -778,23 +875,22 @@ footer {
 //         width: 100%;
 //     }
 // }
-
 // .latest-buzz-detail {
 //     width: 250px;
 //     vertical-align: middle;
 // }
-
 //scss for minutestips
 .gallery-inside-bg,
-.minutestips-bg {
+.minutestips-bg,
+.partners-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.min-hght{
-min-height: calc(100vh - 96px);
+.min-hght {
+    min-height: calc(100vh - 96px);
 }
 
 .minute-video {
@@ -810,10 +906,8 @@ min-height: calc(100vh - 96px);
 
 .minutestips-video-section {
     background: rgba(0, 0, 0, 0.58);
-    padding: 60px 0;
-    // position: absolute;
-    width: 100%;
-    // bottom: 96px;
+    padding: 60px 0; // position: absolute;
+    width: 100%; // bottom: 96px;
     // left: 0;
 }
 
@@ -825,9 +919,11 @@ min-height: calc(100vh - 96px);
     }
 }
 
-.minute-main {
+.minute-main,
+.partners-main {
     margin: 200px 0 100px 60px;
-    .minutetips-heading {
+    .minutetips-heading,
+    .partnerstips-heading {
         position: relative;
         margin-left: 30px;
         padding: 0px 0px 0px 20px;
@@ -936,107 +1032,108 @@ min-height: calc(100vh - 96px);
 //scss for contact-modal
 .contact-modal-bg {
     background-image: url("../img/contest-bg.jpg");
-   background-position: center top;
-   background-repeat: no-repeat;
-   background-size: cover;
-   padding: 20px 5px;
-   li {
-       margin: 10px 0;
-       color: #fff;
-       font-size: 12px;
-   }
-   .contact-letter {
-       margin-top: 5px;
-       a,
-       a:hover {
-           color: #f2f2f2;
-           background: transparent;
-       }
-   }
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px 5px;
+    li {
+        margin: 10px 0;
+        color: #fff;
+        font-size: 12px;
+    }
+    .contact-letter {
+        margin-top: 5px;
+        a,
+        a:hover {
+            color: #f2f2f2;
+            background: transparent;
+        }
+    }
 }
 
 .location {
-   margin-top: 20px;
-   margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 .ask-expert-bg {
-   background-image: url("../img/expert-modal.png");
-   background-position: center center;
-   background-repeat: no-repeat;
-   background-size: cover;
-   padding: 14px 20px;
-   color: white;
-   font-size: 20px;
-   position: relative;
-   .textarea-bg {
-       background: #f2f2f2;
-       border: none;
-   }
-       .form-invalid span {
-           color: white;
-   font-size: 12px;
-   position: absolute;
-   padding: 0 10px;
-   bottom: -20px;
-   left: 63%;
-   transform: translate(-50%);
-   min-width: 155px;
-}
+    background-image: url("../img/expert-modal.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 14px 20px;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    .textarea-bg {
+        background: #f2f2f2;
+        border: none;
+    }
+    .form-invalid span {
+        color: white;
+        font-size: 12px;
+        position: absolute;
+        padding: 0 10px;
+        bottom: -20px;
+        left: 63%;
+        transform: translate(-50%);
+        min-width: 155px;
+    }
 }
 
 .contact {
-   color: white;
+    color: white;
 }
 
 .ask-modal {
-   .modal-dialog {
-       width: 700px;
-   }
-   label {
-       font-weight: 400 !important;
-       padding: 0px 0px;
-           color: white;
-   }
-   input {
-       display: inline-block;
-       width: 237px;
-       color:white !important;
-       background-color: transparent;
-       border: none;
-       border-bottom: 2px solid white;
-           border-color: white !important;
-   }
-   img {
-       margin: 35px auto;
-   }
-   .form-control:focus {
-       border-color: white;
-   }
-   .question-left {
-       margin-left: 18px;
-   }
-   .input-width {
-       width: 280px;
-   }
-   .form-horizontal .control-label {
-       text-align: left;
-   }
-   button,
-   button:hover,
-   button:active,
-   button:focus {
-       background-color: transparent;
-       color: white;
-       border: none;
-       font-size: 20px;
-       padding-right: 17px;
-       outline: none !important;
-   }
-   .form-invalid .form-control{
-           border-color: #fff;
-   }
+    .modal-dialog {
+        width: 700px;
+    }
+    label {
+        font-weight: 400 !important;
+        padding: 0px 0px;
+        color: white;
+    }
+    input {
+        display: inline-block;
+        width: 237px;
+        color: white !important;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid white;
+        border-color: white !important;
+    }
+    img {
+        margin: 35px auto;
+    }
+    .form-control:focus {
+        border-color: white;
+    }
+    .question-left {
+        margin-left: 18px;
+    }
+    .input-width {
+        width: 280px;
+    }
+    .form-horizontal .control-label {
+        text-align: left;
+    }
+    button,
+    button:hover,
+    button:active,
+    button:focus {
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 20px;
+        padding-right: 17px;
+        outline: none !important;
+    }
+    .form-invalid .form-control {
+        border-color: #fff;
+    }
 }
+
 //scss for swiper
 .gallery-bg {
     .swiper-container {
@@ -1139,6 +1236,41 @@ min-height: calc(100vh - 96px);
     overflow: hidden;
 }
 
+//start of partners page
+.minute-main-div {
+    margin: 50px 0px;
+}
+
+.accordian_style {
+    .accordian_panel {
+        border-radius: 0px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        border: 0;
+    }
+    img {
+        margin-right: 15px;
+    }
+}
+
+.panel-group .panel-heading+.panel-collapse>.panel-body,
+.panel-group .panel-heading+.panel-collapse>.list-group {
+    border-top: 0;
+    color: white;
+    border: 1px solid white;
+    text-align: justify;
+    background: transparent;
+}
+
+.panel-default .panel-heading {
+    color: #e9e72b;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0;
+}
+
+//end of partners page
 //scss for about-modal
 .about-modal-bg {
     background-image: url("../img/about-modal-bg.jpg");
@@ -1243,6 +1375,10 @@ min-height: calc(100vh - 96px);
     margin: 50px 0px 0 20px;
 }
 
+.accordian-style {
+    .accordian_panel {}
+}
+
 //Modal Contest 
 // .contact-modal-bg {
 //     background-image: url("../img/contest-bg.jpg");
@@ -1250,7 +1386,6 @@ min-height: calc(100vh - 96px);
 //     background-repeat: no-repeat;
 //     background-size: cover;
 // }
-
 .contest-modal-bg {
     background-image: url("../img/contest-bg.jpg");
     background-position: center top;
@@ -1451,48 +1586,48 @@ min-height: calc(100vh - 96px);
 
 //scss for digital courses
 .login-digital {
-   color: #e9e72b;
-   padding: 20px 5px;
-   .form-invalid, {
-   color: #e9e72b !important;
-  
-}
-.form-control{
-border-color: #fff !important;
-color: #000;
-}
-
-   .form-group {
-       text-align: left;
-   }
+    color: #e9e72b;
+    padding: 20px 5px;
+    .form-invalid,
+    {
+        color: #e9e72b !important;
+    }
+    .form-control {
+        border-color: #fff !important;
+        color: #000;
+    }
+    .form-group {
+        text-align: left;
+    }
 }
 
 .digital-submit {
-   button {
-       color: #000;
-       background: #e9e72b;
-       &:hover,&:focus{
-           color: #000;
-       background:lighten(#e9e72b , 10%);
-       }
-   }
+    button {
+        color: #000;
+        background: #e9e72b;
+        &:hover,
+        &:focus {
+            color: #000;
+            background: lighten(#e9e72b, 10%);
+        }
+    }
 }
 
 .form-expert {
     min-height: 300px;
     position: relative;
     .thank-u {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    @include transform (translateY(-50%));
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        @include transform (translateY(-50%));
+    }
 }
-}
+
 //scss for thanks modal
-.thank-bg{  
-      background-image: url(../img/contest-bg.jpg);
+.thank-bg {
+    background-image: url(../img/contest-bg.jpg);
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    }
-
+}
