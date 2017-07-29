@@ -39660,6 +39660,763 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+/**
+ * @license AngularJS v1.6.4
+ * (c) 2010-2017 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window, angular) {'use strict';
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var $sanitizeMinErr = angular.$$minErr('$sanitize');
+var bind;
+var extend;
+var forEach;
+var isDefined;
+var lowercase;
+var noop;
+var nodeContains;
+var htmlParser;
+var htmlSanitizeWriter;
+
+/**
+ * @ngdoc module
+ * @name ngSanitize
+ * @description
+ *
+ * # ngSanitize
+ *
+ * The `ngSanitize` module provides functionality to sanitize HTML.
+ *
+ *
+ * <div doc-module-components="ngSanitize"></div>
+ *
+ * See {@link ngSanitize.$sanitize `$sanitize`} for usage.
+ */
+
+/**
+ * @ngdoc service
+ * @name $sanitize
+ * @kind function
+ *
+ * @description
+ *   Sanitizes an html string by stripping all potentially dangerous tokens.
+ *
+ *   The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
+ *   then serialized back to properly escaped html string. This means that no unsafe input can make
+ *   it into the returned string.
+ *
+ *   The whitelist for URL sanitization of attribute values is configured using the functions
+ *   `aHrefSanitizationWhitelist` and `imgSrcSanitizationWhitelist` of {@link ng.$compileProvider
+ *   `$compileProvider`}.
+ *
+ *   The input may also contain SVG markup if this is enabled via {@link $sanitizeProvider}.
+ *
+ * @param {string} html HTML input.
+ * @returns {string} Sanitized HTML.
+ *
+ * @example
+   <example module="sanitizeExample" deps="angular-sanitize.js" name="sanitize-service">
+   <file name="index.html">
+     <script>
+         angular.module('sanitizeExample', ['ngSanitize'])
+           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+             $scope.snippet =
+               '<p style="color:blue">an html\n' +
+               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+               'snippet</p>';
+             $scope.deliberatelyTrustDangerousSnippet = function() {
+               return $sce.trustAsHtml($scope.snippet);
+             };
+           }]);
+     </script>
+     <div ng-controller="ExampleController">
+        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <td>Directive</td>
+           <td>How</td>
+           <td>Source</td>
+           <td>Rendered</td>
+         </tr>
+         <tr id="bind-html-with-sanitize">
+           <td>ng-bind-html</td>
+           <td>Automatically uses $sanitize</td>
+           <td><pre>&lt;div ng-bind-html="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind-html="snippet"></div></td>
+         </tr>
+         <tr id="bind-html-with-trust">
+           <td>ng-bind-html</td>
+           <td>Bypass $sanitize by explicitly trusting the dangerous value</td>
+           <td>
+           <pre>&lt;div ng-bind-html="deliberatelyTrustDangerousSnippet()"&gt;
+&lt;/div&gt;</pre>
+           </td>
+           <td><div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div></td>
+         </tr>
+         <tr id="bind-default">
+           <td>ng-bind</td>
+           <td>Automatically escapes</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+       </div>
+   </file>
+   <file name="protractor.js" type="protractor">
+     it('should sanitize the html snippet by default', function() {
+       expect(element(by.css('#bind-html-with-sanitize div')).getAttribute('innerHTML')).
+         toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
+     });
+
+     it('should inline raw snippet if bound to a trusted value', function() {
+       expect(element(by.css('#bind-html-with-trust div')).getAttribute('innerHTML')).
+         toBe("<p style=\"color:blue\">an html\n" +
+              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+              "snippet</p>");
+     });
+
+     it('should escape snippet without any filter', function() {
+       expect(element(by.css('#bind-default div')).getAttribute('innerHTML')).
+         toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
+              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+              "snippet&lt;/p&gt;");
+     });
+
+     it('should update', function() {
+       element(by.model('snippet')).clear();
+       element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-html-with-sanitize div')).getAttribute('innerHTML')).
+         toBe('new <b>text</b>');
+       expect(element(by.css('#bind-html-with-trust div')).getAttribute('innerHTML')).toBe(
+         'new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-default div')).getAttribute('innerHTML')).toBe(
+         "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
+     });
+   </file>
+   </example>
+ */
+
+
+/**
+ * @ngdoc provider
+ * @name $sanitizeProvider
+ * @this
+ *
+ * @description
+ * Creates and configures {@link $sanitize} instance.
+ */
+function $SanitizeProvider() {
+  var svgEnabled = false;
+
+  this.$get = ['$$sanitizeUri', function($$sanitizeUri) {
+    if (svgEnabled) {
+      extend(validElements, svgElements);
+    }
+    return function(html) {
+      var buf = [];
+      htmlParser(html, htmlSanitizeWriter(buf, function(uri, isImage) {
+        return !/^unsafe:/.test($$sanitizeUri(uri, isImage));
+      }));
+      return buf.join('');
+    };
+  }];
+
+
+  /**
+   * @ngdoc method
+   * @name $sanitizeProvider#enableSvg
+   * @kind function
+   *
+   * @description
+   * Enables a subset of svg to be supported by the sanitizer.
+   *
+   * <div class="alert alert-warning">
+   *   <p>By enabling this setting without taking other precautions, you might expose your
+   *   application to click-hijacking attacks. In these attacks, sanitized svg elements could be positioned
+   *   outside of the containing element and be rendered over other elements on the page (e.g. a login
+   *   link). Such behavior can then result in phishing incidents.</p>
+   *
+   *   <p>To protect against these, explicitly setup `overflow: hidden` css rule for all potential svg
+   *   tags within the sanitized content:</p>
+   *
+   *   <br>
+   *
+   *   <pre><code>
+   *   .rootOfTheIncludedContent svg {
+   *     overflow: hidden !important;
+   *   }
+   *   </code></pre>
+   * </div>
+   *
+   * @param {boolean=} flag Enable or disable SVG support in the sanitizer.
+   * @returns {boolean|ng.$sanitizeProvider} Returns the currently configured value if called
+   *    without an argument or self for chaining otherwise.
+   */
+  this.enableSvg = function(enableSvg) {
+    if (isDefined(enableSvg)) {
+      svgEnabled = enableSvg;
+      return this;
+    } else {
+      return svgEnabled;
+    }
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  // Private stuff
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  bind = angular.bind;
+  extend = angular.extend;
+  forEach = angular.forEach;
+  isDefined = angular.isDefined;
+  lowercase = angular.lowercase;
+  noop = angular.noop;
+
+  htmlParser = htmlParserImpl;
+  htmlSanitizeWriter = htmlSanitizeWriterImpl;
+
+  nodeContains = window.Node.prototype.contains || /** @this */ function(arg) {
+    // eslint-disable-next-line no-bitwise
+    return !!(this.compareDocumentPosition(arg) & 16);
+  };
+
+  // Regular Expressions for parsing tags and attributes
+  var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+    // Match everything outside of normal chars and " (quote character)
+    NON_ALPHANUMERIC_REGEXP = /([^#-~ |!])/g;
+
+
+  // Good source of info about elements and attributes
+  // http://dev.w3.org/html5/spec/Overview.html#semantics
+  // http://simon.html5.org/html-elements
+
+  // Safe Void Elements - HTML5
+  // http://dev.w3.org/html5/spec/Overview.html#void-elements
+  var voidElements = toMap('area,br,col,hr,img,wbr');
+
+  // Elements that you can, intentionally, leave open (and which close themselves)
+  // http://dev.w3.org/html5/spec/Overview.html#optional-tags
+  var optionalEndTagBlockElements = toMap('colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr'),
+      optionalEndTagInlineElements = toMap('rp,rt'),
+      optionalEndTagElements = extend({},
+                                              optionalEndTagInlineElements,
+                                              optionalEndTagBlockElements);
+
+  // Safe Block Elements - HTML5
+  var blockElements = extend({}, optionalEndTagBlockElements, toMap('address,article,' +
+          'aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,' +
+          'h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,section,table,ul'));
+
+  // Inline Elements - HTML5
+  var inlineElements = extend({}, optionalEndTagInlineElements, toMap('a,abbr,acronym,b,' +
+          'bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,' +
+          'samp,small,span,strike,strong,sub,sup,time,tt,u,var'));
+
+  // SVG Elements
+  // https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
+  // Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
+  // They can potentially allow for arbitrary javascript to be executed. See #11290
+  var svgElements = toMap('circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph,' +
+          'hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline,' +
+          'radialGradient,rect,stop,svg,switch,text,title,tspan');
+
+  // Blocked Elements (will be stripped)
+  var blockedElements = toMap('script,style');
+
+  var validElements = extend({},
+                                     voidElements,
+                                     blockElements,
+                                     inlineElements,
+                                     optionalEndTagElements);
+
+  //Attributes that have href and hence need to be sanitized
+  var uriAttrs = toMap('background,cite,href,longdesc,src,xlink:href');
+
+  var htmlAttrs = toMap('abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,' +
+      'color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,' +
+      'ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,' +
+      'scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,' +
+      'valign,value,vspace,width');
+
+  // SVG attributes (without "id" and "name" attributes)
+  // https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
+  var svgAttrs = toMap('accent-height,accumulate,additive,alphabetic,arabic-form,ascent,' +
+      'baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,' +
+      'cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,' +
+      'font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,' +
+      'height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,' +
+      'marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,' +
+      'max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,' +
+      'path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,' +
+      'requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,' +
+      'stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,' +
+      'stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,' +
+      'stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,' +
+      'underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,' +
+      'width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,' +
+      'xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan', true);
+
+  var validAttrs = extend({},
+                                  uriAttrs,
+                                  svgAttrs,
+                                  htmlAttrs);
+
+  function toMap(str, lowercaseKeys) {
+    var obj = {}, items = str.split(','), i;
+    for (i = 0; i < items.length; i++) {
+      obj[lowercaseKeys ? lowercase(items[i]) : items[i]] = true;
+    }
+    return obj;
+  }
+
+  var inertBodyElement;
+  (function(window) {
+    var doc;
+    if (window.document && window.document.implementation) {
+      doc = window.document.implementation.createHTMLDocument('inert');
+    } else {
+      throw $sanitizeMinErr('noinert', 'Can\'t create an inert html document');
+    }
+    var docElement = doc.documentElement || doc.getDocumentElement();
+    var bodyElements = docElement.getElementsByTagName('body');
+
+    // usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
+    if (bodyElements.length === 1) {
+      inertBodyElement = bodyElements[0];
+    } else {
+      var html = doc.createElement('html');
+      inertBodyElement = doc.createElement('body');
+      html.appendChild(inertBodyElement);
+      doc.appendChild(html);
+    }
+  })(window);
+
+  /**
+   * @example
+   * htmlParser(htmlString, {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * });
+   *
+   * @param {string} html string
+   * @param {object} handler
+   */
+  function htmlParserImpl(html, handler) {
+    if (html === null || html === undefined) {
+      html = '';
+    } else if (typeof html !== 'string') {
+      html = '' + html;
+    }
+    inertBodyElement.innerHTML = html;
+
+    //mXSS protection
+    var mXSSAttempts = 5;
+    do {
+      if (mXSSAttempts === 0) {
+        throw $sanitizeMinErr('uinput', 'Failed to sanitize html because the input is unstable');
+      }
+      mXSSAttempts--;
+
+      // strip custom-namespaced attributes on IE<=11
+      if (window.document.documentMode) {
+        stripCustomNsAttrs(inertBodyElement);
+      }
+      html = inertBodyElement.innerHTML; //trigger mXSS
+      inertBodyElement.innerHTML = html;
+    } while (html !== inertBodyElement.innerHTML);
+
+    var node = inertBodyElement.firstChild;
+    while (node) {
+      switch (node.nodeType) {
+        case 1: // ELEMENT_NODE
+          handler.start(node.nodeName.toLowerCase(), attrToMap(node.attributes));
+          break;
+        case 3: // TEXT NODE
+          handler.chars(node.textContent);
+          break;
+      }
+
+      var nextNode;
+      if (!(nextNode = node.firstChild)) {
+        if (node.nodeType === 1) {
+          handler.end(node.nodeName.toLowerCase());
+        }
+        nextNode = getNonDescendant('nextSibling', node);
+        if (!nextNode) {
+          while (nextNode == null) {
+            node = getNonDescendant('parentNode', node);
+            if (node === inertBodyElement) break;
+            nextNode = getNonDescendant('nextSibling', node);
+            if (node.nodeType === 1) {
+              handler.end(node.nodeName.toLowerCase());
+            }
+          }
+        }
+      }
+      node = nextNode;
+    }
+
+    while ((node = inertBodyElement.firstChild)) {
+      inertBodyElement.removeChild(node);
+    }
+  }
+
+  function attrToMap(attrs) {
+    var map = {};
+    for (var i = 0, ii = attrs.length; i < ii; i++) {
+      var attr = attrs[i];
+      map[attr.name] = attr.value;
+    }
+    return map;
+  }
+
+
+  /**
+   * Escapes all potentially dangerous characters, so that the
+   * resulting string can be safely inserted into attribute or
+   * element text.
+   * @param value
+   * @returns {string} escaped text
+   */
+  function encodeEntities(value) {
+    return value.
+      replace(/&/g, '&amp;').
+      replace(SURROGATE_PAIR_REGEXP, function(value) {
+        var hi = value.charCodeAt(0);
+        var low = value.charCodeAt(1);
+        return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
+      }).
+      replace(NON_ALPHANUMERIC_REGEXP, function(value) {
+        return '&#' + value.charCodeAt(0) + ';';
+      }).
+      replace(/</g, '&lt;').
+      replace(/>/g, '&gt;');
+  }
+
+  /**
+   * create an HTML/XML writer which writes to buffer
+   * @param {Array} buf use buf.join('') to get out sanitized html string
+   * @returns {object} in the form of {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * }
+   */
+  function htmlSanitizeWriterImpl(buf, uriValidator) {
+    var ignoreCurrentElement = false;
+    var out = bind(buf, buf.push);
+    return {
+      start: function(tag, attrs) {
+        tag = lowercase(tag);
+        if (!ignoreCurrentElement && blockedElements[tag]) {
+          ignoreCurrentElement = tag;
+        }
+        if (!ignoreCurrentElement && validElements[tag] === true) {
+          out('<');
+          out(tag);
+          forEach(attrs, function(value, key) {
+            var lkey = lowercase(key);
+            var isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
+            if (validAttrs[lkey] === true &&
+              (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
+              out(' ');
+              out(key);
+              out('="');
+              out(encodeEntities(value));
+              out('"');
+            }
+          });
+          out('>');
+        }
+      },
+      end: function(tag) {
+        tag = lowercase(tag);
+        if (!ignoreCurrentElement && validElements[tag] === true && voidElements[tag] !== true) {
+          out('</');
+          out(tag);
+          out('>');
+        }
+        // eslint-disable-next-line eqeqeq
+        if (tag == ignoreCurrentElement) {
+          ignoreCurrentElement = false;
+        }
+      },
+      chars: function(chars) {
+        if (!ignoreCurrentElement) {
+          out(encodeEntities(chars));
+        }
+      }
+    };
+  }
+
+
+  /**
+   * When IE9-11 comes across an unknown namespaced attribute e.g. 'xlink:foo' it adds 'xmlns:ns1' attribute to declare
+   * ns1 namespace and prefixes the attribute with 'ns1' (e.g. 'ns1:xlink:foo'). This is undesirable since we don't want
+   * to allow any of these custom attributes. This method strips them all.
+   *
+   * @param node Root element to process
+   */
+  function stripCustomNsAttrs(node) {
+    while (node) {
+      if (node.nodeType === window.Node.ELEMENT_NODE) {
+        var attrs = node.attributes;
+        for (var i = 0, l = attrs.length; i < l; i++) {
+          var attrNode = attrs[i];
+          var attrName = attrNode.name.toLowerCase();
+          if (attrName === 'xmlns:ns1' || attrName.lastIndexOf('ns1:', 0) === 0) {
+            node.removeAttributeNode(attrNode);
+            i--;
+            l--;
+          }
+        }
+      }
+
+      var nextNode = node.firstChild;
+      if (nextNode) {
+        stripCustomNsAttrs(nextNode);
+      }
+
+      node = getNonDescendant('nextSibling', node);
+    }
+  }
+
+  function getNonDescendant(propName, node) {
+    // An element is clobbered if its `propName` property points to one of its descendants
+    var nextNode = node[propName];
+    if (nextNode && nodeContains.call(node, nextNode)) {
+      throw $sanitizeMinErr('elclob', 'Failed to sanitize html because the element is clobbered: {0}', node.outerHTML || node.outerText);
+    }
+    return nextNode;
+  }
+}
+
+function sanitizeText(chars) {
+  var buf = [];
+  var writer = htmlSanitizeWriter(buf, noop);
+  writer.chars(chars);
+  return buf.join('');
+}
+
+
+// define ngSanitize module and register $sanitize service
+angular.module('ngSanitize', [])
+  .provider('$sanitize', $SanitizeProvider)
+  .info({ angularVersion: '1.6.4' });
+
+/**
+ * @ngdoc filter
+ * @name linky
+ * @kind function
+ *
+ * @description
+ * Finds links in text input and turns them into html links. Supports `http/https/ftp/mailto` and
+ * plain email address links.
+ *
+ * Requires the {@link ngSanitize `ngSanitize`} module to be installed.
+ *
+ * @param {string} text Input text.
+ * @param {string} target Window (`_blank|_self|_parent|_top`) or named frame to open links in.
+ * @param {object|function(url)} [attributes] Add custom attributes to the link element.
+ *
+ *    Can be one of:
+ *
+ *    - `object`: A map of attributes
+ *    - `function`: Takes the url as a parameter and returns a map of attributes
+ *
+ *    If the map of attributes contains a value for `target`, it overrides the value of
+ *    the target parameter.
+ *
+ *
+ * @returns {string} Html-linkified and {@link $sanitize sanitized} text.
+ *
+ * @usage
+   <span ng-bind-html="linky_expression | linky"></span>
+ *
+ * @example
+   <example module="linkyExample" deps="angular-sanitize.js" name="linky-filter">
+     <file name="index.html">
+       <div ng-controller="ExampleController">
+       Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <th>Filter</th>
+           <th>Source</th>
+           <th>Rendered</th>
+         </tr>
+         <tr id="linky-filter">
+           <td>linky filter</td>
+           <td>
+             <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
+           </td>
+           <td>
+             <div ng-bind-html="snippet | linky"></div>
+           </td>
+         </tr>
+         <tr id="linky-target">
+          <td>linky target</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_blank'"></div>
+          </td>
+         </tr>
+         <tr id="linky-custom-attributes">
+          <td>linky custom attributes</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"></div>
+          </td>
+         </tr>
+         <tr id="escaped-html">
+           <td>no filter</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+     </file>
+     <file name="script.js">
+       angular.module('linkyExample', ['ngSanitize'])
+         .controller('ExampleController', ['$scope', function($scope) {
+           $scope.snippet =
+             'Pretty text with some links:\n' +
+             'http://angularjs.org/,\n' +
+             'mailto:us@somewhere.org,\n' +
+             'another@somewhere.org,\n' +
+             'and one more: ftp://127.0.0.1/.';
+           $scope.snippetWithSingleURL = 'http://angularjs.org/';
+         }]);
+     </file>
+     <file name="protractor.js" type="protractor">
+       it('should linkify the snippet with urls', function() {
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
+       });
+
+       it('should not linkify snippet without the linky filter', function() {
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
+       });
+
+       it('should update', function() {
+         element(by.model('snippet')).clear();
+         element(by.model('snippet')).sendKeys('new http://link.');
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('new http://link.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(1);
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
+             .toBe('new http://link.');
+       });
+
+       it('should work with the target property', function() {
+        expect(element(by.id('linky-target')).
+            element(by.binding("snippetWithSingleURL | linky:'_blank'")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
+       });
+
+       it('should optionally add custom attributes', function() {
+        expect(element(by.id('linky-custom-attributes')).
+            element(by.binding("snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-custom-attributes a')).getAttribute('rel')).toEqual('nofollow');
+       });
+     </file>
+   </example>
+ */
+angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
+  var LINKY_URL_REGEXP =
+        /((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,
+      MAILTO_REGEXP = /^mailto:/i;
+
+  var linkyMinErr = angular.$$minErr('linky');
+  var isDefined = angular.isDefined;
+  var isFunction = angular.isFunction;
+  var isObject = angular.isObject;
+  var isString = angular.isString;
+
+  return function(text, target, attributes) {
+    if (text == null || text === '') return text;
+    if (!isString(text)) throw linkyMinErr('notstring', 'Expected string but received: {0}', text);
+
+    var attributesFn =
+      isFunction(attributes) ? attributes :
+      isObject(attributes) ? function getAttributesObject() {return attributes;} :
+      function getEmptyAttributesObject() {return {};};
+
+    var match;
+    var raw = text;
+    var html = [];
+    var url;
+    var i;
+    while ((match = raw.match(LINKY_URL_REGEXP))) {
+      // We can not end in these as they are sometimes found at the end of the sentence
+      url = match[0];
+      // if we did not match ftp/http/www/mailto then assume mailto
+      if (!match[2] && !match[4]) {
+        url = (match[3] ? 'http://' : 'mailto:') + url;
+      }
+      i = match.index;
+      addText(raw.substr(0, i));
+      addLink(url, match[0].replace(MAILTO_REGEXP, ''));
+      raw = raw.substring(i + match[0].length);
+    }
+    addText(raw);
+    return $sanitize(html.join(''));
+
+    function addText(text) {
+      if (!text) {
+        return;
+      }
+      html.push(sanitizeText(text));
+    }
+
+    function addLink(url, text) {
+      var key, linkAttributes = attributesFn(url);
+      html.push('<a ');
+
+      for (key in linkAttributes) {
+        html.push(key + '="' + linkAttributes[key] + '" ');
+      }
+
+      if (isDefined(target) && !('target' in linkAttributes)) {
+        html.push('target="',
+                  target,
+                  '" ');
+      }
+      html.push('href="',
+                url.replace(/"/g, '&quot;'),
+                '">');
+      addText(text);
+      html.push('</a>');
+    }
+  };
+}]);
+
+
+})(window, window.angular);
+
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -65346,7 +66103,7 @@ var myApp = angular.module('myApp', [
     'angulartics.google.analytics',
     'ui.bootstrap',
     // 'ngAnimate',
-    // 'ngSanitize',
+    'ngSanitize',
     'angular-flexslider',
     'duScroll'
 ]);
@@ -65393,6 +66150,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/form",
             templateUrl: tempateURL,
             controller: 'FormCtrl'
+        })
+        .state('partnerspage', {
+            url: "/partnerspage",
+            templateUrl: tempateURL,
+            controller: 'PartnersCtrl'
         })
 
 
@@ -65573,26 +66335,25 @@ myApp.factory('NavigationService', function () {
         //     classis: "active",
         //     anchor: "home",
         // }, 
-        {
-            name: "Gallery",
-            classis: "active",
-            anchor: "home-gallery",
-        },
-        {
+         {
             name: "Episodes",
             classis: "active",
             anchor: "home-episodes",
-        }
-        ,
+        },
         {
             name: "Ask The Expert",
             classis: "active",
             clickName1: "true",
-        },
-        {
+        }
+        , {
             name: "About",
             classis: "active",
             clickName: "true",
+        },
+        {
+            name: "Gallery",
+            classis: "active",
+            anchor: "home-gallery",
         },
         {
             name: "Contact",
@@ -65620,42 +66381,26 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
             }).success(callback);
         },
         // This is a demo Service for POST Method.
+        sendEnquiry: function (formData, callback) {
+            console.log("******send enquiry *******", formData)
+            $http.post(adminurl + 'Expert/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
 
-            sendEnquiry: function (formData, callback) {
-                $http({
-                    url: adminurl + 'Expert/save',
-                    method: 'POST',
-                    data: formData,
-                    withCredentials: true
-                }).then(function (data) {
-                    // $http({
-                    //     url: adminurl + 'Expert/sendEnquiry',
-                    //     method: 'POST',
-                    //     data: formData,
-                    //     withCredentials: true
-                    // }).then(callback);
-                });
-            },
+            });
+        },
+        sendLogin: function (formData, callback) {
+            console.log("******Testing insid send login *******", formData)
+            $http.post(adminurl + 'Userweb/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
 
-            sendLogin: function (formData, callback) {
-                $http({
-                    url: adminurl + 'Userweb/save',
-                    method: 'POST',
-                    data: formData,
-                    withCredentials: true
-                }).then(function (data) {
-                    // $http({
-                    //     url: adminurl + 'Expert/sendEnquiry',
-                    //     method: 'POST',
-                    //     data: formData,
-                    //     withCredentials: true
-                    // }).then(callback);
-                });
-            }
+            });
+        },
     };
 });
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state,apiService) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state, apiService) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -65693,12 +66438,12 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'img/small-season2/19.jpg',
             'img/small-season2/20.jpg',
             'img/small-season2/21.jpg',
-            'img/small-season2/22.jpg',
+            // 'img/small-season2/22.jpg',
             'img/small-season2/23.jpg',
             'img/small-season2/24.jpg',
             'img/small-season2/25.jpg',
             'img/small-season2/26.jpg',
-            'img/small-season2/27.jpg',
+            // 'img/small-season2/27.jpg',
             'img/small-season2/28.jpg',
             'img/small-season2/29.jpg',
             'img/small-season2/30.jpg',
@@ -65847,12 +66592,17 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         };
 
         //Login
-        $scope.submitForm = function (formData) {
-            console.log(formData);
-             $state.go('digitalinside');
-            apiService.sendLogin(formData, function (formData) {
-                  console.log(formData);
+
+        $scope.formData = {};
+        $scope.submitForm = function (formData, loginDigitalform) {
+            console.log($scope.formData);
+            apiService.sendLogin($scope.formData, function (data) {
+                console.log(data);
+                if (data.value === true) {
                     $state.go('digitalinside');
+                } else {
+                    $state.go('digitalinside');
+                }
             });
         };
 
@@ -65867,6 +66617,25 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             console.log(data);
             $scope.formSubmitted = true;
         };
+    })
+
+    .controller('PartnersCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
+        $scope.template = TemplateService.getHTML("content/partnerspage.html");
+        TemplateService.title = "Partners Page"; //This is the Title of the Website
+        $scope.navigation = NavigationService.getNavigation();
+        $scope.information = [{
+            "name": "Bhavas of Investing",
+            "desc": "<h4 class='text-center'><b>Bhavas of Investing</b></h4><p>Yoga is an ancient art based on a harmonizing system of development for the body, mind, and spirit. Most people relate Yoga to asanas (yoga postures). But there is more to yoga than this. Asanas are but one of eight limbs of yoga as laid out by the Indian Maharishi Patanjali, author of “The Yogasūtra”. They are Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana and Samadhi. So yes, asanas play a part in yoga, but they are certainly not the whole. It has been well known for centuries that the core practice of Yoga is meditation, not asanas. This is because the ultimate aim of Yoga is to create a healthy body & mind leading oneself to moksha or salvation. </p><p>The paths of Bhavas lead to the ultimate goal of 'moksha' in the Indian Yogic philosophy. Literally the word 'Bhava' stands for feeling or attitude. These Bhavas, thus, play a very important role in the path of Yoga. Regular and repeated practice of these techniques slowly enhances the accompanying 'Bhava' in one's personality. </p><p>I am a student of Yoga philosophy and professional in the finance industry, the way I look at it is that Yoga not only helps you attain peace of mind and a healthy body but its principles have universal application. You can follow these very principles defined by our Maharishis thousands of years back to create your wealth. Like I said the ultimate aim of Yoga is salvation. Let’s have a look at the Bhavas are the paths of Yoga through which moksha or salvation can be attained and how these bhavas can be applied to investing</p><br><div><h5><b>DHARMA - Duty and Right Conduct</b></h5><p>It is said that one, who is always on the path of Dharma, is saved from all sorts of pains and sufferings. Dharma in simple words means to do your duty. Similarly it’s important to do your duty before investing. Your Dharma is to research well before investing and invest basis your goals, investment horizon and risk profile. Does this mean it is your dharma to know about fundamental & technical analysis before investing? The answer is NO. However, it is your duty to identify the right source of expert advice so that your hard earned money grows. Make sure you check the success ratio before acting on expert advice.</p></div><br><div><h5><b>JNANA - Knowledge and Understanding</b></h5><p>In whatever you do, go into depths, understand and analyze it. A lot of times, we are so over-whelmed with the noise of outside world that it leads to a state of confusion and frustration. For example, people rely on hearsay and invest their hard earned money based on tips from friends / relatives expecting it to grow overnight. Now compare this to how you typically make a buying decision - you read the features, compare prices, check out the product, seek various reviews and then finally make a purchase. But when it comes to investing, we invest impulsively without thorough background check. For successful investing, you should either research well in the stock or rely on expert advice.</p></div><br><div><h5><b>VAIRAGYA - Objectivity and Detachment</b></h5><p>This is a state of detachment and egolessness. The elements of Vairagya Bhava are humility, and 'let-go' attitude. For e.g. People tend to overreact to news in stock markets that are only temporary in nature. It’s important to detach yourself from noise and check if the underlying structural or fundamental story is intact. Market guru Warren Buffet says “Only buy something that you’d be perfectly happy to hold if the market shut down for 10 years”. Consider the noise as buying opportunities as quality stocks also get battered down during turbulent times.</p></div><br><div><h5><b>AISHWARYA - Will-power and Self-reliance</b></h5><p>This is the culmination of all the above three Bhavas. With practice of Dharma, Jnana & Vairagya; Aishwarya is obtained. The individual becomes very clear in his life, developing strength, will power and self reliance. Therefore, when you do your Dharma/duty to select the right financial advisor, invest using the power of Jnana/knowledge and detach yourself from noise with Vairagya, you’re sure to achieve Aishwarya or a beautiful life with wealth and happiness.</p><p>With efforts, all these attitudes can be achieved & these simple yet powerful principles of Yogic Investing can help to invest optimally to create wealth.</p></div>"
+        }, {
+            "name": "Gunas of Investing",
+            "desc": "<h4 class='text-center'><b>Gunas of Investing</b></h4><p>As a finance professional and Yoga practitioner, I am intrigued by the connection between how principles of Yoga can be applied to make the right investment choices. Most people relate Yoga to asanas (yoga postures). Asanas are but one of eight limbs of yoga as laid out by the Indian Maharishi Patanjali, author of “The Yogasūtra”. They are Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana and Samadhi. So yes, asanas play a part in yoga, but they are certainly not the whole. </p><p>Yoga is about bringing various aspects of our self into balanced harmony. For instance, Patanjali Yogasūtra says that there are three gunas always present in all beings and objects surrounding us but vary in their relative amounts. These gunas are Tamas - the power of inertia, Rajas - the power of energy and Sattva - the power of harmony. A balance in our individual mix or the three qualities can also help us invest optimally</p><br><div><h5><b>Tamas - State of inertia</b></h5><p>We see a lot of people saving all their hard earned money in various fixed income products. I am consciously using the word “Savings” and not “Investments” as savings is done with the intent of capital protection and investments are done for capital growth. Savings in fixed income products do not yield significant real rate of return if you take inflation and tax into account. Therefore, the savings remain in a tamsic state or a state of inertia/inactivity. Fixed income should still form an essential part of one’s overall investment portfolio. However, one must be mindful of the allocation. A disproportionately higher skew would mean underperformance of portfolio and vice-versa may mean an aggressive or risky portfolio.</p></div><br><div><h5><b>Rajas - State of energy</b></h5><p>Rajas is an aggressive guna that is more prevalent among active stock traders. They want their money to be in constant action and movement. They get thrill from trading in stock markets mostly in the short term. I am again consciously using the word “Trading” here and not “Investing” as the intent of trading is to generate quick return in short term vis-a-vis long term investments for wealth creation. A trader doesn't go through the fundamentals of a company in detail as an investor does. He's only focused on “what's happening now, and how can I profit from it”. A trader typically trades in leveraged products like intraday, futures and options. If you are high on rajas or energy and your personal trait is that of a risk taker, if numbers and chart patterns are something that you catch your attention, then maybe you should explore trading backed by strong technical analysis or expert advice.</p></div><br><div><h5><b>Sattva - State of harmony</b></h5><p>Sattva is the guna that reduces rajas & tamas. This guna brings harmony. This is the most desirable guna or state in investing. Investors with this guna invest across various asset classes basis their goals & risk profile. They realise that equity as asset class can reduce tamas or inactivity and that it has the potential to provide multi-fold return in long-term. They reduce rajas by not constantly churning their portfolio or taking risks in the short term. They rely on stocks with strong fundamental story and don’t get bothered with short-term volatility. They don’t overly on any particular asset class and build a diversified portfolio striking balance & harmony.We have the unique ability to consciously alter the levels of the gunas in our bodies and minds. As Satvik guna is most desirable in investing, you can consciously increase it by applying simple yet powerful principles of Yogic Investing to create wealth.</p></div>"
+        }, {
+            "name": "Panchklesha",
+            "desc": "<h4 class='text-center'><b>Panchklesha of Investing</b></h4><p>My profession takes me to various investor education and awareness forums. In my interactions with investors, I have always found that the behavioural aspect of investing plays a critical role in making the right choices. I also see a great connect between Yogic principles and investor psychology.</p><p>Before I delve into the connection between the two, we must first understand the word Yoga in the right context. While most people relate Yoga to asanas, there is much more to it. Asanas constitute only one of eight limbs of ‘Ashtang Yoga’. Yoga helps you attain both a healthy body and a healthy mind. In fact Yoga is a way of life. In my opinion, there are a lot of basic principles in Yogic philosophy that one can follow in order to invest wisely and create wealth. For instance, nearly two thousand years ago, Maharishi Patanjali in Yogasutra identified five causes of suffering or pañchaklesha (‘pancha’ meaning five and ‘klesha’ meaning cause of suffering). These are Avidya (Ignorance), Asmita (Ego), Raga (Attachment), Dvesa (Aversion) and Abhinivesha (Loss). One of the objectives of Yoga is to minimise these kleshas and help the practitioner live a healthy and happy life.</p>Among investments, equity as an asset class that has historically outperformed all others. Equity has become an even more compelling asset class today, given India’s growth story. India is now the fastest growing economy, with slew of reforms and improved macros including falling twin deficits, inflation, interest rates. But despite these factors, a meagre 3% of our population invests in equity. What stops us from choosing equity? Let’s take a deeper look at this in context of the analogy of the panchkleshas.</p><br><div><h5><b>Avidya or Lack of Knowledge </b></h5><p>This is probably the biggest reason for not investing optimally. Take the example of how we make the decision to buy a mobile phone. We look up the features, compare prices, look at the product, check various reviews and then make a purchase decision. This knowledge helps us make the right choice. But when it comes to investing, many retail investors invest their hard-earned money without conducting a thorough background check on promoters or management, financial health, valuations, competitive positioning, etc. Behind every stock is a company, and learning about the company is critical to investing right. Even if you invest in equity through a mutual fund, you need to be aware about details like the investment objective, fund manager performance, investment horizon, etc.</p></div><br><div><h5><b>Asmita or Ego</b></h5><p>A know-it-all attitude can be injurious to your wealth. This typically happens during bull markets when some stocks picked up by investors are rewarded with huge profits. This gives them false sense of superiority and starts a negative loop of ignoring market signals, facts and trends. Eventually, investors take bigger gambles and over-leverage themselves. Even if you are right at times, there is always a scope of improvement, because learning is a never-ending process. Therefore, you should seek expert advice from reputed advisors or institutions to validate your views.</p></div><br><div><h5><b>Raga or Attachment</b></h5><p>Being attached to an asset class or stock is yet another bias that is best avoided. Some people get emotionally attached to an asset and end up parking all their savings in gold or real-estate. Some investors even hold on to a particular company’s stock at all times, even if the financials of the company deteriorate and there are corporate governance issues. Be wary of your emotions, as they can distract you from thinking rationally. An inclination towards a particular asset class or stock can increase portfolio concentration risk. During a downturn or negative cycle, this can erode your wealth. Diversifying your investments through asset allocation is the best way to ensure the predictability of returns.</p></div><br><div><h5><b>Dvesa or Aversion</b></h5><p>This is the opposite of Raga. Aversion to equity can happen due to a bad past experience. There are investors who have tried their hand at investing in markets and suffered losses. Historical data suggests that these retail investors enter the market at the peak of the bull-run and exit in a bear market. During a bull run, stories about stocks doubling or tripling in a short span start circulating. This makes many retail investors feel like they are missing out, and invest a lump sum, intending to make quick profits. When the market corrects, they book losses. They share their experiences with friends or relatives, which further dissuades new investors from entering the markets. But often these experiences are a result of trying to time the market. Instead of timing the market, it is important to stay invested in quality stocks over an extended period of time.</p></div><br><div><h5><b>Abhinivesha or Fear of loss</b></h5><p>This is the final barrier to healthy investing. If your stock appreciates by 10%, you may not be elated but if corrects by 10%, you feel terrible. This illustrates that investors react more to a loss than to a gain of similar magnitude. This makes most investors park their investments in fixed income, which gives them predictable returns. It is important to understand that equity will never give you linear returns, as it is risky in nature, and you may incur losses. But over the longer term, you will be creating wealth.The first step to investing optimally is to simply acknowledge your kleshas and minimise them. Become a ‘Yogic Investor’ by applying these simple mantras and watch your investments grow.</p></div>"
+        }, {
+            "name": "States of Mind",
+            "desc": "<h4 class='text-center'><b>Yoga Sutra: States of Mind</b></h4><p>Yoga helps harmoniously develop your body, mind and spirit. In fact, Yoga is a way of life. It’s overwhelming to know the vastness of the Yogic principles, its philosophy and its literature. Being a certified financial planner and a certified Yoga trainer, I must admit that I find a great connect between Yogic principles and investor psychology. Yogic principles explain in detail about Investor psychology and how it plays an important role in Investment decision making. Maharishi Patanjali in YogaSutra describes five states of mind, which ranges from severely troubled to a completely mastered mind. Let’s understand how it affects our investing behavior - </p><br><div><p><b>1.Kshipta/disturbed:</b> This state of mind is disturbed, troubled and negative. This is the least desirable state of mind. The negative mindset can be because of lack of knowledge. In investing too, our decision is affected by lack of knowledge and sub-optimal investing practices predominantly stem from this. We spend a lot of time to review and buy products online, but when it comes to investing we quickly park our hard earned money based on tips or hearsay. A large number of investors take decisions at the last moment e.g. tax planning. A comprehensive financial planning which includes goals, taxes and contingency should be envisaged with the help of an expert, to avoid impulsive investments.</p></div><br><div><p><b>2. Mudha/dull:</b> It’s a dull & heavy state of mind where we don’t want to take efforts to invest our savings in high yield assets. We leave our savings idle e.g. bank accounts or invest in other asset class which isn’t suitable as per risk appetite or goal value. In investing, we see gold and real estate as a safe haven. But gold has only performed well in uncertain times and real estate hasn’t given better returns than equity in recent past. Considering home loan interests, the real estate returns when compared to equities will be much lesser. Be active towards equity investments and not consider only the traditional route of investments for optimum returns.</p></div><br><div><p><b>3. Vikshipta/distracted:</b> Vikshipta mind is occasionally steady and is distracted easily. If you invest for a shorter tenure the chances are more to make losses. If you see markets in the short term it may seem highly volatile, but if you see for longer horizon, it continues to build an upward trajectory. It’s advisable to remain invested for longer period and not get distracted by market news and noise, to create wealth.</p></div><br><div><p><b>4. Ekagra/one-pointed -</b> The Ekagra mind is one-pointed, focused & concentrated. The chances of getting a distraction in this state of mind are negligible. It’s one of the desirable states of mind. In investing, you should be Ekagra i.e. focused towards your financial goals. It includes knowing your goals, analyzing your financial situation, risk profiling & asset allocation. Periodic monitoring and rebalancing of portfolio is required too for goal achievement.</p></div><br><div><p><b>5. Niruddah/mastered:</b> The Nirruddah mind is highly mastered & controlled. It is the most desirable state of mind. In context of investments, you master the art of investing. It’s easier said than done. To master this art, you should know how to choose stocks that the market has undervalued and they have high growth potential. The selection should be based on fundamentals like promoter’s background, commitment & vision, strengths of business & financials. Follow the principle of value investing and seek stocks that the market has undervalued. </p><p>Out of these five states of mind, the last 2 stages are most desirable and one should avoid being in first 3 states of mind. Identify your state of mind and apply these basic yogic investment principles to grow your wealth.</p></div>"
+        }]
     })
 
     //Example API Controller
@@ -66358,7 +67127,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     //end of season1
 
 })
-myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location,apiService) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location, apiService,$timeout) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -66406,7 +67175,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
             $(".header-border").css("opacity", '0');
-            $(".img-width-change").css("width", '10%');
+            $(".img-width-change").css("width", '8%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
 
         } else {
@@ -66416,15 +67185,25 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
         }
     });
 
-
+    $scope.formData = {};
     //Expert Questioner
-        $scope.submitForm = function (formData) {
-            formData.nameexpert="MR.ANIL SINGHVI";
-            console.log(formData);
-            apiService.sendEnquiry(formData, function (data) {
-            });
-        };
-
+    $scope.submitForm = function (formData, askExpertForm) {
+        formData.nameexpert = "MR.ANIL SINGHVI";
+        console.log($scope.formData);
+        apiService.sendEnquiry($scope.formData, function (data) {
+            console.log(data);
+            if (data.value === true) {
+                $scope.formComplete = true;
+                $timeout(function () {
+                    $scope.formComplete = false;
+                }, 3000)
+                $scope.formData = {};
+                formData.name.$touched = false;
+                formData.question.$touched = false;
+                formData.email.$touched = false;
+            }
+        });
+    };
 });
 myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
     $scope.template = TemplateService.getHTML("content/episode.html");
