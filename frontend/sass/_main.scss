@@ -1251,24 +1251,21 @@ footer {
     img {
         margin-right: 15px;
     }
-
-.panel-group .panel-heading+.panel-collapse>.panel-body,
-.panel-group .panel-heading+.panel-collapse>.list-group {
-    border-top: 0;
-    color: white;
-    border: 1px solid white;
-    text-align: justify;
-    background: transparent;
-}
-
-.panel-default .panel-heading {
-    color: #e9e72b;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 0;
-}
-
+    .panel-group .panel-heading+.panel-collapse>.panel-body,
+    .panel-group .panel-heading+.panel-collapse>.list-group {
+        border-top: 0;
+        color: white;
+        border: 1px solid white;
+        text-align: justify;
+        background: transparent;
+    }
+    .panel-default .panel-heading {
+        color: #e9e72b;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 0;
+    }
 }
 
 //end of partners page
