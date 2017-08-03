@@ -15,7 +15,7 @@
                     <uib-accordion-heading>
                         <div><img src="img/NOTE.png" alt="" width="30"> {{info.name}}</div>
                     </uib-accordion-heading>
-                    <p ng-bind-html="info.desc"></p>
+                    <p ng-bind-html="info.desc | safeHtml"></p>
                 </div>
             </uib-accordion>
 
