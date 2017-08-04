@@ -13,6 +13,10 @@ $brand-info: #000072 !default;
     font-family: 'NimbusSanL-Reg';
     src: url("../fonts/nimbussanl-reg-5954a68236d64.otf");
 }
+@font-face {
+    font-family: 'Kruti-Dev';
+    src: url("../fonts/Kruti_Dev_010.ttf");
+}     
 
 @font-face {
     font-family: 'kg-second-chances';
@@ -562,7 +566,10 @@ footer {
         }
     }
 }
-
+ .latest-buzz-img{
+     width:280px;
+     margin: 0 auto;
+ }
 .gallery-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
@@ -666,6 +673,7 @@ footer {
     a {
         font-size: 25px;
         color: white;
+        text-transform: lowercase;
     }
 }
 
@@ -724,8 +732,13 @@ footer {
     img {
         margin: 0 auto;
     }
+    p{
+    font-size: 20px;
+    font-weight:700;
+    letter-spacing: 1px;
+    color:black;
+    }
 }
-
 .episode-border {
     padding: 30px 20px;
     border-left: 3px solid #000;
@@ -1628,4 +1641,41 @@ footer {
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
+}
+//scss for question-page
+.question-page-bg {
+    background-image: url(../img/contest-bg.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 85vh;
+}
+.question-main{
+    margin: 140px 0;
+}
+.question-section{
+      margin: 170px 0 170px 100px;
+      font-family: 'Kruti-Dev';
+      font-size: 22px;
+      text-align: left;
+      input,p{
+          display: inline-block;
+          color: white;
+      }
+      span{
+          font-family: 'Himalaya';
+          color:white;
+      }
+      .radio-left{
+              margin-left: 85px;
+      }
+}
+.submit-question{
+    margin-left: 90px;
+    button{
+       font-family: 'NimbusSanL-Reg';
+       font-size: 15px;
+       background: #e9e72b;
+       color:black;
+    }
 }

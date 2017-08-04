@@ -73,9 +73,18 @@
          width: 100%;
          text-align: center;
      }
-     .latest-buzz-img {
-         margin: 0 65px
-     } //scss for minutestips
+    .latest-buzz-img {
+    width: 200px;
+    margin: 0 auto;
+}
+//scss for sponser section
+.sponsor-icon p{
+font-size: 15px;
+}
+.submit-question{
+    margin-left: 0;
+}
+     //scss for minutestips
      .minute-video {
          width: 358px;
      }
@@ -171,4 +180,14 @@
              }
          }
      }
+     //scss for question page
+     .question-page-bg{
+         height:91vh;  
+     }
+.question-section {
+        margin: 170px 0 0px 50px;
+    .radio-left {
+    margin-left: 5px;
+}}
+
  }

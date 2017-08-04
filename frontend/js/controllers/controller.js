@@ -179,6 +179,16 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
             });
         };
+           $scope.questionopen = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/question-modal.html',
+                scope: $scope,
+                size: 'lg',
+
+            });
+        };
         $scope.ourpartneropen = function () {
             console.log("clla");
             $uibModal.open({

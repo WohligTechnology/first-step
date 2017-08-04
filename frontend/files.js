@@ -54,5 +54,6 @@ module.exports = [
   'frontend/js/controllers/partners.js',
   'frontend/js/controllers/header-controller.js',
   'frontend/js/controllers/episode.js',
+   'frontend/js/controllers/question.js',
   'frontend/js/controllers/language-controller.js',
 ];

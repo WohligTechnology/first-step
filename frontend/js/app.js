@@ -59,7 +59,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'PartnersCtrl'
         })
-
+         .state('question-paper', {
+            url: "/question-paper",
+            templateUrl: tempateURL,
+            controller: 'QuestionPaperCtrl'
+        })
 
         .state('homeid', {
             url: "/:id",

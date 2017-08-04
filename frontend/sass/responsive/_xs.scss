@@ -133,7 +133,8 @@
          width: 100%;
      }
      .latest-buzz-img {
-         margin: 0px
+         margin: 0px auto;
+         width: 100%;
      }
      .iframe-mob-width {
          width: 315px;
@@ -220,6 +221,7 @@
                  display: none;
              }
          }
+         
      } //scss for ask-expert modal
      .ask-expert-bg {
          font-size: 16px;
@@ -402,7 +404,25 @@
              }
          }
      }
+     //scss for question-paper page
+.question-section {
+    margin: 125px 0 0px 0px;
+    font-size: 15px;
+    .radio-left {
+    margin-left: 0px;
+}
+}
+.question-page-bg{
+    height: 87vh;
+}
+.sponser-bottom{
+    margin-bottom: 30px;
+}
+.submit-question{
+    margin-left: 0;
+}
  }
+
 
  @media screen and ( min-height: 900px) {
      .minutestips-video-section {

@@ -1,0 +1,45 @@
+<div class="minutestips-bg">
+    <div class="container-fluid">
+        <div class="digital-main">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="digital-course">
+                        <div class="border-yellow">
+                            <h1>CONTESTS</h1>
+                            <p>Check this space for contest where you can put your knowledge to test and stand a chance to be a part of PEHLA KADAM Season 3 Episodes.</p>
+                        </div>
+                        <div class="computer hidden-xs">
+                            <img src="img/contest-inside.png" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="digital-login">
+                        <h3 class="text-center">LOGIN</h3>
+                        <div class="login-digital">
+                            <form name="loginDigitalform" ng-submit="submitForm(formData);">
+                                <div class="form-group" ng-class="{'form-invalid': loginDigitalform.name.$invalid && loginDigitalform.name.$touched}">
+                                    <label>Full Name :</label>
+                                    <input type="text" name="name" class="form-control" ng-model="formData.name" required>
+                                    <span ng-show="loginDigitalform.name.$touched && loginDigitalform.name.$invalid ">The name is required.</span>
+                                </div>
+                                <div class="form-group" ng-class="{'form-invalid':loginDigitalform.email.$invalid && loginDigitalform.email.$touched}">
+                                    <label>Email Address :</label>
+                                    <input type="email" name="email" class="form-control" ng-model="formData.email" required>
+             
+                                    <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">Please enter vaild email.</span>
+                                </div>
+                                <div class="digital-submit">
+                                    <button type="submit" class="btn btn-default" ui-sref="question-paper" ng-disabled="loginDigitalform.$invalid"  >Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="close-modal" ng-click="$dismiss()">
+        <i class=" fa fa-times-circle " aria-hidden="true "></i></div>
+</div>
