@@ -733,7 +733,7 @@ footer {
         margin: 0 auto;
     }
     p{
-    font-size: 20px;
+    font-size: 19px;
     font-weight:700;
     letter-spacing: 1px;
     color:black;
@@ -1654,7 +1654,7 @@ footer {
     margin: 140px 0;
 }
 .question-section{
-      margin: 170px 0 170px 100px;
+    margin: 220px 0 170px 145px;
       font-family: 'Kruti-Dev';
       font-size: 22px;
       text-align: left;
@@ -1678,4 +1678,11 @@ footer {
        background: #e9e72b;
        color:black;
     }
+}
+//scss for thank you modal
+.thank-content{
+  margin: 40px ;
+  font-family: 'NimbusSanL-Reg';
+  font-size: 18px;
+  color:#e9e72b;
 }
