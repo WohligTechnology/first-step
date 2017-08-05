@@ -27,7 +27,7 @@
         "icon": "fa-trash",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
-        "title": "Delete User",
+        "title": "Delete Contest",
         "content": "Are you sure you want to delete Contest?",
         "api": "Contest/delete",
         "fieldsToSend": {
