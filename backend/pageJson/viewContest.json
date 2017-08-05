@@ -29,7 +29,7 @@
         "type": "apiCallConfirm",
         "title": "Delete User",
         "content": "Are you sure you want to delete Contest?",
-        "api": "user/delete",
+        "api": "Contest/delete",
         "fieldsToSend": {
             "name": "_id",
             "value": "_id"
