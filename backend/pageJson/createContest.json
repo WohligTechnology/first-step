@@ -1,0 +1,64 @@
+{
+    "title": "Create Contest",
+    "name": "User",
+    "jsonPage": "viewContest",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["Contest"],
+    "fields": [{
+            "name": "Name",
+            "type": "text",
+            "tableRef": "userName",
+            "placeholder": "Enter Name",
+            "id": "userName",
+            "validation": ["", "trim"],
+            "url": ""
+        }, {
+            "name": "Email",
+            "type": "text",
+            "tableRef": "email",
+            "placeholder": "Enter Email",
+            "id": "email",
+            "validation": ["", "trim"],
+            "url": ""
+        }, {
+            "name": "Answer",
+            "type": "box",
+            "tableRef": "answer",
+            "validation": ["", "trim", ""],
+            "fields": [{
+                "name": "Answer",
+                "type": "text",
+                "tableRef": "answer",
+                "placeholder": "Enter Answer",
+                "id": "answer",
+                "validation": ["", "trim", ""],
+                "url": "",
+                "onView": true
+            }]
+        }
+
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitContest",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContest"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContest"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Contest/save"
+    }
+}

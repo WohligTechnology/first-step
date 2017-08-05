@@ -18,6 +18,32 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 
             });
         },
+        saveUser: function (formData, callback) {
+            console.log("******saveUser *******", formData);
+            $http.post(adminurl + 'Contest/save', formData).then(function (data) {
+                data = data.data;
+                console.log("after api saveuser", data);
+                callback(data);
+
+            });
+        },
+        saveSelectedAnswer: function (formData, callback) {
+            console.log("******saveSelectedAnswer *******", formData);
+            $http.post(adminurl + 'Contest/saveSelectedAnswer', formData).then(function (data) {
+                data = data.data;
+                console.log("saveSelectedAnswer", data);
+                callback(data);
+
+            });
+        },
+        saveAnswer: function (formData, callback) {
+            console.log("******saveAnswer *******", formData);
+            $http.post(adminurl + 'saveSelectedAnswer/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
         sendLogin: function (formData, callback) {
             console.log("******Testing insid send login *******", formData)
             $http.post(adminurl + 'Userweb/save', formData).then(function (data) {

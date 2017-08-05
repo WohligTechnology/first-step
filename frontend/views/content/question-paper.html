@@ -1,31 +1,31 @@
 <div class="question-page-bg">
     <div class="container">
         <div class="text-center">
-         <div class="question-section">
-         <div>
-              <p> <span> Question :</span> सेविंग अकाउंट के ब्याज पर लगता है टैक्स</p>
-           
-          <div class="radio-left">
-               <input type="radio" name="gender" value="male">
-               <p> 1 लाख से ज्यादा ब्याज इनकम पर</p>
-         </div>
-           <div class="radio-left">
-               <input type="radio" name="gender" value="male">
-               <p>50 हजार से ज्यादा ब्याज इनकम पर</p>
-         </div>
-           <div class="radio-left">
-               <input type="radio" name="gender" value="male">
-               <p>10 हजार से ज्यादा ब्याज इनकम पर</p>
-         </div>
-           <div class="radio-left">
-               <input type="radio" name="gender" value="male">
-               <p>20 हजार से ज्यादा ब्याज इनकम पर</p>
-         </div>
-              <div class="submit-question">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-         </div>
-      </div>
-      </div>
+            <div class="question-section">
+                <div>
+                    <p> <span> Question :</span> सेविंग अकाउंट के ब्याज पर लगता है टैक्स</p>
+
+                    <div class="radio-left">
+                        <input type="radio" id="1" name="ans" value="1 लाख से ज्यादा ब्याज इनकम पर" ng-model="data.answer">
+                        <p> 1 लाख से ज्यादा ब्याज इनकम पर</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="2" name="ans" value="50 हजार से ज्यादा ब्याज इनकम पर" ng-model="data.answer">
+                        <p>50 हजार से ज्यादा ब्याज इनकम पर</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="3" name="ans" value="10 हजार से ज्यादा ब्याज इनकम पर" ng-model="data.answer">
+                        <p>10 हजार से ज्यादा ब्याज इनकम पर</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="4" name="ans" value="20 हजार से ज्यादा ब्याज इनकम पर" ng-model="data.answer">
+                        <p>20 हजार से ज्यादा ब्याज इनकम पर</p>
+                    </div>
+                    <div class="submit-question">
+                        <button type="submit" ng-click="thanksopen(data); " class="btn btn-default ">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

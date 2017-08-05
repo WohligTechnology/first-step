@@ -1,0 +1,61 @@
+{
+    "title": "View Contest",
+    "name": "Contest",
+    "jsonPage": "viewContest",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["", "trim"],
+        "url": ""
+    }, {
+        "name": "Email",
+        "type": "text",
+        "tableRef": "email",
+        "placeholder": "Enter Email",
+        "id": "email",
+        "validation": ["", "trim"],
+        "url": ""
+    }, {
+        "name": "Answer",
+        "type": "text",
+        "tableRef": "answer",
+        "placeholder": "Enter answer",
+        "id": "answer",
+        "validation": ["", "trim"],
+        "url": ""
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitContest",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContest"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContest"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Contest/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Contest/getOne",
+        "params": "_id"
+    }
+
+}

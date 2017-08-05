@@ -11,7 +11,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         if ($.jStorage.get("accessToken")) {
 
         } else {
-            $state.go("login");
+            // $state.go("login");
         }
     })
 
@@ -279,7 +279,22 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         // });
 
     })
-
+    .controller('ContestCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService.changecontent("contest");
+        $scope.menutitle = NavigationService.makeactive("contest");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        JsonService.getJson($stateParams.id, function () {});
+        var formData = {};
+        formData._id = JSON.parse($stateParams.keyword)._id;
+        console.log("ContestCtrl");
+        NavigationService.apiCall("Contest/getOne", formData, function (data) {
+            console.log("inside contest ctrl:", data.data.name);
+            $scope.tableData = data.data;
+            console.log("inside contest ctrl*****:", data.data);
+        });
+    })
     .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
         $scope.json = JsonService;
         $scope.template = TemplateService;
@@ -560,7 +575,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                     NavigationService.profile(function () {
                         $state.go("dashboard");
                     }, function () {
-                        $state.go("login");
+                        // $state.go("login");
                     });
                 });
             }

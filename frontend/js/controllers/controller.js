@@ -5,6 +5,18 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $scope.navigation = NavigationService.getNavigation();
 
 
+        $scope.submitUser = function (formData) {
+            apiService.saveUser(formData, function (data) {
+                if (data.value === true) {
+                    $state.go('question-paper', {
+                        'userId': data.data._id
+                    });
+
+                } else {
+                    console.log("***");
+                }
+            });
+        };
         $scope.changeURL = function (id) {
             console.log(id);
             $location.path("" + id);
@@ -179,8 +191,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
             });
         };
-           $scope.questionopen = function () {
-            console.log("clla");
+        $scope.questionopen = function () {
+            console.log("Welcome");
             $uibModal.open({
                 animation: true,
                 templateUrl: 'views/modal/question-modal.html',
@@ -202,18 +214,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
         //Login
 
-        $scope.formData = {};
-        $scope.submitForm = function (formData, loginDigitalform) {
-            console.log($scope.formData);
-            apiService.sendLogin($scope.formData, function (data) {
-                console.log(data);
-                if (data.value === true) {
-                    $state.go('digitalinside');
-                } else {
-                    $state.go('digitalinside');
-                }
-            });
-        };
+        // $scope.formData = {};
+        // $scope.submitForm = function (formData, loginDigitalform) {
+        //     console.log($scope.formData);
+        //     apiService.sendLogin($scope.formData, function (data) {
+        //         console.log(data);
+        //         if (data.value === true) {
+        //             $state.go('digitalinside');
+        //         } else {
+        //             $state.go('digitalinside');
+        //         }
+        //     });
+        // };
+
+
 
     })
 

@@ -98,6 +98,15 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
       }
       if (action && action.type == "page") {
         $state.go("page", sendTo);
+      } else if (action && action.type == "contest") {
+        if (action.fieldsToSend) {
+          var keyword = {};
+          _.each(action.fieldsToSend, function (n, key) {
+            keyword[key] = value[n];
+          });
+          sendTo.keyword = JSON.stringify(keyword);
+        }
+        $state.go("contest", sendTo);
       } else if (action && action.type == "apiCallConfirm") {
         globalfunction.confDel(function (value2) {
           if (value2) {
