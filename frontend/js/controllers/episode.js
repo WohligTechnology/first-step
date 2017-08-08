@@ -12,7 +12,27 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         $scope.formSubmitted = true;
     };
 
+   //for season3
+    $scope.season3 = [{
+        imageUrl: "ihHHDFjK0ic",
+        videoUrl: "ihHHDFjK0ic",
+        episodeno: "Episode 1",
+        searchName:"Launch",
+    },
+    ];
 
+    $scope.more3 = false;
+    $scope.view3 = true;
+
+    $scope.viewMore3 = function () {
+        $scope.more3 = true;
+        $scope.view3 = false;
+    }
+    $scope.viewLess3 = function () {
+        $scope.more3 = false;
+        $scope.view3 = true;
+    }
+    //end of season3
     //for season2
     $scope.season2 = [{
         imageUrl: "6e1SJEJJyBw",

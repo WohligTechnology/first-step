@@ -14,31 +14,34 @@
                     </div>
                 </div>
             </div>
-            <div class="season-common">
-                <div class="seasonOpacity ">
+        <div class="season-common">
+                <div ng-class="{'max-height-s' : more3 == true , 'min-height-s':more3 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 3</h3>
                     </div>
                     <div class="row ">
-                        <div class="comming-soon text-center">
-                            <h2>Coming Soon</h2>
-                        </div>
-                        <!--<div class="col-md-2 col-sm-6  col-xs-6 gallery-pic-bottom" ng-repeat="itemSeason in season3 track by $index ">
+                        <!--<pre>{{season2}}</pre>-->
+                               <div class="col-md-12" ng-show="season3.length == 0">
+                                    <h4> No Data found</h4>
+                                </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season3 | filter: searchName">
                             <div class="episodes">
-                                <img src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
+                         
+                                <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/hqdefault.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
-                                        <img src="img/youtube-small.png" class="img-responsive ">
+                                    <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
+                                        <img src="img/youtube-small.png" class="img-responsive">
                                     </a>
                                 </div>
                                 <p class="text-center">{{itemSeason.episodeno}}</p>
+                                <p class="text-center hidden">{{itemSeason.searchName}}</p>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
-                    <!--<div class="pull-right gallery-btn">
-                        <button ng-if="readmore3" ng-click="viewMore3();">View More</button>
-                        <button ng-if="!readmore3" ng-click="viewLess3();">View Less</button>
-                    </div>-->
+                </div>
+                <div class="pull-right gallery-btn">
+                    <button ng-click="viewMore3()" ng-if="view3">View More</button>
+                    <button ng-click="viewLess3()" ng-if="!view3">View Less</button>
                 </div>
             </div>
             <div class="season-common">

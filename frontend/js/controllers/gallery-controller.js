@@ -139,6 +139,167 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
             img1: 'img/season3/32.jpg',
             img2: 'img/small-season3/32.jpg',
         }
+        ,
+        {
+            img1: 'img/season3/33.jpg',
+            img2: 'img/small-season3/33.jpg',
+        },
+        {
+            img1: 'img/season3/34.jpg',
+            img2: 'img/small-season3/34.jpg',
+        },
+        {
+            img1: 'img/season3/35.jpg',
+            img2: 'img/small-season3/35.jpg',
+        },
+        {
+            img1: 'img/season3/36.jpg',
+            img2: 'img/small-season3/36.jpg',
+        },
+        {
+            img1: 'img/season3/37.jpg',
+            img2: 'img/small-season3/37.jpg',
+        },
+        {
+            img1: 'img/season3/38.jpg',
+            img2: 'img/small-season3/38.jpg',
+        },
+        {
+            img1: 'img/season3/39.jpg',
+            img2: 'img/small-season3/39.jpg',
+        },
+        {
+            img1: 'img/season3/40.jpg',
+            img2: 'img/small-season3/40.jpg',
+        },
+        {
+            img1: 'img/season3/41.jpg',
+            img2: 'img/small-season3/41.jpg',
+        },
+        {
+            img1: 'img/season3/42.jpg',
+            img2: 'img/small-season3/42.jpg',
+        },
+        {
+            img1: 'img/season3/43.jpg',
+            img2: 'img/small-season3/43.jpg',
+        },
+        {
+            img1: 'img/season3/44.jpg',
+            img2: 'img/small-season3/44.jpg',
+        },
+        {
+            img1: 'img/season3/45.jpg',
+            img2: 'img/small-season3/45.jpg',
+        },
+        {
+            img1: 'img/season3/46.jpg',
+            img2: 'img/small-season3/46.jpg',
+        },
+        {
+            img1: 'img/season3/47.jpg',
+            img2: 'img/small-season3/47.jpg',
+        },
+        {
+            img1: 'img/season3/48.jpg',
+            img2: 'img/small-season3/48.jpg',
+        },
+        {
+            img1: 'img/season3/49.jpg',
+            img2: 'img/small-season3/49.jpg',
+        },
+        {
+            img1: 'img/season3/50.jpg',
+            img2: 'img/small-season3/50.jpg',
+        },
+        {
+            img1: 'img/season3/51.jpg',
+            img2: 'img/small-season3/51.jpg',
+        },
+        {
+            img1: 'img/season3/52.jpg',
+            img2: 'img/small-season3/52.jpg',
+        },
+        {
+            img1: 'img/season3/53.jpg',
+            img2: 'img/small-season3/53.jpg',
+        },
+        {
+            img1: 'img/season3/54.jpg',
+            img2: 'img/small-season3/54.jpg',
+        },
+        {
+            img1: 'img/season3/55.jpg',
+            img2: 'img/small-season3/55.jpg',
+        },
+        {
+            img1: 'img/season3/56.jpg',
+            img2: 'img/small-season3/56.jpg',
+        },
+        {
+            img1: 'img/season3/57.jpg',
+            img2: 'img/small-season3/57.jpg',
+        },
+        {
+            img1: 'img/season3/58.jpg',
+            img2: 'img/small-season3/58.jpg',
+        },
+        {
+            img1: 'img/season3/59.jpg',
+            img2: 'img/small-season3/59.jpg',
+        },
+        {
+            img1: 'img/season3/60.jpg',
+            img2: 'img/small-season3/60.jpg',
+        },
+        {
+            img1: 'img/season3/61.jpg',
+            img2: 'img/small-season3/61.jpg',
+        },
+        {
+            img1: 'img/season3/62.jpg',
+            img2: 'img/small-season3/62.jpg',
+        },
+        {
+            img1: 'img/season3/63.jpg',
+            img2: 'img/small-season3/63.jpg',
+        },
+        {
+            img1: 'img/season3/64.jpg',
+            img2: 'img/small-season3/64.jpg',
+        },
+        {
+            img1: 'img/season3/65.jpg',
+            img2: 'img/small-season3/65.jpg',
+        },
+        {
+            img1: 'img/season3/66.jpg',
+            img2: 'img/small-season3/66.jpg',
+        }
+        ,
+        {
+            img1: 'img/season3/67.jpg',
+            img2: 'img/small-season3/67.jpg',
+        },
+        {
+            img1: 'img/season3/68.jpg',
+            img2: 'img/small-season3/68.jpg',
+        },
+        {
+            img1: 'img/season3/69.jpg',
+            img2: 'img/small-season3/69.jpg',
+        },
+        {
+            img1: 'img/season3/70.jpg',
+            img2: 'img/small-season3/70.jpg',
+        },
+        {
+            img1: 'img/season3/71.jpg',
+            img2: 'img/small-season3/71.jpg',
+        }  ,{
+            img1: 'img/season3/72.jpg',
+            img2: 'img/small-season3/72.jpg',
+        }
     ];
 
     $scope.more3 = false;
