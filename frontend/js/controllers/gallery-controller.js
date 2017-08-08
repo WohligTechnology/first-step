@@ -15,10 +15,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
             img1: 'img/season3/1.jpg',
             img2: 'img/small-season3/1.jpg',
         },
-        {
-            img1: 'img/season3/2.jpg',
-            img2: 'img/small-season3/2.jpg',
-        },
+   
         {
             img1: 'img/season3/3.jpg',
             img2: 'img/small-season3/3.jpg',
@@ -296,10 +293,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         {
             img1: 'img/season3/71.jpg',
             img2: 'img/small-season3/71.jpg',
-        }  ,{
-            img1: 'img/season3/72.jpg',
-            img2: 'img/small-season3/72.jpg',
-        }
+        } 
     ];
 
     $scope.more3 = false;
