@@ -6,6 +6,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
 
         $scope.submitUser = function (formData) {
+
             apiService.saveUser(formData, function (data) {
                 if (data.value === true) {
                     $state.go('question-paper', {
@@ -13,8 +14,13 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                     });
 
                 } else {
-                    console.log("***");
+                    if (data.error.errors.email.kind == "unique") {
+                        $scope.emailexist = true;
+                    } else {
+                        $scope.emailexist = false;
+                    }
                 }
+
             });
         };
         $scope.changeURL = function (id) {

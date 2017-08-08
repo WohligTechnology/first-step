@@ -4,6 +4,7 @@ var schema = new Schema({
     },
     email: {
         type: String,
+        unique: true
     },
     answer: {
         type: String,
