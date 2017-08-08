@@ -9,81 +9,150 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         $.fancybox.close(true);
     };
 
-    // $scope.changeURL = function (id) {
-    //     console.log(id);
-    //     $location.path("" + id);
-    // };
+ //for season3
+    $scope.season3 = [
+        {
+            img1: 'img/season3/1.jpg',
+            img2: 'img/small-season3/1.jpg',
+        },
+        {
+            img1: 'img/season3/2.jpg',
+            img2: 'img/small-season3/2.jpg',
+        },
+        {
+            img1: 'img/season3/3.jpg',
+            img2: 'img/small-season3/3.jpg',
+        },
+        {
+            img1: 'img/season3/4.jpg',
+            img2: 'img/small-season3/4.jpg',
+        },
+        {
+            img1: 'img/season3/5.jpg',
+            img2: 'img/small-season3/5.jpg',
+        },
+        {
+            img1: 'img/season3/6.jpg',
+            img2: 'img/small-season3/6.jpg',
+        },
+        {
+            img1: 'img/season3/7.jpg',
+            img2: 'img/small-season3/7.jpg',
+        },
+        {
+            img1: 'img/season3/8.jpg',
+            img2: 'img/small-season3/8.jpg',
+        },
+        {
+            img1: 'img/season3/9.jpg',
+            img2: 'img/small-season3/9.jpg',
+        },
+        {
+            img1: 'img/season3/10.jpg',
+            img2: 'img/small-season3/10.jpg',
+        },
+        {
+            img1: 'img/season3/11.jpg',
+            img2: 'img/small-season3/11.jpg',
+        },
+        {
+            img1: 'img/season3/12.jpg',
+            img2: 'img/small-season3/12.jpg',
+        },
+        {
+            img1: 'img/season3/13.jpg',
+            img2: 'img/small-season3/13.jpg',
+        },
+        {
+            img1: 'img/season3/14.jpg',
+            img2: 'img/small-season3/14.jpg',
+        },
+        {
+            img1: 'img/season3/15.jpg',
+            img2: 'img/small-season3/15.jpg',
+        },
+        {
+            img1: 'img/season3/16.jpg',
+            img2: 'img/small-season3/16.jpg',
+        },
+        {
+            img1: 'img/season3/17.jpg',
+            img2: 'img/small-season3/17.jpg',
+        },
+        {
+            img1: 'img/season3/18.jpg',
+            img2: 'img/small-season3/18.jpg',
+        },
+        {
+            img1: 'img/season3/19.jpg',
+            img2: 'img/small-season3/19.jpg',
+        },
+        {
+            img1: 'img/season3/20.jpg',
+            img2: 'img/small-season3/20.jpg',
+        },
+        {
+            img1: 'img/season3/21.jpg',
+            img2: 'img/small-season3/21.jpg',
+        },
+        {
+            img1: 'img/season3/22.jpg',
+            img2: 'img/small-season3/22.jpg',
+        },
+        {
+            img1: 'img/season3/23.jpg',
+            img2: 'img/small-season3/23.jpg',
+        },
+        {
+            img1: 'img/season3/24.jpg',
+            img2: 'img/small-season3/24.jpg',
+        },
+        {
+            img1: 'img/season3/25.jpg',
+            img2: 'img/small-season3/25.jpg',
+        },
+        {
+            img1: 'img/season3/26.jpg',
+            img2: 'img/small-season3/26.jpg',
+        },
+        {
+            img1: 'img/season3/27.jpg',
+            img2: 'img/small-season3/27.jpg',
+        },
+        {
+            img1: 'img/season3/28.jpg',
+            img2: 'img/small-season3/28.jpg',
+        },
+        {
+            img1: 'img/season3/29.jpg',
+            img2: 'img/small-season3/29.jpg',
+        },
+        {
+            img1: 'img/season3/30.jpg',
+            img2: 'img/small-season3/30.jpg',
+        },
+        {
+            img1: 'img/season3/31.jpg',
+            img2: 'img/small-season3/31.jpg',
+        },
+        {
+            img1: 'img/season3/32.jpg',
+            img2: 'img/small-season3/32.jpg',
+        }
+    ];
 
-    //  $scope.viewLess3 = function () {
-    //      $scope.readmore3 = true;
-    //      $scope.season3 = [
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
+    $scope.more3 = false;
+    $scope.view3 = true;
 
-
-    //      ];
-    //  }
-    //  $scope.viewLess3();
-    //  $scope.season3viewmore3 = [
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //  ]
-    //  $scope.viewMore3 = function () {
-    //      $scope.readmore3 = false;
-    //      $scope.season3 = [];
-    //      $scope.season3 = _.cloneDeep($scope.season3viewmore3);
-
-    //  }
+    $scope.viewMore3 = function () {
+        $scope.more3 = true;
+        $scope.view3 = false;
+    }
+    $scope.viewLess3 = function () {
+        $scope.more3 = false;
+        $scope.view3 = true;
+    }
+    //end of season3
 
     //for season2
     $scope.season2 = [

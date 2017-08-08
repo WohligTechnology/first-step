@@ -2,28 +2,25 @@
     <div class="container">
         <div class="gallery-inside">
 
-            <div class="season-common">
-                <div class="seasonOpacity ">
+          <div class="season-common">
+                <div ng-class="{'max-height-gallery' : more3 == true , 'min-height-gallery':more3 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 3</h3>
                     </div>
                     <div class="row ">
-                        <div class="comming-soon text-center">
-                            <h2>Coming Soon</h2>
-                        </div>
-                        <!--<div class="col-md-2 col-sm-6  col-xs-6 gallery-pic-bottom" ng-repeat="img in season3 track by $index ">
-                            <a fancybox href="{{img}}">
-                                <img ng-src="{{img}}" class="img-responsive">
+                            <div class="col-md-2 col-sm-6 col-xs-6 gallery-pic-bottom img-height" ng-repeat="img in season3 track by $index ">
+                                <a fancybox href="{{img.img1}}">
+                                <img ng-src="{{img.img2}}" class="img-responsive ">
                             </a>
-                        </div>-->
+                            </div>
+                        </div>
                     </div>
-                    <!--<div class="pull-right gallery-btn">
-                        <button ng-if="readmore3" ng-click="viewMore3();">View More</button>
-                        <button ng-if="!readmore3" ng-click="viewLess3();">View Less</button>
-                    </div>-->
+                    <div class="pull-right gallery-btn">
+                        <button ng-click="viewMore3()" ng-if="view3">View More</button>
+                        <button ng-click="viewLess3()" ng-if="!view3">View Less</button>
+                    </div>
                 </div>
-            </div>
-            <div class="season-common">
+              <div class="season-common">
                 <div ng-class="{'max-height-gallery' : more2 == true , 'min-height-gallery':more2 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 2</h3>
