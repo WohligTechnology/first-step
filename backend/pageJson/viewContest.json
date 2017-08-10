@@ -35,7 +35,10 @@
             "value": "_id"
         }
     }],
-    "button": [],
+    "buttons": [{
+        "name": "Get Right Answers",
+        "api": "Contest/getRightAnswers"
+    }],
     "apiCall": {
         "url": "Contest/search",
         "params": "_id"

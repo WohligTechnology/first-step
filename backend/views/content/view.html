@@ -18,8 +18,14 @@
                 <div class="widget ">
                     <div class="table-area ">
                         <div class="widget-title ">
+
                             <div class="pull-right ">
                                 <form class="search-form mr-form ">
+                                    <div ng-if="json.json.buttons">
+                                        <div ng-repeat="button in json.json.buttons">
+                                            <button ng-click="callApi(button.api)">{{button.name}}</button>
+                                        </div>
+                                    </div>
                                     <input type="text " ng-change="getAllItems(true) " placeholder="Search Here...
                         " ng-model="search.keyword " />
                                 </form>

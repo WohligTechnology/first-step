@@ -299,6 +299,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.json = JsonService;
         $scope.template = TemplateService;
         var i = 0;
+        var rightAnswer = false;
+        $scope.api = "";
         if ($stateParams.page && !isNaN(parseInt($stateParams.page))) {
             $scope.currentPage = $stateParams.page;
         } else {
@@ -312,34 +314,57 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             $scope.search.keyword = $stateParams.keyword;
         }
         $scope.changePage = function (page) {
-            var goTo = "page";
-            if ($scope.search.keyword) {
-                goTo = "page";
+            if (rightAnswer) {
+                $scope.currentPage = page;
+                getRightAnswers();
+            } else {
+                var goTo = "page";
+                if ($scope.search.keyword) {
+                    goTo = "page";
+                }
+                $state.go(goTo, {
+                    id: $stateParams.id,
+                    page: page,
+                    keyword: $scope.search.keyword
+                });
             }
-            $state.go(goTo, {
-                id: $stateParams.id,
-                page: page,
-                keyword: $scope.search.keyword
-            });
         };
 
-        $scope.getAllItems = function (keywordChange) {
-            $scope.totalItems = undefined;
-            if (keywordChange) {
-                $scope.currentPage = 1;
-            }
-            NavigationService.search($scope.json.json.apiCall.url, {
-                    page: $scope.currentPage,
-                    keyword: $scope.search.keyword
-                }, ++i,
-                function (data, ini) {
-                    if (ini == i) {
-                        $scope.items = data.data.results;
-                        $scope.totalItems = data.data.total;
-                        $scope.maxRow = data.data.options.count;
-                    }
-                });
-        };
+        function getRightAnswers() {
+            NavigationService.apiCall($scope.api, {
+                page: $scope.currentPage
+            }, function (data) {
+                $scope.items = data.data.answers;
+                $scope.totalItems = data.data.total;
+                $scope.maxRow = data.data.maxRow;
+            });
+        }
+
+        // Coded only for Contest/getRightAnswers API
+        $scope.callApi = function (api) {
+                rightAnswer = true;
+                $scope.api = api;
+                getRightAnswers();
+            },
+
+            $scope.getAllItems = function (keywordChange) {
+                $scope.totalItems = undefined;
+                if (keywordChange) {
+                    $scope.currentPage = 1;
+                }
+                NavigationService.search($scope.json.json.apiCall.url, {
+                        page: $scope.currentPage,
+                        keyword: $scope.search.keyword
+                    }, ++i,
+                    function (data, ini) {
+                        console.log("search data: ", data);
+                        if (ini == i) {
+                            $scope.items = data.data.results;
+                            $scope.totalItems = data.data.total;
+                            $scope.maxRow = data.data.options.count;
+                        }
+                    });
+            };
         JsonService.refreshView = $scope.getAllItems;
         $scope.getAllItems();
 
