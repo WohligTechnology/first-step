@@ -355,12 +355,20 @@
      .digitalinside-main {
          margin: 100px 0 35px 0;
          .inline-block {
-             display: block;
+             display: block ;
              padding: 0;
              margin: 0;
              text-align: center;
          }
-     } //scss for ourpartner-modal
+     } 
+.digital-course-type{
+    text-align: center;
+    display: block ;
+    padding: 0;
+}
+
+
+     //scss for ourpartner-modal
      .ourpartner-modal {
          margin: 40px 0 0px;
          h1 {

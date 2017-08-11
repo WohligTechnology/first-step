@@ -13,10 +13,11 @@ $brand-info: #000072 !default;
     font-family: 'NimbusSanL-Reg';
     src: url("../fonts/nimbussanl-reg-5954a68236d64.otf");
 }
+
 @font-face {
     font-family: 'Kruti-Dev';
     src: url("../fonts/Kruti_Dev_010.ttf");
-}     
+}
 
 @font-face {
     font-family: 'kg-second-chances';
@@ -566,10 +567,12 @@ footer {
         }
     }
 }
- .latest-buzz-img{
-     width:280px;
-     margin: 0 auto;
- }
+
+.latest-buzz-img {
+    width: 280px;
+    margin: 0 auto;
+}
+
 .gallery-bg {
     background-image: url("../img/green_chalkboard_wallpaper.jpg");
     background-position: center center;
@@ -586,9 +589,11 @@ footer {
         font-size: 38px;
     }
 }
-.imgsize-270{
+
+.imgsize-270 {
     max-height: 270px;
 }
+
 .small-episode {
     width: 167px;
     overflow: hidden;
@@ -733,13 +738,14 @@ footer {
     img {
         margin: 0 auto;
     }
-    p{
-    font-size: 19px;
-    font-weight:700;
-    letter-spacing: 1px;
-    color:black;
+    p {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: black;
     }
 }
+
 .episode-border {
     padding: 30px 20px;
     border-left: 3px solid #000;
@@ -1516,7 +1522,7 @@ footer {
 }
 
 .digital-course-type {
-    padding: 13px;
+    padding: 0 13px;
     p {
         margin-top: 10px;
         font-size: 23px;
@@ -1524,14 +1530,17 @@ footer {
         color: #fef424;
     }
     img {
-        transition: all 1s ease-in-out;
-        perspective: 500px;
-        perspective-origin: 50% 100px;
         cursor: pointer;
-        &:hover {
-            @include transform(rotateY(180deg));
-        }
     }
+    // img {
+    //     transition: all 1s ease-in-out;
+    //     perspective: 500px;
+    //     perspective-origin: 50% 100px;
+    //     cursor: pointer;
+    //     &:hover {
+    //         @include transform(rotateY(180deg));
+    //     }
+    // }
 }
 
 .digital-heading {
@@ -1564,7 +1573,7 @@ footer {
 }
 
 .digitalinside-main {
-    margin: 200px 0 35px 60px;
+    margin: 200px 0 15px 30px;
 }
 
 .computer-digital {
@@ -1643,6 +1652,7 @@ footer {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 //scss for question-page
 .question-page-bg {
     background-image: url(../img/contest-bg.jpg);
@@ -1651,39 +1661,87 @@ footer {
     background-size: cover;
     height: 85vh;
 }
-.question-main{
+
+.question-main {
     margin: 140px 0;
 }
-.question-section{
+
+.question-section {
     margin: 220px 0 170px 145px;
-      font-family: 'Kruti-Dev';
-      font-size: 22px;
-      text-align: left;
-      input,p{
-          display: inline-block;
-          color: white;
-      }
-      span{
-          font-family: 'Himalaya';
-          color:white;
-      }
-      .radio-left{
-              margin-left: 85px;
-      }
-}
-.submit-question{
-    margin-left: 90px;
-    button{
-       font-family: 'NimbusSanL-Reg';
-       font-size: 15px;
-       background: #e9e72b;
-       color:black;
+    font-family: 'Kruti-Dev';
+    font-size: 22px;
+    text-align: left;
+    input,
+    p {
+        display: inline-block;
+        color: white;
+    }
+    span {
+        font-family: 'Himalaya';
+        color: white;
+    }
+    .radio-left {
+        margin-left: 85px;
     }
 }
+
+.submit-question {
+    margin-left: 90px;
+    button {
+        font-family: 'NimbusSanL-Reg';
+        font-size: 15px;
+        background: #e9e72b;
+        color: black;
+    }
+}
+
 //scss for thank you modal
-.thank-content{
-  margin: 40px ;
-  font-family: 'NimbusSanL-Reg';
-  font-size: 18px;
-  color:#e9e72b;
+.thank-content {
+    margin: 40px;
+    font-family: 'NimbusSanL-Reg';
+    font-size: 18px;
+    color: #e9e72b;
+}
+
+//scss for digital-inside
+.digital-question-section {
+    padding-bottom: 30px;
+    img {
+        margin: 0 auto;
+    }
+}
+
+.digitalinside-video {
+    position: relative;
+}
+
+.video-digital {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+}
+
+.question-digital {
+    margin: 0px 0 20px 0px;
+    font-family: 'Kruti-Dev';
+    font-size: 20px;
+    text-align: left;
+    input,
+    p {
+        display: inline-block;
+        color: white;
+    }
+    .radio-left {
+        margin-left: 20px;
+    }
+}
+
+.question-font {
+    font-family: 'Himalaya';
+    color: white;
+}
+
+.font25 span {
+    font-size: 22px;
+    font-family: 'Himalaya';
 }
