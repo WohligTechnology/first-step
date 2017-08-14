@@ -15,6 +15,12 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
    //for season3
     $scope.season3 = [
         {
+            imageUrl: "HC7x-i_XI2k",
+            videoUrl: "HC7x-i_XI2k",
+            episodeno: "Episode 2",
+            searchName:"Episode 2",
+        },
+        {
         imageUrl: "CW8pc1UPkwc",
         videoUrl: "CW8pc1UPkwc",
         episodeno: "Prelaunch Episode",
