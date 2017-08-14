@@ -10,6 +10,13 @@ myApp.controller('QuestionPaperCtrl', function ($scope, apiService, $stateParams
 
     $scope.thanksopen = function (data) {
         data._id = $stateParams.userId;
+        data.contest = [];
+        data.contest.push({
+            question: data.question,
+            answer: data.answer
+        });
+        console.log("data is..", data.question);
+        console.log("data is..", data.answer);
         apiService.saveSelectedAnswer(data, function (data) {
             console.log(data);
             if (data.value) {

@@ -21,7 +21,7 @@ myApp.factory('NavigationService', function ($http) {
             name: "Contest",
             classis: "active",
             sref: "#!/page/viewContest//",
-            icon: "phone"
+            icon: "phone",
         }
     ];
 
@@ -84,6 +84,24 @@ myApp.factory('NavigationService', function ($http) {
             });
         },
 
+        apiCallWithoutData: function (callback) {
+            $http.post(adminurl + 'Contest/getAllQuestion').then(function (data) {
+                data = data.data;
+                console.log("data insde navigation.js", data);
+                callback(data);
+
+            });
+        },
+
+        getUserApi: function (formData, callback) {
+            console.log("inside navigation getAllUser", formData);
+            $http.post(adminurl + 'Contest/getAllUser', formData).then(function (data) {
+                data = data.data;
+                console.log("data insde navigation.js", data);
+                callback(data);
+
+            });
+        },
         apiCall: function (url, formData, callback) {
             $http.post(adminurl + url, formData).then(function (data) {
                 data = data.data;

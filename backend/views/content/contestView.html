@@ -1,7 +1,7 @@
 <!-- <div id="progressBar">
 	<div class="loader"></div>
 </div> -->
-<div ng-controller="ViewCtrl">
+<div ng-controller="ContestViewCtrl">
     <div class="heading-sec">
         <div class="row">
             <div class="col-md-4 column">
@@ -18,18 +18,15 @@
                 <div class="widget ">
                     <div class="table-area ">
                         <div class="widget-title ">
+
                             <div class="pull-right ">
                                 <div ng-if="json.json.buttons">
-                                    <div class="">
-                                        <select ng-model="selectedQuestion" ng-change="getUser(selectedQuestion)">
-                                       
-                            <option ng-repeat="question in question" >{{question}}</option>
-                            
-                                    </select>
-                                    </div>
-                                    <div ng-repeat="button in json.json.buttons" class="btn-margin">
+                                    <div ng-repeat="button in json.json.buttons">
                                         <button ng-click="callApi(button.api)">{{button.name}}</button>
                                     </div>
+                                    <div ng-repeat="question in json.json.fields"> {{question.name}}
+                                    </div>
+
 
 
                                 </div>

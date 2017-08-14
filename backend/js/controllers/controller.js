@@ -331,9 +331,15 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
 
         function getRightAnswers() {
-            NavigationService.apiCall($scope.api, {
-                page: $scope.currentPage
-            }, function (data) {
+            var data = {
+                page: $scope.currentPage,
+                question: $scope.selectedQuestion
+            }
+            if ($scope.selectedDate) {
+                data.date = $scope.selectedDate;
+            }
+            console.log("Saili data", data);
+            NavigationService.apiCall($scope.api, data, function (data) {
                 $scope.items = data.data.answers;
                 $scope.totalItems = data.data.total;
                 $scope.maxRow = data.data.maxRow;
@@ -342,11 +348,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
         // Coded only for Contest/getRightAnswers API
         $scope.callApi = function (api) {
+                console.log("$$$44data inside callapi", api);
                 rightAnswer = true;
                 $scope.api = api;
                 getRightAnswers();
             },
-
             $scope.getAllItems = function (keywordChange) {
                 $scope.totalItems = undefined;
                 if (keywordChange) {
@@ -365,6 +371,65 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                         }
                     });
             };
+        JsonService.refreshView = $scope.getAllItems;
+        $scope.getAllItems();
+
+        NavigationService.apiCallWithoutData(function (data) {
+            $scope.question = data.data;
+            console.log("####data is##", $scope.question);
+
+        });
+
+        $scope.getUser = function (selectedQuestion) {
+            $scope.selectedQuestion = {
+                question: selectedQuestion
+            };
+            console.log("main question", $scope.selectedQuestion)
+            NavigationService.getUserApi($scope.selectedQuestion, function (data) {
+                $scope.items = data.data;
+                console.log("####data inside getuser##", $scope.items);
+                $scope.items = data.data.user;
+                $scope.totalItems = data.data.total;
+                $scope.maxRow = data.data.options.count;
+            });
+
+        }
+    })
+    .controller('ContestViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService;
+        var i = 0;
+        var rightAnswer = false;
+        $scope.api = "";
+        if ($stateParams.page && !isNaN(parseInt($stateParams.page))) {
+            $scope.currentPage = $stateParams.page;
+        } else {
+            $scope.currentPage = 1;
+        }
+        $scope.search = {
+            keyword: ""
+        };
+        if ($stateParams.keyword) {
+            $scope.search.keyword = $stateParams.keyword;
+        }
+        $scope.getAllItems = function (keywordChange) {
+            $scope.totalItems = undefined;
+            if (keywordChange) {
+                $scope.currentPage = 1;
+            }
+            NavigationService.search($scope.json.json.apiCall.url, {
+                    page: $scope.currentPage,
+                    keyword: $scope.search.keyword
+                }, ++i,
+                function (data, ini) {
+                    console.log("search data: ", data);
+                    if (ini == i) {
+                        $scope.items = data.data.results;
+                        $scope.totalItems = data.data.total;
+                        $scope.maxRow = data.data.options.count;
+                    }
+                });
+        };
         JsonService.refreshView = $scope.getAllItems;
         $scope.getAllItems();
 

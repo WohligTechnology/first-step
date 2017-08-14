@@ -17,8 +17,8 @@
         "name": "View",
         "icon": "fa-pencil",
         "buttonClass": "btn-primary",
-        "type": "page",
-        "action": "editContest",
+        "type": "contest",
+        "action": "contest",
         "fieldsToSend": {
             "_id": "_id"
         }
