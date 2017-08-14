@@ -22,8 +22,14 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
     },{
         imageUrl: "ihHHDFjK0ic",
         videoUrl: "ihHHDFjK0ic",
-        episodeno: "Episode 1",
+        episodeno: "Launch Event Episode",
         searchName:"Launch",
+    },
+    {
+        imageUrl: "X7ZkEQMhlek",
+        videoUrl: "X7ZkEQMhlek",
+        episodeno: "Episode 1",
+        searchName:"Episode 1",
     },
     ];
 
