@@ -4,7 +4,7 @@ var schema = new Schema({
     },
     email: {
         type: String,
-        unique: true
+        index: true
     },
     answer: {
         type: String,
@@ -23,7 +23,26 @@ module.exports = mongoose.model('Contest', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
-
+    saveContest: function (data, callback) {
+        ContestAnswer.find().sort({
+            createdAt: -1
+        }).exec(function (err, data) {
+            if (!_.isEmpty(data)) {
+                Contest.findOne({
+                    createdAt: {
+                        $gte: data[0].createdAt
+                    },
+                    email: data.email
+                }).exec(function (err, contest) {
+                    if (!_.isEmpty(contest)) {
+                        callback("userExists", null);
+                    } else {
+                        Contest.saveData(data, function () {});
+                    }
+                })
+            }
+        })
+    },
 
     getAllUser: function (data, callback) {
         console.log("inside getAll User", data);
@@ -110,7 +129,7 @@ var model = {
         }, {
             $set: {
                 answer: data.answer,
-                question: data.question
+                question: data.contest[0].question
             }
         }).exec(function (err, found) {
             if (err) {
