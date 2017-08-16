@@ -20,7 +20,7 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
         },
         saveUser: function (formData, callback) {
             console.log("******saveUser *******", formData);
-            $http.post(adminurl + 'Contest/save', formData).then(function (data) {
+            $http.post(adminurl + 'Contest/saveContest', formData).then(function (data) {
                 data = data.data;
                 console.log("after api saveuser", data);
                 callback(data);

@@ -1,5 +1,18 @@
 module.exports = _.cloneDeep(require("sails-wohlig-controller"));
 var controller = {
+    saveContest: function (req, res) {
+        console.log("inside contest controller")
+        if (req.body) {
+            Contest.saveContest(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
+    },
     getAllUser: function (req, res) {
         console.log("inside contest controller")
         if (req.body) {

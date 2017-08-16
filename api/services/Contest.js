@@ -26,22 +26,29 @@ var model = {
     saveContest: function (data, callback) {
         ContestAnswer.find().sort({
             createdAt: -1
-        }).exec(function (err, data) {
-            if (!_.isEmpty(data)) {
+        }).exec(function (err, contestQuestions) {
+            if (!_.isEmpty(contestQuestions)) {
+                console.log("last question: ", contestQuestions[0]);
                 Contest.findOne({
                     createdAt: {
-                        $gte: data[0].createdAt
+                        $gte: contestQuestions[0].createdAt
                     },
                     email: data.email
                 }).exec(function (err, contest) {
                     if (!_.isEmpty(contest)) {
+                        console.log("user already exists for the contest");
                         callback("userExists", null);
                     } else {
-                        Contest.saveData(data, function () {});
+                        console.log("saving user: ", data);
+                        Contest.saveData(data, function (err, data) {
+                            callback(err, data);
+                        });
                     }
-                })
+                });
+            } else {
+                callback("noQuestionsFound", null);
             }
-        })
+        });
     },
 
     getAllUser: function (data, callback) {

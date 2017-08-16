@@ -14,7 +14,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                     });
 
                 } else {
-                    if (data.error.errors.email.kind == "unique") {
+                    if (data.error == 'userExists' || data.error.errors.email.kind == "unique") {
                         $scope.emailexist = true;
                     } else {
                         $scope.emailexist = false;
@@ -34,7 +34,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
         ];
         $scope.homeSlide = [
-             'img/small-season3/71.jpg',
+            'img/small-season3/71.jpg',
             'img/small-season3/1.jpg',
             'img/small-season3/5.jpg',
             'img/small-season3/7.jpg',
