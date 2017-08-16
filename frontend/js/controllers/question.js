@@ -12,10 +12,10 @@ myApp.controller('QuestionPaperCtrl', function ($scope, apiService, $stateParams
         data._id = $stateParams.userId;
         data.contest = [];
         data.contest.push({
-            question: data.question,
+            question: "सेविंग अकाउंट में कितना मिनिमम बैलेंस जरूरी है",
             answer: data.answer
         });
-        console.log("data is..", data.question);
+        // console.log("data is..", data.question);
         console.log("data is..", data.answer);
         apiService.saveSelectedAnswer(data, function (data) {
             console.log(data);
