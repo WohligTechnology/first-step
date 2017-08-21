@@ -42,7 +42,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'img/small-season3/76.jpg',
         'img/small-season3/77.jpg',
         'img/small-season3/78.jpg',
-        'img/small-season3/79.jpg',
         'img/small-season3/80.jpg',
         'img/small-season3/81.jpg',
         'img/small-season3/82.jpg',
