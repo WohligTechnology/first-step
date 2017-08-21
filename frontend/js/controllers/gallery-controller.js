@@ -10,7 +10,70 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     };
 
  //for season3
-    $scope.season3 = [
+    $scope.season3 = [{
+            img1: 'img/season3/72.jpg',
+            img2: 'img/small-season3/72.jpg',
+        } ,
+        {
+            img1: 'img/season3/73.jpg',
+            img2: 'img/small-season3/73.jpg',
+        } ,
+        {
+            img1: 'img/season3/74.jpg',
+            img2: 'img/small-season3/74.jpg',
+        } ,
+        {
+            img1: 'img/season3/75.jpg',
+            img2: 'img/small-season3/75.jpg',
+        } ,
+        {
+            img1: 'img/season3/76.jpg',
+            img2: 'img/small-season3/76.jpg',
+        } ,
+        {
+            img1: 'img/season3/77.jpg',
+            img2: 'img/small-season3/77.jpg',
+        } ,
+        {
+            img1: 'img/season3/78.jpg',
+            img2: 'img/small-season3/78.jpg',
+        }  ,{
+            img1: 'img/season3/79.jpg',
+            img2: 'img/small-season3/79.jpg',
+        }  ,{
+            img1: 'img/season3/80.jpg',
+            img2: 'img/small-season3/80.jpg',
+        }  ,{
+            img1: 'img/season3/81.jpg',
+            img2: 'img/small-season3/81.jpg',
+        } ,{
+            img1: 'img/season3/82.jpg',
+            img2: 'img/small-season3/82.jpg',
+        },{
+            img1: 'img/season3/83.jpg',
+            img2: 'img/small-season3/83.jpg',
+        },{
+            img1: 'img/season3/84.jpg',
+            img2: 'img/small-season3/84.jpg',
+        },{
+            img1: 'img/season3/85.jpg',
+            img2: 'img/small-season3/85.jpg',
+        },{
+            img1: 'img/season3/86.jpg',
+            img2: 'img/small-season3/86.jpg',
+        },{
+            img1: 'img/season3/87.jpg',
+            img2: 'img/small-season3/87.jpg',
+        },{
+            img1: 'img/season3/88.jpg',
+            img2: 'img/small-season3/88.jpg',
+        },{
+            img1: 'img/season3/89.jpg',
+            img2: 'img/small-season3/89.jpg',
+        },{
+            img1: 'img/season3/90.jpg',
+            img2: 'img/small-season3/90.jpg',
+        },
         {
             img1: 'img/season3/1.jpg',
             img2: 'img/small-season3/1.jpg',
@@ -241,7 +304,8 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         {
             img1: 'img/season3/71.jpg',
             img2: 'img/small-season3/71.jpg',
-        } 
+        } ,
+        
     ];
 
     $scope.more3 = false;
