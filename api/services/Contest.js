@@ -21,7 +21,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Contest', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "createdAt", "desc"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
     saveContest: function (data, callback) {
         ContestAnswer.find().sort({
@@ -59,21 +59,20 @@ var model = {
 
             var result = {};
             if (!_.isEmpty(question)) {
-
-                result.result = question;
+                result.user = question;
                 Contest.count({
                     question: data.question
                 }).exec(function (err, count) {
-                    console.log("count*********: ", err, count);
+                    console.log("count: ", err, count);
                     if (count) {
                         result.total = count;
-                        console.log("count1********: ", count);
+                        console.log("count1: ", count);
                         result.maxRow = Config.maxRow;
                     } else {
                         result.total = answers.length;
                         result.maxRow = Config.maxRow;
                     }
-                    console.log("result*****: ", result);
+                    console.log("result: ", result);
                     callback(null, result);
                 });
             } else {
@@ -82,6 +81,7 @@ var model = {
         });
     },
     getAllQuestion: function (data, callback) {
+        console.log("inside getquestion api", data)
         Contest.find({
             question: {
                 $exists: true,
@@ -101,37 +101,37 @@ var model = {
         });
     },
 
-    // getDateviseUser: function (data, callback) {
-    //     var find = {
-    //         createdAt: {
-    //             $gte: new Date(data.date).setHours(00, 00, 00, 000),
-    //             $lte: new Date(data.date).setHours(23, 59, 59, 999)
-    //         }
-    //     };
-    //     console.log("********", data);
-    //     Contest.find(find).skip((data.page - 1) * Config.maxRow).limit(Config.maxRow).exec(function (err, answers) {
-    //         console.log("Answers: ", err, answers);
-    //         var result = {};
-    //         if (!_.isEmpty(answers)) {
-    //             result.results = answers;
-    //             Contest.count(find).exec(function (err, count) {
-    //                 console.log("count: ", err, count);
-    //                 if (count) {
-    //                     result.total = count;
-    //                     console.log("count1: ", count);
-    //                     result.maxRow = Config.maxRow;
-    //                 } else {
-    //                     result.total = answers.length;
-    //                     result.maxRow = Config.maxRow;
-    //                 }
-    //                 console.log("result: ", result);
-    //                 callback(null, result);
-    //             });
-    //         } else {
-    //             callback("noDataFound", null);
-    //         }
-    //     });
-    // },
+    getDateviseUser: function (data, callback) {
+        var find = {
+            createdAt: {
+                $gte: new Date(data.date).setHours(00, 00, 00, 000),
+                $lte: new Date(data.date).setHours(23, 59, 59, 999)
+            }
+        };
+        console.log("********", data);
+        Contest.find(find).skip((data.page - 1) * Config.maxRow).limit(Config.maxRow).exec(function (err, answers) {
+            console.log("Answers: ", err, answers);
+            var result = {};
+            if (!_.isEmpty(answers)) {
+                result.results = answers;
+                Contest.count(find).exec(function (err, count) {
+                    console.log("count: ", err, count);
+                    if (count) {
+                        result.total = count;
+                        console.log("count1: ", count);
+                        result.maxRow = Config.maxRow;
+                    } else {
+                        result.total = answers.length;
+                        result.maxRow = Config.maxRow;
+                    }
+                    console.log("result: ", result);
+                    callback(null, result);
+                });
+            } else {
+                callback("noDataFound", null);
+            }
+        });
+    },
 
     saveSelectedAnswer: function (data, callback) {
         Contest.update({
