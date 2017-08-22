@@ -1,0 +1,32 @@
+ <div class="digitalinside-bg">
+     <div class="container">
+     <div class="digital-question-section" >
+            <div>
+                 <h3 class="question-font radio-left"> Question :</h3>
+            </div>
+            <div class="question-digital" ng-repeat="digitalquestion in digitalinside track by $index">
+                   
+                    <p class="radio-left font25"> <span>{{digitalquestion.No}}.</span> {{digitalquestion.Question}}</p>
+                    <div class="radio-left">
+                        <input type="radio" id="$index+1" name="ans"  ng-model="data.answer">
+                        <p> {{digitalquestion.option1}}</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="$index+2" name="ans"  ng-model="data.answer">
+                        <p>{{digitalquestion.option2}}</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="$index+3" name="ans" ng-model="data.answer">
+                        <p>{{digitalquestion.option3}}</p>
+                    </div>
+                    <div class="radio-left">
+                        <input type="radio" id="$index+4" name="ans" ng-model="data.answer">
+                        <p>{{digitalquestion.option4}}</p>
+                    </div>
+            </div>
+                    <div class="submit-question">
+                        <button type="submit" ng-click="thankyou(); " class="btn btn-default ">Submit</button>
+                    </div>
+        </div>
+     </div>
+ </div>

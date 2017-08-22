@@ -55,5 +55,6 @@ module.exports = [
   'frontend/js/controllers/header-controller.js',
   'frontend/js/controllers/episode.js',
    'frontend/js/controllers/question.js',
+     'frontend/js/controllers/digitalquestion.js',
   'frontend/js/controllers/language-controller.js',
 ];

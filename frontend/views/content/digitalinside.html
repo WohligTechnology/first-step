@@ -30,42 +30,43 @@
             <img src="img/insurance.png" alt="">
             <p>INSURANCE</p>
         </div>-->
-        <div class="digital-question-section" ng-if="banking">
-               <div class="digitalinside-video">
-                   <img src="https://i.ytimg.com/vi/X7ZkEQMhlek/hqdefault.jpg" class="img-responsive">
-                                <div class="video-digital">
-                                    <a class="fancybox.iframe" href="https://www.youtube.com/embed/X7ZkEQMhlek" fancybox>
-                                        <img src="img/youtube-icon.png" class="img-responsive">
-                                    </a>
-                                </div>
+        <div class="banking-episode" ng-if="banking">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="digitalinside-video">
+                        <img src="https://i.ytimg.com/vi/X7ZkEQMhlek/hqdefault.jpg" class="img-responsive">
+                        <div class="video-digital">
+                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/X7ZkEQMhlek" fancybox>
+                                <img src="img/youtube-icon.png" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            <div>
-                 <h3 class="question-font radio-left"> Question :</h3>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="digitalinside-video">
+                        <img src="https://i.ytimg.com/vi/X7ZkEQMhlek/hqdefault.jpg" class="img-responsive">
+                        <div class="video-digital">
+                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/X7ZkEQMhlek" fancybox>
+                                <img src="img/youtube-icon.png" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="digitalinside-video">
+                        <img src="https://i.ytimg.com/vi/X7ZkEQMhlek/hqdefault.jpg" class="img-responsive">
+                        <div class="video-digital">
+                            <a class="fancybox.iframe" href="https://www.youtube.com/embed/X7ZkEQMhlek" fancybox>
+                                <img src="img/youtube-icon.png" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="question-digital" ng-repeat="digitalquestion in digitalinside">
-                   
-                    <p class="radio-left font25"> <span>{{digitalquestion.No}}.</span> {{digitalquestion.Question}}</p>
-                    <div class="radio-left">
-                        <input type="radio" id="1" name="ans"  ng-model="data.answer">
-                        <p> {{digitalquestion.option1}}</p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="2" name="ans"  ng-model="data.answer">
-                        <p>{{digitalquestion.option2}}</p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="3" name="ans" ng-model="data.answer">
-                        <p>{{digitalquestion.option3}}</p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="4" name="ans" ng-model="data.answer">
-                        <p>{{digitalquestion.option4}}</p>
-                    </div>
+            <div class="text-center btn-banking" ui-sref="digital-question">
+                <button type="submit" class="btn">View More</button>
             </div>
-                    <div class="submit-question">
-                        <button type="submit" ng-click="thankyou(); " class="btn btn-default ">Submit</button>
-                    </div>
         </div>
-        
+       
     </div>
 </div>

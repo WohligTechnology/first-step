@@ -18,14 +18,12 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     $scope.insurance = false;
 
     $scope.displayQuestionSection = function (data) {
-        $scope.banking = false;
-        $scope.equity = false;
-        $scope.mutualfund = false;
-        $scope.commodities = false;
-        $scope.insurance = false;
-
         if (data == 'banking') {
-            $scope.banking = true;
+            if($scope.banking){
+                $scope.banking=false
+            }else{
+                $scope.banking = true;
+            }
         } else if (data == 'equity') {
             $scope.equity = true;
         } else if (data == 'mutualfund') {
@@ -39,32 +37,32 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     };
      $scope.digitalinside = [{
          No:1,
-        Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-        option1: "1 लाख से ज्यादा ब्याज इनकम पर",
-        option2: "50 हजार से ज्यादा ब्याज इनकम प",
-         option3: "10 हजार से ज्यादा ब्याज इनकम पर",
-          option4:"20 हजार से ज्यादा ब्याज इनकम पर",
+        Question: "सेविंग अकाउंट पर ब्याज मिलता है?",
+        option1: "ब्याज पर ब्याज",
+        option2: "FD जितना",
+         option3: "साधारण ब्याज",
+          option4:"पीएफ जितना",
     }, {
          No:2,
-        Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-        option1: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-        option2: "50 हजार से ज्यादा ब्याज इनकम प",
-         option3: "10 हजार से ज्यादा ब्याज इनकम पर",
-          option4:"20 हजार से ज्यादा ब्याज इनकम पर",
+        Question: "ऑटोमैटिक स्वीप अकाउंट होता है ?",
+        option1: "सेविंग अकाउंट रेकरिंग अकाउंट से लिंक",
+        option2: "सेविंग अकाउंट फिक्स डिपॉजिट से लिंक",
+         option3: "सेविंग अकाउंट डीमैट अकाउंट से लिंक",
+          option4:"सेविंग अकाउंट ट्रेडिंग अकाउंट से लिंक",
     }, {
          No:3,
         Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-        option1: "50 हजार से ज्यादा ब्याज इनकम प",
-        option2: "20 हजार से ज्यादा ब्याज इनकम पर",
+        option1: "1 लाख से ज्यादा ब्याज इनकम पर",
+        option2: "50 हजार से ज्यादा ब्याज इनकम पर",
          option3: "10 हजार से ज्यादा ब्याज इनकम पर",
           option4:"20 हजार से ज्यादा ब्याज इनकम पर",
     }, {
          No:4,
-        Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-        option1: "50 हजार से ज्यादा ब्याज इनकम प",
-        option2: "20 हजार से ज्यादा ब्याज इनकम पर",
-         option3: "10 हजार से ज्यादा ब्याज इनकम पर",
-          option4:"20 हजार से ज्यादा ब्याज इनकम पर",
+        Question: "सेविंग अकाउंट खोलने के लिए अनिवार्य है",
+        option1: "घर के एड्रेस का प्रूफ और ईमेल एड्रेस",
+        option2: "फोन नंबर",
+         option3: "पैन कार्ड और आधार कार्ड",
+          option4:"ऊपर लिखे सभी दस्तावेज",
     }]
          $scope.thankyou = function () {
             console.log("clla");
