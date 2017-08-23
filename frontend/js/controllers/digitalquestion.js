@@ -7,7 +7,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
          No:1,
         Question: "सेविंग अकाउंट पर ब्याज मिलता है",
         option1: "ब्याज पर ब्याज",
-        option2: "FD जितना",
+        option2: "<span style='font-family:NimbusSanL-Reg;'>FD</span> जितना",
          option3: "साधारण ब्याज",
           option4:"पीएफ जितना",
     }, {
@@ -34,7 +34,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
     }
     ,{
          No:5,
-        Question: "KYC के लिए कौन से डॉक्यूमेंट्स पर्याप्त हैं",
+        Question: "<span style='font-family:NimbusSanL-Reg;'>KYC</span> के लिए कौन से डॉक्यूमेंट्स पर्याप्त हैं",
         option1: "पासपोर्ट",
         option2: "पैन कार्ड",
          option3: "पैनकार्ड और आधार कार्ड",

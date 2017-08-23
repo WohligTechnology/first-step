@@ -1687,11 +1687,15 @@ footer {
 
 .submit-question {
     margin-left: 90px;
-    button {
+    button, {
         font-family: 'NimbusSanL-Reg';
         font-size: 15px;
         background: #e9e72b;
         color: black;
+        &:hover{
+            background: #e9e72b;
+        color: black; 
+        }
     }
 }
 
@@ -1736,19 +1740,23 @@ button{
         display: inline-block;
         color: white;
     }
+    span{
+    font-size:20px;
+    font-family: 'Himalaya';
+}
     .radio-left {
         margin-left: 20px;
     }
 }
-
 .question-font {
     font-family: 'Himalaya';
     color: white;
 }
 
-.font25 span {
-    font-size: 22px;
-    font-family: 'Himalaya';
+.video-content{
+   font-family: 'NimbusSanL-Reg';
+    color: #fef424;
+    font-size: 18px;
 }
 //scss for digital-question page
 .digital-question-section{
