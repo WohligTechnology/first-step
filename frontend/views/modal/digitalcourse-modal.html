@@ -31,9 +31,12 @@
                                     <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">Please enter vaild email.</span>
                                 </div>
                                 <div class="digital-submit">
-                                    <button type="submit" class="btn btn-default" ui-sref="digitalinside">Submit</button>
+                                    <button type="submit" class="btn btn-default" ng-click="submitUser(formData);" ui-sref="digitalinside">Submit</button>
                                 </div>
                             </form>
+                            <div class="note-digital">
+                                <p>Please Enter Your Proper Name And Email Id as It will be used to print on E-Certificate </p>
+                            </div>
                         </div>
                     </div>
 

@@ -1521,6 +1521,14 @@ footer {
     min-height: calc(100vh - 96px);
 }
 
+.note-digital {
+    p {
+        font-size: 14px;
+        text-align: justify;
+        margin-top: 10px;
+    }
+}
+
 .digital-course-type {
     padding: 0 13px;
     p {
@@ -1687,14 +1695,15 @@ footer {
 
 .submit-question {
     margin-left: 90px;
-    button, {
+    button,
+    {
         font-family: 'NimbusSanL-Reg';
         font-size: 15px;
         background: #e9e72b;
         color: black;
-        &:hover{
+        &:hover {
             background: #e9e72b;
-        color: black; 
+            color: black;
         }
     }
 }
@@ -1717,19 +1726,22 @@ footer {
     top: 45%;
     left: 45%;
 }
-.banking-episode{
+
+.banking-episode {
     margin-bottom: 50px;
 }
-.btn-banking{
-margin-top: 20px;
-button{
-    font-size: 18px;
-    color: black;
-    background: #d4aa00;
-    border: none;
+
+.btn-banking {
+    margin-top: 20px;
+    button {
+        font-size: 18px;
+        color: black;
+        background: #d4aa00;
+        border: none;
         padding: 8px 10px 3px 10px;
+    }
 }
-}
+
 .question-digital {
     margin: 0px 0 20px 0px;
     font-family: 'Kruti-Dev';
@@ -1740,25 +1752,30 @@ button{
         display: inline-block;
         color: white;
     }
-    span{
-    font-size:20px;
-    font-family: 'Himalaya';
-}
+    span {
+        font-size: 20px;
+        font-family: 'Himalaya';
+    }
     .radio-left {
         margin-left: 20px;
     }
 }
+
 .question-font {
     font-family: 'Himalaya';
     color: white;
 }
 
-.video-content{
-   font-family: 'NimbusSanL-Reg';
+.video-content {
+    font-family: 'NimbusSanL-Reg';
     color: #fef424;
     font-size: 18px;
+    ol{
+            padding-left: 20px;
+    }
 }
+
 //scss for digital-question page
-.digital-question-section{
-margin: 210px 0 50px 0 ;
+.digital-question-section {
+    margin: 210px 0 50px 0;
 }
