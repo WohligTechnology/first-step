@@ -89,13 +89,22 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
          option3: "मोबाइल फोन से लिंक किया जा सकता है",
           option4:"उपरोक्त सभी काम हो सकते हैं",
     }]
-         $scope.thankyou = function () {
+         $scope.digitalthanks = function () {
             console.log("clla");
             $uibModal.open({
                 animation: true,
-                templateUrl: 'views/modal/thanks.html',
+                templateUrl: 'views/modal/digital-thanks.html',
                 scope: $scope,
-                size: 'lg',
+                size: 'md',
+            });
+        };
+            $scope.digitalsorry = function () {
+            console.log("clla");
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/modal/digital-sorry.html',
+                scope: $scope,
+                size: 'md',
             });
         };
 })
