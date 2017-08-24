@@ -1,0 +1,75 @@
+{
+    "title": "Create Question",
+    "name": "User",
+    "jsonPage": "viewQuestion",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["Question"],
+    "fields": [{
+            "name": "Digital Course",
+            "type": "tags",
+            "tableRef": "DigitalCourse",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter DigitalCourse",
+            "id": "DigitalCourse",
+            "validation": ["", "trim", ""],
+            "url": "DigitalCourse/search"
+        }, {
+            "name": "Question",
+            "type": "text",
+            "tableRef": "question",
+            "placeholder": "Enter question",
+            "id": "question",
+            "validation": ["", "trim"],
+            "url": ""
+        }, {
+            "name": "Create Options",
+            "type": "box",
+            "tableRef": "createOptions",
+            "validation": ["required", "trim", ""],
+            "fields": [{
+                "name": "Option",
+                "type": "text",
+                "tableRef": "option",
+                "placeholder": "Enter options",
+                "id": "option",
+                "validation": ["", "trim", ""],
+                "url": "",
+                "onView": true
+            }]
+        },
+        {
+            "name": "Correct Answer",
+            "type": "text",
+            "tableRef": "correctAnswer",
+            "placeholder": "Enter Correct Answer",
+            "id": "correctAnswer",
+            "validation": ["", "trim"],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitQuestion",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewQuestion"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewQuestion"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Question/save"
+    }
+}

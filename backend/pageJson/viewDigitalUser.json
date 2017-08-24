@@ -1,0 +1,51 @@
+{
+    "title": "DigitalUser",
+    "description": "List DigitalUser",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Digital Course User",
+            "isSort": "",
+            "tableRef": "name"
+        },
+        {
+            "name": "Digital Course User email",
+            "isSort": "",
+            "tableRef": "email"
+        }
+    ],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editDigitalUser",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete DigitalUser",
+        "content": "Are you sure you want to delete DigitalUser?",
+        "api": "DigitalUser/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createDigitalUser"
+    }],
+    "apiCall": {
+        "url": "DigitalUser/search",
+        "params": "_id"
+    }
+}

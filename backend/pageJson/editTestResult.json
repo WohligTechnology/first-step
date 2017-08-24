@@ -1,0 +1,66 @@
+{
+    "title": "Edit TestResult",
+    "name": "User",
+    "jsonPage": "viewTestResult",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Digital User",
+            "type": "tags",
+            "tableRef": "digitalUser",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter DigitalUser",
+            "id": "digitalUser",
+            "validation": ["", "trim", ""],
+            "url": "DigitalUser/search"
+        },
+        {
+            "name": "Digital Course",
+            "type": "tags",
+            "tableRef": "digitalCourse",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter DigitalCourse",
+            "id": "digitalCourse",
+            "validation": ["", "trim", ""],
+            "url": "DigitalCourse/search"
+        }, {
+            "name": "Create answer Provided",
+            "type": "box",
+            "tableRef": "answerProvided",
+            "validation": ["required", "trim", ""],
+            "fields": [{
+                "name": "Answer",
+                "type": "text",
+                "tableRef": "answer",
+                "placeholder": "Enter answer",
+                "id": "option",
+                "validation": ["", "trim", ""],
+                "url": "",
+                "onView": true
+            }]
+        },
+        {
+            "name": "Is Correct",
+            "type": "boolean",
+            "tableRef": "isCorrect",
+            "placeholder": "Enter isCorrectr",
+            "id": "isCorrect",
+            "validation": ["", "trim"],
+            "url": ""
+        }
+    ],
+    "apiCall": {
+        "url": "TestResult/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "TestResult/getOne",
+        "params": "_id"
+    }
+
+}

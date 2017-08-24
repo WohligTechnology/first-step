@@ -45,12 +45,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'DigitalCourseCtrl'
         })
         .state('digitalinside', {
-            url: "/digitalinside",
+            url: "/digitalinside/:userId",
             templateUrl: tempateURL,
             controller: 'DigitalInsideCtrl'
         })
-           .state('digital-question', {
-            url: "/digital-question",
+        .state('digital-question', {
+            url: "/digital-question/:userId",
             templateUrl: tempateURL,
             controller: 'DigitalQuestionCtrl'
         })

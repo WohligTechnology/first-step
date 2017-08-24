@@ -1,0 +1,49 @@
+{
+    "title": "Create DigitalUser",
+    "name": "User",
+    "jsonPage": "viewDigitalUser",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["DigitalUser"],
+    "fields": [{
+            "name": "Digital Course User",
+            "type": "text",
+            "tableRef": "name",
+            "placeholder": "Enter Name",
+            "id": "name",
+            "validation": ["", "trim"],
+            "url": ""
+        },
+        {
+            "name": "Digital Course User email",
+            "type": "text",
+            "tableRef": "email",
+            "placeholder": "Enter User email",
+            "id": "email",
+            "validation": ["", "trim"],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitDigitalUser",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDigitalUser"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDigitalUser"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "DigitalUser/save"
+    }
+}

@@ -22,6 +22,26 @@ myApp.factory('NavigationService', function ($http) {
             classis: "active",
             sref: "#!/page/viewContest//",
             icon: "phone",
+        }, {
+            name: "Digital Course",
+            classis: "active",
+            sref: "#!/page/viewDigitalCourse//",
+
+        },
+        {
+            name: "Question",
+            classis: "active",
+            sref: "#!/page/viewQuestion//",
+
+        },
+        {
+            name: "User",
+            classis: "active",
+            sref: "#!/page/viewDigitalUser//"
+        }, {
+            name: "Test Result",
+            classis: "active",
+            sref: "#!/page/viewTestResult//"
         }
     ];
 

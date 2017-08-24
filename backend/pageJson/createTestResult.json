@@ -1,0 +1,80 @@
+{
+    "title": "Create Test Result",
+    "name": "User",
+    "jsonPage": "viewTestResult",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["TestResult"],
+    "fields": [{
+            "name": "Digital User",
+            "type": "tags",
+            "tableRef": "DigitalUser",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter DigitalUser",
+            "id": "DigitalUser",
+            "validation": ["", "trim", ""],
+            "url": "DigitalUser/search"
+        },
+        {
+            "name": "Digital Course",
+            "type": "tags",
+            "tableRef": "DigitalCourse",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter DigitalCourse",
+            "id": "DigitalCourse",
+            "validation": ["", "trim", ""],
+            "url": "DigitalCourse/search"
+        },
+        {
+            "name": "Create answer Provided",
+            "type": "box",
+            "tableRef": "answerProvided",
+            "validation": ["required", "trim", ""],
+            "fields": [{
+                "name": "Answer",
+                "type": "text",
+                "tableRef": "answer",
+                "placeholder": "Enter answer",
+                "id": "option",
+                "validation": ["", "trim", ""],
+                "url": "",
+                "onView": true
+            }]
+        },
+        {
+            "name": "Is Correct",
+            "type": "boolean",
+            "tableRef": "isCorrect",
+            "placeholder": "Enter isCorrectr",
+            "id": "isCorrect",
+            "validation": ["", "trim"],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitTestResult",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTestResult"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTestResult"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "TestResult/save"
+    }
+}

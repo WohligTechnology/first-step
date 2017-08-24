@@ -1,0 +1,55 @@
+{
+    "title": "TestResult",
+    "description": "List of TestResult",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Digital User",
+            "isSort": "",
+            "tableRef": "name",
+            "type": "text",
+            "field": "name"
+        },
+        {
+            "name": "Digital Course",
+            "isSort": "",
+            "tableRef": "name",
+            "type": "text",
+            "fields": "name"
+        }
+    ],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editTestResult",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete TestResult",
+        "content": "Are you sure you want to delete TestResult?",
+        "api": "TestResult/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createTestResult"
+    }],
+    "apiCall": {
+        "url": "TestResult/search",
+        "params": "_id"
+    }
+}

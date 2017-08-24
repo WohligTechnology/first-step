@@ -1,32 +1,35 @@
- <div class="digitalinside-bg">
-     <div class="container">
-     <div class="digital-question-section" >
+<div class="digitalinside-bg">
+    <div class="container">
+        <div class="digital-question-section">
             <div>
-                 <h3 class="question-font radio-left"> Question :</h3>
+                <h3 class="question-font radio-left"> Question :</h3>
             </div>
-            <div class="question-digital" ng-repeat="digitalquestion in digitalinside track by $index">
-                   
-                    <p class="radio-left font25"> <span>{{digitalquestion.No}}.</span><span ng-bind-html="digitalquestion.Question | safeHtml"></span></p>
-                    <div class="radio-left">
-                        <input type="radio" id="$index+1" name="ans"  ng-model="data.answer">
-                        <p ng-bind-html="digitalquestion.option1 | safeHtml"></p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="$index+2" name="ans"  ng-model="data.answer">
-                        <p ng-bind-html="digitalquestion.option2 | safeHtml"></p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="$index+3" name="ans" ng-model="data.answer">
-                        <p ng-bind-html="digitalquestion.option3 | safeHtml"></p>
-                    </div>
-                    <div class="radio-left">
-                        <input type="radio" id="$index+4" name="ans" ng-model="data.answer">
-                        <p ng-bind-html="digitalquestion.option4 | safeHtml"></p>
-                    </div>
+
+            <div class="question-digital" ng-repeat="digitalquestion in Question track by $index">
+
+                <p class="radio-left font25"> <span>{{digitalquestion.No}}.</span><span ng-bind-html="digitalquestion.question | safeHtml"></span></p>
+                <div class="radio-left" ng-repeat=" data in digitalquestion.createOptions">
+                    <input type="radio" id="{{digitalquestion._id}}" name="{{digitalquestion._id}}" ng-model="formData.Correct" value="{{data.option}}"
+                        ng-click="answeredQstn(formData.Correct,digitalquestion._id);">
+                    <p ng-bind-html="data.option | safeHtml"></p>
+                </div>
+
+                <!--<div class="radio-left">
+                    <input type="radio" id="$index+2" name="ans" ng-model="data.answer">
+                    <p ng-bind-html="digitalquestion.option2 | safeHtml"></p>
+                </div>
+                <div class="radio-left">
+                    <input type="radio" id="$index+3" name="ans" ng-model="data.answer">
+                    <p ng-bind-html="digitalquestion.option3 | safeHtml"></p>
+                </div>
+                <div class="radio-left">
+                    <input type="radio" id="$index+4" name="ans" ng-model="data.answer">
+                    <p ng-bind-html="digitalquestion.option4 | safeHtml"></p>
+                </div>-->
             </div>
-                    <div class="submit-question">
-                        <button type="submit" ng-click="digitalthanks(); " class="btn btn-default ">Submit</button>
-                    </div>
+            <div class="submit-question">
+                <button type="submit" ng-click="digitalSubmit(); " class="btn btn-default ">Submit</button>
+            </div>
         </div>
-     </div>
- </div>
+    </div>
+</div>

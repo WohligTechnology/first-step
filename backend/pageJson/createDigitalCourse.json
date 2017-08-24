@@ -1,0 +1,55 @@
+{
+    "title": "Create DigitalCourse",
+    "name": "User",
+    "jsonPage": "viewDigitalCourse",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["DigitalCourse"],
+    "fields": [{
+        "name": "Digital Course Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["", "trim"],
+        "url": ""
+    }, {
+        "name": "Start Date",
+        "type": "date",
+        "tableRef": "startDate",
+        "placeholder": "Enter date",
+        "id": "startDate",
+        "validation": ["", "trim"],
+        "url": ""
+    }, {
+        "name": "End Date",
+        "type": "date",
+        "tableRef": "endDate",
+        "placeholder": "Enter date",
+        "id": "endDate",
+        "validation": ["", "trim"],
+        "url": ""
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitDigitalCourse",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDigitalCourse"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDigitalCourse"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "DigitalCourse/save"
+    }
+}
