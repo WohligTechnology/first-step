@@ -27,15 +27,16 @@
                                 <div class="form-group" ng-class="{'form-invalid':loginDigitalform.email.$invalid && loginDigitalform.email.$touched}">
                                     <label>Email Address :</label>
                                     <input type="email" name="email" class="form-control" ng-model="formData.email" required>
-             
+                                    <span ng-show="emailexist">Email already exist.</span>
                                     <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">Please enter vaild email.</span>
                                 </div>
                                 <div class="digital-submit">
-                                    <button type="submit" class="btn btn-default" ng-click="submitUser(formData);" ui-sref="digitalinside">Submit</button>
+                                    <button type="submit" class="btn btn-default" ng-click="submitUser1(formData);">Submit</button>
                                 </div>
                             </form>
                             <div class="note-digital">
-                                <p>Please Enter Your Proper Name And Email Id as It will be used to print on E-Certificate </p>
+                                <p>Please Enter Your Correct Name And Email Id as It will be used to print the E-Certificate
+                                    </p>
                             </div>
                         </div>
                     </div>

@@ -678,7 +678,7 @@ footer {
     background: rgba(0, 0, 0, 0.5);
     text-align: justify;
     a {
-        font-size: 25px;
+        font-size: 18px;
         color: white;
     }
 }
@@ -1539,8 +1539,7 @@ footer {
     }
     img {
         cursor: pointer;
-    }
-    // img {
+    } // img {
     //     transition: all 1s ease-in-out;
     //     perspective: 500px;
     //     perspective-origin: 50% 100px;
@@ -1708,14 +1707,6 @@ footer {
     }
 }
 
-//scss for thank you modal
-.thank-content {
-    margin: 40px;
-    font-family: 'NimbusSanL-Reg';
-    font-size: 18px;
-    color: #e9e72b;
-}
-
 //scss for digital-inside
 .digitalinside-video {
     position: relative;
@@ -1770,12 +1761,32 @@ footer {
     font-family: 'NimbusSanL-Reg';
     color: #fef424;
     font-size: 18px;
-    ol{
-            padding-left: 20px;
+    margin-bottom: 40px;
+    ol {
+        padding-left: 20px;
     }
 }
 
 //scss for digital-question page
 .digital-question-section {
     margin: 210px 0 50px 0;
+}
+
+//scss for thank you modal
+.digital-modal-bg {
+    background-image: url("../img/about-modal-bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; // transform: rotate(180deg);
+}
+
+.thank-content {
+    margin: 90px 40px;
+    font-family: 'NimbusSanL-Reg';
+    font-size: 20px;
+    color: #e9e72b;
+}
+
+h2 {
+    font-weight: 600;
 }

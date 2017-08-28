@@ -53,6 +53,27 @@ module.exports = mongoose.model('TestResult', schema);
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "digitalCourse digitalUser answer question", "digitalCourse digitalUser answer question"));
 var model = {
 
+    validUser: function (data, callback) {
+        console.log("data inside valid user **** api:", data)
+        Contest.update({
+            _id: mongoose.Types.ObjectId(data._id)
+        }, {
+            $set: {
+                answer: data.answer,
+                question: data.contest[0].question
+            }
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+    },
+
     saveDigitalUser: function (data, callback) {
         console.log("*****data inside savedigitalUser****", data)
         var data1 = this(data);

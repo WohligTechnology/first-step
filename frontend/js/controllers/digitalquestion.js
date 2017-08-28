@@ -139,6 +139,20 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
 
 
       $scope.digitalthanks = function () {
+            $scope.id = $stateParams.userId;
+            $scope.id = {
+                  _id: $stateParams.userId,
+            }
+            console.log("inside thank u modal state param is is", $scope.id);
+            apiService.apiWithData("DigitalUser/getUser", $scope.id, function (data) {
+                  $scope.user = {
+                        user: data.data
+                  }
+                  console.log("inside thank u modal state param is is*****", data.data);
+                  apiService.apiWithData("DigitalUser/saveMailData", $scope.user, function (data) {
+
+                  });
+            });
             console.log("clla");
             $uibModal.open({
                   animation: true,
