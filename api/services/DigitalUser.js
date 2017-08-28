@@ -54,28 +54,28 @@ var model = {
     saveMailData: function (data, callback) {
         console.log("inside saveMailData api", data.user[0].name);
         async.waterfall([
-                // function (cbWaterfall) {
-                //     Expert.saveData(data, function (err, complete) {
-                //         if (err) {
-                //             cbWaterfall(err, null);
-                //         } else {
-                //             if (_.isEmpty(complete)) {
-                //                 cbWaterfall(null, []);
-                //             } else {
-                //                 console.log("complete", complete);
-                //                 cbWaterfall(null, complete);
-                //             }
-                //         }
-                //     });
-                // },
-                function (cbWaterfall1) {
+                function (callback) {
+                    Config.generatePdf(data.user[0].name, function (err, data) {
+                        if (err) {
+                            // console.log(err);
+                            callback(err, null);
+                        } else {
+                            if (_.isEmpty(data)) {
+                                callback(err, null);
+                            } else {
+                                callback(null, data);
+                            }
+                        }
+                    });
+                },
+                function (pdfdata, cbWaterfall1) {
                     var emailData = {};
                     console.log("data: ", data);
                     emailData.name = data.user[0].name;
                     emailData.from = "pehlakadam@nw18.com";
                     emailData.email = data.user[0].email;
                     emailData.filename = "mail1.ejs";
-                    emailData.file = "views/certificate.ejs";
+                    emailData.file = pdfdata.name;
                     emailData.subject = "Pehla Kadam: Answer to Query";
                     console.log("emaildata", emailData);
 

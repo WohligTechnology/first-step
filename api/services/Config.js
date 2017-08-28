@@ -396,22 +396,23 @@ var model = {
                                     from_email = new helper.Email(data.from);
                                     to_email = new helper.Email(data.email);
                                     subject = data.subject;
-                                    content = new helper.Content("text/html", body)
-                                    mail = new helper.Mail(from_email, subject, to_email, content)
+                                    // name = data.name;
+                                    content = new helper.Content("text/html", body);
+                                    mail = new helper.Mail(from_email, subject, to_email, content);
                                     if (data.file) {
-                                        console.log("*******************", data.file)
                                         var attachment = new helper.Attachment();
-                                        var file = fs.readFileSync(data.file);
-                                        console.log("****file", file);
+                                        var file = fs.readFileSync('pdf/' + data.file);
                                         var base64File = new Buffer(file).toString('base64');
                                         attachment.setContent(base64File);
                                         // attachment.setType('application/text');
                                         var pdfgen = data.filename.split(".");
                                         data.filename = pdfgen[0] + ".pdf";
-                                        attachment.setFilename(data.file);
+                                        attachment.setFilename(data.filename);
                                         attachment.setDisposition('attachment');
                                         mail.addAttachment(attachment);
+
                                     }
+
                                     // console.log("api_key", userdata[0].name);
                                     var sg = require('sendgrid')(userdata[0].name);
                                     var request = sg.emptyRequest({
@@ -419,8 +420,9 @@ var model = {
                                         path: '/v3/mail/send',
                                         body: mail.toJSON()
                                     });
-
+                                    // console.log("request", request.body.attachments);
                                     sg.API(request, function (error, response) {
+                                        console.log("response", response);
                                         if (error) {
                                             console.log('Error response received', error);
                                             callback(error, null);
@@ -446,6 +448,78 @@ var model = {
                     }, null);
                 }
             });
+    },
+
+    generatePdf: function (page, callback) {
+        var pdf = require('html-pdf');
+        var obj = {};
+        var env = {};
+        console.log("page", page);
+        obj.name = page;
+
+
+
+        var file = "certificate";
+        var i = 0;
+        sails.hooks.views.render(file, obj, function (err, html) {
+            if (err) {
+                console.log("errr", err);
+                callback(err);
+            } else {
+                console.log("else");
+                var path = "pdf/";
+                var newFilename = page._id + file + ".pdf";
+                var writestream = fs.createWriteStream(path + newFilename);
+                writestream.on('finish', function (err, res) {
+                    if (err) {
+                        console.log("Something Fishy", err);
+                    } else {
+                        red("Finish is working");
+                        callback(null, {
+                            name: newFilename,
+                            url: newFilename
+                        });
+                    }
+                });
+
+                var options = {
+                    "phantomPath": "node_modules/phantomjs/bin/phantomjs",
+                    // Export options 
+                    "directory": "/tmp",
+                    "height": "10.5in", // allowed units: mm, cm, in, px
+                    "width": "10in",
+                    // "format": "Letter", // allowed units: A3, A4, A5, Legal, Letter, Tabloid 
+                    // "orientation": "portrait", // portrait or landscape 
+                    // "zoomFactor": "1", // default is 1 
+                    // Page options 
+                    "border": {
+                        "top": "2cm", // default is 0, units: mm, cm, in, px 
+                        "right": "1cm",
+                        "bottom": "1cm",
+                        "left": "1cm"
+                    },
+                    // File options 
+                    "type": "pdf", // allowed file types: png, jpeg, pdf 
+                    "timeout": 30000, // Timeout that will cancel phantomjs, in milliseconds 
+                    "footer": {
+                        "height": "2cm",
+                    },
+                    // "filename": page.filename + ".pdf"
+                };
+
+                pdf.create(html, options).toStream(function (err, stream) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        green("IN PDF CREATE");
+                        console.log("In Config To generate PDF");
+                        i++;
+                        stream.pipe(writestream);
+                    }
+                });
+            }
+
+        });
     },
 
     emailTo: function (data, callback) {
