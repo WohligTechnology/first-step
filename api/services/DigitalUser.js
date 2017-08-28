@@ -75,7 +75,7 @@ var model = {
                     emailData.from = "pehlakadam@nw18.com";
                     emailData.email = data.user[0].email;
                     emailData.filename = "mail1.ejs";
-                    emailData.file = "certificate.ejs";
+                    emailData.file = "views/certificate.ejs";
                     emailData.subject = "Pehla Kadam: Answer to Query";
                     console.log("emaildata", emailData);
 
