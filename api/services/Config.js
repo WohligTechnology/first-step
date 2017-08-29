@@ -8,8 +8,8 @@ schema.plugin(deepPopulate, {});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Config', schema);
-var requrl = "http://wohlig.io/api/";
-// var requrl = "http://pehlakadam.in/api/";
+// var requrl = "http://wohlig.io/api/";
+var requrl = "http://pehlakadam.in/api/";
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
     maxRow: 20,
@@ -486,7 +486,7 @@ var model = {
                     "phantomPath": "node_modules/phantomjs/bin/phantomjs",
                     // Export options 
                     "directory": "/tmp",
-                    "height": "10.5in", // allowed units: mm, cm, in, px
+                    "height": "14in", // allowed units: mm, cm, in, px
                     "width": "10in",
                     // "format": "Letter", // allowed units: A3, A4, A5, Legal, Letter, Tabloid 
                     // "orientation": "portrait", // portrait or landscape 

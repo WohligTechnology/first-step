@@ -7,15 +7,15 @@
     "fields": [{
             "name": "Digital User",
             "isSort": "",
-            "tableRef": "name",
-            "type": "text",
+            "tableRef": "digitalUser",
+            "type": "select",
             "field": "name"
         },
         {
             "name": "Digital Course",
             "isSort": "",
-            "tableRef": "name",
-            "type": "text",
+            "tableRef": "digitalCourse",
+            "type": "select",
             "fields": "name"
         }
     ],

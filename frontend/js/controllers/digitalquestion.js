@@ -173,20 +173,46 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       };
 
 
+
       $scope.constraints.answerProvided = [];
-      $scope.tempObj = {};
+      // $scope.tempObj = {};
+      $scope.finalFuntion = function (qId, ansId) {
+            var demo = _.find($scope.constraints.answerProvided, function (o) {
+                  if (qId == o.question) {
+                        console.log("demo****", o);
+                        _.pull($scope.constraints.answerProvided, o);
+
+                  }
+            });
+            // console.log("demo", demo);
+            // if (demo !== undefined) {
+            //       _.pull($scope.constraints.answerProvided, demo);
+            // }
+            console.log("######", qId, ansId);
+            $scope.tempObj.answer = ansId;
+            $scope.tempObj.question = qId;
+            $scope.constraints.answerProvided.push($scope.tempObj);
+            console.log("$scope.constraints.answerProvided", $scope.constraints.answerProvided);
+      };
       $scope.answeredQstn = function (ansId, qId) {
             $scope.qId = {
                   qId: qId
             };
             apiService.apiWithData("Question/getCorrectAnswer", $scope.qId, function (data) {
+                  $scope.tempObj = {};
                   $scope.correctAnswer = data.data[0].correctAnswer;
                   $scope.tempObj.isCorrect = $scope.correctAnswer;
-
+                  $scope.tempObj.answer = ansId;
+                  $scope.tempObj.question = qId;
                   // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
 
                   // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
                   console.log("ansId", ansId);
+                  console.log("$scope.qId", $scope.qId);
+                  console.log("$scope.tempObj", $scope.tempObj);
+                  $scope.finalFuntion(qId, ansId);
+
+
 
                   // console.log(" $scope.correctAnswer", $scope.correctAnswer);
                   // if ($scope.constraints.answerProvided.length === 0) {
@@ -203,20 +229,25 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   //             $scope.constraints.answerProvided.push($scope.tempObj);
                   //       }
                   // });
-                  var index = _.findIndex($scope.constraints.answerProvided, {
-                        'answer': ansId,
-                        'question': qId
-                  });
-                  console.log(index, "index");
-                  if (index <= -1) {
-                        $scope.tempObj.answer = ansId;
-                        $scope.tempObj.question = qId;
-                        $scope.constraints.answerProvided.push($scope.tempObj);
-                        $scope.tempObj = {};
-                  } else {
-                        $scope.constraints.answerProvided.splice(index, 1);
-                  }
-                  console.log("$scope.constraints.answerProvided", $scope.constraints.answerProvided);
+                  // var index = _.findIndex($scope.constraints.answerProvided, {
+                  //       'answer': ansId,
+                  //       'question': qId
+                  // });
+                  // console.log(index, "index");
+                  // if (index <= -1) {
+                  //       console.log("insideif");
+                  //       $scope.tempObj.answer = ansId;
+                  //       $scope.tempObj.question = qId;
+                  //       $scope.constraints.answerProvided.push($scope.tempObj);
+                  //       $scope.tempObj = {};
+                  // } else {
+                  //       console.log("inside else")
+                  //       $scope.constraints.answerProvided.splice(index, 1);
+                  // }
+
+
+
+
                   // $scope.tempObj.answer = ansId;
                   // $scope.tempObj.question = qId;
                   // $scope.constraints.answerProvided.push($scope.tempObj);
