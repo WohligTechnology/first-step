@@ -76,7 +76,7 @@ var model = {
                     emailData.email = data.user[0].email;
                     emailData.filename = "mail1.ejs";
                     emailData.file = pdfdata.name;
-                    emailData.subject = "Pehla Kadam: Answer to Query";
+                    emailData.subject = "Pehla Kadam:Certificate";
                     console.log("emaildata", emailData);
 
                     Config.email(emailData, function (err, emailRespo) {
