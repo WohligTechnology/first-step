@@ -7,7 +7,7 @@
 
             <div class="question-digital" ng-repeat="digitalquestion in Question track by $index">
 
-                <p class="radio-left font25"> <span>{{digitalquestion.No}}.</span><span ng-bind-html="digitalquestion.question | safeHtml"></span></p>
+                <p class="radio-left font25"> <span>{{digitalquestion.No}}</span><span ng-bind-html="digitalquestion.question | safeHtml"></span></p>
                 <div class="radio-left" ng-repeat=" data in digitalquestion.createOptions">
                     <input type="radio" id="{{digitalquestion._id}}" name="{{digitalquestion._id}}" ng-model="formData.Correct" value="{{data.option}}"
                         ng-click="answeredQstn(formData.Correct,digitalquestion._id);">

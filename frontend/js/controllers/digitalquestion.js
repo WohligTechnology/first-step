@@ -181,7 +181,9 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   if (qId == o.question) {
                         console.log("demo****", o);
                         _.pull($scope.constraints.answerProvided, o);
-
+                        $scope.tempObj.answer = ansId;
+                        $scope.tempObj.question = qId;
+                        $scope.constraints.answerProvided.push($scope.tempObj);
                   }
             });
             // console.log("demo", demo);
