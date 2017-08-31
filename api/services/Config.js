@@ -460,15 +460,20 @@ var model = {
 
 
         var file = "certificate";
+
+        console.log(" **** inside generatePdf ******** & file is ", file);
+
         var i = 0;
         sails.hooks.views.render(file, obj, function (err, html) {
+
             if (err) {
                 console.log("errr", err);
                 callback(err);
             } else {
                 console.log("else");
                 var path = "pdf/";
-                var newFilename = page._id + file + ".pdf";
+                var newFilename = file + ".pdf";
+                console.log(" **** inside sails.hooks.views.render ******** & newFilename is ", newFilename);
                 var writestream = fs.createWriteStream(path + newFilename);
                 writestream.on('finish', function (err, res) {
                     if (err) {
@@ -508,6 +513,7 @@ var model = {
                 };
 
                 pdf.create(html, options).toStream(function (err, stream) {
+                    console.log(" ***** inside pdf.create ********");
                     if (err) {
                         callback(err);
                     } else {

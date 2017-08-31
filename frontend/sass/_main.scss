@@ -1666,7 +1666,7 @@ footer {
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 85vh;
+    height: 90vh;
 }
 
 .question-main {
@@ -1682,6 +1682,9 @@ footer {
     p {
         display: inline-block;
         color: white;
+    }
+    input {
+        cursor: pointer;
     }
     span {
         font-family: 'Himalaya';
@@ -1742,6 +1745,9 @@ footer {
     p {
         display: inline-block;
         color: white;
+    }
+    input {
+        cursor: pointer;
     }
     span {
         font-size: 20px;

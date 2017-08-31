@@ -33,7 +33,6 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
                 data = data.data;
                 console.log("saveSelectedAnswer", data);
                 callback(data);
-
             });
         },
         apiWithoutData: function (formData, callback) {

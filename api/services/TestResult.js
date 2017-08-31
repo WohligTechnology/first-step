@@ -125,7 +125,17 @@ var model = {
             } else {
                 console.log("%%%%%%%%%%%%%%%%%%%%Inside for loop%%%%%%%%%%%%%%%%%%  else %%%%%%%%%%%%%%%%%%%%%%%%")
                 flag = true;
-
+                TestResult.remove({
+                    _id: data._id
+                }, function (err, data) {
+                    if (err) {
+                        console.log(" ***************** inside err ********************** ");
+                    } else if (_.isEmpty()) {
+                        console.log(" ****************** inside null ********************* ");
+                    } else {
+                        console.log(" ******************* inside success ******************** ");
+                    }
+                });
             }
 
         }
