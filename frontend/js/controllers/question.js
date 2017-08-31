@@ -12,7 +12,7 @@ myApp.controller('QuestionPaperCtrl', function ($scope, apiService, $stateParams
         data._id = $stateParams.userId;
         data.contest = [];
         data.contest.push({
-            question: "सबसे ज्यादा ब्याज किस कार्ड पर लगता है",
+            question: "डेट फंड कहां निवेश करते हैं",
             answer: data.answer
         });
         // console.log("data is..", data.question);
