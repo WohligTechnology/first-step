@@ -27,9 +27,9 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 
             });
         },
-        saveSelectedAnswer: function (formData, callback) {
+        saveSelectedAnswer: function (url, formData, callback) {
             console.log("******saveSelectedAnswer *******", formData);
-            $http.post(adminurl + formData).then(function (data) {
+            $http.post(adminurl + url, formData).then(function (data) {
                 data = data.data;
                 console.log("saveSelectedAnswer", data);
                 callback(data);
