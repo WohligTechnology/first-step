@@ -54,7 +54,7 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "digitalCourse
 var model = {
 
     validUser: function (data, callback) {
-        console.log("data inside valid user **** api:", data)
+        // console.log("data inside valid user **** api:", data)
         Contest.update({
             _id: mongoose.Types.ObjectId(data._id)
         }, {
@@ -75,7 +75,7 @@ var model = {
     },
 
     saveDigitalUser: function (data, callback) {
-        console.log("*****data inside savedigitalUser****", data)
+        // console.log("*****data inside savedigitalUser****", data)
         var data1 = this(data);
         data1.digitalUser = mongoose.Types.ObjectId(data.digitalUser);
         data1.digitalCourse = mongoose.Types.ObjectId(data.digitalCourse);
@@ -89,7 +89,7 @@ var model = {
         }
         // console.log("data inside savedigitalUser", data1)
         data1.save(function (err, found) {
-            console.log("Found: ", found);
+            // console.log("Found: ", found);
             if (err) {
                 callback(err, null);
             } else if (_.isEmpty(found)) {
@@ -111,29 +111,29 @@ var model = {
     },
 
     getRightUser: function (data, callback) {
-        console.log("*****inside getRight User*******", data);
+        // console.log("*****inside getRight User*******", data);
         // data.answerProvided = [];
         var flag = false;
         // console.log("&&&&&&&&&&&&idx < data.answerProvided.length**", data.answerProvided.length);
         // console.log("data.answerProvided.answer", data.answerProvided[0].answer);
         // console.log("data.answerProvided.isCorrect", data.answerProvided[0].isCorrect);
         for (var idx = 0; idx < data.answerProvided.length && flag == false; idx++) {
-            console.log("%%%%%%%%%%%%%%%%%%%%Length%%%%%%%%%%%%%%%%%%%%%%%%%", data.answerProvided[idx].answer);
+            // console.log("%%%%%%%%%%%%%%%%%%%%Length%%%%%%%%%%%%%%%%%%%%%%%%%", data.answerProvided[idx].answer);
             if (data.answerProvided[idx].answer == data.answerProvided[idx].isCorrect) {
-                console.log("%%%%%%%%%%%%%%%%%%%%Inside for loop%%%%%%%%%%%%%%%%    if  %%%%%%%%%%%%%%%%%%%%%%%%%%")
+                // console.log("%%%%%%%%%%%%%%%%%%%%Inside for loop%%%%%%%%%%%%%%%%    if  %%%%%%%%%%%%%%%%%%%%%%%%%%")
 
             } else {
-                console.log("%%%%%%%%%%%%%%%%%%%%Inside for loop%%%%%%%%%%%%%%%%%%  else %%%%%%%%%%%%%%%%%%%%%%%%")
+                // console.log("%%%%%%%%%%%%%%%%%%%%Inside for loop%%%%%%%%%%%%%%%%%%  else %%%%%%%%%%%%%%%%%%%%%%%%")
                 flag = true;
                 TestResult.remove({
                     _id: data._id
                 }, function (err, data) {
                     if (err) {
-                        console.log(" ***************** inside err ********************** ");
+                        // console.log(" ***************** inside err ********************** ");
                     } else if (_.isEmpty()) {
-                        console.log(" ****************** inside null ********************* ");
+                        // console.log(" ****************** inside null ********************* ");
                     } else {
-                        console.log(" ******************* inside success ******************** ");
+                        // console.log(" ******************* inside success ******************** ");
                     }
                 });
             }

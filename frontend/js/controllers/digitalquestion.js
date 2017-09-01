@@ -17,13 +17,13 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       $scope.constraints.digitalUser = $stateParams.userId;
       // console.log("State param id is:", $scope.id)
       apiService.apiWithoutData("Question/getLastAddedDigitalCourse", function (data) {
-            console.log("getAllQuestion inside controller", data.data);
+            // console.log("getAllQuestion inside controller", data.data);
             $scope.DigitalCourse1 = data.data[0]._id;
             $scope.constraints.digitalCourse = data.data[0]._id;
             $scope.DigitalCourse = {
                   _id: data.data[0]._id
             };
-            console.log("DigitalCourse data", $scope.DigitalCourse1);
+            // console.log("DigitalCourse data", $scope.DigitalCourse1);
             $scope.tempFun($scope.DigitalCourse);
       });
 
@@ -126,12 +126,12 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       $scope.digitalSubmit = function () {
             apiService.apiWithData("TestResult/saveDigitalUser", $scope.constraints, function (data) {
                   $scope.data = data.data;
-                  console.log("$scope.data", $scope.data);
+                  // console.log("$scope.data", $scope.data);
                   if ($scope.data.flag == false) {
-                        console.log("Inside if")
+                        // console.log("Inside if")
                         $scope.digitalthanks();
                   } else {
-                        console.log("inside else");
+                        // console.log("inside else");
                         $scope.digitalsorry();
                   }
             });
@@ -143,12 +143,12 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
             $scope.id = {
                   _id: $stateParams.userId,
             }
-            console.log("inside thank u modal state param is is", $scope.id);
+            // console.log("inside thank u modal state param is is", $scope.id);
             apiService.apiWithData("DigitalUser/getUser", $scope.id, function (data) {
                   $scope.user = {
                         user: data.data
                   }
-                  console.log("inside thank u modal state param is is*****", data.data);
+                  // console.log("inside thank u modal state param is is*****", data.data);
                   apiService.apiWithData("DigitalUser/saveMailData", $scope.user, function (data) {
 
                   });
@@ -179,7 +179,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       $scope.finalFuntion = function (qId, ansId) {
             var demo = _.find($scope.constraints.answerProvided, function (o) {
                   if (qId == o.question) {
-                        console.log("demo****", o);
+                        // console.log("demo****", o);
                         _.pull($scope.constraints.answerProvided, o);
                         // $scope.tempObj.answer = ansId;
                         // $scope.tempObj.question = qId;
@@ -190,11 +190,11 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
             // if (demo !== undefined) {
             //       _.pull($scope.constraints.answerProvided, demo);
             // }
-            console.log("######", qId, ansId);
+            // console.log("######", qId, ansId);
             $scope.tempObj.answer = ansId;
             $scope.tempObj.question = qId;
             $scope.constraints.answerProvided.push($scope.tempObj);
-            console.log("$scope.constraints.answerProvided", $scope.constraints.answerProvided);
+            // console.log("$scope.constraints.answerProvided", $scope.constraints.answerProvided);
       };
       $scope.answeredQstn = function (ansId, qId) {
             $scope.qId = {
@@ -209,14 +209,14 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
 
                   // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
-                  console.log("ansId", ansId);
-                  console.log("$scope.qId", $scope.qId);
-                  console.log("$scope.tempObj", $scope.tempObj);
+                  // console.log("ansId", ansId);
+                  // console.log("$scope.qId", $scope.qId);
+                  // console.log("$scope.tempObj", $scope.tempObj);
                   // $scope.finalFuntion(qId, ansId);
 
 
 
-                  console.log(" $scope.correctAnswer", $scope.correctAnswer);
+                  // console.log(" $scope.correctAnswer", $scope.correctAnswer);
                   if ($scope.constraints.answerProvided.length === 0) {
                         $scope.tempObj.answer = ansId;
                         $scope.tempObj.question = qId;
@@ -224,11 +224,11 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   }
                   _.each($scope.constraints.answerProvided, function (key) {
                         if (key.question === qId) {
-                              console.log("***inside if")
+                              // console.log("***inside if")
                               key.answer = ansId;
                               // $scope.constraints.answerProvided.pull($scope.tempObj);
                         } else {
-                              console.log("***inside else")
+                              // console.log("***inside else")
                               $scope.tempObj.answer = ansId;
                               $scope.tempObj.question = qId;
                               $scope.constraints.answerProvided.push($scope.tempObj);
@@ -260,7 +260,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
 
                   // console.log($scope.constraints, " $scope.constraints");
                   $scope.constraints.answerProvided = _.uniqBy($scope.constraints.answerProvided, 'question');
-                  console.log($scope.constraints, " $scope.constraints");
+                  // console.log($scope.constraints, " $scope.constraints");
 
                   //     var demo = _.find($scope.constraints.answerProvided, function (o) {
                   //       if (qId == o.question) {

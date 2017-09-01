@@ -16,7 +16,7 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
 
     findAnswerForQuestion: function (data, cbWaterfall1) {
-        console.log("data inside findAnswerForQuestion ", data);
+        // console.log("data inside findAnswerForQuestion ", data);
         ContestAnswer.find({
             question: data.question
         }).exec(function (err, found) {
@@ -25,7 +25,7 @@ var model = {
             } else if (_.isEmpty(found)) {
                 cbWaterfall1("noDataound", null);
             } else {
-                console.log("??????found inside findAnswerForQuestion??????????", found);
+                // console.log("??????found inside findAnswerForQuestion??????????", found);
                 cbWaterfall1(null, found);
             }
 

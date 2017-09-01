@@ -34,17 +34,17 @@ var model = {
     //     });
     // },
     getUser: function (data, callback) {
-        console.log("inside api**********", data)
+        // console.log("inside api**********", data)
         DigitalUser.find({
             _id: mongoose.Types.ObjectId(data._id)
         }).exec(function (err, found) {
-            console.log("Found: ", found);
+            // console.log("Found: ", found);
             if (err) {
                 callback(err, null);
             } else if (_.isEmpty(found)) {
                 callback(null, "noDataound");
             } else {
-                console.log("found in Question", found);
+                // console.log("found in Question", found);
                 callback(null, found);
             }
 
