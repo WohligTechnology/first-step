@@ -181,9 +181,9 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   if (qId == o.question) {
                         console.log("demo****", o);
                         _.pull($scope.constraints.answerProvided, o);
-                        $scope.tempObj.answer = ansId;
-                        $scope.tempObj.question = qId;
-                        $scope.constraints.answerProvided.push($scope.tempObj);
+                        // $scope.tempObj.answer = ansId;
+                        // $scope.tempObj.question = qId;
+                        // $scope.constraints.answerProvided.push($scope.tempObj);
                   }
             });
             // console.log("demo", demo);
@@ -212,25 +212,28 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   console.log("ansId", ansId);
                   console.log("$scope.qId", $scope.qId);
                   console.log("$scope.tempObj", $scope.tempObj);
-                  $scope.finalFuntion(qId, ansId);
+                  // $scope.finalFuntion(qId, ansId);
 
 
 
-                  // console.log(" $scope.correctAnswer", $scope.correctAnswer);
-                  // if ($scope.constraints.answerProvided.length === 0) {
-                  //       $scope.tempObj.answer = ansId;
-                  //       $scope.tempObj.question = qId;
-                  //       $scope.constraints.answerProvided.push($scope.tempObj);
-                  // }
-                  // _.each($scope.constraints.answerProvided, function (key) {
-                  //       if (key.question === qId) {
-                  //             key.answer = ansId;
-                  //       } else {
-                  //             $scope.tempObj.answer = ansId;
-                  //             $scope.tempObj.question = qId;
-                  //             $scope.constraints.answerProvided.push($scope.tempObj);
-                  //       }
-                  // });
+                  console.log(" $scope.correctAnswer", $scope.correctAnswer);
+                  if ($scope.constraints.answerProvided.length === 0) {
+                        $scope.tempObj.answer = ansId;
+                        $scope.tempObj.question = qId;
+                        $scope.constraints.answerProvided.push($scope.tempObj);
+                  }
+                  _.each($scope.constraints.answerProvided, function (key) {
+                        if (key.question === qId) {
+                              console.log("***inside if")
+                              key.answer = ansId;
+                              // $scope.constraints.answerProvided.pull($scope.tempObj);
+                        } else {
+                              console.log("***inside else")
+                              $scope.tempObj.answer = ansId;
+                              $scope.tempObj.question = qId;
+                              $scope.constraints.answerProvided.push($scope.tempObj);
+                        }
+                  });
                   // var index = _.findIndex($scope.constraints.answerProvided, {
                   //       'answer': ansId,
                   //       'question': qId
@@ -255,9 +258,17 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
                   // $scope.constraints.answerProvided.push($scope.tempObj);
 
 
-
                   // console.log($scope.constraints, " $scope.constraints");
+                  $scope.constraints.answerProvided = _.uniqBy($scope.constraints.answerProvided, 'question');
+                  console.log($scope.constraints, " $scope.constraints");
 
+                  //     var demo = _.find($scope.constraints.answerProvided, function (o) {
+                  //       if (qId == o.question) {
+                  //             console.log("demo****", o);
+                  //             _.pull($scope.constraints.answerProvided, o);
+
+                  //       }
+                  // });
 
             });
 
