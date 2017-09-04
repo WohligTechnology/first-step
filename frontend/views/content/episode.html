@@ -14,19 +14,19 @@
                     </div>
                 </div>
             </div>
-        <div class="season-common">
+            <div class="season-common">
                 <div ng-class="{'max-height-s' : more3 == true , 'min-height-s':more3 == false}" class="seasonOpacity">
                     <div class="season-text">
                         <h3>Season 3</h3>
                     </div>
                     <div class="row ">
                         <!--<pre>{{season2}}</pre>-->
-                               <div class="col-md-12" ng-show="season3.length == 0">
-                                    <h4> No Data found</h4>
-                                </div>
+                        <div class="col-md-12" ng-show="season3.length == 0">
+                            <h4> No Data found</h4>
+                        </div>
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season3 | filter: searchName">
                             <div class="episodes">
-                         
+
                                 <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/hqdefault.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
                                     <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
@@ -39,10 +39,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="pull-right gallery-btn">
+                <!--<div class="pull-right gallery-btn">
                     <button ng-click="viewMore3()" ng-if="view3">View More</button>
                     <button ng-click="viewLess3()" ng-if="!view3">View Less</button>
-                </div>
+                </div>-->
             </div>
             <div class="season-common">
                 <div ng-class="{'max-height-season' : more2 == true , 'min-height-season':more2 == false}" class="seasonOpacity">
@@ -51,12 +51,12 @@
                     </div>
                     <div class="row ">
                         <!--<pre>{{season2}}</pre>-->
-                               <div class="col-md-12" ng-show="season2.length == 0">
-                                    <h4> No Data found</h4>
-                                </div>
+                        <div class="col-md-12" ng-show="season2.length == 0">
+                            <h4> No Data found</h4>
+                        </div>
                         <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in season2 | filter: searchName">
                             <div class="episodes">
-                         
+
                                 <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/1.jpg" class="img-responsive img-full">
                                 <div class="video-icon">
                                     <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
