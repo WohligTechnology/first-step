@@ -55,7 +55,8 @@ var model = {
         console.log("inside saveMailData api", data.user[0].name);
         async.waterfall([
                 function (callback) {
-                    Config.generatePdf(_.capitalize(data.user[0].name), function (err, data) {
+                    Config.generatePdf(data.user[0].name, function (err, data) {
+
                         if (err) {
                             // console.log(err);
                             callback(err, null);
