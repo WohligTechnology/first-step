@@ -404,7 +404,7 @@ var model = {
                                         var file = fs.readFileSync('pdf/' + data.file);
                                         var base64File = new Buffer(file).toString('base64');
                                         attachment.setContent(base64File);
-                                        // attachment.setType('application/text');
+                                        attachment.setType('application/pdf');
                                         var pdfgen = data.filename.split(".");
                                         data.filename = pdfgen[0] + ".pdf";
                                         attachment.setFilename(data.filename);
@@ -480,6 +480,7 @@ var model = {
                         console.log("Something Fishy", err);
                     } else {
                         red("Finish is working");
+                        console.log(res);
                         callback(null, {
                             name: newFilename,
                             url: newFilename
