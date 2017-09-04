@@ -465,7 +465,7 @@ var model = {
 
         var i = 0;
         sails.hooks.views.render(file, obj, function (err, html) {
-
+            console.log(html);
             if (err) {
                 console.log("errr", err);
                 callback(err);
