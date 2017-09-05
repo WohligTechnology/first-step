@@ -6,11 +6,11 @@
                     <img src="img/minutebulb.png" alt="">
                 </div>
                 <div class="inline-block minutetips-heading">
-                    <h1>#1MINUTETIPS</h1>
+                    <h1>#1MINTIPS</h1>
                 </div>
             </div>
             <div class="minute-first">
-                <p>CNBC launches a special format for quick financial education by means of #1MinuteTips Experts at CNBC-TV18 will
+                <p>CNBC launches a special format for quick financial education by means of #1MINTIPS Experts at CNBC-TV18 will
                     give financial solutions in just 60 seconds Topics across asset classes will be a part of this format
                     and will include topics such as insurance, gold, security, mutual funds, personal finance, commodities,
                     other investments etc.</p>
@@ -19,7 +19,7 @@
                 <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="minute-first">
                         <div class="border-yellow">
-                            <h1>#1MINUTETIPS</h1>
+                            <h1>#1MINTIPS</h1>
                             <p>CNBC launches a special format for quick financial education by means of #1MinTips Experts at
                                 CNBC-TV18 will give financial solutions in just 60 seconds Topics across asset classes will
                                 be a part of this format and will include topics such as insurance, gold, security, mutual
@@ -49,7 +49,25 @@
     <div class="minutestips-video-section">
         <div class="container">
             <div class="comming-soon text-center">
-                <h2>Coming Soon</h2>
+                <div class="row ">
+                    <!--<pre>{{season2}}</pre>-->
+                    <!--<div class="col-md-12" ng-show="minuteEpisode.length == 0">
+                        <h4> No Data found</h4>
+                    </div>-->
+                    <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in minuteEpisode">
+                        <div class="episodes">
+
+                            <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/hqdefault.jpg" class="img-responsive img-full">
+                            <div class="video-icon">
+                                <a class="fancybox.iframe" ng-href="https://www.youtube.com/embed/{{itemSeason.videoUrl}}?autoplay=1" fancybox>
+                                        <img src="img/youtube-small.png" class="img-responsive">
+                                    </a>
+                            </div>
+                            <p class="text-center">{{itemSeason.episodeno}}</p>
+                            <p class="text-center hidden">{{itemSeason.searchName}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
