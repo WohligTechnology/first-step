@@ -12,8 +12,8 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         $scope.formSubmitted = true;
     };
     $scope.minuteEpisode = [{
-        imageUrl: "gvuTNoliPdE",
-        videoUrl: "gvuTNoliPdE",
+        imageUrl: "-PCujwv9xLI",
+        videoUrl: "-PCujwv9xLI",
         episodeno: "SIP",
     }];
 })
