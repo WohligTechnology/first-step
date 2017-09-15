@@ -52,7 +52,14 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             videoUrl: "K5npGoW5ZSI",
             episodeno: "Episode 5",
             searchName: "Insurance",
+        },
+            {
+            imageUrl: "SHqB-3ZxJsM",
+            videoUrl: "SHqB-3ZxJsM",
+            episodeno: "Episode 6",
+            searchName: "Health Insurance",
         }
+       
     ];
 
     $scope.more3 = false;
