@@ -12,6 +12,13 @@
             "field": "name"
         },
         {
+            "name": "Digital User Email",
+            "isSort": "",
+            "tableRef": "digitalUser",
+            "type": "select1",
+            "field": "email"
+        },
+        {
             "name": "Digital Course",
             "isSort": "",
             "tableRef": "digitalCourse",
@@ -41,13 +48,7 @@
             "value": "_id"
         }
     }],
-    "button": [{
-        "name": "Create",
-        "icon": "plus",
-        "class": "btn-success",
-        "type": "page",
-        "action": "createTestResult"
-    }],
+    "button": [],
     "apiCall": {
         "url": "TestResult/search",
         "params": "_id"

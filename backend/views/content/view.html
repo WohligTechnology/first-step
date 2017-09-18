@@ -60,6 +60,7 @@
 
                                             <view-field ng-if="field.type!='select'" type="field" value="item"></view-field>
                                             <span ng-if="field.type=='select' && field.tableRef=='digitalUser'">{{item.digitalUser.name}}</span>
+                                              <span ng-if="field.type=='select1' && field.tableRef=='digitalUser'">{{item.digitalUser.email}}</span>
                                             <span ng-if="field.type=='select' && field.tableRef=='digitalCourse'">{{item.digitalCourse.name}}</span>
                                             <!--<view-field type="field" value="item"></view-field>-->
                                         </td>

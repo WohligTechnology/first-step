@@ -37,13 +37,7 @@
             "value": "_id"
         }
     }],
-    "button": [{
-        "name": "Create",
-        "icon": "plus",
-        "class": "btn-success",
-        "type": "page",
-        "action": "createDigitalUser"
-    }],
+    "button": [],
     "apiCall": {
         "url": "DigitalUser/search",
         "params": "_id"
