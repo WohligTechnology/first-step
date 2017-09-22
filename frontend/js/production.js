@@ -6766,8 +6766,8 @@ else if (typeof define === 'function' && define.amd) {
 //# sourceMappingURL=maps/swiper.jquery.js.map
 
 /**
- * @license AngularJS v1.6.4
- * (c) 2010-2017 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.6.0
+ * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window) {'use strict';
@@ -6805,29 +6805,31 @@ else if (typeof define === 'function' && define.amd) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
   return function() {
-    var code = arguments[0],
-      template = arguments[1],
+    var SKIP_INDEXES = 2;
+
+    var templateArgs = arguments,
+      code = templateArgs[0],
       message = '[' + (module ? module + ':' : '') + code + '] ',
-      templateArgs = sliceArgs(arguments, 2).map(function(arg) {
-        return toDebugString(arg, minErrConfig.objectMaxDepth);
-      }),
+      template = templateArgs[1],
       paramPrefix, i;
 
     message += template.replace(/\{\d+\}/g, function(match) {
-      var index = +match.slice(1, -1);
+      var index = +match.slice(1, -1),
+        shiftedIndex = index + SKIP_INDEXES;
 
-      if (index < templateArgs.length) {
-        return templateArgs[index];
+      if (shiftedIndex < templateArgs.length) {
+        return toDebugString(templateArgs[shiftedIndex]);
       }
 
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.6.4/' +
+    message += '\nhttp://errors.angularjs.org/1.6.0/' +
       (module ? module + '/' : '') + code;
 
-    for (i = 0, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
-      message += paramPrefix + 'p' + i + '=' + encodeURIComponent(templateArgs[i]);
+    for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
+      message += paramPrefix + 'p' + (i - SKIP_INDEXES) + '=' +
+        encodeURIComponent(toDebugString(templateArgs[i]));
     }
 
     return new ErrorConstructor(message);
@@ -6844,9 +6846,6 @@ function minErr(module, ErrorConstructor) {
   splice,
   push,
   toString,
-  minErrConfig,
-  errorHandlingConfig,
-  isValidObjectMaxDepth,
   ngMinErr,
   angularModule,
   uid,
@@ -6896,7 +6895,6 @@ function minErr(module, ErrorConstructor) {
   includes,
   arrayRemove,
   copy,
-  simpleCompare,
   equals,
   csp,
   jq,
@@ -6962,50 +6960,6 @@ var VALIDITY_STATE_PROPERTY = 'validity';
 
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-var minErrConfig = {
-  objectMaxDepth: 5
-};
-
- /**
- * @ngdoc function
- * @name angular.errorHandlingConfig
- * @module ng
- * @kind function
- *
- * @description
- * Configure several aspects of error handling in AngularJS if used as a setter or return the
- * current configuration if used as a getter. The following options are supported:
- *
- * - **objectMaxDepth**: The maximum depth to which objects are traversed when stringified for error messages.
- *
- * Omitted or undefined options will leave the corresponding configuration values unchanged.
- *
- * @param {Object=} config - The configuration object. May only contain the options that need to be
- *     updated. Supported keys:
- *
- * * `objectMaxDepth`  **{Number}** - The max depth for stringifying objects. Setting to a
- *   non-positive or non-numeric value, removes the max depth limit.
- *   Default: 5
- */
-function errorHandlingConfig(config) {
-  if (isObject(config)) {
-    if (isDefined(config.objectMaxDepth)) {
-      minErrConfig.objectMaxDepth = isValidObjectMaxDepth(config.objectMaxDepth) ? config.objectMaxDepth : NaN;
-    }
-  } else {
-    return minErrConfig;
-  }
-}
-
-/**
- * @private
- * @param {Number} maxDepth
- * @return {boolean}
- */
-function isValidObjectMaxDepth(maxDepth) {
-  return isNumber(maxDepth) && maxDepth > 0;
-}
 
 /**
  * @ngdoc function
@@ -7729,10 +7683,9 @@ function arrayRemove(array, value) {
     </file>
   </example>
  */
-function copy(source, destination, maxDepth) {
+function copy(source, destination) {
   var stackSource = [];
   var stackDest = [];
-  maxDepth = isValidObjectMaxDepth(maxDepth) ? maxDepth : NaN;
 
   if (destination) {
     if (isTypedArray(destination) || isArrayBuffer(destination)) {
@@ -7755,39 +7708,35 @@ function copy(source, destination, maxDepth) {
 
     stackSource.push(source);
     stackDest.push(destination);
-    return copyRecurse(source, destination, maxDepth);
+    return copyRecurse(source, destination);
   }
 
-  return copyElement(source, maxDepth);
+  return copyElement(source);
 
-  function copyRecurse(source, destination, maxDepth) {
-    maxDepth--;
-    if (maxDepth < 0) {
-      return '...';
-    }
+  function copyRecurse(source, destination) {
     var h = destination.$$hashKey;
     var key;
     if (isArray(source)) {
       for (var i = 0, ii = source.length; i < ii; i++) {
-        destination.push(copyElement(source[i], maxDepth));
+        destination.push(copyElement(source[i]));
       }
     } else if (isBlankObject(source)) {
       // createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty
       for (key in source) {
-        destination[key] = copyElement(source[key], maxDepth);
+        destination[key] = copyElement(source[key]);
       }
     } else if (source && typeof source.hasOwnProperty === 'function') {
       // Slow path, which must rely on hasOwnProperty
       for (key in source) {
         if (source.hasOwnProperty(key)) {
-          destination[key] = copyElement(source[key], maxDepth);
+          destination[key] = copyElement(source[key]);
         }
       }
     } else {
       // Slowest path --- hasOwnProperty can't be called as a method
       for (key in source) {
         if (hasOwnProperty.call(source, key)) {
-          destination[key] = copyElement(source[key], maxDepth);
+          destination[key] = copyElement(source[key]);
         }
       }
     }
@@ -7795,7 +7744,7 @@ function copy(source, destination, maxDepth) {
     return destination;
   }
 
-  function copyElement(source, maxDepth) {
+  function copyElement(source) {
     // Simple values
     if (!isObject(source)) {
       return source;
@@ -7824,7 +7773,7 @@ function copy(source, destination, maxDepth) {
     stackDest.push(destination);
 
     return needsRecurse
-      ? copyRecurse(source, destination, maxDepth)
+      ? copyRecurse(source, destination)
       : destination;
   }
 
@@ -7873,10 +7822,6 @@ function copy(source, destination, maxDepth) {
     }
   }
 }
-
-
-// eslint-disable-next-line no-self-compare
-function simpleCompare(a, b) { return a === b || (a !== a && b !== b); }
 
 
 /**
@@ -7959,7 +7904,7 @@ function equals(o1, o2) {
       }
     } else if (isDate(o1)) {
       if (!isDate(o2)) return false;
-      return simpleCompare(o1.getTime(), o2.getTime());
+      return equals(o1.getTime(), o2.getTime());
     } else if (isRegExp(o1)) {
       if (!isRegExp(o2)) return false;
       return o1.toString() === o2.toString();
@@ -8370,51 +8315,30 @@ function getNgAttribute(element, ngAttr) {
 }
 
 function allowAutoBootstrap(document) {
-  var script = document.currentScript;
-
-  if (!script) {
-    // IE does not have `document.currentScript`
+  if (!document.currentScript) {
     return true;
   }
-
-  // If the `currentScript` property has been clobbered just return false, since this indicates a probable attack
-  if (!(script instanceof window.HTMLScriptElement || script instanceof window.SVGScriptElement)) {
-    return false;
+  var src = document.currentScript.getAttribute('src');
+  var link = document.createElement('a');
+  link.href = src;
+  if (document.location.origin === link.origin) {
+    // Same-origin resources are always allowed, even for non-whitelisted schemes.
+    return true;
   }
-
-  var attributes = script.attributes;
-  var srcs = [attributes.getNamedItem('src'), attributes.getNamedItem('href'), attributes.getNamedItem('xlink:href')];
-
-  return srcs.every(function(src) {
-    if (!src) {
+  // Disabled bootstrapping unless angular.js was loaded from a known scheme used on the web.
+  // This is to prevent angular.js bundled with browser extensions from being used to bypass the
+  // content security policy in web pages and other browser extensions.
+  switch (link.protocol) {
+    case 'http:':
+    case 'https:':
+    case 'ftp:':
+    case 'blob:':
+    case 'file:':
+    case 'data:':
       return true;
-    }
-    if (!src.value) {
+    default:
       return false;
-    }
-
-    var link = document.createElement('a');
-    link.href = src.value;
-
-    if (document.location.origin === link.origin) {
-      // Same-origin resources are always allowed, even for non-whitelisted schemes.
-      return true;
-    }
-    // Disabled bootstrapping unless angular.js was loaded from a known scheme used on the web.
-    // This is to prevent angular.js bundled with browser extensions from being used to bypass the
-    // content security policy in web pages and other browser extensions.
-    switch (link.protocol) {
-      case 'http:':
-      case 'https:':
-      case 'ftp:':
-      case 'blob:':
-      case 'file:':
-      case 'data:':
-        return true;
-      default:
-        return false;
-    }
-  });
+  }
 }
 
 // Cached as it has to run during loading so that document.currentScript is available.
@@ -8778,7 +8702,7 @@ function bindJQuery() {
     extend(jQuery.fn, {
       scope: JQLitePrototype.scope,
       isolateScope: JQLitePrototype.isolateScope,
-      controller: /** @type {?} */ (JQLitePrototype).controller,
+      controller: JQLitePrototype.controller,
       injector: JQLitePrototype.injector,
       inheritedData: JQLitePrototype.inheritedData
     });
@@ -9011,9 +8935,6 @@ function setupModuleLoader(window) {
      * @returns {angular.Module} new module with the {@link angular.Module} api.
      */
     return function module(name, requires, configFn) {
-
-      var info = {};
-
       var assertNotHasOwnProperty = function(name, context) {
         if (name === 'hasOwnProperty') {
           throw ngMinErr('badname', 'hasOwnProperty is not a valid {0} name', context);
@@ -9048,45 +8969,6 @@ function setupModuleLoader(window) {
           _invokeQueue: invokeQueue,
           _configBlocks: configBlocks,
           _runBlocks: runBlocks,
-
-          /**
-           * @ngdoc method
-           * @name angular.Module#info
-           * @module ng
-           *
-           * @param {Object=} info Information about the module
-           * @returns {Object|Module} The current info object for this module if called as a getter,
-           *                          or `this` if called as a setter.
-           *
-           * @description
-           * Read and write custom information about this module.
-           * For example you could put the version of the module in here.
-           *
-           * ```js
-           * angular.module('myModule', []).info({ version: '1.0.0' });
-           * ```
-           *
-           * The version could then be read back out by accessing the module elsewhere:
-           *
-           * ```
-           * var version = angular.module('myModule').info().version;
-           * ```
-           *
-           * You can also retrieve this information during runtime via the
-           * {@link $injector#modules `$injector.modules`} property:
-           *
-           * ```js
-           * var version = $injector.modules['myModule'].info().version;
-           * ```
-           */
-          info: function(value) {
-            if (isDefined(value)) {
-              if (!isObject(value)) throw ngMinErr('aobj', 'Argument \'{0}\' must be an object', 'value');
-              info = value;
-              return this;
-            }
-            return info;
-          },
 
           /**
            * @ngdoc property
@@ -9366,15 +9248,9 @@ function shallowCopy(src, dst) {
 
 /* global toDebugString: true */
 
-function serializeObject(obj, maxDepth) {
+function serializeObject(obj) {
   var seen = [];
 
-  // There is no direct way to stringify object until reaching a specific depth
-  // and a very deep object can cause a performance issue, so we copy the object
-  // based on this specific depth and then stringify it.
-  if (isValidObjectMaxDepth(maxDepth)) {
-    obj = copy(obj, null, maxDepth);
-  }
   return JSON.stringify(obj, function(key, val) {
     val = toJsonReplacer(key, val);
     if (isObject(val)) {
@@ -9387,13 +9263,13 @@ function serializeObject(obj, maxDepth) {
   });
 }
 
-function toDebugString(obj, maxDepth) {
+function toDebugString(obj) {
   if (typeof obj === 'function') {
     return obj.toString().replace(/ \{[\s\S]*$/, '');
   } else if (isUndefined(obj)) {
     return 'undefined';
   } else if (typeof obj !== 'string') {
-    return serializeObject(obj, maxDepth);
+    return serializeObject(obj);
   }
   return obj;
 }
@@ -9468,6 +9344,7 @@ function toDebugString(obj, maxDepth) {
   $$ForceReflowProvider,
   $InterpolateProvider,
   $IntervalProvider,
+  $$HashMapProvider,
   $HttpProvider,
   $HttpParamSerializerProvider,
   $HttpParamSerializerJQLikeProvider,
@@ -9476,7 +9353,6 @@ function toDebugString(obj, maxDepth) {
   $jsonpCallbacksProvider,
   $LocationProvider,
   $LogProvider,
-  $$MapProvider,
   $ParseProvider,
   $RootScopeProvider,
   $QProvider,
@@ -9514,17 +9390,16 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.6.4',
+  full: '1.6.0',
   major: 1,
   minor: 6,
-  dot: 4,
-  codeName: 'phenomenal-footnote'
+  dot: 0,
+  codeName: 'rainbow-tsunami'
 };
 
 
 function publishExternalAPI(angular) {
   extend(angular, {
-    'errorHandlingConfig': errorHandlingConfig,
     'bootstrap': bootstrap,
     'copy': copy,
     'extend': extend,
@@ -9659,12 +9534,11 @@ function publishExternalAPI(angular) {
         $window: $WindowProvider,
         $$rAF: $$RAFProvider,
         $$jqLite: $$jqLiteProvider,
-        $$Map: $$MapProvider,
+        $$HashMap: $$HashMapProvider,
         $$cookieReader: $$CookieReaderProvider
       });
     }
-  ])
-  .info({ angularVersion: '1.6.4' });
+  ]);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -9868,6 +9742,12 @@ function jqLiteHasData(node) {
   return false;
 }
 
+function jqLiteCleanData(nodes) {
+  for (var i = 0, ii = nodes.length; i < ii; i++) {
+    jqLiteRemoveData(nodes[i]);
+  }
+}
+
 function jqLiteBuildFragment(html, context) {
   var tmp, tag, wrap,
       fragment = context.createDocumentFragment(),
@@ -9970,10 +9850,13 @@ function jqLiteClone(element) {
 }
 
 function jqLiteDealoc(element, onlyDescendants) {
-  if (!onlyDescendants && jqLiteAcceptsData(element)) jqLite.cleanData([element]);
+  if (!onlyDescendants) jqLiteRemoveData(element);
 
   if (element.querySelectorAll) {
-    jqLite.cleanData(element.querySelectorAll('*'));
+    var descendants = element.querySelectorAll('*');
+    for (var i = 0, l = descendants.length; i < l; i++) {
+      jqLiteRemoveData(descendants[i]);
+    }
   }
 }
 
@@ -10271,11 +10154,7 @@ forEach({
   data: jqLiteData,
   removeData: jqLiteRemoveData,
   hasData: jqLiteHasData,
-  cleanData: function jqLiteCleanData(nodes) {
-    for (var i = 0, ii = nodes.length; i < ii; i++) {
-      jqLiteRemoveData(nodes[i]);
-    }
-  }
+  cleanData: jqLiteCleanData
 }, function(fn, name) {
   JQLite[name] = fn;
 });
@@ -10641,15 +10520,12 @@ forEach({
 
   after: function(element, newElement) {
     var index = element, parent = element.parentNode;
+    newElement = new JQLite(newElement);
 
-    if (parent) {
-      newElement = new JQLite(newElement);
-
-      for (var i = 0, ii = newElement.length; i < ii; i++) {
-        var node = newElement[i];
-        parent.insertBefore(node, index.nextSibling);
-        index = node;
-      }
+    for (var i = 0, ii = newElement.length; i < ii; i++) {
+      var node = newElement[i];
+      parent.insertBefore(node, index.nextSibling);
+      index = node;
     }
   },
 
@@ -10803,70 +10679,50 @@ function hashKey(obj, nextUidFn) {
   return key;
 }
 
-// A minimal ES2015 Map implementation.
-// Should be bug/feature equivalent to the native implementations of supported browsers
-// (for the features required in Angular).
-// See https://kangax.github.io/compat-table/es6/#test-Map
-var nanKey = Object.create(null);
-function NgMapShim() {
-  this._keys = [];
-  this._values = [];
-  this._lastKey = NaN;
-  this._lastIndex = -1;
+/**
+ * HashMap which can use objects as keys
+ */
+function HashMap(array, isolatedUid) {
+  if (isolatedUid) {
+    var uid = 0;
+    this.nextUid = function() {
+      return ++uid;
+    };
+  }
+  forEach(array, this.put, this);
 }
-NgMapShim.prototype = {
-  _idx: function(key) {
-    if (key === this._lastKey) {
-      return this._lastIndex;
-    }
-    this._lastKey = key;
-    this._lastIndex = this._keys.indexOf(key);
-    return this._lastIndex;
+HashMap.prototype = {
+  /**
+   * Store key value pair
+   * @param key key to store can be any type
+   * @param value value to store can be any type
+   */
+  put: function(key, value) {
+    this[hashKey(key, this.nextUid)] = value;
   },
-  _transformKey: function(key) {
-    return isNumberNaN(key) ? nanKey : key;
-  },
-  get: function(key) {
-    key = this._transformKey(key);
-    var idx = this._idx(key);
-    if (idx !== -1) {
-      return this._values[idx];
-    }
-  },
-  set: function(key, value) {
-    key = this._transformKey(key);
-    var idx = this._idx(key);
-    if (idx === -1) {
-      idx = this._lastIndex = this._keys.length;
-    }
-    this._keys[idx] = key;
-    this._values[idx] = value;
 
-    // Support: IE11
-    // Do not `return this` to simulate the partial IE11 implementation
+  /**
+   * @param key
+   * @returns {Object} the value for the key
+   */
+  get: function(key) {
+    return this[hashKey(key, this.nextUid)];
   },
-  delete: function(key) {
-    key = this._transformKey(key);
-    var idx = this._idx(key);
-    if (idx === -1) {
-      return false;
-    }
-    this._keys.splice(idx, 1);
-    this._values.splice(idx, 1);
-    this._lastKey = NaN;
-    this._lastIndex = -1;
-    return true;
+
+  /**
+   * Remove the key/value pair
+   * @param key
+   */
+  remove: function(key) {
+    var value = this[key = hashKey(key, this.nextUid)];
+    delete this[key];
+    return value;
   }
 };
 
-// For now, always use `NgMapShim`, even if `window.Map` is available. Some native implementations
-// are still buggy (often in subtle ways) and can cause hard-to-debug failures. When native `Map`
-// implementations get more stable, we can reconsider switching to `window.Map` (when available).
-var NgMap = NgMapShim;
-
-var $$MapProvider = [/** @this */function() {
+var $$HashMapProvider = [/** @this */function() {
   this.$get = [function() {
-    return NgMap;
+    return HashMap;
   }];
 }];
 
@@ -10941,7 +10797,11 @@ var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 var $injectorMinErr = minErr('$injector');
 
 function stringifyFn(fn) {
-  return Function.prototype.toString.call(fn);
+  // Support: Chrome 50-51 only
+  // Creating a new string by adding `' '` at the end, to hack around some bug in Chrome v50/51
+  // (See https://github.com/angular/angular.js/issues/14487.)
+  // TODO (gkalpak): Remove workaround when Chrome v52 is released
+  return Function.prototype.toString.call(fn) + ' ';
 }
 
 function extractArgs(fn) {
@@ -11049,28 +10909,6 @@ function annotate(fn, strictDi, name) {
  * ## Inline
  * As an array of injection names, where the last item in the array is the function to call.
  */
-
-/**
- * @ngdoc property
- * @name $injector#modules
- * @type {Object}
- * @description
- * A hash containing all the modules that have been loaded into the
- * $injector.
- *
- * You can use this property to find out information about a module via the
- * {@link angular.Module#info `myModule.info(...)`} method.
- *
- * For example:
- *
- * ```
- * var info = $injector.modules['ngAnimate'].info();
- * ```
- *
- * **Do not use this property to attempt to modify the modules after the application
- * has been bootstrapped.**
- */
-
 
 /**
  * @ngdoc method
@@ -11537,7 +11375,7 @@ function createInjector(modulesToLoad, strictDi) {
   var INSTANTIATING = {},
       providerSuffix = 'Provider',
       path = [],
-      loadedModules = new NgMap(),
+      loadedModules = new HashMap([], true),
       providerCache = {
         $provide: {
             provider: supportObject(provider),
@@ -11565,7 +11403,6 @@ function createInjector(modulesToLoad, strictDi) {
       instanceInjector = protoInstanceInjector;
 
   providerCache['$injector' + providerSuffix] = { $get: valueFn(protoInstanceInjector) };
-  instanceInjector.modules = providerInjector.modules = createMap();
   var runBlocks = loadModules(modulesToLoad);
   instanceInjector = protoInstanceInjector.get('$injector');
   instanceInjector.strictDi = strictDi;
@@ -11646,7 +11483,7 @@ function createInjector(modulesToLoad, strictDi) {
     var runBlocks = [], moduleFn;
     forEach(modulesToLoad, function(module) {
       if (loadedModules.get(module)) return;
-      loadedModules.set(module, true);
+      loadedModules.put(module, true);
 
       function runInvokeQueue(queue) {
         var i, ii;
@@ -11661,7 +11498,6 @@ function createInjector(modulesToLoad, strictDi) {
       try {
         if (isString(module)) {
           moduleFn = angularModule(module);
-          instanceInjector.modules[module] = moduleFn;
           runBlocks = runBlocks.concat(loadModules(moduleFn.requires)).concat(moduleFn._runBlocks);
           runInvokeQueue(moduleFn._invokeQueue);
           runInvokeQueue(moduleFn._configBlocks);
@@ -12133,7 +11969,7 @@ var $$CoreAnimateJsProvider = /** @this */ function() {
 // this is prefixed with Core since it conflicts with
 // the animateQueueProvider defined in ngAnimate/animateQueue.js
 var $$CoreAnimateQueueProvider = /** @this */ function() {
-  var postDigestQueue = new NgMap();
+  var postDigestQueue = new HashMap();
   var postDigestElements = [];
 
   this.$get = ['$$AnimateRunner', '$rootScope',
@@ -12212,7 +12048,7 @@ var $$CoreAnimateQueueProvider = /** @this */ function() {
               jqLiteRemoveClass(elm, toRemove);
             }
           });
-          postDigestQueue.delete(element);
+          postDigestQueue.remove(element);
         }
       });
       postDigestElements.length = 0;
@@ -12227,7 +12063,7 @@ var $$CoreAnimateQueueProvider = /** @this */ function() {
 
       if (classesAdded || classesRemoved) {
 
-        postDigestQueue.set(element, data);
+        postDigestQueue.put(element, data);
         postDigestElements.push(element);
 
         if (postDigestElements.length === 1) {
@@ -12252,7 +12088,6 @@ var $$CoreAnimateQueueProvider = /** @this */ function() {
  */
 var $AnimateProvider = ['$provide', /** @this */ function($provide) {
   var provider = this;
-  var classNameFilter = null;
 
   this.$$registeredAnimations = Object.create(null);
 
@@ -12321,16 +12156,15 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
    */
   this.classNameFilter = function(expression) {
     if (arguments.length === 1) {
-      classNameFilter = (expression instanceof RegExp) ? expression : null;
-      if (classNameFilter) {
-        var reservedRegex = new RegExp('[(\\s|\\/)]' + NG_ANIMATE_CLASSNAME + '[(\\s|\\/)]');
-        if (reservedRegex.test(classNameFilter.toString())) {
-          classNameFilter = null;
-          throw $animateMinErr('nongcls', '$animateProvider.classNameFilter(regex) prohibits accepting a regex value which matches/contains the "{0}" CSS class.', NG_ANIMATE_CLASSNAME);
+      this.$$classNameFilter = (expression instanceof RegExp) ? expression : null;
+      if (this.$$classNameFilter) {
+        var reservedRegex = new RegExp('(\\s+|\\/)' + NG_ANIMATE_CLASSNAME + '(\\s+|\\/)');
+        if (reservedRegex.test(this.$$classNameFilter.toString())) {
+          throw $animateMinErr('nongcls','$animateProvider.classNameFilter(regex) prohibits accepting a regex value which matches/contains the "{0}" CSS class.', NG_ANIMATE_CLASSNAME);
         }
       }
     }
-    return classNameFilter;
+    return this.$$classNameFilter;
   };
 
   this.$get = ['$$animateQueue', function($$animateQueue) {
@@ -13089,6 +12923,7 @@ function Browser(window, document, $log, $sniffer) {
       };
 
   cacheState();
+  lastHistoryState = cachedState;
 
   /**
    * @name $browser#url
@@ -13142,6 +12977,8 @@ function Browser(window, document, $log, $sniffer) {
       if ($sniffer.history && (!sameBase || !sameState)) {
         history[replace ? 'replaceState' : 'pushState'](state, '', url);
         cacheState();
+        // Do the assignment again so that those two variables are referentially identical.
+        lastHistoryState = cachedState;
       } else {
         if (!sameBase) {
           pendingLocation = url;
@@ -13190,7 +13027,8 @@ function Browser(window, document, $log, $sniffer) {
 
   function cacheStateAndFireUrlChange() {
     pendingLocation = null;
-    fireStateOrUrlChange();
+    cacheState();
+    fireUrlChange();
   }
 
   // This variable should be used *only* inside the cacheState function.
@@ -13204,16 +13042,11 @@ function Browser(window, document, $log, $sniffer) {
     if (equals(cachedState, lastCachedState)) {
       cachedState = lastCachedState;
     }
-
     lastCachedState = cachedState;
-    lastHistoryState = cachedState;
   }
 
-  function fireStateOrUrlChange() {
-    var prevLastHistoryState = lastHistoryState;
-    cacheState();
-
-    if (lastBrowserUrl === self.url() && prevLastHistoryState === cachedState) {
+  function fireUrlChange() {
+    if (lastBrowserUrl === self.url() && lastHistoryState === cachedState) {
       return;
     }
 
@@ -13248,8 +13081,8 @@ function Browser(window, document, $log, $sniffer) {
   self.onUrlChange = function(callback) {
     // TODO(vojta): refactor to use node's syntax for events
     if (!urlChangeInit) {
-      // We listen on both (hashchange/popstate) when available, as some browsers don't
-      // fire popstate when user changes the address bar and don't fire hashchange when url
+      // We listen on both (hashchange/popstate) when available, as some browsers (e.g. Opera)
+      // don't fire popstate when user change the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
       // html5 history api - popstate event
@@ -13279,7 +13112,7 @@ function Browser(window, document, $log, $sniffer) {
    * Needs to be exported to be able to check for changes that have been done in sync,
    * as hashchange/popstate events fire in async.
    */
-  self.$$checkUrlChange = fireStateOrUrlChange;
+  self.$$checkUrlChange = fireUrlChange;
 
   //////////////////////////////////////////////////////////////
   // Misc API
@@ -13889,8 +13722,7 @@ function $TemplateCacheProvider() {
  * * `$onChanges(changesObj)` - Called whenever one-way (`<`) or interpolation (`@`) bindings are updated. The
  *   `changesObj` is a hash whose keys are the names of the bound properties that have changed, and the values are an
  *   object of the form `{ currentValue, previousValue, isFirstChange() }`. Use this hook to trigger updates within a
- *   component such as cloning the bound value to prevent accidental mutation of the outer value. Note that this will
- *   also be called when your bindings are initialized.
+ *   component such as cloning the bound value to prevent accidental mutation of the outer value.
  * * `$doCheck()` - Called on each turn of the digest cycle. Provides an opportunity to detect and act on
  *   changes. Any actions that you wish to take in response to the changes that you detect must be
  *   invoked from this hook; implementing this has no effect on when `$onChanges` is called. For example, this hook
@@ -14038,12 +13870,10 @@ function $TemplateCacheProvider() {
  * the directive's element. If multiple directives on the same element request a new scope,
  * only one new scope is created.
  *
- * * **`{...}` (an object hash):** A new "isolate" scope is created for the directive's template.
- * The 'isolate' scope differs from normal scope in that it does not prototypically
- * inherit from its parent scope. This is useful when creating reusable components, which should not
- * accidentally read or modify data in the parent scope. Note that an isolate scope
- * directive without a `template` or `templateUrl` will not apply the isolate scope
- * to its children elements.
+ * * **`{...}` (an object hash):** A new "isolate" scope is created for the directive's element. The
+ * 'isolate' scope differs from normal scope in that it does not prototypically inherit from its parent
+ * scope. This is useful when creating reusable components, which should not accidentally read or modify
+ * data in the parent scope.
  *
  * The 'isolate' scope object hash defines a set of local scope properties derived from attributes on the
  * directive's element. These local properties are useful for aliasing values for templates. The keys in
@@ -14136,9 +13966,9 @@ function $TemplateCacheProvider() {
  * initialized.
  *
  * <div class="alert alert-warning">
- * **Deprecation warning:** if `$compileProcvider.preAssignBindingsEnabled(true)` was called, bindings for non-ES6 class
- * controllers are bound to `this` before the controller constructor is called but this use is now deprecated. Please
- * place initialization code that relies upon bindings inside a `$onInit` method on the controller, instead.
+ * **Deprecation warning:** although bindings for non-ES6 class controllers are currently
+ * bound to `this` before the controller constructor is called, this use is now deprecated. Please place initialization
+ * code that relies upon bindings inside a `$onInit` method on the controller, instead.
  * </div>
  *
  * It is also possible to set `bindToController` to an object hash with the same format as the `scope` property.
@@ -14747,7 +14577,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
   var bindingCache = createMap();
 
   function parseIsolateBindings(scope, directiveName, isController) {
-    var LOCAL_REGEXP = /^\s*([@&<]|=(\*?))(\??)\s*([\w$]*)\s*$/;
+    var LOCAL_REGEXP = /^\s*([@&<]|=(\*?))(\??)\s*(\w*)\s*$/;
 
     var bindings = createMap();
 
@@ -15151,14 +14981,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *
    * If disabled (false), the compiler calls the constructor first before assigning bindings.
    *
-   * The default value is false.
-   *
-   * @deprecated
-   * sinceVersion="1.6.0"
-   * removeVersion="1.7.0"
-   *
-   * This method and the option to assign the bindings before calling the controller's constructor
-   * will be removed in v1.7.0.
+   * The default value is true in Angular 1.5.x but will switch to false in Angular 1.6.x.
    */
   var preAssignBindingsEnabled = false;
   this.preAssignBindingsEnabled = function(enabled) {
@@ -16926,7 +16749,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           if (error instanceof Error) {
             $exceptionHandler(error);
           }
-        });
+        }).catch(noop);
 
       return function delayedNodeLinkFn(ignoreChildLinkFn, scope, node, rootElement, boundTranscludeFn) {
         var childBoundTranscludeFn = boundTranscludeFn;
@@ -17248,7 +17071,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             if (parentGet.literal) {
               compare = equals;
             } else {
-              compare = simpleCompare;
+              // eslint-disable-next-line no-self-compare
+              compare = function simpleCompare(a, b) { return a === b || (a !== a && b !== b); };
             }
             parentSet = parentGet.assign || function() {
               // reset the change, or we will throw this exception on every $digest
@@ -17323,7 +17147,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       });
 
       function recordChanges(key, currentValue, previousValue) {
-        if (isFunction(destination.$onChanges) && !simpleCompare(currentValue, previousValue)) {
+        if (isFunction(destination.$onChanges) && currentValue !== previousValue &&
+            // eslint-disable-next-line no-self-compare
+            (currentValue === currentValue || previousValue === previousValue)) {
           // If we have not already scheduled the top level onChangesQueue handler then do so now
           if (!onChangesQueue) {
             scope.$$postDigest(flushOnChangesQueue);
@@ -17938,12 +17764,7 @@ function defaultHttpResponseTransform(data, headers) {
     if (tempData) {
       var contentType = headers('Content-Type');
       if ((contentType && (contentType.indexOf(APPLICATION_JSON) === 0)) || isJsonLike(tempData)) {
-        try {
-          data = fromJson(tempData);
-        } catch (e) {
-          throw $httpMinErr('baddata', 'Data must be a valid JSON object. Received: "{0}". ' +
-          'Parse error: "{1}"', data, e);
-        }
+        data = fromJson(tempData);
       }
     }
   }
@@ -19060,8 +18881,7 @@ function $HttpProvider() {
       if ((config.cache || defaults.cache) && config.cache !== false &&
           (config.method === 'GET' || config.method === 'JSONP')) {
         cache = isObject(config.cache) ? config.cache
-            : isObject(/** @type {?} */ (defaults).cache)
-              ? /** @type {?} */ (defaults).cache
+              : isObject(defaults.cache) ? defaults.cache
               : defaultCache;
       }
 
@@ -19840,15 +19660,14 @@ function $IntervalProvider() {
       * appropriate moment.  See the example below for more details on how and when to do this.
       * </div>
       *
-      * @param {function()} fn A function that should be called repeatedly. If no additional arguments
-      *   are passed (see below), the function is called with the current iteration count.
+      * @param {function()} fn A function that should be called repeatedly.
       * @param {number} delay Number of milliseconds between each function call.
       * @param {number=} [count=0] Number of times to repeat. If not set, or 0, will repeat
       *   indefinitely.
       * @param {boolean=} [invokeApply=true] If set to `false` skips model dirty checking, otherwise
       *   will invoke `fn` within the {@link ng.$rootScope.Scope#$apply $apply} block.
       * @param {...*=} Pass additional parameters to the executed function.
-      * @returns {promise} A promise which will be notified on each iteration. It will resolve once all iterations of the interval complete.
+      * @returns {promise} A promise which will be notified on each iteration.
       *
       * @example
       * <example module="intervalExample" name="interval-service">
@@ -20020,8 +19839,8 @@ function $IntervalProvider() {
  * how they vary compared to the requested url.
  */
 var $jsonpCallbacksProvider = /** @this */ function() {
-  this.$get = function() {
-    var callbacks = angular.callbacks;
+  this.$get = ['$window', function($window) {
+    var callbacks = $window.angular.callbacks;
     var callbackMap = {};
 
     function createCallback(callbackId) {
@@ -20088,7 +19907,7 @@ var $jsonpCallbacksProvider = /** @this */ function() {
         delete callbackMap[callbackPath];
       }
     };
-  };
+  }];
 };
 
 /**
@@ -20239,8 +20058,6 @@ function LocationHtml5Url(appBase, appBaseNoFile, basePrefix) {
 
     this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
     this.$$absUrl = appBaseNoFile + this.$$url.substr(1); // first char is always '/'
-
-    this.$$urlUpdatedByLocation = true;
   };
 
   this.$$parseLinkUrl = function(url, relHref) {
@@ -20318,7 +20135,7 @@ function LocationHashbangUrl(appBase, appBaseNoFile, hashPrefix) {
         withoutHashUrl = '';
         if (isUndefined(withoutBaseUrl)) {
           appBase = url;
-          /** @type {?} */ (this).replace();
+          this.replace();
         }
       }
     }
@@ -20374,8 +20191,6 @@ function LocationHashbangUrl(appBase, appBaseNoFile, hashPrefix) {
 
     this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
     this.$$absUrl = appBase + (this.$$url ? hashPrefix + this.$$url : '');
-
-    this.$$urlUpdatedByLocation = true;
   };
 
   this.$$parseLinkUrl = function(url, relHref) {
@@ -20433,8 +20248,6 @@ function LocationHashbangInHtml5Url(appBase, appBaseNoFile, hashPrefix) {
     this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
     // include hashPrefix in $$absUrl when $$url is empty so IE9 does not reload page because of removal of '#'
     this.$$absUrl = appBase + hashPrefix + this.$$url;
-
-    this.$$urlUpdatedByLocation = true;
   };
 
 }
@@ -20764,7 +20577,6 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
     // but we're changing the $$state reference to $browser.state() during the $digest
     // so the modification window is narrow.
     this.$$state = isUndefined(state) ? null : state;
-    this.$$urlUpdatedByLocation = true;
 
     return this;
   };
@@ -21077,40 +20889,36 @@ function $LocationProvider() {
 
     // update browser
     $rootScope.$watch(function $locationWatch() {
-      if (initializing || $location.$$urlUpdatedByLocation) {
-        $location.$$urlUpdatedByLocation = false;
+      var oldUrl = trimEmptyHash($browser.url());
+      var newUrl = trimEmptyHash($location.absUrl());
+      var oldState = $browser.state();
+      var currentReplace = $location.$$replace;
+      var urlOrStateChanged = oldUrl !== newUrl ||
+        ($location.$$html5 && $sniffer.history && oldState !== $location.$$state);
 
-        var oldUrl = trimEmptyHash($browser.url());
-        var newUrl = trimEmptyHash($location.absUrl());
-        var oldState = $browser.state();
-        var currentReplace = $location.$$replace;
-        var urlOrStateChanged = oldUrl !== newUrl ||
-          ($location.$$html5 && $sniffer.history && oldState !== $location.$$state);
+      if (initializing || urlOrStateChanged) {
+        initializing = false;
 
-        if (initializing || urlOrStateChanged) {
-          initializing = false;
+        $rootScope.$evalAsync(function() {
+          var newUrl = $location.absUrl();
+          var defaultPrevented = $rootScope.$broadcast('$locationChangeStart', newUrl, oldUrl,
+              $location.$$state, oldState).defaultPrevented;
 
-          $rootScope.$evalAsync(function() {
-            var newUrl = $location.absUrl();
-            var defaultPrevented = $rootScope.$broadcast('$locationChangeStart', newUrl, oldUrl,
-                $location.$$state, oldState).defaultPrevented;
+          // if the location was changed by a `$locationChangeStart` handler then stop
+          // processing this location change
+          if ($location.absUrl() !== newUrl) return;
 
-            // if the location was changed by a `$locationChangeStart` handler then stop
-            // processing this location change
-            if ($location.absUrl() !== newUrl) return;
-
-            if (defaultPrevented) {
-              $location.$$parse(oldUrl);
-              $location.$$state = oldState;
-            } else {
-              if (urlOrStateChanged) {
-                setBrowserUrlWithFallback(newUrl, currentReplace,
-                                          oldState === $location.$$state ? null : $location.$$state);
-              }
-              afterLocationChange(oldUrl, oldState);
+          if (defaultPrevented) {
+            $location.$$parse(oldUrl);
+            $location.$$state = oldState;
+          } else {
+            if (urlOrStateChanged) {
+              setBrowserUrlWithFallback(newUrl, currentReplace,
+                                        oldState === $location.$$state ? null : $location.$$state);
             }
-          });
-        }
+            afterLocationChange(oldUrl, oldState);
+          }
+        });
       }
 
       $location.$$replace = false;
@@ -21188,22 +20996,13 @@ function $LogProvider() {
   this.debugEnabled = function(flag) {
     if (isDefined(flag)) {
       debug = flag;
-      return this;
+    return this;
     } else {
       return debug;
     }
   };
 
   this.$get = ['$window', function($window) {
-    // Support: IE 9-11, Edge 12-14+
-    // IE/Edge display errors in such a way that it requires the user to click in 4 places
-    // to see the stack trace. There is no way to feature-detect it so there's a chance
-    // of the user agent sniffing to go wrong but since it's only about logging, this shouldn't
-    // break apps. Other browsers display errors in a sensible way and some of them map stack
-    // traces along source maps if available so it makes sense to let browsers display it
-    // as they want.
-    var formatStackTrace = msie || /\bEdge\//.test($window.navigator && $window.navigator.userAgent);
-
     return {
       /**
        * @ngdoc method
@@ -21261,7 +21060,7 @@ function $LogProvider() {
 
     function formatError(arg) {
       if (arg instanceof Error) {
-        if (arg.stack && formatStackTrace) {
+        if (arg.stack) {
           arg = (arg.message && arg.stack.indexOf(arg.message) === -1)
               ? 'Error: ' + arg.message + '\n' + arg.stack
               : arg.stack;
@@ -22019,13 +21818,6 @@ function findConstantAndWatchExpressions(ast, $filter) {
       if (!property.value.constant) {
         argsToWatch.push.apply(argsToWatch, property.value.toWatch);
       }
-      if (property.computed) {
-        findConstantAndWatchExpressions(property.key, $filter);
-        if (!property.key.constant) {
-          argsToWatch.push.apply(argsToWatch, property.key.toWatch);
-        }
-      }
-
     });
     ast.constant = allConstants;
     ast.toWatch = argsToWatch;
@@ -22071,13 +21863,15 @@ function isConstant(ast) {
   return ast.constant;
 }
 
-function ASTCompiler($filter) {
+function ASTCompiler(astBuilder, $filter) {
+  this.astBuilder = astBuilder;
   this.$filter = $filter;
 }
 
 ASTCompiler.prototype = {
-  compile: function(ast) {
+  compile: function(expression) {
     var self = this;
+    var ast = this.astBuilder.ast(expression);
     this.state = {
       nextId: 0,
       filters: {},
@@ -22132,6 +21926,8 @@ ASTCompiler.prototype = {
           ifDefined,
           plusFn);
     this.state = this.stage = undefined;
+    fn.literal = isLiteral(ast);
+    fn.constant = isConstant(ast);
     return fn;
   },
 
@@ -22534,13 +22330,15 @@ ASTCompiler.prototype = {
 };
 
 
-function ASTInterpreter($filter) {
+function ASTInterpreter(astBuilder, $filter) {
+  this.astBuilder = astBuilder;
   this.$filter = $filter;
 }
 
 ASTInterpreter.prototype = {
-  compile: function(ast) {
+  compile: function(expression) {
     var self = this;
+    var ast = this.astBuilder.ast(expression);
     findConstantAndWatchExpressions(ast, self.$filter);
     var assignable;
     var assign;
@@ -22579,6 +22377,8 @@ ASTInterpreter.prototype = {
     if (inputs) {
       fn.inputs = inputs;
     }
+    fn.literal = isLiteral(ast);
+    fn.constant = isConstant(ast);
     return fn;
   },
 
@@ -22907,21 +22707,20 @@ ASTInterpreter.prototype = {
 /**
  * @constructor
  */
-function Parser(lexer, $filter, options) {
+var Parser = function Parser(lexer, $filter, options) {
+  this.lexer = lexer;
+  this.$filter = $filter;
+  this.options = options;
   this.ast = new AST(lexer, options);
-  this.astCompiler = options.csp ? new ASTInterpreter($filter) :
-                                   new ASTCompiler($filter);
-}
+  this.astCompiler = options.csp ? new ASTInterpreter(this.ast, $filter) :
+                                   new ASTCompiler(this.ast, $filter);
+};
 
 Parser.prototype = {
   constructor: Parser,
 
   parse: function(text) {
-    var ast = this.ast.ast(text);
-    var fn = this.astCompiler.compile(ast);
-    fn.literal = isLiteral(ast);
-    fn.constant = isConstant(ast);
-    return fn;
+    return this.astCompiler.compile(text);
   }
 };
 
@@ -23067,8 +22866,8 @@ function $ParseProvider() {
             if (parsedExpression.constant) {
               parsedExpression.$$watchDelegate = constantWatchDelegate;
             } else if (oneTime) {
-              parsedExpression.oneTime = true;
-              parsedExpression.$$watchDelegate = oneTimeWatchDelegate;
+              parsedExpression.$$watchDelegate = parsedExpression.literal ?
+                  oneTimeLiteralWatchDelegate : oneTimeWatchDelegate;
             } else if (parsedExpression.inputs) {
               parsedExpression.$$watchDelegate = inputsWatchDelegate;
             }
@@ -23084,7 +22883,7 @@ function $ParseProvider() {
       }
     }
 
-    function expressionInputDirtyCheck(newValue, oldValueOfValue, compareObjectIdentity) {
+    function expressionInputDirtyCheck(newValue, oldValueOfValue) {
 
       if (newValue == null || oldValueOfValue == null) { // null/undefined
         return newValue === oldValueOfValue;
@@ -23097,7 +22896,7 @@ function $ParseProvider() {
         //             be cheaply dirty-checked
         newValue = getValueOf(newValue);
 
-        if (typeof newValue === 'object' && !compareObjectIdentity) {
+        if (typeof newValue === 'object') {
           // objects/arrays are not supported - deep-watching them would be too expensive
           return false;
         }
@@ -23119,7 +22918,7 @@ function $ParseProvider() {
         inputExpressions = inputExpressions[0];
         return scope.$watch(function expressionInputWatch(scope) {
           var newInputValue = inputExpressions(scope);
-          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf, parsedExpression.literal)) {
+          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf)) {
             lastResult = parsedExpression(scope, undefined, undefined, [newInputValue]);
             oldInputValueOf = newInputValue && getValueOf(newInputValue);
           }
@@ -23139,7 +22938,7 @@ function $ParseProvider() {
 
         for (var i = 0, ii = inputExpressions.length; i < ii; i++) {
           var newInputValue = inputExpressions[i](scope);
-          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i], parsedExpression.literal))) {
+          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i]))) {
             oldInputValues[i] = newInputValue;
             oldInputValueOfValues[i] = newInputValue && getValueOf(newInputValue);
           }
@@ -23154,7 +22953,6 @@ function $ParseProvider() {
     }
 
     function oneTimeWatchDelegate(scope, listener, objectEquality, parsedExpression, prettyPrintExpression) {
-      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
       var unwatch, lastValue;
       if (parsedExpression.inputs) {
         unwatch = inputsWatchDelegate(scope, oneTimeListener, objectEquality, parsedExpression, prettyPrintExpression);
@@ -23171,9 +22969,9 @@ function $ParseProvider() {
         if (isFunction(listener)) {
           listener(value, old, scope);
         }
-        if (isDone(value)) {
+        if (isDefined(value)) {
           scope.$$postDigest(function() {
-            if (isDone(lastValue)) {
+            if (isDefined(lastValue)) {
               unwatch();
             }
           });
@@ -23181,12 +22979,31 @@ function $ParseProvider() {
       }
     }
 
-    function isAllDefined(value) {
-      var allDefined = true;
-      forEach(value, function(val) {
-        if (!isDefined(val)) allDefined = false;
-      });
-      return allDefined;
+    function oneTimeLiteralWatchDelegate(scope, listener, objectEquality, parsedExpression) {
+      var unwatch, lastValue;
+      unwatch = scope.$watch(function oneTimeWatch(scope) {
+        return parsedExpression(scope);
+      }, function oneTimeListener(value, old, scope) {
+        lastValue = value;
+        if (isFunction(listener)) {
+          listener(value, old, scope);
+        }
+        if (isAllDefined(value)) {
+          scope.$$postDigest(function() {
+            if (isAllDefined(lastValue)) unwatch();
+          });
+        }
+      }, objectEquality);
+
+      return unwatch;
+
+      function isAllDefined(value) {
+        var allDefined = true;
+        forEach(value, function(val) {
+          if (!isDefined(val)) allDefined = false;
+        });
+        return allDefined;
+      }
     }
 
     function constantWatchDelegate(scope, listener, objectEquality, parsedExpression) {
@@ -23202,31 +23019,26 @@ function $ParseProvider() {
       var watchDelegate = parsedExpression.$$watchDelegate;
       var useInputs = false;
 
-      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
+      var regularWatch =
+          watchDelegate !== oneTimeLiteralWatchDelegate &&
+          watchDelegate !== oneTimeWatchDelegate;
 
-      function regularInterceptedExpression(scope, locals, assign, inputs) {
+      var fn = regularWatch ? function regularInterceptedExpression(scope, locals, assign, inputs) {
         var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
         return interceptorFn(value, scope, locals);
-      }
-
-      function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
-        var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
+      } : function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
+        var value = parsedExpression(scope, locals, assign, inputs);
         var result = interceptorFn(value, scope, locals);
         // we only return the interceptor's result if the
         // initial value is defined (for bind-once)
-        return isDone(value) ? result : value;
-      }
+        return isDefined(value) ? result : value;
+      };
 
-      var fn = parsedExpression.oneTime ? oneTimeInterceptedExpression : regularInterceptedExpression;
-
-      // Propogate the literal/oneTime attributes
-      fn.literal = parsedExpression.literal;
-      fn.oneTime = parsedExpression.oneTime;
-
-      // Propagate or create inputs / $$watchDelegates
+      // Propagate $$watchDelegates other then inputsWatchDelegate
       useInputs = !parsedExpression.inputs;
-      if (watchDelegate && watchDelegate !== inputsWatchDelegate) {
-        fn.$$watchDelegate = watchDelegate;
+      if (parsedExpression.$$watchDelegate &&
+          parsedExpression.$$watchDelegate !== inputsWatchDelegate) {
+        fn.$$watchDelegate = parsedExpression.$$watchDelegate;
         fn.inputs = parsedExpression.inputs;
       } else if (!interceptorFn.$stateful) {
         // If there is an interceptor, but no watchDelegate then treat the interceptor like
@@ -23479,7 +23291,6 @@ function $QProvider() {
    *
    * @description
    * Retrieves or overrides whether to generate an error when a rejected promise is not handled.
-   * This feature is enabled by default.
    *
    * @param {boolean=} value Whether to generate an error when a rejected promise is not handled.
    * @returns {boolean|ng.$qProvider} Current value when called without a new value or self for
@@ -23621,11 +23432,7 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
       if (!toCheck.pur) {
         toCheck.pur = true;
         var errorMessage = 'Possibly unhandled rejection: ' + toDebugString(toCheck.value);
-        if (toCheck.value instanceof Error) {
-          exceptionHandler(toCheck.value, errorMessage);
-        } else {
-          exceptionHandler(errorMessage);
-        }
+        exceptionHandler(errorMessage);
       }
     }
   }
@@ -24359,21 +24166,15 @@ function $RootScopeProvider() {
 
         if (!array) {
           array = scope.$$watchers = [];
-          array.$$digestWatchIndex = -1;
         }
         // we use unshift since we use a while loop in $digest for speed.
         // the while loop reads in reverse order.
         array.unshift(watcher);
-        array.$$digestWatchIndex++;
         incrementWatchersCount(this, 1);
 
         return function deregisterWatch() {
-          var index = arrayRemove(array, watcher);
-          if (index >= 0) {
+          if (arrayRemove(array, watcher) >= 0) {
             incrementWatchersCount(scope, -1);
-            if (index < array.$$digestWatchIndex) {
-              array.$$digestWatchIndex--;
-            }
           }
           lastDirtyWatch = null;
         };
@@ -24706,6 +24507,7 @@ function $RootScopeProvider() {
       $digest: function() {
         var watch, value, last, fn, get,
             watchers,
+            length,
             dirty, ttl = TTL,
             next, current, target = this,
             watchLog = [],
@@ -24729,13 +24531,12 @@ function $RootScopeProvider() {
           current = target;
 
           // It's safe for asyncQueuePosition to be a local variable here because this loop can't
-          // be reentered recursively. Calling $digest from a function passed to $evalAsync would
+          // be reentered recursively. Calling $digest from a function passed to $applyAsync would
           // lead to a '$digest already in progress' error.
           for (var asyncQueuePosition = 0; asyncQueuePosition < asyncQueue.length; asyncQueuePosition++) {
             try {
               asyncTask = asyncQueue[asyncQueuePosition];
-              fn = asyncTask.fn;
-              fn(asyncTask.scope, asyncTask.locals);
+              asyncTask.scope.$eval(asyncTask.expression, asyncTask.locals);
             } catch (e) {
               $exceptionHandler(e);
             }
@@ -24747,10 +24548,10 @@ function $RootScopeProvider() {
           do { // "traverse the scopes" loop
             if ((watchers = current.$$watchers)) {
               // process our watches
-              watchers.$$digestWatchIndex = watchers.length;
-              while (watchers.$$digestWatchIndex--) {
+              length = watchers.length;
+              while (length--) {
                 try {
-                  watch = watchers[watchers.$$digestWatchIndex];
+                  watch = watchers[length];
                   // Most common watches are on primitives, in which case we can short
                   // circuit it with === operator, only when === fails do we use .equals
                   if (watch) {
@@ -24820,10 +24621,6 @@ function $RootScopeProvider() {
           }
         }
         postDigestQueue.length = postDigestQueuePosition = 0;
-
-        // Check for changes to browser url that happened during the $digest
-        // (for which no event is fired; e.g. via `history.pushState()`)
-        $browser.$$checkUrlChange();
       },
 
 
@@ -24969,7 +24766,7 @@ function $RootScopeProvider() {
           });
         }
 
-        asyncQueue.push({scope: this, fn: $parse(expr), locals: locals});
+        asyncQueue.push({scope: this, expression: $parse(expr), locals: locals});
       },
 
       $$postDigest: function(fn) {
@@ -25443,21 +25240,12 @@ function $$SanitizeUriProvider() {
 var $sceMinErr = minErr('$sce');
 
 var SCE_CONTEXTS = {
-  // HTML is used when there's HTML rendered (e.g. ng-bind-html, iframe srcdoc binding).
   HTML: 'html',
-
-  // Style statements or stylesheets. Currently unused in AngularJS.
   CSS: 'css',
-
-  // An URL used in a context where it does not refer to a resource that loads code. Currently
-  // unused in AngularJS.
   URL: 'url',
-
-  // RESOURCE_URL is a subtype of URL used where the referred-to resource could be interpreted as
-  // code. (e.g. ng-include, script src binding, templateUrl)
+  // RESOURCE_URL is a subtype of URL used in contexts where a privileged resource is sourced from a
+  // url.  (e.g. ng-include, script src, templateUrl)
   RESOURCE_URL: 'resourceUrl',
-
-  // Script. Currently unused in AngularJS.
   JS: 'js'
 };
 
@@ -25519,16 +25307,6 @@ function adjustMatchers(matchers) {
  * `$sceDelegate` is a service that is used by the `$sce` service to provide {@link ng.$sce Strict
  * Contextual Escaping (SCE)} services to AngularJS.
  *
- * For an overview of this service and the functionnality it provides in AngularJS, see the main
- * page for {@link ng.$sce SCE}. The current page is targeted for developers who need to alter how
- * SCE works in their application, which shouldn't be needed in most cases.
- *
- * <div class="alert alert-danger">
- * AngularJS strongly relies on contextual escaping for the security of bindings: disabling or
- * modifying this might cause cross site scripting (XSS) vulnerabilities. For libraries owners,
- * changes to this service will also influence users, so be extra careful and document your changes.
- * </div>
- *
  * Typically, you would configure or override the {@link ng.$sceDelegate $sceDelegate} instead of
  * the `$sce` service to customize the way Strict Contextual Escaping works in AngularJS.  This is
  * because, while the `$sce` provides numerous shorthand methods, etc., you really only need to
@@ -25554,14 +25332,10 @@ function adjustMatchers(matchers) {
  * @description
  *
  * The `$sceDelegateProvider` provider allows developers to configure the {@link ng.$sceDelegate
- * $sceDelegate service}, used as a delegate for {@link ng.$sce Strict Contextual Escaping (SCE)}.
- *
- * The `$sceDelegateProvider` allows one to get/set the whitelists and blacklists used to ensure
- * that the URLs used for sourcing AngularJS templates and other script-running URLs are safe (all
- * places that use the `$sce.RESOURCE_URL` context). See
- * {@link ng.$sceDelegateProvider#resourceUrlWhitelist $sceDelegateProvider.resourceUrlWhitelist}
- * and
- * {@link ng.$sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider.resourceUrlBlacklist},
+ * $sceDelegate} service.  This allows one to get/set the whitelists and blacklists used to ensure
+ * that the URLs used for sourcing Angular templates are safe.  Refer {@link
+ * ng.$sceDelegateProvider#resourceUrlWhitelist $sceDelegateProvider.resourceUrlWhitelist} and
+ * {@link ng.$sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider.resourceUrlBlacklist}
  *
  * For the general details about this service in Angular, read the main page for {@link ng.$sce
  * Strict Contextual Escaping (SCE)}.
@@ -25590,13 +25364,6 @@ function adjustMatchers(matchers) {
  *    ]);
  *  });
  * ```
- * Note that an empty whitelist will block every resource URL from being loaded, and will require
- * you to manually mark each one as trusted with `$sce.trustAsResourceUrl`. However, templates
- * requested by {@link ng.$templateRequest $templateRequest} that are present in
- * {@link ng.$templateCache $templateCache} will not go through this check. If you have a mechanism
- * to populate your templates in that cache at config time, then it is a good idea to remove 'self'
- * from that whitelist. This helps to mitigate the security impact of certain types of issues, like
- * for instance attacker-controlled `ng-includes`.
  */
 
 function $SceDelegateProvider() {
@@ -25612,23 +25379,23 @@ function $SceDelegateProvider() {
    * @kind function
    *
    * @param {Array=} whitelist When provided, replaces the resourceUrlWhitelist with the value
-   *     provided.  This must be an array or null.  A snapshot of this array is used so further
-   *     changes to the array are ignored.
-   *     Follow {@link ng.$sce#resourceUrlPatternItem this link} for a description of the items
-   *     allowed in this array.
+   *    provided.  This must be an array or null.  A snapshot of this array is used so further
+   *    changes to the array are ignored.
    *
-   * @return {Array} The currently set whitelist array.
+   *    Follow {@link ng.$sce#resourceUrlPatternItem this link} for a description of the items
+   *    allowed in this array.
    *
-   * @description
-   * Sets/Gets the whitelist of trusted resource URLs.
+   *    <div class="alert alert-warning">
+   *    **Note:** an empty whitelist array will block all URLs!
+   *    </div>
+   *
+   * @return {Array} the currently set whitelist array.
    *
    * The **default value** when no whitelist has been explicitly set is `['self']` allowing only
    * same origin resource requests.
    *
-   * <div class="alert alert-warning">
-   * **Note:** the default whitelist of 'self' is not recommended if your app shares its origin
-   * with other apps! It is a good idea to limit it to only your application's directory.
-   * </div>
+   * @description
+   * Sets/Gets the whitelist of trusted resource URLs.
    */
   this.resourceUrlWhitelist = function(value) {
     if (arguments.length) {
@@ -25643,23 +25410,25 @@ function $SceDelegateProvider() {
    * @kind function
    *
    * @param {Array=} blacklist When provided, replaces the resourceUrlBlacklist with the value
-   *     provided.  This must be an array or null.  A snapshot of this array is used so further
-   *     changes to the array are ignored.</p><p>
-   *     Follow {@link ng.$sce#resourceUrlPatternItem this link} for a description of the items
-   *     allowed in this array.</p><p>
-   *     The typical usage for the blacklist is to **block
-   *     [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as
-   *     these would otherwise be trusted but actually return content from the redirected domain.
-   *     </p><p>
-   *     Finally, **the blacklist overrides the whitelist** and has the final say.
+   *    provided.  This must be an array or null.  A snapshot of this array is used so further
+   *    changes to the array are ignored.
    *
-   * @return {Array} The currently set blacklist array.
+   *    Follow {@link ng.$sce#resourceUrlPatternItem this link} for a description of the items
+   *    allowed in this array.
    *
-   * @description
-   * Sets/Gets the blacklist of trusted resource URLs.
+   *    The typical usage for the blacklist is to **block
+   *    [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as
+   *    these would otherwise be trusted but actually return content from the redirected domain.
+   *
+   *    Finally, **the blacklist overrides the whitelist** and has the final say.
+   *
+   * @return {Array} the currently set blacklist array.
    *
    * The **default value** when no whitelist has been explicitly set is the empty array (i.e. there
    * is no blacklist.)
+   *
+   * @description
+   * Sets/Gets the blacklist of trusted resource URLs.
    */
 
   this.resourceUrlBlacklist = function(value) {
@@ -25743,24 +25512,17 @@ function $SceDelegateProvider() {
      * @name $sceDelegate#trustAs
      *
      * @description
-     * Returns a trusted representation of the parameter for the specified context. This trusted
-     * object will later on be used as-is, without any security check, by bindings or directives
-     * that require this security context.
-     * For instance, marking a string as trusted for the `$sce.HTML` context will entirely bypass
-     * the potential `$sanitize` call in corresponding `$sce.HTML` bindings or directives, such as
-     * `ng-bind-html`. Note that in most cases you won't need to call this function: if you have the
-     * sanitizer loaded, passing the value itself will render all the HTML that does not pose a
-     * security risk.
+     * Returns an object that is trusted by angular for use in specified strict
+     * contextual escaping contexts (such as ng-bind-html, ng-include, any src
+     * attribute interpolation, any dom event binding attribute interpolation
+     * such as for onclick,  etc.) that uses the provided value.
+     * See {@link ng.$sce $sce} for enabling strict contextual escaping.
      *
-     * See {@link ng.$sceDelegate#getTrusted getTrusted} for the function that will consume those
-     * trusted values, and {@link ng.$sce $sce} for general documentation about strict contextual
-     * escaping.
-     *
-     * @param {string} type The context in which this value is safe for use, e.g. `$sce.URL`,
-     *     `$sce.RESOURCE_URL`, `$sce.HTML`, `$sce.JS` or `$sce.CSS`.
-     *
-     * @param {*} value The value that should be considered trusted.
-     * @return {*} A trusted representation of value, that can be used in the given context.
+     * @param {string} type The kind of context in which this value is safe for use.  e.g. url,
+     *   resourceUrl, html, js and css.
+     * @param {*} value The value that that should be considered trusted/safe.
+     * @returns {*} A value that can be used to stand in for the provided `value` in places
+     * where Angular expects a $sce.trustAs() return value.
      */
     function trustAs(type, trustedValue) {
       var Constructor = (byType.hasOwnProperty(type) ? byType[type] : null);
@@ -25792,11 +25554,11 @@ function $SceDelegateProvider() {
      * ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}.
      *
      * If the passed parameter is not a value that had been returned by {@link
-     * ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}, it must be returned as-is.
+     * ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}, returns it as-is.
      *
      * @param {*} value The result of a prior {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}
-     *     call or anything else.
-     * @return {*} The `value` that was originally provided to {@link ng.$sceDelegate#trustAs
+     *      call or anything else.
+     * @returns {*} The `value` that was originally provided to {@link ng.$sceDelegate#trustAs
      *     `$sceDelegate.trustAs`} if `value` is the result of such a call.  Otherwise, returns
      *     `value` unchanged.
      */
@@ -25813,38 +25575,33 @@ function $SceDelegateProvider() {
      * @name $sceDelegate#getTrusted
      *
      * @description
-     * Takes any input, and either returns a value that's safe to use in the specified context, or
-     * throws an exception.
+     * Takes the result of a {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs`} call and
+     * returns the originally supplied value if the queried context type is a supertype of the
+     * created type.  If this condition isn't satisfied, throws an exception.
      *
-     * In practice, there are several cases. When given a string, this function runs checks
-     * and sanitization to make it safe without prior assumptions. When given the result of a {@link
-     * ng.$sceDelegate#trustAs `$sceDelegate.trustAs`} call, it returns the originally supplied
-     * value if that value's context is valid for this call's context. Finally, this function can
-     * also throw when there is no way to turn `maybeTrusted` in a safe value (e.g., no sanitization
-     * is available or possible.)
+     * <div class="alert alert-danger">
+     * Disabling auto-escaping is extremely dangerous, it usually creates a Cross Site Scripting
+     * (XSS) vulnerability in your application.
+     * </div>
      *
-     * @param {string} type The context in which this value is to be used (such as `$sce.HTML`).
+     * @param {string} type The kind of context in which this value is to be used.
      * @param {*} maybeTrusted The result of a prior {@link ng.$sceDelegate#trustAs
-     *     `$sceDelegate.trustAs`} call, or anything else (which will not be considered trusted.)
-     * @return {*} A version of the value that's safe to use in the given context, or throws an
-     *     exception if this is impossible.
+     *     `$sceDelegate.trustAs`} call.
+     * @returns {*} The value the was originally provided to {@link ng.$sceDelegate#trustAs
+     *     `$sceDelegate.trustAs`} if valid in this context.  Otherwise, throws an exception.
      */
     function getTrusted(type, maybeTrusted) {
       if (maybeTrusted === null || isUndefined(maybeTrusted) || maybeTrusted === '') {
         return maybeTrusted;
       }
       var constructor = (byType.hasOwnProperty(type) ? byType[type] : null);
-      // If maybeTrusted is a trusted class instance or subclass instance, then unwrap and return
-      // as-is.
       if (constructor && maybeTrusted instanceof constructor) {
         return maybeTrusted.$$unwrapTrustedValue();
       }
-      // Otherwise, if we get here, then we may either make it safe, or throw an exception. This
-      // depends on the context: some are sanitizatible (HTML), some use whitelists (RESOURCE_URL),
-      // some are impossible to do (JS). This step isn't implemented for CSS and URL, as AngularJS
-      // has no corresponding sinks.
+      // If we get here, then we may only take one of two actions.
+      // 1. sanitize the value for the requested type, or
+      // 2. throw an exception.
       if (type === SCE_CONTEXTS.RESOURCE_URL) {
-        // RESOURCE_URL uses a whitelist.
         if (isResourceUrlAllowedByPolicy(maybeTrusted)) {
           return maybeTrusted;
         } else {
@@ -25853,10 +25610,8 @@ function $SceDelegateProvider() {
               maybeTrusted.toString());
         }
       } else if (type === SCE_CONTEXTS.HTML) {
-        // htmlSanitizer throws its own error when no sanitizer is available.
         return htmlSanitizer(maybeTrusted);
       }
-      // Default error when the $sce service has no way to make the input safe.
       throw $sceMinErr('unsafe', 'Attempting to use an unsafe value in a safe context.');
     }
 
@@ -25892,27 +25647,21 @@ function $SceDelegateProvider() {
  *
  * # Strict Contextual Escaping
  *
- * Strict Contextual Escaping (SCE) is a mode in which AngularJS constrains bindings to only render
- * trusted values. Its goal is to assist in writing code in a way that (a) is secure by default, and
- * (b) makes auditing for security vulnerabilities such as XSS, clickjacking, etc. a lot easier.
+ * Strict Contextual Escaping (SCE) is a mode in which AngularJS requires bindings in certain
+ * contexts to result in a value that is marked as safe to use for that context.  One example of
+ * such a context is binding arbitrary html controlled by the user via `ng-bind-html`.  We refer
+ * to these contexts as privileged or SCE contexts.
  *
- * ## Overview
+ * As of version 1.2, Angular ships with SCE enabled by default.
  *
- * To systematically block XSS security bugs, AngularJS treats all values as untrusted by default in
- * HTML or sensitive URL bindings. When binding untrusted values, AngularJS will automatically
- * run security checks on them (sanitizations, whitelists, depending on context), or throw when it
- * cannot guarantee the security of the result. That behavior depends strongly on contexts: HTML
- * can be sanitized, but template URLs cannot, for instance.
+ * Note:  When enabled (the default), IE<11 in quirks mode is not supported.  In this mode, IE<11 allow
+ * one to execute arbitrary javascript by the use of the expression() syntax.  Refer
+ * <http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx> to learn more about them.
+ * You can ensure your document is in standards mode and not quirks mode by adding `<!doctype html>`
+ * to the top of your HTML document.
  *
- * To illustrate this, consider the `ng-bind-html` directive. It renders its value directly as HTML:
- * we call that the *context*. When given an untrusted input, AngularJS will attempt to sanitize it
- * before rendering if a sanitizer is available, and throw otherwise. To bypass sanitization and
- * render the input as-is, you will need to mark it as trusted for that context before attempting
- * to bind it.
- *
- * As of version 1.2, AngularJS ships with SCE enabled by default.
- *
- * ## In practice
+ * SCE assists in writing code in a way that (a) is secure by default and (b) makes auditing for
+ * security vulnerabilities such as XSS, clickjacking, etc. a lot easier.
  *
  * Here's an example of a binding in a privileged context:
  *
@@ -25922,10 +25671,10 @@ function $SceDelegateProvider() {
  * ```
  *
  * Notice that `ng-bind-html` is bound to `userHtml` controlled by the user.  With SCE
- * disabled, this application allows the user to render arbitrary HTML into the DIV, which would
- * be an XSS security bug. In a more realistic example, one may be rendering user comments, blog
- * articles, etc. via bindings. (HTML is just one example of a context where rendering user
- * controlled input creates security vulnerabilities.)
+ * disabled, this application allows the user to render arbitrary HTML into the DIV.
+ * In a more realistic example, one may be rendering user comments, blog articles, etc. via
+ * bindings.  (HTML is just one example of a context where rendering user controlled input creates
+ * security vulnerabilities.)
  *
  * For the case of HTML, you might use a library, either on the client side, or on the server side,
  * to sanitize unsafe HTML before binding to the value and rendering it in the document.
@@ -25935,29 +25684,25 @@ function $SceDelegateProvider() {
  * ensure that you didn't accidentally delete the line that sanitized the value, or renamed some
  * properties/fields and forgot to update the binding to the sanitized value?
  *
- * To be secure by default, AngularJS makes sure bindings go through that sanitization, or
- * any similar validation process, unless there's a good reason to trust the given value in this
- * context.  That trust is formalized with a function call. This means that as a developer, you
- * can assume all untrusted bindings are safe. Then, to audit your code for binding security issues,
- * you just need to ensure the values you mark as trusted indeed are safe - because they were
- * received from your server, sanitized by your library, etc. You can organize your codebase to
- * help with this - perhaps allowing only the files in a specific directory to do this.
- * Ensuring that the internal API exposed by that code doesn't markup arbitrary values as safe then
- * becomes a more manageable task.
+ * To be secure by default, you want to ensure that any such bindings are disallowed unless you can
+ * determine that something explicitly says it's safe to use a value for binding in that
+ * context.  You can then audit your code (a simple grep would do) to ensure that this is only done
+ * for those values that you can easily tell are safe - because they were received from your server,
+ * sanitized by your library, etc.  You can organize your codebase to help with this - perhaps
+ * allowing only the files in a specific directory to do this.  Ensuring that the internal API
+ * exposed by that code doesn't markup arbitrary values as safe then becomes a more manageable task.
  *
  * In the case of AngularJS' SCE service, one uses {@link ng.$sce#trustAs $sce.trustAs}
  * (and shorthand methods such as {@link ng.$sce#trustAsHtml $sce.trustAsHtml}, etc.) to
- * build the trusted versions of your values.
+ * obtain values that will be accepted by SCE / privileged contexts.
+ *
  *
  * ## How does it work?
  *
  * In privileged contexts, directives and code will bind to the result of {@link ng.$sce#getTrusted
- * $sce.getTrusted(context, value)} rather than to the value directly.  Think of this function as
- * a way to enforce the required security context in your data sink. Directives use {@link
- * ng.$sce#parseAs $sce.parseAs} rather than `$parse` to watch attribute bindings, which performs
- * the {@link ng.$sce#getTrusted $sce.getTrusted} behind the scenes on non-constant literals. Also,
- * when binding without directives, AngularJS will understand the context of your bindings
- * automatically.
+ * $sce.getTrusted(context, value)} rather than to the value directly.  Directives use {@link
+ * ng.$sce#parseAs $sce.parseAs} rather than `$parse` to watch attribute bindings, which performs the
+ * {@link ng.$sce#getTrusted $sce.getTrusted} behind the scenes on non-constant literals.
  *
  * As an example, {@link ng.directive:ngBindHtml ngBindHtml} uses {@link
  * ng.$sce#parseAsHtml $sce.parseAsHtml(binding expression)}.  Here's the actual code (slightly
@@ -25998,12 +25743,11 @@ function $SceDelegateProvider() {
  * It's important to remember that SCE only applies to interpolation expressions.
  *
  * If your expressions are constant literals, they're automatically trusted and you don't need to
- * call `$sce.trustAs` on them (e.g.
- * `<div ng-bind-html="'<b>implicitly trusted</b>'"></div>`) just works. The `$sceDelegate` will
- * also use the `$sanitize` service if it is available when binding untrusted values to
- * `$sce.HTML` context. AngularJS provides an implementation in `angular-sanitize.js`, and if you
- * wish to use it, you will also need to depend on the {@link ngSanitize `ngSanitize`} module in
- * your application.
+ * call `$sce.trustAs` on them (remember to include the `ngSanitize` module) (e.g.
+ * `<div ng-bind-html="'<b>implicitly trusted</b>'"></div>`) just works.
+ *
+ * Additionally, `a[href]` and `img[src]` automatically sanitize their URLs and do not pass them
+ * through {@link ng.$sce#getTrusted $sce.getTrusted}.  SCE doesn't play a role here.
  *
  * The included {@link ng.$sceDelegate $sceDelegate} comes with sane defaults to allow you to load
  * templates in `ng-include` from your application's domain without having to even know about SCE.
@@ -26021,17 +25765,11 @@ function $SceDelegateProvider() {
  *
  * | Context             | Notes          |
  * |---------------------|----------------|
- * | `$sce.HTML`         | For HTML that's safe to source into the application.  The {@link ng.directive:ngBindHtml ngBindHtml} directive uses this context for bindings. If an unsafe value is encountered, and the {@link ngSanitize.$sanitize $sanitize} service is available (implemented by the {@link ngSanitize ngSanitize} module) this will sanitize the value instead of throwing an error. |
- * | `$sce.CSS`          | For CSS that's safe to source into the application.  Currently, no bindings require this context. Feel free to use it in your own directives. |
- * | `$sce.URL`          | For URLs that are safe to follow as links.  Currently unused (`<a href=`, `<img src=`, and some others sanitize their urls and don't constitute an SCE context.) |
- * | `$sce.RESOURCE_URL` | For URLs that are not only safe to follow as links, but whose contents are also safe to include in your application.  Examples include `ng-include`, `src` / `ngSrc` bindings for tags other than `IMG`, `VIDEO`, `AUDIO`, `SOURCE`, and `TRACK` (e.g. `IFRAME`, `OBJECT`, etc.)  <br><br>Note that `$sce.RESOURCE_URL` makes a stronger statement about the URL than `$sce.URL` does (it's not just the URL that matters, but also what is at the end of it), and therefore contexts requiring values trusted for `$sce.RESOURCE_URL` can be used anywhere that values trusted for `$sce.URL` are required. |
- * | `$sce.JS`           | For JavaScript that is safe to execute in your application's context.  Currently, no bindings require this context.  Feel free to use it in your own directives. |
- *
- *
- * Be aware that `a[href]` and `img[src]` automatically sanitize their URLs and do not pass them
- * through {@link ng.$sce#getTrusted $sce.getTrusted}. There's no CSS-, URL-, or JS-context bindings
- * in AngularJS currently, so their corresponding `$sce.trustAs` functions aren't useful yet. This
- * might evolve.
+ * | `$sce.HTML`         | For HTML that's safe to source into the application.  The {@link ng.directive:ngBindHtml ngBindHtml} directive uses this context for bindings. If an unsafe value is encountered and the {@link ngSanitize $sanitize} module is present this will sanitize the value instead of throwing an error. |
+ * | `$sce.CSS`          | For CSS that's safe to source into the application.  Currently unused.  Feel free to use it in your own directives. |
+ * | `$sce.URL`          | For URLs that are safe to follow as links.  Currently unused (`<a href=` and `<img src=` sanitize their urls and don't constitute an SCE context. |
+ * | `$sce.RESOURCE_URL` | For URLs that are not only safe to follow as links, but whose contents are also safe to include in your application.  Examples include `ng-include`, `src` / `ngSrc` bindings for tags other than `IMG`, `VIDEO`, `AUDIO`, `SOURCE`, and `TRACK` (e.g. `IFRAME`, `OBJECT`, etc.)  <br><br>Note that `$sce.RESOURCE_URL` makes a stronger statement about the URL than `$sce.URL` does and therefore contexts requiring values trusted for `$sce.RESOURCE_URL` can be used anywhere that values trusted for `$sce.URL` are required. |
+ * | `$sce.JS`           | For JavaScript that is safe to execute in your application's context.  Currently unused.  Feel free to use it in your own directives. |
  *
  * ## Format of items in {@link ng.$sceDelegateProvider#resourceUrlWhitelist resourceUrlWhitelist}/{@link ng.$sceDelegateProvider#resourceUrlBlacklist Blacklist} <a name="resourceUrlPatternItem"></a>
  *
@@ -26150,15 +25888,14 @@ function $SceDelegateProvider() {
  * for little coding overhead.  It will be much harder to take an SCE disabled application and
  * either secure it on your own or enable SCE at a later stage.  It might make sense to disable SCE
  * for cases where you have a lot of existing code that was written before SCE was introduced and
- * you're migrating them a module at a time. Also do note that this is an app-wide setting, so if
- * you are writing a library, you will cause security bugs applications using it.
+ * you're migrating them a module at a time.
  *
  * That said, here's how you can completely disable SCE:
  *
  * ```
  * angular.module('myAppWithSceDisabledmyApp', []).config(function($sceProvider) {
  *   // Completely disable SCE.  For demonstration purposes only!
- *   // Do not use in new projects or libraries.
+ *   // Do not use in new projects.
  *   $sceProvider.enabled(false);
  * });
  * ```
@@ -26173,8 +25910,8 @@ function $SceProvider() {
    * @name $sceProvider#enabled
    * @kind function
    *
-   * @param {boolean=} value If provided, then enables/disables SCE application-wide.
-   * @return {boolean} True if SCE is enabled, false otherwise.
+   * @param {boolean=} value If provided, then enables/disables SCE.
+   * @return {boolean} true if SCE is enabled, false otherwise.
    *
    * @description
    * Enables/disables SCE and returns the current value.
@@ -26228,9 +25965,9 @@ function $SceProvider() {
    *     getTrusted($sce.RESOURCE_URL, value) succeeding implies that getTrusted($sce.URL, value)
    *     will also succeed.
    *
-   * Inheritance happens to capture this in a natural way. In some future, we may not use
-   * inheritance anymore. That is OK because no code outside of sce.js and sceSpecs.js would need to
-   * be aware of this detail.
+   * Inheritance happens to capture this in a natural way.  In some future, we
+   * may not use inheritance anymore.  That is OK because no code outside of
+   * sce.js and sceSpecs.js would need to be aware of this detail.
    */
 
   this.$get = ['$parse', '$sceDelegate', function(
@@ -26252,8 +25989,8 @@ function $SceProvider() {
      * @name $sce#isEnabled
      * @kind function
      *
-     * @return {Boolean} True if SCE is enabled, false otherwise.  If you want to set the value, you
-     *     have to do it at module config time on {@link ng.$sceProvider $sceProvider}.
+     * @return {Boolean} true if SCE is enabled, false otherwise.  If you want to set the value, you
+     * have to do it at module config time on {@link ng.$sceProvider $sceProvider}.
      *
      * @description
      * Returns a boolean indicating if SCE is enabled.
@@ -26280,14 +26017,14 @@ function $SceProvider() {
      * wraps the expression in a call to {@link ng.$sce#getTrusted $sce.getTrusted(*type*,
      * *result*)}
      *
-     * @param {string} type The SCE context in which this result will be used.
+     * @param {string} type The kind of SCE context in which this result will be used.
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
     sce.parseAs = function sceParseAs(type, expr) {
       var parsed = $parse(expr);
@@ -26305,18 +26042,18 @@ function $SceProvider() {
      * @name $sce#trustAs
      *
      * @description
-     * Delegates to {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}. As such, returns a
-     * wrapped object that represents your value, and the trust you have in its safety for the given
-     * context. AngularJS can then use that value as-is in bindings of the specified secure context.
-     * This is used in bindings for `ng-bind-html`, `ng-include`, and most `src` attribute
-     * interpolations. See {@link ng.$sce $sce} for strict contextual escaping.
+     * Delegates to {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs`}.  As such,
+     * returns an object that is trusted by angular for use in specified strict contextual
+     * escaping contexts (such as ng-bind-html, ng-include, any src attribute
+     * interpolation, any dom event binding attribute interpolation such as for onclick,  etc.)
+     * that uses the provided value.  See * {@link ng.$sce $sce} for enabling strict contextual
+     * escaping.
      *
-     * @param {string} type The context in which this value is safe for use, e.g. `$sce.URL`,
-     *     `$sce.RESOURCE_URL`, `$sce.HTML`, `$sce.JS` or `$sce.CSS`.
-     *
-     * @param {*} value The value that that should be considered trusted.
-     * @return {*} A wrapped version of value that can be used as a trusted variant of your `value`
-     *     in the context you specified.
+     * @param {string} type The kind of context in which this value is safe for use.  e.g. url,
+     *   resourceUrl, html, js and css.
+     * @param {*} value The value that that should be considered trusted/safe.
+     * @returns {*} A value that can be used to stand in for the provided `value` in places
+     * where Angular expects a $sce.trustAs() return value.
      */
 
     /**
@@ -26327,23 +26064,11 @@ function $SceProvider() {
      * Shorthand method.  `$sce.trustAsHtml(value)` →
      *     {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs($sce.HTML, value)`}
      *
-     * @param {*} value The value to mark as trusted for `$sce.HTML` context.
-     * @return {*} A wrapped version of value that can be used as a trusted variant of your `value`
-     *     in `$sce.HTML` context (like `ng-bind-html`).
-     */
-
-    /**
-     * @ngdoc method
-     * @name $sce#trustAsCss
-     *
-     * @description
-     * Shorthand method.  `$sce.trustAsCss(value)` →
-     *     {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs($sce.CSS, value)`}
-     *
-     * @param {*} value The value to mark as trusted for `$sce.CSS` context.
-     * @return {*} A wrapped version of value that can be used as a trusted variant
-     *     of your `value` in `$sce.CSS` context. This context is currently unused, so there are
-     *     almost no reasons to use this function so far.
+     * @param {*} value The value to trustAs.
+     * @returns {*} An object that can be passed to {@link ng.$sce#getTrustedHtml
+     *     $sce.getTrustedHtml(value)} to obtain the original value.  (privileged directives
+     *     only accept expressions that are either literal constants or are the
+     *     return value of {@link ng.$sce#trustAs $sce.trustAs}.)
      */
 
     /**
@@ -26354,10 +26079,11 @@ function $SceProvider() {
      * Shorthand method.  `$sce.trustAsUrl(value)` →
      *     {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs($sce.URL, value)`}
      *
-     * @param {*} value The value to mark as trusted for `$sce.URL` context.
-     * @return {*} A wrapped version of value that can be used as a trusted variant of your `value`
-     *     in `$sce.URL` context. That context is currently unused, so there are almost no reasons
-     *     to use this function so far.
+     * @param {*} value The value to trustAs.
+     * @returns {*} An object that can be passed to {@link ng.$sce#getTrustedUrl
+     *     $sce.getTrustedUrl(value)} to obtain the original value.  (privileged directives
+     *     only accept expressions that are either literal constants or are the
+     *     return value of {@link ng.$sce#trustAs $sce.trustAs}.)
      */
 
     /**
@@ -26368,10 +26094,11 @@ function $SceProvider() {
      * Shorthand method.  `$sce.trustAsResourceUrl(value)` →
      *     {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs($sce.RESOURCE_URL, value)`}
      *
-     * @param {*} value The value to mark as trusted for `$sce.RESOURCE_URL` context.
-     * @return {*} A wrapped version of value that can be used as a trusted variant of your `value`
-     *     in `$sce.RESOURCE_URL` context (template URLs in `ng-include`, most `src` attribute
-     *     bindings, ...)
+     * @param {*} value The value to trustAs.
+     * @returns {*} An object that can be passed to {@link ng.$sce#getTrustedResourceUrl
+     *     $sce.getTrustedResourceUrl(value)} to obtain the original value.  (privileged directives
+     *     only accept expressions that are either literal constants or are the return
+     *     value of {@link ng.$sce#trustAs $sce.trustAs}.)
      */
 
     /**
@@ -26382,10 +26109,11 @@ function $SceProvider() {
      * Shorthand method.  `$sce.trustAsJs(value)` →
      *     {@link ng.$sceDelegate#trustAs `$sceDelegate.trustAs($sce.JS, value)`}
      *
-     * @param {*} value The value to mark as trusted for `$sce.JS` context.
-     * @return {*} A wrapped version of value that can be used as a trusted variant of your `value`
-     *     in `$sce.JS` context. That context is currently unused, so there are almost no reasons to
-     *     use this function so far.
+     * @param {*} value The value to trustAs.
+     * @returns {*} An object that can be passed to {@link ng.$sce#getTrustedJs
+     *     $sce.getTrustedJs(value)} to obtain the original value.  (privileged directives
+     *     only accept expressions that are either literal constants or are the
+     *     return value of {@link ng.$sce#trustAs $sce.trustAs}.)
      */
 
     /**
@@ -26394,17 +26122,16 @@ function $SceProvider() {
      *
      * @description
      * Delegates to {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted`}.  As such,
-     * takes any input, and either returns a value that's safe to use in the specified context,
-     * or throws an exception. This function is aware of trusted values created by the `trustAs`
-     * function and its shorthands, and when contexts are appropriate, returns the unwrapped value
-     * as-is. Finally, this function can also throw when there is no way to turn `maybeTrusted` in a
-     * safe value (e.g., no sanitization is available or possible.)
+     * takes the result of a {@link ng.$sce#trustAs `$sce.trustAs`}() call and returns the
+     * originally supplied value if the queried context type is a supertype of the created type.
+     * If this condition isn't satisfied, throws an exception.
      *
-     * @param {string} type The context in which this value is to be used.
-     * @param {*} maybeTrusted The result of a prior {@link ng.$sce#trustAs
-     *     `$sce.trustAs`} call, or anything else (which will not be considered trusted.)
-     * @return {*} A version of the value that's safe to use in the given context, or throws an
-     *     exception if this is impossible.
+     * @param {string} type The kind of context in which this value is to be used.
+     * @param {*} maybeTrusted The result of a prior {@link ng.$sce#trustAs `$sce.trustAs`}
+     *                         call.
+     * @returns {*} The value the was originally provided to
+     *              {@link ng.$sce#trustAs `$sce.trustAs`} if valid in this context.
+     *              Otherwise, throws an exception.
      */
 
     /**
@@ -26416,7 +26143,7 @@ function $SceProvider() {
      *     {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted($sce.HTML, value)`}
      *
      * @param {*} value The value to pass to `$sce.getTrusted`.
-     * @return {*} The return value of `$sce.getTrusted($sce.HTML, value)`
+     * @returns {*} The return value of `$sce.getTrusted($sce.HTML, value)`
      */
 
     /**
@@ -26428,7 +26155,7 @@ function $SceProvider() {
      *     {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted($sce.CSS, value)`}
      *
      * @param {*} value The value to pass to `$sce.getTrusted`.
-     * @return {*} The return value of `$sce.getTrusted($sce.CSS, value)`
+     * @returns {*} The return value of `$sce.getTrusted($sce.CSS, value)`
      */
 
     /**
@@ -26440,7 +26167,7 @@ function $SceProvider() {
      *     {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted($sce.URL, value)`}
      *
      * @param {*} value The value to pass to `$sce.getTrusted`.
-     * @return {*} The return value of `$sce.getTrusted($sce.URL, value)`
+     * @returns {*} The return value of `$sce.getTrusted($sce.URL, value)`
      */
 
     /**
@@ -26452,7 +26179,7 @@ function $SceProvider() {
      *     {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted($sce.RESOURCE_URL, value)`}
      *
      * @param {*} value The value to pass to `$sceDelegate.getTrusted`.
-     * @return {*} The return value of `$sce.getTrusted($sce.RESOURCE_URL, value)`
+     * @returns {*} The return value of `$sce.getTrusted($sce.RESOURCE_URL, value)`
      */
 
     /**
@@ -26464,7 +26191,7 @@ function $SceProvider() {
      *     {@link ng.$sceDelegate#getTrusted `$sceDelegate.getTrusted($sce.JS, value)`}
      *
      * @param {*} value The value to pass to `$sce.getTrusted`.
-     * @return {*} The return value of `$sce.getTrusted($sce.JS, value)`
+     * @returns {*} The return value of `$sce.getTrusted($sce.JS, value)`
      */
 
     /**
@@ -26476,12 +26203,12 @@ function $SceProvider() {
      *     {@link ng.$sce#parseAs `$sce.parseAs($sce.HTML, value)`}
      *
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
 
     /**
@@ -26493,12 +26220,12 @@ function $SceProvider() {
      *     {@link ng.$sce#parseAs `$sce.parseAs($sce.CSS, value)`}
      *
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
 
     /**
@@ -26510,12 +26237,12 @@ function $SceProvider() {
      *     {@link ng.$sce#parseAs `$sce.parseAs($sce.URL, value)`}
      *
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
 
     /**
@@ -26527,12 +26254,12 @@ function $SceProvider() {
      *     {@link ng.$sce#parseAs `$sce.parseAs($sce.RESOURCE_URL, value)`}
      *
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
 
     /**
@@ -26544,12 +26271,12 @@ function $SceProvider() {
      *     {@link ng.$sce#parseAs `$sce.parseAs($sce.JS, value)`}
      *
      * @param {string} expression String expression to compile.
-     * @return {function(context, locals)} A function which represents the compiled expression:
+     * @returns {function(context, locals)} a function which represents the compiled expression:
      *
-     *    * `context` – `{object}` – an object against which any expressions embedded in the
-     *      strings are evaluated against (typically a scope object).
-     *    * `locals` – `{object=}` – local variables context object, useful for overriding values
-     *      in `context`.
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
      */
 
     // Shorthand delegations.
@@ -26599,10 +26326,7 @@ function $SnifferProvider() {
         // (see https://developer.chrome.com/apps/api_index). If sandboxed, they can be detected by
         // the presence of an extension runtime ID and the absence of other Chrome runtime APIs
         // (see https://developer.chrome.com/apps/manifest/sandbox).
-        // (NW.js apps have access to Chrome APIs, but do support `history`.)
-        isNw = $window.nw && $window.nw.process,
         isChromePackagedApp =
-            !isNw &&
             $window.chrome &&
             ($window.chrome.app && $window.chrome.app.runtime ||
                 !$window.chrome.app && $window.chrome.runtime && $window.chrome.runtime.id),
@@ -27007,7 +26731,7 @@ var originUrl = urlResolve(window.location.href);
  * URL will be resolved into an absolute URL in the context of the application document.
  * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
  * properties are all populated to reflect the normalized URL.  This approach has wide
- * compatibility - Safari 1+, Mozilla 1+ etc.  See
+ * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
  * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
  *
  * Implementation Notes for IE
@@ -27144,14 +26868,6 @@ function $$CookieReader($document) {
   var lastCookies = {};
   var lastCookieString = '';
 
-  function safeGetCookie(rawDocument) {
-    try {
-      return rawDocument.cookie || '';
-    } catch (e) {
-      return '';
-    }
-  }
-
   function safeDecodeURIComponent(str) {
     try {
       return decodeURIComponent(str);
@@ -27162,7 +26878,7 @@ function $$CookieReader($document) {
 
   return function() {
     var cookieArray, cookie, i, index, name;
-    var currentCookieString = safeGetCookie(rawDocument);
+    var currentCookieString = rawDocument.cookie || '';
 
     if (currentCookieString !== lastCookieString) {
       lastCookieString = currentCookieString;
@@ -27373,9 +27089,6 @@ function $FilterProvider($provide) {
  * Selects a subset of items from `array` and returns it as a new array.
  *
  * @param {Array} array The source array.
- * <div class="alert alert-info">
- *   **Note**: If the array contains objects that reference themselves, filtering is not possible.
- * </div>
  * @param {string|Object|function()} expression The predicate to be used for selecting items from
  *   `array`.
  *
@@ -27409,9 +27122,8 @@ function $FilterProvider($provide) {
  *     The final result is an array of those elements that the predicate returned true for.
  *
  * @param {function(actual, expected)|true|false} [comparator] Comparator which is used in
- *     determining if values retrieved using `expression` (when it is not a function) should be
- *     considered a match based on the the expected value (from the filter expression) and actual
- *     value (from the object in the array).
+ *     determining if the expected value (from the filter expression) and actual value (from
+ *     the object in the array) should be considered a match.
  *
  *   Can be one of:
  *
@@ -27594,10 +27306,7 @@ function deepCompare(actual, expected, comparator, anyPropertyKey, matchAgainstA
       var key;
       if (matchAgainstAnyProp) {
         for (key in actual) {
-          // Under certain, rare, circumstances, key may not be a string and `charAt` will be undefined
-          // See: https://github.com/angular/angular.js/issues/15644
-          if (key.charAt && (key.charAt(0) !== '$') &&
-              deepCompare(actual[key], expected, comparator, anyPropertyKey, true)) {
+          if ((key.charAt(0) !== '$') && deepCompare(actual[key], expected, comparator, anyPropertyKey, true)) {
             return true;
           }
         }
@@ -28106,7 +27815,7 @@ var DATE_FORMATS = {
      GGGG: longEraGetter
 };
 
-var DATE_FORMATS_SPLIT = /((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|L+|d+|H+|h+|m+|s+|a|Z|G+|w+))([\s\S]*)/,
+var DATE_FORMATS_SPLIT = /((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|L+|d+|H+|h+|m+|s+|a|Z|G+|w+))(.*)/,
     NUMBER_STRING = /^-?\d+$/;
 
 /**
@@ -28164,8 +27873,6 @@ var DATE_FORMATS_SPLIT = /((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+
  *   `format` string can contain literal values. These need to be escaped by surrounding with single quotes (e.g.
  *   `"h 'in the morning'"`). In order to output a single quote, escape it - i.e., two single quotes in a sequence
  *   (e.g. `"h 'o''clock'"`).
- *
- *   Any other characters in the `format` string will be output as-is.
  *
  * @param {(Date|number|string)} date Date to format either as Date object, milliseconds (string or
  *    number) or various ISO 8601 datetime string formats (e.g. yyyy-MM-ddTHH:mm:ss.sssZ and its
@@ -29372,8 +29079,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  *
- * This directive sets the `disabled` attribute on the element (typically a form control,
- * e.g. `input`, `button`, `select` etc.) if the
+ * This directive sets the `disabled` attribute on the element if the
  * {@link guide/expression expression} inside `ngDisabled` evaluates to truthy.
  *
  * A special directive is necessary because we cannot use interpolation inside the `disabled`
@@ -31879,27 +31585,15 @@ function isValidForStep(viewValue, stepBase, step) {
   // and `viewValue` is expected to be a valid stringified number.
   var value = Number(viewValue);
 
-  var isNonIntegerValue = !isNumberInteger(value);
-  var isNonIntegerStepBase = !isNumberInteger(stepBase);
-  var isNonIntegerStep = !isNumberInteger(step);
-
   // Due to limitations in Floating Point Arithmetic (e.g. `0.3 - 0.2 !== 0.1` or
   // `0.5 % 0.1 !== 0`), we need to convert all numbers to integers.
-  if (isNonIntegerValue || isNonIntegerStepBase || isNonIntegerStep) {
-    var valueDecimals = isNonIntegerValue ? countDecimals(value) : 0;
-    var stepBaseDecimals = isNonIntegerStepBase ? countDecimals(stepBase) : 0;
-    var stepDecimals = isNonIntegerStep ? countDecimals(step) : 0;
-
-    var decimalCount = Math.max(valueDecimals, stepBaseDecimals, stepDecimals);
+  if (!isNumberInteger(value) || !isNumberInteger(stepBase) || !isNumberInteger(step)) {
+    var decimalCount = Math.max(countDecimals(value), countDecimals(stepBase), countDecimals(step));
     var multiplier = Math.pow(10, decimalCount);
 
     value = value * multiplier;
     stepBase = stepBase * multiplier;
     step = step * multiplier;
-
-    if (isNonIntegerValue) value = Math.round(value);
-    if (isNonIntegerStepBase) stepBase = Math.round(stepBase);
-    if (isNonIntegerStep) step = Math.round(step);
   }
 
   return (value - stepBase) % step === 0;
@@ -32456,10 +32150,7 @@ var ngValueDirective = function() {
    *  makes it possible to use ngValue as a sort of one-way bind.
    */
   function updateElementValue(element, attr, value) {
-    // Support: IE9 only
-    // In IE9 values are converted to string (e.g. `input.value = null` results in `input.value === 'null'`).
-    var propValue = isDefined(value) ? value : (msie === 9) ? '' : null;
-    element.prop('value', propValue);
+    element.prop('value', value);
     attr.$set('value', value);
   }
 
@@ -32775,64 +32466,51 @@ var ngChangeDirective = valueFn({
 
 function classDirective(name, selector) {
   name = 'ngClass' + name;
-  var indexWatchExpression;
-
-  return ['$parse', function($parse) {
+  return ['$animate', function($animate) {
     return {
       restrict: 'AC',
       link: function(scope, element, attr) {
-        var classCounts = element.data('$classCounts');
-        var oldModulo = true;
-        var oldClassString;
+        var oldVal;
 
-        if (!classCounts) {
-          // Use createMap() to prevent class assumptions involving property
-          // names in Object.prototype
-          classCounts = createMap();
-          element.data('$classCounts', classCounts);
-        }
+        scope.$watch(attr[name], ngClassWatchAction, true);
+
+        attr.$observe('class', function(value) {
+          ngClassWatchAction(scope.$eval(attr[name]));
+        });
+
 
         if (name !== 'ngClass') {
-          if (!indexWatchExpression) {
-            indexWatchExpression = $parse('$index', function moduloTwo($index) {
-              // eslint-disable-next-line no-bitwise
-              return $index & 1;
-            });
-          }
-
-          scope.$watch(indexWatchExpression, ngClassIndexWatchAction);
+          scope.$watch('$index', function($index, old$index) {
+            /* eslint-disable no-bitwise */
+            var mod = $index & 1;
+            if (mod !== (old$index & 1)) {
+              var classes = arrayClasses(scope.$eval(attr[name]));
+              if (mod === selector) {
+                addClasses(classes);
+              } else {
+                removeClasses(classes);
+              }
+            }
+            /* eslint-enable */
+          });
         }
 
-        scope.$watch($parse(attr[name], toClassString), ngClassWatchAction);
-
-        function addClasses(classString) {
-          classString = digestClassCounts(split(classString), 1);
-          attr.$addClass(classString);
+        function addClasses(classes) {
+          var newClasses = digestClassCounts(classes, 1);
+          attr.$addClass(newClasses);
         }
 
-        function removeClasses(classString) {
-          classString = digestClassCounts(split(classString), -1);
-          attr.$removeClass(classString);
+        function removeClasses(classes) {
+          var newClasses = digestClassCounts(classes, -1);
+          attr.$removeClass(newClasses);
         }
 
-        function updateClasses(oldClassString, newClassString) {
-          var oldClassArray = split(oldClassString);
-          var newClassArray = split(newClassString);
-
-          var toRemoveArray = arrayDifference(oldClassArray, newClassArray);
-          var toAddArray = arrayDifference(newClassArray, oldClassArray);
-
-          var toRemoveString = digestClassCounts(toRemoveArray, -1);
-          var toAddString = digestClassCounts(toAddArray, 1);
-
-          attr.$addClass(toAddString);
-          attr.$removeClass(toRemoveString);
-        }
-
-        function digestClassCounts(classArray, count) {
+        function digestClassCounts(classes, count) {
+          // Use createMap() to prevent class assumptions involving property
+          // names in Object.prototype
+          var classCounts = element.data('$classCounts') || createMap();
           var classesToUpdate = [];
-
-          forEach(classArray, function(className) {
+          forEach(classes, function(className) {
             if (count > 0 || classCounts[className]) {
               classCounts[className] = (classCounts[className] || 0) + count;
               if (classCounts[className] === +(count > 0)) {
@@ -32840,76 +32518,77 @@ function classDirective(name, selector) {
               }
             }
           });
-
+          element.data('$classCounts', classCounts);
           return classesToUpdate.join(' ');
         }
 
-        function ngClassIndexWatchAction(newModulo) {
-          // This watch-action should run before the `ngClassWatchAction()`, thus it
-          // adds/removes `oldClassString`. If the `ngClass` expression has changed as well, the
-          // `ngClassWatchAction()` will update the classes.
-          if (newModulo === selector) {
-            addClasses(oldClassString);
-          } else {
-            removeClasses(oldClassString);
+        function updateClasses(oldClasses, newClasses) {
+          var toAdd = arrayDifference(newClasses, oldClasses);
+          var toRemove = arrayDifference(oldClasses, newClasses);
+          toAdd = digestClassCounts(toAdd, 1);
+          toRemove = digestClassCounts(toRemove, -1);
+          if (toAdd && toAdd.length) {
+            $animate.addClass(element, toAdd);
           }
-
-          oldModulo = newModulo;
+          if (toRemove && toRemove.length) {
+            $animate.removeClass(element, toRemove);
+          }
         }
 
-        function ngClassWatchAction(newClassString) {
-          // When using a one-time binding the newClassString will return
-          // the pre-interceptor value until the one-time is complete
-          if (!isString(newClassString)) {
-            newClassString = toClassString(newClassString);
+        function ngClassWatchAction(newVal) {
+          // eslint-disable-next-line no-bitwise
+          if (selector === true || (scope.$index & 1) === selector) {
+            var newClasses = arrayClasses(newVal || []);
+            if (!oldVal) {
+              addClasses(newClasses);
+            } else if (!equals(newVal,oldVal)) {
+              var oldClasses = arrayClasses(oldVal);
+              updateClasses(oldClasses, newClasses);
+            }
           }
-
-          if (oldModulo === selector) {
-            updateClasses(oldClassString, newClassString);
+          if (isArray(newVal)) {
+            oldVal = newVal.map(function(v) { return shallowCopy(v); });
+          } else {
+            oldVal = shallowCopy(newVal);
           }
-
-          oldClassString = newClassString;
         }
       }
     };
-  }];
 
-  // Helpers
-  function arrayDifference(tokens1, tokens2) {
-    if (!tokens1 || !tokens1.length) return [];
-    if (!tokens2 || !tokens2.length) return tokens1;
+    function arrayDifference(tokens1, tokens2) {
+      var values = [];
 
-    var values = [];
-
-    outer:
-    for (var i = 0; i < tokens1.length; i++) {
-      var token = tokens1[i];
-      for (var j = 0; j < tokens2.length; j++) {
-        if (token === tokens2[j]) continue outer;
+      outer:
+      for (var i = 0; i < tokens1.length; i++) {
+        var token = tokens1[i];
+        for (var j = 0; j < tokens2.length; j++) {
+          if (token === tokens2[j]) continue outer;
+        }
+        values.push(token);
       }
-      values.push(token);
+      return values;
     }
 
-    return values;
-  }
-
-  function split(classString) {
-    return classString && classString.split(' ');
-  }
-
-  function toClassString(classValue) {
-    var classString = classValue;
-
-    if (isArray(classValue)) {
-      classString = classValue.map(toClassString).join(' ');
-    } else if (isObject(classValue)) {
-      classString = Object.keys(classValue).
-        filter(function(key) { return classValue[key]; }).
-        join(' ');
+    function arrayClasses(classVal) {
+      var classes = [];
+      if (isArray(classVal)) {
+        forEach(classVal, function(v) {
+          classes = classes.concat(arrayClasses(v));
+        });
+        return classes;
+      } else if (isString(classVal)) {
+        return classVal.split(' ');
+      } else if (isObject(classVal)) {
+        forEach(classVal, function(v, k) {
+          if (v) {
+            classes = classes.concat(k.split(' '));
+          }
+        });
+        return classes;
+      }
+      return classVal;
     }
-
-    return classString;
-  }
+  }];
 }
 
 /**
@@ -33750,15 +33429,15 @@ forEach(
       return {
         restrict: 'A',
         compile: function($element, attr) {
-          // NOTE:
-          // We expose the powerful `$event` object on the scope that provides access to the Window,
-          // etc. This is OK, because expressions are not sandboxed any more (and the expression
-          // sandbox was never meant to be a security feature anyway).
-          var fn = $parse(attr[directiveName]);
+          // We expose the powerful $event object on the scope that provides access to the Window,
+          // etc. that isn't protected by the fast paths in $parse.  We explicitly request better
+          // checks at the cost of speed since event handler expressions are not executed as
+          // frequently as regular change detection.
+          var fn = $parse(attr[directiveName], /* interceptorFn */ null, /* expensiveChecks */ true);
           return function ngEventHandler(scope, element) {
             element.on(eventName, function(event) {
               var callback = function() {
-                fn(scope, {$event: event});
+                fn(scope, {$event:event});
               };
               if (forceAsyncEvents[eventName] && $rootScope.$$phase) {
                 scope.$evalAsync(callback);
@@ -34839,57 +34518,32 @@ var ngModelMinErr = minErr('ngModel');
  * @property {*} $viewValue The actual value from the control's view. For `input` elements, this is a
  * String. See {@link ngModel.NgModelController#$setViewValue} for information about when the $viewValue
  * is set.
- *
  * @property {*} $modelValue The value in the model that the control is bound to.
- *
  * @property {Array.<Function>} $parsers Array of functions to execute, as a pipeline, whenever
- *  the control updates the ngModelController with a new {@link ngModel.NgModelController#$viewValue
-    `$viewValue`} from the DOM, usually via user input.
-    See {@link ngModel.NgModelController#$setViewValue `$setViewValue()`} for a detailed lifecycle explanation.
-    Note that the `$parsers` are not called when the bound ngModel expression changes programmatically.
+       the control reads value from the DOM. The functions are called in array order, each passing
+       its return value through to the next. The last return value is forwarded to the
+       {@link ngModel.NgModelController#$validators `$validators`} collection.
 
-  The functions are called in array order, each passing
-    its return value through to the next. The last return value is forwarded to the
-    {@link ngModel.NgModelController#$validators `$validators`} collection.
+Parsers are used to sanitize / convert the {@link ngModel.NgModelController#$viewValue
+`$viewValue`}.
 
-  Parsers are used to sanitize / convert the {@link ngModel.NgModelController#$viewValue
-    `$viewValue`}.
-
-  Returning `undefined` from a parser means a parse error occurred. In that case,
-    no {@link ngModel.NgModelController#$validators `$validators`} will run and the `ngModel`
-    will be set to `undefined` unless {@link ngModelOptions `ngModelOptions.allowInvalid`}
-    is set to `true`. The parse error is stored in `ngModel.$error.parse`.
-
-  This simple example shows a parser that would convert text input value to lowercase:
- * ```js
- * function parse(value) {
- *   if (value) {
- *     return value.toLowerCase();
- *   }
- * }
- * ngModelController.$parsers.push(parse);
- * ```
+Returning `undefined` from a parser means a parse error occurred. In that case,
+no {@link ngModel.NgModelController#$validators `$validators`} will run and the `ngModel`
+will be set to `undefined` unless {@link ngModelOptions `ngModelOptions.allowInvalid`}
+is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
  *
  * @property {Array.<Function>} $formatters Array of functions to execute, as a pipeline, whenever
-    the bound ngModel expression changes programmatically. The `$formatters` are not called when the
-    value of the control is changed by user interaction.
-
-  Formatters are used to format / convert the {@link ngModel.NgModelController#$modelValue
-    `$modelValue`} for display in the control.
-
-  The functions are called in reverse array order, each passing the value through to the
-    next. The last return value is used as the actual DOM value.
-
-  This simple example shows a formatter that would convert the model value to uppercase:
-
+       the model value changes. The functions are called in reverse array order, each passing the value through to the
+       next. The last return value is used as the actual DOM value.
+       Used to format / convert values for display in the control.
  * ```js
- * function format(value) {
+ * function formatter(value) {
  *   if (value) {
  *     return value.toUpperCase();
  *   }
  * }
- * ngModel.$formatters.push(format);
+ * ngModel.$formatters.push(formatter);
  * ```
  *
  * @property {Object.<string, function>} $validators A collection of validators that are applied
@@ -35089,9 +34743,7 @@ function NgModelController($scope, $exceptionHandler, $attr, $element, $parse, $
 
   this.$$currentValidationRunId = 0;
 
-  // https://github.com/angular/angular.js/issues/15833
-  // Prevent `$$scope` from being iterated over by `copy` when NgModelController is deep watched
-  Object.defineProperty(this, '$$scope', {value: $scope});
+  this.$$scope = $scope;
   this.$$attr = $attr;
   this.$$element = $element;
   this.$$animate = $animate;
@@ -35599,10 +35251,9 @@ NgModelController.prototype = {
    *
    * When `$setViewValue` is called, the new `value` will be staged for committing through the `$parsers`
    * and `$validators` pipelines. If there are no special {@link ngModelOptions} specified then the staged
-   * value is sent directly for processing through the `$parsers` pipeline. After this, the `$validators` and
-   * `$asyncValidators` are called and the value is applied to `$modelValue`.
-   * Finally, the value is set to the **expression** specified in the `ng-model` attribute and
-   * all the registered change listeners, in the `$viewChangeListeners` list are called.
+   * value sent directly for processing, finally to be applied to `$modelValue` and then the
+   * **expression** specified in the `ng-model` attribute. Lastly, all the registered change listeners,
+   * in the `$viewChangeListeners` list, are called.
    *
    * In case the {@link ng.directive:ngModelOptions ngModelOptions} directive is used with `updateOn`
    * and the `default` trigger is not listed, all those actions will remain pending until one of the
@@ -35665,29 +35316,6 @@ NgModelController.prototype = {
         that.$commitViewValue();
       });
     }
-  },
-
-  /**
-   * @ngdoc method
-   *
-   * @name ngModel.NgModelController#$overrideModelOptions
-   *
-   * @description
-   *
-   * Override the current model options settings programmatically.
-   *
-   * The previous `ModelOptions` value will not be modified. Instead, a
-   * new `ModelOptions` object will inherit from the previous one overriding
-   * or inheriting settings that are defined in the given parameter.
-   *
-   * See {@link ngModelOptions} for information about what options can be specified
-   * and how model option inheritance works.
-   *
-   * @param {Object} options a hash of settings to override the previous options
-   *
-   */
-  $overrideModelOptions: function(options) {
-    this.$options = this.$options.createChild(options);
   }
 };
 
@@ -35700,8 +35328,8 @@ function setupModelWatcher(ctrl) {
   //    -> scope value did not change since the last digest as
   //       ng-change executes in apply phase
   // 4. view should be changed back to 'a'
-  ctrl.$$scope.$watch(function ngModelWatch(scope) {
-    var modelValue = ctrl.$$ngModelGet(scope);
+  ctrl.$$scope.$watch(function ngModelWatch() {
+    var modelValue = ctrl.$$ngModelGet(ctrl.$$scope);
 
     // if scope model value and ngModel value are out of sync
     // TODO(perf): why not move this to the action fn?
@@ -36350,27 +35978,19 @@ defaultModelOptions = new ModelOptions({
  *
  */
 var ngModelOptionsDirective = function() {
-  NgModelOptionsController.$inject = ['$attrs', '$scope'];
-  function NgModelOptionsController($attrs, $scope) {
-    this.$$attrs = $attrs;
-    this.$$scope = $scope;
-  }
-  NgModelOptionsController.prototype = {
-    $onInit: function() {
-      var parentOptions = this.parentCtrl ? this.parentCtrl.$options : defaultModelOptions;
-      var modelOptionsDefinition = this.$$scope.$eval(this.$$attrs.ngModelOptions);
-
-      this.$options = parentOptions.createChild(modelOptionsDefinition);
-    }
-  };
-
   return {
     restrict: 'A',
     // ngModelOptions needs to run before ngModel and input directives
     priority: 10,
-    require: {parentCtrl: '?^^ngModelOptions'},
-    bindToController: true,
-    controller: NgModelOptionsController
+    require: ['ngModelOptions', '?^^ngModelOptions'],
+    controller: function NgModelOptionsController() {},
+    link: {
+      pre: function ngModelOptionsPreLinkFn(scope, element, attrs, ctrls) {
+        var optionsCtrl = ctrls[0];
+        var parentOptions = ctrls[1] ? ctrls[1].$options : defaultModelOptions;
+        optionsCtrl.$options = parentOptions.createChild(scope.$eval(attrs.ngModelOptions));
+      }
+    }
   };
 };
 
@@ -36529,8 +36149,13 @@ var ngOptionsMinErr = minErr('ngOptions');
  * is not matched against any `<option>` and the `<select>` appears as having no selected value.
  *
  *
- * @param {string} ngModel Assignable AngularJS expression to data-bind to.
- * @param {comprehension_expression} ngOptions in one of the following forms:
+ * @param {string} ngModel Assignable angular expression to data-bind to.
+ * @param {string=} name Property name of the form under which the control is published.
+ * @param {string=} required The control is considered valid only if value is entered.
+ * @param {string=} ngRequired Adds `required` attribute and `required` validation constraint to
+ *    the element when the ngRequired expression evaluates to true. Use `ngRequired` instead of
+ *    `required` when you want to data-bind to the `required` attribute.
+ * @param {comprehension_expression=} ngOptions in one of the following forms:
  *
  *   * for array data sources:
  *     * `label` **`for`** `value` **`in`** `array`
@@ -36569,13 +36194,6 @@ var ngOptionsMinErr = minErr('ngOptions');
  *      used to identify the objects in the array. The `trackexpr` will most likely refer to the
  *     `value` variable (e.g. `value.propertyName`). With this the selection is preserved
  *      even when the options are recreated (e.g. reloaded from the server).
- * @param {string=} name Property name of the form under which the control is published.
- * @param {string=} required The control is considered valid only if value is entered.
- * @param {string=} ngRequired Adds `required` attribute and `required` validation constraint to
- *    the element when the ngRequired expression evaluates to true. Use `ngRequired` instead of
- *    `required` when you want to data-bind to the `required` attribute.
- * @param {string=} ngAttrSize sets the size of the select element dynamically. Uses the
- * {@link guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes ngAttr} directive.
  *
  * @example
     <example module="selectExample" name="select">
@@ -36925,17 +36543,17 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
       } else {
 
-        selectCtrl.writeValue = function writeNgOptionsMultiple(values) {
-          // Only set `<option>.selected` if necessary, in order to prevent some browsers from
-          // scrolling to `<option>` elements that are outside the `<select>` element's viewport.
-
-          var selectedOptions = values && values.map(getAndUpdateSelectedOption) || [];
-
+        selectCtrl.writeValue = function writeNgOptionsMultiple(value) {
           options.items.forEach(function(option) {
-            if (option.element.selected && !includes(selectedOptions, option)) {
-              option.element.selected = false;
-            }
+            option.element.selected = false;
           });
+
+          if (value) {
+            value.forEach(function(item) {
+              var option = options.getOptionFromViewValue(item);
+              if (option) option.element.selected = true;
+            });
+          }
         };
 
 
@@ -37025,14 +36643,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         updateOptionElement(option, optionElement);
       }
 
-      function getAndUpdateSelectedOption(viewValue) {
-        var option = options.getOptionFromViewValue(viewValue);
-        var element = option && option.element;
-
-        if (element && !element.selected) element.selected = true;
-
-        return option;
-      }
 
       function updateOptionElement(option, element) {
         option.element = element;
@@ -37387,7 +36997,6 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * @ngdoc directive
  * @name ngRepeat
  * @multiElement
- * @restrict A
  *
  * @description
  * The `ngRepeat` directive instantiates a template once per item from a collection. Each template
@@ -37954,13 +37563,11 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * @multiElement
  *
  * @description
- * The `ngShow` directive shows or hides the given HTML element based on the expression provided to
- * the `ngShow` attribute.
- *
- * The element is shown or hidden by removing or adding the `.ng-hide` CSS class onto the element.
- * The `.ng-hide` CSS class is predefined in AngularJS and sets the display style to none (using an
- * `!important` flag). For CSP mode please add `angular-csp.css` to your HTML file (see
- * {@link ng.directive:ngCsp ngCsp}).
+ * The `ngShow` directive shows or hides the given HTML element based on the expression
+ * provided to the `ngShow` attribute. The element is shown or hidden by removing or adding
+ * the `.ng-hide` CSS class onto the element. The `.ng-hide` CSS class is predefined
+ * in AngularJS and sets the display style to none (using an !important flag).
+ * For CSP mode please add `angular-csp.css` to your html file (see {@link ng.directive:ngCsp ngCsp}).
  *
  * ```html
  * <!-- when $scope.myValue is truthy (element is visible) -->
@@ -37970,32 +37577,31 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * <div ng-show="myValue" class="ng-hide"></div>
  * ```
  *
- * When the `ngShow` expression evaluates to a falsy value then the `.ng-hide` CSS class is added
- * to the class attribute on the element causing it to become hidden. When truthy, the `.ng-hide`
- * CSS class is removed from the element causing the element not to appear hidden.
+ * When the `ngShow` expression evaluates to a falsy value then the `.ng-hide` CSS class is added to the class
+ * attribute on the element causing it to become hidden. When truthy, the `.ng-hide` CSS class is removed
+ * from the element causing the element not to appear hidden.
  *
- * ## Why is `!important` used?
+ * ## Why is !important used?
  *
- * You may be wondering why `!important` is used for the `.ng-hide` CSS class. This is because the
- * `.ng-hide` selector can be easily overridden by heavier selectors. For example, something as
- * simple as changing the display style on a HTML list item would make hidden elements appear
- * visible. This also becomes a bigger issue when dealing with CSS frameworks.
+ * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-hide` selector
+ * can be easily overridden by heavier selectors. For example, something as simple
+ * as changing the display style on a HTML list item would make hidden elements appear visible.
+ * This also becomes a bigger issue when dealing with CSS frameworks.
  *
- * By using `!important`, the show and hide behavior will work as expected despite any clash between
- * CSS selector specificity (when `!important` isn't used with any conflicting styles). If a
- * developer chooses to override the styling to change how to hide an element then it is just a
- * matter of using `!important` in their own CSS code.
+ * By using !important, the show and hide behavior will work as expected despite any clash between CSS selector
+ * specificity (when !important isn't used with any conflicting styles). If a developer chooses to override the
+ * styling to change how to hide an element then it is just a matter of using !important in their own CSS code.
  *
  * ### Overriding `.ng-hide`
  *
- * By default, the `.ng-hide` class will style the element with `display: none !important`. If you
- * wish to change the hide behavior with `ngShow`/`ngHide`, you can simply overwrite the styles for
- * the `.ng-hide` CSS class. Note that the selector that needs to be used is actually
- * `.ng-hide:not(.ng-hide-animate)` to cope with extra animation classes that can be added.
+ * By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
+ * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
+ * class CSS. Note that the selector that needs to be used is actually `.ng-hide:not(.ng-hide-animate)` to cope
+ * with extra animation classes that can be added.
  *
  * ```css
  * .ng-hide:not(.ng-hide-animate) {
- *   /&#42; These are just alternative ways of hiding an element &#42;/
+ *   /&#42; this is just another form of hiding an element &#42;/
  *   display: block!important;
  *   position: absolute;
  *   top: -9999px;
@@ -38003,20 +37609,29 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * }
  * ```
  *
- * By default you don't need to override anything in CSS and the animations will work around the
- * display style.
+ * By default you don't need to override in CSS anything and the animations will work around the display style.
  *
  * ## A note about animations with `ngShow`
  *
- * Animations in `ngShow`/`ngHide` work with the show and hide events that are triggered when the
- * directive expression is true and false. This system works like the animation system present with
- * `ngClass` except that you must also include the `!important` flag to override the display
- * property so that the elements are not actually hidden during the animation.
+ * Animations in ngShow/ngHide work with the show and hide events that are triggered when the directive expression
+ * is true and false. This system works like the animation system present with ngClass except that
+ * you must also include the !important flag to override the display property
+ * so that you can perform an animation when the element is hidden during the time of the animation.
  *
  * ```css
- * /&#42; A working example can be found at the bottom of this page. &#42;/
+ * //
+ * //a working example can be found at the bottom of this page
+ * //
  * .my-element.ng-hide-add, .my-element.ng-hide-remove {
- *   transition: all 0.5s linear;
+ *   /&#42; this is required as of 1.3x to properly
+ *      apply all styling in a show/hide animation &#42;/
+ *   transition: 0s linear all;
+ * }
+ *
+ * .my-element.ng-hide-add-active,
+ * .my-element.ng-hide-remove-active {
+ *   /&#42; the transition is defined in the active class &#42;/
+ *   transition: 1s linear all;
  * }
  *
  * .my-element.ng-hide-add { ... }
@@ -38025,108 +37640,76 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * .my-element.ng-hide-remove.ng-hide-remove-active { ... }
  * ```
  *
- * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display property
- * to block during animation states - ngAnimate will automatically handle the style toggling for you.
+ * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display
+ * property to block during animation states--ngAnimate will handle the style toggling automatically for you.
  *
  * @animations
- * | Animation                                           | Occurs                                                                                                        |
- * |-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
- * | {@link $animate#addClass addClass} `.ng-hide`       | After the `ngShow` expression evaluates to a non truthy value and just before the contents are set to hidden. |
- * | {@link $animate#removeClass removeClass} `.ng-hide` | After the `ngShow` expression evaluates to a truthy value and just before contents are set to visible.        |
+ * | Animation                        | Occurs                              |
+ * |----------------------------------|-------------------------------------|
+ * | {@link $animate#addClass addClass} `.ng-hide`  | after the `ngShow` expression evaluates to a non truthy value and just before the contents are set to hidden |
+ * | {@link $animate#removeClass removeClass}  `.ng-hide`  | after the `ngShow` expression evaluates to a truthy value and just before contents are set to visible |
  *
  * @element ANY
- * @param {expression} ngShow If the {@link guide/expression expression} is truthy/falsy then the
- *                            element is shown/hidden respectively.
+ * @param {expression} ngShow If the {@link guide/expression expression} is truthy
+ *     then the element is shown or hidden respectively.
  *
  * @example
- * A simple example, animating the element's opacity:
- *
-  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-show-simple">
+  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-show">
     <file name="index.html">
-      Show: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
-      <div class="check-element animate-show-hide" ng-show="checked">
-        I show up when your checkbox is checked.
+      Click me: <input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"><br/>
+      <div>
+        Show:
+        <div class="check-element animate-show" ng-show="checked">
+          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+        </div>
+      </div>
+      <div>
+        Hide:
+        <div class="check-element animate-show" ng-hide="checked">
+          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+        </div>
       </div>
     </file>
+    <file name="glyphicons.css">
+      @import url(../../components/bootstrap-3.1.1/css/bootstrap.css);
+    </file>
     <file name="animations.css">
-      .animate-show-hide.ng-hide {
-        opacity: 0;
+      .animate-show {
+        line-height: 20px;
+        opacity: 1;
+        padding: 10px;
+        border: 1px solid black;
+        background: white;
       }
 
-      .animate-show-hide.ng-hide-add,
-      .animate-show-hide.ng-hide-remove {
+      .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
         transition: all linear 0.5s;
       }
 
-      .check-element {
-        border: 1px solid black;
-        opacity: 1;
-        padding: 10px;
-      }
-    </file>
-    <file name="protractor.js" type="protractor">
-      it('should check ngShow', function() {
-        var checkbox = element(by.model('checked'));
-        var checkElem = element(by.css('.check-element'));
-
-        expect(checkElem.isDisplayed()).toBe(false);
-        checkbox.click();
-        expect(checkElem.isDisplayed()).toBe(true);
-      });
-    </file>
-  </example>
- *
- * <hr />
- * @example
- * A more complex example, featuring different show/hide animations:
- *
-  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-show-complex">
-    <file name="index.html">
-      Show: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
-      <div class="check-element funky-show-hide" ng-show="checked">
-        I show up when your checkbox is checked.
-      </div>
-    </file>
-    <file name="animations.css">
-      body {
-        overflow: hidden;
-        perspective: 1000px;
-      }
-
-      .funky-show-hide.ng-hide-add {
-        transform: rotateZ(0);
-        transform-origin: right;
-        transition: all 0.5s ease-in-out;
-      }
-
-      .funky-show-hide.ng-hide-add.ng-hide-add-active {
-        transform: rotateZ(-135deg);
-      }
-
-      .funky-show-hide.ng-hide-remove {
-        transform: rotateY(90deg);
-        transform-origin: left;
-        transition: all 0.5s ease;
-      }
-
-      .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
-        transform: rotateY(0);
+      .animate-show.ng-hide {
+        line-height: 0;
+        opacity: 0;
+        padding: 0 10px;
       }
 
       .check-element {
-        border: 1px solid black;
-        opacity: 1;
         padding: 10px;
+        border: 1px solid black;
+        background: white;
       }
     </file>
     <file name="protractor.js" type="protractor">
-      it('should check ngShow', function() {
-        var checkbox = element(by.model('checked'));
-        var checkElem = element(by.css('.check-element'));
+      var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
+      var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
-        expect(checkElem.isDisplayed()).toBe(false);
-        checkbox.click();
-        expect(checkElem.isDisplayed()).toBe(true);
+      it('should check ng-show / ng-hide', function() {
+        expect(thumbsUp.isDisplayed()).toBeFalsy();
+        expect(thumbsDown.isDisplayed()).toBeTruthy();
+
+        element(by.model('checked')).click();
+
+        expect(thumbsUp.isDisplayed()).toBeTruthy();
+        expect(thumbsDown.isDisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -38156,13 +37739,11 @@ var ngShowDirective = ['$animate', function($animate) {
  * @multiElement
  *
  * @description
- * The `ngHide` directive shows or hides the given HTML element based on the expression provided to
- * the `ngHide` attribute.
- *
- * The element is shown or hidden by removing or adding the `.ng-hide` CSS class onto the element.
- * The `.ng-hide` CSS class is predefined in AngularJS and sets the display style to none (using an
- * `!important` flag). For CSP mode please add `angular-csp.css` to your HTML file (see
- * {@link ng.directive:ngCsp ngCsp}).
+ * The `ngHide` directive shows or hides the given HTML element based on the expression
+ * provided to the `ngHide` attribute. The element is shown or hidden by removing or adding
+ * the `ng-hide` CSS class onto the element. The `.ng-hide` CSS class is predefined
+ * in AngularJS and sets the display style to none (using an !important flag).
+ * For CSP mode please add `angular-csp.css` to your html file (see {@link ng.directive:ngCsp ngCsp}).
  *
  * ```html
  * <!-- when $scope.myValue is truthy (element is hidden) -->
@@ -38172,32 +37753,30 @@ var ngShowDirective = ['$animate', function($animate) {
  * <div ng-hide="myValue"></div>
  * ```
  *
- * When the `ngHide` expression evaluates to a truthy value then the `.ng-hide` CSS class is added
- * to the class attribute on the element causing it to become hidden. When falsy, the `.ng-hide`
- * CSS class is removed from the element causing the element not to appear hidden.
+ * When the `ngHide` expression evaluates to a truthy value then the `.ng-hide` CSS class is added to the class
+ * attribute on the element causing it to become hidden. When falsy, the `.ng-hide` CSS class is removed
+ * from the element causing the element not to appear hidden.
  *
- * ## Why is `!important` used?
+ * ## Why is !important used?
  *
- * You may be wondering why `!important` is used for the `.ng-hide` CSS class. This is because the
- * `.ng-hide` selector can be easily overridden by heavier selectors. For example, something as
- * simple as changing the display style on a HTML list item would make hidden elements appear
- * visible. This also becomes a bigger issue when dealing with CSS frameworks.
+ * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-hide` selector
+ * can be easily overridden by heavier selectors. For example, something as simple
+ * as changing the display style on a HTML list item would make hidden elements appear visible.
+ * This also becomes a bigger issue when dealing with CSS frameworks.
  *
- * By using `!important`, the show and hide behavior will work as expected despite any clash between
- * CSS selector specificity (when `!important` isn't used with any conflicting styles). If a
- * developer chooses to override the styling to change how to hide an element then it is just a
- * matter of using `!important` in their own CSS code.
+ * By using !important, the show and hide behavior will work as expected despite any clash between CSS selector
+ * specificity (when !important isn't used with any conflicting styles). If a developer chooses to override the
+ * styling to change how to hide an element then it is just a matter of using !important in their own CSS code.
  *
  * ### Overriding `.ng-hide`
  *
- * By default, the `.ng-hide` class will style the element with `display: none !important`. If you
- * wish to change the hide behavior with `ngShow`/`ngHide`, you can simply overwrite the styles for
- * the `.ng-hide` CSS class. Note that the selector that needs to be used is actually
- * `.ng-hide:not(.ng-hide-animate)` to cope with extra animation classes that can be added.
+ * By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
+ * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
+ * class in CSS:
  *
  * ```css
- * .ng-hide:not(.ng-hide-animate) {
- *   /&#42; These are just alternative ways of hiding an element &#42;/
+ * .ng-hide {
+ *   /&#42; this is just another form of hiding an element &#42;/
  *   display: block!important;
  *   position: absolute;
  *   top: -9999px;
@@ -38205,20 +37784,20 @@ var ngShowDirective = ['$animate', function($animate) {
  * }
  * ```
  *
- * By default you don't need to override in CSS anything and the animations will work around the
- * display style.
+ * By default you don't need to override in CSS anything and the animations will work around the display style.
  *
  * ## A note about animations with `ngHide`
  *
- * Animations in `ngShow`/`ngHide` work with the show and hide events that are triggered when the
- * directive expression is true and false. This system works like the animation system present with
- * `ngClass` except that you must also include the `!important` flag to override the display
- * property so that the elements are not actually hidden during the animation.
+ * Animations in ngShow/ngHide work with the show and hide events that are triggered when the directive expression
+ * is true and false. This system works like the animation system present with ngClass, except that the `.ng-hide`
+ * CSS class is added and removed for you instead of your own CSS class.
  *
  * ```css
- * /&#42; A working example can be found at the bottom of this page. &#42;/
+ * //
+ * //a working example can be found at the bottom of this page
+ * //
  * .my-element.ng-hide-add, .my-element.ng-hide-remove {
- *   transition: all 0.5s linear;
+ *   transition: 0.5s linear all;
  * }
  *
  * .my-element.ng-hide-add { ... }
@@ -38227,109 +37806,74 @@ var ngShowDirective = ['$animate', function($animate) {
  * .my-element.ng-hide-remove.ng-hide-remove-active { ... }
  * ```
  *
- * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display property
- * to block during animation states - ngAnimate will automatically handle the style toggling for you.
+ * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display
+ * property to block during animation states--ngAnimate will handle the style toggling automatically for you.
  *
  * @animations
- * | Animation                                           | Occurs                                                                                                     |
- * |-----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
- * | {@link $animate#addClass addClass} `.ng-hide`       | After the `ngHide` expression evaluates to a truthy value and just before the contents are set to hidden.  |
- * | {@link $animate#removeClass removeClass} `.ng-hide` | After the `ngHide` expression evaluates to a non truthy value and just before contents are set to visible. |
+ * | Animation                        | Occurs                              |
+ * |----------------------------------|-------------------------------------|
+ * | {@link $animate#addClass addClass} `.ng-hide`  | after the `ngHide` expression evaluates to a truthy value and just before the contents are set to hidden |
+ * | {@link $animate#removeClass removeClass}  `.ng-hide`  | after the `ngHide` expression evaluates to a non truthy value and just before contents are set to visible |
  *
  *
  * @element ANY
- * @param {expression} ngHide If the {@link guide/expression expression} is truthy/falsy then the
- *                            element is hidden/shown respectively.
+ * @param {expression} ngHide If the {@link guide/expression expression} is truthy then
+ *     the element is shown or hidden respectively.
  *
  * @example
- * A simple example, animating the element's opacity:
- *
-  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-hide-simple">
+  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-hide">
     <file name="index.html">
-      Hide: <input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"><br />
-      <div class="check-element animate-show-hide" ng-hide="checked">
-        I hide when your checkbox is checked.
+      Click me: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br/>
+      <div>
+        Show:
+        <div class="check-element animate-hide" ng-show="checked">
+          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+        </div>
+      </div>
+      <div>
+        Hide:
+        <div class="check-element animate-hide" ng-hide="checked">
+          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+        </div>
       </div>
     </file>
+    <file name="glyphicons.css">
+      @import url(../../components/bootstrap-3.1.1/css/bootstrap.css);
+    </file>
     <file name="animations.css">
-      .animate-show-hide.ng-hide {
-        opacity: 0;
-      }
-
-      .animate-show-hide.ng-hide-add,
-      .animate-show-hide.ng-hide-remove {
+      .animate-hide {
         transition: all linear 0.5s;
+        line-height: 20px;
+        opacity: 1;
+        padding: 10px;
+        border: 1px solid black;
+        background: white;
+      }
+
+      .animate-hide.ng-hide {
+        line-height: 0;
+        opacity: 0;
+        padding: 0 10px;
       }
 
       .check-element {
-        border: 1px solid black;
-        opacity: 1;
         padding: 10px;
+        border: 1px solid black;
+        background: white;
       }
     </file>
     <file name="protractor.js" type="protractor">
-      it('should check ngHide', function() {
-        var checkbox = element(by.model('checked'));
-        var checkElem = element(by.css('.check-element'));
+      var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
+      var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
-        expect(checkElem.isDisplayed()).toBe(true);
-        checkbox.click();
-        expect(checkElem.isDisplayed()).toBe(false);
-      });
-    </file>
-  </example>
- *
- * <hr />
- * @example
- * A more complex example, featuring different show/hide animations:
- *
-  <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-hide-complex">
-    <file name="index.html">
-      Hide: <input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"><br />
-      <div class="check-element funky-show-hide" ng-hide="checked">
-        I hide when your checkbox is checked.
-      </div>
-    </file>
-    <file name="animations.css">
-      body {
-        overflow: hidden;
-        perspective: 1000px;
-      }
+      it('should check ng-show / ng-hide', function() {
+        expect(thumbsUp.isDisplayed()).toBeFalsy();
+        expect(thumbsDown.isDisplayed()).toBeTruthy();
 
-      .funky-show-hide.ng-hide-add {
-        transform: rotateZ(0);
-        transform-origin: right;
-        transition: all 0.5s ease-in-out;
-      }
+        element(by.model('checked')).click();
 
-      .funky-show-hide.ng-hide-add.ng-hide-add-active {
-        transform: rotateZ(-135deg);
-      }
-
-      .funky-show-hide.ng-hide-remove {
-        transform: rotateY(90deg);
-        transform-origin: left;
-        transition: all 0.5s ease;
-      }
-
-      .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
-        transform: rotateY(0);
-      }
-
-      .check-element {
-        border: 1px solid black;
-        opacity: 1;
-        padding: 10px;
-      }
-    </file>
-    <file name="protractor.js" type="protractor">
-      it('should check ngHide', function() {
-        var checkbox = element(by.model('checked'));
-        var checkElem = element(by.css('.check-element'));
-
-        expect(checkElem.isDisplayed()).toBe(true);
-        checkbox.click();
-        expect(checkElem.isDisplayed()).toBe(false);
+        expect(thumbsUp.isDisplayed()).toBeTruthy();
+        expect(thumbsDown.isDisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -38912,18 +38456,6 @@ var scriptDirective = ['$templateCache', function($templateCache) {
 
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
-function setOptionSelectedStatus(optionEl, value) {
-  optionEl.prop('selected', value); // needed for IE
-  /**
-   * When unselecting an option, setting the property to null / false should be enough
-   * However, screenreaders might react to the selected attribute instead, see
-   * https://github.com/angular/angular.js/issues/14419
-   * Note: "selected" is a boolean attr and will be removed when the "value" arg in attr() is false
-   * or null
-   */
-  optionEl.attr('selected', value);
-}
-
 /**
  * @ngdoc type
  * @name  select.SelectController
@@ -38936,7 +38468,7 @@ var SelectController =
         ['$element', '$scope', /** @this */ function($element, $scope) {
 
   var self = this,
-      optionsMap = new NgMap();
+      optionsMap = new HashMap();
 
   self.selectValueMap = {}; // Keys are the hashed values, values the original values
 
@@ -38964,14 +38496,14 @@ var SelectController =
     var unknownVal = self.generateUnknownOptionValue(val);
     self.unknownOption.val(unknownVal);
     $element.prepend(self.unknownOption);
-    setOptionSelectedStatus(self.unknownOption, true);
+    setOptionAsSelected(self.unknownOption);
     $element.val(unknownVal);
   };
 
   self.updateUnknownOption = function(val) {
     var unknownVal = self.generateUnknownOptionValue(val);
     self.unknownOption.val(unknownVal);
-    setOptionSelectedStatus(self.unknownOption, true);
+    setOptionAsSelected(self.unknownOption);
     $element.val(unknownVal);
   };
 
@@ -38986,7 +38518,7 @@ var SelectController =
   self.selectEmptyOption = function() {
     if (self.emptyOption) {
       $element.val('');
-      setOptionSelectedStatus(self.emptyOption, true);
+      setOptionAsSelected(self.emptyOption);
     }
   };
 
@@ -39022,7 +38554,7 @@ var SelectController =
     // Make sure to remove the selected attribute from the previously selected option
     // Otherwise, screen readers might get confused
     var currentlySelectedOption = $element[0].options[$element[0].selectedIndex];
-    if (currentlySelectedOption) setOptionSelectedStatus(jqLite(currentlySelectedOption), false);
+    if (currentlySelectedOption) currentlySelectedOption.removeAttribute('selected');
 
     if (self.hasOption(value)) {
       self.removeUnknownOption();
@@ -39032,7 +38564,7 @@ var SelectController =
 
       // Set selected attribute and property on selected option for screen readers
       var selectedOption = $element[0].options[$element[0].selectedIndex];
-      setOptionSelectedStatus(jqLite(selectedOption), true);
+      setOptionAsSelected(jqLite(selectedOption));
     } else {
       if (value == null && self.emptyOption) {
         self.removeUnknownOption();
@@ -39057,7 +38589,7 @@ var SelectController =
       self.emptyOption = element;
     }
     var count = optionsMap.get(value) || 0;
-    optionsMap.set(value, count + 1);
+    optionsMap.put(value, count + 1);
     // Only render at the end of a digest. This improves render performance when many options
     // are added during a digest and ensures all relevant options are correctly marked as selected
     scheduleRender();
@@ -39068,13 +38600,13 @@ var SelectController =
     var count = optionsMap.get(value);
     if (count) {
       if (count === 1) {
-        optionsMap.delete(value);
+        optionsMap.remove(value);
         if (value === '') {
           self.hasEmptyOption = false;
           self.emptyOption = undefined;
         }
       } else {
-        optionsMap.set(value, count - 1);
+        optionsMap.put(value, count - 1);
       }
     }
   };
@@ -39201,7 +38733,7 @@ var SelectController =
       var removeValue = optionAttrs.value;
 
       self.removeOption(removeValue);
-      scheduleRender();
+      self.ngModelCtrl.$render();
 
       if (self.multiple && currentValue && currentValue.indexOf(removeValue) !== -1 ||
           currentValue === removeValue
@@ -39212,6 +38744,11 @@ var SelectController =
       }
     });
   };
+
+  function setOptionAsSelected(optionEl) {
+    optionEl.prop('selected', true); // needed for IE
+    optionEl.attr('selected', true);
+  }
 }];
 
 /**
@@ -39281,8 +38818,6 @@ var SelectController =
  *    interaction with the select element.
  * @param {string=} ngOptions sets the options that the select is populated with and defines what is
  * set on the model on selection. See {@link ngOptions `ngOptions`}.
- * @param {string=} ngAttrSize sets the size of the select element dynamically. Uses the
- * {@link guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes ngAttr} directive.
  *
  * @example
  * ### Simple `select` elements with static options
@@ -39523,21 +39058,9 @@ var selectDirective = function() {
 
         // Write value now needs to set the selected property of each matching option
         selectCtrl.writeValue = function writeMultipleValue(value) {
+          var items = new HashMap(value);
           forEach(element.find('option'), function(option) {
-            var shouldBeSelected = !!value && (includes(value, option.value) ||
-                                               includes(value, selectCtrl.selectValueMap[option.value]));
-            var currentlySelected = option.selected;
-
-            // IE and Edge, adding options to the selection via shift+click/UP/DOWN,
-            // will de-select already selected options if "selected" on those options was set
-            // more than once (i.e. when the options were already selected)
-            // So we only modify the selected property if neccessary.
-            // Note: this behavior cannot be replicated via unit tests because it only shows in the
-            // actual user interface.
-            if (shouldBeSelected !== currentlySelected) {
-              setOptionSelectedStatus(jqLite(option), shouldBeSelected);
-            }
-
+            option.selected = isDefined(items.get(option.value)) || isDefined(items.get(selectCtrl.selectValueMap[option.value]));
           });
         };
 
@@ -65816,6 +65339,22 @@ var duScrollDefaultEasing=function(e){"use strict";return e<.5?Math.pow(2*e,2)/2
 //# sourceMappingURL=angular-scroll.min.js.map
 
 !function(t,s,e){"use strict";var i=function(t,s){var i=this;this.el=t,this.options={},Object.keys(r).forEach(function(t){i.options[t]=r[t]}),Object.keys(s).forEach(function(t){i.options[t]=s[t]}),this.isInput="input"===this.el.tagName.toLowerCase(),this.attr=this.options.attr,this.showCursor=!this.isInput&&this.options.showCursor,this.elContent=this.attr?this.el.getAttribute(this.attr):this.el.textContent,this.contentType=this.options.contentType,this.typeSpeed=this.options.typeSpeed,this.startDelay=this.options.startDelay,this.backSpeed=this.options.backSpeed,this.backDelay=this.options.backDelay,this.fadeOut=this.options.fadeOut,this.fadeOutClass=this.options.fadeOutClass,this.fadeOutDelay=this.options.fadeOutDelay,e&&this.options.stringsElement instanceof e?this.stringsElement=this.options.stringsElement[0]:this.stringsElement=this.options.stringsElement,this.strings=this.options.strings,this.strPos=0,this.arrayPos=0,this.stopNum=0,this.loop=this.options.loop,this.loopCount=this.options.loopCount,this.curLoop=0,this.stop=!1,this.cursorChar=this.options.cursorChar,this.shuffle=this.options.shuffle,this.sequence=[],this.build()};i.prototype={constructor:i,init:function(){var t=this;t.timeout=setTimeout(function(){for(var s=0;s<t.strings.length;++s)t.sequence[s]=s;t.shuffle&&(t.sequence=t.shuffleArray(t.sequence)),t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},t.startDelay)},build:function(){var t=this;if(this.showCursor===!0&&(this.cursor=s.createElement("span"),this.cursor.className="typed-cursor",this.cursor.innerHTML=this.cursorChar,this.el.parentNode&&this.el.parentNode.insertBefore(this.cursor,this.el.nextSibling)),this.stringsElement){this.strings=[],this.stringsElement.style.display="none";var e=Array.prototype.slice.apply(this.stringsElement.children);e.forEach(function(s){t.strings.push(s.innerHTML)})}this.init()},typewrite:function(t,s){if(this.stop!==!0){this.fadeOut&&this.el.classList.contains(this.fadeOutClass)&&(this.el.classList.remove(this.fadeOutClass),this.cursor.classList.remove(this.fadeOutClass));var e=Math.round(70*Math.random())+this.typeSpeed,i=this;i.timeout=setTimeout(function(){var e=0,r=t.substr(s);if("^"===r.charAt(0)){var o=1;/^\^\d+/.test(r)&&(r=/\d+/.exec(r)[0],o+=r.length,e=parseInt(r)),t=t.substring(0,s)+t.substring(s+o)}if("html"===i.contentType){var n=t.substr(s).charAt(0);if("<"===n||"&"===n){var a="",h="";for(h="<"===n?">":";";t.substr(s+1).charAt(0)!==h&&(a+=t.substr(s).charAt(0),s++,!(s+1>t.length)););s++,a+=h}}i.timeout=setTimeout(function(){if(s===t.length){if(i.options.onStringTyped(i.arrayPos),i.arrayPos===i.strings.length-1&&(i.options.callback(),i.curLoop++,i.loop===!1||i.curLoop===i.loopCount))return;i.timeout=setTimeout(function(){i.backspace(t,s)},i.backDelay)}else{0===s&&i.options.preStringTyped(i.arrayPos);var e=t.substr(0,s+1);i.attr?i.el.setAttribute(i.attr,e):i.isInput?i.el.value=e:"html"===i.contentType?i.el.innerHTML=e:i.el.textContent=e,s++,i.typewrite(t,s)}},e)},e)}},backspace:function(t,s){var e=this;if(this.stop!==!0){if(this.fadeOut)return void this.initFadeOut();var i=Math.round(70*Math.random())+this.backSpeed;e.timeout=setTimeout(function(){if("html"===e.contentType&&">"===t.substr(s).charAt(0)){for(var i="";"<"!==t.substr(s-1).charAt(0)&&(i-=t.substr(s).charAt(0),s--,!(s<0)););s--,i+="<"}var r=t.substr(0,s);e.replaceText(r),s>e.stopNum?(s--,e.backspace(t,s)):s<=e.stopNum&&(e.arrayPos++,e.arrayPos===e.strings.length?(e.arrayPos=0,e.shuffle&&(e.sequence=e.shuffleArray(e.sequence)),e.init()):e.typewrite(e.strings[e.sequence[e.arrayPos]],s))},i)}},initFadeOut:function(){return self=this,this.el.className+=" "+this.fadeOutClass,this.cursor.className+=" "+this.fadeOutClass,setTimeout(function(){self.arrayPos++,self.replaceText(""),self.typewrite(self.strings[self.sequence[self.arrayPos]],0)},self.fadeOutDelay)},replaceText:function(t){this.attr?this.el.setAttribute(this.attr,t):this.isInput?this.el.value=t:"html"===this.contentType?this.el.innerHTML=t:this.el.textContent=t},shuffleArray:function(t){var s,e,i=t.length;if(i)for(;--i;)e=Math.floor(Math.random()*(i+1)),s=t[e],t[e]=t[i],t[i]=s;return t},reset:function(){var t=this;clearInterval(t.timeout);this.el.getAttribute("id");this.el.textContent="","undefined"!=typeof this.cursor&&"undefined"!=typeof this.cursor.parentNode&&this.cursor.parentNode.removeChild(this.cursor),this.strPos=0,this.arrayPos=0,this.curLoop=0,this.options.resetCallback()}},i["new"]=function(t,e){var r=Array.prototype.slice.apply(s.querySelectorAll(t));r.forEach(function(t){var s=t._typed,r="object"==typeof e&&e;s&&s.reset(),t._typed=s=new i(t,r),"string"==typeof e&&s[e]()})},e&&(e.fn.typed=function(t){return this.each(function(){var s=e(this),r=s.data("typed"),o="object"==typeof t&&t;r&&r.reset(),s.data("typed",r=new i(this,o)),"string"==typeof t&&r[t]()})}),t.Typed=i;var r={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,shuffle:!1,backDelay:500,fadeOut:!1,fadeOutClass:"typed-fade-out",fadeOutDelay:500,loop:!1,loopCount:!1,showCursor:!0,cursorChar:"|",attr:null,contentType:"html",callback:function(){},preStringTyped:function(){},onStringTyped:function(){},resetCallback:function(){}}}(window,document,window.jQuery);
+(function(){function C(){var a="{}";if("userDataBehavior"==f){g.load("jStorage");try{a=g.getAttribute("jStorage")}catch(b){}try{r=g.getAttribute("jStorage_update")}catch(c){}h.jStorage=a}D();x();E()}function u(){var a;clearTimeout(F);F=setTimeout(function(){if("localStorage"==f||"globalStorage"==f)a=h.jStorage_update;else if("userDataBehavior"==f){g.load("jStorage");try{a=g.getAttribute("jStorage_update")}catch(b){}}if(a&&a!=r){r=a;var l=p.parse(p.stringify(c.__jstorage_meta.CRC32)),k;C();k=p.parse(p.stringify(c.__jstorage_meta.CRC32));
+var d,n=[],e=[];for(d in l)l.hasOwnProperty(d)&&(k[d]?l[d]!=k[d]&&"2."==String(l[d]).substr(0,2)&&n.push(d):e.push(d));for(d in k)k.hasOwnProperty(d)&&(l[d]||n.push(d));s(n,"updated");s(e,"deleted")}},25)}function s(a,b){a=[].concat(a||[]);var c,k,d,n;if("flushed"==b){a=[];for(c in m)m.hasOwnProperty(c)&&a.push(c);b="deleted"}c=0;for(d=a.length;c<d;c++){if(m[a[c]])for(k=0,n=m[a[c]].length;k<n;k++)m[a[c]][k](a[c],b);if(m["*"])for(k=0,n=m["*"].length;k<n;k++)m["*"][k](a[c],b)}}function v(){var a=(+new Date).toString();
+if("localStorage"==f||"globalStorage"==f)try{h.jStorage_update=a}catch(b){f=!1}else"userDataBehavior"==f&&(g.setAttribute("jStorage_update",a),g.save("jStorage"));u()}function D(){if(h.jStorage)try{c=p.parse(String(h.jStorage))}catch(a){h.jStorage="{}"}else h.jStorage="{}";z=h.jStorage?String(h.jStorage).length:0;c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.CRC32||(c.__jstorage_meta.CRC32={})}function w(){if(c.__jstorage_meta.PubSub){for(var a=+new Date-2E3,b=0,l=c.__jstorage_meta.PubSub.length;b<
+l;b++)if(c.__jstorage_meta.PubSub[b][0]<=a){c.__jstorage_meta.PubSub.splice(b,c.__jstorage_meta.PubSub.length-b);break}c.__jstorage_meta.PubSub.length||delete c.__jstorage_meta.PubSub}try{h.jStorage=p.stringify(c),g&&(g.setAttribute("jStorage",h.jStorage),g.save("jStorage")),z=h.jStorage?String(h.jStorage).length:0}catch(k){}}function q(a){if("string"!=typeof a&&"number"!=typeof a)throw new TypeError("Key name must be string or numeric");if("__jstorage_meta"==a)throw new TypeError("Reserved key name");
+return!0}function x(){var a,b,l,k,d=Infinity,n=!1,e=[];clearTimeout(G);if(c.__jstorage_meta&&"object"==typeof c.__jstorage_meta.TTL){a=+new Date;l=c.__jstorage_meta.TTL;k=c.__jstorage_meta.CRC32;for(b in l)l.hasOwnProperty(b)&&(l[b]<=a?(delete l[b],delete k[b],delete c[b],n=!0,e.push(b)):l[b]<d&&(d=l[b]));Infinity!=d&&(G=setTimeout(x,Math.min(d-a,2147483647)));n&&(w(),v(),s(e,"deleted"))}}function E(){var a;if(c.__jstorage_meta.PubSub){var b,l=A,k=[];for(a=c.__jstorage_meta.PubSub.length-1;0<=a;a--)b=
+c.__jstorage_meta.PubSub[a],b[0]>A&&(l=b[0],k.unshift(b));for(a=k.length-1;0<=a;a--){b=k[a][1];var d=k[a][2];if(t[b])for(var n=0,e=t[b].length;n<e;n++)try{t[b][n](b,p.parse(p.stringify(d)))}catch(g){}}A=l}}var y=window.jQuery||window.$||(window.$={}),p={parse:window.JSON&&(window.JSON.parse||window.JSON.decode)||String.prototype.evalJSON&&function(a){return String(a).evalJSON()}||y.parseJSON||y.evalJSON,stringify:Object.toJSON||window.JSON&&(window.JSON.stringify||window.JSON.encode)||y.toJSON};if("function"!==
+typeof p.parse||"function"!==typeof p.stringify)throw Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");var c={__jstorage_meta:{CRC32:{}}},h={jStorage:"{}"},g=null,z=0,f=!1,m={},F=!1,r=0,t={},A=+new Date,G,B={isXML:function(a){return(a=(a?a.ownerDocument||a:0).documentElement)?"HTML"!==a.nodeName:!1},encode:function(a){if(!this.isXML(a))return!1;try{return(new XMLSerializer).serializeToString(a)}catch(b){try{return a.xml}catch(c){}}return!1},
+decode:function(a){var b="DOMParser"in window&&(new DOMParser).parseFromString||window.ActiveXObject&&function(a){var b=new ActiveXObject("Microsoft.XMLDOM");b.async="false";b.loadXML(a);return b};if(!b)return!1;a=b.call("DOMParser"in window&&new DOMParser||window,a,"text/xml");return this.isXML(a)?a:!1}};y.jStorage={version:"0.4.12",set:function(a,b,l){q(a);l=l||{};if("undefined"==typeof b)return this.deleteKey(a),b;if(B.isXML(b))b={_is_xml:!0,xml:B.encode(b)};else{if("function"==typeof b)return;
+b&&"object"==typeof b&&(b=p.parse(p.stringify(b)))}c[a]=b;for(var k=c.__jstorage_meta.CRC32,d=p.stringify(b),g=d.length,e=2538058380^g,h=0,f;4<=g;)f=d.charCodeAt(h)&255|(d.charCodeAt(++h)&255)<<8|(d.charCodeAt(++h)&255)<<16|(d.charCodeAt(++h)&255)<<24,f=1540483477*(f&65535)+((1540483477*(f>>>16)&65535)<<16),f^=f>>>24,f=1540483477*(f&65535)+((1540483477*(f>>>16)&65535)<<16),e=1540483477*(e&65535)+((1540483477*(e>>>16)&65535)<<16)^f,g-=4,++h;switch(g){case 3:e^=(d.charCodeAt(h+2)&255)<<16;case 2:e^=
+(d.charCodeAt(h+1)&255)<<8;case 1:e^=d.charCodeAt(h)&255,e=1540483477*(e&65535)+((1540483477*(e>>>16)&65535)<<16)}e^=e>>>13;e=1540483477*(e&65535)+((1540483477*(e>>>16)&65535)<<16);k[a]="2."+((e^e>>>15)>>>0);this.setTTL(a,l.TTL||0);s(a,"updated");return b},get:function(a,b){q(a);return a in c?c[a]&&"object"==typeof c[a]&&c[a]._is_xml?B.decode(c[a].xml):c[a]:"undefined"==typeof b?null:b},deleteKey:function(a){q(a);return a in c?(delete c[a],"object"==typeof c.__jstorage_meta.TTL&&a in c.__jstorage_meta.TTL&&
+delete c.__jstorage_meta.TTL[a],delete c.__jstorage_meta.CRC32[a],w(),v(),s(a,"deleted"),!0):!1},setTTL:function(a,b){var l=+new Date;q(a);b=Number(b)||0;return a in c?(c.__jstorage_meta.TTL||(c.__jstorage_meta.TTL={}),0<b?c.__jstorage_meta.TTL[a]=l+b:delete c.__jstorage_meta.TTL[a],w(),x(),v(),!0):!1},getTTL:function(a){var b=+new Date;q(a);return a in c&&c.__jstorage_meta.TTL&&c.__jstorage_meta.TTL[a]?(a=c.__jstorage_meta.TTL[a]-b)||0:0},flush:function(){c={__jstorage_meta:{CRC32:{}}};w();v();s(null,
+"flushed");return!0},storageObj:function(){function a(){}a.prototype=c;return new a},index:function(){var a=[],b;for(b in c)c.hasOwnProperty(b)&&"__jstorage_meta"!=b&&a.push(b);return a},storageSize:function(){return z},currentBackend:function(){return f},storageAvailable:function(){return!!f},listenKeyChange:function(a,b){q(a);m[a]||(m[a]=[]);m[a].push(b)},stopListening:function(a,b){q(a);if(m[a])if(b)for(var c=m[a].length-1;0<=c;c--)m[a][c]==b&&m[a].splice(c,1);else delete m[a]},subscribe:function(a,
+b){a=(a||"").toString();if(!a)throw new TypeError("Channel not defined");t[a]||(t[a]=[]);t[a].push(b)},publish:function(a,b){a=(a||"").toString();if(!a)throw new TypeError("Channel not defined");c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.PubSub||(c.__jstorage_meta.PubSub=[]);c.__jstorage_meta.PubSub.unshift([+new Date,a,b]);w();v()},reInit:function(){C()},noConflict:function(a){delete window.$.jStorage;a&&(window.jStorage=this);return this}};(function(){var a=!1;if("localStorage"in
+window)try{window.localStorage.setItem("_tmptest","tmpval"),a=!0,window.localStorage.removeItem("_tmptest")}catch(b){}if(a)try{window.localStorage&&(h=window.localStorage,f="localStorage",r=h.jStorage_update)}catch(c){}else if("globalStorage"in window)try{window.globalStorage&&(h="localhost"==window.location.hostname?window.globalStorage["localhost.localdomain"]:window.globalStorage[window.location.hostname],f="globalStorage",r=h.jStorage_update)}catch(k){}else if(g=document.createElement("link"),
+g.addBehavior){g.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(g);try{g.load("jStorage")}catch(d){g.setAttribute("jStorage","{}"),g.save("jStorage"),g.load("jStorage")}a="{}";try{a=g.getAttribute("jStorage")}catch(m){}try{r=g.getAttribute("jStorage_update")}catch(e){}h.jStorage=a;f="userDataBehavior"}else{g=null;return}D();x();"localStorage"==f||"globalStorage"==f?"addEventListener"in window?window.addEventListener("storage",u,!1):document.attachEvent("onstorage",
+u):"userDataBehavior"==f&&setInterval(u,1E3);E();"addEventListener"in window&&window.addEventListener("pageshow",function(a){a.persisted&&u()},!1)})()})();
 // Link all the JS Docs here
 var myApp = angular.module('myApp', [
     'ui.router',
@@ -65863,9 +65402,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'DigitalCourseCtrl'
         })
         .state('digitalinside', {
-            url: "/digitalinside",
+            url: "/digitalinside/:userId",
             templateUrl: tempateURL,
             controller: 'DigitalInsideCtrl'
+        })
+        .state('digital-question', {
+            url: "/digital-question/:userId",
+            templateUrl: tempateURL,
+            controller: 'DigitalQuestionCtrl'
         })
         .state('form', {
             url: "/form",
@@ -65877,7 +65421,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'PartnersCtrl'
         })
-
+        .state('question-paper', {
+            url: "/question-paper/:userId",
+            templateUrl: tempateURL,
+            controller: 'QuestionPaperCtrl'
+        })
 
         .state('homeid', {
             url: "/:id",
@@ -65893,6 +65441,16 @@ myApp.config(function ($translateProvider) {
     $translateProvider.translations('en', LanguageEnglish);
     $translateProvider.translations('hi', LanguageHindi);
     $translateProvider.preferredLanguage('en');
+});
+
+myApp.filter('serverimage', function () {
+    return function (image) {
+        if (image && image !== null) {
+            return adminurl + "upload/readFile?file=" + image;
+        } else {
+            return undefined;
+        }
+    }
 });
 var LanguageEnglish = {
   "ABOUT": "About",
@@ -66091,7 +65649,8 @@ myApp.factory('NavigationService', function () {
     return {
         getNavigation: function () {
             return navigation;
-        }
+        },
+       
     };
 });
 myApp.factory('apiService', function ($http, $q, $timeout) {
@@ -66114,6 +65673,49 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 
             });
         },
+        saveUser: function (formData, callback) {
+            console.log("******saveUser *******", formData);
+            $http.post(adminurl + 'Contest/saveContest', formData).then(function (data) {
+                data = data.data;
+                console.log("after api saveuser", data);
+                callback(data);
+
+            });
+        },
+        saveSelectedAnswer: function (url, formData, callback) {
+            console.log("******saveSelectedAnswer *******", formData);
+            $http.post(adminurl + url, formData).then(function (data) {
+                data = data.data;
+                console.log("saveSelectedAnswer", data);
+                callback(data);
+            });
+        },
+        apiWithoutData: function (formData, callback) {
+            // console.log("******question *******", formData);
+            $http.post(adminurl + formData).then(function (data) {
+                data = data.data;
+                // console.log("question", data);
+                callback(data);
+
+            });
+        },
+        apiWithData: function (url, data, callback) {
+            console.log("******xxxxxxxxxxxx *******", data);
+            $http.post(adminurl + url, data).then(function (data) {
+                data = data.data;
+                console.log("xxxxxxxxxxx", data);
+                callback(data);
+
+            });
+        },
+        saveAnswer: function (formData, callback) {
+            console.log("******saveAnswer *******", formData);
+            $http.post(adminurl + 'saveSelectedAnswer/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
         sendLogin: function (formData, callback) {
             console.log("******Testing insid send login *******", formData)
             $http.post(adminurl + 'Userweb/save', formData).then(function (data) {
@@ -66126,230 +65728,355 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
 });
 var mySwiper;
 myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $stateParams, $document, $location, $state, apiService) {
-        $scope.template = TemplateService.getHTML("content/home.html");
-        TemplateService.title = "Home"; //This is the Title of the Website
-        $scope.navigation = NavigationService.getNavigation();
+    $scope.template = TemplateService.getHTML("content/home.html");
+    TemplateService.title = "Home"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
 
 
-        $scope.changeURL = function (id) {
-            console.log(id);
-            $location.path("" + id);
-        };
-        $scope.mySlides = [
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
-            'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
-        ];
-        $scope.homeSlide = [
-            'img/small-season2/1.jpg',
-            'img/small-season2/2.jpg',
-            'img/small-season2/3.jpg',
-            'img/small-season2/4.jpg',
-            'img/small-season2/5.jpg',
-            'img/small-season2/6.jpg',
-            'img/small-season2/7.jpg',
-            'img/small-season2/8.jpg',
-            'img/small-season2/9.jpg',
-            'img/small-season2/10.jpg',
-            'img/small-season2/11.jpg',
-            'img/small-season2/12.jpg',
-            'img/small-season2/13.jpg',
-            'img/small-season2/14.jpg',
-            'img/small-season2/15.jpg',
-            'img/small-season2/16.jpg',
-            'img/small-season2/17.jpg',
-            'img/small-season2/18.jpg',
-            'img/small-season2/19.jpg',
-            'img/small-season2/20.jpg',
-            'img/small-season2/21.jpg',
-            // 'img/small-season2/22.jpg',
-            'img/small-season2/23.jpg',
-            'img/small-season2/24.jpg',
-            'img/small-season2/25.jpg',
-            'img/small-season2/26.jpg',
-            // 'img/small-season2/27.jpg',
-            'img/small-season2/28.jpg',
-            'img/small-season2/29.jpg',
-            'img/small-season2/30.jpg',
-            'img/small-season2/31.jpg',
-            'img/small-season2/32.jpg',
+    $scope.submitUser = function (formData) {
 
-        ];
-
-        function makeAnimation(id) {
-            if (_.isEmpty(id)) {
-                id = "home";
-            }
-            var someElement = angular.element(document.getElementById(id));
-            $document.scrollToElement(someElement, 75, 1000);
-        }
-        $scope.$on('$viewContentLoaded', function (event) {
-            setTimeout(function () {
-                makeAnimation($stateParams.id);
-            }, 1000);
-        });
-
-        $scope.$on('$viewContentLoaded', function (event) {
-            $timeout(function () {
-                mySwiper = new Swiper('.swiper-container', {
-                    pagination: '.swiper-pagination',
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    loop: true,
-                    effect: 'coverflow',
-                    grabCursor: true,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    coverflow: {
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 1200,
-                        modifier: 1,
-                        slideShadows: true,
-                    }
+        apiService.saveUser(formData, function (data) {
+            if (data.value === true) {
+                $state.go('question-paper', {
+                    'userId': data.data._id
                 });
-            }, 300);
-        });
 
-        var abc = _.times(100, function (n) {
-            return n;
-        });
-
-        var i = 0;
-        $scope.buttonClick = function () {
-            i++;
-            console.log("This is a button Click");
-        };
-
-        $scope.alokopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/alokmodal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-
-        $scope.anilopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/anilmodal.html',
-                scope: $scope,
-                size: 'lg',
-            });
-        };
-
-        $scope.harshadaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/harshadamodal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-
-        $scope.kavitaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/kavitamodal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-
-        $scope.nehaopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/nehamodal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.pradeepopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/pradeepmodal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.contestopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/contest.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.digitalcourseopen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/digitalcourse-modal.html',
-                scope: $scope,
-                size: 'lg',
-
-            });
-        };
-        $scope.ourpartneropen = function () {
-            console.log("clla");
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'views/modal/ourpartner.html',
-                scope: $scope,
-                size: 'md',
-
-            });
-        };
-
-        //Login
-
-        $scope.formData = {};
-        $scope.submitForm = function (formData, loginDigitalform) {
-            console.log($scope.formData);
-            apiService.sendLogin($scope.formData, function (data) {
-                console.log(data);
-                if (data.value === true) {
-                    $state.go('digitalinside');
+            } else {
+                if (data.error == 'userExists' || data.error.errors.email.kind == "unique") {
+                    $scope.emailexist = true;
                 } else {
-                    $state.go('digitalinside');
+                    $scope.emailexist = false;
+                }
+            }
+
+        });
+    };
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
+    $scope.mySlides = [
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_lemon.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg',
+        'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
+    ];
+    $scope.homeSlide = [
+        'img/small-season3/120.jpg',
+    
+        'img/small-season3/124.jpg',
+        'img/small-season3/91.jpg',
+        'img/small-season3/92.jpg',
+        'img/small-season3/93.jpg',
+        'img/small-season3/94.jpg',
+        'img/small-season3/95.jpg',
+        'img/small-season3/96.jpg',
+        'img/small-season3/97.jpg',
+        'img/small-season3/98.jpg',
+        'img/small-season3/99.jpg',
+        'img/small-season3/100.jpg',
+        // 'img/small-season3/101.jpg',
+        'img/small-season3/102.jpg',
+        // 'img/small-season3/103.jpg',
+        // 'img/small-season3/104.jpg',
+        // 'img/small-season3/105.jpg',
+        'img/small-season3/106.jpg',
+        // 'img/small-season3/107.jpg',
+        'img/small-season3/108.jpg',
+        'img/small-season3/109.jpg',
+        'img/small-season3/110.jpg',
+        'img/small-season3/111.jpg',
+        // 'img/small-season3/112.jpg',
+        'img/small-season3/113.jpg',
+        'img/small-season3/114.jpg',
+        'img/small-season3/115.jpg',
+        // 'img/small-season3/116.jpg',
+        'img/small-season3/117.jpg',
+        'img/small-season3/118.jpg',
+        'img/small-season3/119.jpg',
+        // 'img/small-season3/120.jpg',
+        'img/small-season3/121.jpg',
+        'img/small-season3/122.jpg',
+        'img/small-season3/123.jpg',
+        'img/small-season3/72.jpg',
+        'img/small-season3/73.jpg',
+        'img/small-season3/74.jpg',
+        'img/small-season3/75.jpg',
+        'img/small-season3/76.jpg',
+        'img/small-season3/77.jpg',
+        'img/small-season3/78.jpg',
+        'img/small-season3/80.jpg',
+        'img/small-season3/81.jpg',
+        'img/small-season3/82.jpg',
+        'img/small-season3/83.jpg',
+        'img/small-season3/84.jpg',
+        'img/small-season3/85.jpg',
+        'img/small-season3/86.jpg',
+        'img/small-season3/87.jpg',
+        'img/small-season3/88.jpg',
+        'img/small-season3/89.jpg',
+        'img/small-season3/90.jpg',
+        'img/small-season3/1.jpg',
+        'img/small-season3/5.jpg',
+        'img/small-season3/7.jpg',
+        'img/small-season3/8.jpg',
+        'img/small-season3/15.jpg',
+        'img/small-season3/17.jpg',
+        'img/small-season3/18.jpg',
+        'img/small-season3/19.jpg',
+        'img/small-season3/21.jpg',
+        'img/small-season3/24.jpg',
+        'img/small-season3/25.jpg',
+        'img/small-season3/26.jpg',
+        'img/small-season3/27.jpg',
+        'img/small-season3/28.jpg',
+        'img/small-season3/29.jpg',
+        'img/small-season3/30.jpg',
+        'img/small-season3/31.jpg',
+        'img/small-season3/32.jpg',
+        'img/small-season3/33.jpg',
+        'img/small-season3/34.jpg',
+        'img/small-season3/35.jpg',
+        'img/small-season3/36.jpg',
+        'img/small-season3/38.jpg',
+        'img/small-season3/39.jpg',
+        'img/small-season3/40.jpg',
+        'img/small-season3/41.jpg',
+        'img/small-season3/42.jpg',
+        'img/small-season3/44.jpg',
+        'img/small-season3/45.jpg',
+        'img/small-season3/46.jpg',
+        'img/small-season3/47.jpg',
+        'img/small-season3/49.jpg',
+        'img/small-season3/53.jpg',
+        'img/small-season3/54.jpg',
+        'img/small-season3/57.jpg',
+        'img/small-season3/58.jpg',
+        'img/small-season3/59.jpg',
+        'img/small-season3/61.jpg',
+        'img/small-season3/62.jpg',
+        'img/small-season3/63.jpg',
+        'img/small-season3/64.jpg',
+        'img/small-season3/65.jpg',
+        'img/small-season3/66.jpg',
+        'img/small-season3/67.jpg',
+        'img/small-season3/68.jpg',
+        'img/small-season3/69.jpg',
+        'img/small-season3/70.jpg',
+        
+        // 'img/small-season3/72.jpg',
+    ];
+
+    function makeAnimation(id) {
+        if (_.isEmpty(id)) {
+            id = "home";
+        }
+        var someElement = angular.element(document.getElementById(id));
+        $document.scrollToElement(someElement, 75, 1000);
+    }
+    $scope.$on('$viewContentLoaded', function (event) {
+        setTimeout(function () {
+            makeAnimation($stateParams.id);
+        }, 1000);
+    });
+
+    $scope.$on('$viewContentLoaded', function (event) {
+        $timeout(function () {
+            mySwiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                loop: true,
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflow: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 1200,
+                    modifier: 1,
+                    slideShadows: true,
                 }
             });
-        };
-
-    })
-
-    .controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
-        $scope.template = TemplateService.getHTML("content/form.html");
-        TemplateService.title = "Form"; //This is the Title of the Website
-        $scope.navigation = NavigationService.getNavigation();
-        $scope.formSubmitted = false;
-        $scope.submitForm = function (data) {
-            console.log(data);
-            $scope.formSubmitted = true;
-        };
-    })
-
-    //Example API Controller
-    .controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
-        apiService.getDemo($scope.formData, function (data) {
-            console.log(data);
-        });
+        }, 300);
     });
+
+    var abc = _.times(100, function (n) {
+        return n;
+    });
+
+    var i = 0;
+    $scope.buttonClick = function () {
+        i++;
+        console.log("This is a button Click");
+    };
+
+    $scope.alokopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/alokmodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+
+    $scope.anilopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/anilmodal.html',
+            scope: $scope,
+            size: 'lg',
+        });
+    };
+
+    $scope.harshadaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/harshadamodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+
+    $scope.kavitaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/kavitamodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+
+    $scope.nehaopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/nehamodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+    $scope.pradeepopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/pradeepmodal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+    $scope.contestopen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/contest.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+    $scope.digitalcourseopen = function () {
+        $scope.submitUser1 = function (data) {
+            console.log("inside controller", data);
+            apiService.apiWithData("DigitalUser/save", data, function (data) {
+                // if (data.value == true) {
+                    $scope.userId = data.data._id;
+                    $state.go('digitalinside', {
+                        'userId': data.data._id
+                    });
+                // } else {
+                //     console.log("***");
+                //     if (data.error.errors.email.kind == "unique") {
+                //         $scope.emailexist = true;
+                //     } else {
+                //         $scope.emailexist = false;
+
+                //     }
+                // }
+                // $scope.userId = data.data._id;
+                // $state.go('digitalinside', {
+                //     'userId': data.data._id
+                // });
+                // console.log("digital user inside controller", data.data._id);
+
+            });
+        }
+        console.log("inside");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/digitalcourse-modal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+    $scope.questionopen = function () {
+        console.log("Welcome");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/question-modal.html',
+            scope: $scope,
+            size: 'lg',
+
+        });
+    };
+    $scope.ourpartneropen = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/ourpartner.html',
+            scope: $scope,
+            size: 'md',
+
+        });
+    };
+
+    //Login
+
+    // $scope.formData = {};
+    // $scope.submitForm = function (formData, loginDigitalform) {
+    //     console.log($scope.formData);
+    //     apiService.sendLogin($scope.formData, function (data) {
+    //         console.log(data);
+    //         if (data.value === true) {
+    //             $state.go('digitalinside');
+    //         } else {
+    //             $state.go('digitalinside');
+    //         }
+    //     });
+    // };
+
+
+
+})
+
+.controller('FormCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
+    $scope.template = TemplateService.getHTML("content/form.html");
+    TemplateService.title = "Form"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
+    $scope.formSubmitted = false;
+    $scope.submitForm = function (data) {
+        console.log(data);
+        $scope.formSubmitted = true;
+    };
+})
+
+//Example API Controller
+.controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {
+    apiService.getDemo($scope.formData, function (data) {
+        console.log(data);
+    });
+});
 myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
     $scope.template = TemplateService.getHTML("content/minutestips.html");
     TemplateService.title = "Minutestips"; //This is the Title of the Website
@@ -66363,7 +66090,11 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         console.log(data);
         $scope.formSubmitted = true;
     };
-
+    $scope.minuteEpisode = [{
+        imageUrl: "-PCujwv9xLI",
+        videoUrl: "-PCujwv9xLI",
+        episodeno: "SIP",
+    }];
 })
  myApp.controller('DigitalCourseCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location,apiService) {
      $scope.template = TemplateService.getHTML("content/digitalcourse.html");
@@ -66393,7 +66124,7 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
          });
      };
  })
-myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal) {
+myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $uibModal,apiService) {
     $scope.template = TemplateService.getHTML("content/digitalinside.html");
     TemplateService.title = "Digitalinside"; //This is the Title of the Website
     $scope.navigation = NavigationService.getNavigation();
@@ -66405,6 +66136,84 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     $scope.submitForm = function (data) {
         console.log(data);
         $scope.formSubmitted = true;
+    };
+    $scope.id = $stateParams.userId;
+    console.log("State param id is:", $scope.id)
+    $scope.banking = false;
+    $scope.equity = false;
+    $scope.mutualfund = false;
+    $scope.commodities = false;
+    $scope.insurance = false;
+
+    /*******api for bringing all course******** */
+    apiService.apiWithoutData("DigitalCourse/search",(result)=>{
+        console.log(result.data.results);
+        $scope.courses = result.data.results;
+    })
+    /******bringing all course end****** */
+
+    $scope.displayQuestionSection = function (data,id) {
+        $.jStorage.set("courseid", id);
+        if (data == 'BANKING') {
+            $scope.banking = true;
+            $scope.insurance = false;
+            
+        } else if (data == 'INSURANCE') {
+            $scope.banking = false;
+            $scope.insurance = true;
+        }
+        //     if ($scope.banking) {
+        //         $scope.banking = false;
+        //     } else {
+        //         $scope.banking = true;
+        //     }
+        // } else if (data == 'equity') {
+        //     $scope.equity = true;
+        // } else if (data == 'mutualfund') {
+        //     $scope.mutualfund = true;
+        // } else if (data == 'commodities') {
+        //     $scope.commodities = true;
+        // } else if (data == 'insurance') {
+        //     $scope.insurance = true;
+        // }
+    };
+    // $scope.digitalinside = [{
+    //     No: 1,
+    //     Question: "सेविंग अकाउंट पर ब्याज मिलता है?",
+    //     option1: "ब्याज पर ब्याज",
+    //     option2: "FD जितना",
+    //     option3: "साधारण ब्याज",
+    //     option4: "पीएफ जितना",
+    // }, {
+    //     No: 2,
+    //     Question: "ऑटोमैटिक स्वीप अकाउंट होता है ?",
+    //     option1: "सेविंग अकाउंट रेकरिंग अकाउंट से लिंक",
+    //     option2: "सेविंग अकाउंट फिक्स डिपॉजिट से लिंक",
+    //     option3: "सेविंग अकाउंट डीमैट अकाउंट से लिंक",
+    //     option4: "सेविंग अकाउंट ट्रेडिंग अकाउंट से लिंक",
+    // }, {
+    //     No: 3,
+    //     Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
+    //     option1: "1 लाख से ज्यादा ब्याज इनकम पर",
+    //     option2: "50 हजार से ज्यादा ब्याज इनकम पर",
+    //     option3: "10 हजार से ज्यादा ब्याज इनकम पर",
+    //     option4: "20 हजार से ज्यादा ब्याज इनकम पर",
+    // }, {
+    //     No: 4,
+    //     Question: "सेविंग अकाउंट खोलने के लिए अनिवार्य है",
+    //     option1: "घर के एड्रेस का प्रूफ और ईमेल एड्रेस",
+    //     option2: "फोन नंबर",
+    //     option3: "पैन कार्ड और आधार कार्ड",
+    //     option4: "ऊपर लिखे सभी दस्तावेज",
+    // }]
+    $scope.thankyou = function () {
+        console.log("clla");
+        $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/thanks.html',
+            scope: $scope,
+            size: 'lg',
+        });
     };
 })
 myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, $location) {
@@ -66418,81 +66227,428 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         $.fancybox.close(true);
     };
 
-    // $scope.changeURL = function (id) {
-    //     console.log(id);
-    //     $location.path("" + id);
-    // };
+ //for season3
+    $scope.season3 = [                          {
+            img1: 'img/season3/124.jpg',
+            img2: 'img/small-season3/124.jpg',
+        } ,        {
+            img1: 'img/season3/123.jpg',
+            img2: 'img/small-season3/123.jpg',
+        } ,            {
+            img1: 'img/season3/122.jpg',
+            img2: 'img/small-season3/122.jpg',
+        } ,            {
+            img1: 'img/season3/121.jpg',
+            img2: 'img/small-season3/121.jpg',
+        } ,           {
+            img1: 'img/season3/120.jpg',
+            img2: 'img/small-season3/120.jpg',
+        } ,       {
+            img1: 'img/season3/119.jpg',
+            img2: 'img/small-season3/119.jpg',
+        } ,       {
+            img1: 'img/season3/118.jpg',
+            img2: 'img/small-season3/118.jpg',
+        } ,         {
+            img1: 'img/season3/117.jpg',
+            img2: 'img/small-season3/117.jpg',
+        } ,     {
+            img1: 'img/season3/116.jpg',
+            img2: 'img/small-season3/116.jpg',
+        } ,       {
+            img1: 'img/season3/115.jpg',
+            img2: 'img/small-season3/115.jpg',
+        } ,  {
+            img1: 'img/season3/114.jpg',
+            img2: 'img/small-season3/114.jpg',
+        } ,     {
+            img1: 'img/season3/113.jpg',
+            img2: 'img/small-season3/113.jpg',
+        } ,    {
+            img1: 'img/season3/112.jpg',
+            img2: 'img/small-season3/112.jpg',
+        } ,  {
+            img1: 'img/season3/111.jpg',
+            img2: 'img/small-season3/111.jpg',
+        } ,       {
+            img1: 'img/season3/110.jpg',
+            img2: 'img/small-season3/110.jpg',
+        } , {
+            img1: 'img/season3/109.jpg',
+            img2: 'img/small-season3/109.jpg',
+        } , {
+            img1: 'img/season3/108.jpg',
+            img2: 'img/small-season3/108.jpg',
+        } , {
+            img1: 'img/season3/107.jpg',
+            img2: 'img/small-season3/107.jpg',
+        } ,  {
+            img1: 'img/season3/106.jpg',
+            img2: 'img/small-season3/106.jpg',
+        } ,  {
+            img1: 'img/season3/105.jpg',
+            img2: 'img/small-season3/105.jpg',
+        } ,
+        // {
+        //     img1: 'img/season3/104.jpg',
+        //     img2: 'img/small-season3/104.jpg',
+        // } ,
+          {
+            img1: 'img/season3/104.jpg',
+            img2: 'img/small-season3/104.jpg',
+        } , {
+            img1: 'img/season3/103.jpg',
+            img2: 'img/small-season3/103.jpg',
+        } ,
+           {
+            img1: 'img/season3/102.jpg',
+            img2: 'img/small-season3/102.jpg',
+        } ,  {
+            img1: 'img/season3/101.jpg',
+            img2: 'img/small-season3/101.jpg',
+        } ,{
+            img1: 'img/season3/100.jpg',
+            img2: 'img/small-season3/100.jpg',
+        } ,{
+            img1: 'img/season3/99.jpg',
+            img2: 'img/small-season3/99.jpg',
+        } ,  {
+            img1: 'img/season3/98.jpg',
+            img2: 'img/small-season3/98.jpg',
+        } ,  {
+            img1: 'img/season3/97.jpg',
+            img2: 'img/small-season3/97.jpg',
+        } ,  {
+            img1: 'img/season3/97.jpg',
+            img2: 'img/small-season3/97.jpg',
+        } ,  {
+            img1: 'img/season3/96.jpg',
+            img2: 'img/small-season3/96.jpg',
+        } ,  {
+            img1: 'img/season3/95.jpg',
+            img2: 'img/small-season3/95.jpg',
+        } ,  {
+            img1: 'img/season3/94.jpg',
+            img2: 'img/small-season3/94.jpg',
+        } ,  {
+            img1: 'img/season3/93.jpg',
+            img2: 'img/small-season3/93.jpg',
+        } ,  {
+            img1: 'img/season3/92.jpg',
+            img2: 'img/small-season3/92.jpg',
+        } ,  {
+            img1: 'img/season3/91.jpg',
+            img2: 'img/small-season3/91.jpg',
+        } ,{
+            img1: 'img/season3/72.jpg',
+            img2: 'img/small-season3/72.jpg',
+        } ,
+        {
+            img1: 'img/season3/73.jpg',
+            img2: 'img/small-season3/73.jpg',
+        } ,
+        {
+            img1: 'img/season3/74.jpg',
+            img2: 'img/small-season3/74.jpg',
+        } ,
+        {
+            img1: 'img/season3/75.jpg',
+            img2: 'img/small-season3/75.jpg',
+        } ,
+        {
+            img1: 'img/season3/76.jpg',
+            img2: 'img/small-season3/76.jpg',
+        } ,
+        {
+            img1: 'img/season3/77.jpg',
+            img2: 'img/small-season3/77.jpg',
+        } ,
+        {
+            img1: 'img/season3/78.jpg',
+            img2: 'img/small-season3/78.jpg',
+        }  ,{
+            img1: 'img/season3/79.jpg',
+            img2: 'img/small-season3/79.jpg',
+        }  ,{
+            img1: 'img/season3/80.jpg',
+            img2: 'img/small-season3/80.jpg',
+        }  ,{
+            img1: 'img/season3/81.jpg',
+            img2: 'img/small-season3/81.jpg',
+        } ,{
+            img1: 'img/season3/82.jpg',
+            img2: 'img/small-season3/82.jpg',
+        },{
+            img1: 'img/season3/83.jpg',
+            img2: 'img/small-season3/83.jpg',
+        },{
+            img1: 'img/season3/84.jpg',
+            img2: 'img/small-season3/84.jpg',
+        },{
+            img1: 'img/season3/85.jpg',
+            img2: 'img/small-season3/85.jpg',
+        },{
+            img1: 'img/season3/86.jpg',
+            img2: 'img/small-season3/86.jpg',
+        },{
+            img1: 'img/season3/87.jpg',
+            img2: 'img/small-season3/87.jpg',
+        },{
+            img1: 'img/season3/88.jpg',
+            img2: 'img/small-season3/88.jpg',
+        },{
+            img1: 'img/season3/89.jpg',
+            img2: 'img/small-season3/89.jpg',
+        },{
+            img1: 'img/season3/90.jpg',
+            img2: 'img/small-season3/90.jpg',
+        },
+        {
+            img1: 'img/season3/1.jpg',
+            img2: 'img/small-season3/1.jpg',
+        },
+        {
+            img1: 'img/season3/5.jpg',
+            img2: 'img/small-season3/5.jpg',
+        },
+     
+        {
+            img1: 'img/season3/7.jpg',
+            img2: 'img/small-season3/7.jpg',
+        },
+        {
+            img1: 'img/season3/8.jpg',
+            img2: 'img/small-season3/8.jpg',
+        },
 
-    //  $scope.viewLess3 = function () {
-    //      $scope.readmore3 = true;
-    //      $scope.season3 = [
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
-    //          'img/gallery/1.jpg',
+        {
+            img1: 'img/season3/12.jpg',
+            img2: 'img/small-season3/12.jpg',
+        },
+        {
+            img1: 'img/season3/15.jpg',
+            img2: 'img/small-season3/15.jpg',
+        },
+        {
+            img1: 'img/season3/17.jpg',
+            img2: 'img/small-season3/17.jpg',
+        },
+        {
+            img1: 'img/season3/18.jpg',
+            img2: 'img/small-season3/18.jpg',
+        },
+        {
+            img1: 'img/season3/19.jpg',
+            img2: 'img/small-season3/19.jpg',
+        },
+        {
+            img1: 'img/season3/20.jpg',
+            img2: 'img/small-season3/20.jpg',
+        },
+        {
+            img1: 'img/season3/21.jpg',
+            img2: 'img/small-season3/21.jpg',
+        },
+        {
+            img1: 'img/season3/24.jpg',
+            img2: 'img/small-season3/24.jpg',
+        },
+        {
+            img1: 'img/season3/25.jpg',
+            img2: 'img/small-season3/25.jpg',
+        },
+        {
+            img1: 'img/season3/26.jpg',
+            img2: 'img/small-season3/26.jpg',
+        },
+        {
+            img1: 'img/season3/27.jpg',
+            img2: 'img/small-season3/27.jpg',
+        },
+        {
+            img1: 'img/season3/28.jpg',
+            img2: 'img/small-season3/28.jpg',
+        },
+        {
+            img1: 'img/season3/29.jpg',
+            img2: 'img/small-season3/29.jpg',
+        },
+        {
+            img1: 'img/season3/30.jpg',
+            img2: 'img/small-season3/30.jpg',
+        },
+        {
+            img1: 'img/season3/31.jpg',
+            img2: 'img/small-season3/31.jpg',
+        },
+        {
+            img1: 'img/season3/32.jpg',
+            img2: 'img/small-season3/32.jpg',
+        }
+        ,
+        {
+            img1: 'img/season3/33.jpg',
+            img2: 'img/small-season3/33.jpg',
+        },
+        {
+            img1: 'img/season3/34.jpg',
+            img2: 'img/small-season3/34.jpg',
+        },
+        {
+            img1: 'img/season3/35.jpg',
+            img2: 'img/small-season3/35.jpg',
+        },
+        {
+            img1: 'img/season3/36.jpg',
+            img2: 'img/small-season3/36.jpg',
+        },
+        {
+            img1: 'img/season3/37.jpg',
+            img2: 'img/small-season3/37.jpg',
+        },
+        {
+            img1: 'img/season3/38.jpg',
+            img2: 'img/small-season3/38.jpg',
+        },
+        {
+            img1: 'img/season3/39.jpg',
+            img2: 'img/small-season3/39.jpg',
+        },
+        {
+            img1: 'img/season3/40.jpg',
+            img2: 'img/small-season3/40.jpg',
+        },
+        {
+            img1: 'img/season3/41.jpg',
+            img2: 'img/small-season3/41.jpg',
+        },
+        {
+            img1: 'img/season3/42.jpg',
+            img2: 'img/small-season3/42.jpg',
+        },
+        {
+            img1: 'img/season3/43.jpg',
+            img2: 'img/small-season3/43.jpg',
+        },
+        {
+            img1: 'img/season3/44.jpg',
+            img2: 'img/small-season3/44.jpg',
+        },
+        {
+            img1: 'img/season3/45.jpg',
+            img2: 'img/small-season3/45.jpg',
+        },
+        {
+            img1: 'img/season3/46.jpg',
+            img2: 'img/small-season3/46.jpg',
+        },
+        {
+            img1: 'img/season3/47.jpg',
+            img2: 'img/small-season3/47.jpg',
+        },
+        {
+            img1: 'img/season3/48.jpg',
+            img2: 'img/small-season3/48.jpg',
+        },
+        {
+            img1: 'img/season3/49.jpg',
+            img2: 'img/small-season3/49.jpg',
+        },
+        {
+            img1: 'img/season3/50.jpg',
+            img2: 'img/small-season3/50.jpg',
+        },
+        {
+            img1: 'img/season3/51.jpg',
+            img2: 'img/small-season3/51.jpg',
+        },
+        {
+            img1: 'img/season3/52.jpg',
+            img2: 'img/small-season3/52.jpg',
+        },
+        {
+            img1: 'img/season3/53.jpg',
+            img2: 'img/small-season3/53.jpg',
+        },
+        {
+            img1: 'img/season3/54.jpg',
+            img2: 'img/small-season3/54.jpg',
+        },
+  
+     
+        {
+            img1: 'img/season3/57.jpg',
+            img2: 'img/small-season3/57.jpg',
+        },
+        {
+            img1: 'img/season3/58.jpg',
+            img2: 'img/small-season3/58.jpg',
+        },
+        {
+            img1: 'img/season3/59.jpg',
+            img2: 'img/small-season3/59.jpg',
+        },
 
+        {
+            img1: 'img/season3/61.jpg',
+            img2: 'img/small-season3/61.jpg',
+        },
+        {
+            img1: 'img/season3/62.jpg',
+            img2: 'img/small-season3/62.jpg',
+        },
+        {
+            img1: 'img/season3/63.jpg',
+            img2: 'img/small-season3/63.jpg',
+        },
+        {
+            img1: 'img/season3/64.jpg',
+            img2: 'img/small-season3/64.jpg',
+        },
+        {
+            img1: 'img/season3/65.jpg',
+            img2: 'img/small-season3/65.jpg',
+        },
+        {
+            img1: 'img/season3/66.jpg',
+            img2: 'img/small-season3/66.jpg',
+        }
+        ,
+        {
+            img1: 'img/season3/67.jpg',
+            img2: 'img/small-season3/67.jpg',
+        },
+        {
+            img1: 'img/season3/68.jpg',
+            img2: 'img/small-season3/68.jpg',
+        },
+        {
+            img1: 'img/season3/69.jpg',
+            img2: 'img/small-season3/69.jpg',
+        },
+        {
+            img1: 'img/season3/70.jpg',
+            img2: 'img/small-season3/70.jpg',
+        },
+        {
+            img1: 'img/season3/71.jpg',
+            img2: 'img/small-season3/71.jpg',
+        } ,
+        
+    ];
 
-    //      ];
-    //  }
-    //  $scope.viewLess3();
-    //  $scope.season3viewmore3 = [
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //      'img/gallery/1.jpg',
-    //  ]
-    //  $scope.viewMore3 = function () {
-    //      $scope.readmore3 = false;
-    //      $scope.season3 = [];
-    //      $scope.season3 = _.cloneDeep($scope.season3viewmore3);
+    $scope.more3 = false;
+    $scope.view3 = true;
 
-    //  }
+    $scope.viewMore3 = function () {
+        $scope.more3 = true;
+        $scope.view3 = false;
+    }
+    $scope.viewLess3 = function () {
+        $scope.more3 = false;
+        $scope.view3 = true;
+    }
+    //end of season3
 
     //for season2
     $scope.season2 = [
@@ -66849,6 +67005,12 @@ myApp.controller('PartnersCtrl', function ($scope, TemplateService, NavigationSe
     }, {
         "name": "States of Mind",
         "desc": "<h4 class='text-center'><b>Yoga Sutra: States of Mind</b></h4><p>Yoga helps harmoniously develop your body, mind and spirit. In fact, Yoga is a way of life. It’s overwhelming to know the vastness of the Yogic principles, its philosophy and its literature. Being a certified financial planner and a certified Yoga trainer, I must admit that I find a great connect between Yogic principles and investor psychology. Yogic principles explain in detail about Investor psychology and how it plays an important role in Investment decision making. Maharishi Patanjali in YogaSutra describes five states of mind, which ranges from severely troubled to a completely mastered mind. Let’s understand how it affects our investing behavior - </p><br><div><p><b>1.Kshipta/disturbed:</b> This state of mind is disturbed, troubled and negative. This is the least desirable state of mind. The negative mindset can be because of lack of knowledge. In investing too, our decision is affected by lack of knowledge and sub-optimal investing practices predominantly stem from this. We spend a lot of time to review and buy products online, but when it comes to investing we quickly park our hard earned money based on tips or hearsay. A large number of investors take decisions at the last moment e.g. tax planning. A comprehensive financial planning which includes goals, taxes and contingency should be envisaged with the help of an expert, to avoid impulsive investments.</p></div><br><div><p><b>2. Mudha/dull:</b> It’s a dull & heavy state of mind where we don’t want to take efforts to invest our savings in high yield assets. We leave our savings idle e.g. bank accounts or invest in other asset class which isn’t suitable as per risk appetite or goal value. In investing, we see gold and real estate as a safe haven. But gold has only performed well in uncertain times and real estate hasn’t given better returns than equity in recent past. Considering home loan interests, the real estate returns when compared to equities will be much lesser. Be active towards equity investments and not consider only the traditional route of investments for optimum returns.</p></div><br><div><p><b>3. Vikshipta/distracted:</b> Vikshipta mind is occasionally steady and is distracted easily. If you invest for a shorter tenure the chances are more to make losses. If you see markets in the short term it may seem highly volatile, but if you see for longer horizon, it continues to build an upward trajectory. It’s advisable to remain invested for longer period and not get distracted by market news and noise, to create wealth.</p></div><br><div><p><b>4. Ekagra/one-pointed -</b> The Ekagra mind is one-pointed, focused & concentrated. The chances of getting a distraction in this state of mind are negligible. It’s one of the desirable states of mind. In investing, you should be Ekagra i.e. focused towards your financial goals. It includes knowing your goals, analyzing your financial situation, risk profiling & asset allocation. Periodic monitoring and rebalancing of portfolio is required too for goal achievement.</p></div><br><div><p><b>5. Niruddah/mastered:</b> The Nirruddah mind is highly mastered & controlled. It is the most desirable state of mind. In context of investments, you master the art of investing. It’s easier said than done. To master this art, you should know how to choose stocks that the market has undervalued and they have high growth potential. The selection should be based on fundamentals like promoter’s background, commitment & vision, strengths of business & financials. Follow the principle of value investing and seek stocks that the market has undervalued. </p><p>Out of these five states of mind, the last 2 stages are most desirable and one should avoid being in first 3 states of mind. Identify your state of mind and apply these basic yogic investment principles to grow your wealth.</p></div>"
+    }, {
+        "name": "Do Indian markets still have steam left?",
+        "desc": "<div><p>Markets are in correction mode after hitting the much awaited 10,000 mark on Nifty.  Indian markets have been on roll for last couple of quarters on back of the ongoing reforms taken up by the regime, good monsoon and positive global sentiments. It has been a broad based rally driven by fundamentals and the market has created wealth for the investors all across in large caps, mid caps and small caps segment.</p></div><br><div><p>So what is the life after 10k? Are Indian markets still worth investing even at these levels? Are Indian markets still a venue for wealth creation? Let’s discuss it in details. The Indian economy has witnessed a flurry of economic reforms over last few years. These reforms are disruptive in nature and transformational in character. These reforms would have structural impact over the economy and help accelerate the expansion in future. Buoyed by the success of these reforms and the increasing political clout, the Govt. is in position to take few more bitter pills which could further improve the health of the economy in days to come and prepare it for a long haul with superior delivery performance. India is an emerging market with GDP of slightly upwards of USD 2 trillion in 2017. India GDP was at USD 541 billion in 2003, crossed USD 1 trillion in 2007 and USD 2 trillion in 2015. Indian economy had almost doubled between 2003 and 2007. It took 4 years for India GDP to double from USD 0.5 trillion to USD 1 trillion between 2003-07 in background of better global environment and 8 years from USD 1 trillion to USD 2 trillion between 2007-15 despite deteriorating global fundamentals.  In backdrop of these facts, it is expected that India GDP would reach USD 5 trillion by 2025. The economic reforms put to use over last couple of years would probably hasten the target. Now let us look at the marketperformance in the interim period. The 2003-07 market rally took the Sensex from 5000 to upwards of 21000 and Nifty trading around 1000 in 2003 to 6000 by end of 2007; markets had created wealth for all the participants- the retail investors, domestic and foreign institutions. The bottom line is the marketsreflect the underlying economic growth. Are we at a similar inflection point? Undoubtedly YES!!</p></div><br><div><p>Now let us deliberate over the factors influencing the economic growth. India is basically a domestic economy – only 25% of the GDP is driven by exports. It houses ~1.25 billion people (2nd largest population in the world) with per capita income growing at 5.7% over last 10 years; thus, India is a great consumption destination. The demographic dividends are favoring India as 65% of the population is in the working group range - 15-64 years, 29% of the population is in the range on 0-15 years of age group and only 6% of the population is above 64 years of age. Over next 2-3 decades, the demographic dividend is expected to favour India. India is at same sweet spot where US was in 1980s and China in 1990s. With this demographic dividend, the national productivity is very high, the dependency ratio is relatively low and the women in the society are also contributing to the workforce. High proportion of young population means higher productivity, more risk taking ability and higher expenditure compared to savings thus driving the demand leading to higher consumption and hence higher demand and the virtuous circle continues. Domestic consumption industry is very large. India has nearly 70 cr rural population which is almost equivalent to the size of entire Europe which houses around 74 cr people. The Indian young consumer class comprises of 50 cr people which is higher than the combined population of Brazil, Russia, Germany and UK, while the middle class accounts for 35 cr consumers which is higher than the size of US population. The potential consumption market is of pretty high magnitude.</p></div><br><div><p>India has relatively poor infrastructure if one compares it with the developed nations. There is wide disparity between the infrastructure we have and the developed nations like US, UK, and other West European nations. We have ample scope to build all weather roads, highways, bridges, waterways and seaways, airports and sea ports, mass rapid transit system etc. There is great opportunity for building new smart cities which would be equipped with all the required amenities for good quality of life within reach for all and sundry.</p></div><br><div><p>Indian workforce is well placed to capture the global opportunities. Having an English speaking, well educated generation, Indian workforce has capability to tap the opportunities in the global IT sector. Homegrown and Indian MNC software companies’ exports have cornered a niche in global IT industry. The Indian industry has reached a new peak wherein Indian Engineering, Auto and Auto ancillary, Pharma, Textiles, Leather goods companies are seen having good receptivity in the global market. Stable currency backed by robust macro-economic fundamentals and political stability is seen as another positive for export oriented industries.</p></div><br><div><p>At this juncture Indian economy is poised to benefit from both domestic consumption and global demand, thus playing on both the levers of growth though in differential proportion. This gives a good visibility of growth opportunity for the industries operating in these spheres of business. Hence, the economy and markets have a great future ahead and the 10,000 mark is just a number in the journey! </p></div>"
+    }, {
+        "name": "How do Equity investments fare better than Debt and how can you use it to your advantage",
+        "desc": "<div><p>Equity is a volatile asset class where the returns can be lumpy in nature over short term. Moreover, the equity markets are more vulnerable to various variables when compared to debt markets. As a result, people find investment in debt markets relatively safer as it guarantees a) capital protection and b) regular income source though the return would be just a tad higher than the inflation in the respective economy.  </p></div><br><div><p>Let us understand how the debt instrument works. Let us take an example of Rs 1 cr invested in a debt instrument offering a coupon rate of 7.5% for say 20 years. Thus an investor would receive Rs 7.5 lakh per annum as interest which could be used for the annual expenditure of the investor. Post tax return would be Rs 6 lakh assuming a flat tax rate of 20%. The tax outgo will vary from investor to investor depending on the tax slab he falls into and his investment planning. For simplicity we are assuming a flat tax rate of 20%. Thus investor will keep receiving post tax return of Rs 6 lakh for next 20 years and Rs 1 cr on redemption, both in absolute amount, at the end of 20th year. </p></div><br><div><p>Now let us assume an average inflation of 5% in the economy. The inflationary force reduces the value of the liquid asset by 5% every year. So what would be the value of Rs 1 cr (principle) invested in the above example after 20 years? At the end of 20 years, Rs 1 cr that the investor will receive would be sufficient enough to buy goods worth approximately Rs 0.377 cr. at current prices. That is, the purchasing power of investment has been reduced by 5% every year over 20 years giving you the corpus which is worth fraction of what it is today. So does it warrant investing in debt instrument from the point of view of even capital protection? Even the post tax receipt of Rs 6 lakh would be subject to inflation. Though the investor would receive Rs 6 lakh in absolute terms every year, the value of receipt would reduce by the prevailing inflation rate. Say for 5% inflation, the value of post tax receipts would be Rs 5.7 lakh for year 2 and so on.</p></div><br><div><p>Let us look at investing the same corpus in equities. Over the last decade and half, the Sensex has returned ~12%. That means an amount of Rs 1 cr invested on Jan 1, 2001 in Nifty would have been worth approximately Rs 6.1 cr on Dec 31, 2016. Now a question arises, ‘How should a debt investor who needs regular monthly income or annual income position himself to benefit from the investments in equities but also ensure that his regular expenses are met?’ Now invest the given corpus of Rs 1 cr in the Nifty stocks in the proportion of the weightage in the index or Nifty ETF (Nifty ETF mimics the Nifty movements). The investments in equities enjoy long term capital gains tax exemption; one can sell equities (or units in case of ETF) worth Rs 6 lakh every year from the corpus invested to receive the tax free income for consumption. Assume, the Nifty gives a return of 15% over first year of investment- Rs 1 cr would be worth 1.15 cr at the end of year 1. Now the investor would withdraw Rs 6 lakh after investment of 1 year. The remnant corpus i.e. Rs 1.09 cr would remain invested for the next year. Now assume, the next year is relatively tepid and the returns are just 6%. At the end of the year, the value of invested corpus would be Rs 1.155 cr. If the next year gives negative returns of say 5%, the value of corpus invested even after regular withdrawal of Rs 6 lakhs would be Rs 1.04 cr so on and so forth. It must be remembered that equities as an asset class have historically outperformed the rest of the asset classes and on an average has given returns of 12-15%. Even if we assume average 12% returns over next 20 years and systematic withdrawal of Rs 6 lakh every year, the corpus accumulated at the end of 20 years would be around Rs 3.03 cr, far higher than the Rs 1 cr which one would have received on investment in pure debt instrument. </p></div><br><div><p>When one compares the debt and equity instrument, one finds that the corpus invested in debt would not fall below the invested principle in absolute terms but the real value of the corpus keeps on eroding as the inflation eats it out, whereas in case of equities the value of invested corpus would be volatile over short time period but due to power of compounding it outperforms both inflation and other asset classes over long period of investments. Do you still think Equity is not a better instrument for investments?</p></div>"
     }];
 })
 myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location, apiService,$timeout) {
@@ -66899,7 +67061,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
             $(".header-border").css("opacity", '0');
-            $(".img-width-change").css("width", '8%');
+            $(".img-width-change").css("width", '7%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
 
         } else {
@@ -66943,134 +67105,195 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
         $scope.formSubmitted = true;
     };
 
+    //for season3
+    $scope.season3 = [{
+            imageUrl: "CW8pc1UPkwc",
+            videoUrl: "CW8pc1UPkwc",
+            episodeno: "Prelaunch Episode",
+            searchName: "Prelaunch",
+        }, {
+            imageUrl: "ihHHDFjK0ic",
+            videoUrl: "ihHHDFjK0ic",
+            episodeno: "Launch Event Episode",
+            searchName: "Launch",
+        },
+        {
+            imageUrl: "X7ZkEQMhlek",
+            videoUrl: "X7ZkEQMhlek",
+            episodeno: "Episode 1",
+            searchName: "Banking",
+        },
+        {
+            imageUrl: "HC7x-i_XI2k",
+            videoUrl: "HC7x-i_XI2k",
+            episodeno: "Episode 2",
+            searchName: "Banking",
+        },
+        {
+            imageUrl: "wlQiBbevewo",
+            videoUrl: "wlQiBbevewo",
+            episodeno: "Episode 3",
+            searchName: "Banking",
+        }, {
+            imageUrl: "6dfpIRcyEVM",
+            videoUrl: "6dfpIRcyEVM",
+            episodeno: "Episode 4",
+            searchName: "Banking ,Insurance",
+        },
+        {
+            imageUrl: "K5npGoW5ZSI",
+            videoUrl: "K5npGoW5ZSI",
+            episodeno: "Episode 5",
+            searchName: "Insurance",
+        },
+            {
+            imageUrl: "SHqB-3ZxJsM",
+            videoUrl: "SHqB-3ZxJsM",
+            episodeno: "Episode 6",
+            searchName: "Health Insurance",
+        }
+       
+    ];
 
+    $scope.more3 = false;
+    $scope.view3 = true;
+
+    $scope.viewMore3 = function () {
+        $scope.more3 = true;
+        $scope.view3 = false;
+    }
+    $scope.viewLess3 = function () {
+        $scope.more3 = false;
+        $scope.view3 = true;
+    }
+    //end of season3
     //for season2
     $scope.season2 = [{
-        imageUrl: "6e1SJEJJyBw",
-        videoUrl: "6e1SJEJJyBw",
-        episodeno: "Episode 1",
-        searchName:"Launch",
-    }, {
-        imageUrl: "Rl0pNdNDpfo",
-        videoUrl: "Rl0pNdNDpfo",
-        episodeno: "Episode 2",
-         searchName:"Demonitization",
-    }, {
-        imageUrl: "9fPdYPvYhL4",
-        videoUrl: "9fPdYPvYhL4",
-        episodeno: "Episode 3",
-         searchName:"Digital Banking",
-    }, {
-        imageUrl: "WApywMO9Wl0",
-        videoUrl: "WApywMO9Wl0",
-        episodeno: "Episode 4",
-         searchName:"E-Wallet & Cashless Banking",
-    }, {
-        imageUrl: "OrX0r5K8ma4",
-        videoUrl: "OrX0r5K8ma4",
-        episodeno: "Episode 5",
-         searchName:"Safety & Security of Account & Cards",
-    }, {
-        imageUrl: "HYsU0cSTRDY",
-        videoUrl: "HYsU0cSTRDY",
-        episodeno: "Episode 6",
-         searchName:"Types Of Mutual funds",
-    }, {
-        imageUrl: "yTCQc0cI8sg",
-        videoUrl: "yTCQc0cI8sg",
-        episodeno: "Episode 7",
-         searchName:"Budget",
-    }, {
-        imageUrl: "4ToAgejb1bo",
-        videoUrl: "4ToAgejb1bo",
-        episodeno: "Episode 8",
-         searchName:"Personal Finances & Savings",
-    }, {
-        imageUrl: "Eu1lLdio33s",
-        videoUrl: "Eu1lLdio33s",
-        episodeno: "Episode 9",
-         searchName:"",
-    }, {
-        imageUrl: "zUITRJTKDok",
-        videoUrl: "zUITRJTKDok",
-        episodeno: "Episode 10",
-         searchName:"Budget",
-    }, {
-        imageUrl: "y5X8BYujJ3s",
-        videoUrl: "y5X8BYujJ3s",
-        episodeno: "Episode 11",
-         searchName:"Financial Planning",
-    }, {
-        imageUrl: "BoIy7MPxSBU",
-        videoUrl: "BoIy7MPxSBU",
-        episodeno: "Episode 12",
-         searchName:"Mutual Funds & Debt Funds",
-    }, {
-        imageUrl: "Q-iBDeA4Hz0",
-        videoUrl: "Q-iBDeA4Hz0",
-        episodeno: "Episode 13",
-         searchName:"Financial Planning & Investment in Gold",
-    }, {
-        imageUrl: "H4pnL0Lmlzc",
-        videoUrl: "H4pnL0Lmlzc",
-        episodeno: "Episode 14",
-         searchName:"Budget",
-    }, {
-        imageUrl: "CZ-hAHp42-8",
-        videoUrl: "CZ-hAHp42-8",
-        episodeno: "Episode 15",
-         searchName:"Budget",
-    }, {
-        imageUrl: "FEFEJ_HJq2o",
-        videoUrl: "FEFEJ_HJq2o",
-        episodeno: "Episode 16",
-         searchName:"Budget",
-    }, {
-        imageUrl: "B034I1zal0w",
-        videoUrl: "B034I1zal0w",
-        episodeno: "Episode 17",
-         searchName:"Tax",
-    }, {
-        imageUrl: "buTCKyeM-zg",
-        videoUrl: "buTCKyeM-zg",
-        episodeno: "Episode 18",
-         searchName:"Equity",
-    }, {
-        imageUrl: "jf39ex_CbFU",
-        videoUrl: "jf39ex_CbFU",
-        episodeno: "Episode 19",
-         searchName:"Invest Options and tax Savings",
-    }, {
-        imageUrl: "PAx-hX27hOQ",
-        videoUrl: "PAx-hX27hOQ",
-        episodeno: "Episode 20",
-         searchName:"Equity & Mutual Funds",
-    }, {
-        imageUrl: "sFf-tYRRRxo",
-        videoUrl: "sFf-tYRRRxo",
-        episodeno: "Episode 21",
-         searchName:"Insurances",
-    }, {
-        imageUrl: "UbQEWdETJmc",
-        videoUrl: "UbQEWdETJmc",
-        episodeno: "Episode 22",
-         searchName:"Life Insurance",
-    }, {
-        imageUrl: "h8NFKbhhCPc",
-        videoUrl: "h8NFKbhhCPc",
-        episodeno: "Episode 23",
-         searchName:"Insurance",
-    }, {
-        imageUrl: "-0hiPpadda8",
-        videoUrl: "-0hiPpadda8",
-        episodeno: "Episode 24",
-         searchName:"Personal Finance",
-    }, {
-        imageUrl: "MYo4T_2TckQ",
-        videoUrl: "MYo4T_2TckQ",
-        episodeno: "Episode 25",
-         searchName:"Grand Finale",
-    }
+            imageUrl: "6e1SJEJJyBw",
+            videoUrl: "6e1SJEJJyBw",
+            episodeno: "Episode 1",
+            searchName: "Launch",
+        }, {
+            imageUrl: "Rl0pNdNDpfo",
+            videoUrl: "Rl0pNdNDpfo",
+            episodeno: "Episode 2",
+            searchName: "Demonitization",
+        }, {
+            imageUrl: "9fPdYPvYhL4",
+            videoUrl: "9fPdYPvYhL4",
+            episodeno: "Episode 3",
+            searchName: "Digital Banking",
+        }, {
+            imageUrl: "WApywMO9Wl0",
+            videoUrl: "WApywMO9Wl0",
+            episodeno: "Episode 4",
+            searchName: "E-Wallet & Cashless Banking",
+        }, {
+            imageUrl: "OrX0r5K8ma4",
+            videoUrl: "OrX0r5K8ma4",
+            episodeno: "Episode 5",
+            searchName: "Safety & Security of Account & Cards",
+        }, {
+            imageUrl: "HYsU0cSTRDY",
+            videoUrl: "HYsU0cSTRDY",
+            episodeno: "Episode 6",
+            searchName: "Types Of Mutual funds",
+        }, {
+            imageUrl: "yTCQc0cI8sg",
+            videoUrl: "yTCQc0cI8sg",
+            episodeno: "Episode 7",
+            searchName: "Budget",
+        }, {
+            imageUrl: "4ToAgejb1bo",
+            videoUrl: "4ToAgejb1bo",
+            episodeno: "Episode 8",
+            searchName: "Personal Finances & Savings",
+        }, {
+            imageUrl: "Eu1lLdio33s",
+            videoUrl: "Eu1lLdio33s",
+            episodeno: "Episode 9",
+            searchName: "",
+        }, {
+            imageUrl: "zUITRJTKDok",
+            videoUrl: "zUITRJTKDok",
+            episodeno: "Episode 10",
+            searchName: "Budget",
+        }, {
+            imageUrl: "y5X8BYujJ3s",
+            videoUrl: "y5X8BYujJ3s",
+            episodeno: "Episode 11",
+            searchName: "Financial Planning",
+        }, {
+            imageUrl: "BoIy7MPxSBU",
+            videoUrl: "BoIy7MPxSBU",
+            episodeno: "Episode 12",
+            searchName: "Mutual Funds & Debt Funds",
+        }, {
+            imageUrl: "Q-iBDeA4Hz0",
+            videoUrl: "Q-iBDeA4Hz0",
+            episodeno: "Episode 13",
+            searchName: "Financial Planning & Investment in Gold",
+        }, {
+            imageUrl: "H4pnL0Lmlzc",
+            videoUrl: "H4pnL0Lmlzc",
+            episodeno: "Episode 14",
+            searchName: "Budget",
+        }, {
+            imageUrl: "CZ-hAHp42-8",
+            videoUrl: "CZ-hAHp42-8",
+            episodeno: "Episode 15",
+            searchName: "Budget",
+        }, {
+            imageUrl: "FEFEJ_HJq2o",
+            videoUrl: "FEFEJ_HJq2o",
+            episodeno: "Episode 16",
+            searchName: "Budget",
+        }, {
+            imageUrl: "B034I1zal0w",
+            videoUrl: "B034I1zal0w",
+            episodeno: "Episode 17",
+            searchName: "Tax",
+        }, {
+            imageUrl: "buTCKyeM-zg",
+            videoUrl: "buTCKyeM-zg",
+            episodeno: "Episode 18",
+            searchName: "Equity",
+        }, {
+            imageUrl: "jf39ex_CbFU",
+            videoUrl: "jf39ex_CbFU",
+            episodeno: "Episode 19",
+            searchName: "Invest Options and tax Savings",
+        }, {
+            imageUrl: "PAx-hX27hOQ",
+            videoUrl: "PAx-hX27hOQ",
+            episodeno: "Episode 20",
+            searchName: "Equity & Mutual Funds",
+        }, {
+            imageUrl: "sFf-tYRRRxo",
+            videoUrl: "sFf-tYRRRxo",
+            episodeno: "Episode 21",
+            searchName: "Insurances",
+        }, {
+            imageUrl: "UbQEWdETJmc",
+            videoUrl: "UbQEWdETJmc",
+            episodeno: "Episode 22",
+            searchName: "Life Insurance",
+        }, {
+            imageUrl: "h8NFKbhhCPc",
+            videoUrl: "h8NFKbhhCPc",
+            episodeno: "Episode 23",
+            searchName: "Insurance",
+        }, {
+            imageUrl: "-0hiPpadda8",
+            videoUrl: "-0hiPpadda8",
+            episodeno: "Episode 24",
+            searchName: "Personal Finance",
+        }, {
+            imageUrl: "MYo4T_2TckQ",
+            videoUrl: "MYo4T_2TckQ",
+            episodeno: "Episode 25",
+            searchName: "Grand Finale",
+        }
 
     ];
 
@@ -67089,423 +67312,423 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
 
     //for season1
     $scope.season1 = [{
-        imageUrl: "OqT3D60MZVk",
-        videoUrl: "OqT3D60MZVk",
-        episodeno: "Episode 1",
-         searchName:"",
-    }, {
-        imageUrl: "47VM_wfNUdQ",
-        videoUrl: "47VM_wfNUdQ",
-        episodeno: "Episode 2",
-         searchName:"Financial Budgeting",
-    }, {
-        imageUrl: "x4nlGY36J-s",
-        videoUrl: "x4nlGY36J-s",
-        episodeno: "Episode 3",
-         searchName:"Financial Goals",
-    }, {
-        imageUrl: "nrWcU0iPTrg",
-        videoUrl: "nrWcU0iPTrg",
-        episodeno: "Episode 4",
-         searchName:"Banking",
-    }, {
-        imageUrl: "yqX09Ai8bdw",
-        videoUrl: "yqX09Ai8bdw",
-        episodeno: "Episode 5",
-         searchName:"Investments",
-    }, {
-        imageUrl: "vf8Z_0dk3tQ",
-        videoUrl: "vf8Z_0dk3tQ",
-        episodeno: "Episode 6",
-         searchName:"Simple & Compound Interest",
-    }, {
-        imageUrl: "YnauodrRqpw",
-        videoUrl: "YnauodrRqpw",
-        episodeno: "Episode 7",
-         searchName:"Fixed & Recurring Deposit",
-    }, {
-        imageUrl: "KurI8w6hteg",
-        videoUrl: "KurI8w6hteg",
-        episodeno: "Episode 8",
-         searchName:"Online Banking",
-    }, {
-        imageUrl: "d2b_Kv_d3Cs",
-        videoUrl: "d2b_Kv_d3Cs",
-        episodeno: "Episode 9",
-         searchName:"Electronic Money",
-    }, {
-        imageUrl: "Umnq0EDKjcE",
-        videoUrl: "Umnq0EDKjcE",
-        episodeno: "Episode 10",
-         searchName:"Post Office Savings",
-    }, {
-        imageUrl: "g20d_8D-G3k",
-        videoUrl: "g20d_8D-G3k",
-        episodeno: "Episode 11",
-         searchName:"Credit Cards",
-    }, {
-        imageUrl: "AkZwkJnwoBw",
-        videoUrl: "AkZwkJnwoBw",
-        episodeno: "Episode 12",
-         searchName:"Mutual Funds",
-    }, {
-        imageUrl: "b0trRrnppkQ",
-        videoUrl: "b0trRrnppkQ",
-        episodeno: "Episode 13",
-         searchName:"Mutual Funds",
-    }, {
-        imageUrl: "ss8EycBDSfc",
-        videoUrl: "ss8EycBDSfc",
-        episodeno: "Episode 14",
-         searchName:"Mutual Funds",
-    }, {
-        imageUrl: "cq0FB8O-SXk",
-        videoUrl: "cq0FB8O-SXk",
-        episodeno: "Episode 15",
-         searchName:"Debt Mutual Funds",
-    }, {
-        imageUrl: "ZqKaGWON_ZE",
-        videoUrl: "ZqKaGWON_ZE",
-        episodeno: "Episode 16",
-         searchName:"Mutual Funds",
-    }, {
-        imageUrl: "HV5u_wwPj3Y",
-        videoUrl: "HV5u_wwPj3Y",
-        episodeno: "Episode 17",
-         searchName:"How to Invest in Mutual Funds",
-    }, {
-        imageUrl: "66NU5Ip_jMA",
-        videoUrl: "66NU5Ip_jMA",
-        episodeno: "Episode 18",
-         searchName:"Types of Mutual Funds",
-    },
-    {
-        imageUrl: "NxSM8956Hfo",
-        videoUrl: "NxSM8956Hfo",
-        episodeno: "Episode 19",
-         searchName:"Exchange Trade Funds",
-    }, {
-        imageUrl: "rHFbbltTOiY",
-        videoUrl: "rHFbbltTOiY",
-        episodeno: "Episode 20",
-         searchName:"International Funds",
-    }, {
-        imageUrl: "BT4u-shAQew",
-        videoUrl: "BT4u-shAQew",
-        episodeno: "Episode 21",
-         searchName:"Gold Fund & SIP",
-    }, {
-        imageUrl: "uyLSt9UfOxA",
-        videoUrl: "uyLSt9UfOxA",
-        episodeno: "Episode 22",
-         searchName:"Taxes on Mutual Funds",
-    }, {
-        imageUrl: "tM92E1YmsI0",
-        videoUrl: "tM92E1YmsI0",
-        episodeno: "Episode 23",
-         searchName:"Mutual Funds",
-    }, {
-        imageUrl: "mM7M_DVh8Z0",
-        videoUrl: "mM7M_DVh8Z0",
-        episodeno: "Episode 24",
-         searchName:"Portfolio Valuation",
-    }, {
-        imageUrl: "AL18u09wUZI",
-        videoUrl: "AL18u09wUZI",
-        episodeno: "Episode 25",
-         searchName:"Insurance",
-    }, {
-        imageUrl: "mM7M_DVh8Z0",
-        videoUrl: "mM7M_DVh8Z0",
-        episodeno: "Episode 26",
-         searchName:"Insurance",
-    }, {
-        imageUrl: "809LBgNmgDk",
-        videoUrl: "809LBgNmgDk",
-        episodeno: "Episode 27",
-         searchName:"Insurance Coverage",
-    }, {
-        imageUrl: "mUqTxh4g3_g",
-        videoUrl: "mUqTxh4g3_g",
-        episodeno: "Episode 28",
-         searchName:"Traditional Insuracne",
-    }, {
-        imageUrl: "SZ8EjsGNxpM",
-        videoUrl: "SZ8EjsGNxpM",
-        episodeno: "Episode 29",
-         searchName:"Pension Policies & Term Plans",
-    }, {
-        imageUrl: "GppqPhUxObc",
-        videoUrl: "GppqPhUxObc",
-        episodeno: "Episode 30",
-         searchname:"Term Insurance",
-    }, {
-        imageUrl: "6HaoOD0f9vo",
-        videoUrl: "6HaoOD0f9vo",
-        episodeno: "Episode 31",
-         searchname:"Home, travel Insurance",
-    }, {
-        imageUrl: "OeUN0DMDDKA",
-        videoUrl: "OeUN0DMDDKA",
-        episodeno: "Episode 32",
-         searchname:"Commodity Market",
-    }, {
-        imageUrl: "Qgc1-zs03J4",
-        videoUrl: "Qgc1-zs03J4",
-        episodeno: "Episode 33",
-         searchname:"Precious & Base Metals",
-    }, {
-        imageUrl: "QbKSL3dbpfw",
-        videoUrl: "QbKSL3dbpfw",
-        episodeno: "Episode 34",
-         searchname:"Investment in Agree Commodities",
-    }, {
-        imageUrl: "dhDAbtv81DE",
-        videoUrl: "dhDAbtv81DE",
-        episodeno: "Episode 35",
-         searchname:"Commodity Oil & Gas",
-    }, {
-        imageUrl: "1ubwYZ-kfGM",
-        videoUrl: "1ubwYZ-kfGM",
-        episodeno: "Episode 36",
-         searchname:"Equity",
-    }, {
-        imageUrl: "Uu4ZcHS87BI",
-        videoUrl: "Uu4ZcHS87BI",
-        episodeno: "Episode 37",
-         searchname:"Open Demat Account",
-    }, {
-        imageUrl: "1kxH_-hl1Cc",
-        videoUrl: "1kxH_-hl1Cc",
-        episodeno: "Episode 38",
-         searchname:"Trading Account in Stock Exchange",
-    }, {
-        imageUrl: "zwjQJeoxDOI",
-        videoUrl: "zwjQJeoxDOI",
-        episodeno: "Episode 39",
-         searchname:"Equity investment",
-    }, {
-        imageUrl: "0MDwbSFGsmQ",
-        videoUrl: "0MDwbSFGsmQ",
-        episodeno: "Episode 40",
-         searchname:"Equity Market & Circuit Filter",
-    }, {
-        imageUrl: "TdTwc6gHX-c",
-        videoUrl: "TdTwc6gHX-c",
-        episodeno: "Episode 41",
-         searchname:"Equity IPO",
-    }, {
-        imageUrl: "_0Wf0M5DVjg",
-        videoUrl: "_0Wf0M5DVjg",
-        episodeno: "Episode 42",
-         searchname:"FPO",
-    }, {
-        imageUrl: "QDC3Zc_VUmg",
-        videoUrl: "QDC3Zc_VUmg",
-        episodeno: "Episode 43",
-         searchname:"Equity & Secondary Market Trading",
-    }, {
-        imageUrl: "_bXoAl5t1_E",
-        videoUrl: "_bXoAl5t1_E",
-        episodeno: "Episode 44",
-         searchname:"Bonus Divedends",
-    }, {
-        imageUrl: "hHnCc429ic0",
-        videoUrl: "hHnCc429ic0",
-        episodeno: "Episode 45",
-         searchname:"Investment Descision",
-    }, {
-        imageUrl: "IzMkQkHF7Zo",
-        videoUrl: "IzMkQkHF7Zo",
-        episodeno: "Episode 46",
-         searchname:"Buying Shares",
-    }, {
-        imageUrl: "i8tUlIOaL0A",
-        videoUrl: "i8tUlIOaL0A",
-        episodeno: "Episode 47",
-         searchname:"Fundamental Analysis",
-    }, {
-        imageUrl: "2J2jCdchSTI",
-        videoUrl: "2J2jCdchSTI",
-        episodeno: "Episode 48",
-         searchname:"Techinical Analysis",
-    }, {
-        imageUrl: "OacVRhckWpc",
-        videoUrl: "OacVRhckWpc",
-        episodeno: "Episode 49",
-         searchname:"Techinical Analysis",
-    }, {
-        imageUrl: "D55jjilaqTc",
-        videoUrl: "D55jjilaqTc",
-        episodeno: "Episode 50",
-         searchname:"Derivatives, Futures and Options",
-    }, {
-        imageUrl: "ZMRG8JjIsBY",
-        videoUrl: "ZMRG8JjIsBY",
-        episodeno: "Episode 51",
-         searchname:"Gurukul School",
-    }, {
-        imageUrl: "DW9ElKEEamE",
-        videoUrl: "DW9ElKEEamE",
-        episodeno: "Episode 52",
-         searchName:"Saketari",
-    }, {
-        imageUrl: "s14042sqIQM",
-        videoUrl: "s14042sqIQM",
-        episodeno: "Episode 53",
-         searchName:"Bhavanipur College",
-    }, {
-        imageUrl: "QeOPszD1mak",
-        videoUrl: "QeOPszD1mak",
-        episodeno: "Episode 54",
-         searchName:"Abhinav bharati School",
-    }, {
-        imageUrl: "W7Gz0bqfaUc",
-        videoUrl: "W7Gz0bqfaUc",
-        episodeno: "Episode 55",
-         searchName:"",
-    }, {
-        imageUrl: "PUGZ3_6D1pk",
-        videoUrl: "PUGZ3_6D1pk",
-        episodeno: "Episode 56",
-         searchName:"Mahakumbh",
-    }, {
-        imageUrl: "24fffiDkkVU",
-        videoUrl: "24fffiDkkVU",
-        episodeno: "Episode 57",
-         searchName:"Mahakumbh",
-    }, {
-        imageUrl: "1s-ZssxHuy4",
-        videoUrl: "1s-ZssxHuy4",
-        episodeno: "Episode 58",
-         searchName:"",
-    }, {
-        imageUrl: "LjUbBWXyIvU",
-        videoUrl: "LjUbBWXyIvU",
-        episodeno: "Episode 59",
-         searchName:"Young Investors Program ",
-    }, {
-        imageUrl: "k41uhc9qO3A",
-        videoUrl: "k41uhc9qO3A",
-        episodeno: "Episode 60",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "PDr3qVnXZ8s",
-        videoUrl: "PDr3qVnXZ8s",
-        episodeno: "Episode 61",
-         searchName:"Financial Planning",
-    }, {
-        imageUrl: "Ymcoo0QW7hQ",
-        videoUrl: "Ymcoo0QW7hQ",
-        episodeno: "Episode 62",
-         searchName:"On ground Classrooms",
-    }, {
-        imageUrl: "Yrgr1b3Ad6g",
-        videoUrl: "Yrgr1b3Ad6g",
-        episodeno: "Episode 63",
-         searchName:"On ground Classrooms",
-    }, {
-        imageUrl: "sfTvseID06E",
-        videoUrl: "sfTvseID06E",
-        episodeno: "Episode 64",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "IcDQLVZp0rg",
-        videoUrl: "IcDQLVZp0rg",
-        episodeno: "Episode 65",
-         searchName:"Rural Financial Literacy Program",
-    }, {
-        imageUrl: "_kK9V9CJmVI",
-        videoUrl: "_kK9V9CJmVI",
-        episodeno: "Episode 66",
-         searchName:"Rural Financial Literacy Program",
-    }, {
-        imageUrl: "DmxsgZI3BJg",
-        videoUrl: "DmxsgZI3BJg",
-        episodeno: "Episode 67",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "SZtB0Qk_EKw",
-        videoUrl: "SZtB0Qk_EKw",
-        episodeno: "Episode 68",
-         searchName:"Rural Financial Literacy Program",
-    }, {
-        imageUrl: "lAvQsdNCc_s",
-        videoUrl: "lAvQsdNCc_s",
-        episodeno: "Episode 69",
-         searchName:"Financial Planning",
-    }, {
-        imageUrl: "Ra9lv36JG-U",
-        videoUrl: "Ra9lv36JG-U",
-        episodeno: "Episode 70",
-         searchName:"Netmagic Solutions",
-    }, {
-        imageUrl: "qPDXLDK0aBY",
-        videoUrl: "qPDXLDK0aBY",
-        episodeno: "Episode 71",
-         searchName:"On ground Classrooms",
-    }, {
-        imageUrl: "1DP9_PYWlJE",
-        videoUrl: "1DP9_PYWlJE",
-        episodeno: "Episode 72",
-         searchName:"Rural Financial Literacy Program",
-    }, {
-        imageUrl: "UO-i7elCWCI",
-        videoUrl: "UO-i7elCWCI",
-        episodeno: "Episode 73",
-         searchName:"Rural Financial Literacy Program",
-    }, {
-        imageUrl: "FahtReKv-u8",
-        videoUrl: "FahtReKv-u8",
-        episodeno: "Episode 74",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "jb8Buwo3rco",
-        videoUrl: "jb8Buwo3rco",
-        episodeno: "Episode 75",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "FGueOhY6HJg",
-        videoUrl: "FGueOhY6HJg",
-        episodeno: "Episode 76",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "DEEmpminlBU",
-        videoUrl: "DEEmpminlBU",
-        episodeno: "Episode 77",
-         searchName:"On ground Classrooms",
-    }, {
-        imageUrl: "s3ZwGWcw9xg",
-        videoUrl: "s3ZwGWcw9xg",
-        episodeno: "Episode 78",
-         searchName:"Young Investors Program",
-    }, {
-        imageUrl: "1y5O7ogDOJ0",
-        videoUrl: "1y5O7ogDOJ0",
-        episodeno: "Episode 79",
-         searchName:"Financial Planning",
-    }, {
-        imageUrl: "GSIH0jXVSD8",
-        videoUrl: "GSIH0jXVSD8",
-        episodeno: "Episode 80",
-         searchName:"Financial Planning",
-    }, {
-        imageUrl: "-zWklRlJ_e8",
-        videoUrl: "-zWklRlJ_e8",
-        episodeno: "Episode 81",
-         searchName:"Jabalpur",
-    }, {
-        imageUrl: "kHQwdznO7tE",
-        videoUrl: "kHQwdznO7tE",
-        episodeno: "Episode 82",
-         searchName:"SEBI",
-    }, {
-        imageUrl: "aQz0Gsd2oBo",
-        videoUrl: "aQz0Gsd2oBo",
-        episodeno: "Episode 83",
-         searchName:"Online Invesments",
-    },
-];
+            imageUrl: "OqT3D60MZVk",
+            videoUrl: "OqT3D60MZVk",
+            episodeno: "Episode 1",
+            searchName: "",
+        }, {
+            imageUrl: "47VM_wfNUdQ",
+            videoUrl: "47VM_wfNUdQ",
+            episodeno: "Episode 2",
+            searchName: "Financial Budgeting",
+        }, {
+            imageUrl: "x4nlGY36J-s",
+            videoUrl: "x4nlGY36J-s",
+            episodeno: "Episode 3",
+            searchName: "Financial Goals",
+        }, {
+            imageUrl: "nrWcU0iPTrg",
+            videoUrl: "nrWcU0iPTrg",
+            episodeno: "Episode 4",
+            searchName: "Banking",
+        }, {
+            imageUrl: "yqX09Ai8bdw",
+            videoUrl: "yqX09Ai8bdw",
+            episodeno: "Episode 5",
+            searchName: "Investments",
+        }, {
+            imageUrl: "vf8Z_0dk3tQ",
+            videoUrl: "vf8Z_0dk3tQ",
+            episodeno: "Episode 6",
+            searchName: "Simple & Compound Interest",
+        }, {
+            imageUrl: "YnauodrRqpw",
+            videoUrl: "YnauodrRqpw",
+            episodeno: "Episode 7",
+            searchName: "Fixed & Recurring Deposit",
+        }, {
+            imageUrl: "KurI8w6hteg",
+            videoUrl: "KurI8w6hteg",
+            episodeno: "Episode 8",
+            searchName: "Online Banking",
+        }, {
+            imageUrl: "d2b_Kv_d3Cs",
+            videoUrl: "d2b_Kv_d3Cs",
+            episodeno: "Episode 9",
+            searchName: "Electronic Money",
+        }, {
+            imageUrl: "Umnq0EDKjcE",
+            videoUrl: "Umnq0EDKjcE",
+            episodeno: "Episode 10",
+            searchName: "Post Office Savings",
+        }, {
+            imageUrl: "g20d_8D-G3k",
+            videoUrl: "g20d_8D-G3k",
+            episodeno: "Episode 11",
+            searchName: "Credit Cards",
+        }, {
+            imageUrl: "AkZwkJnwoBw",
+            videoUrl: "AkZwkJnwoBw",
+            episodeno: "Episode 12",
+            searchName: "Mutual Funds",
+        }, {
+            imageUrl: "b0trRrnppkQ",
+            videoUrl: "b0trRrnppkQ",
+            episodeno: "Episode 13",
+            searchName: "Mutual Funds",
+        }, {
+            imageUrl: "ss8EycBDSfc",
+            videoUrl: "ss8EycBDSfc",
+            episodeno: "Episode 14",
+            searchName: "Mutual Funds",
+        }, {
+            imageUrl: "cq0FB8O-SXk",
+            videoUrl: "cq0FB8O-SXk",
+            episodeno: "Episode 15",
+            searchName: "Debt Mutual Funds",
+        }, {
+            imageUrl: "ZqKaGWON_ZE",
+            videoUrl: "ZqKaGWON_ZE",
+            episodeno: "Episode 16",
+            searchName: "Mutual Funds",
+        }, {
+            imageUrl: "HV5u_wwPj3Y",
+            videoUrl: "HV5u_wwPj3Y",
+            episodeno: "Episode 17",
+            searchName: "How to Invest in Mutual Funds",
+        }, {
+            imageUrl: "66NU5Ip_jMA",
+            videoUrl: "66NU5Ip_jMA",
+            episodeno: "Episode 18",
+            searchName: "Types of Mutual Funds",
+        },
+        {
+            imageUrl: "NxSM8956Hfo",
+            videoUrl: "NxSM8956Hfo",
+            episodeno: "Episode 19",
+            searchName: "Exchange Trade Funds",
+        }, {
+            imageUrl: "rHFbbltTOiY",
+            videoUrl: "rHFbbltTOiY",
+            episodeno: "Episode 20",
+            searchName: "International Funds",
+        }, {
+            imageUrl: "BT4u-shAQew",
+            videoUrl: "BT4u-shAQew",
+            episodeno: "Episode 21",
+            searchName: "Gold Fund & SIP",
+        }, {
+            imageUrl: "uyLSt9UfOxA",
+            videoUrl: "uyLSt9UfOxA",
+            episodeno: "Episode 22",
+            searchName: "Taxes on Mutual Funds",
+        }, {
+            imageUrl: "tM92E1YmsI0",
+            videoUrl: "tM92E1YmsI0",
+            episodeno: "Episode 23",
+            searchName: "Mutual Funds",
+        }, {
+            imageUrl: "mM7M_DVh8Z0",
+            videoUrl: "mM7M_DVh8Z0",
+            episodeno: "Episode 24",
+            searchName: "Portfolio Valuation",
+        }, {
+            imageUrl: "AL18u09wUZI",
+            videoUrl: "AL18u09wUZI",
+            episodeno: "Episode 25",
+            searchName: "Insurance",
+        }, {
+            imageUrl: "mM7M_DVh8Z0",
+            videoUrl: "mM7M_DVh8Z0",
+            episodeno: "Episode 26",
+            searchName: "Insurance",
+        }, {
+            imageUrl: "809LBgNmgDk",
+            videoUrl: "809LBgNmgDk",
+            episodeno: "Episode 27",
+            searchName: "Insurance Coverage",
+        }, {
+            imageUrl: "mUqTxh4g3_g",
+            videoUrl: "mUqTxh4g3_g",
+            episodeno: "Episode 28",
+            searchName: "Traditional Insuracne",
+        }, {
+            imageUrl: "SZ8EjsGNxpM",
+            videoUrl: "SZ8EjsGNxpM",
+            episodeno: "Episode 29",
+            searchName: "Pension Policies & Term Plans",
+        }, {
+            imageUrl: "GppqPhUxObc",
+            videoUrl: "GppqPhUxObc",
+            episodeno: "Episode 30",
+            searchname: "Term Insurance",
+        }, {
+            imageUrl: "6HaoOD0f9vo",
+            videoUrl: "6HaoOD0f9vo",
+            episodeno: "Episode 31",
+            searchname: "Home, travel Insurance",
+        }, {
+            imageUrl: "OeUN0DMDDKA",
+            videoUrl: "OeUN0DMDDKA",
+            episodeno: "Episode 32",
+            searchname: "Commodity Market",
+        }, {
+            imageUrl: "Qgc1-zs03J4",
+            videoUrl: "Qgc1-zs03J4",
+            episodeno: "Episode 33",
+            searchname: "Precious & Base Metals",
+        }, {
+            imageUrl: "QbKSL3dbpfw",
+            videoUrl: "QbKSL3dbpfw",
+            episodeno: "Episode 34",
+            searchname: "Investment in Agree Commodities",
+        }, {
+            imageUrl: "dhDAbtv81DE",
+            videoUrl: "dhDAbtv81DE",
+            episodeno: "Episode 35",
+            searchname: "Commodity Oil & Gas",
+        }, {
+            imageUrl: "1ubwYZ-kfGM",
+            videoUrl: "1ubwYZ-kfGM",
+            episodeno: "Episode 36",
+            searchname: "Equity",
+        }, {
+            imageUrl: "Uu4ZcHS87BI",
+            videoUrl: "Uu4ZcHS87BI",
+            episodeno: "Episode 37",
+            searchname: "Open Demat Account",
+        }, {
+            imageUrl: "1kxH_-hl1Cc",
+            videoUrl: "1kxH_-hl1Cc",
+            episodeno: "Episode 38",
+            searchname: "Trading Account in Stock Exchange",
+        }, {
+            imageUrl: "zwjQJeoxDOI",
+            videoUrl: "zwjQJeoxDOI",
+            episodeno: "Episode 39",
+            searchname: "Equity investment",
+        }, {
+            imageUrl: "0MDwbSFGsmQ",
+            videoUrl: "0MDwbSFGsmQ",
+            episodeno: "Episode 40",
+            searchname: "Equity Market & Circuit Filter",
+        }, {
+            imageUrl: "TdTwc6gHX-c",
+            videoUrl: "TdTwc6gHX-c",
+            episodeno: "Episode 41",
+            searchname: "Equity IPO",
+        }, {
+            imageUrl: "_0Wf0M5DVjg",
+            videoUrl: "_0Wf0M5DVjg",
+            episodeno: "Episode 42",
+            searchname: "FPO",
+        }, {
+            imageUrl: "QDC3Zc_VUmg",
+            videoUrl: "QDC3Zc_VUmg",
+            episodeno: "Episode 43",
+            searchname: "Equity & Secondary Market Trading",
+        }, {
+            imageUrl: "_bXoAl5t1_E",
+            videoUrl: "_bXoAl5t1_E",
+            episodeno: "Episode 44",
+            searchname: "Bonus Divedends",
+        }, {
+            imageUrl: "hHnCc429ic0",
+            videoUrl: "hHnCc429ic0",
+            episodeno: "Episode 45",
+            searchname: "Investment Descision",
+        }, {
+            imageUrl: "IzMkQkHF7Zo",
+            videoUrl: "IzMkQkHF7Zo",
+            episodeno: "Episode 46",
+            searchname: "Buying Shares",
+        }, {
+            imageUrl: "i8tUlIOaL0A",
+            videoUrl: "i8tUlIOaL0A",
+            episodeno: "Episode 47",
+            searchname: "Fundamental Analysis",
+        }, {
+            imageUrl: "2J2jCdchSTI",
+            videoUrl: "2J2jCdchSTI",
+            episodeno: "Episode 48",
+            searchname: "Techinical Analysis",
+        }, {
+            imageUrl: "OacVRhckWpc",
+            videoUrl: "OacVRhckWpc",
+            episodeno: "Episode 49",
+            searchname: "Techinical Analysis",
+        }, {
+            imageUrl: "D55jjilaqTc",
+            videoUrl: "D55jjilaqTc",
+            episodeno: "Episode 50",
+            searchname: "Derivatives, Futures and Options",
+        }, {
+            imageUrl: "ZMRG8JjIsBY",
+            videoUrl: "ZMRG8JjIsBY",
+            episodeno: "Episode 51",
+            searchname: "Gurukul School",
+        }, {
+            imageUrl: "DW9ElKEEamE",
+            videoUrl: "DW9ElKEEamE",
+            episodeno: "Episode 52",
+            searchName: "Saketari",
+        }, {
+            imageUrl: "s14042sqIQM",
+            videoUrl: "s14042sqIQM",
+            episodeno: "Episode 53",
+            searchName: "Bhavanipur College",
+        }, {
+            imageUrl: "QeOPszD1mak",
+            videoUrl: "QeOPszD1mak",
+            episodeno: "Episode 54",
+            searchName: "Abhinav bharati School",
+        }, {
+            imageUrl: "W7Gz0bqfaUc",
+            videoUrl: "W7Gz0bqfaUc",
+            episodeno: "Episode 55",
+            searchName: "",
+        }, {
+            imageUrl: "PUGZ3_6D1pk",
+            videoUrl: "PUGZ3_6D1pk",
+            episodeno: "Episode 56",
+            searchName: "Mahakumbh",
+        }, {
+            imageUrl: "24fffiDkkVU",
+            videoUrl: "24fffiDkkVU",
+            episodeno: "Episode 57",
+            searchName: "Mahakumbh",
+        }, {
+            imageUrl: "1s-ZssxHuy4",
+            videoUrl: "1s-ZssxHuy4",
+            episodeno: "Episode 58",
+            searchName: "",
+        }, {
+            imageUrl: "LjUbBWXyIvU",
+            videoUrl: "LjUbBWXyIvU",
+            episodeno: "Episode 59",
+            searchName: "Young Investors Program ",
+        }, {
+            imageUrl: "k41uhc9qO3A",
+            videoUrl: "k41uhc9qO3A",
+            episodeno: "Episode 60",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "PDr3qVnXZ8s",
+            videoUrl: "PDr3qVnXZ8s",
+            episodeno: "Episode 61",
+            searchName: "Financial Planning",
+        }, {
+            imageUrl: "Ymcoo0QW7hQ",
+            videoUrl: "Ymcoo0QW7hQ",
+            episodeno: "Episode 62",
+            searchName: "On ground Classrooms",
+        }, {
+            imageUrl: "Yrgr1b3Ad6g",
+            videoUrl: "Yrgr1b3Ad6g",
+            episodeno: "Episode 63",
+            searchName: "On ground Classrooms",
+        }, {
+            imageUrl: "sfTvseID06E",
+            videoUrl: "sfTvseID06E",
+            episodeno: "Episode 64",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "IcDQLVZp0rg",
+            videoUrl: "IcDQLVZp0rg",
+            episodeno: "Episode 65",
+            searchName: "Rural Financial Literacy Program",
+        }, {
+            imageUrl: "_kK9V9CJmVI",
+            videoUrl: "_kK9V9CJmVI",
+            episodeno: "Episode 66",
+            searchName: "Rural Financial Literacy Program",
+        }, {
+            imageUrl: "DmxsgZI3BJg",
+            videoUrl: "DmxsgZI3BJg",
+            episodeno: "Episode 67",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "SZtB0Qk_EKw",
+            videoUrl: "SZtB0Qk_EKw",
+            episodeno: "Episode 68",
+            searchName: "Rural Financial Literacy Program",
+        }, {
+            imageUrl: "lAvQsdNCc_s",
+            videoUrl: "lAvQsdNCc_s",
+            episodeno: "Episode 69",
+            searchName: "Financial Planning",
+        }, {
+            imageUrl: "Ra9lv36JG-U",
+            videoUrl: "Ra9lv36JG-U",
+            episodeno: "Episode 70",
+            searchName: "Netmagic Solutions",
+        }, {
+            imageUrl: "qPDXLDK0aBY",
+            videoUrl: "qPDXLDK0aBY",
+            episodeno: "Episode 71",
+            searchName: "On ground Classrooms",
+        }, {
+            imageUrl: "1DP9_PYWlJE",
+            videoUrl: "1DP9_PYWlJE",
+            episodeno: "Episode 72",
+            searchName: "Rural Financial Literacy Program",
+        }, {
+            imageUrl: "UO-i7elCWCI",
+            videoUrl: "UO-i7elCWCI",
+            episodeno: "Episode 73",
+            searchName: "Rural Financial Literacy Program",
+        }, {
+            imageUrl: "FahtReKv-u8",
+            videoUrl: "FahtReKv-u8",
+            episodeno: "Episode 74",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "jb8Buwo3rco",
+            videoUrl: "jb8Buwo3rco",
+            episodeno: "Episode 75",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "FGueOhY6HJg",
+            videoUrl: "FGueOhY6HJg",
+            episodeno: "Episode 76",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "DEEmpminlBU",
+            videoUrl: "DEEmpminlBU",
+            episodeno: "Episode 77",
+            searchName: "On ground Classrooms",
+        }, {
+            imageUrl: "s3ZwGWcw9xg",
+            videoUrl: "s3ZwGWcw9xg",
+            episodeno: "Episode 78",
+            searchName: "Young Investors Program",
+        }, {
+            imageUrl: "1y5O7ogDOJ0",
+            videoUrl: "1y5O7ogDOJ0",
+            episodeno: "Episode 79",
+            searchName: "Financial Planning",
+        }, {
+            imageUrl: "GSIH0jXVSD8",
+            videoUrl: "GSIH0jXVSD8",
+            episodeno: "Episode 80",
+            searchName: "Financial Planning",
+        }, {
+            imageUrl: "-zWklRlJ_e8",
+            videoUrl: "-zWklRlJ_e8",
+            episodeno: "Episode 81",
+            searchName: "Jabalpur",
+        }, {
+            imageUrl: "kHQwdznO7tE",
+            videoUrl: "kHQwdznO7tE",
+            episodeno: "Episode 82",
+            searchName: "SEBI",
+        }, {
+            imageUrl: "aQz0Gsd2oBo",
+            videoUrl: "aQz0Gsd2oBo",
+            episodeno: "Episode 83",
+            searchName: "Online Invesments",
+        },
+    ];
 
     $scope.more1 = false;
     $scope.view1 = true;
@@ -67520,6 +67743,326 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
     }
     //end of season1
 
+
+})
+myApp.controller('QuestionPaperCtrl', function ($scope, apiService, $stateParams, TemplateService, NavigationService, $timeout, $uibModal) {
+    $scope.template = TemplateService.getHTML("content/question-paper.html");
+    TemplateService.title = "Minutestips"; //This is the Title of the Website
+    $scope.navigation = NavigationService.getNavigation();
+    $scope.formSubmitted = false;
+    $scope.changeURL = function (id) {
+        console.log(id);
+        $location.path("" + id);
+    };
+
+    $scope.thanksopen = function (data) {
+        console.log("**************", data);
+        if (data) {
+            data._id = $stateParams.userId;
+        }
+        data.contest = [];
+        data.contest.push({
+            question: "हेल्थ इंश्योरेंस कहलाता है",
+            answer: data.answer
+        });
+        // console.log("data is..", data.question);
+        console.log("data is..", data.answer);
+        apiService.saveSelectedAnswer('Contest/saveSelectedAnswer', data, function (data) {
+            console.log(data);
+            if (data.value) {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'views/modal/thanks.html',
+                    scope: $scope,
+                    size: 'md',
+                });
+            }
+        });
+
+    };
+
+
+})
+myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, NavigationService, $timeout, $uibModal, apiService, $stateParams) {
+      $scope.template = TemplateService.getHTML("content/digital-question.html");
+      TemplateService.title = "Digitalquestion"; //This is the Title of the Website
+      $scope.navigation = NavigationService.getNavigation();
+      $scope.DigitalCourse = {};
+      var id ={};
+      id._id = $.jStorage.get("courseid");
+            // console.log("id", id);
+            apiService.apiWithData("Question/getAllDigitalCourseQuestion", id, function (data) {
+                  $scope.Question = data.data;
+                  // console.log("getAllDigitalCourseQuestion inside controller*****", data.data);
+
+                  // console.log("getAllDigitalCourseQuestion data", $scope.DigitalCourse);
+            });
+     
+      $scope.constraints = {};
+      $scope.id = $stateParams.userId;
+      $scope.constraints.digitalUser = $stateParams.userId;
+      // console.log("State param id is:", $scope.id)
+      // apiService.apiWithoutData("Question/getLastAddedDigitalCourse", function (data) {
+      //       // console.log("getAllQuestion inside controller", data.data);
+      //       $scope.DigitalCourse1 = data.data[0]._id;
+      //       $scope.constraints.digitalCourse = data.data[0]._id;
+      //       $scope.DigitalCourse = {
+      //             _id: data.data[0]._id
+      //       };
+      //       // console.log("DigitalCourse data", $scope.DigitalCourse1);
+      //       $scope.tempFun($scope.DigitalCourse);
+      // });
+
+
+
+
+      // $scope.digitalinside = [{
+      //       No: 1,
+      //       Question: "सेविंग अकाउंट पर ब्याज मिलता है",
+      //       option1: "ब्याज पर ब्याज",
+      //       option2: "<span style='font-family:NimbusSanL-Reg;'>FD</span> जितना",
+      //       option3: "साधारण ब्याज",
+      //       option4: "पीएफ जितना",
+      // }, {
+      //       No: 2,
+      //       Question: "ऑटोमैटिक स्वीप अकाउंट होता है",
+      //       option1: "सेविंग अकाउंट रेकरिंग अकाउंट से लिंक",
+      //       option2: "सेविंग अकाउंट फिक्स डिपॉजिट से लिंक",
+      //       option3: "सेविंग अकाउंट डीमैट अकाउंट से लिंक",
+      //       option4: "सेविंग अकाउंट ट्रेडिंग अकाउंट से लिंक",
+      // }, {
+      //       No: 3,
+      //       Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
+      //       option1: "1 लाख से ज्यादा ब्याज इनकम पर",
+      //       option2: "50 हजार से ज्यादा ब्याज इनकम पर",
+      //       option3: "10 हजार से ज्यादा ब्याज इनकम पर",
+      //       option4: "20 हजार से ज्यादा ब्याज इनकम पर",
+      // }, {
+      //       No: 4,
+      //       Question: "सेविंग अकाउंट खोलने के लिए अनिवार्य है",
+      //       option1: "घर के एड्रेस का प्रूफ और ईमेल एड्रेस",
+      //       option2: "फोन नंबर",
+      //       option3: "पैन कार्ड और आधार कार्ड",
+      //       option4: "ऊपर लिखे सभी दस्तावेज",
+      // }, {
+      //       No: 5,
+      //       Question: "<span style='font-family:NimbusSanL-Reg;'>KYC</span> के लिए कौन से डॉक्यूमेंट्स पर्याप्त हैं",
+      //       option1: "पासपोर्ट",
+      //       option2: "पैन कार्ड",
+      //       option3: "पैनकार्ड और आधार कार्ड",
+      //       option4: "पैनकार्ड, आधार कार्ड या पासपोर्ट",
+      // }, {
+      //       No: 6,
+      //       Question: "साधारण ब्याज किस अकाउंट पर मिलता है",
+      //       option1: " रेकरिंग अकाउंट पर",
+      //       option2: "सेविंग अकाउंट पर",
+      //       option3: "फिक्स डिपॉजिट पर",
+      //       option4: "करेंट अकाउंट पर",
+      // }, {
+      //       No: 7,
+      //       Question: "क्या रेकरिंग डिपॉजिट पर टैक्स छूट मिलती है",
+      //       option1: "पूरी छूट मिलती है",
+      //       option2: " बिल्कुल नहीं मिलती ",
+      //       option3: "10 हजार से ज्यादा सालाना ब्याज पर टैक्स लगता है",
+      //       option4: "5 हजार से ज्यादा सालाना ब्याज पर टैक्स लगता है",
+      // }, {
+      //       No: 8,
+      //       Question: "क्या रेकरिंग डिपॉजिट पर टैक्स छूट मिलती है",
+      //       option1: "पूरी छूट मिलती है",
+      //       option2: "बिल्कुल नहीं मिलती",
+      //       option3: "10 हजार से ज्यादा सालाना ब्याज पर टैक्स लगता है",
+      //       option4: "5 हजार से ज्यादा सालाना ब्याज पर टैक्स लगता है",
+      // }, {
+      //       No: 9,
+      //       Question: "क्रेडिट कार्ड कितने दिन तक ब्याज नहीं लगता",
+      //       option1: "45 दिन तक",
+      //       option2: "15 दिन तक",
+      //       option3: "20 दिन तक",
+      //       option4: "25 दिन तक",
+      // }, {
+      //       No: 10,
+      //       Question: "क्रेडिट कार्ड लिमिट कैसे तय होती है",
+      //       option1: "आमदनी के हिसाब से",
+      //       option2: "क्रेडिट हिस्ट्री पर",
+      //       option3: "बैंक की मर्जी पर",
+      //       option4: "इन सभी चीजों पर",
+      // }, {
+      //       No: 11,
+      //       Question: "वर्चुअल क्रेडिट कार्ड कितनी बार इस्तेमाल कर सकते हैं ",
+      //       option1: "4 बार",
+      //       option2: "5 बार",
+      //       option3: "1 बार",
+      //       option4: "अनगिनत बार",
+      // }, {
+      //       No: 12,
+      //       Question: "मल्टी करेंसी कार्ड से",
+      //       option1: "अलग-अलग देशों में पैसा निकला जाता है",
+      //       option2: "अलग-अलग करेंसी निकाली जा सकती है",
+      //       option3: "मोबाइल फोन से लिंक किया जा सकता है",
+      //       option4: "उपरोक्त सभी काम हो सकते हैं",
+      // }]
+
+      // $scope.id = {
+      //       user_id: $stateParams.userId,
+      //       digital_id: $scope.DigitalCourse1,
+
+
+      // }
+      // // console.log("$$$$$$$imp data$$$", $scope.id);
+      $scope.digitalSubmit = function () {
+            apiService.apiWithData("TestResult/saveDigitalUser", $scope.constraints, function (data) {
+                  $scope.data = data.data;
+                  // console.log("$scope.data", $scope.data);
+                  if ($scope.data.flag == false) {
+                        // console.log("Inside if")
+                        $scope.digitalthanks();
+                  } else {
+                        // console.log("inside else");
+                        $scope.digitalsorry();
+                  }
+            });
+      }
+
+
+      $scope.digitalthanks = function () {
+            $scope.id = $stateParams.userId;
+            $scope.id = {
+                  _id: $stateParams.userId,
+            }
+            // console.log("inside thank u modal state param is is", $scope.id);
+            apiService.apiWithData("DigitalUser/getUser", $scope.id, function (data) {
+                  $scope.user = {
+                        user: data.data
+                  }
+                  // console.log("inside thank u modal state param is is*****", data.data);
+                  apiService.apiWithData("DigitalUser/saveMailData", $scope.user, function (data) {
+
+                  });
+            });
+            console.log("clla");
+            $uibModal.open({
+                  animation: true,
+                  templateUrl: 'views/modal/digital-thanks.html',
+                  scope: $scope,
+                  size: 'md',
+            });
+
+      };
+      $scope.digitalsorry = function () {
+            console.log("clla");
+            $uibModal.open({
+                  animation: true,
+                  templateUrl: 'views/modal/digital-sorry.html',
+                  scope: $scope,
+                  size: 'md',
+            });
+      };
+
+
+
+      $scope.constraints.answerProvided = [];
+      // $scope.tempObj = {};
+      $scope.finalFuntion = function (qId, ansId) {
+            var demo = _.find($scope.constraints.answerProvided, function (o) {
+                  if (qId == o.question) {
+                        // console.log("demo****", o);
+                        _.pull($scope.constraints.answerProvided, o);
+                        // $scope.tempObj.answer = ansId;
+                        // $scope.tempObj.question = qId;
+                        // $scope.constraints.answerProvided.push($scope.tempObj);
+                  }
+            });
+            // console.log("demo", demo);
+            // if (demo !== undefined) {
+            //       _.pull($scope.constraints.answerProvided, demo);
+            // }
+            // console.log("######", qId, ansId);
+            $scope.tempObj.answer = ansId;
+            $scope.tempObj.question = qId;
+            $scope.constraints.answerProvided.push($scope.tempObj);
+            // console.log("$scope.constraints.answerProvided", $scope.constraints.answerProvided);
+      };
+      $scope.answeredQstn = function (ansId, qId) {
+            $scope.qId = {
+                  qId: qId
+            };
+            apiService.apiWithData("Question/getCorrectAnswer", $scope.qId, function (data) {
+                  $scope.tempObj = {};
+                  $scope.correctAnswer = data.data[0].correctAnswer;
+                  $scope.tempObj.isCorrect = $scope.correctAnswer;
+                  $scope.tempObj.answer = ansId;
+                  $scope.tempObj.question = qId;
+                  // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
+
+                  // console.log("correctAnswer&&&&&&&&&&&&&&&&&&&&&&&&&&*****", $scope.tempObj.isCorrect);
+                  // console.log("ansId", ansId);
+                  // console.log("$scope.qId", $scope.qId);
+                  // console.log("$scope.tempObj", $scope.tempObj);
+                  // $scope.finalFuntion(qId, ansId);
+
+
+
+                  // console.log(" $scope.correctAnswer", $scope.correctAnswer);
+                  if ($scope.constraints.answerProvided.length === 0) {
+                        $scope.tempObj.answer = ansId;
+                        $scope.tempObj.question = qId;
+                        $scope.constraints.answerProvided.push($scope.tempObj);
+                  }
+                  _.each($scope.constraints.answerProvided, function (key) {
+                        if (key.question === qId) {
+                              // console.log("***inside if")
+                              key.answer = ansId;
+                              // $scope.constraints.answerProvided.pull($scope.tempObj);
+                        } else {
+                              // console.log("***inside else")
+                              $scope.tempObj.answer = ansId;
+                              $scope.tempObj.question = qId;
+                              $scope.constraints.answerProvided.push($scope.tempObj);
+                        }
+                  });
+                  // var index = _.findIndex($scope.constraints.answerProvided, {
+                  //       'answer': ansId,
+                  //       'question': qId
+                  // });
+                  // console.log(index, "index");
+                  // if (index <= -1) {
+                  //       console.log("insideif");
+                  //       $scope.tempObj.answer = ansId;
+                  //       $scope.tempObj.question = qId;
+                  //       $scope.constraints.answerProvided.push($scope.tempObj);
+                  //       $scope.tempObj = {};
+                  // } else {
+                  //       console.log("inside else")
+                  //       $scope.constraints.answerProvided.splice(index, 1);
+                  // }
+
+
+
+
+                  // $scope.tempObj.answer = ansId;
+                  // $scope.tempObj.question = qId;
+                  // $scope.constraints.answerProvided.push($scope.tempObj);
+
+
+                  // console.log($scope.constraints, " $scope.constraints");
+                  $scope.constraints.answerProvided = _.uniqBy($scope.constraints.answerProvided, 'question');
+                  // console.log($scope.constraints, " $scope.constraints");
+
+                  //     var demo = _.find($scope.constraints.answerProvided, function (o) {
+                  //       if (qId == o.question) {
+                  //             console.log("demo****", o);
+                  //             _.pull($scope.constraints.answerProvided, o);
+
+                  //       }
+                  // });
+
+            });
+
+
+
+
+
+      }
 
 })
 myApp.controller('languageCtrl', function ($scope, TemplateService, $translate, $rootScope) {
