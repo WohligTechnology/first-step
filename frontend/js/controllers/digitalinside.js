@@ -21,20 +21,26 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
 
     $scope.displayQuestionSection = function (data) {
         if (data == 'banking') {
-            if ($scope.banking) {
-                $scope.banking = false
-            } else {
-                $scope.banking = true;
-            }
-        } else if (data == 'equity') {
-            $scope.equity = true;
-        } else if (data == 'mutualfund') {
-            $scope.mutualfund = true;
-        } else if (data == 'commodities') {
-            $scope.commodities = true;
+            $scope.banking = true;
+            $scope.insurance = false;
         } else if (data == 'insurance') {
+            $scope.banking = false;
             $scope.insurance = true;
         }
+        //     if ($scope.banking) {
+        //         $scope.banking = false;
+        //     } else {
+        //         $scope.banking = true;
+        //     }
+        // } else if (data == 'equity') {
+        //     $scope.equity = true;
+        // } else if (data == 'mutualfund') {
+        //     $scope.mutualfund = true;
+        // } else if (data == 'commodities') {
+        //     $scope.commodities = true;
+        // } else if (data == 'insurance') {
+        //     $scope.insurance = true;
+        // }
     };
     $scope.digitalinside = [{
         No: 1,
