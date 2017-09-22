@@ -8,16 +8,17 @@
                 <h1>Digital Courses</h1>
             </div>
         </div>
-        <div class="inline-block digital-course-type" ng-click="displayQuestionSection('banking')">
+        
+        <div class="inline-block digital-course-type" ng-repeat="course in courses" ng-click="displayQuestionSection(course.name,course._id)">
             <div class="inline-block digital-course-type">
-                <img src="img/banking.png" alt="">
-                <p class="text-center">BANKING</p>
+                <img ng-src="{{course.image | serverimage}}" alt="">
+                <p class="text-center">{{course.name}}</p>
             </div>
         </div>
-        <div class="inline-block digital-course-type" ng-click="displayQuestionSection('insurance')">
+        <!-- <div class="inline-block digital-course-type" ng-click="displayQuestionSection('insurance')">
             <img src="img/insurance.png" alt="">
             <p class="text-center">INSURANCE</p>
-        </div>
+        </div> -->
         <!--<div class="inline-block digital-course-type" ng-click="displayQuestionSection('equity')">
             <img src="img/equity.png" alt="">
             <p class="text-center">EQUITY</p>

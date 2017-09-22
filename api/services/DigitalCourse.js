@@ -10,6 +10,9 @@ var schema = new Schema({
     endDate: {
         type: Date,
 
+    },
+    image:{
+        type:String
     }
 });
 

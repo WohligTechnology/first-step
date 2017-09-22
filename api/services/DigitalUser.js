@@ -2,14 +2,13 @@ var schema = new Schema({
     name: {
         type: String,
     },
-    email: {
-        type: String,
-        unique: true
+    email:{
+        type:String,
     }
 });
 
 schema.plugin(deepPopulate, {});
-schema.plugin(uniqueValidator);
+// schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('DigitalUser', schema);
 
