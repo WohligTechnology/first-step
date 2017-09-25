@@ -29,6 +29,17 @@
         "id": "endDate",
         "validation": ["", "trim"],
         "url": ""
+    },{
+        "name": "Logo Image",
+        "type": "image",
+        "tableRef": "image",
+        "size":"250 x 250",    
+        "placeholder": "Logo Image",
+        "id": "logoimage",
+        "view": true,
+        "disabled": true,
+        "validation": ["", "trim"],
+        "url": ""
     }],
     "action": [{
         "name": "submit",

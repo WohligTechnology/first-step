@@ -261,20 +261,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $scope.submitUser1 = function (data) {
             console.log("inside controller", data);
             apiService.apiWithData("DigitalUser/save", data, function (data) {
-                if (data.value == true) {
+                // if (data.value == true) {
                     $scope.userId = data.data._id;
                     $state.go('digitalinside', {
                         'userId': data.data._id
                     });
-                } else {
-                    console.log("***");
-                    if (data.error.errors.email.kind == "unique") {
-                        $scope.emailexist = true;
-                    } else {
-                        $scope.emailexist = false;
+                // } else {
+                //     console.log("***");
+                //     if (data.error.errors.email.kind == "unique") {
+                //         $scope.emailexist = true;
+                //     } else {
+                //         $scope.emailexist = false;
 
-                    }
-                }
+                //     }
+                // }
                 // $scope.userId = data.data._id;
                 // $state.go('digitalinside', {
                 //     'userId': data.data._id

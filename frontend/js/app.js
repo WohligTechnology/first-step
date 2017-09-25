@@ -85,3 +85,13 @@ myApp.config(function ($translateProvider) {
     $translateProvider.translations('hi', LanguageHindi);
     $translateProvider.preferredLanguage('en');
 });
+
+myApp.filter('serverimage', function () {
+    return function (image) {
+        if (image && image !== null) {
+            return adminurl + "upload/readFile?file=" + image;
+        } else {
+            return undefined;
+        }
+    }
+});

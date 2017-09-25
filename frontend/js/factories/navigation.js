@@ -36,6 +36,7 @@ myApp.factory('NavigationService', function () {
     return {
         getNavigation: function () {
             return navigation;
-        }
+        },
+       
     };
 });
