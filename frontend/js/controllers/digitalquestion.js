@@ -3,16 +3,17 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       TemplateService.title = "Digitalquestion"; //This is the Title of the Website
       $scope.navigation = NavigationService.getNavigation();
       $scope.DigitalCourse = {};
-      var id ={};
+      var id = {};
       id._id = $.jStorage.get("courseid");
-            // console.log("id", id);
-            apiService.apiWithData("Question/getAllDigitalCourseQuestion", id, function (data) {
-                  $scope.Question = data.data;
-                  // console.log("getAllDigitalCourseQuestion inside controller*****", data.data);
+      $scope.courseName = $.jStorage.get("coursename")
+      // console.log("id", id);
+      apiService.apiWithData("Question/getAllDigitalCourseQuestion", id, function (data) {
+            $scope.Question = data.data;
+            // console.log("getAllDigitalCourseQuestion inside controller*****", data.data);
 
-                  // console.log("getAllDigitalCourseQuestion data", $scope.DigitalCourse);
-            });
-     
+            // console.log("getAllDigitalCourseQuestion data", $scope.DigitalCourse);
+      });
+
       $scope.constraints = {};
       $scope.id = $stateParams.userId;
       $scope.constraints.digitalUser = $stateParams.userId;
@@ -125,7 +126,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       // }
       // // console.log("$$$$$$$imp data$$$", $scope.id);
       $scope.digitalSubmit = function () {
-            $scope.constraints.digitalCourse=$.jStorage.get("courseid");
+            $scope.constraints.digitalCourse = $.jStorage.get("courseid");
             apiService.apiWithData("TestResult/saveDigitalUser", $scope.constraints, function (data) {
                   $scope.data = data.data;
                   // console.log("$scope.data", $scope.data);

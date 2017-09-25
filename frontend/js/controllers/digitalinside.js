@@ -1,4 +1,4 @@
-myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $uibModal,apiService) {
+myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $uibModal, apiService) {
     $scope.template = TemplateService.getHTML("content/digitalinside.html");
     TemplateService.title = "Digitalinside"; //This is the Title of the Website
     $scope.navigation = NavigationService.getNavigation();
@@ -20,18 +20,19 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     $scope.insurance = false;
 
     /*******api for bringing all course******** */
-    apiService.apiWithoutData("DigitalCourse/search",(result)=>{
+    apiService.apiWithoutData("DigitalCourse/search", (result) => {
         console.log(result.data.results);
         $scope.courses = result.data.results;
     })
     /******bringing all course end****** */
 
-    $scope.displayQuestionSection = function (data,id) {
+    $scope.displayQuestionSection = function (data, id) {
         $.jStorage.set("courseid", id);
+        $.jStorage.set("coursename", data);
         if (data == 'BANKING') {
             $scope.banking = true;
             $scope.insurance = false;
-            
+
         } else if (data == 'INSURANCE') {
             $scope.banking = false;
             $scope.insurance = true;
