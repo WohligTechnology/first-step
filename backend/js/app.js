@@ -12,7 +12,6 @@ var myApp = angular.module('myApp', [
     'toastr',
     'textAngular',
     'angular-flexslider',
-    'ngMap',
     'toggle-switch',
     'cfp.hotkeys',
     'ui.sortable'
