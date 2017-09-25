@@ -14,8 +14,8 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
             });
      
       $scope.constraints = {};
-      $scope.id = $stateParams.userId;
-      $scope.constraints.digitalUser = $stateParams.userId;
+      $scope.id = $.jStorage.get("courseid");
+      $scope.constraints.digitalUser = $.jStorage.get("courseid");
       // console.log("State param id is:", $scope.id)
       // apiService.apiWithoutData("Question/getLastAddedDigitalCourse", function (data) {
       //       // console.log("getAllQuestion inside controller", data.data);
