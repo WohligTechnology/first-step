@@ -14,8 +14,8 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
             });
      
       $scope.constraints = {};
-      $scope.id = $.jStorage.get("courseid");
-      $scope.constraints.digitalUser = $.jStorage.get("courseid");
+      $scope.id = $stateParams.userId;
+      $scope.constraints.digitalUser = $stateParams.userId;
       // console.log("State param id is:", $scope.id)
       // apiService.apiWithoutData("Question/getLastAddedDigitalCourse", function (data) {
       //       // console.log("getAllQuestion inside controller", data.data);
@@ -125,6 +125,7 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
       // }
       // // console.log("$$$$$$$imp data$$$", $scope.id);
       $scope.digitalSubmit = function () {
+            $scope.constraints.digitalCourse=$.jStorage.get("courseid");
             apiService.apiWithData("TestResult/saveDigitalUser", $scope.constraints, function (data) {
                   $scope.data = data.data;
                   // console.log("$scope.data", $scope.data);
