@@ -31,10 +31,11 @@ myApp.controller('DigitalQuestionCtrl', function ($scope, TemplateService, Navig
             $scope.id = {
                   _id: $stateParams.userId,
             }
-            apiService.apiWithData("DigitalUser/getUser", $scope.id, function (data) {
-                  $scope.user = {
-                        user: data.data
-                  }
+            apiService.apiWithData("DigitalUser/getOne", $scope.id, function (data) {
+                  console.log("data is", data.data);
+                  $scope.user = {}
+                  $scope.user = data.data;
+                  $scope.user.courseName = $.jStorage.get("coursename");
                   apiService.apiWithData("DigitalUser/saveMailData", $scope.user, function (data) {
 
                   });

@@ -455,14 +455,9 @@ var model = {
         var obj = {};
         var env = {};
         console.log("page", page);
-        obj.name = page;
-
-
-
+        obj.name = page.name;
+        obj.courseName = page.courseName;
         var file = "certificate";
-
-        console.log(" **** inside generatePdf ******** & file is ", file);
-
         var i = 0;
         sails.hooks.views.render(file, obj, function (err, html) {
             console.log(html);
