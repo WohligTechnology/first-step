@@ -6,6 +6,10 @@ var schema = new Schema({
         type: String,
         index: true
     },
+    number: {
+        type: String,
+        index: true
+    },
     answer: {
         type: String,
         index: true

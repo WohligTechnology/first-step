@@ -45,7 +45,7 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
                     $scope.isBanking=false;
                 }else if(obj.name=="INSURANCE"){
                     $scope.isInsurance=false;
-                }else if(obj.name=="MUTUAL FUND"){
+                }else if(obj.name=="MUTUAL FUNDS"){
                     $scope.isMutualFund=false;
                 }
             });
@@ -127,9 +127,16 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
             $scope.banking = true;
             $scope.insurance = false;
 
+            $scope.mutualfunds = false;
+
         } else if (data == 'INSURANCE') {
             $scope.banking = false;
             $scope.insurance = true;
+            $scope.mutualfunds = false;
+        } else if (data == 'MUTUAL FUNDS') {
+            $scope.banking = false;
+            $scope.insurance = false; 
+            $scope.mutualfunds = true;
         }
         //     if ($scope.banking) {
         //         $scope.banking = false;
