@@ -15,7 +15,7 @@ myApp.controller('QuestionPaperCtrl', function ($scope, apiService, $stateParams
         }
         data.contest = [];
         data.contest.push({
-            question: "हेल्थ इंश्योरेंस कहलाता है",
+            question: "क्लोज एंडेड फंड में",
             answer: data.answer
         });
         // console.log("data is..", data.question);
