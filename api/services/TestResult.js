@@ -76,6 +76,46 @@ var model = {
 
     saveDigitalUser: function (data, callback) {
         // console.log("*****data inside savedigitalUser****", data)
+
+        //avinash function changes
+        var digitalUserData={};
+        digitalUserData.digitalUser=mongoose.Types.ObjectId(data.digitalUser);
+        digitalUserData.digitalCourse= mongoose.Types.ObjectId(data.digitalCourse);
+ var testGiven=[];
+        DigitalUser.findOne({
+            _id: digitalUserData.digitalUser
+        }).exec(function (err, found) {
+            console.log("Found: ", found);
+            
+                testGiven=found.testGiven;
+                testGiven.push(digitalUserData.digitalCourse);
+                found.testGiven=testGiven;
+                console.log("found record before storing and after push",found);
+                DigitalUser.saveData(found, function (err, found1) {
+                //    if (err || _.isEmpty(found1)) {
+                //        callback(err, []);
+                //    } else {
+                //        callback(null, found1);
+                //    }
+                console.log("after storing in digitalUser table",found1);
+               });
+                console.log("already present", found);
+                // callback(null, found);
+            
+
+        });
+
+        // DigitalUser.saveData(data, function (err, found1) {
+        //            if (err || _.isEmpty(found1)) {
+        //                callback(err, []);
+        //            } else {
+        //                callback(null, found1);
+        //            }
+        //        });
+
+        //avinash function ends
+
+
         var data1 = this(data);
         data1.digitalUser = mongoose.Types.ObjectId(data.digitalUser);
         data1.digitalCourse = mongoose.Types.ObjectId(data.digitalCourse);

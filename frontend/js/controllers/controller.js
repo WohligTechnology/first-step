@@ -260,12 +260,21 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
     $scope.digitalcourseopen = function () {
         $scope.submitUser1 = function (data) {
             console.log("inside controller", data);
-            apiService.apiWithData("DigitalUser/save", data, function (data) {
+            apiService.apiWithData("DigitalUser/saveValidUser", data, function (data) {
+
+
                 // if (data.value == true) {
+                    if (data.data._id) {
+                    console.log("$scope.userId",data.data._id);
                     $scope.userId = data.data._id;
                     $state.go('digitalinside', {
                         'userId': data.data._id
                     });
+                }
+                else{
+                    $scope.errorDigitalCourseLogin="Something Went Wrong!!!";
+                }
+
                 // } else {
                 //     console.log("***");
                 //     if (data.error.errors.email.kind == "unique") {
