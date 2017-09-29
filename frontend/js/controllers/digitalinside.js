@@ -138,6 +138,7 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
             $scope.insurance = false; 
             $scope.mutualfunds = true;
         }
+        
         //     if ($scope.banking) {
         //         $scope.banking = false;
         //     } else {
