@@ -24,7 +24,8 @@
             "tableRef": "digitalCourse",
             "type": "select",
             "fields": "name"
-        } {
+        },
+        {
             "name": "Mobile number",
             "isSort": "",
             "tableRef": "number"
