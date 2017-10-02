@@ -5,11 +5,18 @@
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
     "fields": [{
-        "name": "question",
-        "isSort": "",
-        "tableRef": "question"
+            "name": "Question",
+            "isSort": "",
+            "tableRef": "question"
 
-    }],
+        },
+        {
+            "name": "Answer",
+            "isSort": "",
+            "tableRef": "correctAnswer"
+
+        }
+    ],
     "action": [{
         "name": "edit",
         "icon": "fa-pencil",

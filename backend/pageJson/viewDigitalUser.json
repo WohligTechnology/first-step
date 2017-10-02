@@ -5,14 +5,19 @@
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
     "fields": [{
-            "name": "Digital Course User",
+            "name": "Digital User",
             "isSort": "",
             "tableRef": "name"
         },
         {
-            "name": "Digital Course User email",
+            "name": "User email",
             "isSort": "",
             "tableRef": "email"
+        },
+        {
+            "name": "Mobile number",
+            "isSort": "",
+            "tableRef": "number"
         }
     ],
     "action": [{

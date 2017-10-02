@@ -35,7 +35,7 @@ myApp.factory('NavigationService', function ($http) {
 
         },
         {
-            name: "User",
+            name: "Digital User",
             classis: "active",
             sref: "#!/page/viewDigitalUser//"
         }, {
