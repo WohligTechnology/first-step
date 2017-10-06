@@ -96,7 +96,7 @@ var model = {
 
 
     saveContest: function (data, callback) {
-        console.log("inside saveContest in service",data);
+        console.log("inside saveContest in service", data);
         ContestAnswer.find().sort({
             createdAt: -1
         }).exec(function (err, contestQuestions) {
@@ -158,7 +158,7 @@ var model = {
         Contest.find({
             "month": data.month
         }).deepPopulate("questionId").skip((data.page - 1) * Config.maxRow).limit(Config.maxRow).exec(function (err, question) {
-            console.log("after contest.find question",question);
+            console.log("after contest.find question", question);
             var result = {};
             if (!_.isEmpty(question)) {
                 result.user = question;
@@ -287,6 +287,104 @@ var model = {
         ], function (err, data) {
             callback(err, data);
         })
+
+    },
+    search: function (data, callback) {
+        var Model = this;
+        var Const = this(data);
+        var maxRow = Config.maxRow;
+
+        var page = 1;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['name'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: 'name'
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
+
+
+
+        var aggregatePipeline = [
+            // Stage 1
+            {
+                $lookup: {
+                    "from": "contestquestions",
+                    "localField": "questionId",
+                    "foreignField": "_id",
+                    "as": "contestquestion"
+                }
+            }
+        ];
+        if (data.filter.month) {
+            // Stage 2
+            aggregatePipeline.push({
+                $match: {
+                    "contestquestion.month": data.filter.month
+                }
+            });
+        }
+
+
+        async.parallel({
+            options: function (callback) {
+                callback(null, options);
+            },
+            results: function (callback) {
+                Model.aggregate(
+                    // Pipeline
+                    _.concat(aggregatePipeline, [
+
+                        // Stage 3
+                        {
+                            $skip: options.start
+                        },
+
+                        // Stage 4
+                        {
+                            $limit: maxRow
+
+                        },
+                    ])).exec(callback);
+
+            },
+            total: function (callback) {
+                Model.aggregate(
+                    // Pipeline
+                    _.concat(aggregatePipeline, [
+                        // Stage 3
+                        {
+                            $group: {
+                                "_id": "_id",
+                                "count": {
+                                    $sum: 1
+                                }
+                            }
+                        }
+                    ])).exec(function (err, data) {
+                    if (err || _.isEmpty(data)) {
+                        callback(err, 0);
+                    } else {
+                        callback(null, data[0].count);
+                    }
+                });
+            }
+        }, callback);
+
+
 
     }
 

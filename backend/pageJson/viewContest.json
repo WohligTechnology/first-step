@@ -4,6 +4,7 @@
     "pageType": "view",
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
+    "filter": "contestFilter",
     "fields": [{
         "name": "Name",
         "isSort": "",

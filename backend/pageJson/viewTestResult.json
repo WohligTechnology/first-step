@@ -31,6 +31,12 @@
             "type": "select2",
             "tableRef": "digitalUser",
             "fields": "number"
+        },
+        {
+            "name": "Digital Course",
+            "isSort": "",
+            "type": "digitalCourse",
+            "tableRef": "digitalCourse"
         }
     ],
     "action": [{

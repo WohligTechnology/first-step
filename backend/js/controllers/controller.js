@@ -295,9 +295,21 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             console.log("inside contest ctrl*****:", data.data);
         });
     })
-    .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
+    .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
         $scope.json = JsonService;
         $scope.template = TemplateService;
+
+        $scope.showFilter = function () {
+            console.log("Filter Clicked");
+            $scope.modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'views/filters/' + $scope.json.json.filter + '.html',
+                size: 'lg',
+                scope: $scope
+            });
+        };
+
+
         var i = 0;
         var rightAnswer = false;
         $scope.api = "";
@@ -340,116 +352,78 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             text: 'Dec'
         }];
 
+
+        $scope.clearFilter = function () {
+            console.log($stateParams.keyword);
+            if (!_.isEmpty($stateParams.keyword)) {
+                $state.go("page", {
+                    id: $stateParams.id,
+                    page: $stateParams.page,
+                    keyword: ""
+                });
+            } else {
+                $state.reload();
+            }
+            // 
+        };
+
+        $scope.closeFilter = function () {
+            $scope.modalInstance.close();
+        };
+
         if ($stateParams.page && !isNaN(parseInt($stateParams.page))) {
             $scope.currentPage = $stateParams.page;
         } else {
             $scope.currentPage = 1;
         }
+        $scope.adminUrl = adminurl;
 
         $scope.search = {
             keyword: ""
         };
         if ($stateParams.keyword) {
-            $scope.search.keyword = $stateParams.keyword;
+            $scope.search = JSON.parse($stateParams.keyword);
         }
         $scope.changePage = function (page) {
-            if (rightAnswer) {
-                $scope.currentPage = page;
-                getRightAnswers();
-            } else {
-                var goTo = "page";
-                if ($scope.search.keyword) {
-                    goTo = "page";
-                }
-                $state.go(goTo, {
-                    id: $stateParams.id,
-                    page: page,
-                    keyword: $scope.search.keyword
-                });
+            var goTo = "page";
+            if ($scope.search.keyword) {
+                goTo = "page";
             }
+            $state.go(goTo, {
+                id: $stateParams.id,
+                page: page,
+                keyword: JSON.stringify($scope.search)
+            });
         };
 
-        function getRightAnswers() {
-            var data = {
-                page: $scope.currentPage,
-                question: $scope.selectedQuestion
+        $scope.getAllItems = function (keywordChange) {
+            console.log("searchh-----", keywordChange);
+            $scope.totalItems = undefined;
+            if (keywordChange) {
+                $scope.currentPage = 1;
             }
-            if ($scope.selectedDate) {
-                data.date = $scope.selectedDate;
-            }
-            console.log("Saili data", data);
-            NavigationService.apiCall($scope.api, data, function (data) {
-                $scope.items = data.data.answers;
-                $scope.totalItems = data.data.total;
-                $scope.maxRow = data.data.maxRow;
-            });
-        }
-
-        // Coded only for Contest/getRightAnswers API
-        $scope.callApi = function (api) {
-                console.log("$$$44data inside callapi", api);
-                rightAnswer = true;
-                $scope.api = api;
-                getRightAnswers();
-            },
-            $scope.getAllItems = function (keywordChange) {
-                $scope.totalItems = undefined;
-                if (keywordChange) {
-                    $scope.currentPage = 1;
-                }
-                NavigationService.search($scope.json.json.apiCall.url, {
-                        page: $scope.currentPage,
-                        keyword: $scope.search.keyword
-                    }, ++i,
-                    function (data, ini) {
-                        console.log("search data: ", data);
-                        if (ini == i) {
+            var filters = _.cloneDeep($scope.search);
+            delete filters.keyword;
+            NavigationService.search($scope.json.json.apiCall.url, {
+                    page: $scope.currentPage,
+                    keyword: $scope.search.keyword,
+                    filter: filters
+                }, ++i,
+                function (data, ini) {
+                    if (ini == i) {
+                        if (data.value == true) {
                             $scope.items = data.data.results;
                             $scope.totalItems = data.data.total;
                             $scope.maxRow = data.data.options.count;
+                        } else {
+                            toastr.error("No Data Found ");
                         }
-                    });
-            };
+                    }
+                });
+        };
         JsonService.refreshView = $scope.getAllItems;
         $scope.getAllItems();
 
-        NavigationService.apiCallWithoutData(function (data) {
-            $scope.question = data.data;
-            console.log("####data is##", $scope.question);
-
-        });
-
-        $scope.getUser = function (selectedQuestion) {
-            console.log("in getUser",selectedQuestion);
-            $scope.selectedQuestion = {
-                question: selectedQuestion
-            };
-            console.log("main question", $scope.selectedQuestion)
-            NavigationService.getUserApi($scope.selectedQuestion, function (data) {
-                $scope.items = data.data;
-                console.log("####data inside getuser##", $scope.items);
-                $scope.items = data.data.user;
-                $scope.totalItems = data.data.total;
-                $scope.maxRow = data.data.options.count;
-            });
-
-        }
-
-        $scope.getUserByMonth = function (selectedMonth) {
-            console.log("in getUser",selectedMonth);
-            $scope.selectedMonth = {
-                month: selectedMonth
-            };
-            console.log("main question", $scope.selectedMonth)
-            NavigationService.getAllUserByMonth($scope.selectedMonth, function (data) {
-                $scope.items = data.data;
-                console.log("####data inside getuser##", $scope.items);
-                $scope.items = data.data.user;
-                $scope.totalItems = data.data.total;
-                $scope.maxRow = data.data.user.count;
-            });
-
-        }
     })
     .controller('ContestViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
         $scope.json = JsonService;
@@ -1323,11 +1297,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             //  $rootScope.$apply();
         };
     })
-       .controller('DemoCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr) {
+    .controller('DemoCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr) {
         //Used to name the .html file
-         $scope.template = TemplateService.changecontent("demo");
+        $scope.template = TemplateService.changecontent("demo");
         $scope.menutitle = NavigationService.makeactive("Demo");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-      
+
     });

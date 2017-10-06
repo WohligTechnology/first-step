@@ -12,7 +12,7 @@ module.exports = mongoose.model('Config', schema);
 var requrl = "http://pehlakadam.in/api/";
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
-    maxRow: 20,
+    maxRow: 2,
     getForeignKeys: function (schema) {
         var arr = [];
         _.each(schema.tree, function (n, name) {

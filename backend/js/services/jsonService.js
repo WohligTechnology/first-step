@@ -70,24 +70,22 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
   };
 
 
+
   this.eventAction = function (action, value) {
+
+
     var sendTo = {
       id: action.action
     };
-    console.log(action);
+    console.log("ACTION-->", action);
+    console.log("VALUE-->", value);
+
+
     if (action.type == "box") {
       JsonService.modal = action;
       globalfunction.openModal(function (data) {
         console.log(data);
       });
-    } else if (action.type == "redirect") {
-      if (action.linkType == "admin") {
-        window.location.href = adminurl + action.action;
-      } else if (action.linkType == "internal") {
-        window.location.href = "#!/" + action.action;
-      } else {
-        window.location.href = action.action;
-      }
     } else {
       if (value && action && action.fieldsToSend) {
         var keyword = {};
@@ -97,8 +95,34 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
         sendTo.keyword = JSON.stringify(keyword);
       }
       if (action && action.type == "page") {
+        console.log("IN PAGE TYPE");
         $state.go("page", sendTo);
-      } else if (action && action.type == "contest") {
+      } else if (action && action.type == "custompage") {
+        console.log("IN CUSTOMPAGE TYPE");
+        $state.go("custompage", sendTo);
+      } else if (action && action.type == "externalUrl") {
+        window.location.href = adminurl + "../institute-form";
+      } else if (action && action.type == "statepage") {
+        console.log("IN statePAGE TYPE");
+        $state.go("statepage", sendTo);
+      } else if (action && action.type == "projectpage") {
+        console.log("IN PROJECT TYPE");
+        $state.go("projectpage", sendTo);
+      } else if (action && action.type == "projectexpensepage") {
+        console.log("IN projectexpensepage TYPE");
+        $state.go("projectexpensepage", sendTo);
+      } else if (action && action.type == "componentspage") {
+        console.log("IN componentspage TYPE");
+        $state.go("componentspage", sendTo);
+      } else if (action && action.type == "centrepage") {
+        console.log("IN Centre TYPE");
+        $state.go("centrepage", sendTo);
+
+      } else if (action && action.type == "vendorpage") {
+        console.log("IN Vendor TYPE");
+        $state.go("vendorpage", sendTo);
+
+      } else if (action && action.type == "master-reform") {
         if (action.fieldsToSend) {
           var keyword = {};
           _.each(action.fieldsToSend, function (n, key) {
@@ -106,7 +130,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
           });
           sendTo.keyword = JSON.stringify(keyword);
         }
-        $state.go("contest", sendTo);
+        $state.go("master-reform", sendTo);
       } else if (action && action.type == "apiCallConfirm") {
         globalfunction.confDel(function (value2) {
           if (value2) {
@@ -120,11 +144,19 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
             });
           }
         });
+      } else if (action && action.type == "filterRedirection") {
+        var filter = {};
+        _.each(action.fieldsToSend, function (field, key) {
+          filter[key] = value[field];
+        });
+        $state.go("page", {
+          id: action.page,
+          page: "1",
+          keyword: JSON.stringify(filter)
+        });
       }
     }
   };
-
-
 
 
 

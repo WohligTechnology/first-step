@@ -41,5 +41,6 @@
     "apiCall": {
         "url": "DigitalCourse/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

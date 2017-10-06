@@ -29,5 +29,6 @@
     "apiCall": {
         "url": "Userweb/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

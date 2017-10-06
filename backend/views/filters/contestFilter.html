@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <label for="">Year</label>
+            <select name="" ng-model="search.year" class="form-control">
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                </select>
+            </br> -->
+            <label for="">Month</label>
+            <select name="" ng-model="search.month" class="form-control" ng-options="month.value as month.text for month in allMonths track by month.value">
+            </select>
+
+
+            <div class="text-center">
+                <button class="btn btn-success" ng-click="getAllItems(search)">Go</button>
+                <button class="btn btn-danger" ng-click="clearFilter()">Clear</button>
+                <button class="btn btn-danger" ng-click="closeFilter()">Cancel</button>
+            </div>
+            </br>
+        </div>
+    </div>
+</div>

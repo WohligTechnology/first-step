@@ -12,6 +12,7 @@
         </div>
     </div>
     <!-- Top Bar Chart -->
+    <!--<pre>{{search|json}}</pre>-->
     <div class=" panel-content ">
         <div class="row ">
             <div class="col-md-12 ">
@@ -19,40 +20,12 @@
                     <div class="table-area ">
                         <div class="widget-title ">
                             <div class="pull-right ">
-                                <div ng-if="json.json.buttons">
-                                    <!--{{allMonths}}-->
-                                    <div class="row">
-                                        <!--<label class="item item-select" id="Main-select5">
-                                            <span class="input-label">Issue Code:</span>
-                                            <select ng-model="Fault" ng-change="faultChanged(Fault)">
-                                                <option ng-repeat="faultCode in faultCodes" ng-selected="faultCode.text === Fault" value="{{faultCode.value}}">{{faultCode.text}}</option>
-                                            </select>
-                                        </label>-->
-
-                                        Month: <select  class="form-control" ng-model="selectedMonth" ng-change="getUserByMonth(selectedMonth)">
-                                       
-                            <option ng-repeat="month in allMonths track by $index" value="{{month.value}}">{{month.text}}</option>
-                            
-                                    </select>
-
-                                        <!--Question: <select class="form-control" ng-model="selectedQuestion" ng-change="getUser(selectedQuestion)">
-                                       
-                            <option ng-repeat="question in question track by $index" >{{question}}</option>
-                            
-                                    </select>-->
-                                    </div>
-                                    <div ng-repeat="button in json.json.buttons" class="btn-margin">
-                                        <button class="btn btn-success" ng-click="callApi(button.api)">{{button.name}}</button>
-                                    </div>
-
-
-                                </div>
-                                <form class="search-form mr-form ">
-
+                                <form class="search-form mr-form" ng-hide="json.json.removeSearch">
                                     <input type="text " ng-change="getAllItems(true) " placeholder="Search Here...
                         " ng-model="search.keyword " />
                                 </form>
-                                <a ng-repeat="btn in json.json.button " class="btn " ng-class="btn.class " ng-click="json.eventAction(btn)">{{btn.name}}</a>
+                                <a ng-repeat="btn in json.json.button " class="btn " ng-class="btn.class " ng-click="json.eventAction(btn) ">{{btn.name}}</a>
+                                <a class="btn btn-default" ng-if="json.json.filter" ng-click="showFilter();">Filter</a>
                             </div>
                             <h3>{{json.json.description}} <span class="tableTotal ">(Total : {{totalItems}}) </span></h3>
                         </div>
@@ -64,20 +37,15 @@
                                         <th ng-repeat="field in json.json.fields">
                                             {{field.name}}
                                         </th>
-                                        <th>Actions</th>
+                                        <th ng-if="json.json.action.lenght > 0">Actions </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in items">
                                         <td>{{($index + 1)+((currentPage-1)*maxRow)}}</td>
                                         <td ng-repeat="field in json.json.fields">
-
-                                            <view-field ng-if="field.type!='select'" type="field" value="item"></view-field>
-                                            <span ng-if="field.type=='select' && field.tableRef=='digitalUser'">{{item.digitalUser.name}}</span>
-                                              <span ng-if="field.type=='select1' && field.tableRef=='digitalUser'">{{item.digitalUser.email}}</span>
-                                              <span ng-if="field.type=='select2' && field.tableRef=='digitalUser'">{{item.digitalUser.number}}</span>
-                                            <span ng-if="field.type=='select' && field.tableRef=='digitalCourse'">{{item.digitalCourse.name}}</span>
-                                            <!--<view-field type="field" value="item"></view-field>-->
+                                            <view-field type="field" value="item">
+                                            </view-field>
                                         </td>
                                         <td ng-repeat="but in json.json.action">
                                             <a class="btn" ng-class="but.buttonClass" ng-click="json.eventAction(but,item) ">
