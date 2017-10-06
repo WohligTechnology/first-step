@@ -184,6 +184,12 @@ myApp.factory('NavigationService', function ($http) {
             });
 
         },
-
+        digtitalCourseSearch: function (data, formData, i, callback, four) {
+            $http.post(adminurl + 'digitalCourse/search', formData).then(function (data) {
+                data = data.data;
+                // console.log("data-----------------------------", data);
+                callback(data, i);
+            });
+        }
     };
 });
