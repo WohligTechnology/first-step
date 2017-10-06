@@ -8,11 +8,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
     })
 
     .controller('AccessController', function ($scope, TemplateService, NavigationService, $timeout, $state) {
-        if ($.jStorage.get("accessToken")) {
+        // if ($.jStorage.get("accessToken")) {
 
-        } else {
-            $state.go("login");
-        }
+        // } else {
+        //     $state.go("login");
+        // }
     })
 
     .controller('JagzCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $interval) {
@@ -301,6 +301,45 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         var i = 0;
         var rightAnswer = false;
         $scope.api = "";
+
+        $scope.allMonths = [{
+            value: 1,
+            text: 'Jan'
+        }, {
+            value: 2,
+            text: 'Feb'
+        }, {
+            value: 3,
+            text: 'Mar'
+        }, {
+            value: 4,
+            text: 'Apr'
+        }, {
+            value: 5,
+            text: 'May'
+        }, {
+            value: 6,
+            text: 'June'
+        }, {
+            value: 7,
+            text: 'July'
+        }, {
+            value: 8,
+            text: 'Aug'
+        }, {
+            value: 9,
+            text: 'Sept'
+        }, {
+            value: 10,
+            text: 'Oct'
+        }, {
+            value: 11,
+            text: 'Nov'
+        }, {
+            value: 12,
+            text: 'Dec'
+        }];
+
         if ($stateParams.page && !isNaN(parseInt($stateParams.page))) {
             $scope.currentPage = $stateParams.page;
         } else {
@@ -381,6 +420,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         });
 
         $scope.getUser = function (selectedQuestion) {
+            console.log("in getUser",selectedQuestion);
             $scope.selectedQuestion = {
                 question: selectedQuestion
             };
@@ -391,6 +431,22 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 $scope.items = data.data.user;
                 $scope.totalItems = data.data.total;
                 $scope.maxRow = data.data.options.count;
+            });
+
+        }
+
+        $scope.getUserByMonth = function (selectedMonth) {
+            console.log("in getUser",selectedMonth);
+            $scope.selectedMonth = {
+                month: selectedMonth
+            };
+            console.log("main question", $scope.selectedMonth)
+            NavigationService.getAllUserByMonth($scope.selectedMonth, function (data) {
+                $scope.items = data.data;
+                console.log("####data inside getuser##", $scope.items);
+                $scope.items = data.data.user;
+                $scope.totalItems = data.data.total;
+                $scope.maxRow = data.data.user.count;
             });
 
         }
@@ -1266,4 +1322,12 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             }
             //  $rootScope.$apply();
         };
+    })
+       .controller('DemoCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr) {
+        //Used to name the .html file
+         $scope.template = TemplateService.changecontent("demo");
+        $scope.menutitle = NavigationService.makeactive("Demo");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+      
     });

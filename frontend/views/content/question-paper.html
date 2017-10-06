@@ -4,7 +4,14 @@
             <div class="question-section">
                 <div>
 
-                    <p> <span> Question :</span>क्लोज एंडेड फंड में<span style="font-family:NimbusSanL-Reg"> ?</span> </p>
+                    <p> <span> Question :</span>  {{contestQuestion.question}}<span style="font-family:NimbusSanL-Reg"> ?</span> </p>
+                    <input type="hidden" name="questionId" ng-model="data1.questionId" value="{{contestQuestion._id}}">
+                    <input type="hidden" name="question" ng-model="data1.question" value="{{contestQuestion.question}}">
+                    <div class="radio-left" ng-repeat="option in contestQuestion.createOptions">
+                        <input type="radio" id="{{option._id}}" name="ans" value="{{option.option}}" ng-model="data1.answer">
+                        <p>{{option.option}}</p>
+                    </div>
+                    <!--<p> <span> Question :</span>क्लोज एंडेड फंड में<span style="font-family:NimbusSanL-Reg"> ?</span> </p>
 
                     <div class="radio-left">
                         <input type="radio" id="1" name="ans" value="  क्लोज एंडेड फंड की स्टॉक एक्सचेंज पर लिस्टिंग होती है" ng-model="data.answer">
@@ -24,9 +31,9 @@
                             ng-model="data.answer">
                         <p>फंड में एंट्री और उससे बाहर निकलने की अवधि फंड हाउस तय करता है, क्लोज एंडेड फंड की स्टॉक एक्सचेंज
                             पर लिस्टिंग होती है</p>
-                    </div>
+                    </div>-->
                     <div class="submit-question">
-                        <button type="submit" ng-click="thanksopen(data); " class="btn btn-default ">Submit</button>
+                        <button type="submit" ng-click="thanksopen(data1);" class="btn btn-default ">Submit</button>
                     </div>
                 </div>
             </div>

@@ -7,18 +7,24 @@ var uploadurl = imgurl;
 
 myApp.factory('NavigationService', function ($http) {
     var navigation = [{
-            name: "Users",
+            name: "Admin Users",
             classis: "active",
             sref: "#!/page/viewUserweb//",
             icon: "phone"
         }, {
-            name: "Questions",
+            name: "Ask The Experts",
             classis: "active",
             sref: "#!/page/viewExpert//",
             icon: "phone"
         },
         {
-            name: "Contest",
+            name: "Contest Questions",
+            classis: "active",
+            sref: "#!/page/viewContestQuestion//",
+            icon: "phone",
+        },
+        {
+            name: "Guru Of The Month",
             classis: "active",
             sref: "#!/page/viewContest//",
             icon: "phone",
@@ -26,22 +32,26 @@ myApp.factory('NavigationService', function ($http) {
             name: "Digital Course",
             classis: "active",
             sref: "#!/page/viewDigitalCourse//",
+            icon: "phone",
 
         },
         {
-            name: "Question",
+            name: "D C Questions",
             classis: "active",
             sref: "#!/page/viewQuestion//",
+            icon: "phone",
 
         },
         {
-            name: "Digital User",
+            name: "D C Participants",
             classis: "active",
-            sref: "#!/page/viewDigitalUser//"
+            sref: "#!/page/viewDigitalUser//",
+            icon: "phone",
         }, {
-            name: "Test Result",
+            name: "D C Right Results",
             classis: "active",
-            sref: "#!/page/viewTestResult//"
+            sref: "#!/page/viewTestResult//",
+            icon: "phone",
         }
     ];
 
@@ -116,6 +126,15 @@ myApp.factory('NavigationService', function ($http) {
         getUserApi: function (formData, callback) {
             console.log("inside navigation getAllUser", formData);
             $http.post(adminurl + 'Contest/getAllUser', formData).then(function (data) {
+                data = data.data;
+                console.log("data insde navigation.js", data);
+                callback(data);
+
+            });
+        },
+        getAllUserByMonth: function (formData, callback) {
+            console.log("inside navigation getAllUserByMonth", formData);
+            $http.post(adminurl + 'Contest/getAllUserByMonth', formData).then(function (data) {
                 data = data.data;
                 console.log("data insde navigation.js", data);
                 callback(data);

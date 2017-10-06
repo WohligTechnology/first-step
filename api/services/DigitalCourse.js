@@ -13,6 +13,14 @@ var schema = new Schema({
     },
     image:{
         type:String
+    },
+    status: {
+        type: String,
+        default: "Disable",
+        enum: ['Enable', 'Disable']
+    },
+    sequence: {
+        type: Number
     }
 });
 

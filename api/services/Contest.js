@@ -17,17 +17,86 @@ var schema = new Schema({
     question: {
         type: String,
         index: true
+    },
+    month: {
+        type: String,
+        index: true
+    },
+    week: {
+        type: String,
+        index: true
+    },
+    questionId: {
+        type: Schema.Types.ObjectId,
+        ref: 'ContestQuestion'
     }
 });
 
-schema.plugin(deepPopulate, {});
+schema.plugin(deepPopulate, {
+    Populate: {
+        'questionId': {
+            select: '_id name'
+        }
+    }
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Contest', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "questionId", "questionId"));
 var model = {
+
+    saveContestByAvi: function (data, callback) {
+        async.waterfall([
+            function (callback) {
+                // code a
+
+                ContestQuestion.getLastContestQuestion({}, function (err, found) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        console.log("found1", found); // OUTPUT OK
+                        callback(null, found);
+                    }
+                });
+            },
+            function (questionData, callback) {
+                console.log("questionData", questionData);
+                if (questionData) {
+                    console.log("questionData", questionData);
+                    Contest.findOne({
+                        questionId: questionData._id,
+                        email: data.email
+                    }).exec(function (err, contest) {
+
+                        if (!_.isEmpty(contest)) {
+                            console.log("user already exists for the contest", contest);
+                            callback("userExists", null);
+                        } else {
+                            console.log("saving user: ", data);
+                            Contest.saveData(data, function (err, data) {
+                                callback(err, data);
+                            });
+                        }
+                    });
+                } else {
+                    callback("noQuestionsFound", data);
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result", result); // OUTPUT OK
+                callback(null, result);
+
+            }
+        });
+    },
+
+
     saveContest: function (data, callback) {
+        console.log("inside saveContest in service",data);
         ContestAnswer.find().sort({
             createdAt: -1
         }).exec(function (err, contestQuestions) {
@@ -84,41 +153,18 @@ var model = {
             }
         });
     },
-    getAllQuestion: function (data, callback) {
-        console.log("inside getquestion api", data)
+    getAllUserByMonth: function (data, callback) {
+        console.log("inside getAllUserByAvi service", data);
         Contest.find({
-            question: {
-                $exists: true,
-                $ne: null
-            }
-        }).distinct('question').exec(function (err, found) {
-            // console.log("Found: ", found);
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback(null, "noDataound");
-            } else {
-                // console.log("found in contest", found);
-                callback(null, found);
-            }
-
-        });
-    },
-
-    getDateviseUser: function (data, callback) {
-        var find = {
-            createdAt: {
-                $gte: new Date(data.date).setHours(00, 00, 00, 000),
-                $lte: new Date(data.date).setHours(23, 59, 59, 999)
-            }
-        };
-        console.log("********", data);
-        Contest.find(find).skip((data.page - 1) * Config.maxRow).limit(Config.maxRow).exec(function (err, answers) {
-            console.log("Answers: ", err, answers);
+            "month": data.month
+        }).deepPopulate("questionId").skip((data.page - 1) * Config.maxRow).limit(Config.maxRow).exec(function (err, question) {
+            console.log("after contest.find question",question);
             var result = {};
-            if (!_.isEmpty(answers)) {
-                result.results = answers;
-                Contest.count(find).exec(function (err, count) {
+            if (!_.isEmpty(question)) {
+                result.user = question;
+                Contest.count({
+                    question: data.question
+                }).exec(function (err, count) {
                     console.log("count: ", err, count);
                     if (count) {
                         result.total = count;
@@ -136,14 +182,37 @@ var model = {
             }
         });
     },
+    getAllQuestion: function (data, callback) {
+        console.log("inside getquestion api", data)
+        Contest.find({
+            question: {
+                $exists: true,
+                $ne: null
+            }
+        }).distinct('question').exec(function (err, found) {
+            // console.log("Found: ", found);
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback(null, "noDataound");
+            } else {
+                // console.log("found in contest", found);
+                callback(null, found);
+            }
+        });
+    },
 
     saveSelectedAnswer: function (data, callback) {
+        console.log("inside saveSelectedAnswer service", data);
         Contest.update({
             _id: mongoose.Types.ObjectId(data._id)
         }, {
             $set: {
                 answer: data.answer,
-                question: data.contest[0].question
+                question: data.contest[0].question,
+                month: data.contest[0].month,
+                week: data.contest[0].week,
+                questionId: data.contest[0].questionId
             }
         }).exec(function (err, found) {
             if (err) {

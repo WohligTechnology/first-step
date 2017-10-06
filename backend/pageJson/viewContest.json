@@ -12,6 +12,10 @@
         "name": "Email",
         "isSort": "",
         "tableRef": "email"
+    }, {
+        "name": "Contact Number",
+        "isSort": "",
+        "tableRef": "number"
     }],
     "action": [{
         "name": "View",

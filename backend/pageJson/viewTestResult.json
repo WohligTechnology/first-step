@@ -28,7 +28,9 @@
         {
             "name": "Mobile number",
             "isSort": "",
-            "tableRef": "number"
+            "type": "select2",
+            "tableRef": "digitalUser",
+            "fields": "number"
         }
     ],
     "action": [{

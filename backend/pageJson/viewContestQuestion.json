@@ -1,0 +1,65 @@
+{
+    "title": "ContestQuestion",
+    "description": "List of ContestQuestion",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Question",
+            "isSort": "",
+            "tableRef": "question"
+
+        },
+        {
+            "name": "Month",
+            "isSort": "",
+            "tableRef": "month"
+
+        },
+        {
+            "name": "Week",
+            "isSort": "",
+            "tableRef": "week"
+
+        },
+        {
+            "name": "Answer",
+            "isSort": "",
+            "tableRef": "correctAnswer"
+
+        }
+    ],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editContestQuestion",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete ContestQuestion",
+        "content": "Are you sure you want to delete ContestQuestion?",
+        "api": "ContestQuestion/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createContestQuestion"
+    }],
+    "apiCall": {
+        "url": "ContestQuestion/search",
+        "params": "_id"
+    }
+}

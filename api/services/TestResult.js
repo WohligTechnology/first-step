@@ -50,7 +50,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('TestResult', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "digitalCourses digitalUsers answers questions", "digitalCourse digitalUser answer question"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "digitalCourse digitalUser answers questions", "digitalCourse digitalUser answer question"));
 var model = {
 
     validUser: function (data, callback) {

@@ -40,6 +40,26 @@
         "disabled": true,
         "validation": ["", "trim"],
         "url": ""
+    }, {
+        "name": "Sequence",
+        "type": "text",
+        "tableRef": "sequence",
+        "placeholder": "Enter Sequence",
+        "id": "sequence",
+        "validation": ["required", "trim", ""],
+        "url": ""
+    }, {
+        "name": "Status",
+        "type": "tags",
+        "tableRef": "status",
+        "placeholder": "Select Status",
+        "id": "status",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "dropDownField": "",
+        "dropDownType": "single",
+        "onView": true,
+        "dropDown": ["Enable", "Disable"]
     }],
     "action": [{
         "name": "submit",

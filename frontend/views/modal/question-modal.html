@@ -27,7 +27,8 @@
                                 <div class="form-group" ng-class="{'form-invalid':loginDigitalform.email.$invalid && loginDigitalform.email.$touched}">
                                     <label>Email Address :</label>
                                     <input type="email" name="email" class="form-control" ng-model="formData.email" required>
-                                    <span ng-show="emailexist">Email already exist.</span>
+                                    <span ng-show="emailexist">You Have Already Answered This Contest.Will login when new Contest Question is Created.</span>
+                                    <!--<span ng-show="emailexist">Email already exist.</span>-->
                                     <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">Please enter vaild email.</span>
                                 </div>
                                 <div class="form-group" ng-class="{'form-invalid':loginDigitalform.number.$invalid && loginDigitalform.number.$touched}">

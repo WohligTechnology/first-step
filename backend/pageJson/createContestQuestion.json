@@ -1,0 +1,65 @@
+{
+    "title": "Create ContestQuestion",
+    "name": "User",
+    "jsonPage": "viewContestQuestion",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["ContestQuestion"],
+    "fields": [{
+            "name": "Question",
+            "type": "text",
+            "tableRef": "question",
+            "placeholder": "Enter Question",
+            "id": "question",
+            "validation": ["", "trim"],
+            "url": ""
+        }, {
+            "name": "Month(in numbers)",
+            "type": "text",
+            "tableRef": "month",
+            "placeholder": "Enter Month",
+            "id": "month",
+            "validation": ["", "trim"],
+            "url": ""
+        }, {
+            "name": "Week(in numbers)",
+            "type": "text",
+            "tableRef": "week",
+            "placeholder": "Enter Week",
+            "id": "week",
+            "validation": ["", "trim"],
+            "url": ""
+        },
+        {
+            "name": "Correct Answer",
+            "type": "text",
+            "tableRef": "correctAnswer",
+            "placeholder": "Enter Correct Answer",
+            "id": "correctAnswer",
+            "validation": ["", "trim"],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitContestQuestion",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContestQuestion"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewContestQuestion"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "ContestQuestion/save"
+    }
+}
