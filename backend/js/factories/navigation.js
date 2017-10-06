@@ -15,7 +15,8 @@ myApp.factory('NavigationService', function ($http) {
             name: "Ask The Experts",
             classis: "active",
             sref: "#!/page/viewExpert//",
-            icon: "phone"
+            icon: "phone",
+
         },
         {
             name: "Contest Questions",
@@ -31,28 +32,35 @@ myApp.factory('NavigationService', function ($http) {
         }, {
             name: "Digital Course",
             classis: "active",
-            sref: "#!/page/viewDigitalCourse//",
+            sref: "",
             icon: "phone",
+            subnav: [{
+                    name: "List",
+                    classis: "active",
+                    sref: "#!/page/viewDigitalCourse//",
+                    icon: "phone",
+                }, {
+                    name: "Questions",
+                    classis: "active",
+                    sref: "#!/page/viewQuestion//",
+                    icon: "phone",
 
-        },
-        {
-            name: "D C Questions",
-            classis: "active",
-            sref: "#!/page/viewQuestion//",
-            icon: "phone",
+                },
+                {
+                    name: "Participants",
+                    classis: "active",
+                    sref: "#!/page/viewDigitalUser//",
+                    icon: "phone",
+                }, {
+                    name: "Right Results",
+                    classis: "active",
+                    sref: "#!/page/viewTestResult//",
+                    icon: "phone",
+                }
+            ]
 
-        },
-        {
-            name: "D C Participants",
-            classis: "active",
-            sref: "#!/page/viewDigitalUser//",
-            icon: "phone",
-        }, {
-            name: "D C Right Results",
-            classis: "active",
-            sref: "#!/page/viewTestResult//",
-            icon: "phone",
         }
+
     ];
 
     return {
