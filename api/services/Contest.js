@@ -384,8 +384,244 @@ var model = {
             }
         }, callback);
 
+    },
+
+    getByMonth: function (data, callback) {
+        Contest.aggregate([{
+            $lookup: {
+                "from": "contestquestions",
+                "localField": "questionId",
+                "foreignField": "_id",
+                "as": "contestquestion"
+            }
+        }, {
+            $unwind: {
+                path: '$contestquestion',
+                preserveNullAndEmptyArrays: true
+            }
+        }, {
+            $match: {
+                'contestquestion.month': data.month
+            }
+        }, {
+            $project: {
+                _id: 1,
+                email: 1,
+                name: 1,
+                number: 1,
+                month: '$contestquestion.month',
+                rightAnswerFlag: {
+                    $cond: [{
+                        $eq: ['$answer', '$contestquestion.correctAnswer']
+                    }, 1, 0]
+                },
+                totalAnswerFlag: {
+                    $cond: [{
+                        $eq: ['$answer', '$contestquestion.correctAnswer']
+                    }, 1, 1]
+                }
+            }
+        }, {
+            $group: {
+                _id: "$email",
+                month: {
+                    $first: "$month"
+                },
+                name: {
+                    $first: "$name"
+                },
+                number: {
+                    $first: "$number"
+                },
+                count: {
+                    $sum: '$rightAnswerFlag'
+                },
+                totalCount: {
+                    $sum: '$totalAnswerFlag'
+                }
+            }
+        }, {
+            $sort: {
+                count: -1,
+                totalCount:-1
+            }
+        }], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result", result); // OUTPUT OK
+                callback(null, result);
+            }
+        });
+    },
+
+    getByMonthOld: function (data, callback) {
+        console.log("insode contest service getByMonth", data);
+        var finalArr = [];
+        async.waterfall([
+            function (callback) {
+                // code a
+
+                Contest.find().deepPopulate("questionId").exec(function (err, found) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        console.log("found1", found); // OUTPUT OK
+                        callback(null, found);
+                    }
+                });
+            },
+            function (allContests, callback) {
+                console.log("allContests", allContests);
+                if (allContests) {
+                    _.find(allContests, function (o) {
+                        return o.questionId.month == data;
+                    });
+                    if (!_.isEmpty(allContests)) {
+                        async.each(allContests, function (contest, callback) {
+                            // console.log("after async", contest);
+                            var result = _.find(finalArr, {
+                                email: contest.email
+                            });
+                            if (result) {
+
+                            }
+                            // if (contest.answer == contest.questionId.answer) {
+                            //     totalRightAnswers = totalRightAnswers + 1;
+                            // }
+                        }, function (err) {
+                            if (err) {
+                                console.log('A file failed to process');
+                            } else {
+                                console.log('All files have been processed successfully');
+                            }
+                        })
+                    } else {
+                        callback(null, []);
+                    }
+                    // Contest.findOne({
+                    //     questionId: questionData._id,
+                    //     email: data.email
+                    // }).exec(function (err, contest) {
+
+                    //     if (!_.isEmpty(contest)) {
+                    //         console.log("user already exists for the contest", contest);
+                    //         callback("userExists", null);
+                    //     } else {
+                    //         console.log("saving user: ", data);
+                    //         Contest.saveData(data, function (err, data) {
+                    //             callback(err, data);
+                    //         });
+                    //     }
+                    // });
+                } else {
+                    callback("noQuestionsFound", data);
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result", result); // OUTPUT OK
+                callback(null, result);
+
+            }
+        });
+    },
+
+    migrateContest: function (data, callback) {
+        console.log("insode contest service getByMonth", data);
+        var finalArr = [];
+        async.waterfall([
+            function (callback) {
+                // code a
+
+                Contest.find().deepPopulate("questionId").exec(function (err, found) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        // console.log("found1", found); // OUTPUT OK
+                        callback(null, found);
+                    }
+                });
+            },
+            function (allContests, callback) {
+                // console.log("allContests", allContests);
+                if (allContests) {
+                    if (!_.isEmpty(allContests)) {
+                        async.each(allContests, function (contest, callback) {
+                            // console.log("after async", contest);
+                            ContestQuestion.findOne({
+                                question: contest.question
+                            }).exec(function (err, singleContestQuestion) {
+
+                                if (!_.isEmpty(singleContestQuestion)) {
+                                    console.log("user already exists for the contest", singleContestQuestion);
+                                    //update contest questionId with contestQuestion._id 
+                                    Contest.update({
+                                        _id: mongoose.Types.ObjectId(contest._id)
+                                    }, {
+                                        $set: {
+                                            questionId: singleContestQuestion._id
+                                        }
+                                    }).exec(function (err, found) {
+                                        if (err) {
+                                            callback(err, null);
+                                        } else if (_.isEmpty(found)) {
+                                            callback("noDataound", null);
+                                        } else {
+                                            callback(null, found);
+                                        }
+
+                                    });
+                                    // callback("userExists", null);
+                                } else {
+                                    Contest.update({
+                                        _id: mongoose.Types.ObjectId(contest._id)
+                                    }, {
+                                        $set: {
+                                            questionId: "59d6336b466418777a0a3d03"
+                                        }
+                                    }).exec(function (err, found) {
+                                        if (err) {
+                                            callback(err, null);
+                                        } else if (_.isEmpty(found)) {
+                                            callback("noDataound", null);
+                                        } else {
+                                            callback(null, found);
+                                        }
+
+                                    });
+                                }
+                            });
 
 
+
+                        }, function (err) {
+                            if (err) {
+                                console.log('A file failed to process');
+                                callback(err,null);
+                            } else {
+                                console.log('All files have been processed successfully');
+                                callback(null,'All files have been processed successfully');
+                            }
+                        })
+                    } else {
+                        callback(null, []);
+                    }
+                } else {
+                    callback("noQuestionsFound", data);
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result", result); // OUTPUT OK
+                callback(null, result);
+
+            }
+        });
     }
 
 };

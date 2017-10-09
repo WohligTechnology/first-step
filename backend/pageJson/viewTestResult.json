@@ -4,39 +4,34 @@
     "pageType": "view",
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
+    "filter": "digitalTestResult",
     "fields": [{
             "name": "Digital User",
             "isSort": "",
             "tableRef": "digitalUser",
-            "type": "select",
-            "field": "name"
+            "type": "digitalUser",
+            "tableVal": "name"
         },
         {
             "name": "User Email",
             "isSort": "",
             "tableRef": "digitalUser",
-            "type": "select1",
-            "field": "email"
-        },
-        {
-            "name": "Digital Course",
-            "isSort": "",
-            "tableRef": "digitalCourse",
-            "type": "select",
-            "fields": "name"
+            "type": "digitalUser",
+            "tableVal": "email"
         },
         {
             "name": "Mobile number",
             "isSort": "",
-            "type": "select2",
+            "type": "digitalUser",
             "tableRef": "digitalUser",
-            "fields": "number"
+            "tableVal": "number"
         },
         {
             "name": "Digital Course",
             "isSort": "",
             "type": "digitalCourse",
-            "tableRef": "digitalCourse"
+            "tableRef": "digitalCourse",
+            "field":"name"
         }
     ],
     "action": [{
@@ -65,5 +60,6 @@
     "apiCall": {
         "url": "TestResult/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

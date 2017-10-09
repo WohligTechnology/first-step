@@ -53,6 +53,118 @@ module.exports = mongoose.model('TestResult', schema);
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "digitalCourse digitalUser answers questions", "digitalCourse digitalUser answer question"));
 var model = {
 
+// search: function (data, callback) {
+//     console.log("in custom search",data.filter.digitalCourseId);
+//         var Model = this;
+//         var Const = this(data);
+//         var maxRow = Config.maxRow;
+
+//         var page = 1;
+//         if (data.page) {
+//             page = data.page;
+//         }
+//         var field = data.field;
+
+//         var options = {
+//             field: data.field,
+//             filters: {
+//                 keyword: {
+//                     fields: ['name'],
+//                     term: data.keyword
+//                 }
+//             },
+//             sort: {
+//                 asc: 'createdAt'
+//             },
+//             start: (page - 1) * maxRow,
+//             count: maxRow
+//         };
+
+
+
+
+//         var aggregatePipeline = [
+//             // Stage 1
+//             {
+//                 $lookup: {
+//                     "from": "digitalcourses",
+//                     "localField": "digitalCourse",
+//                     "foreignField": "_id",
+//                     "as": "digitalcourses"
+//                 }
+//             },
+//             {
+//                 $unwind: "$digitalcourses"
+//             },
+//             {
+//                 $lookup: {
+//                     "from": "digitalusers",
+//                     "localField": "digitalUser",
+//                     "foreignField": "_id",
+//                     "as": "digitalusers"
+//                 }
+//             },
+//             {
+//                 $unwind: "$digitalusers"
+//             },
+//         ];
+//         if (data.filter.digitalCourseId) {
+//             // Stage 2
+//             aggregatePipeline.push({
+//                 $match: {
+//                     "digitalcourses._id": data.filter.digitalCourseId
+//                 }
+//             });
+//         }
+
+
+//         async.parallel({
+//             options: function (callback) {
+//                 callback(null, options);
+//             },
+//             results: function (callback) {
+//                 Model.aggregate(
+//                     // Pipeline
+//                     _.concat(aggregatePipeline, [
+
+//                         // Stage 3
+//                         {
+//                             $skip: options.start
+//                         },
+
+//                         // Stage 4
+//                         {
+//                             $limit: maxRow
+
+//                         },
+//                     ])).exec(callback);
+
+//             },
+//             total: function (callback) {
+//                 Model.aggregate(
+//                     // Pipeline
+//                     _.concat(aggregatePipeline, [
+//                         // Stage 3
+//                         {
+//                             $group: {
+//                                 "_id": "_id",
+//                                 "count": {
+//                                     $sum: 1
+//                                 }
+//                             }
+//                         }
+//                     ])).exec(function (err, data) {
+//                     if (err || _.isEmpty(data)) {
+//                         callback(err, 0);
+//                     } else {
+//                         callback(null, data[0].count);
+//                     }
+//                 });
+//             }
+//         }, callback);
+
+//     },
+
     validUser: function (data, callback) {
         // console.log("data inside valid user **** api:", data)
         Contest.update({

@@ -46,5 +46,6 @@
     "apiCall": {
         "url": "DigitalUser/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

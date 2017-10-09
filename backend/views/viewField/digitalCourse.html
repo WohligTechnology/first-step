@@ -1,2 +1,5 @@
-<img ng-src="{{value[type.tableRef].image|serverimage:100:100:'cover'}}" style="width:100px;" alt="">
-<div class="text-center">{{value[type.tableRef].name}}</div>
+<!--{{value[type.tableRef]}}{{value[type.tableRef].name}}-->
+<!--{{type.field.name}}-->
+
+<!--<img ng-src="{{value[type.tableRef].image|serverimage:100:100:'cover'}}" style="width:100px;" alt="">-->
+<div ng-show="{{type.field.name}}=='name'" class="text-center">{{value[type.tableRef].name}}</div>

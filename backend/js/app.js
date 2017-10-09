@@ -85,10 +85,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: "views/jagz.html",
             controller: 'JagzCtrl'
         }) 
-        .state('demo', {
-            url: "/demo",
+        .state('contestFilter', {
+            url: "/contestFilter",
             templateUrl: "views/template.html",
-            controller: 'DemoCtrl'
+            controller: 'contestFilterCtrl'
         })
 
         .state('contest', {

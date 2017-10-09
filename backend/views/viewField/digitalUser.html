@@ -1,0 +1,13 @@
+<!--{{type.tableVal}}-->
+<!--{{value[type.tableRef]._id}}-->
+<!--{{value[type.tableRef]}}-->
+
+<div ng-show="type.tableVal=='name'" class="text-center">{{value[type.tableRef].name}}</div>
+<div ng-show="type.tableVal=='email'" class="text-center">{{value[type.tableRef].email}}</div>
+<div ng-show="type.tableVal=='number'" class="text-center">{{value[type.tableRef].number}}</div>
+
+<!--<div ng-if="{{type.tableVal}}!='name'" class="text-center">{{value[type.tableRef].name}}</div>-->
+
+
+<!--<div ng-show="{{type.tableVal}}=='email'" class="text-center">{{value[type.tableRef].email}}</div>
+<div ng-show="{{type.tableVal}}=='number'" class="text-center">{{value[type.tableRef].number}}</div>-->

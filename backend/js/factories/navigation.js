@@ -28,6 +28,12 @@ myApp.factory('NavigationService', function ($http) {
             classis: "active",
             sref: "#!/page/viewContest//",
             icon: "phone",
+        },
+        {
+            name: "Contest Filters",
+            classis: "active",
+            uiSref: "contestFilter",
+            icon: "phone",
         }, {
             name: "Digital Course",
             classis: "active",

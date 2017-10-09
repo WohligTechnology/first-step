@@ -52,6 +52,19 @@ var controller = {
             })
         }
     },
+    migrateContest: function (req, res) {
+        console.log("inside contest controller migrateContest")
+        if (req.body) {
+            Contest.migrateContest(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
+    },
     getAllQuestion: function (req, res) {
         if (req.body) {
             Contest.getAllQuestion(req.body, res.callback);
@@ -112,6 +125,19 @@ var controller = {
                 }
             });
         }
-    }
+    },
+    getByMonth: function (req, res) {
+        console.log("inside contest controller getByMonth",req.body);
+        if (req.body) {
+            Contest.getByMonth(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
+    },
 };
 module.exports = _.assign(module.exports, controller);

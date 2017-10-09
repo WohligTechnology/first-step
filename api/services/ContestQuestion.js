@@ -3,10 +3,10 @@ var schema = new Schema({
         type: String,
     },
     month: {
-        type: String,
+        type: Number,
     },
     week: {
-        type: String,
+        type: Number,
     },
     createOptions: [{
         option: {

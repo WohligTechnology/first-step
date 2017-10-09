@@ -61,5 +61,6 @@
     "apiCall": {
         "url": "ContestQuestion/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

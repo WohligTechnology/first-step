@@ -50,5 +50,6 @@
     "apiCall": {
         "url": "Question/search",
         "params": "_id"
-    }
+    },
+    "removeSearch": true
 }

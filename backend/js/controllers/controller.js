@@ -1297,11 +1297,61 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             //  $rootScope.$apply();
         };
     })
-    .controller('DemoCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr) {
+    .controller('contestFilterCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr) {
         //Used to name the .html file
-        $scope.template = TemplateService.changecontent("demo");
-        $scope.menutitle = NavigationService.makeactive("Demo");
+        $scope.template = TemplateService.changecontent("contestFilter");
+        $scope.menutitle = NavigationService.makeactive("contestFilter");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+
+        $scope.allMonths = [{
+            value: 1,
+            text: 'Jan'
+        }, {
+            value: 2,
+            text: 'Feb'
+        }, {
+            value: 3,
+            text: 'Mar'
+        }, {
+            value: 4,
+            text: 'Apr'
+        }, {
+            value: 5,
+            text: 'May'
+        }, {
+            value: 6,
+            text: 'June'
+        }, {
+            value: 7,
+            text: 'July'
+        }, {
+            value: 8,
+            text: 'Aug'
+        }, {
+            value: 9,
+            text: 'Sept'
+        }, {
+            value: 10,
+            text: 'Oct'
+        }, {
+            value: 11,
+            text: 'Nov'
+        }, {
+            value: 12,
+            text: 'Dec'
+        }];
+
+$scope.getAllItems = function (month) {
+        console.log("in getAllItems",month);
+
+        NavigationService.apiCall("Contest/getByMonth", month, function (data) {
+            console.log("inside contest ctrl:", data.data.name);
+            $scope.tableData = data.data;
+            console.log("inside contest ctrl*****:", data.data);
+        });
+
+        };
+
 
     });
