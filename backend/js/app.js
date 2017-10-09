@@ -84,7 +84,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/jagz",
             templateUrl: "views/jagz.html",
             controller: 'JagzCtrl'
-        }) 
+        })
         .state('demo', {
             url: "/demo",
             templateUrl: "views/template.html",
