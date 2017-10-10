@@ -87,6 +87,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
         }) 
         .state('contestFilter', {
             url: "/contestFilter",
+            templateUrl: "views/template.html",
+            controller: 'contestFilterCtrl'
         })
         .state('demo', {
             url: "/demo",
