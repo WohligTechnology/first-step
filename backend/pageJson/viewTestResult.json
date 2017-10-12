@@ -60,6 +60,5 @@
     "apiCall": {
         "url": "TestResult/search",
         "params": "_id"
-    },
-    "removeSearch": true
+    }
 }

@@ -53,9 +53,33 @@ var controller = {
         }
     },
     migrateContest: function (req, res) {
+        // this function update contest with questionId if matched contest.question=contestquestion.question and add questionId in contest with contestquestion._id for mapping, if not matched condition insert default id in questionId as "59d6336b466418777a0a3d03"
+
         console.log("inside contest controller migrateContest")
         if (req.body) {
             Contest.migrateContest(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
+    },
+    deleteNullAfterMigrateContest: function (req, res) {
+        //this function is for deleting null questions in contest and those contests who are not having given contest i.e deleting default questionId field which we are inserting in migrateContest
+ 
+//   find({
+//   _id: {
+//     $nin:[]
+//   }
+//   },{
+//   _id:1
+//   }).exec()
+        console.log("inside contest controller deleteNullAfterMigrateContest")
+        if (req.body) {
+            Contest.deleteNullAfterMigrateContest(req.body, res.callback);
         } else {
             res.json({
                 value: false,
@@ -139,5 +163,36 @@ var controller = {
             })
         }
     },
+    deleteNullContests(req,res){
+        console.log("in contest controller deleteNullContests ");
+        if (req.body) {
+            Contest.deleteNullContests(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
+    }
+    // deleteNullContestsNoUse: function (req, res) {
+    //     if (req.body) {
+    //         if (mongoose.Types.ObjectId.isValid(req.body._id)) {
+    //             req.model.deleteData(req.body, res.callback);
+    //         } else {
+    //             res.json({
+    //                 value: false,
+    //                 data: "ObjectId Invalid"
+    //             });
+    //         }
+    //     } else {
+    //         res.json({
+    //             value: false,
+    //             data: "Invalid Request"
+    //         });
+    //     }
+
+    // }
 };
 module.exports = _.assign(module.exports, controller);

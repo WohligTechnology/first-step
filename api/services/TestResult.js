@@ -313,5 +313,99 @@ var model = {
         // });
     },
 
+    migrateTestResult: function (data, callback) {
+        console.log("insode TestResult service migrateTestResult", data);
+        async.waterfall([
+            function (callback) {
+                // code a
+
+                TestResult.find().deepPopulate("digitalCourse digitalUser").limit(10).exec(function (err, found) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        // console.log("found1", found); // OUTPUT OK
+                        callback(null, found);
+                    }
+                });
+            },
+            function (allTestResult, callback) {
+                console.log("allTestResult", allTestResult);
+                if (allTestResult) {
+                    if (!_.isEmpty(allTestResult)) {
+                        async.each(allTestResult, function (TestResult, callback) {
+                            // console.log("after async", contest);
+                            DigitalUser.getOne({
+                                _id: TestResult.digitalUser
+                            }).exec(function (err, singleDigitalUser) {
+
+                                if (!_.isEmpty(singleDigitalUser)) {
+                                    //update contest questionId with contestQuestion._id 
+                                    DigitalUser.update({
+                                        _id: mongoose.Types.ObjectId(singleDigitalUser._id)
+                                    }, {
+                                        $set: {
+                                            testGiven: singleDigitalUser._id
+                                        }
+                                    }).exec(function (err, found) {
+                                        if (err) {
+                                            callback(err, null);
+                                        } else if (_.isEmpty(found)) {
+                                            callback("noDataound", null);
+                                        } else {
+                                            callback(null, found);
+                                        }
+
+                                    });
+                                    // callback("userExists", null);
+                                } else {
+                                    Contest.update({
+                                        _id: mongoose.Types.ObjectId(contest._id)
+                                    }, {
+                                        $set: {
+                                            questionId: "59d6336b466418777a0a3d03"
+                                        }
+                                    }).exec(function (err, found) {
+                                        if (err) {
+                                            callback(err, null);
+                                        } else if (_.isEmpty(found)) {
+                                            callback("noDataound", null);
+                                        } else {
+                                            callback(null, found);
+                                        }
+
+                                    });
+                                }
+                            });
+
+
+
+                        }, function (err) {
+                            if (err) {
+                                console.log('A file failed to process');
+                                callback(err, null);
+                            } else {
+                                console.log('All files have been processed successfully');
+                                callback(null, 'All files have been processed successfully');
+                            }
+                        })
+                    } else {
+                        callback(null, []);
+                    }
+                } else {
+                    callback("noQuestionsFound", data);
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result", result); // OUTPUT OK
+                callback(null, result);
+
+            }
+        });
+    }
+
+
 };
 module.exports = _.assign(module.exports, exports, model);

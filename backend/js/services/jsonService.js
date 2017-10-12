@@ -100,7 +100,17 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
       } else if (action && action.type == "custompage") {
         console.log("IN CUSTOMPAGE TYPE");
         $state.go("custompage", sendTo);
-      } else if (action && action.type == "externalUrl") {
+      } 
+     else if (action && action.type == "contest") {
+        if (action.fieldsToSend) {
+          var keyword = {};
+          _.each(action.fieldsToSend, function (n, key) {
+            keyword[key] = value[n];
+          });
+          sendTo.keyword = JSON.stringify(keyword);
+        }
+        $state.go("contest", sendTo);
+      }else if (action && action.type == "externalUrl") {
         window.location.href = adminurl + "../institute-form";
       } else if (action && action.type == "statepage") {
         console.log("IN statePAGE TYPE");

@@ -17,17 +17,12 @@
         "name": "Contact Number",
         "isSort": "",
         "tableRef": "number"
+    }, {
+        "name": "QuestionId",
+        "isSort": "",
+        "tableRef": "questionId"
     }],
     "action": [{
-        "name": "View",
-        "icon": "fa-pencil",
-        "buttonClass": "btn-primary",
-        "type": "contest",
-        "action": "contest",
-        "fieldsToSend": {
-            "_id": "_id"
-        }
-    }, {
         "name": "delete",
         "icon": "fa-trash",
         "buttonClass": "btn-danger",

@@ -289,11 +289,26 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         var formData = {};
         formData._id = JSON.parse($stateParams.keyword)._id;
         console.log("ContestCtrl");
+
         NavigationService.apiCall("Contest/getOne", formData, function (data) {
             console.log("inside contest ctrl:", data.data.name);
             $scope.tableData = data.data;
+            // $scope.tableData = data.data;
+            // if ($scope.tableData) {
+            //     var email = $scope.tableData.email;
+            //     NavigationService.apiCall("Contest/getOne", formData, function (data) {
+            //         console.log("inside contest ctrl:", data.data.name);
+            //         $scope.tableData = data.data;
+            //         $scope.tableData = data.data;
+            //         if ($scope.tableData) {
+            //             var email = $scope.tableData.email;
+            //         }
+            //         console.log("inside contest ctrl*****:", data.data);
+            //     });
+            // }
             console.log("inside contest ctrl*****:", data.data);
         });
+
     })
     .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
         $scope.json = JsonService;
@@ -1342,14 +1357,14 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             text: 'Dec'
         }];
 
-$scope.getAllItems = function (month) {
-        console.log("in getAllItems",month);
+        $scope.getAllItems = function (month) {
+            console.log("in getAllItems", month);
 
-        NavigationService.apiCall("Contest/getByMonth", month, function (data) {
-            console.log("inside contest ctrl:", data.data.name);
-            $scope.tableData = data.data;
-            console.log("inside contest ctrl*****:", data.data);
-        });
+            NavigationService.apiCall("Contest/getByMonth", month, function (data) {
+                console.log("inside contest ctrl:", data.data.name);
+                $scope.tableData = data.data;
+                console.log("inside contest ctrl*****:", data.data);
+            });
 
         };
 

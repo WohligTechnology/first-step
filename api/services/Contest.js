@@ -443,7 +443,7 @@ var model = {
         }, {
             $sort: {
                 count: -1,
-                totalCount:-1
+                totalCount: -1
             }
         }], function (err, result) {
             if (err) {
@@ -600,10 +600,10 @@ var model = {
                         }, function (err) {
                             if (err) {
                                 console.log('A file failed to process');
-                                callback(err,null);
+                                callback(err, null);
                             } else {
                                 console.log('All files have been processed successfully');
-                                callback(null,'All files have been processed successfully');
+                                callback(null, 'All files have been processed successfully');
                             }
                         })
                     } else {
@@ -620,6 +620,129 @@ var model = {
                 console.log("last result", result); // OUTPUT OK
                 callback(null, result);
 
+            }
+        });
+    },
+
+    deleteNullAfterMigrateContest: function (data, callback) {
+        console.log("insode contest service deleteNullAfterMigrateContest", data);
+        var finalArr = [];
+        async.waterfall([
+            function (callback) {
+                // code a
+                Contest.aggregate([{
+                    $lookup: {
+                        "from": "contestquestions",
+                        "localField": "questionId",
+                        "foreignField": "_id",
+                        "as": "contestquestion"
+                    }
+                }, {
+                    $unwind: {
+                        path: '$contestquestion',
+                        preserveNullAndEmptyArrays: true
+                    }
+                }, {
+                    $group: {
+                        _id: "$email",
+                        // questionId: {
+                        //     $first: "$questionId"
+                        // },
+                        // id: {
+                        //     $addToSet: "$questionId"
+                        // }
+                        allQuestionIds:{ $addToSet: {
+             qtnid:"$questionId",
+             id:"$_id"
+         }}
+                    }
+                }], function (err, result) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        // console.log("last result", result); // OUTPUT OK
+                        console.log("last result");
+                        callback(null, result);
+                    }
+                });
+
+                // Contest.distinct("email").exec(function (err, found) {
+                //     if (err) {
+                //         callback(err);
+                //     } else {
+                //         // console.log("found1", found); // OUTPUT OK
+                //         callback(null, found);
+                //     }
+                // });
+            },
+            function (allSortedContests, callback) {
+                // console.log("allContests", allEmailIds);
+                if (allSortedContests) {
+                    console.log("secomd ", allSortedContests);
+                    callback(null, allSortedContests);
+                    var unusedContestIds=[];
+                    async.each(allSortedContests, function (SortedContest, callback) {
+                        console.log("async.each- ", SortedContest);
+                        // var allQuestionIds=SortedContest.allQuestionIds;
+                        aynch.each(SortedContest.allQuestionIds, function (SortedContest, callback) {
+                            
+                        });
+
+                        }
+                        // Contest.find({
+                        //     email: email
+                        // }).deepPopulate("questionId").exec(function (err, found) {
+                        //     if (err) {
+                        //         callback(err);
+                        //     } else {
+                        //         console.log("found1", found); // OUTPUT OK
+                        //         // if()
+
+                        //         callback(null, found);
+
+                        //     }
+                        // });
+                        // callback();
+
+                    }, function (err) {
+                        if (err) {
+                            console.log('A file failed to process');
+                            callback(err, null);
+                        } else {
+                            console.log('All files have been processed successfully');
+                            callback(null, allEmailIds);
+                        }
+                    })
+
+
+                } else {
+                    callback("empty", null);
+                }
+
+            }
+        ], function (err, result) {
+            if (err) {
+                callback(err);
+            } else {
+                console.log("last result last", result); // OUTPUT OK
+                callback(null, result);
+
+            }
+        });
+    },
+    deleteNullContests: function (data, callback) {
+        console.log("inside Contest deleteNullContests service", data);
+
+        Contest.remove({
+            questionId: "59d6336b466418777a0a3d03",
+            "question": null
+        }).exec(function (err, result) {
+            if (err) {
+                console.log("error44", err);
+                callback(err, null);
+            } else {
+                console.log("result44", result);
+                callback(null, result);
             }
         });
     }
