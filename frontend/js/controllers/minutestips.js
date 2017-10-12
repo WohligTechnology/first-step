@@ -11,9 +11,15 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         console.log(data);
         $scope.formSubmitted = true;
     };
-    $scope.minuteEpisode = [{
-        imageUrl: "-PCujwv9xLI",
-        videoUrl: "-PCujwv9xLI",
-        episodeno: "SIP",
-    }];
+    // $scope.minuteEpisode = [{
+    //     imageUrl: "-PCujwv9xLI",
+    //     videoUrl: "-PCujwv9xLI",
+    //     episodeno: "Tip No. 1",
+    //     searchName: "MUTUAL FUNDS",
+    // },{
+    //     imageUrl: "-PCujwv9xLI",
+    //     videoUrl: "-PCujwv9xLI",
+    //     episodeno: "Tip No. 1",
+    //     searchName: "MUTUAL FUNDS",
+    // }];
 })
