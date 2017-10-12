@@ -4,7 +4,7 @@
             <div class="question-section">
                 <div>
 
-                    <p> <span> Question :</span>  {{contestQuestion.question}}<span style="font-family:NimbusSanL-Reg"> ?</span> </p>
+                    <p>Question : {{contestQuestion.question}} ?</p>
                     <input type="hidden" name="questionId" ng-model="data1.questionId" value="{{contestQuestion._id}}">
                     <input type="hidden" name="question" ng-model="data1.question" value="{{contestQuestion.question}}">
                     <div class="radio-left" ng-repeat="option in contestQuestion.createOptions">

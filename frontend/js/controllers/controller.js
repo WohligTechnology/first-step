@@ -34,8 +34,24 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
     ];
     $scope.homeSlide = [
+         'img/small-season3/127.jpg',
+        'img/small-season3/141.jpg',
+        'img/small-season3/140.jpg',
+        'img/small-season3/139.jpg',
+        'img/small-season3/138.jpg',
+        'img/small-season3/137.jpg',
+        'img/small-season3/136.jpg',
+        'img/small-season3/135.jpg',
+        'img/small-season3/134.jpg',
+        'img/small-season3/133.jpg',
+        'img/small-season3/132.jpg',
+        'img/small-season3/131.jpg',
+        'img/small-season3/130.jpg',
+        'img/small-season3/129.jpg',
+        'img/small-season3/128.jpg',
+        'img/small-season3/126.jpg',
+        'img/small-season3/125.jpg',
         'img/small-season3/120.jpg',
-    
         'img/small-season3/124.jpg',
         'img/small-season3/91.jpg',
         'img/small-season3/92.jpg',
@@ -135,7 +151,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'img/small-season3/68.jpg',
         'img/small-season3/69.jpg',
         'img/small-season3/70.jpg',
-        
+
         // 'img/small-season3/72.jpg',
     ];
 
@@ -264,15 +280,14 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
 
                 // if (data.value == true) {
-                    if (data.data._id) {
-                    console.log("$scope.userId",data.data._id);
+                if (data.data._id) {
+                    console.log("$scope.userId", data.data._id);
                     $scope.userId = data.data._id;
                     $state.go('digitalinside', {
                         'userId': data.data._id
                     });
-                }
-                else{
-                    $scope.errorDigitalCourseLogin="Something Went Wrong!!!";
+                } else {
+                    $scope.errorDigitalCourseLogin = "Something Went Wrong!!!";
                 }
 
                 // } else {
