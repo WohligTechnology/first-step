@@ -45,6 +45,12 @@ myApp.factory('NavigationService', function ($http) {
                     classis: "active",
                     sref: "#!/page/viewDigitalCourse//",
                     icon: "phone",
+                },
+                {
+                    name: "Test Result Filters",
+                    classis: "active",
+                    uiSref: "testResultFilter",
+                    icon: "phone",
                 }, {
                     name: "Questions",
                     classis: "active",

@@ -18,6 +18,13 @@
             "name": "Mobile number",
             "isSort": "",
             "tableRef": "number"
+        },
+        {
+            "name": "Tests Given For Cources",
+            "isSort": "",
+            "type": "digitalCourseCommaSeperated",
+            "tableRef": "digitalCourse",
+            "field":"name"
         }
     ],
     "action": [{
@@ -46,6 +53,5 @@
     "apiCall": {
         "url": "DigitalUser/search",
         "params": "_id"
-    },
-    "removeSearch": true
+    }
 }

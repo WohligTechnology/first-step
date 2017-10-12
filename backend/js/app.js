@@ -90,6 +90,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: "views/template.html",
             controller: 'contestFilterCtrl'
         })
+        .state('testResultFilter', {
+            url: "/testResultFilter",
+            templateUrl: "views/template.html",
+            controller: 'testResultFilterCtrl'
+        })
         .state('demo', {
             url: "/demo",
             templateUrl: "views/template.html",

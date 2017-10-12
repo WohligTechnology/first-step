@@ -1,0 +1,38 @@
+<h4>Contest Filters Month Wise</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="">Month: </label>
+            <select name="" ng-model="search.month" class="month-dropdown" ng-options="month.value as month.text for month in allMonths track by month.value">
+            </select>
+            <div class="inline">
+                <button class="btn btn-success" ng-click="getAllItems(search)">Go</button>
+                <!--<button class="btn btn-danger" ng-click="clearFilter()">Clear</button>
+                <button class="btn btn-danger" ng-click="closeFilter()">Cancel</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<!--<pre>
+    {{tableData|json}}
+</pre>-->
+
+<table class="table table-striped">
+    <tr>
+        <td>No.</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Number</td>
+        <td>Total Answers Given</td>
+        <td>Total Right Answers</td>
+    </tr>
+   <tr ng-repeat="item in tableData track by $index">
+        <td>{{$index + 1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item._id}}</td>
+        <td>{{item.number}}</td>
+        <td>{{item.totalCount}}</td>
+        <td>{{item.count}}</td>
+    </tr>
+</table>
