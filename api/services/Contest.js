@@ -628,107 +628,150 @@ var model = {
         console.log("insode contest service deleteNullAfterMigrateContest", data);
         var finalArr = [];
         async.waterfall([
-            function (callback) {
-                // code a
-                Contest.aggregate([{
-                    $lookup: {
-                        "from": "contestquestions",
-                        "localField": "questionId",
-                        "foreignField": "_id",
-                        "as": "contestquestion"
-                    }
-                }, {
-                    $unwind: {
-                        path: '$contestquestion',
-                        preserveNullAndEmptyArrays: true
-                    }
-                }, {
-                    $group: {
-                        _id: "$email",
-                        // questionId: {
-                        //     $first: "$questionId"
-                        // },
-                        // id: {
-                        //     $addToSet: "$questionId"
-                        // }
-                        allQuestionIds:{ $addToSet: {
-             qtnid:"$questionId",
-             id:"$_id"
-         }}
-                    }
-                }], function (err, result) {
-                    if (err) {
-                        callback(err);
-                    } else {
-                        // console.log("last result", result); // OUTPUT OK
-                        console.log("last result");
-                        callback(null, result);
-                    }
-                });
+                function (callback) {
+                    // code a
+                    Contest.aggregate([{
+                        $lookup: {
+                            "from": "contestquestions",
+                            "localField": "questionId",
+                            "foreignField": "_id",
+                            "as": "contestquestion"
+                        }
+                    }, {
+                        $unwind: {
+                            path: '$contestquestion',
+                            preserveNullAndEmptyArrays: true
+                        }
+                    }, {
+                        $group: {
+                            _id: "$email",
+                            // questionId: {
+                            //     $first: "$questionId"
+                            // },
+                            // id: {
+                            //     $addToSet: "$questionId"
+                            // }
+                            allQuestionIds: {
+                                $addToSet: {
+                                    qtnid: "$questionId",
+                                    id: "$_id"
+                                }
+                            }
+                        }
+                    }], function (err, result) {
+                        if (err) {
+                            callback(err);
+                        } else {
+                            // console.log("last result", result); // OUTPUT OK
+                            console.log("last result");
+                            callback(null, result);
+                        }
+                    });
 
-                // Contest.distinct("email").exec(function (err, found) {
-                //     if (err) {
-                //         callback(err);
-                //     } else {
-                //         // console.log("found1", found); // OUTPUT OK
-                //         callback(null, found);
-                //     }
-                // });
-            },
-            function (allSortedContests, callback) {
-                // console.log("allContests", allEmailIds);
-                if (allSortedContests) {
-                    console.log("secomd ", allSortedContests);
-                    callback(null, allSortedContests);
-                    var unusedContestIds=[];
-                    // async.each(allSortedContests, function (SortedContest, callback) {
-                    //     console.log("async.each- ", SortedContest);
-                    //     // var allQuestionIds=SortedContest.allQuestionIds;
-                    //     aynch.each(SortedContest.allQuestionIds, function (SortedContest, callback) {
-
-                    //     });
-
-                    //     }
-                        // Contest.find({
-                        //     email: email
-                        // }).deepPopulate("questionId").exec(function (err, found) {
-                        //     if (err) {
-                        //         callback(err);
-                        //     } else {
-                        //         console.log("found1", found); // OUTPUT OK
-                        //         // if()
-
-                        //         callback(null, found);
-
-                        //     }
-                        // });
-                        callback();
-
-                    // }, function (err) {
+                    // Contest.distinct("email").exec(function (err, found) {
                     //     if (err) {
-                    //         console.log('A file failed to process');
-                    //         callback(err, null);
+                    //         callback(err);
                     //     } else {
-                    //         console.log('All files have been processed successfully');
-                    //         callback(null, allEmailIds);
+                    //         // console.log("found1", found); // OUTPUT OK
+                    //         callback(null, found);
                     //     }
-                    // })
+                    // });
+                },
+                function (allSortedContests, callback) {
+                    // console.log("allContests", allEmailIds);
+                    if (allSortedContests) {
+                        // console.log("secomd ", allSortedContests.length);
+                        // callback(null, allSortedContests);
+                        var unusedContestIds = [];
+                        // allSortedContests=allSortedContests.data;
+
+                        // _.forEach(allSortedContests, function (value) {
+                        //         var allQuestion = [];
+
+                        //         allQuestion.push(value.allQuestionIds);
+                        //         // console.log("allQuestionIds", allQuestion);
+                        //         _.forEach(allQuestion, function (value1) {
+                        //                 _.forEach(allQuestion, function (value2) {
+                        //                     console.log("-------------",value2);
+                        //                     console.log("=================",value1);
+                        //                         if (value1.qtnid == value2.qtnid) {
+                        //                             unusedContestIds.push(value2.id);
+                        //                             // console.log("unusedContestIds",unusedContestIds);
+                        //                         }
+                        //                         })
+                        //                 })
+                        //         })
+
+                        console.log("============", allSortedContests.length);
+                        var allSortedContestsLength = allSortedContests.length;
+
+                        var unusedContestCount = 0;
+                        for (var i = 0; i < allSortedContestsLength; i++) {
+                            var allQuestionIds = allSortedContests[i].allQuestionIds;
+                            var allQuestionIdsLength = allQuestionIds.length;
+                            if (allQuestionIdsLength > 0) {
+                                for (var j = 0; j < allQuestionIdsLength; j++) {
+                                    // console.log("allQuestionIds[j].qtnid",allQuestionIds[j].qtnid);
+                                    for (var k = allQuestionIdsLength; k > j; k--) {
+
+                                        if (j != k && k < allQuestionIdsLength) {
+                                            // console.log("in if");
+                                            console.log("i=", i, " j=", j, "  k=", k);
+                                            console.log("allQuestionIds[j].qtnid", allQuestionIds[j].qtnid);
+                                            console.log("allQuestionIds[k].qtnid", allQuestionIds[k].qtnid);
+                                            var left = allQuestionIds[j].qtnid.toString();
+                                            var right = allQuestionIds[k].qtnid.toString();
+                                            if (left == right) {
+                                                console.log("=========== IF =========== ", "LEFT  : ", left, "RIGHT ", right);
+                                                // console.log("i=",i," j=",j,"  k=",k);
+                                                unusedContestCount = unusedContestCount + 1;
+                                                console.log("unusedContestCount", unusedContestCount);
+                                                unusedContestIds.push(allQuestionIds[k].id);
+                                            } else {
+                                                console.log("=========== ELSE =========== ");
+
+                                            }
+                                        } else {
+                                            // console.log("in else");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        callback(null, unusedContestIds);
 
 
-                } else {
-                    callback("empty", null);
+                    } else {
+                        callback("empty", null);
+                    }
+
+                },
+                function (unusedIds, callback) {
+                    Contest.remove({
+                        _id: {
+                            $in:unusedIds
+                        }
+                    }).exec(function (err, result) {
+                        console.log("resulTS ::::::::::::", result);
+                        if (err) {
+                            console.log("error44", err);
+                            callback(err, null);
+                        } else {
+                            console.log("result44", result);
+                            callback(null, result);
+                        }
+                    });
                 }
+            ],
+            function (err, result) {
+                if (err) {
+                    callback(err);
+                } else {
+                    console.log("last result last", result); // OUTPUT OK
+                    callback(null, result);
 
-            }
-        ], function (err, result) {
-            if (err) {
-                callback(err);
-            } else {
-                console.log("last result last", result); // OUTPUT OK
-                callback(null, result);
-
-            }
-        });
+                }
+            });
     },
     deleteNullContests: function (data, callback) {
         console.log("inside Contest deleteNullContests service", data);
