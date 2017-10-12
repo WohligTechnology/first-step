@@ -681,14 +681,14 @@ var model = {
                     console.log("secomd ", allSortedContests);
                     callback(null, allSortedContests);
                     var unusedContestIds=[];
-                    async.each(allSortedContests, function (SortedContest, callback) {
-                        console.log("async.each- ", SortedContest);
-                        // var allQuestionIds=SortedContest.allQuestionIds;
-                        aynch.each(SortedContest.allQuestionIds, function (SortedContest, callback) {
-                            
-                        });
+                    // async.each(allSortedContests, function (SortedContest, callback) {
+                    //     console.log("async.each- ", SortedContest);
+                    //     // var allQuestionIds=SortedContest.allQuestionIds;
+                    //     aynch.each(SortedContest.allQuestionIds, function (SortedContest, callback) {
 
-                        }
+                    //     });
+
+                    //     }
                         // Contest.find({
                         //     email: email
                         // }).deepPopulate("questionId").exec(function (err, found) {
@@ -702,17 +702,17 @@ var model = {
 
                         //     }
                         // });
-                        // callback();
+                        callback();
 
-                    }, function (err) {
-                        if (err) {
-                            console.log('A file failed to process');
-                            callback(err, null);
-                        } else {
-                            console.log('All files have been processed successfully');
-                            callback(null, allEmailIds);
-                        }
-                    })
+                    // }, function (err) {
+                    //     if (err) {
+                    //         console.log('A file failed to process');
+                    //         callback(err, null);
+                    //     } else {
+                    //         console.log('All files have been processed successfully');
+                    //         callback(null, allEmailIds);
+                    //     }
+                    // })
 
 
                 } else {
