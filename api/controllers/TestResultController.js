@@ -50,6 +50,21 @@ var controller = {
                 }
             })
         }
+    },
+    afterMigrateTestResult: function (req, res) {
+        // this function update contest with questionId if matched contest.question=contestquestion.question and add questionId in contest with contestquestion._id for mapping, if not matched condition insert default id in questionId as "59d6336b466418777a0a3d03"
+
+        console.log("inside contest controller afterMigrateTestResult")
+        if (req.body) {
+            TestResult.afterMigrateTestResult(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            })
+        }
     }
 };
 module.exports = _.assign(module.exports, controller);
