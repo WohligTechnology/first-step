@@ -316,7 +316,15 @@ footer {
     vertical-align: middle;
     margin-right: -4px;
 }
-
+.minute-episode{
+  .video-icon{
+position: absolute;
+    top: 32%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }  
+}
 .modal-dialog {
     display: inline-block;
     text-align: center;
