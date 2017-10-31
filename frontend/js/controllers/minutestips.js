@@ -11,15 +11,30 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         console.log(data);
         $scope.formSubmitted = true;
     };
-    // $scope.minuteEpisode = [{
-    //     imageUrl: "-PCujwv9xLI",
-    //     videoUrl: "-PCujwv9xLI",
-    //     episodeno: "Tip No. 1",
-    //     searchName: "MUTUAL FUNDS",
-    // },{
-    //     imageUrl: "-PCujwv9xLI",
-    //     videoUrl: "-PCujwv9xLI",
-    //     episodeno: "Tip No. 1",
-    //     searchName: "MUTUAL FUNDS",
-    // }];
+    $scope.minuteEpisode = [{
+        imageUrl: "B8wukySPY-Q",
+        videoUrl: "B8wukySPY-Q",
+        episodeno: "Tip No. 1",
+        searchName: "SIP",
+    },{
+        imageUrl: "W9zF8Ao0u2s",
+        videoUrl: "W9zF8Ao0u2s",
+        episodeno: "Tip No. 2",
+        searchName: "MUTUAL FUNDS",
+    },{
+        imageUrl: "zODaZ82garY",
+        videoUrl: "zODaZ82garY",
+        episodeno: "Tip No. 3",
+        searchName: "BALANCE FUNDS",
+    },{
+        imageUrl: "hQk7jnUjFew",
+        videoUrl: "hQk7jnUjFew",
+        episodeno: "Tip No. 4",
+        searchName: "DEBT FUNDS",
+    },{
+        imageUrl: "4t7z7Myz1Yw",
+        videoUrl: "4t7z7Myz1Yw",
+        episodeno: "Tip No. 5",
+        searchName: "IPO",
+    }];
 })
