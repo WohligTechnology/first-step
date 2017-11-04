@@ -36,5 +36,10 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         videoUrl: "4t7z7Myz1Yw",
         episodeno: "Tip No. 5",
         searchName: "IPO",
+    },{
+        imageUrl: "7B5ne737cs8",
+        videoUrl: "7B5ne737cs8",
+        episodeno: "Tip No. 6",
+        searchName: "OPEN ENDED FUNDS",
     }];
 })
