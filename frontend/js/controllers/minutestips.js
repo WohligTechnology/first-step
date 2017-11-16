@@ -51,5 +51,20 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         videoUrl: "eGRhXggT7OA",
         episodeno: "Tip No. 8",
         searchName: "EQUITY FUNDS",
+    },{
+        imageUrl: "znhMhP9tvNQ",
+        videoUrl: "znhMhP9tvNQ",
+        episodeno: "Tip No. 9",
+        searchName: "MONEY BACK POLICY",
+    },{
+        imageUrl: "Gc72iMcbjiE",
+        videoUrl: "Gc72iMcbjiE",
+        episodeno: "Tip No. 10",
+        searchName: "DEMAT ACCOUNT",
+    },{
+        imageUrl: "ZwpKhVwXupg",
+        videoUrl: "ZwpKhVwXupg",
+        episodeno: "Tip No. 11",
+        searchName: "PPF",
     }];
 })
