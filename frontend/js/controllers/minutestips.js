@@ -71,5 +71,10 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         videoUrl: "32H9ZArJwZo",
         episodeno: "Tip No. 12",
         searchName: "LIQUID FUNDS",
+    },{
+        imageUrl: "WP87c8ahvNQ",
+        videoUrl: "WP87c8ahvNQ",
+        episodeno: "Tip No. 13",
+        searchName: "DIVERSIFIED MUTUAL FUNDS",
     }];
 })
