@@ -106,6 +106,12 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             videoUrl: "25mhwSZya2M",
             episodeno: "Episode 14",
             searchName: "Mutual Funds",
+        },
+        {
+            imageUrl: "mNl5_09c81k",
+            videoUrl: "mNl5_09c81k",
+            episodeno: "Episode 15",
+            searchName: "Mutual Funds",
         }
 
     ];
