@@ -10,7 +10,8 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     };
 
     //for season3
-    $scope.season3 = [{
+    $scope.season3 = [
+        {
             img1: 'img/season3/211.jpg',
             img2: 'img/small-season3/211.jpg',
         }, {
@@ -101,8 +102,12 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
             img1: 'img/season3/182.jpg',
             img2: 'img/small-season3/182.jpg',
         }, {
-            img1: 'img/season3/181.jpg',
+            img1: 'img/season3/203.jpg',
             img2: 'img/small-season3/181.jpg',
+        },
+        {
+            img1: 'img/season3/181.jpg',
+            img2: 'img/small-season3/203.jpg',
         }, {
             img1: 'img/season3/180.jpg',
             img2: 'img/small-season3/180.jpg',
