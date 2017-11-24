@@ -35,10 +35,12 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
         }, {
             img1: 'img/season3/204.jpg',
             img2: 'img/small-season3/204.jpg',
-        }, {
-            img1: 'img/season3/203.jpg',
-            img2: 'img/small-season3/203.jpg',
-        }, {
+        }, 
+        // {
+        //     img1: 'img/season3/203.jpg',
+        //     img2: 'img/small-season3/203.jpg',
+        // }, 
+        {
             img1: 'img/season3/202.jpg',
             img2: 'img/small-season3/202.jpg',
         }, {
@@ -103,7 +105,7 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
             img2: 'img/small-season3/182.jpg',
         }, {
             img1: 'img/season3/203.jpg',
-            img2: 'img/small-season3/181.jpg',
+            img2: 'img/small-season3/203.jpg',
         },
         {
             img1: 'img/season3/181.jpg',

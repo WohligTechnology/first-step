@@ -34,6 +34,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
     ];
     $scope.homeSlide = [
+         'img/small-season3/211.jpg',
         'img/small-season3/181.jpg',
         'img/small-season3/182.jpg',
         'img/small-season3/183.jpg',
@@ -64,7 +65,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'img/small-season3/208.jpg',
         'img/small-season3/209.jpg',
         'img/small-season3/210.jpg',
-        'img/small-season3/211.jpg',
+       
         'img/small-season3/179.jpg',
         'img/small-season3/161.jpg',
         'img/small-season3/162.jpg',
