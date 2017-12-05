@@ -34,7 +34,32 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg'
     ];
     $scope.homeSlide = [
-         'img/small-season3/211.jpg',
+        'img/small-season3/212.jpg',
+        'img/small-season3/234.jpg',
+        'img/small-season3/233.jpg',
+        'img/small-season3/232.jpg',
+        'img/small-season3/231.jpg',
+        'img/small-season3/230.jpg',
+        // 'img/small-season3/229.jpg',
+        // 'img/small-season3/228.jpg',
+        'img/small-season3/227.jpg',
+        // 'img/small-season3/226.jpg',
+        // 'img/small-season3/225.jpg',
+        // 'img/small-season3/224.jpg',
+        'img/small-season3/223.jpg',
+        // 'img/small-season3/222.jpg',
+        'img/small-season3/221.jpg',
+        'img/small-season3/220.jpg',
+        'img/small-season3/219.jpg',
+        'img/small-season3/218.jpg',
+        'img/small-season3/217.jpg',
+        'img/small-season3/216.jpg',
+        'img/small-season3/215.jpg',
+        'img/small-season3/214.jpg',
+        'img/small-season3/213.jpg',
+      
+
+        'img/small-season3/211.jpg',
         'img/small-season3/181.jpg',
         'img/small-season3/182.jpg',
         'img/small-season3/183.jpg',
@@ -65,7 +90,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         'img/small-season3/208.jpg',
         'img/small-season3/209.jpg',
         'img/small-season3/210.jpg',
-       
         'img/small-season3/179.jpg',
         'img/small-season3/161.jpg',
         'img/small-season3/162.jpg',
