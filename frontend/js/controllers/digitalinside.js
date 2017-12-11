@@ -31,22 +31,22 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     var data1 = {};
     data1._id = $stateParams.userId;
 
-    $scope.isBanking=true;
-    $scope.isInsurance=true;
-    $scope.isMutualFund=true;
+    $scope.isBanking = true;
+    $scope.isInsurance = true;
+    $scope.isMutualFund = true;
 
     apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (data) {
         console.log("UserData:", data);
         if (data.data._id) {
             $scope.allUserData = data.data;
             $scope.testGiven = data.data.testGiven;
-            _.find($scope.testGiven, function(obj) { 
-                if(obj.name=="BANKING"){
-                    $scope.isBanking=false;
-                }else if(obj.name=="INSURANCE"){
-                    $scope.isInsurance=false;
-                }else if(obj.name=="MUTUAL FUNDS"){
-                    $scope.isMutualFund=false;
+            _.find($scope.testGiven, function (obj) {
+                if (obj.name == "BANKING") {
+                    $scope.isBanking = false;
+                } else if (obj.name == "INSURANCE") {
+                    $scope.isInsurance = false;
+                } else if (obj.name == "MUTUAL FUNDS") {
+                    $scope.isMutualFund = false;
                 }
             });
 
@@ -62,7 +62,7 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
         console.log("$scope.testGiven", $scope.testGiven);
         // var testGivenForBanking="";
 
-        _.find($scope.testGiven, function(obj) { 
+        _.find($scope.testGiven, function (obj) {
             // $scope.
         });
 
@@ -135,10 +135,10 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
             $scope.mutualfunds = false;
         } else if (data == 'MUTUAL FUNDS') {
             $scope.banking = false;
-            $scope.insurance = false; 
+            $scope.insurance = false;
             $scope.mutualfunds = true;
         }
-        
+
         //     if ($scope.banking) {
         //         $scope.banking = false;
         //     } else {
@@ -154,35 +154,25 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
         //     $scope.insurance = true;
         // }
     };
-    // $scope.digitalinside = [{
-    //     No: 1,
-    //     Question: "सेविंग अकाउंट पर ब्याज मिलता है?",
-    //     option1: "ब्याज पर ब्याज",
-    //     option2: "FD जितना",
-    //     option3: "साधारण ब्याज",
-    //     option4: "पीएफ जितना",
-    // }, {
-    //     No: 2,
-    //     Question: "ऑटोमैटिक स्वीप अकाउंट होता है ?",
-    //     option1: "सेविंग अकाउंट रेकरिंग अकाउंट से लिंक",
-    //     option2: "सेविंग अकाउंट फिक्स डिपॉजिट से लिंक",
-    //     option3: "सेविंग अकाउंट डीमैट अकाउंट से लिंक",
-    //     option4: "सेविंग अकाउंट ट्रेडिंग अकाउंट से लिंक",
-    // }, {
-    //     No: 3,
-    //     Question: "सेविंग अकाउंट के ब्याज पर लगता है टैक्स",
-    //     option1: "1 लाख से ज्यादा ब्याज इनकम पर",
-    //     option2: "50 हजार से ज्यादा ब्याज इनकम पर",
-    //     option3: "10 हजार से ज्यादा ब्याज इनकम पर",
-    //     option4: "20 हजार से ज्यादा ब्याज इनकम पर",
-    // }, {
-    //     No: 4,
-    //     Question: "सेविंग अकाउंट खोलने के लिए अनिवार्य है",
-    //     option1: "घर के एड्रेस का प्रूफ और ईमेल एड्रेस",
-    //     option2: "फोन नंबर",
-    //     option3: "पैन कार्ड और आधार कार्ड",
-    //     option4: "ऊपर लिखे सभी दस्तावेज",
-    // }]
+    $scope.digitalMutualfund = [{
+        img: "F1zxABRFV8g",
+        url: "F1zxABRFV8g"
+    }, {
+        img: "jet7j7_haUw",
+        url: "jet7j7_haUw"
+    }, {
+        img: "JQFSqwbOoA0",
+        url: "JQFSqwbOoA0"
+    }, {
+        img: "u8rLSglEgKk",
+        url: "u8rLSglEgKk"
+    }, {
+        img: "98klaFbH1xU",
+        url: "98klaFbH1xU"
+    }, {
+        img: "2THf7pPNkIo",
+        url: "2THf7pPNkIo"
+    }]
     $scope.thankyou = function () {
         console.log("clla");
         $uibModal.open({
