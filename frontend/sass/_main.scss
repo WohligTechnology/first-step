@@ -1683,7 +1683,7 @@ position: absolute;
 
 .question-section {
     margin: 220px 0 170px 145px;
-    font-family: 'Arial Unicode Ms';
+    // font-family: 'Arial Unicode Ms';
     font-size: 19px;
     text-align: left;
     input,
@@ -1785,6 +1785,7 @@ position: absolute;
 //scss for digital-question page
 .digital-question-section {
     margin: 210px 0 50px 0;
+    font-family: 'Arial Unicode Ms';
 }
 
 //scss for thank you modal
