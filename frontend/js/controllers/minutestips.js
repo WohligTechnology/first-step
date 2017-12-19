@@ -76,5 +76,15 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         videoUrl: "WP87c8ahvNQ",
         episodeno: "Tip No. 13",
         searchName: "DIVERSIFIED MUTUAL FUNDS",
+    },{
+        imageUrl: "h3f8DkPnWfs",
+        videoUrl: "h3f8DkPnWfs",
+        episodeno: "Tip No. 14",
+        searchName: "what is general insurance?",
+    },{
+        imageUrl: "lSvkesxpuKo",
+        videoUrl: "lSvkesxpuKo",
+        episodeno: "Tip No. 15",
+        searchName: "BROKERAGE",
     }];
 })
