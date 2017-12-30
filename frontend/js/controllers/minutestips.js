@@ -86,5 +86,30 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         videoUrl: "lSvkesxpuKo",
         episodeno: "Tip No. 15",
         searchName: "BROKERAGE",
+    },{
+        imageUrl: "4JK6oxNKU1w",
+        videoUrl: "4JK6oxNKU1w",
+        episodeno: "Tip No. 16",
+        searchName: "Understand Term Insurance",
+    },{
+        imageUrl: "qnKZEVfh4kw",
+        videoUrl: "qnKZEVfh4kw",
+        episodeno: "Tip No. 17",
+        searchName: "Diversified Equity Funds",
+    },{
+        imageUrl: "SIfPjrP_9DE",
+        videoUrl: "SIfPjrP_9DE",
+        episodeno: "Tip No. 18",
+        searchName: "SECTOR SPECIFIC FUND",
+    },{
+        imageUrl: "0W031U4ANVc",
+        videoUrl: "0W031U4ANVc",
+        episodeno: "Tip No. 19",
+        searchName: "STOCK EXCHANGE",
+    },{
+        imageUrl: "u33KBPsu5jI",
+        videoUrl: "u33KBPsu5jI",
+        episodeno: "Tip No. 20",
+        searchName: "WHOLE LIFE POLICIES",
     }];
 })
