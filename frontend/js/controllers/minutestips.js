@@ -102,8 +102,8 @@ myApp.controller('MinutestipsCtrl', function ($scope, TemplateService, Navigatio
         episodeno: "Tip No. 18",
         searchName: "SECTOR SPECIFIC FUND",
     },{
-        imageUrl: "0W031U4ANVc",
-        videoUrl: "0W031U4ANVc",
+        imageUrl: "pw-g3hgwZb0",
+        videoUrl: "pw-g3hgwZb0",
         episodeno: "Tip No. 19",
         searchName: "STOCK EXCHANGE",
     },{
