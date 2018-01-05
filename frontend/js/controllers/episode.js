@@ -125,6 +125,12 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             videoUrl: "rLmEqMWB6_U",
             episodeno: "Episode 17",
             searchName: "real estate",
+        }  ,
+        {
+            imageUrl: "A2R8WvzfHcc",
+            videoUrl: "A2R8WvzfHcc",
+            episodeno: "Episode 18",
+            searchName: "amritsar",
         }
 
     ];
