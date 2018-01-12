@@ -1339,6 +1339,10 @@ position: absolute;
     border-right: 5px solid #e9e72b;
     position: relative;
     text-align: justify;
+    h3{
+        color:white;
+        text-align: center;
+    }
 }
 
 .computer {
@@ -1529,6 +1533,14 @@ position: absolute;
     min-height: calc(100vh - 96px);
 }
 
+.digital-cource-list{
+    color:white;
+    padding: 0;
+        text-align: left !important;
+    a{
+         color:white;
+    }
+}
 .note-digital {
     p {
         font-size: 14px;
