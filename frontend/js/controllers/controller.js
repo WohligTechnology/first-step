@@ -361,7 +361,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $scope.submitUser1 = function (data) {
             console.log("inside controller", data);
             apiService.apiWithData("DigitalUser/saveValidUser", data, function (data) {
-
+console.log("%%%%%%%%%%%%%%%%%%%%%%%",data)
 
                 // if (data.value == true) {
                 if (data.data._id) {
