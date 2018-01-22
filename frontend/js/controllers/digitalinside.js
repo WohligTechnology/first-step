@@ -18,6 +18,7 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
     $scope.mutualfund = false;
     $scope.commodities = false;
     $scope.insurance = false;
+    $scope.realestate=false;
 
     /*******api for bringing all course******** */
     apiService.apiWithoutData("DigitalCourse/search", (result) => {
@@ -33,7 +34,8 @@ myApp.controller('DigitalInsideCtrl', function ($scope, TemplateService, Navigat
 
     $scope.isBanking = true;
     $scope.isInsurance = true;
-    $scope.isMutualFund = true;
+    $scope.isMutualFund = true; 
+    $scope.isRealEstate = true;
 
     apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (data) {
         console.log("UserData:", data);
