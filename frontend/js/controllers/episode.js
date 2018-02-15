@@ -147,8 +147,8 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
        {
             imageUrl: "PmjzNxd35-o",
             videoUrl: "PmjzNxd35-o",
-            episodeno: "Episode 20",
-            searchName: "Bangalore",
+            episodeno: "Episode 21",
+            searchName: "investment",
         }
 
     ];
