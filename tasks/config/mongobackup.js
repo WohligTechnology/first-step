@@ -4,16 +4,16 @@ module.exports = function (grunt) {
         dump: {
             options: {
                 host: 'localhost',
-                db: 'poker',
+                db: 'PehlaKadam',
                 out: './dump'
             }
         },
         restore: {
             options: {
-                db: 'poker',
+                db: 'PehlaKadam',
                 host: 'localhost',
                 drop: true,
-                path: './dump/poker'
+                path: './dump/PehlaKadam'
             }
         },
     });
