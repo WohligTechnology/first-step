@@ -1,5 +1,8 @@
  @media (max-width: $screen-xs-max) {
      // Mobile
+     .digital-cource-list{
+         padding: 20px;
+     }
      .img-height {
          height: 13vh;
      } //scss for header
@@ -424,7 +427,7 @@
     height: 87vh;
 }
 .sponser-bottom{
-    margin-bottom: 20px;
+       margin-bottom: 10px;
 }
 .submit-question{
     margin-left: 0;
@@ -433,7 +436,7 @@
     max-height: 100%;
 }
 .know-button button{
-margin-bottom: 15px;
+  margin: 0px 0 10px;
 }
 .sponsor-icon {
     padding: 25px 0 25px;

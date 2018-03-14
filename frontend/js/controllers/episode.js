@@ -88,6 +88,74 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             videoUrl: "u8rLSglEgKk",
             episodeno: "Episode 11",
             searchName: "Balanced Fund,Balance Fund",
+        },
+        {
+            imageUrl: "oLkD_3uIxws",
+            videoUrl: "oLkD_3uIxws",
+            episodeno: "Episode 12",
+            searchName: "Financial Planning",
+        },
+        {
+            imageUrl: "98klaFbH1xU",
+            videoUrl: "98klaFbH1xU",
+            episodeno: "Episode 13",
+            searchName: "Mutual Funds",
+        },
+        {
+            imageUrl: "25mhwSZya2M",
+            videoUrl: "25mhwSZya2M",
+            episodeno: "Episode 14",
+            searchName: "Mutual Funds",
+        },
+        {
+            imageUrl: "mNl5_09c81k",
+            videoUrl: "mNl5_09c81k",
+            episodeno: "Episode 15",
+            searchName: "Mutual Funds",
+        },
+        {
+            imageUrl: "0nK24NLxPwE",
+            videoUrl: "0nK24NLxPwE",
+            episodeno: "Episode 16",
+            searchName: "real estate",
+        }
+       ,
+        {
+            imageUrl: "rLmEqMWB6_U",
+            videoUrl: "rLmEqMWB6_U",
+            episodeno: "Episode 17",
+            searchName: "real estate",
+        }  ,
+        {
+            imageUrl: "A2R8WvzfHcc",
+            videoUrl: "A2R8WvzfHcc",
+            episodeno: "Episode 18",
+            searchName: "amritsar",
+        },
+         {
+            imageUrl: "IwvlYaZIrHU",
+            videoUrl: "IwvlYaZIrHU",
+            episodeno: "Episode 19",
+            searchName: "EQUITY",
+        },
+         {
+            imageUrl: "EA2H7JXdT_Y",
+            videoUrl: "EA2H7JXdT_Y",
+            episodeno: "Episode 20",
+            searchName: "EQUITY",
+        },
+       {
+            imageUrl: "PmjzNxd35-o",
+            videoUrl: "PmjzNxd35-o",
+            episodeno: "Episode 21",
+            searchName: "investment",
+        }
+        ,
+       {
+            imageUrl: "fHva71Hx6Ok",
+            videoUrl: "fHva71Hx6Ok",
+            episodeno: "Episode 22",
+            searchName: "balance sheet",
         }
 
     ];

@@ -10,10 +10,11 @@
                 </div>
             </div>
             <div class="minute-first">
-                <p>CNBC launches a special format for quick financial education by means of #1MINTIPS Experts at CNBC-TV18 will
+                <!--<p>CNBC launches a special format for quick financial education by means of #1MINTIPS Experts at CNBC-TV18 will
                     give financial solutions in just 60 seconds Topics across asset classes will be a part of this format
                     and will include topics such as insurance, gold, security, mutual funds, personal finance, commodities,
-                    other investments etc.</p>
+                    other investments etc.</p>-->
+                    <p>CNBC Awaaz launches a special format for quick financial education by means of #1MINTIPS. Experts will give financial solutions in just 60 seconds Topics across asset classes will be a part of this format and will include topics such as insurance, gold, security, mutual funds, personal finance, commodities, other investments etc.</p>
             </div>
             <!--<div class="row">
                 <div class="col-md-8 col-sm-8 col-xs-12">
@@ -46,7 +47,7 @@
         </div>
     </div>
 
-    <div class="minutestips-video-section hidden">
+    <div class="minutestips-video-section">
         <div class="container">
             <div class="comming-soon text-center">
                 <div class="row ">
@@ -55,7 +56,7 @@
                         <h4> No Data found</h4>
                     </div>-->
                     <div class="col-md-2 col-sm-6 col-xs-6 episode-bottom" ng-repeat="itemSeason in minuteEpisode">
-                        <div class="episodes">
+                        <div class="episodes minute-episode">
 
                             <img ng-src="http://img.youtube.com/vi/{{itemSeason.imageUrl}}/hqdefault.jpg" class="img-responsive img-full">
                             <div class="video-icon">
@@ -64,7 +65,7 @@
                                     </a>
                             </div>
                             <p class="text-center">{{itemSeason.episodeno}}</p>
-                            <p class="text-center hidden">{{itemSeason.searchName}}</p>
+                            <p class="text-center text-uppercase">{{itemSeason.searchName}}</p>
                         </div>
                     </div>
                 </div>

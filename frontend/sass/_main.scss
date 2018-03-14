@@ -316,7 +316,15 @@ footer {
     vertical-align: middle;
     margin-right: -4px;
 }
-
+.minute-episode{
+  .video-icon{
+position: absolute;
+    top: 32%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }  
+}
 .modal-dialog {
     display: inline-block;
     text-align: center;
@@ -734,7 +742,7 @@ footer {
 }
 
 .sponsor-icon {
-    padding: 55px 0 25px;
+    padding: 25px 0 25px;
     img {
         margin: 0 auto;
     }
@@ -836,7 +844,7 @@ footer {
         background: #d4aa00;
         border: none;
         padding: 8px 20px 4px;
-        margin-bottom: 55px;
+        margin: 20px 0;
         &:focus,
         &:active {
             outline: none;
@@ -1331,6 +1339,10 @@ footer {
     border-right: 5px solid #e9e72b;
     position: relative;
     text-align: justify;
+    h3{
+        color:white;
+        text-align: center;
+    }
 }
 
 .computer {
@@ -1521,6 +1533,14 @@ footer {
     min-height: calc(100vh - 96px);
 }
 
+.digital-cource-list{
+    color:white;
+    padding: 0;
+        text-align: left !important;
+    a{
+         color:white;
+    }
+}
 .note-digital {
     p {
         font-size: 14px;
@@ -1675,7 +1695,7 @@ footer {
 
 .question-section {
     margin: 220px 0 170px 145px;
-    font-family: 'Arial Unicode Ms';
+    // font-family: 'Arial Unicode Ms';
     font-size: 19px;
     text-align: left;
     input,
@@ -1713,6 +1733,7 @@ footer {
 //scss for digital-inside
 .digitalinside-video {
     position: relative;
+    margin-bottom: 20px;
 }
 
 .video-digital {
@@ -1738,7 +1759,6 @@ footer {
 
 .question-digital {
     margin: 0px 0 20px 0px;
-    font-family: 'Kruti-Dev';
     font-size: 20px;
     text-align: left;
     input,
@@ -1776,6 +1796,7 @@ footer {
 //scss for digital-question page
 .digital-question-section {
     margin: 210px 0 50px 0;
+    font-family: 'Arial Unicode Ms';
 }
 
 //scss for thank you modal
