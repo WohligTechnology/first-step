@@ -118,46 +118,49 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             videoUrl: "0nK24NLxPwE",
             episodeno: "Episode 16",
             searchName: "real estate",
-        }
-       ,
+        },
         {
             imageUrl: "rLmEqMWB6_U",
             videoUrl: "rLmEqMWB6_U",
             episodeno: "Episode 17",
             searchName: "real estate",
-        }  ,
+        },
         {
             imageUrl: "A2R8WvzfHcc",
             videoUrl: "A2R8WvzfHcc",
             episodeno: "Episode 18",
             searchName: "amritsar",
         },
-         {
+        {
             imageUrl: "IwvlYaZIrHU",
             videoUrl: "IwvlYaZIrHU",
             episodeno: "Episode 19",
             searchName: "EQUITY",
         },
-         {
+        {
             imageUrl: "EA2H7JXdT_Y",
             videoUrl: "EA2H7JXdT_Y",
             episodeno: "Episode 20",
             searchName: "EQUITY",
         },
-       {
+        {
             imageUrl: "PmjzNxd35-o",
             videoUrl: "PmjzNxd35-o",
             episodeno: "Episode 21",
             searchName: "investment",
-        }
-        ,
-       {
+        },
+        {
             imageUrl: "fHva71Hx6Ok",
             videoUrl: "fHva71Hx6Ok",
             episodeno: "Episode 22",
             searchName: "balance sheet",
+        },
+        {
+            imageUrl: "fHva71Hx6Ok",
+            videoUrl: "fHva71Hx6Ok",
+            episodeno: "Grand  Finale",
+            searchName: "GRAND FINALE",
         }
-
     ];
 
     $scope.more3 = false;
