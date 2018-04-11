@@ -156,8 +156,8 @@ myApp.controller('EpisodeCtrl', function ($scope, TemplateService, NavigationSer
             searchName: "balance sheet",
         },
         {
-            imageUrl: "fHva71Hx6Ok",
-            videoUrl: "fHva71Hx6Ok",
+            imageUrl: "Th9UhbZ-eRk",
+            videoUrl: "Th9UhbZ-eRk",
             episodeno: "Grand  Finale",
             searchName: "GRAND FINALE",
         }
