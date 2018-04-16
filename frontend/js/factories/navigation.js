@@ -5,16 +5,17 @@ myApp.factory('NavigationService', function () {
         //     classis: "active",
         //     anchor: "home",
         // }, 
-         {
+        {
             name: "Episodes",
             classis: "active",
             anchor: "home-episodes",
-        },
-        {
-            name: "Ask The Expert",
-            classis: "active",
-            clickName1: "true",
         }
+        // ,
+        // {
+        //     name: "Ask The Expert",
+        //     classis: "active",
+        //     clickName1: "true",
+        // }
         , {
             name: "About",
             classis: "active",
@@ -37,6 +38,6 @@ myApp.factory('NavigationService', function () {
         getNavigation: function () {
             return navigation;
         },
-       
+
     };
 });
