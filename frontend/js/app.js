@@ -24,11 +24,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'HomeCtrl'
         })
 
-        // .state('minutestips', {
-        //     url: "/minutestips",
-        //     templateUrl: tempateURL,
-        //     controller: 'MinutestipsCtrl'
-        // })
+        .state('minutestips', {
+            url: "/minutestips",
+            templateUrl: tempateURL,
+            controller: 'MinutestipsCtrl'
+        })
         .state('gallery', {
             url: "/gallery",
             templateUrl: tempateURL,
