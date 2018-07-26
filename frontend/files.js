@@ -49,13 +49,14 @@ module.exports = [
   // Contorllers
   'frontend/js/controllers/controller.js',
   'frontend/js/controllers/minutestips.js',
+  'frontend/js/controllers/coming-soon.js',
   'frontend/js/controllers/digitalcourse-controller.js',
   'frontend/js/controllers/digitalinside.js',
   'frontend/js/controllers/gallery-controller.js',
   'frontend/js/controllers/partners.js',
   'frontend/js/controllers/header-controller.js',
   'frontend/js/controllers/episode.js',
-   'frontend/js/controllers/question.js',
-     'frontend/js/controllers/digitalquestion.js',
+  'frontend/js/controllers/question.js',
+  'frontend/js/controllers/digitalquestion.js',
   'frontend/js/controllers/language-controller.js',
 ];
