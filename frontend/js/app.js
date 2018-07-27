@@ -19,7 +19,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $httpProvider.defaults.withCredentials = true;
     $stateProvider
         .state('home', {
-            url: "/home",
+            url: "/",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
@@ -65,7 +65,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'PartnersCtrl'
         })
         .state('coming-soon', {
-            url: "/",
+            url: "/coming-soon'",
             templateUrl: tempateURL,
             controller: 'ComingSoonCtrl'
         })

@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location, apiService,$timeout) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $location, apiService, $timeout) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -46,7 +46,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $lo
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
             $(".header-border").css("opacity", '0');
-            $(".img-width-change").css("width", '7%');
+            $(".img-width-change").css("width", '6%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.54)');
 
         } else {
