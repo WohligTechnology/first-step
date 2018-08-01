@@ -6,7 +6,6 @@ $brand-warning: #ffec39 !default;
 $brand-danger: #fc483f !default;
 $brand-info: #000072 !default;
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-
 /* Bootstrap Variables Goes Here */
 
 @font-face {
@@ -266,7 +265,7 @@ footer {
         border-bottom: 5px solid #fff;
     }
     .footer-bottom,
-    {
+        {
         margin: 15px 45px 0px;
     }
     .design-by {
@@ -316,15 +315,17 @@ footer {
     vertical-align: middle;
     margin-right: -4px;
 }
-.minute-episode{
-  .video-icon{
-position: absolute;
-    top: 32%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }  
+
+.minute-episode {
+    .video-icon {
+        position: absolute;
+        top: 32%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 }
+
 .modal-dialog {
     display: inline-block;
     text-align: center;
@@ -742,16 +743,20 @@ position: absolute;
 }
 
 .sponsor-icon {
-    padding: 25px 0 25px;
+    padding: 35px 0 35px;
     img {
         margin: 0 auto;
     }
     p {
         font-size: 19px;
-        font-weight: 700;
+        font-weight: 500;
         letter-spacing: 1px;
         color: black;
     }
+}
+
+.sponser-bottom {
+    padding-top: 20px;
 }
 
 .episode-border {
@@ -1172,7 +1177,7 @@ position: absolute;
     .swiper-slide {
         background-position: center;
         background-size: cover;
-        width: 500px!important;
+        width: 500px !important;
         height: 350px;
         border: 2px solid white;
     }
@@ -1339,8 +1344,8 @@ position: absolute;
     border-right: 5px solid #e9e72b;
     position: relative;
     text-align: justify;
-    h3{
-        color:white;
+    h3 {
+        color: white;
         text-align: center;
     }
 }
@@ -1533,14 +1538,15 @@ position: absolute;
     min-height: calc(100vh - 96px);
 }
 
-.digital-cource-list{
-    color:white;
+.digital-cource-list {
+    color: white;
     padding: 0;
-        text-align: left !important;
-    a{
-         color:white;
+    text-align: left !important;
+    a {
+        color: white;
     }
 }
+
 .note-digital {
     p {
         font-size: 14px;
@@ -1637,7 +1643,7 @@ position: absolute;
     color: #e9e72b;
     padding: 20px 5px;
     .form-invalid,
-    {
+        {
         color: #e9e72b !important;
     }
     .form-control {
@@ -1694,8 +1700,7 @@ position: absolute;
 }
 
 .question-section {
-    margin: 220px 0 170px 145px;
-    // font-family: 'Arial Unicode Ms';
+    margin: 220px 0 170px 145px; // font-family: 'Arial Unicode Ms';
     font-size: 19px;
     text-align: left;
     input,
@@ -1705,8 +1710,7 @@ position: absolute;
     }
     input {
         cursor: pointer;
-    }
-    // span {
+    } // span {
     //     font-family: 'Himalaya';
     //     color: white;
     // }
@@ -1718,7 +1722,7 @@ position: absolute;
 .submit-question {
     margin-left: 90px;
     button,
-    {
+        {
         font-family: 'NimbusSanL-Reg';
         font-size: 15px;
         background: #e9e72b;
@@ -1823,4 +1827,16 @@ position: absolute;
 
 h2 {
     font-weight: 600;
+}
+
+.video-bg {
+    background-image: url("../img/video/bg-video.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    video {
+        border: 10px solid #ffd45a;
+    }
 }

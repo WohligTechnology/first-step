@@ -64,6 +64,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'PartnersCtrl'
         })
+        .state('coming-soon', {
+            url: "/coming-soon'",
+            templateUrl: tempateURL,
+            controller: 'ComingSoonCtrl'
+        })
         .state('question-paper', {
             url: "/question-paper/:userId",
             templateUrl: tempateURL,
