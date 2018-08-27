@@ -40,6 +40,7 @@
     "AngularJS-Toaster": "angularjs-toaster#^2.0.0",
     "angulartics-google-analytics": "^0.2.1",
     "animate.css": "^3.5.2",
+    "bourbon": "^4.2.7",    
     "bourbon": "^5.0.0",
     "fancybox": "^3.2.5",
     "international-phone-number": "^0.0.16",
