@@ -502,6 +502,7 @@ var model = {
                     // File options 
                     "type": "pdf", // allowed file types: png, jpeg, pdf 
                     "timeout": 30000, // Timeout that will cancel phantomjs, in milliseconds 
+                    "renderDelay": 5000,
                     "footer": {
                         "height": "2cm",
                     },
