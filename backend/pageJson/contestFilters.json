@@ -20,7 +20,7 @@
     }],
     "action": [{
         "name": "View",
-        "icon": "fa-pencil",
+        "icon": "fa-pencil-alt",
         "buttonClass": "btn-primary",
         "type": "contest",
         "action": "contest",
@@ -29,7 +29,7 @@
         }
     }, {
         "name": "delete",
-        "icon": "fa-trash",
+        "icon": "fa-trash-alt",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
         "title": "Delete Contest",

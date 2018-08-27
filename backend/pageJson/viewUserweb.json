@@ -15,7 +15,7 @@
     }],
     "action": [{
         "name": "delete",
-        "icon": "fa-trash",
+        "icon": "fa-trash-alt",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
         "title": "Delete User",

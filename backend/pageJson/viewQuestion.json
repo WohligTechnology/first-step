@@ -20,7 +20,7 @@
     ],
     "action": [{
         "name": "edit",
-        "icon": "fa-pencil",
+        "icon": "fa-pencil-alt",
         "buttonClass": "btn-primary",
         "type": "page",
         "action": "editQuestion",
@@ -29,7 +29,7 @@
         }
     }, {
         "name": "delete",
-        "icon": "fa-trash",
+        "icon": "fa-trash-alt",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
         "title": "Delete Question",

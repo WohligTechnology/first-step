@@ -14,10 +14,6 @@
                 <div class="clearfix"></div>
                 <div ng-repeat="form in formData.forms">
                     <div>
-                        <!--<div class="mark-float">
-                                <i class="fa fa-plus-circle success" ng-click="addHead();"></i>
-                                <i class="fa fa-minus-circle danger" ng-click="removeHead($index);"></i>
-                            </div>-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -37,8 +33,8 @@
                     </div>
                     <div class="field-repeat" ng-repeat="item in form.items">
                         <div class="floating-right">
-                            <button class="btn btn-primary" type="button" ng-click="addItem(form);"><i class="fa fa-plus"></i></button>
-                            <button class="btn btn-danger" type="button" ng-click="removeItem(form, $index);"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-primary" type="button" ng-click="addItem(form);"><i class="fas fa-plus"></i></button>
+                            <button class="btn btn-danger" type="button" ng-click="removeItem(form, $index);"><i class="fas fa-minus"></i></button>
                         </div>
                         <div class="row">
                             <div class="col-md-3">

@@ -14,7 +14,7 @@
                 <div class="widget-title">
                     <div class="pull-right">
                         <!-- <a href="mailto:chintan@wohlig.com?subject=&body=" class="btn btn-primary"><i class="fa fa-share"></i> Send Email</a> -->
-                        <a class="btn btn-success" ng-href="../importFormat/{{form.model}}.xlsx" download><i class="fa fa-table"></i> Download Excel Format </a>
+                        <a class="btn btn-success" ng-href="../importFormat/{{form.model}}.xlsx" download><i class="fas fa-table"></i> Download Excel Format </a>
                     </div>
                     <h4>Upload Excel File:</h4>
                     <upload-image no-view type="excel" ng-model="form.file" ng-callback="excelUploaded();"></upload-image>
@@ -32,8 +32,8 @@
                         <tbody>
                             <tr ng-repeat="d in data.value">
                                 <td>
-                                    <span class="success" ng-if="!d.name"><i class="fa fa-check-circle"></i> Row {{$index+2}}</span>
-                                    <span class="danger" ng-if="d.name"><i class="fa fa-times-circle"></i> Row {{$index+2}}</span>
+                                    <span class="success" ng-if="!d.name"><i class="far fa-check-circle"></i> Row {{$index+2}}</span>
+                                    <span class="danger" ng-if="d.name"><i class="far fa-times-circle"></i> Row {{$index+2}}</span>
                                 </td>
                                 <td colspan="2">
                                     <span ng-if="!d.name">Entry successful!</span>

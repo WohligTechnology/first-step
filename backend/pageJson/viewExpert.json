@@ -27,7 +27,7 @@
     }],
     "action": [{
         "name": "View",
-        "icon": "fa-pencil",
+        "icon": "fa-pencil-alt",
         "buttonClass": "btn-primary",
         "type": "page",
         "action": "editExpert",
@@ -36,7 +36,7 @@
         }
     }, {
         "name": "delete",
-        "icon": "fa-trash",
+        "icon": "fa-trash-alt",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
         "title": "Delete Expert Questions",
