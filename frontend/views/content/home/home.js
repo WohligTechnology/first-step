@@ -82,14 +82,14 @@ $scope.aboutMore = function () {
     $scope.login = function (data) {
         console.log("data", data);
         NavigationService.apiCallWithData("DigitalUser/saveValidUser", data, function (data) {
-            console.log("%%%%%%%%%%%%%%%%%%%%%%%", data)
-            if (data.data._id) {
+            console.log("%%%%%%%%%%%%%%%%%%%%%%%", data);
+            if (data.data._id && (data.data.testGiven.length < 1)) {
                 $state.go("digital-course", {
                     'userId': data.data._id
                 });
                 $scope.loginModal.close();
             } else {
-                console.log("invalid Email");
+                $scope.error="Test already has been given from this email."
             }
         });
     }
