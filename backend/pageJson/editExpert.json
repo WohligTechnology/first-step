@@ -29,7 +29,7 @@
         "tableRef": "email",
         "placeholder": "Enter Email",
         "id": "email",
-        "validation": ["", "trim", ""],
+        "validation": ["", "trim", "unique"],
         "url": "",
         "disabled": "true"
     }, {

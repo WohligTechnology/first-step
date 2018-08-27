@@ -20,7 +20,7 @@
             "tableRef": "email",
             "placeholder": "Enter User email",
             "id": "email",
-            "validation": ["", "trim"],
+            "validation": ["", "trim", "unique"],
             "url": ""
         }
     ],
