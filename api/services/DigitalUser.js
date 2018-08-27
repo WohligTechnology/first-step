@@ -10,6 +10,7 @@ var schema = new Schema({
     },
     number: {
         type: String,
+        unique: true
     },
     testGiven: [{
         type: Schema.Types.ObjectId,
