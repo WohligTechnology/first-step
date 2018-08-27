@@ -41,7 +41,7 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
             console.log("went to home 8000");
             $timeout(function () {
                 var someElement = angular.element(document.getElementById(id));
-                $document.scrollToElement(someElement, 70, 1000);
+                $document.scrollToElement(someElement, 70, 1500);
                 console.log(id);
                 $location.path("/" + id);
             }, 800);
