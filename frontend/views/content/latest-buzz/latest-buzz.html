@@ -1,0 +1,43 @@
+<div class="inside-page latest-inside py-5">
+    <div class="d-flex align-items-center px-5 pt-2">
+        <div class="initial-letter">#L</div>
+        <div class="ml-2 initial-word">
+            <div>Latest</div>
+            <div>Buzz</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <article ng-repeat="blog in blogs">
+                    <div ng-repeat="individualBlog in blog.data" ng-if="individualBlog.id==blogData">
+                        <!-- <div class="d-flex justify-content-sm-start align-items-center justify-content-lg-end mb-2">
+                            <div class="mr-1"><b>Share : </b></div>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=&{{individualBlog.title}}&{{individualBlog.content}}" target="_blank">
+                                <img width="80%" src="img/header/facebook.png" class="img-fluid">
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url=" target="_blank">
+                                <img width="80%" src="img/header/twitter.png" class="img-fluid">
+                            </a>
+                        </div> -->
+                        <h4 class="pl-2 pb-1 text-center blog-title yellow-bg font-D-Regular">{{individualBlog.title}}</h4>
+                        <div ng-bind-html="individualBlog.content"></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="pl-3 all-blogs">
+                    <h5 class="text-center pt-1 yellow-bg font-D-Regular purple-color previous">Previous Blogs</h5>
+                    <div ng-repeat="blog in blogs" >
+                        <h6 class="text-center pt-1 yellow-bg font-D-Regular purple-color mt-4" ng-if="blog.monthNo < currentMonth">{{blog.month}}</h6>
+                        <div ng-repeat="individualBlog in blog.data">
+                            <div class="blog" ui-sref="latest-buzz({name:individualBlog.id})">
+                                <h6>{{individualBlog.title}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

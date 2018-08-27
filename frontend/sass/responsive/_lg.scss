@@ -1,13 +1,3 @@
- @media (min-width: $screen-lg-min) {
-     // Wide Desktop
- }
+/* Breakpoint for medium viewport */
 
- @media (max-width: 1200px) {
-     // Wide Desktop
-     .minute-main .minutetips-heading:before,
-     .minute-main .partnerstips-heading:before,
-     .partners-main .minutetips-heading:before,
-     .partners-main .partnerstips-heading:before {
-         width: 740px;
-     }
- }
+@include media-breakpoint-up(lg) {}

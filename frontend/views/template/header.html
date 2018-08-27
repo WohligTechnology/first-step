@@ -1,25 +1,28 @@
-<header hide-on-scrol ng-controller="headerCtrl">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-color-change ">
+<header ng-controller="headerCtrl">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top px-0 navbar-color-change">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-               </button>
-                <a class="navbar-brand" ui-sref="home"><img src="/img/main-logo-new.png" alt="logo" width="22%" class="img-width-change"> </a>
+            <div class="">
+                <a class="navbar-brand d-inline" ui-sref="home">
+                    <img src="img/header/logo.png" alt="logo" width="13%" class="img-width-change">
+                </a>
             </div>
-            <div class="collapse navbar-collapse " id="nav-collapse">
-                <div ng-include="template.menu" class="template menu pull-right"></div>
-                <!--<ui class="nav navbar-nav pull-right main-menu">
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#episode">Episodes</a></li>
-                    <li><a href="">About</a></li>
-                    <li class="dropdown dropdown-toggle" data-toggle="dropdown"><a href="">Contact</a></li>
-                </ui>-->
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" ng-include="template.menu"></ul>
+            </div> -->
+            <div class="position-absolute social-icons my-4 display">
+                <a class="mr-1" href="https://www.facebook.com/pehlakadam04/" target="_blank">
+                    <!-- <i class="fab fa-facebook-f"></i> -->
+                    <img src="img/header/facebook.png" class="img-fluid">
+                </a>
+                <a href="https://twitter.com/Pehlakadam04" target="_blank">
+                    <!-- <i class="fab fa-twitter"></i> -->
+                    <img src="img/header/twitter.png" class="img-fluid">
+                </a>
             </div>
-            <div class="header-border hidden-xs"></div>
         </div>
     </nav>
 </header>

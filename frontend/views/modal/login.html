@@ -1,0 +1,36 @@
+<div class="p-4 blue-background yellow-border login">
+    <div ng-click="$dismiss()" class="close-modal">
+        <i class="fas fa-times"></i>
+    </div>
+    <div class="container">
+        <h2 class="text-center mb-4 Roboto-Bold yellow-color">LOGIN TO CONTINUE</h2>
+        <form class="login-form" name="loginDigitalform" ng-submit="login(formData)">
+            <div class="form-group">
+                <input type="text" name="name" ng-model="formData.name" class="form-control" id="name" placeholder="NAME" required only-letters-input>
+                <span ng-show="loginDigitalform.name.$touched && loginDigitalform.name.$invalid ">The name is required.</span>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" ng-model="formData.email" class="form-control" id="email" placeholder="EMAIL" required>
+                <span ng-show="loginDigitalform.email.$touched && loginDigitalform.email.$invalid ">The email is required.</span>
+            </div>
+            <div class="form-group">
+                <input type="text" name="contact" ng-model="formData.number" class="form-control" id="contact" placeholder="CONTACT NUMBER" maxlength=10 minlength=10 required only-digits>
+                <span ng-show="loginDigitalform.contact.$touched && loginDigitalform.contact.$invalid ">The contact number is required.</span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn px-5 yellow-bg" ng-click="">ENTER</button>
+            </div>
+        </form>
+        <div class="mt-5 text-white">
+            <h4>Terms and Conditions</h4>
+            <ol type="1" class="pl-3 terms">
+                <li>Like our FACEBOOK page <a href="https://www.facebook.com/pehlakadam04" target="_blank" >https://www.facebook.com/pehlakadam04</a></li>
+                <li>Follow us on TWITTER <a href="https://twitter.com/Pehlakadam04" target="_blank" >https://twitter.com/Pehlakadam04</a></li>
+                <li>Clear all the subjects in the Digital Course during the entire season till March 2019.</li>
+                <li>The winner will be declared in the last episode of this season</li>
+                <li>Please watch the videos carefully and answer the question. One subject can be attempted only ONCE.</li>
+                <li>The winner will stand a chance to win prizes upto Rs. 50,000/-*.</li>
+            </ol>
+        </div>
+    </div>
+</div>

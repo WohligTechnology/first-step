@@ -39,7 +39,7 @@ myApp.directive('img', function ($compile, $parse) {
     })
 
 
-    .directive('fancybox', function ($document) {
+    .directive('fancyboxBox', function ($document) {
         return {
             restrict: 'EA',
             replace: false,
@@ -48,7 +48,6 @@ myApp.directive('img', function ($compile, $parse) {
                 var target;
                 if (attr.rel) {
                     target = $("[rel='" + attr.rel + "']");
-                    console.log("inside" , attr.rel);
                 } else {
                     target = element;
                 }
@@ -57,9 +56,52 @@ myApp.directive('img', function ($compile, $parse) {
                     openEffect: 'fade',
                     closeEffect: 'fade',
                     closeBtn: true,
+                    nextEffect: '',
+                    prevEffect: '',
                     padding: 0,
                     helpers: {
-                        media: {}
+                        title: {
+                            type: 'over'
+                        },
+                        thumbs: {
+                            width: 50,
+                            height: 50
+                        },
+                        helpers: {
+                            media: {}
+                        }
+                    }
+                });
+            }
+        };
+    })
+
+    .directive('fancyboxThumb', function ($document) {
+
+        return {
+            restrict: 'EA',
+            replace: false,
+            link: function (scope, element, attr) {
+                var $element = $(element);
+                var target;
+                if (attr.rel) {
+                    target = $("[rel='" + attr.rel + "']");
+                } else {
+                    target = element;
+                }
+
+                target.fancybox({
+                    nextEffect: 'none',
+                    prevEffect: 'none',
+                    padding: 0,
+                    helpers: {
+                        title: {
+                            type: 'over'
+                        },
+                        thumbs: {
+                            width: 50,
+                            height: 50
+                        }
                     }
                 });
             }
@@ -103,5 +145,52 @@ myApp.directive('img', function ($compile, $parse) {
         };
     })
 
+    .directive('onlyDigits', function () {
+        return {
+            require: 'ngModel',
+            restrict: 'A',
+            link: function (scope, element, attr, ctrl) {
+                var digits;
+    
+                function inputValue(val) {
+                    if (val) {
+                        var otherVal = val + "";
+                        if (attr.type == "text") {
+                            digits = otherVal.replace(/[^0-9\-\.\\]/g, '');
+                        } else {
+                            digits = otherVal.replace(/[^0-9\-\.\\]/g, '');
+                        }
+    
+    
+                        if (digits !== val) {
+                            ctrl.$setViewValue(digits);
+                            ctrl.$render();
+                        }
+                        return parseInt(digits, 10);
+                    }
+                    return undefined;
+                }
+                ctrl.$parsers.push(inputValue);
+            }
+        };
+    })
+    .directive('onlyLettersInput', function () {
+        return {
+            require: 'ngModel',
+            restrict: 'A',
+            link: function (scope, element, attr, ngModelCtrl) {
+                function fromUser(text) {
+                    var transformedInput = text.replace(/[^a-zA-Z\s]/g, '');
+                    //console.log(transformedInput);
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    return transformedInput;
+                }
+                ngModelCtrl.$parsers.push(fromUser);
+            }
+        };
+    })
 
 ;

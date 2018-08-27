@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+Allow: /sitemap.htm
+Sitemap: http://www.pehlakadam.in/sitemap.xml

@@ -1,0 +1,25 @@
+<div class="inside-page digital-top-padding">
+    <div class="container">
+        <div class="p-2 p-md-5 blue-background yellow-border">
+            <form name="formName">
+                <div class="digital-question-section">
+                    <h3 class="text-white"> Question :</h3>
+                    <div class="question-digital" ng-repeat="digitalquestion in Question track by $index">
+                        <p class="text-white font-20"> <span>{{digitalquestion.No}} </span> &nbsp;<span ng-bind-html="digitalquestion.question | safeHtml"></span></p>
+                        <div class="d-flex align-items-center text-white mb-3" ng-repeat=" data in digitalquestion.createOptions">
+                            <input type="radio" id="{{digitalquestion._id}}" name="{{digitalquestion._id}}" ng-model="formData.Correct" value="{{data.option}}"
+                                ng-click="answeredQstn(formData.Correct,digitalquestion._id);">
+                            <p class="mb-0 ml-2" ng-bind-html="data.option | safeHtml"></p>
+                        </div>
+                    </div>
+                    <div class="pt-5 pl-3" ng-click="digitalSubmit();">
+                            <button role="button" class="btn btn-default common-btn text-center px-4 py-2 position-relative" ng-disabled="constraints.answerProvided.length<Question.length">
+                                        SUBMIT
+                                        <div class="common-btn-bg"></div>
+                            </button>
+                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

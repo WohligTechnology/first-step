@@ -1,37 +1,20 @@
-myApp.factory('NavigationService', function () {
+myApp.factory('NavigationService', function ( $http) {
     var navigation = [
-        // {
+        //     {
         //     name: "Home",
         //     classis: "active",
         //     anchor: "home",
-        // }, 
-        {
-            name: "Episodes",
-            classis: "active",
-            anchor: "home-episodes",
-        }
-        // ,
-        // {
-        //     name: "Ask The Expert",
+        //     subnav: [{
+        //         name: "Subnav1",
+        //         classis: "active",
+        //         anchor: "home"
+        //     }]
+        // }, {
+        //     name: "Links",
         //     classis: "active",
-        //     clickName1: "true",
+        //     anchor: "links",
+        //     subnav: []
         // }
-        , {
-            name: "About",
-            classis: "active",
-            clickName: "true",
-        },
-        {
-            name: "Gallery",
-            classis: "active",
-            anchor: "home-gallery",
-        },
-        {
-            name: "Contact",
-            classis: "active",
-            anchor: "Contact",
-            subnavlist: "true"
-        }
     ];
 
     return {
@@ -39,5 +22,19 @@ myApp.factory('NavigationService', function () {
             return navigation;
         },
 
+        apiCallWithData: function (url, formData, callback) {
+            $http.post(adminurl + url, formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
+
+        apiCallWithoutData: function (url, callback) {
+            $http.post(adminurl + url).then(function (data) {
+                data = data.data;
+                callback(data);
+            });
+        },
     };
 });

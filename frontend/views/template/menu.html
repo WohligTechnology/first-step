@@ -1,46 +1,12 @@
-
 <ul class="nav navbar-nav">
-  <li ng-repeat="menu in navigation" ui-sref-active="active" class="{{menu.classis}}">
-    <!--<a ui-sref="{{menu.anchor}}" ng-if="menu.anchor">{{menu.name}}</a>-->
-    <a ng-click="changeURL(menu.anchor)" ng-if="menu.anchor">{{menu.name}}</a>
-    <a ng-click="openExpertMain()" ng-if="menu.clickName1">{{menu.name}}</a>
-    <a ng-click="openAbout()" ng-if="menu.clickName">{{menu.name}}</a>
-   
-    <a href="{{menu.link}}" ng-if="menu.link">{{menu.name}}</a>
-    <ul class="dropdown-menu" ng-if="menu.subnav!='';">
-      <li ng-repeat="submenu in menu.subnav" ui-sref-active="active">
-        <a ui-serf="{{submenu.anchor}}" ng-if="submenu.anchor">{{submenu.name}}</a>
-        <a herf="{{submenu.link}}" ng-if="submenu.link">{{submenu.name}}</a>
-      </li>
-
-    </ul>
-    <ul class="list-unstyled  contact-modal-bg  dropdown-menu" ng-if="menu.subnavlist">
-      <li>
-        <div class=" location ">
-          <img src="img/map-location.png " class="img-responsive m-auto ">
-        </div>
-      </li>
-      <li class="text-center">CNBC TV18</li>
-      <li class="text-center">EMPIRE COMPLEX</li>
-      <li class="text-center">1st FLOOR, 414 SENAPATI BAPAT MARG</li>
-      <li class="text-center">NEAR KAMALA MILLS, MUMBAI</li>
-      <li class="text-center">MAHARASHTRA 400013</li>
-      <li>
-        <div class="letter-box ">
-          <img src="img/letter.png " class="img-responsive m-auto ">
-        </div>
-      </li>
-      <li class="text-center contact-letter"><a href="mailto:pehlakadam@nw18.com">pehlakadam@nw18.com</a></li>
-    </ul>
-  </li>
-</ul>
-<ul class="nav navbar-nav">
-    <li class="header-socialmedia">
-    <!--<a><img src="img/facebook-header.png" class="img-responsive"> </a>-->
-    <a href="https://www.facebook.com/Pehla-Kadam-105170323406894/" target="blank"> <i class="fa fa-facebook-square social-icon" aria-hidden="true"></i></a>
-  </li>
-  <li class="header-socialmedia">
-    <!--<a><img src="img/twitter-header.png" class="img-responsive"></a>-->
-    <a href="https://twitter.com/Pehlakadam03" target="blank"><i class="fa fa-twitter-square social-icon" aria-hidden="true"></i></a>
+  <li ng-repeat="menu in navigation" ui-sref-active="active" class="nav-item dropdown">
+    <a ui-sref="{{menu.anchor}}" ng-if="menu.anchor" class="nav-link">{{menu.name}}</a>
+    <a href="{{menu.link}}" ng-if="menu.link" class="nav-link">{{menu.name}}</a>
+    <div class="dropdown-menu" ng-if="menu.subnav!='';">
+      <div ng-repeat="submenu in menu.subnav" ui-sref-active="active">
+        <a ui-serf="{{submenu.anchor}}" ng-if="submenu.anchor" class="dropdown-item">{{submenu.name}}</a>
+        <a herf="{{submenu.link}}" ng-if="submenu.link" class="dropdown-item">{{submenu.name}}</a>
+      </div>
+    </div>
   </li>
 </ul>

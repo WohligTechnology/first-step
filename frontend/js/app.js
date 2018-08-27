@@ -5,9 +5,11 @@ var myApp = angular.module('myApp', [
     'angulartics',
     'angulartics.google.analytics',
     'ui.bootstrap',
-    // 'ngAnimate',
-    // 'ngSanitize',
-    'angular-flexslider',
+    'ngAnimate',
+    'ngSanitize',
+    'ui.select',
+    'angularPromiseButtons',
+    'toastr',
     'duScroll'
 ]);
 
@@ -19,67 +21,50 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $httpProvider.defaults.withCredentials = true;
     $stateProvider
         .state('home', {
-            url: "/",
+            url: "/home",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
-
-        .state('minutestips', {
-            url: "/minutestips",
+        .state('thought-of-the-day', {
+            url: "/",
             templateUrl: tempateURL,
-            controller: 'MinutestipsCtrl'
+            controller: 'ThoughtCtrl'
         })
-        .state('gallery', {
-            url: "/gallery",
+        .state('digital-course', {
+            url: "/digital-course/:userId",
             templateUrl: tempateURL,
-            controller: 'GalleryCtrl'
-        })
-        .state('episode', {
-            url: "/episode",
-            templateUrl: tempateURL,
-            controller: 'EpisodeCtrl'
-        })
-        .state('digitalcourse', {
-            url: "/digitalcourse",
-            templateUrl: tempateURL,
-            controller: 'DigitalCourseCtrl'
-        })
-        .state('digitalinside', {
-            url: "/digitalinside/:userId",
-            templateUrl: tempateURL,
-            controller: 'DigitalInsideCtrl'
+            controller: 'DigitalCtrl'
         })
         .state('digital-question', {
             url: "/digital-question/:userId",
             templateUrl: tempateURL,
             controller: 'DigitalQuestionCtrl'
         })
-        .state('form', {
-            url: "/form",
+        .state('contest-hub', {
+            url: "/1minute-tips",
             templateUrl: tempateURL,
-            controller: 'FormCtrl'
+            controller: 'ContestCtrl'
         })
-        .state('partnerspage', {
-            url: "/partnerspage",
+        .state('photo-gallery', {
+            url: "/photo-gallery",
             templateUrl: tempateURL,
-            controller: 'PartnersCtrl'
+            controller: 'GalleryCtrl'
         })
-        .state('coming-soon', {
-            url: "/coming-soon'",
+        .state('latest-buzz', {
+            url: "/latest-buzz/:name",
             templateUrl: tempateURL,
-            controller: 'ComingSoonCtrl'
+            controller: 'LatestCtrl'
         })
-        .state('question-paper', {
-            url: "/question-paper/:userId",
+        .state('links', {
+            url: "/links",
             templateUrl: tempateURL,
-            controller: 'QuestionPaperCtrl'
+            controller: 'LinksCtrl'
         })
-
         .state('homeid', {
             url: "/:id",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
-        });
+        });;
     $urlRouterProvider.otherwise("/");
     $locationProvider.html5Mode(isproduction);
 });
@@ -89,14 +74,4 @@ myApp.config(function ($translateProvider) {
     $translateProvider.translations('en', LanguageEnglish);
     $translateProvider.translations('hi', LanguageHindi);
     $translateProvider.preferredLanguage('en');
-});
-
-myApp.filter('serverimage', function () {
-    return function (image) {
-        if (image && image !== null) {
-            return adminurl + "upload/readFile?file=" + image;
-        } else {
-            return undefined;
-        }
-    }
 });

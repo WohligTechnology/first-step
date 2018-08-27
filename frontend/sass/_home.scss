@@ -1,0 +1,296 @@
+.home-video-text {
+    h2 {
+        letter-spacing: 0.1em;
+        font-size: 5rem;
+        font-family: D-Regular;
+    }
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.home-menu {
+    bottom: 5%;
+    width: 100%;
+    li {
+        width: 15.1%;
+        font-size: 14px;
+        height: 20px;
+        position: relative;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+    .home-menu-btn {
+        background-color: rgba(255, 255, 255, 1);
+        transition: border-color 0.4s ease 0s;
+        border-radius: 80px;
+        border: solid 1px rgba(56, 56, 56, 1);
+        &:hover,
+        &:active {
+            background-color: rgba(255, 222, 95, 1);
+        }
+    }
+}
+
+.home-bg {
+    background-image: url("../img/home/home-bg.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    margin-top: -6px;
+}
+
+.blue-bg {
+    background-image: url("../img/home/about-bg.jpg");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 5px solid rgba(0, 0, 0, 1);
+}
+
+.common-title {
+    font-size: 3.5rem;
+    color: white;
+    font-family: D-Regular;
+}
+
+.common-btn-bg {
+    background: url(../img/home/button.png) no-repeat 100% 0;
+    bottom: -26px;
+    height: 26px;
+    position: absolute;
+    right: -22px;
+    width: 115px;
+}
+
+.common-btn {
+    font-size: 1.1rem;
+    transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    border: solid rgba(255, 212, 90, 1) 0px;
+    &:hover,
+    &:active {
+        color: black !important;
+        background-color: rgba(255, 212, 90, 1);
+        border-color: transparent;
+        transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s
+    }
+}
+
+.about-us{
+    font-size: 16px;
+    line-height: 18px;
+}
+.activity-space{
+    padding: 0 5rem;
+}
+
+.episode-section {
+    .imgsize-450 {
+        height: 50vh;
+        border: 10px solid white;
+    }
+}
+
+.latest-buzz {
+    .card {
+        border-radius: 0;
+        border: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.latest-buzz-title {
+    bottom: -5%;
+    background: white;
+    width: 50%;
+}
+#social{
+    iframe{
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+}
+.gallery-section {
+    .swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 187px;
+      }
+      
+      // Carousel configuration parameters
+      $n: 8; // Number of images
+      $item-width: 400px; // Width of an image. In the Js version this value can be a percentage
+      $item-separation: 80px; // The space between the images. This will decrease the effective item width
+      $viewer-distance: 500px;
+      
+      // Derived variables
+      $theta: 2 * 3.141592653589793 / $n;
+      $apothem: 482.842712474619px; // == $item-width / (2 * tan(PI / $n))
+      
+      .carousel {
+        padding: 20px;
+      
+        perspective: $viewer-distance;
+        overflow: hidden;
+      
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > * {
+          flex: 0 0 auto;
+        }
+      
+        figure {
+          margin: 0;
+      
+          width: $item-width;
+          transform-style: preserve-3d;
+          transition: transform 0.5s;
+          transform-origin: 50% 50% (-$apothem);
+      
+          .one-slide {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 $item-separation / 2;
+      
+            opacity: 0.9; // Just to better illustrate the placement of the carousel sides
+      
+            &:not(:first-of-type) {
+              position: absolute;
+              left: 0;
+              top: 0;
+              transform-origin: 50% 50% (-$apothem);
+            }
+      
+            @for $i from 2 through $n {
+              &:nth-child(#{$i}) {
+                transform: rotateY(#{($i - 1) * $theta}rad);
+              }
+            }
+          }
+        }
+      }      
+}
+
+.num-alpha {
+    border: 10px solid rgba(255, 212, 90, 1);
+    background: #013a67;
+    min-height: 210px;
+    min-width: 210px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    .num-alpha-hover {
+        color: black;
+        font-size: 14px;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+    &:hover {
+        background: white;
+        .tb-border {
+            display: none;
+            opacity: 0;
+            transition: display 0s, opacity 0.5s linear;
+        }
+        .num-alpha-hover {
+            opacity: 1;
+            transition: opacity 1s ease-in-out,
+        }
+    }
+    h2 {
+        font-size: 4rem;
+        letter-spacing: 0;
+    }
+}
+
+#partners{
+    a{
+        text-decoration: none;
+    }
+}
+
+.partners-alpha {
+    border: 10px solid rgba(255, 212, 90, 1);
+    background-color: white;
+    color: #081f4e;
+    min-height: 250px;
+    position: relative;
+    .partner-text{
+        font-family: D-Regular;
+        font-size: 30px;
+        letter-spacing: 9px;
+    }
+    .tb-border{
+        &:before{
+            top: 40px;
+        }
+        &:after{
+            bottom: 40px;
+        }
+    }
+    .partners-alpha-hover{
+position: absolute;
+opacity: 0;
+transition: opacity 0.1s ease-in-out;
+    }
+    &:hover {
+        .tb-border {
+            display: none;
+            opacity: 0;
+            transition: display 0s, opacity 0.5s linear;
+        }
+        .partners-alpha-hover {
+            opacity: 1;
+            transition: opacity 1s ease-in-out,
+        }
+    }
+    h2 {
+        font-size: 4rem;
+        letter-spacing: 0;
+    }
+}
+.twitter-width{
+    width: 340px;
+}
+
+.tb-border {
+    font-family: D-Regular;
+    &:before {
+        content: "";
+        width: 50%;
+        top: 15%;
+        left: 25%;
+        content: "";
+        border-top: 1px solid #ffd45a;
+        position: absolute;
+    }
+    &:after {
+        content: "";
+        width: 50%;
+        left: 25%;
+        bottom: 15%;
+        content: "";
+        border-bottom: 1px solid #ffd45a;
+        position: absolute;
+    }
+    .num-alpha-desc {
+        letter-spacing: 0.30em;
+        font-size: 1.4375rem;
+    }
+}
+.footer-end{
+    border-bottom: solid 100px #071f4e;
+}

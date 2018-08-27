@@ -1,12 +1,13 @@
-<div class="digital-modal-bg">
-    <div class="container-fluid">
-        <div class="thank-content text-center">
+<div class="p-4 blue-background yellow-border text-white login">
+    <div ui-sref="home" ng-click="$dismiss()" class="close-modal">
+        <i class="fas fa-times"></i>
+    </div>
+    <div class="container">
+        <div class="text-center text-white">
             <h2 class="text-uppercase"> Congratulations!</h2>
             <p>You have cleared the Digital Course in {{courseName}} successfully. An E-certifate has been mailed to your email
                 address.
             </p>
         </div>
     </div>
-    <div class="close-modal" ng-click="$dismiss()" ui-sref="home">
-        <i class=" fa fa-times-circle " aria-hidden="true "></i></div>
 </div>

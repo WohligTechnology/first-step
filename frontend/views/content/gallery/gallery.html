@@ -1,0 +1,74 @@
+<div class="inside-page">
+    <div class="d-flex align-items-center px-5 pt-5">
+        <div class="initial-letter">#P</div>
+        <div class="ml-2 initial-word">
+            <div>Photo</div>
+            <div>Gallery</div>
+        </div>
+    </div>
+    <div class="container py-5">
+        <div class="gallery-inside my-5">
+            <div class="season-common p-2 py-5 p-md-5">
+                <div class="season-text">
+                    <h3 class="text-uppercase">Season 4</h3>
+                </div>
+                <div class="row season-scroll">
+                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season4 track by $index">
+                        <div class="p-2 mb-4 gallery-images blue-border-light">
+                            <a fancybox-box data-fancybox="gallery" href="{{img.img1}}" rel="gal">
+                                 <img ng-src="{{img.img1}}" class="img-fluid fancy-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        <div class="gallery-inside my-5">
+            <div class="season-common p-2 py-5 p-md-5">
+                <div class="season-text">
+                    <h3 class="text-uppercase">Season 3</h3>
+                </div>
+                <div class="row season-scroll">
+                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season3 track by $index">
+                        <div class="p-2 mb-4 gallery-images blue-border-light">
+                            <a fancybox-box data-fancybox="gallery" href="{{img.img1}}" rel="gal">
+                                <img ng-src="{{img.img2}}" class="img-fluid fancy-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-inside my-5">
+            <div class="season-common p-2 py-5 p-md-5">
+                <div class="season-text">
+                    <h3 class="text-uppercase">Season 2</h3>
+                </div>
+                <div class="row season-scroll">
+                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season2 track by $index">
+                        <div class="p-2 mb-4 gallery-images blue-border-light">
+                            <a fancybox-box data-fancybox="gallery" href="{{img.img1}}" rel="gal">
+                                <img ng-src="{{img.img2}}" class="img-fluid fancy-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-inside my-5">
+            <div class="season-common p-2 py-5 p-md-5">
+                <div class="season-text">
+                    <h3 class="text-uppercase">Season 1</h3>
+                </div>
+                <div class="row season-scroll">
+                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season1 track by $index" ng-repeat="img in season1 track by $index">
+                        <div class="p-2 mb-4 gallery-images blue-border-light">
+                            <a fancybox-box data-fancybox="gallery" href="{{img.img1}}" rel="gal">
+                                <img ng-src="{{img.img2}}" class="img-fluid fancy-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
