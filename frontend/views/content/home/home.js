@@ -4,21 +4,11 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
     TemplateService.title = "Home"; //This is the Title of the Website
     $scope.navigation = NavigationService.getNavigation();
 
-
-
-
     $scope.goToAnchor = function (id) {
-        $state.transitionTo('id', {
-            id: id
-        }, {
-            notify: false
-        });
-        makeAnimation(id);
-        $location.replace();
-        // var someElement = angular.element(document.getElementById(id));
-        // $document.scrollToElement(someElement, 70, 1500);
-        // console.log(id);
-        // $location.path("/" + id);
+        var someElement = angular.element(document.getElementById(id));
+        $document.scrollToElement(someElement, 70, 1500);
+        console.log(id);
+        $location.path("/" + id);
     };
 
     $timeout(function () {
