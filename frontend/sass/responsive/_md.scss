@@ -1,6 +1,9 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(md) {
+    .common-title{
+        padding-left: 0;
+    }
     .overlay .overlay_content .quote-text {
         width: 30%;
     }

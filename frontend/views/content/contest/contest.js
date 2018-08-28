@@ -13,12 +13,12 @@ myApp.controller('ContestCtrl', function ($scope, TemplateService, NavigationSer
         imageUrl: "ZOkWJZgERNE",
         videoUrl: "ZOkWJZgERNE",
         episodeno: "Tip No. 2",
-        searchName: "Tips Equity",
+        searchName: "Equity",
     },
     {
         imageUrl: "vUbwfD_G9Jg",
         videoUrl: "vUbwfD_G9Jg",
         episodeno: "Tip No. 3",
-        searchName: "Tips Real States",
+        searchName: "Real States",
     }];
 })
