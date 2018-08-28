@@ -4,8 +4,8 @@
             <form name="formName">
                 <div class="digital-question-section">
                     <h3 class="text-white"> Question :</h3>
-                    <div class="question-digital" ng-repeat="digitalquestion in Question track by $index">
-                        <p class="text-white font-20"> <span>{{digitalquestion.No}} </span> &nbsp;<span ng-bind-html="digitalquestion.question | safeHtml"></span></p>
+                    <div class="question-digital" ng-repeat="digitalquestion in Question track by $index" class="pb-3">
+                        <p class="text-white font-20"><strong> <span>{{digitalquestion.No}} </span> &nbsp;<span ng-bind-html="digitalquestion.question | safeHtml"></span></strong></p>
                         <div class="d-flex align-items-center text-white mb-3" ng-repeat=" data in digitalquestion.createOptions">
                             <input type="radio" id="{{digitalquestion._id}}" name="{{digitalquestion._id}}" ng-model="formData.Correct" value="{{data.option}}"
                                 ng-click="answeredQstn(formData.Correct,digitalquestion._id);">
