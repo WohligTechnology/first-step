@@ -28,7 +28,7 @@ schema.plugin(deepPopulate, {
 // schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('DigitalUser', schema);
-
+mongoose.model('DigitalUser').collection.drop();
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "testGiven", "testGiven"));
 var model = {
 
