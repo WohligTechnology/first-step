@@ -14,8 +14,7 @@ var schema = new Schema({
     },
     testGiven: [{
         type: Schema.Types.ObjectId,
-        ref: 'DigitalCourse',
-        unique:true
+        ref: 'DigitalCourse'
     }]
 });
 
