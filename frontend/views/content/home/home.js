@@ -1,14 +1,24 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, apiService,$location,$document) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, apiService, $location, $document) {
     $scope.template = TemplateService.getHTML("content/home/home.html");
     TemplateService.title = "Home"; //This is the Title of the Website
     $scope.navigation = NavigationService.getNavigation();
 
+
+
+
     $scope.goToAnchor = function (id) {
-        var someElement = angular.element(document.getElementById(id));
-        $document.scrollToElement(someElement, 70, 1500);
-        console.log(id);
-        $location.path("/" + id);
+        $state.transitionTo('id', {
+            id: id
+        }, {
+            notify: false
+        });
+        makeAnimation(id);
+        $location.replace();
+        // var someElement = angular.element(document.getElementById(id));
+        // $document.scrollToElement(someElement, 70, 1500);
+        // console.log(id);
+        // $location.path("/" + id);
     };
 
     $timeout(function () {
@@ -56,25 +66,25 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         img: 'img/mike.png'
     }];
 
-//about more modal
-$scope.aboutMore = function () {
-    $scope.aboutModal= $uibModal.open({
-        animation: true,
-        templateUrl: 'views/modal/about.html',
-        scope: $scope,
-        size: 'lg',
-        backdrop:'static',
-    });
-};
+    //about more modal
+    $scope.aboutMore = function () {
+        $scope.aboutModal = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/about.html',
+            scope: $scope,
+            size: 'lg',
+            backdrop: 'static',
+        });
+    };
 
     //modal example
     $scope.modalOpen = function () {
-        $scope.loginModal= $uibModal.open({
+        $scope.loginModal = $uibModal.open({
             animation: true,
             templateUrl: 'views/modal/login.html',
             scope: $scope,
             size: 'lg',
-            backdrop:'static',
+            backdrop: 'static',
         });
     };
 
@@ -89,7 +99,7 @@ $scope.aboutMore = function () {
                 });
                 $scope.loginModal.close();
             } else {
-                $scope.error="Test already has been given from this email."
+                $scope.error = "Test already has been given from this email."
             }
         });
     }
