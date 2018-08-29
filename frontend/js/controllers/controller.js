@@ -5,7 +5,7 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
     })
 
     //controller for thought of the day
-    .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout,$state) {
+    .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout, $state) {
         $scope.template = TemplateService.getHTML("content/thought.html");
         TemplateService.title = "Thought Of The Day"; // This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -18,12 +18,12 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
             $.jStorage.set("showQuotes", true);
             console.log("**********************");
             $("#overlay").hide();
-            $state.go("home");            
+            $state.go("home");
         }
-        $timeout(function(){
+        $timeout(function () {
             $("#overlay").hide();
             $state.go("home");
-        },10000);
+        }, 10000);
     })
 
     // Example API Controller
@@ -37,8 +37,12 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
     .controller('FooterCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $state, $uibModal, $document, $location) {
         console.log("inside footer ctrl");
         $scope.goToAnchor = function (id) {
+            var current = $state.current;
+            if ($state.current.name == "homeid") {
+                var someElement = angular.element(document.getElementById(id));                
+                $document.scrollToElement(someElement, 70, 1500);
+            }
             $state.go("home");
-            console.log("went to home 8000");
             $timeout(function () {
                 var someElement = angular.element(document.getElementById(id));
                 $document.scrollToElement(someElement, 70, 1500);

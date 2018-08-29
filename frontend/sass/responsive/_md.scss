@@ -56,6 +56,12 @@
                 padding-left: 10px;
             }
         }
+        li:nth-child(2){
+            &:after{
+                content: '';
+                padding-left: 25px;
+            }
+        }
         li:last-child{
             &:after{
                 content: '';

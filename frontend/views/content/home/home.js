@@ -95,28 +95,14 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
     }
 
     $scope.homeSlide = [
-        'img/season4/1.jpg',
-        'img/season4/2.jpg',
-        'img/season4/3.jpg',
-        'img/season4/4.jpg',
-        'img/season4/5.jpg',
-        'img/season4/6.jpg',
-        'img/season4/7.jpg',
-        'img/season4/8.jpg',
-        'img/season4/9.jpg',
-        'img/season4/10.jpg',
-        'img/season4/11.jpg',
-        'img/season4/12.jpg',
-        'img/season4/13.jpg',
-        'img/season4/14.jpg',
-        'img/season4/15.jpg',
-        'img/season4/16.jpg',
-        'img/season4/17.jpg',
-        'img/season4/18.jpg',
-        'img/season4/19.jpg',
-        'img/season4/20.jpg',
-        'img/season4/21.jpg',
-        'img/season4/22.jpg',
-        'img/season4/23.jpg'
+        'img/season4/24.jpg',
+        'img/season4/25.jpg',
+        'img/season4/26.jpg',
+        'img/season4/27.jpg',
+        'img/season4/28.jpg',
+        'img/season4/29.jpg',
+        'img/season4/30.jpg',
+        'img/season4/31.jpg',
+        'img/season4/32.jpg'
     ];
 })
