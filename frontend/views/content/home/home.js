@@ -10,7 +10,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         console.log(id);
         $location.path("/" + id);
     };
-
     $timeout(function () {
         mySwiper = new Swiper('.swiper-container', {
             initialSlide: 3,
@@ -32,7 +31,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 el: '.swiper-pagination',
             },
         })
-    }, 100);
+    }, 500);
 
     $scope.suppliers = [{
         name: "Casey Slusse",

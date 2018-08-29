@@ -131,21 +131,30 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.banking = true;
             $scope.insurance = false;
             $scope.realestate = false;
+            $scope.equity = false;
             $scope.mutualfunds = false;
-
+        }else if (data == 'EQUITY') {
+            $scope.banking = false;
+            $scope.equity = true;
+            $scope.insurance = false;
+            $scope.realestate = false;
+            $scope.mutualfunds = false;
         } else if (data == 'INSURANCE') {
             $scope.banking = false;
             $scope.insurance = true;
             $scope.realestate = false;
+            $scope.equity = false;
             $scope.mutualfunds = false;
         } else if (data == 'MUTUAL FUNDS') {
             $scope.banking = false;
             $scope.insurance = false;
             $scope.realestate = false;
+            $scope.equity = false;
             $scope.mutualfunds = true;
         } else if (data == 'REAL ESTATE') {
             $scope.banking = false;
             $scope.insurance = false;
+            $scope.equity = false;
             $scope.mutualfunds = false;
             $scope.realestate = true;
         }
