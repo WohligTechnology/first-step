@@ -2,6 +2,8 @@ myApp.service('TemplateService', function () {
     this.title = "Season4";
     this.meta = "";
     this.metadesc = "";
+    this.desc = "Demo";
+    this.keywords = "Demo";
 
     var d = new Date();
     this.year = d.getFullYear();

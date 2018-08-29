@@ -222,4 +222,17 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
         ]
     }];
 
-})
+
+
+    _.each($scope.blogs, function (n) {
+        _.each(n.data, function (m) {
+            if ($stateParams.name == m.id) {
+                $scope.individualBlog = m;
+                TemplateService.title = m.title;
+                TemplateService.desc = m.seo[0].desc;
+                TemplateService.keywords = m.seo[0].keywords;
+            }
+        });
+    });
+
+});

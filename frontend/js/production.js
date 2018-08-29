@@ -11,7 +11,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 !function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports,require("jquery"),require("popper.js")):"function"==typeof define&&define.amd?define(["exports","jquery","popper.js"],e):e(t.bootstrap={},t.jQuery,t.Popper)}(this,function(t,e,c){"use strict";function i(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function o(t,e,n){return e&&i(t.prototype,e),n&&i(t,n),t}function h(r){for(var t=1;t<arguments.length;t++){var s=null!=arguments[t]?arguments[t]:{},e=Object.keys(s);"function"==typeof Object.getOwnPropertySymbols&&(e=e.concat(Object.getOwnPropertySymbols(s).filter(function(t){return Object.getOwnPropertyDescriptor(s,t).enumerable}))),e.forEach(function(t){var e,n,i;e=r,i=s[n=t],n in e?Object.defineProperty(e,n,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[n]=i})}return r}e=e&&e.hasOwnProperty("default")?e.default:e,c=c&&c.hasOwnProperty("default")?c.default:c;var r,n,s,a,l,u,f,d,_,g,m,p,v,E,y,T,C,I,A,D,b,S,w,N,O,k,P,L,j,R,H,W,M,x,U,K,F,V,Q,B,Y,G,q,z,X,J,Z,$,tt,et,nt,it,rt,st,ot,at,lt,ht,ct,ut,ft,dt,_t,gt,mt,pt,vt,Et,yt,Tt,Ct,It,At,Dt,bt,St,wt,Nt,Ot,kt,Pt,Lt,jt,Rt,Ht,Wt,Mt,xt,Ut,Kt,Ft,Vt,Qt,Bt,Yt,Gt,qt,zt,Xt,Jt,Zt,$t,te,ee,ne,ie,re,se,oe,ae,le,he,ce,ue,fe,de,_e,ge,me,pe,ve,Ee,ye,Te,Ce,Ie,Ae,De,be,Se,we,Ne,Oe,ke,Pe,Le,je,Re,He,We,Me,xe,Ue,Ke,Fe,Ve,Qe,Be,Ye,Ge,qe,ze,Xe,Je,Ze,$e,tn,en,nn,rn,sn,on,an,ln,hn,cn,un,fn,dn,_n,gn,mn,pn,vn,En,yn,Tn,Cn=function(i){var e="transitionend";function t(t){var e=this,n=!1;return i(this).one(l.TRANSITION_END,function(){n=!0}),setTimeout(function(){n||l.triggerTransitionEnd(e)},t),this}var l={TRANSITION_END:"bsTransitionEnd",getUID:function(t){for(;t+=~~(1e6*Math.random()),document.getElementById(t););return t},getSelectorFromElement:function(t){var e=t.getAttribute("data-target");e&&"#"!==e||(e=t.getAttribute("href")||"");try{return 0<i(document).find(e).length?e:null}catch(t){return null}},getTransitionDurationFromElement:function(t){if(!t)return 0;var e=i(t).css("transition-duration");return parseFloat(e)?(e=e.split(",")[0],1e3*parseFloat(e)):0},reflow:function(t){return t.offsetHeight},triggerTransitionEnd:function(t){i(t).trigger(e)},supportsTransitionEnd:function(){return Boolean(e)},isElement:function(t){return(t[0]||t).nodeType},typeCheckConfig:function(t,e,n){for(var i in n)if(Object.prototype.hasOwnProperty.call(n,i)){var r=n[i],s=e[i],o=s&&l.isElement(s)?"element":(a=s,{}.toString.call(a).match(/\s([a-z]+)/i)[1].toLowerCase());if(!new RegExp(r).test(o))throw new Error(t.toUpperCase()+': Option "'+i+'" provided type "'+o+'" but expected type "'+r+'".')}var a}};return i.fn.emulateTransitionEnd=t,i.event.special[l.TRANSITION_END]={bindType:e,delegateType:e,handle:function(t){if(i(t.target).is(this))return t.handleObj.handler.apply(this,arguments)}},l}(e),In=(n="alert",a="."+(s="bs.alert"),l=(r=e).fn[n],u={CLOSE:"close"+a,CLOSED:"closed"+a,CLICK_DATA_API:"click"+a+".data-api"},f="alert",d="fade",_="show",g=function(){function i(t){this._element=t}var t=i.prototype;return t.close=function(t){var e=this._element;t&&(e=this._getRootElement(t)),this._triggerCloseEvent(e).isDefaultPrevented()||this._removeElement(e)},t.dispose=function(){r.removeData(this._element,s),this._element=null},t._getRootElement=function(t){var e=Cn.getSelectorFromElement(t),n=!1;return e&&(n=r(e)[0]),n||(n=r(t).closest("."+f)[0]),n},t._triggerCloseEvent=function(t){var e=r.Event(u.CLOSE);return r(t).trigger(e),e},t._removeElement=function(e){var n=this;if(r(e).removeClass(_),r(e).hasClass(d)){var t=Cn.getTransitionDurationFromElement(e);r(e).one(Cn.TRANSITION_END,function(t){return n._destroyElement(e,t)}).emulateTransitionEnd(t)}else this._destroyElement(e)},t._destroyElement=function(t){r(t).detach().trigger(u.CLOSED).remove()},i._jQueryInterface=function(n){return this.each(function(){var t=r(this),e=t.data(s);e||(e=new i(this),t.data(s,e)),"close"===n&&e[n](this)})},i._handleDismiss=function(e){return function(t){t&&t.preventDefault(),e.close(this)}},o(i,null,[{key:"VERSION",get:function(){return"4.1.1"}}]),i}(),r(document).on(u.CLICK_DATA_API,'[data-dismiss="alert"]',g._handleDismiss(new g)),r.fn[n]=g._jQueryInterface,r.fn[n].Constructor=g,r.fn[n].noConflict=function(){return r.fn[n]=l,g._jQueryInterface},g),An=(p="button",E="."+(v="bs.button"),y=".data-api",T=(m=e).fn[p],C="active",I="btn",D='[data-toggle^="button"]',b='[data-toggle="buttons"]',S="input",w=".active",N=".btn",O={CLICK_DATA_API:"click"+E+y,FOCUS_BLUR_DATA_API:(A="focus")+E+y+" blur"+E+y},k=function(){function n(t){this._element=t}var t=n.prototype;return t.toggle=function(){var t=!0,e=!0,n=m(this._element).closest(b)[0];if(n){var i=m(this._element).find(S)[0];if(i){if("radio"===i.type)if(i.checked&&m(this._element).hasClass(C))t=!1;else{var r=m(n).find(w)[0];r&&m(r).removeClass(C)}if(t){if(i.hasAttribute("disabled")||n.hasAttribute("disabled")||i.classList.contains("disabled")||n.classList.contains("disabled"))return;i.checked=!m(this._element).hasClass(C),m(i).trigger("change")}i.focus(),e=!1}}e&&this._element.setAttribute("aria-pressed",!m(this._element).hasClass(C)),t&&m(this._element).toggleClass(C)},t.dispose=function(){m.removeData(this._element,v),this._element=null},n._jQueryInterface=function(e){return this.each(function(){var t=m(this).data(v);t||(t=new n(this),m(this).data(v,t)),"toggle"===e&&t[e]()})},o(n,null,[{key:"VERSION",get:function(){return"4.1.1"}}]),n}(),m(document).on(O.CLICK_DATA_API,D,function(t){t.preventDefault();var e=t.target;m(e).hasClass(I)||(e=m(e).closest(N)),k._jQueryInterface.call(m(e),"toggle")}).on(O.FOCUS_BLUR_DATA_API,D,function(t){var e=m(t.target).closest(N)[0];m(e).toggleClass(A,/^focus(in)?$/.test(t.type))}),m.fn[p]=k._jQueryInterface,m.fn[p].Constructor=k,m.fn[p].noConflict=function(){return m.fn[p]=T,k._jQueryInterface},k),Dn=(L="carousel",R="."+(j="bs.carousel"),H=".data-api",W=(P=e).fn[L],M={interval:5e3,keyboard:!0,slide:!1,pause:"hover",wrap:!0},x={interval:"(number|boolean)",keyboard:"boolean",slide:"(boolean|string)",pause:"(string|boolean)",wrap:"boolean"},U="next",K="prev",F="left",V="right",Q={SLIDE:"slide"+R,SLID:"slid"+R,KEYDOWN:"keydown"+R,MOUSEENTER:"mouseenter"+R,MOUSELEAVE:"mouseleave"+R,TOUCHEND:"touchend"+R,LOAD_DATA_API:"load"+R+H,CLICK_DATA_API:"click"+R+H},B="carousel",Y="active",G="slide",q="carousel-item-right",z="carousel-item-left",X="carousel-item-next",J="carousel-item-prev",Z={ACTIVE:".active",ACTIVE_ITEM:".active.carousel-item",ITEM:".carousel-item",NEXT_PREV:".carousel-item-next, .carousel-item-prev",INDICATORS:".carousel-indicators",DATA_SLIDE:"[data-slide], [data-slide-to]",DATA_RIDE:'[data-ride="carousel"]'},$=function(){function s(t,e){this._items=null,this._interval=null,this._activeElement=null,this._isPaused=!1,this._isSliding=!1,this.touchTimeout=null,this._config=this._getConfig(e),this._element=P(t)[0],this._indicatorsElement=P(this._element).find(Z.INDICATORS)[0],this._addEventListeners()}var t=s.prototype;return t.next=function(){this._isSliding||this._slide(U)},t.nextWhenVisible=function(){!document.hidden&&P(this._element).is(":visible")&&"hidden"!==P(this._element).css("visibility")&&this.next()},t.prev=function(){this._isSliding||this._slide(K)},t.pause=function(t){t||(this._isPaused=!0),P(this._element).find(Z.NEXT_PREV)[0]&&(Cn.triggerTransitionEnd(this._element),this.cycle(!0)),clearInterval(this._interval),this._interval=null},t.cycle=function(t){t||(this._isPaused=!1),this._interval&&(clearInterval(this._interval),this._interval=null),this._config.interval&&!this._isPaused&&(this._interval=setInterval((document.visibilityState?this.nextWhenVisible:this.next).bind(this),this._config.interval))},t.to=function(t){var e=this;this._activeElement=P(this._element).find(Z.ACTIVE_ITEM)[0];var n=this._getItemIndex(this._activeElement);if(!(t>this._items.length-1||t<0))if(this._isSliding)P(this._element).one(Q.SLID,function(){return e.to(t)});else{if(n===t)return this.pause(),void this.cycle();var i=n<t?U:K;this._slide(i,this._items[t])}},t.dispose=function(){P(this._element).off(R),P.removeData(this._element,j),this._items=null,this._config=null,this._element=null,this._interval=null,this._isPaused=null,this._isSliding=null,this._activeElement=null,this._indicatorsElement=null},t._getConfig=function(t){return t=h({},M,t),Cn.typeCheckConfig(L,t,x),t},t._addEventListeners=function(){var e=this;this._config.keyboard&&P(this._element).on(Q.KEYDOWN,function(t){return e._keydown(t)}),"hover"===this._config.pause&&(P(this._element).on(Q.MOUSEENTER,function(t){return e.pause(t)}).on(Q.MOUSELEAVE,function(t){return e.cycle(t)}),"ontouchstart"in document.documentElement&&P(this._element).on(Q.TOUCHEND,function(){e.pause(),e.touchTimeout&&clearTimeout(e.touchTimeout),e.touchTimeout=setTimeout(function(t){return e.cycle(t)},500+e._config.interval)}))},t._keydown=function(t){if(!/input|textarea/i.test(t.target.tagName))switch(t.which){case 37:t.preventDefault(),this.prev();break;case 39:t.preventDefault(),this.next()}},t._getItemIndex=function(t){return this._items=P.makeArray(P(t).parent().find(Z.ITEM)),this._items.indexOf(t)},t._getItemByDirection=function(t,e){var n=t===U,i=t===K,r=this._getItemIndex(e),s=this._items.length-1;if((i&&0===r||n&&r===s)&&!this._config.wrap)return e;var o=(r+(t===K?-1:1))%this._items.length;return-1===o?this._items[this._items.length-1]:this._items[o]},t._triggerSlideEvent=function(t,e){var n=this._getItemIndex(t),i=this._getItemIndex(P(this._element).find(Z.ACTIVE_ITEM)[0]),r=P.Event(Q.SLIDE,{relatedTarget:t,direction:e,from:i,to:n});return P(this._element).trigger(r),r},t._setActiveIndicatorElement=function(t){if(this._indicatorsElement){P(this._indicatorsElement).find(Z.ACTIVE).removeClass(Y);var e=this._indicatorsElement.children[this._getItemIndex(t)];e&&P(e).addClass(Y)}},t._slide=function(t,e){var n,i,r,s=this,o=P(this._element).find(Z.ACTIVE_ITEM)[0],a=this._getItemIndex(o),l=e||o&&this._getItemByDirection(t,o),h=this._getItemIndex(l),c=Boolean(this._interval);if(t===U?(n=z,i=X,r=F):(n=q,i=J,r=V),l&&P(l).hasClass(Y))this._isSliding=!1;else if(!this._triggerSlideEvent(l,r).isDefaultPrevented()&&o&&l){this._isSliding=!0,c&&this.pause(),this._setActiveIndicatorElement(l);var u=P.Event(Q.SLID,{relatedTarget:l,direction:r,from:a,to:h});if(P(this._element).hasClass(G)){P(l).addClass(i),Cn.reflow(l),P(o).addClass(n),P(l).addClass(n);var f=Cn.getTransitionDurationFromElement(o);P(o).one(Cn.TRANSITION_END,function(){P(l).removeClass(n+" "+i).addClass(Y),P(o).removeClass(Y+" "+i+" "+n),s._isSliding=!1,setTimeout(function(){return P(s._element).trigger(u)},0)}).emulateTransitionEnd(f)}else P(o).removeClass(Y),P(l).addClass(Y),this._isSliding=!1,P(this._element).trigger(u);c&&this.cycle()}},s._jQueryInterface=function(i){return this.each(function(){var t=P(this).data(j),e=h({},M,P(this).data());"object"==typeof i&&(e=h({},e,i));var n="string"==typeof i?i:e.slide;if(t||(t=new s(this,e),P(this).data(j,t)),"number"==typeof i)t.to(i);else if("string"==typeof n){if("undefined"==typeof t[n])throw new TypeError('No method named "'+n+'"');t[n]()}else e.interval&&(t.pause(),t.cycle())})},s._dataApiClickHandler=function(t){var e=Cn.getSelectorFromElement(this);if(e){var n=P(e)[0];if(n&&P(n).hasClass(B)){var i=h({},P(n).data(),P(this).data()),r=this.getAttribute("data-slide-to");r&&(i.interval=!1),s._jQueryInterface.call(P(n),i),r&&P(n).data(j).to(r),t.preventDefault()}}},o(s,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return M}}]),s}(),P(document).on(Q.CLICK_DATA_API,Z.DATA_SLIDE,$._dataApiClickHandler),P(window).on(Q.LOAD_DATA_API,function(){P(Z.DATA_RIDE).each(function(){var t=P(this);$._jQueryInterface.call(t,t.data())})}),P.fn[L]=$._jQueryInterface,P.fn[L].Constructor=$,P.fn[L].noConflict=function(){return P.fn[L]=W,$._jQueryInterface},$),bn=(et="collapse",it="."+(nt="bs.collapse"),rt=(tt=e).fn[et],st={toggle:!0,parent:""},ot={toggle:"boolean",parent:"(string|element)"},at={SHOW:"show"+it,SHOWN:"shown"+it,HIDE:"hide"+it,HIDDEN:"hidden"+it,CLICK_DATA_API:"click"+it+".data-api"},lt="show",ht="collapse",ct="collapsing",ut="collapsed",ft="width",dt="height",_t={ACTIVES:".show, .collapsing",DATA_TOGGLE:'[data-toggle="collapse"]'},gt=function(){function a(t,e){this._isTransitioning=!1,this._element=t,this._config=this._getConfig(e),this._triggerArray=tt.makeArray(tt('[data-toggle="collapse"][href="#'+t.id+'"],[data-toggle="collapse"][data-target="#'+t.id+'"]'));for(var n=tt(_t.DATA_TOGGLE),i=0;i<n.length;i++){var r=n[i],s=Cn.getSelectorFromElement(r);null!==s&&0<tt(s).filter(t).length&&(this._selector=s,this._triggerArray.push(r))}this._parent=this._config.parent?this._getParent():null,this._config.parent||this._addAriaAndCollapsedClass(this._element,this._triggerArray),this._config.toggle&&this.toggle()}var t=a.prototype;return t.toggle=function(){tt(this._element).hasClass(lt)?this.hide():this.show()},t.show=function(){var t,e,n=this;if(!this._isTransitioning&&!tt(this._element).hasClass(lt)&&(this._parent&&0===(t=tt.makeArray(tt(this._parent).find(_t.ACTIVES).filter('[data-parent="'+this._config.parent+'"]'))).length&&(t=null),!(t&&(e=tt(t).not(this._selector).data(nt))&&e._isTransitioning))){var i=tt.Event(at.SHOW);if(tt(this._element).trigger(i),!i.isDefaultPrevented()){t&&(a._jQueryInterface.call(tt(t).not(this._selector),"hide"),e||tt(t).data(nt,null));var r=this._getDimension();tt(this._element).removeClass(ht).addClass(ct),(this._element.style[r]=0)<this._triggerArray.length&&tt(this._triggerArray).removeClass(ut).attr("aria-expanded",!0),this.setTransitioning(!0);var s="scroll"+(r[0].toUpperCase()+r.slice(1)),o=Cn.getTransitionDurationFromElement(this._element);tt(this._element).one(Cn.TRANSITION_END,function(){tt(n._element).removeClass(ct).addClass(ht).addClass(lt),n._element.style[r]="",n.setTransitioning(!1),tt(n._element).trigger(at.SHOWN)}).emulateTransitionEnd(o),this._element.style[r]=this._element[s]+"px"}}},t.hide=function(){var t=this;if(!this._isTransitioning&&tt(this._element).hasClass(lt)){var e=tt.Event(at.HIDE);if(tt(this._element).trigger(e),!e.isDefaultPrevented()){var n=this._getDimension();if(this._element.style[n]=this._element.getBoundingClientRect()[n]+"px",Cn.reflow(this._element),tt(this._element).addClass(ct).removeClass(ht).removeClass(lt),0<this._triggerArray.length)for(var i=0;i<this._triggerArray.length;i++){var r=this._triggerArray[i],s=Cn.getSelectorFromElement(r);if(null!==s)tt(s).hasClass(lt)||tt(r).addClass(ut).attr("aria-expanded",!1)}this.setTransitioning(!0);this._element.style[n]="";var o=Cn.getTransitionDurationFromElement(this._element);tt(this._element).one(Cn.TRANSITION_END,function(){t.setTransitioning(!1),tt(t._element).removeClass(ct).addClass(ht).trigger(at.HIDDEN)}).emulateTransitionEnd(o)}}},t.setTransitioning=function(t){this._isTransitioning=t},t.dispose=function(){tt.removeData(this._element,nt),this._config=null,this._parent=null,this._element=null,this._triggerArray=null,this._isTransitioning=null},t._getConfig=function(t){return(t=h({},st,t)).toggle=Boolean(t.toggle),Cn.typeCheckConfig(et,t,ot),t},t._getDimension=function(){return tt(this._element).hasClass(ft)?ft:dt},t._getParent=function(){var n=this,t=null;Cn.isElement(this._config.parent)?(t=this._config.parent,"undefined"!=typeof this._config.parent.jquery&&(t=this._config.parent[0])):t=tt(this._config.parent)[0];var e='[data-toggle="collapse"][data-parent="'+this._config.parent+'"]';return tt(t).find(e).each(function(t,e){n._addAriaAndCollapsedClass(a._getTargetFromElement(e),[e])}),t},t._addAriaAndCollapsedClass=function(t,e){if(t){var n=tt(t).hasClass(lt);0<e.length&&tt(e).toggleClass(ut,!n).attr("aria-expanded",n)}},a._getTargetFromElement=function(t){var e=Cn.getSelectorFromElement(t);return e?tt(e)[0]:null},a._jQueryInterface=function(i){return this.each(function(){var t=tt(this),e=t.data(nt),n=h({},st,t.data(),"object"==typeof i&&i?i:{});if(!e&&n.toggle&&/show|hide/.test(i)&&(n.toggle=!1),e||(e=new a(this,n),t.data(nt,e)),"string"==typeof i){if("undefined"==typeof e[i])throw new TypeError('No method named "'+i+'"');e[i]()}})},o(a,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return st}}]),a}(),tt(document).on(at.CLICK_DATA_API,_t.DATA_TOGGLE,function(t){"A"===t.currentTarget.tagName&&t.preventDefault();var n=tt(this),e=Cn.getSelectorFromElement(this);tt(e).each(function(){var t=tt(this),e=t.data(nt)?"toggle":n.data();gt._jQueryInterface.call(t,e)})}),tt.fn[et]=gt._jQueryInterface,tt.fn[et].Constructor=gt,tt.fn[et].noConflict=function(){return tt.fn[et]=rt,gt._jQueryInterface},gt),Sn=(pt="dropdown",Et="."+(vt="bs.dropdown"),yt=".data-api",Tt=(mt=e).fn[pt],Ct=new RegExp("38|40|27"),It={HIDE:"hide"+Et,HIDDEN:"hidden"+Et,SHOW:"show"+Et,SHOWN:"shown"+Et,CLICK:"click"+Et,CLICK_DATA_API:"click"+Et+yt,KEYDOWN_DATA_API:"keydown"+Et+yt,KEYUP_DATA_API:"keyup"+Et+yt},At="disabled",Dt="show",bt="dropup",St="dropright",wt="dropleft",Nt="dropdown-menu-right",Ot="position-static",kt='[data-toggle="dropdown"]',Pt=".dropdown form",Lt=".dropdown-menu",jt=".navbar-nav",Rt=".dropdown-menu .dropdown-item:not(.disabled):not(:disabled)",Ht="top-start",Wt="top-end",Mt="bottom-start",xt="bottom-end",Ut="right-start",Kt="left-start",Ft={offset:0,flip:!0,boundary:"scrollParent",reference:"toggle",display:"dynamic"},Vt={offset:"(number|string|function)",flip:"boolean",boundary:"(string|element)",reference:"(string|element)",display:"string"},Qt=function(){function l(t,e){this._element=t,this._popper=null,this._config=this._getConfig(e),this._menu=this._getMenuElement(),this._inNavbar=this._detectNavbar(),this._addEventListeners()}var t=l.prototype;return t.toggle=function(){if(!this._element.disabled&&!mt(this._element).hasClass(At)){var t=l._getParentFromElement(this._element),e=mt(this._menu).hasClass(Dt);if(l._clearMenus(),!e){var n={relatedTarget:this._element},i=mt.Event(It.SHOW,n);if(mt(t).trigger(i),!i.isDefaultPrevented()){if(!this._inNavbar){if("undefined"==typeof c)throw new TypeError("Bootstrap dropdown require Popper.js (https://popper.js.org)");var r=this._element;"parent"===this._config.reference?r=t:Cn.isElement(this._config.reference)&&(r=this._config.reference,"undefined"!=typeof this._config.reference.jquery&&(r=this._config.reference[0])),"scrollParent"!==this._config.boundary&&mt(t).addClass(Ot),this._popper=new c(r,this._menu,this._getPopperConfig())}"ontouchstart"in document.documentElement&&0===mt(t).closest(jt).length&&mt(document.body).children().on("mouseover",null,mt.noop),this._element.focus(),this._element.setAttribute("aria-expanded",!0),mt(this._menu).toggleClass(Dt),mt(t).toggleClass(Dt).trigger(mt.Event(It.SHOWN,n))}}}},t.dispose=function(){mt.removeData(this._element,vt),mt(this._element).off(Et),this._element=null,(this._menu=null)!==this._popper&&(this._popper.destroy(),this._popper=null)},t.update=function(){this._inNavbar=this._detectNavbar(),null!==this._popper&&this._popper.scheduleUpdate()},t._addEventListeners=function(){var e=this;mt(this._element).on(It.CLICK,function(t){t.preventDefault(),t.stopPropagation(),e.toggle()})},t._getConfig=function(t){return t=h({},this.constructor.Default,mt(this._element).data(),t),Cn.typeCheckConfig(pt,t,this.constructor.DefaultType),t},t._getMenuElement=function(){if(!this._menu){var t=l._getParentFromElement(this._element);this._menu=mt(t).find(Lt)[0]}return this._menu},t._getPlacement=function(){var t=mt(this._element).parent(),e=Mt;return t.hasClass(bt)?(e=Ht,mt(this._menu).hasClass(Nt)&&(e=Wt)):t.hasClass(St)?e=Ut:t.hasClass(wt)?e=Kt:mt(this._menu).hasClass(Nt)&&(e=xt),e},t._detectNavbar=function(){return 0<mt(this._element).closest(".navbar").length},t._getPopperConfig=function(){var e=this,t={};"function"==typeof this._config.offset?t.fn=function(t){return t.offsets=h({},t.offsets,e._config.offset(t.offsets)||{}),t}:t.offset=this._config.offset;var n={placement:this._getPlacement(),modifiers:{offset:t,flip:{enabled:this._config.flip},preventOverflow:{boundariesElement:this._config.boundary}}};return"static"===this._config.display&&(n.modifiers.applyStyle={enabled:!1}),n},l._jQueryInterface=function(e){return this.each(function(){var t=mt(this).data(vt);if(t||(t=new l(this,"object"==typeof e?e:null),mt(this).data(vt,t)),"string"==typeof e){if("undefined"==typeof t[e])throw new TypeError('No method named "'+e+'"');t[e]()}})},l._clearMenus=function(t){if(!t||3!==t.which&&("keyup"!==t.type||9===t.which))for(var e=mt.makeArray(mt(kt)),n=0;n<e.length;n++){var i=l._getParentFromElement(e[n]),r=mt(e[n]).data(vt),s={relatedTarget:e[n]};if(r){var o=r._menu;if(mt(i).hasClass(Dt)&&!(t&&("click"===t.type&&/input|textarea/i.test(t.target.tagName)||"keyup"===t.type&&9===t.which)&&mt.contains(i,t.target))){var a=mt.Event(It.HIDE,s);mt(i).trigger(a),a.isDefaultPrevented()||("ontouchstart"in document.documentElement&&mt(document.body).children().off("mouseover",null,mt.noop),e[n].setAttribute("aria-expanded","false"),mt(o).removeClass(Dt),mt(i).removeClass(Dt).trigger(mt.Event(It.HIDDEN,s)))}}}},l._getParentFromElement=function(t){var e,n=Cn.getSelectorFromElement(t);return n&&(e=mt(n)[0]),e||t.parentNode},l._dataApiKeydownHandler=function(t){if((/input|textarea/i.test(t.target.tagName)?!(32===t.which||27!==t.which&&(40!==t.which&&38!==t.which||mt(t.target).closest(Lt).length)):Ct.test(t.which))&&(t.preventDefault(),t.stopPropagation(),!this.disabled&&!mt(this).hasClass(At))){var e=l._getParentFromElement(this),n=mt(e).hasClass(Dt);if((n||27===t.which&&32===t.which)&&(!n||27!==t.which&&32!==t.which)){var i=mt(e).find(Rt).get();if(0!==i.length){var r=i.indexOf(t.target);38===t.which&&0<r&&r--,40===t.which&&r<i.length-1&&r++,r<0&&(r=0),i[r].focus()}}else{if(27===t.which){var s=mt(e).find(kt)[0];mt(s).trigger("focus")}mt(this).trigger("click")}}},o(l,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return Ft}},{key:"DefaultType",get:function(){return Vt}}]),l}(),mt(document).on(It.KEYDOWN_DATA_API,kt,Qt._dataApiKeydownHandler).on(It.KEYDOWN_DATA_API,Lt,Qt._dataApiKeydownHandler).on(It.CLICK_DATA_API+" "+It.KEYUP_DATA_API,Qt._clearMenus).on(It.CLICK_DATA_API,kt,function(t){t.preventDefault(),t.stopPropagation(),Qt._jQueryInterface.call(mt(this),"toggle")}).on(It.CLICK_DATA_API,Pt,function(t){t.stopPropagation()}),mt.fn[pt]=Qt._jQueryInterface,mt.fn[pt].Constructor=Qt,mt.fn[pt].noConflict=function(){return mt.fn[pt]=Tt,Qt._jQueryInterface},Qt),wn=(Yt="modal",qt="."+(Gt="bs.modal"),zt=(Bt=e).fn[Yt],Xt={backdrop:!0,keyboard:!0,focus:!0,show:!0},Jt={backdrop:"(boolean|string)",keyboard:"boolean",focus:"boolean",show:"boolean"},Zt={HIDE:"hide"+qt,HIDDEN:"hidden"+qt,SHOW:"show"+qt,SHOWN:"shown"+qt,FOCUSIN:"focusin"+qt,RESIZE:"resize"+qt,CLICK_DISMISS:"click.dismiss"+qt,KEYDOWN_DISMISS:"keydown.dismiss"+qt,MOUSEUP_DISMISS:"mouseup.dismiss"+qt,MOUSEDOWN_DISMISS:"mousedown.dismiss"+qt,CLICK_DATA_API:"click"+qt+".data-api"},$t="modal-scrollbar-measure",te="modal-backdrop",ee="modal-open",ne="fade",ie="show",re={DIALOG:".modal-dialog",DATA_TOGGLE:'[data-toggle="modal"]',DATA_DISMISS:'[data-dismiss="modal"]',FIXED_CONTENT:".fixed-top, .fixed-bottom, .is-fixed, .sticky-top",STICKY_CONTENT:".sticky-top",NAVBAR_TOGGLER:".navbar-toggler"},se=function(){function r(t,e){this._config=this._getConfig(e),this._element=t,this._dialog=Bt(t).find(re.DIALOG)[0],this._backdrop=null,this._isShown=!1,this._isBodyOverflowing=!1,this._ignoreBackdropClick=!1,this._scrollbarWidth=0}var t=r.prototype;return t.toggle=function(t){return this._isShown?this.hide():this.show(t)},t.show=function(t){var e=this;if(!this._isTransitioning&&!this._isShown){Bt(this._element).hasClass(ne)&&(this._isTransitioning=!0);var n=Bt.Event(Zt.SHOW,{relatedTarget:t});Bt(this._element).trigger(n),this._isShown||n.isDefaultPrevented()||(this._isShown=!0,this._checkScrollbar(),this._setScrollbar(),this._adjustDialog(),Bt(document.body).addClass(ee),this._setEscapeEvent(),this._setResizeEvent(),Bt(this._element).on(Zt.CLICK_DISMISS,re.DATA_DISMISS,function(t){return e.hide(t)}),Bt(this._dialog).on(Zt.MOUSEDOWN_DISMISS,function(){Bt(e._element).one(Zt.MOUSEUP_DISMISS,function(t){Bt(t.target).is(e._element)&&(e._ignoreBackdropClick=!0)})}),this._showBackdrop(function(){return e._showElement(t)}))}},t.hide=function(t){var e=this;if(t&&t.preventDefault(),!this._isTransitioning&&this._isShown){var n=Bt.Event(Zt.HIDE);if(Bt(this._element).trigger(n),this._isShown&&!n.isDefaultPrevented()){this._isShown=!1;var i=Bt(this._element).hasClass(ne);if(i&&(this._isTransitioning=!0),this._setEscapeEvent(),this._setResizeEvent(),Bt(document).off(Zt.FOCUSIN),Bt(this._element).removeClass(ie),Bt(this._element).off(Zt.CLICK_DISMISS),Bt(this._dialog).off(Zt.MOUSEDOWN_DISMISS),i){var r=Cn.getTransitionDurationFromElement(this._element);Bt(this._element).one(Cn.TRANSITION_END,function(t){return e._hideModal(t)}).emulateTransitionEnd(r)}else this._hideModal()}}},t.dispose=function(){Bt.removeData(this._element,Gt),Bt(window,document,this._element,this._backdrop).off(qt),this._config=null,this._element=null,this._dialog=null,this._backdrop=null,this._isShown=null,this._isBodyOverflowing=null,this._ignoreBackdropClick=null,this._scrollbarWidth=null},t.handleUpdate=function(){this._adjustDialog()},t._getConfig=function(t){return t=h({},Xt,t),Cn.typeCheckConfig(Yt,t,Jt),t},t._showElement=function(t){var e=this,n=Bt(this._element).hasClass(ne);this._element.parentNode&&this._element.parentNode.nodeType===Node.ELEMENT_NODE||document.body.appendChild(this._element),this._element.style.display="block",this._element.removeAttribute("aria-hidden"),this._element.scrollTop=0,n&&Cn.reflow(this._element),Bt(this._element).addClass(ie),this._config.focus&&this._enforceFocus();var i=Bt.Event(Zt.SHOWN,{relatedTarget:t}),r=function(){e._config.focus&&e._element.focus(),e._isTransitioning=!1,Bt(e._element).trigger(i)};if(n){var s=Cn.getTransitionDurationFromElement(this._element);Bt(this._dialog).one(Cn.TRANSITION_END,r).emulateTransitionEnd(s)}else r()},t._enforceFocus=function(){var e=this;Bt(document).off(Zt.FOCUSIN).on(Zt.FOCUSIN,function(t){document!==t.target&&e._element!==t.target&&0===Bt(e._element).has(t.target).length&&e._element.focus()})},t._setEscapeEvent=function(){var e=this;this._isShown&&this._config.keyboard?Bt(this._element).on(Zt.KEYDOWN_DISMISS,function(t){27===t.which&&(t.preventDefault(),e.hide())}):this._isShown||Bt(this._element).off(Zt.KEYDOWN_DISMISS)},t._setResizeEvent=function(){var e=this;this._isShown?Bt(window).on(Zt.RESIZE,function(t){return e.handleUpdate(t)}):Bt(window).off(Zt.RESIZE)},t._hideModal=function(){var t=this;this._element.style.display="none",this._element.setAttribute("aria-hidden",!0),this._isTransitioning=!1,this._showBackdrop(function(){Bt(document.body).removeClass(ee),t._resetAdjustments(),t._resetScrollbar(),Bt(t._element).trigger(Zt.HIDDEN)})},t._removeBackdrop=function(){this._backdrop&&(Bt(this._backdrop).remove(),this._backdrop=null)},t._showBackdrop=function(t){var e=this,n=Bt(this._element).hasClass(ne)?ne:"";if(this._isShown&&this._config.backdrop){if(this._backdrop=document.createElement("div"),this._backdrop.className=te,n&&Bt(this._backdrop).addClass(n),Bt(this._backdrop).appendTo(document.body),Bt(this._element).on(Zt.CLICK_DISMISS,function(t){e._ignoreBackdropClick?e._ignoreBackdropClick=!1:t.target===t.currentTarget&&("static"===e._config.backdrop?e._element.focus():e.hide())}),n&&Cn.reflow(this._backdrop),Bt(this._backdrop).addClass(ie),!t)return;if(!n)return void t();var i=Cn.getTransitionDurationFromElement(this._backdrop);Bt(this._backdrop).one(Cn.TRANSITION_END,t).emulateTransitionEnd(i)}else if(!this._isShown&&this._backdrop){Bt(this._backdrop).removeClass(ie);var r=function(){e._removeBackdrop(),t&&t()};if(Bt(this._element).hasClass(ne)){var s=Cn.getTransitionDurationFromElement(this._backdrop);Bt(this._backdrop).one(Cn.TRANSITION_END,r).emulateTransitionEnd(s)}else r()}else t&&t()},t._adjustDialog=function(){var t=this._element.scrollHeight>document.documentElement.clientHeight;!this._isBodyOverflowing&&t&&(this._element.style.paddingLeft=this._scrollbarWidth+"px"),this._isBodyOverflowing&&!t&&(this._element.style.paddingRight=this._scrollbarWidth+"px")},t._resetAdjustments=function(){this._element.style.paddingLeft="",this._element.style.paddingRight=""},t._checkScrollbar=function(){var t=document.body.getBoundingClientRect();this._isBodyOverflowing=t.left+t.right<window.innerWidth,this._scrollbarWidth=this._getScrollbarWidth()},t._setScrollbar=function(){var r=this;if(this._isBodyOverflowing){Bt(re.FIXED_CONTENT).each(function(t,e){var n=Bt(e)[0].style.paddingRight,i=Bt(e).css("padding-right");Bt(e).data("padding-right",n).css("padding-right",parseFloat(i)+r._scrollbarWidth+"px")}),Bt(re.STICKY_CONTENT).each(function(t,e){var n=Bt(e)[0].style.marginRight,i=Bt(e).css("margin-right");Bt(e).data("margin-right",n).css("margin-right",parseFloat(i)-r._scrollbarWidth+"px")}),Bt(re.NAVBAR_TOGGLER).each(function(t,e){var n=Bt(e)[0].style.marginRight,i=Bt(e).css("margin-right");Bt(e).data("margin-right",n).css("margin-right",parseFloat(i)+r._scrollbarWidth+"px")});var t=document.body.style.paddingRight,e=Bt(document.body).css("padding-right");Bt(document.body).data("padding-right",t).css("padding-right",parseFloat(e)+this._scrollbarWidth+"px")}},t._resetScrollbar=function(){Bt(re.FIXED_CONTENT).each(function(t,e){var n=Bt(e).data("padding-right");"undefined"!=typeof n&&Bt(e).css("padding-right",n).removeData("padding-right")}),Bt(re.STICKY_CONTENT+", "+re.NAVBAR_TOGGLER).each(function(t,e){var n=Bt(e).data("margin-right");"undefined"!=typeof n&&Bt(e).css("margin-right",n).removeData("margin-right")});var t=Bt(document.body).data("padding-right");"undefined"!=typeof t&&Bt(document.body).css("padding-right",t).removeData("padding-right")},t._getScrollbarWidth=function(){var t=document.createElement("div");t.className=$t,document.body.appendChild(t);var e=t.getBoundingClientRect().width-t.clientWidth;return document.body.removeChild(t),e},r._jQueryInterface=function(n,i){return this.each(function(){var t=Bt(this).data(Gt),e=h({},Xt,Bt(this).data(),"object"==typeof n&&n?n:{});if(t||(t=new r(this,e),Bt(this).data(Gt,t)),"string"==typeof n){if("undefined"==typeof t[n])throw new TypeError('No method named "'+n+'"');t[n](i)}else e.show&&t.show(i)})},o(r,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return Xt}}]),r}(),Bt(document).on(Zt.CLICK_DATA_API,re.DATA_TOGGLE,function(t){var e,n=this,i=Cn.getSelectorFromElement(this);i&&(e=Bt(i)[0]);var r=Bt(e).data(Gt)?"toggle":h({},Bt(e).data(),Bt(this).data());"A"!==this.tagName&&"AREA"!==this.tagName||t.preventDefault();var s=Bt(e).one(Zt.SHOW,function(t){t.isDefaultPrevented()||s.one(Zt.HIDDEN,function(){Bt(n).is(":visible")&&n.focus()})});se._jQueryInterface.call(Bt(e),r,this)}),Bt.fn[Yt]=se._jQueryInterface,Bt.fn[Yt].Constructor=se,Bt.fn[Yt].noConflict=function(){return Bt.fn[Yt]=zt,se._jQueryInterface},se),Nn=(ae="tooltip",he="."+(le="bs.tooltip"),ce=(oe=e).fn[ae],ue="bs-tooltip",fe=new RegExp("(^|\\s)"+ue+"\\S+","g"),ge={animation:!0,template:'<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',trigger:"hover focus",title:"",delay:0,html:!(_e={AUTO:"auto",TOP:"top",RIGHT:"right",BOTTOM:"bottom",LEFT:"left"}),selector:!(de={animation:"boolean",template:"string",title:"(string|element|function)",trigger:"string",delay:"(number|object)",html:"boolean",selector:"(string|boolean)",placement:"(string|function)",offset:"(number|string)",container:"(string|element|boolean)",fallbackPlacement:"(string|array)",boundary:"(string|element)"}),placement:"top",offset:0,container:!1,fallbackPlacement:"flip",boundary:"scrollParent"},pe="out",ve={HIDE:"hide"+he,HIDDEN:"hidden"+he,SHOW:(me="show")+he,SHOWN:"shown"+he,INSERTED:"inserted"+he,CLICK:"click"+he,FOCUSIN:"focusin"+he,FOCUSOUT:"focusout"+he,MOUSEENTER:"mouseenter"+he,MOUSELEAVE:"mouseleave"+he},Ee="fade",ye="show",Te=".tooltip-inner",Ce=".arrow",Ie="hover",Ae="focus",De="click",be="manual",Se=function(){function i(t,e){if("undefined"==typeof c)throw new TypeError("Bootstrap tooltips require Popper.js (https://popper.js.org)");this._isEnabled=!0,this._timeout=0,this._hoverState="",this._activeTrigger={},this._popper=null,this.element=t,this.config=this._getConfig(e),this.tip=null,this._setListeners()}var t=i.prototype;return t.enable=function(){this._isEnabled=!0},t.disable=function(){this._isEnabled=!1},t.toggleEnabled=function(){this._isEnabled=!this._isEnabled},t.toggle=function(t){if(this._isEnabled)if(t){var e=this.constructor.DATA_KEY,n=oe(t.currentTarget).data(e);n||(n=new this.constructor(t.currentTarget,this._getDelegateConfig()),oe(t.currentTarget).data(e,n)),n._activeTrigger.click=!n._activeTrigger.click,n._isWithActiveTrigger()?n._enter(null,n):n._leave(null,n)}else{if(oe(this.getTipElement()).hasClass(ye))return void this._leave(null,this);this._enter(null,this)}},t.dispose=function(){clearTimeout(this._timeout),oe.removeData(this.element,this.constructor.DATA_KEY),oe(this.element).off(this.constructor.EVENT_KEY),oe(this.element).closest(".modal").off("hide.bs.modal"),this.tip&&oe(this.tip).remove(),this._isEnabled=null,this._timeout=null,this._hoverState=null,(this._activeTrigger=null)!==this._popper&&this._popper.destroy(),this._popper=null,this.element=null,this.config=null,this.tip=null},t.show=function(){var e=this;if("none"===oe(this.element).css("display"))throw new Error("Please use show on visible elements");var t=oe.Event(this.constructor.Event.SHOW);if(this.isWithContent()&&this._isEnabled){oe(this.element).trigger(t);var n=oe.contains(this.element.ownerDocument.documentElement,this.element);if(t.isDefaultPrevented()||!n)return;var i=this.getTipElement(),r=Cn.getUID(this.constructor.NAME);i.setAttribute("id",r),this.element.setAttribute("aria-describedby",r),this.setContent(),this.config.animation&&oe(i).addClass(Ee);var s="function"==typeof this.config.placement?this.config.placement.call(this,i,this.element):this.config.placement,o=this._getAttachment(s);this.addAttachmentClass(o);var a=!1===this.config.container?document.body:oe(this.config.container);oe(i).data(this.constructor.DATA_KEY,this),oe.contains(this.element.ownerDocument.documentElement,this.tip)||oe(i).appendTo(a),oe(this.element).trigger(this.constructor.Event.INSERTED),this._popper=new c(this.element,i,{placement:o,modifiers:{offset:{offset:this.config.offset},flip:{behavior:this.config.fallbackPlacement},arrow:{element:Ce},preventOverflow:{boundariesElement:this.config.boundary}},onCreate:function(t){t.originalPlacement!==t.placement&&e._handlePopperPlacementChange(t)},onUpdate:function(t){e._handlePopperPlacementChange(t)}}),oe(i).addClass(ye),"ontouchstart"in document.documentElement&&oe(document.body).children().on("mouseover",null,oe.noop);var l=function(){e.config.animation&&e._fixTransition();var t=e._hoverState;e._hoverState=null,oe(e.element).trigger(e.constructor.Event.SHOWN),t===pe&&e._leave(null,e)};if(oe(this.tip).hasClass(Ee)){var h=Cn.getTransitionDurationFromElement(this.tip);oe(this.tip).one(Cn.TRANSITION_END,l).emulateTransitionEnd(h)}else l()}},t.hide=function(t){var e=this,n=this.getTipElement(),i=oe.Event(this.constructor.Event.HIDE),r=function(){e._hoverState!==me&&n.parentNode&&n.parentNode.removeChild(n),e._cleanTipClass(),e.element.removeAttribute("aria-describedby"),oe(e.element).trigger(e.constructor.Event.HIDDEN),null!==e._popper&&e._popper.destroy(),t&&t()};if(oe(this.element).trigger(i),!i.isDefaultPrevented()){if(oe(n).removeClass(ye),"ontouchstart"in document.documentElement&&oe(document.body).children().off("mouseover",null,oe.noop),this._activeTrigger[De]=!1,this._activeTrigger[Ae]=!1,this._activeTrigger[Ie]=!1,oe(this.tip).hasClass(Ee)){var s=Cn.getTransitionDurationFromElement(n);oe(n).one(Cn.TRANSITION_END,r).emulateTransitionEnd(s)}else r();this._hoverState=""}},t.update=function(){null!==this._popper&&this._popper.scheduleUpdate()},t.isWithContent=function(){return Boolean(this.getTitle())},t.addAttachmentClass=function(t){oe(this.getTipElement()).addClass(ue+"-"+t)},t.getTipElement=function(){return this.tip=this.tip||oe(this.config.template)[0],this.tip},t.setContent=function(){var t=oe(this.getTipElement());this.setElementContent(t.find(Te),this.getTitle()),t.removeClass(Ee+" "+ye)},t.setElementContent=function(t,e){var n=this.config.html;"object"==typeof e&&(e.nodeType||e.jquery)?n?oe(e).parent().is(t)||t.empty().append(e):t.text(oe(e).text()):t[n?"html":"text"](e)},t.getTitle=function(){var t=this.element.getAttribute("data-original-title");return t||(t="function"==typeof this.config.title?this.config.title.call(this.element):this.config.title),t},t._getAttachment=function(t){return _e[t.toUpperCase()]},t._setListeners=function(){var i=this;this.config.trigger.split(" ").forEach(function(t){if("click"===t)oe(i.element).on(i.constructor.Event.CLICK,i.config.selector,function(t){return i.toggle(t)});else if(t!==be){var e=t===Ie?i.constructor.Event.MOUSEENTER:i.constructor.Event.FOCUSIN,n=t===Ie?i.constructor.Event.MOUSELEAVE:i.constructor.Event.FOCUSOUT;oe(i.element).on(e,i.config.selector,function(t){return i._enter(t)}).on(n,i.config.selector,function(t){return i._leave(t)})}oe(i.element).closest(".modal").on("hide.bs.modal",function(){return i.hide()})}),this.config.selector?this.config=h({},this.config,{trigger:"manual",selector:""}):this._fixTitle()},t._fixTitle=function(){var t=typeof this.element.getAttribute("data-original-title");(this.element.getAttribute("title")||"string"!==t)&&(this.element.setAttribute("data-original-title",this.element.getAttribute("title")||""),this.element.setAttribute("title",""))},t._enter=function(t,e){var n=this.constructor.DATA_KEY;(e=e||oe(t.currentTarget).data(n))||(e=new this.constructor(t.currentTarget,this._getDelegateConfig()),oe(t.currentTarget).data(n,e)),t&&(e._activeTrigger["focusin"===t.type?Ae:Ie]=!0),oe(e.getTipElement()).hasClass(ye)||e._hoverState===me?e._hoverState=me:(clearTimeout(e._timeout),e._hoverState=me,e.config.delay&&e.config.delay.show?e._timeout=setTimeout(function(){e._hoverState===me&&e.show()},e.config.delay.show):e.show())},t._leave=function(t,e){var n=this.constructor.DATA_KEY;(e=e||oe(t.currentTarget).data(n))||(e=new this.constructor(t.currentTarget,this._getDelegateConfig()),oe(t.currentTarget).data(n,e)),t&&(e._activeTrigger["focusout"===t.type?Ae:Ie]=!1),e._isWithActiveTrigger()||(clearTimeout(e._timeout),e._hoverState=pe,e.config.delay&&e.config.delay.hide?e._timeout=setTimeout(function(){e._hoverState===pe&&e.hide()},e.config.delay.hide):e.hide())},t._isWithActiveTrigger=function(){for(var t in this._activeTrigger)if(this._activeTrigger[t])return!0;return!1},t._getConfig=function(t){return"number"==typeof(t=h({},this.constructor.Default,oe(this.element).data(),"object"==typeof t&&t?t:{})).delay&&(t.delay={show:t.delay,hide:t.delay}),"number"==typeof t.title&&(t.title=t.title.toString()),"number"==typeof t.content&&(t.content=t.content.toString()),Cn.typeCheckConfig(ae,t,this.constructor.DefaultType),t},t._getDelegateConfig=function(){var t={};if(this.config)for(var e in this.config)this.constructor.Default[e]!==this.config[e]&&(t[e]=this.config[e]);return t},t._cleanTipClass=function(){var t=oe(this.getTipElement()),e=t.attr("class").match(fe);null!==e&&0<e.length&&t.removeClass(e.join(""))},t._handlePopperPlacementChange=function(t){this._cleanTipClass(),this.addAttachmentClass(this._getAttachment(t.placement))},t._fixTransition=function(){var t=this.getTipElement(),e=this.config.animation;null===t.getAttribute("x-placement")&&(oe(t).removeClass(Ee),this.config.animation=!1,this.hide(),this.show(),this.config.animation=e)},i._jQueryInterface=function(n){return this.each(function(){var t=oe(this).data(le),e="object"==typeof n&&n;if((t||!/dispose|hide/.test(n))&&(t||(t=new i(this,e),oe(this).data(le,t)),"string"==typeof n)){if("undefined"==typeof t[n])throw new TypeError('No method named "'+n+'"');t[n]()}})},o(i,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return ge}},{key:"NAME",get:function(){return ae}},{key:"DATA_KEY",get:function(){return le}},{key:"Event",get:function(){return ve}},{key:"EVENT_KEY",get:function(){return he}},{key:"DefaultType",get:function(){return de}}]),i}(),oe.fn[ae]=Se._jQueryInterface,oe.fn[ae].Constructor=Se,oe.fn[ae].noConflict=function(){return oe.fn[ae]=ce,Se._jQueryInterface},Se),On=(Ne="popover",ke="."+(Oe="bs.popover"),Pe=(we=e).fn[Ne],Le="bs-popover",je=new RegExp("(^|\\s)"+Le+"\\S+","g"),Re=h({},Nn.Default,{placement:"right",trigger:"click",content:"",template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'}),He=h({},Nn.DefaultType,{content:"(string|element|function)"}),We="fade",xe=".popover-header",Ue=".popover-body",Ke={HIDE:"hide"+ke,HIDDEN:"hidden"+ke,SHOW:(Me="show")+ke,SHOWN:"shown"+ke,INSERTED:"inserted"+ke,CLICK:"click"+ke,FOCUSIN:"focusin"+ke,FOCUSOUT:"focusout"+ke,MOUSEENTER:"mouseenter"+ke,MOUSELEAVE:"mouseleave"+ke},Fe=function(t){var e,n;function i(){return t.apply(this,arguments)||this}n=t,(e=i).prototype=Object.create(n.prototype),(e.prototype.constructor=e).__proto__=n;var r=i.prototype;return r.isWithContent=function(){return this.getTitle()||this._getContent()},r.addAttachmentClass=function(t){we(this.getTipElement()).addClass(Le+"-"+t)},r.getTipElement=function(){return this.tip=this.tip||we(this.config.template)[0],this.tip},r.setContent=function(){var t=we(this.getTipElement());this.setElementContent(t.find(xe),this.getTitle());var e=this._getContent();"function"==typeof e&&(e=e.call(this.element)),this.setElementContent(t.find(Ue),e),t.removeClass(We+" "+Me)},r._getContent=function(){return this.element.getAttribute("data-content")||this.config.content},r._cleanTipClass=function(){var t=we(this.getTipElement()),e=t.attr("class").match(je);null!==e&&0<e.length&&t.removeClass(e.join(""))},i._jQueryInterface=function(n){return this.each(function(){var t=we(this).data(Oe),e="object"==typeof n?n:null;if((t||!/destroy|hide/.test(n))&&(t||(t=new i(this,e),we(this).data(Oe,t)),"string"==typeof n)){if("undefined"==typeof t[n])throw new TypeError('No method named "'+n+'"');t[n]()}})},o(i,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return Re}},{key:"NAME",get:function(){return Ne}},{key:"DATA_KEY",get:function(){return Oe}},{key:"Event",get:function(){return Ke}},{key:"EVENT_KEY",get:function(){return ke}},{key:"DefaultType",get:function(){return He}}]),i}(Nn),we.fn[Ne]=Fe._jQueryInterface,we.fn[Ne].Constructor=Fe,we.fn[Ne].noConflict=function(){return we.fn[Ne]=Pe,Fe._jQueryInterface},Fe),kn=(Qe="scrollspy",Ye="."+(Be="bs.scrollspy"),Ge=(Ve=e).fn[Qe],qe={offset:10,method:"auto",target:""},ze={offset:"number",method:"string",target:"(string|element)"},Xe={ACTIVATE:"activate"+Ye,SCROLL:"scroll"+Ye,LOAD_DATA_API:"load"+Ye+".data-api"},Je="dropdown-item",Ze="active",$e={DATA_SPY:'[data-spy="scroll"]',ACTIVE:".active",NAV_LIST_GROUP:".nav, .list-group",NAV_LINKS:".nav-link",NAV_ITEMS:".nav-item",LIST_ITEMS:".list-group-item",DROPDOWN:".dropdown",DROPDOWN_ITEMS:".dropdown-item",DROPDOWN_TOGGLE:".dropdown-toggle"},tn="offset",en="position",nn=function(){function n(t,e){var n=this;this._element=t,this._scrollElement="BODY"===t.tagName?window:t,this._config=this._getConfig(e),this._selector=this._config.target+" "+$e.NAV_LINKS+","+this._config.target+" "+$e.LIST_ITEMS+","+this._config.target+" "+$e.DROPDOWN_ITEMS,this._offsets=[],this._targets=[],this._activeTarget=null,this._scrollHeight=0,Ve(this._scrollElement).on(Xe.SCROLL,function(t){return n._process(t)}),this.refresh(),this._process()}var t=n.prototype;return t.refresh=function(){var e=this,t=this._scrollElement===this._scrollElement.window?tn:en,r="auto"===this._config.method?t:this._config.method,s=r===en?this._getScrollTop():0;this._offsets=[],this._targets=[],this._scrollHeight=this._getScrollHeight(),Ve.makeArray(Ve(this._selector)).map(function(t){var e,n=Cn.getSelectorFromElement(t);if(n&&(e=Ve(n)[0]),e){var i=e.getBoundingClientRect();if(i.width||i.height)return[Ve(e)[r]().top+s,n]}return null}).filter(function(t){return t}).sort(function(t,e){return t[0]-e[0]}).forEach(function(t){e._offsets.push(t[0]),e._targets.push(t[1])})},t.dispose=function(){Ve.removeData(this._element,Be),Ve(this._scrollElement).off(Ye),this._element=null,this._scrollElement=null,this._config=null,this._selector=null,this._offsets=null,this._targets=null,this._activeTarget=null,this._scrollHeight=null},t._getConfig=function(t){if("string"!=typeof(t=h({},qe,"object"==typeof t&&t?t:{})).target){var e=Ve(t.target).attr("id");e||(e=Cn.getUID(Qe),Ve(t.target).attr("id",e)),t.target="#"+e}return Cn.typeCheckConfig(Qe,t,ze),t},t._getScrollTop=function(){return this._scrollElement===window?this._scrollElement.pageYOffset:this._scrollElement.scrollTop},t._getScrollHeight=function(){return this._scrollElement.scrollHeight||Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},t._getOffsetHeight=function(){return this._scrollElement===window?window.innerHeight:this._scrollElement.getBoundingClientRect().height},t._process=function(){var t=this._getScrollTop()+this._config.offset,e=this._getScrollHeight(),n=this._config.offset+e-this._getOffsetHeight();if(this._scrollHeight!==e&&this.refresh(),n<=t){var i=this._targets[this._targets.length-1];this._activeTarget!==i&&this._activate(i)}else{if(this._activeTarget&&t<this._offsets[0]&&0<this._offsets[0])return this._activeTarget=null,void this._clear();for(var r=this._offsets.length;r--;){this._activeTarget!==this._targets[r]&&t>=this._offsets[r]&&("undefined"==typeof this._offsets[r+1]||t<this._offsets[r+1])&&this._activate(this._targets[r])}}},t._activate=function(e){this._activeTarget=e,this._clear();var t=this._selector.split(",");t=t.map(function(t){return t+'[data-target="'+e+'"],'+t+'[href="'+e+'"]'});var n=Ve(t.join(","));n.hasClass(Je)?(n.closest($e.DROPDOWN).find($e.DROPDOWN_TOGGLE).addClass(Ze),n.addClass(Ze)):(n.addClass(Ze),n.parents($e.NAV_LIST_GROUP).prev($e.NAV_LINKS+", "+$e.LIST_ITEMS).addClass(Ze),n.parents($e.NAV_LIST_GROUP).prev($e.NAV_ITEMS).children($e.NAV_LINKS).addClass(Ze)),Ve(this._scrollElement).trigger(Xe.ACTIVATE,{relatedTarget:e})},t._clear=function(){Ve(this._selector).filter($e.ACTIVE).removeClass(Ze)},n._jQueryInterface=function(e){return this.each(function(){var t=Ve(this).data(Be);if(t||(t=new n(this,"object"==typeof e&&e),Ve(this).data(Be,t)),"string"==typeof e){if("undefined"==typeof t[e])throw new TypeError('No method named "'+e+'"');t[e]()}})},o(n,null,[{key:"VERSION",get:function(){return"4.1.1"}},{key:"Default",get:function(){return qe}}]),n}(),Ve(window).on(Xe.LOAD_DATA_API,function(){for(var t=Ve.makeArray(Ve($e.DATA_SPY)),e=t.length;e--;){var n=Ve(t[e]);nn._jQueryInterface.call(n,n.data())}}),Ve.fn[Qe]=nn._jQueryInterface,Ve.fn[Qe].Constructor=nn,Ve.fn[Qe].noConflict=function(){return Ve.fn[Qe]=Ge,nn._jQueryInterface},nn),Pn=(on="."+(sn="bs.tab"),an=(rn=e).fn.tab,ln={HIDE:"hide"+on,HIDDEN:"hidden"+on,SHOW:"show"+on,SHOWN:"shown"+on,CLICK_DATA_API:"click"+on+".data-api"},hn="dropdown-menu",cn="active",un="disabled",fn="fade",dn="show",_n=".dropdown",gn=".nav, .list-group",mn=".active",pn="> li > .active",vn='[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',En=".dropdown-toggle",yn="> .dropdown-menu .active",Tn=function(){function i(t){this._element=t}var t=i.prototype;return t.show=function(){var n=this;if(!(this._element.parentNode&&this._element.parentNode.nodeType===Node.ELEMENT_NODE&&rn(this._element).hasClass(cn)||rn(this._element).hasClass(un))){var t,i,e=rn(this._element).closest(gn)[0],r=Cn.getSelectorFromElement(this._element);if(e){var s="UL"===e.nodeName?pn:mn;i=(i=rn.makeArray(rn(e).find(s)))[i.length-1]}var o=rn.Event(ln.HIDE,{relatedTarget:this._element}),a=rn.Event(ln.SHOW,{relatedTarget:i});if(i&&rn(i).trigger(o),rn(this._element).trigger(a),!a.isDefaultPrevented()&&!o.isDefaultPrevented()){r&&(t=rn(r)[0]),this._activate(this._element,e);var l=function(){var t=rn.Event(ln.HIDDEN,{relatedTarget:n._element}),e=rn.Event(ln.SHOWN,{relatedTarget:i});rn(i).trigger(t),rn(n._element).trigger(e)};t?this._activate(t,t.parentNode,l):l()}}},t.dispose=function(){rn.removeData(this._element,sn),this._element=null},t._activate=function(t,e,n){var i=this,r=("UL"===e.nodeName?rn(e).find(pn):rn(e).children(mn))[0],s=n&&r&&rn(r).hasClass(fn),o=function(){return i._transitionComplete(t,r,n)};if(r&&s){var a=Cn.getTransitionDurationFromElement(r);rn(r).one(Cn.TRANSITION_END,o).emulateTransitionEnd(a)}else o()},t._transitionComplete=function(t,e,n){if(e){rn(e).removeClass(dn+" "+cn);var i=rn(e.parentNode).find(yn)[0];i&&rn(i).removeClass(cn),"tab"===e.getAttribute("role")&&e.setAttribute("aria-selected",!1)}if(rn(t).addClass(cn),"tab"===t.getAttribute("role")&&t.setAttribute("aria-selected",!0),Cn.reflow(t),rn(t).addClass(dn),t.parentNode&&rn(t.parentNode).hasClass(hn)){var r=rn(t).closest(_n)[0];r&&rn(r).find(En).addClass(cn),t.setAttribute("aria-expanded",!0)}n&&n()},i._jQueryInterface=function(n){return this.each(function(){var t=rn(this),e=t.data(sn);if(e||(e=new i(this),t.data(sn,e)),"string"==typeof n){if("undefined"==typeof e[n])throw new TypeError('No method named "'+n+'"');e[n]()}})},o(i,null,[{key:"VERSION",get:function(){return"4.1.1"}}]),i}(),rn(document).on(ln.CLICK_DATA_API,vn,function(t){t.preventDefault(),Tn._jQueryInterface.call(rn(this),"show")}),rn.fn.tab=Tn._jQueryInterface,rn.fn.tab.Constructor=Tn,rn.fn.tab.noConflict=function(){return rn.fn.tab=an,Tn._jQueryInterface},Tn);!function(t){if("undefined"==typeof t)throw new TypeError("Bootstrap's JavaScript requires jQuery. jQuery must be included before Bootstrap's JavaScript.");var e=t.fn.jquery.split(" ")[0].split(".");if(e[0]<2&&e[1]<9||1===e[0]&&9===e[1]&&e[2]<1||4<=e[0])throw new Error("Bootstrap's JavaScript requires at least jQuery v1.9.1 but less than v4.0.0")}(e),t.Util=Cn,t.Alert=In,t.Button=An,t.Carousel=Dn,t.Collapse=bn,t.Dropdown=Sn,t.Modal=wn,t.Popover=On,t.Scrollspy=kn,t.Tab=Pn,t.Tooltip=Nn,Object.defineProperty(t,"__esModule",{value:!0})});
 //# sourceMappingURL=bootstrap.min.js.map
 // ==================================================
-// fancyBox v3.3.5
+// fancyBox v3.4.0
 //
 // Licensed GPLv3 for open source use
 // or fancyBox Commercial License for commercial use
@@ -47,6 +47,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   // ========================
 
   var defaults = {
+    // Close existing modals
+    // Set this to false if you do not need to stack multiple instances
+    closeExisting: false,
+
     // Enable infinite gallery navigation
     loop: false,
 
@@ -133,6 +137,17 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       }
     },
 
+    // For HTML5 video only
+    video: {
+      tpl:
+        '<video class="fancybox-video" controls controlsList="nodownload">' +
+        '<source src="{{src}}" type="{{format}}" />' +
+        "Your browser doesn't support HTML5 video" +
+        "</video>",
+      format: "", // custom video format
+      autoStart: true
+    },
+
     // Default content type if cannot be detected automatically
     defaultType: "image",
 
@@ -198,54 +213,51 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     btnTpl: {
       download:
         '<a download data-fancybox-download class="fancybox-button fancybox-button--download" title="{{DOWNLOAD}}" href="javascript:;">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M13,16 L20,23 L27,16 M20,7 L20,23 M10,24 L10,28 L30,28 L30,24" />' +
-        "</svg>" +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.62 17.09V19H5.38v-1.91zm-2.97-6.96L17 11.45l-5 4.87-5-4.87 1.36-1.32 2.68 2.64V5h1.92v7.77z"/></svg>' +
         "</a>",
 
       zoom:
         '<button data-fancybox-zoom class="fancybox-button fancybox-button--zoom" title="{{ZOOM}}">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M18,17 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0 M24,22 L31,29" />' +
-        "</svg>" +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.7 17.3l-3-3a5.9 5.9 0 0 0-.6-7.6 5.9 5.9 0 0 0-8.4 0 5.9 5.9 0 0 0 0 8.4 5.9 5.9 0 0 0 7.7.7l3 3a1 1 0 0 0 1.3 0c.4-.5.4-1 0-1.5zM8.1 13.8a4 4 0 0 1 0-5.7 4 4 0 0 1 5.7 0 4 4 0 0 1 0 5.7 4 4 0 0 1-5.7 0z"/></svg>' +
         "</button>",
 
       close:
         '<button data-fancybox-close class="fancybox-button fancybox-button--close" title="{{CLOSE}}">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M10,10 L30,30 M30,10 L10,30" />' +
-        "</svg>" +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z"/></svg>' +
         "</button>",
-
-      // This small close button will be appended to your html/inline/ajax content by default,
-      // if "smallBtn" option is not set to false
-      smallBtn:
-        '<button data-fancybox-close class="fancybox-close-small" title="{{CLOSE}}"><svg viewBox="0 0 32 32"><path d="M10,10 L22,22 M22,10 L10,22"></path></svg></button>',
 
       // Arrows
       arrowLeft:
         '<a data-fancybox-prev class="fancybox-button fancybox-button--arrow_left" title="{{PREV}}" href="javascript:;">' +
         '<svg viewBox="0 0 40 40">' +
-        '<path d="M18,12 L10,20 L18,28 M10,20 L30,20"></path>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.28 15.7l-1.34 1.37L5 12l4.94-5.07 1.34 1.38-2.68 2.72H19v1.94H8.6z"/></svg>' +
         "</svg>" +
         "</a>",
 
       arrowRight:
         '<a data-fancybox-next class="fancybox-button fancybox-button--arrow_right" title="{{NEXT}}" href="javascript:;">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M10,20 L30,20 M22,12 L30,20 L22,28"></path>' +
-        "</svg>" +
-        "</a>"
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.4 12.97l-2.68 2.72 1.34 1.38L19 12l-4.94-5.07-1.34 1.38 2.68 2.72H5v1.94z"/></svg>' +
+        "</a>",
+
+      // This small close button will be appended to your html/inline/ajax content by default,
+      // if "smallBtn" option is not set to false
+      smallBtn:
+        '<button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="{{CLOSE}}">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24"><path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"/></svg>' +
+        "</button>"
     },
 
     // Container is injected into this element
     parentEl: "body",
 
+    // Hide browser vertical scrollbars; use at your own risk
+    hideScrollbar: true,
+
     // Focus handling
     // ==============
 
     // Try to focus on the first focusable element after opening
-    autoFocus: false,
+    autoFocus: true,
 
     // Put focus back to active element after closing
     backFocus: true,
@@ -260,7 +272,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       autoStart: false
     },
 
-    // Set `touch: false` to disable dragging/swiping
+    // Set `touch: false` to disable panning/swiping
     touch: {
       vertical: true, // Allow to drag content vertically
       momentum: true // Continue movement after releasing mouse/touch when panning
@@ -273,19 +285,19 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // Customize or add new media types
     // Example:
     /*
-        media : {
-            youtube : {
-                params : {
-                    autoplay : 0
-                }
-            }
+      media : {
+        youtube : {
+          params : {
+            autoplay : 0
+          }
         }
-        */
+      }
+    */
     media: {},
 
     slideShow: {
       autoStart: false,
-      speed: 4000
+      speed: 3000
     },
 
     thumbs: {
@@ -305,11 +317,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // See Documentation/API/Events for more information
     // Example:
     /*
-		afterShow: function( instance, current ) {
-			console.info( 'Clicked element:' );
-			console.info( current.opts.$orig );
-		}
-	*/
+      afterShow: function( instance, current ) {
+        console.info( 'Clicked element:' );
+        console.info( current.opts.$orig );
+      }
+    */
 
     onInit: $.noop, // When instance has been initialized
 
@@ -520,9 +532,6 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       return;
     }
 
-    // Save last active element
-    self.$lastFocus = $(document.activeElement).trigger("blur");
-
     self.init();
   };
 
@@ -539,29 +548,36 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         $container,
         buttonStr;
 
+      if (firstItemOpts.closeExisting) {
+        $.fancybox.close(true);
+      }
+
       // Hide scrollbars
       // ===============
 
-      if (!$.fancybox.getInstance() && firstItemOpts.hideScrollbar !== false) {
-        $("body").addClass("fancybox-active");
+      $("body").addClass("fancybox-active");
 
-        if (!$.fancybox.isMobile && document.body.scrollHeight > window.innerHeight) {
-          if (scrollbarWidth === undefined) {
-            $scrollDiv = $('<div style="width:100px;height:100px;overflow:scroll;" />').appendTo("body");
+      if (
+        !$.fancybox.getInstance() &&
+        firstItemOpts.hideScrollbar !== false &&
+        !$.fancybox.isMobile &&
+        document.body.scrollHeight > window.innerHeight
+      ) {
+        if (scrollbarWidth === undefined) {
+          $scrollDiv = $('<div style="width:100px;height:100px;overflow:scroll;" />').appendTo("body");
 
-            scrollbarWidth = $.fancybox.scrollbarWidth = $scrollDiv[0].offsetWidth - $scrollDiv[0].clientWidth;
+          scrollbarWidth = $.fancybox.scrollbarWidth = $scrollDiv[0].offsetWidth - $scrollDiv[0].clientWidth;
 
-            $scrollDiv.remove();
-          }
-
-          $("head").append(
-            '<style id="fancybox-style-noscroll" type="text/css">.compensate-for-scrollbar { margin-right: ' +
-              scrollbarWidth +
-              "px; }</style>"
-          );
-
-          $("body").addClass("compensate-for-scrollbar");
+          $scrollDiv.remove();
         }
+
+        $("head").append(
+          '<style id="fancybox-style-noscroll" type="text/css">.compensate-for-scrollbar { margin-right: ' +
+            scrollbarWidth +
+            "px; }</style>"
+        );
+
+        $("body").addClass("compensate-for-scrollbar");
       }
 
       // Build html markup and set references
@@ -689,6 +705,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           obj.opts.buttons = opts.buttons;
         }
 
+        if ($.fancybox.isMobile && obj.opts.mobile) {
+          obj.opts = mergeOpts(obj.opts, obj.opts.mobile);
+        }
+
         // Step 2 - Make sure we have content type, if not - try to guess
         // ==============================================================
 
@@ -696,11 +716,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         src = obj.src || "";
 
         if (!type && src) {
-          if ((found = src.match(/\.(mp4|mov|ogv)((\?|#).*)?$/i))) {
+          if ((found = src.match(/\.(mp4|mov|ogv|webm)((\?|#).*)?$/i))) {
             type = "video";
 
-            if (!obj.opts.videoFormat) {
-              obj.opts.videoFormat = "video/" + (found[1] === "ogv" ? "ogg" : found[1]);
+            if (!obj.opts.video.format) {
+              obj.opts.video.format = "video/" + (found[1] === "ogv" ? "ogg" : found[1]);
             }
           } else if (src.match(/(^data:image\/[a-z0-9+\/=]*,)|(\.(jp(e|g|eg)|gif|png|bmp|webp|svg|ico)((\?|#).*)?$)/i)) {
             type = "image";
@@ -737,6 +757,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         // Find thumbnail image
         if (obj.opts.$trigger && obj.index === self.opts.index) {
           obj.opts.$thumb = obj.opts.$trigger.find("img:first");
+
+          if (obj.opts.$thumb.length) {
+            obj.opts.$orig = obj.opts.$trigger;
+          }
         }
 
         if ((!obj.opts.$thumb || !obj.opts.$thumb.length) && obj.opts.$orig) {
@@ -823,7 +847,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     //   - browser scrolling, resizing;
     //   - focusing
     //   - keyboard
-    //   - detect idle
+    //   - detecting inactivity
     // ======================================
 
     addEvents: function() {
@@ -863,7 +887,9 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
             self.update();
           });
         } else {
-          self.$refs.stage.hide();
+          if (self.current && self.current.type === "iframe") {
+            self.$refs.stage.hide();
+          }
 
           setTimeout(function() {
             self.$refs.stage.show();
@@ -1007,11 +1033,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       var self = this,
         groupLen = self.group.length,
         firstRun,
+        isMoved,
         loop,
         current,
         previous,
         canvasWidth,
-        currentPos,
         transitionProps;
 
       if (self.isDragging || self.isClosing || (self.isAnimating && self.firstRun)) {
@@ -1059,9 +1085,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       self.updateControls();
 
-      currentPos = $.fancybox.getTranslate(current.$slide);
-
-      current.isMoved = (currentPos.left !== 0 || currentPos.top !== 0) && !current.$slide.hasClass("fancybox-animated");
+      isMoved = self.isMoved(current);
 
       // Validate duration length
       current.forcedDuration = undefined;
@@ -1102,16 +1126,21 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         return;
       }
 
-      // Clean up
+      // Clean up all slides
       $.each(self.slides, function(index, slide) {
-        $.fancybox.stop(slide.$slide);
+        // Make sure that animation callback gets fired
+        $.fancybox.stop(slide.$slide, true);
+
+        slide.$slide.removeClass("fancybox-animated").removeClass(function(index, className) {
+          return (className.match(/(^|\s)fancybox-fx-\S+/g) || []).join(" ");
+        });
       });
 
-      // Make current that slide is visible even if content is still loading
+      // Make current slide visible even if content is still loading
       current.$slide.removeClass("fancybox-slide--next fancybox-slide--previous").addClass("fancybox-slide--current");
 
       // If slides have been dragged, animate them to correct position
-      if (current.isMoved) {
+      if (isMoved) {
         canvasWidth = Math.round(current.$slide.width());
 
         $.each(self.slides, function(index, slide) {
@@ -1128,8 +1157,6 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
               slide.$slide.removeAttr("style").removeClass("fancybox-slide--next fancybox-slide--previous");
 
               if (slide.pos === self.currPos) {
-                current.isMoved = false;
-
                 self.complete();
               }
             }
@@ -1154,8 +1181,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         return;
       }
 
-      // Handle previous slide
-      // =====================
+      // Handle previously active slide
+      // ==============================
 
       transitionProps = "fancybox-slide--" + (previous.pos > current.pos ? "next" : "previous");
 
@@ -1163,18 +1190,16 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       previous.isComplete = false;
 
-      if (!duration || (!current.isMoved && !current.opts.transitionEffect)) {
+      if (!duration || (!isMoved && !current.opts.transitionEffect)) {
         return;
       }
 
-      if (current.isMoved) {
+      if (isMoved) {
         previous.$slide.addClass(transitionProps);
       } else {
         transitionProps = "fancybox-animated " + transitionProps + " fancybox-fx-" + current.opts.transitionEffect;
 
-        $.fancybox.animate(previous.$slide, transitionProps, duration, function() {
-          previous.$slide.removeClass(transitionProps).removeAttr("style");
-        });
+        $.fancybox.animate(previous.$slide, transitionProps, duration, null, false);
       }
     },
 
@@ -1335,12 +1360,12 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     getFitPos: function(slide) {
       var self = this,
         $content = slide.$content,
+        $slide = slide.$slide,
         width = slide.width || slide.opts.width,
         height = slide.height || slide.opts.height,
         maxWidth,
         maxHeight,
         minRatio,
-        margin,
         aspectRatio,
         rez = {};
 
@@ -1348,16 +1373,20 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         return false;
       }
 
-      margin = {
-        top: parseInt(slide.$slide.css("paddingTop"), 10),
-        right: parseInt(slide.$slide.css("paddingRight"), 10),
-        bottom: parseInt(slide.$slide.css("paddingBottom"), 10),
-        left: parseInt(slide.$slide.css("paddingLeft"), 10)
-      };
+      maxWidth = $.fancybox.getTranslate(self.$refs.stage).width;
+      maxHeight = $.fancybox.getTranslate(self.$refs.stage).height;
 
-      // We can not use $slide width here, because it can have different diemensions while in transiton
-      maxWidth = parseInt(self.$refs.stage.width(), 10) - (margin.left + margin.right);
-      maxHeight = parseInt(self.$refs.stage.height(), 10) - (margin.top + margin.bottom);
+      maxWidth -=
+        parseFloat($slide.css("paddingLeft")) +
+        parseFloat($slide.css("paddingRight")) +
+        parseFloat($content.css("marginLeft")) +
+        parseFloat($content.css("marginRight"));
+
+      maxHeight -=
+        parseFloat($slide.css("paddingTop")) +
+        parseFloat($slide.css("paddingBottom")) +
+        parseFloat($content.css("marginTop")) +
+        parseFloat($content.css("marginBottom"));
 
       if (!width || !height) {
         width = maxWidth;
@@ -1371,8 +1400,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       height = Math.floor(minRatio * height);
 
       if (slide.type === "image") {
-        rez.top = Math.floor((maxHeight - height) * 0.5) + margin.top;
-        rez.left = Math.floor((maxWidth - width) * 0.5) + margin.left;
+        rez.top = Math.floor((maxHeight - height) * 0.5) + parseFloat($slide.css("paddingTop"));
+        rez.left = Math.floor((maxWidth - width) * 0.5) + parseFloat($slide.css("paddingLeft"));
       } else if (slide.contentType === "video") {
         // Force aspect ratio for the video
         // "I say the whole world must learn of our peaceful ways… by force!"
@@ -1409,7 +1438,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       var self = this,
         $content = slide && slide.$content,
         width = slide.width || slide.opts.width,
-        height = slide.height || slide.opts.height;
+        height = slide.height || slide.opts.height,
+        $slide = slide.$slide;
 
       if ($content && (width || height || slide.contentType === "video") && !slide.hasError) {
         $.fancybox.stop($content);
@@ -1423,9 +1453,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         }
       }
 
-      slide.$slide.trigger("refresh");
+      if ($slide.length) {
+        $slide.trigger("refresh");
 
-      self.$refs.toolbar.toggleClass("compensate-for-scrollbar", slide.$slide.get(0).scrollHeight > slide.$slide.get(0).clientHeight);
+        self.$refs.toolbar.toggleClass("compensate-for-scrollbar", $slide.get(0).scrollHeight > $slide.get(0).clientHeight);
+      }
 
       self.trigger("onUpdate", slide);
     },
@@ -1456,13 +1488,25 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       }
     },
 
+    // Check if current slide is moved (swiped)
+    // ========================================
+
+    isMoved: function(slide) {
+      var current = slide || this.current,
+        currentPos = $.fancybox.getTranslate(current.$slide);
+
+      return (currentPos.left !== 0 || currentPos.top !== 0) && !current.$slide.hasClass("fancybox-animated");
+    },
+
     // Update cursor style depending if content can be zoomed
     // ======================================================
 
     updateCursor: function(nextWidth, nextHeight) {
       var self = this,
         current = self.current,
-        $container = self.$refs.container.removeClass("fancybox-is-zoomable fancybox-can-zoomIn fancybox-can-drag fancybox-can-zoomOut"),
+        $container = self.$refs.container.removeClass(
+          "fancybox-is-zoomable fancybox-can-zoomIn fancybox-can-zoomOut fancybox-can-swipe fancybox-can-pan"
+        ),
         isZoomable;
 
       if (!current || self.isClosing) {
@@ -1475,25 +1519,17 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       $("[data-fancybox-zoom]").prop("disabled", !isZoomable);
 
-      // Set cursor to zoom in/out if click event is 'zoom'
-      if (
-        isZoomable &&
-        (current.opts.clickContent === "zoom" || ($.isFunction(current.opts.clickContent) && current.opts.clickContent(current) === "zoom"))
-      ) {
-        if (self.isScaledDown(nextWidth, nextHeight)) {
-          // If image is scaled down, then, obviously, it can be zoomed to full size
-          $container.addClass("fancybox-can-zoomIn");
-        } else {
-          if (current.opts.touch) {
-            // If image size ir largen than available available and touch module is not disable,
-            // then user can do panning
-            $container.addClass("fancybox-can-drag");
-          } else {
-            $container.addClass("fancybox-can-zoomOut");
-          }
-        }
-      } else if (current.opts.touch && current.contentType !== "video") {
-        $container.addClass("fancybox-can-drag");
+      // Execute this code only once
+      if ($.isFunction(current.opts.clickContent)) {
+        current.opts.clickContent = current.opts.clickContent(current);
+      }
+
+      if (self.canPan(nextWidth, nextHeight)) {
+        $container.addClass("fancybox-can-pan");
+      } else if (isZoomable && current.opts.clickContent === "zoom") {
+        $container.addClass("fancybox-can-zoomIn");
+      } else if (current.opts.touch && (current.opts.touch.vertical || self.group.length > 1) && current.contentType !== "video") {
+        $container.addClass("fancybox-can-swipe");
       }
     },
 
@@ -1545,15 +1581,22 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // Check if image dimensions exceed parent element
     // ===============================================
 
-    canPan: function() {
+    canPan: function(nextWidth, nextHeight) {
       var self = this,
         rez = false,
         current = self.current,
-        $content;
+        $content,
+        pos;
 
       if (current.type === "image" && ($content = current.$content) && !current.hasError) {
         rez = self.getFitPos(current);
-        rez = Math.abs($content.width() - rez.width) > 1 || Math.abs($content.height() - rez.height) > 1;
+        if (nextWidth !== undefined && nextHeight !== undefined) {
+          pos = {width: nextWidth, height: nextHeight};
+        } else {
+          pos = $.fancybox.getTranslate($content);
+        }
+
+        rez = Math.abs(pos.width - rez.width) > 1.5 || Math.abs(pos.height - rez.height) > 1.5;
       }
 
       return rez;
@@ -1604,14 +1647,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         case "video":
           self.setContent(
             slide,
-            '<video class="fancybox-video" controls controlsList="nodownload">' +
-              '<source src="' +
-              slide.src +
-              '" type="' +
-              slide.opts.videoFormat +
-              '">' +
-              "Your browser doesn't support HTML5 video" +
-              "</video"
+            slide.opts.video.tpl.replace("{{src}}", slide.src).replace("{{format}}", slide.opts.videoFormat || slide.opts.video.format)
           );
 
           break;
@@ -1675,7 +1711,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       slide.timouts = setTimeout(function() {
         var $img = slide.$image;
 
-        if (slide.isLoading && (!$img || !$img[0].complete) && !slide.hasError) {
+        if (slide.isLoading && (!$img || !$img.length || !$img[0].complete) && !slide.hasError) {
           self.showLoading(slide);
         }
       }, 350);
@@ -1690,8 +1726,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         temp = srcset.split(",").map(function(el) {
           var ret = {};
 
-          el
-            .trim()
+          el.trim()
             .split(/\s+/)
             .forEach(function(el, i) {
               var value = parseInt(el.substring(0, el.length - 1), 10);
@@ -1734,7 +1769,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
           // If we have default width/height values, we can calculate height for matching source
           if (slide.width && slide.height && found.postfix == "w") {
-            slide.height = slide.width / slide.height * found.value;
+            slide.height = (slide.width / slide.height) * found.value;
             slide.width = found.value;
           }
 
@@ -1808,7 +1843,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
             if (!sizes || sizes === "auto") {
               sizes =
-                (slide.width / slide.height > 1 && $W.width() / $W.height() > 1 ? "100" : Math.round(slide.width / slide.height * 100)) +
+                (slide.width / slide.height > 1 && $W.width() / $W.height() > 1 ? "100" : Math.round((slide.width / slide.height) * 100)) +
                 "vw";
             }
 
@@ -1850,11 +1885,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       if (maxWidth > 0) {
         slide.width = maxWidth;
-        slide.height = Math.floor(maxWidth * imgHeight / imgWidth);
+        slide.height = Math.floor((maxWidth * imgHeight) / imgWidth);
       }
 
       if (maxHeight > 0) {
-        slide.width = Math.floor(maxHeight * imgWidth / imgHeight);
+        slide.width = Math.floor((maxHeight * imgWidth) / imgHeight);
         slide.height = maxHeight;
       }
     },
@@ -1984,10 +2019,9 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       // The placeholder is created so we will know where to put it back.
       if (isQuery(content) && content.parent().length) {
         // Make sure content is not already moved to fancyBox
-        content
-          .parent()
-          .parent(".fancybox-slide--inline")
-          .trigger("onReset");
+        if (content.hasClass(".fancybox-content")) {
+          content.parent(".fancybox-slide--html").trigger("onReset");
+        }
 
         // Create temporary element marking original place of the content
         slide.$placeholder = $("<div>")
@@ -2002,11 +2036,6 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           content = $("<div>")
             .append($.trim(content))
             .contents();
-
-          // If we have text node, then add wrapping element to make vertical alignment work
-          if (content[0].nodeType === 3) {
-            content = $("<div>").html(content);
-          }
         }
 
         // If "filter" option is provided, then filter content
@@ -2060,9 +2089,21 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       slide.$content = slide.$slide
         .children()
-        .filter("div,form,main,video,audio")
-        .first()
-        .addClass("fancybox-content");
+        .filter("div,form,main,video,audio,article,.fancybox-content")
+        .first();
+
+      slide.$content.siblings().hide();
+
+      // Re-check if there is a valid content
+      // (in some cases, ajax response can contain various elements or plain text)
+      if (!slide.$content.length) {
+        slide.$content = slide.$slide
+          .wrapInner("<div></div>")
+          .children()
+          .first();
+      }
+
+      slide.$content.addClass("fancybox-content");
 
       slide.$slide.addClass("fancybox-slide--" + slide.contentType);
 
@@ -2139,7 +2180,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       }
 
       if (slide.opts.smallBtn && (!slide.$smallBtn || !slide.$smallBtn.length)) {
-        slide.$smallBtn = $(self.translate(slide, slide.opts.btnTpl.smallBtn)).prependTo(slide.$content);
+        slide.$smallBtn = $(self.translate(slide, slide.opts.btnTpl.smallBtn)).appendTo(slide.$content);
       }
 
       if (slide.opts.protect && slide.$content && !slide.hasError) {
@@ -2172,10 +2213,18 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         $slide = slide.$slide,
         end = false,
         start = false,
+        isMoved = self.isMoved(slide),
+        isRevealed = slide.isRevealed,
         effect,
         effectClassName,
         duration,
         opacity;
+
+      if (isMoved && isRevealed) {
+        return;
+      }
+
+      slide.isRevealed = true;
 
       effect = slide.opts[self.firstRun ? "animationEffect" : "transitionEffect"];
       duration = slide.opts[self.firstRun ? "animationDuration" : "transitionDuration"];
@@ -2191,7 +2240,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         }
       }
 
-      if (slide.isMoved || slide.pos !== self.currPos || !duration) {
+      if (isMoved || slide.pos !== self.currPos || !duration) {
         effect = false;
       }
 
@@ -2239,13 +2288,17 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       self.updateSlide(slide);
 
-      // Simply show content
-      // ===================
-
+      // Simply show content if no effect
+      // ================================
       if (!effect) {
         forceRedraw($slide);
 
-        slide.$content.removeClass("fancybox-is-hidden");
+        if (!isRevealed) {
+          slide.$content
+            .removeClass("fancybox-is-hidden")
+            .hide()
+            .fadeIn("fast");
+        }
 
         if (slide.pos === self.currPos) {
           self.complete();
@@ -2254,6 +2307,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         return;
       }
 
+      // Prepare for CSS transiton
+      // =========================
       $.fancybox.stop($slide);
 
       effectClassName = "fancybox-animated fancybox-slide--" + (slide.pos >= self.prevPos ? "next" : "previous") + " fancybox-fx-" + effect;
@@ -2265,14 +2320,14 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       slide.$content.removeClass("fancybox-is-hidden");
 
-      // Force reflow for CSS3 transitions
+      // Force reflow
       forceRedraw($slide);
 
       $.fancybox.animate(
         $slide,
         "fancybox-slide--current",
         duration,
-        function(e) {
+        function() {
           $slide.removeClass(effectClassName).removeAttr("style");
 
           if (slide.pos === self.currPos) {
@@ -2349,7 +2404,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         current = self.current,
         slides = {};
 
-      if (current.isMoved || !current.isLoaded) {
+      if (self.isMoved() || !current.isLoaded) {
         return;
       }
 
@@ -2360,7 +2415,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
         self.preload("inline");
 
-        // Trigger any CSS3 transiton inside the slide
+        // Trigger any CSS transiton inside the slide
         forceRedraw(current.$slide);
 
         current.$slide.addClass("fancybox-slide--complete");
@@ -2385,19 +2440,21 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       self.trigger("afterShow");
 
-      // Play first html5 video/audio
-      current.$slide
-        .find("video,audio")
-        .filter(":visible:first")
-        .trigger("play");
+      // Autoplay first html5 video/audio
+      if (!!current.opts.video.autoStart) {
+        current.$slide
+          .find("video,audio")
+          .filter(":visible:first")
+          .trigger("play");
+      }
 
       // Try to focus on the first focusable element
-      if (
-        $(document.activeElement).is("[disabled]") ||
-        (current.opts.autoFocus && !(current.type == "image" || current.type === "iframe"))
-      ) {
+      if (current.opts.autoFocus && !(current.type === "image" && !self.firstRun)) {
         self.focus();
       }
+
+      // Avoid jumping
+      current.$slide.scrollTop(0).scrollLeft(0);
     },
 
     // Preload next and previous slides
@@ -2421,7 +2478,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // ====================================================
 
     focus: function() {
-      var current = this.current,
+      var self = this,
+        current = self.current,
         $el;
 
       if (this.isClosing) {
@@ -2433,13 +2491,13 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         $el = current.$content.find("input[autofocus]:enabled:visible:first");
 
         if (!$el.length) {
-          $el = current.$content.find("button,:input,[tabindex],a").filter(":enabled:visible:first");
+          $el = current.$content.find("button,:input,[tabindex],a").filter(":not(.fancybox-close-small):enabled:visible:first");
         }
-
-        $el = $el && $el.length ? $el : current.$content;
-
-        $el.trigger("focus");
       }
+
+      $el = $el && $el.length ? $el : self.$refs.container;
+
+      $el.trigger("focus");
     },
 
     // Activates current instance - brings container to the front and enables keyboard,
@@ -2612,9 +2670,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
     cleanUp: function(e) {
       var self = this,
-        $body = $("body"),
         instance,
-        scrollTop;
+        $focus = self.current.opts.$orig,
+        x,
+        y;
 
       self.current.$slide.trigger("onReset");
 
@@ -2623,8 +2682,21 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       self.trigger("afterClose", e);
 
       // Place back focus
-      if (self.$lastFocus && !!self.current.opts.backFocus) {
-        self.$lastFocus.trigger("focus");
+      if (!!self.current.opts.backFocus) {
+        if (!$focus || !$focus.length || !$focus.is(":visible")) {
+          $focus = self.$trigger;
+        }
+
+        if ($focus && $focus.length) {
+          x = window.scrollX;
+          y = window.scrollY;
+
+          $focus.trigger("focus");
+
+          $("html, body")
+            .scrollTop(y)
+            .scrollLeft(x);
+        }
       }
 
       self.current = null;
@@ -2635,7 +2707,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       if (instance) {
         instance.activate();
       } else {
-        $body.removeClass("fancybox-active compensate-for-scrollbar");
+        $("body").removeClass("fancybox-active compensate-for-scrollbar");
 
         $("#fancybox-style-noscroll").remove();
       }
@@ -2757,7 +2829,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   });
 
   $.fancybox = {
-    version: "3.3.5",
+    version: "3.4.0",
     defaults: defaults,
 
     // Get current instance and execute a command.
@@ -2806,9 +2878,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         instance.close();
 
         // Try to find and close next instance
-
         if (all === true) {
-          this.close();
+          this.close(all);
         }
       }
     },
@@ -2825,8 +2896,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // Try to detect mobile devices
     // ============================
 
-    isMobile:
-      document.createTouch !== undefined && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
 
     // Detect if 'translate3d' support is available
     // ============================================
@@ -2917,7 +2987,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     // =============================
 
     animate: function($el, to, duration, callback, leaveAnimationName) {
-      var final = false;
+      var final = false,
+        from;
 
       if ($.isFunction(duration)) {
         callback = duration;
@@ -2942,6 +3013,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           $.fancybox.setTranslate($el, final);
         }
 
+        if ($.isNumeric(duration)) {
+          $el.css("transition-duration", "");
+        }
+
         if ($.isPlainObject(to)) {
           if (leaveAnimationName === false) {
             $el.removeAttr("style");
@@ -2962,9 +3037,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       // Start animation by changing CSS properties or class name
       if ($.isPlainObject(to)) {
         if (to.scaleX !== undefined && to.scaleY !== undefined) {
+          from = $.fancybox.getTranslate($el);
+
           final = $.extend({}, to, {
-            width: $el.width() * to.scaleX,
-            height: $el.height() * to.scaleY,
+            width: from.width * to.scaleX,
+            height: from.height * to.scaleY,
             scaleX: 1,
             scaleY: 1
           });
@@ -2991,11 +3068,15 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       );
     },
 
-    stop: function($el) {
+    stop: function($el, callback) {
       if ($el && $el.length) {
         clearTimeout($el.data("timer"));
 
-        $el.off("transitionend").css("transition-duration", "");
+        if (callback) {
+          $el.trigger(transitionEnd);
+        }
+
+        $el.off(transitionEnd).css("transition-duration", "");
 
         $el.parent().removeClass("fancybox-is-scaling");
       }
@@ -3009,7 +3090,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     var items = [],
       index = 0,
       $target,
-      value;
+      value,
+      instance;
 
     // Avoid opening multiple times
     if (e && e.isDefaultPrevented()) {
@@ -3018,27 +3100,44 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
     e.preventDefault();
 
-    opts = e && e.data ? e.data.options : opts || {};
+    opts = opts || {};
 
-    $target = opts.$target || $(e.currentTarget);
-    value = $target.attr("data-fancybox") || "";
-
-    // Get all related items and find index for clicked one
-    if (value) {
-      items = opts.selector ? $(opts.selector) : e.data ? e.data.items : [];
-      items = items.length ? items.filter('[data-fancybox="' + value + '"]') : $('[data-fancybox="' + value + '"]');
-
-      index = items.index($target);
-
-      // Sometimes current item can not be found (for example, if some script clones items)
-      if (index < 0) {
-        index = 0;
-      }
-    } else {
-      items = [$target];
+    if (e && e.data) {
+      opts = mergeOpts(e.data.options, opts);
     }
 
-    $.fancybox.open(items, opts, index);
+    $target = opts.$target || $(e.currentTarget).trigger("blur");
+    instance = $.fancybox.getInstance();
+
+    if (instance && instance.$trigger && instance.$trigger.is($target)) {
+      return;
+    }
+
+    if (opts.selector) {
+      items = $(opts.selector);
+    } else {
+      // Get all related items and find index for clicked one
+      value = $target.attr("data-fancybox") || "";
+
+      if (value) {
+        items = e.data ? e.data.items : [];
+        items = items.length ? items.filter('[data-fancybox="' + value + '"]') : $('[data-fancybox="' + value + '"]');
+      } else {
+        items = [$target];
+      }
+    }
+
+    index = $(items).index($target);
+
+    // Sometimes current item can not be found
+    if (index < 0) {
+      index = 0;
+    }
+
+    instance = $.fancybox.open(items, opts, index);
+
+    // Save last active element
+    instance.$trigger = $target;
   }
 
   // Create a jQuery plugin
@@ -3077,12 +3176,31 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   // Enable "trigger elements"
   // =========================
 
-  $D.on("click.fb-start", "[data-trigger]", function(e) {
-    _run(e, {
-      $target: $('[data-fancybox="' + $(e.currentTarget).attr("data-trigger") + '"]').eq($(e.currentTarget).attr("data-index") || 0),
-      $trigger: $(this)
-    });
+  $D.on("click.fb-start", "[data-fancybox-trigger]", function(e) {
+    $('[data-fancybox="' + $(this).attr("data-fancybox-trigger") + '"]')
+      .eq($(this).attr("data-fancybox-index") || 0)
+      .trigger("click.fb-start", {
+        $trigger: $(this)
+      });
   });
+
+  // Track focus event for better accessibility styling
+  // ==================================================
+
+  $D.on("mousedown", ".fancybox-button", function() {
+    $(this).data("pressed", 1);
+  })
+    .on("mouseup", ".fancybox-button", function() {
+      $(this).removeData("pressed");
+    })
+    .on("focus", ".fancybox-button", function() {
+      if (!$(this).data("pressed")) {
+        $(this).addClass("fancybox-focus");
+      }
+    })
+    .on("blur", ".fancybox-button", function() {
+      $(this).removeClass("fancybox-focus");
+    });
 })(window, document, window.jQuery || jQuery);
 
 // ==========================================================================
@@ -3135,7 +3253,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       },
       paramPlace: 8,
       type: "iframe",
-      url: "//www.youtube.com/embed/$4",
+      url: "//www.youtube-nocookie.com/embed/$4",
       thumb: "//img.youtube.com/vi/$4/hqdefault.jpg"
     },
 
@@ -3429,6 +3547,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       $target = $(e.target),
       instance = self.instance,
       current = instance.current,
+      $slide = current.$slide,
       $content = current.$content,
       isTouchDevice = e.type == "touchstart";
 
@@ -3443,7 +3562,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     }
 
     // Ignore taping on links, buttons, input elements
-    if (!$target.length || isClickable($target) || isClickable($target.parent())) {
+    if (!$slide.length || !$target.length || isClickable($target) || isClickable($target.parent())) {
       return;
     }
 
@@ -3466,7 +3585,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       return;
     }
 
-    e.stopPropagation();
+    // Allow other scripts to catch touch event if "touch" is set to false
+    if (current.touch) {
+      e.stopPropagation();
+    }
 
     self.startEvent = e;
 
@@ -3479,16 +3601,17 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     self.isSwiping = false;
     self.isZooming = false;
     self.isScrolling = false;
+    self.canPan = instance.canPan();
 
     self.startTime = new Date().getTime();
     self.distanceX = self.distanceY = self.distance = 0;
 
-    self.canvasWidth = Math.round(current.$slide[0].clientWidth);
-    self.canvasHeight = Math.round(current.$slide[0].clientHeight);
+    self.canvasWidth = Math.round($slide[0].clientWidth);
+    self.canvasHeight = Math.round($slide[0].clientHeight);
 
     self.contentLastPos = null;
     self.contentStartPos = $.fancybox.getTranslate(self.$content) || {top: 0, left: 0};
-    self.sliderStartPos = self.sliderLastPos || $.fancybox.getTranslate(current.$slide);
+    self.sliderStartPos = self.sliderLastPos || $.fancybox.getTranslate($slide);
 
     // Since position will be absolute, but we need to make it relative to the stage
     self.stagePos = $.fancybox.getTranslate(instance.$refs.stage);
@@ -3508,7 +3631,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       document.addEventListener("scroll", self.onscroll, true);
     }
 
-    if (!(self.opts || instance.canPan()) || !($target.is(self.$stage) || self.$stage.find($target).length)) {
+    // Skip if clicked outside the sliding area
+    if (!(self.opts || self.canPan) || !($target.is(self.$stage) || self.$stage.find($target).length)) {
       if ($target.is(".fancybox-image")) {
         e.preventDefault();
       }
@@ -3516,12 +3640,16 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       return;
     }
 
-    if (!($.fancybox.isMobile && (isScrollable($target) || isScrollable($target.parent())))) {
+    self.isScrollable = isScrollable($target) || isScrollable($target.parent());
+
+    // Check if element is scrollable and try to prevent default behavior (scrolling)
+    if (!($.fancybox.isMobile && self.isScrollable)) {
       e.preventDefault();
     }
 
+    // One finger or mouse click - swipe or pan an image
     if (self.startPoints.length === 1 || current.hasError) {
-      if (self.instance.canPan()) {
+      if (self.canPan) {
         $.fancybox.stop(self.$content);
 
         self.$content.css("transition-duration", "");
@@ -3531,9 +3659,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         self.isSwiping = true;
       }
 
-      self.$container.addClass("fancybox-controls--isGrabbing");
+      self.$container.addClass("fancybox-is-grabbing");
     }
 
+    // Two fingers - zoom image
     if (self.startPoints.length === 2 && current.type === "image" && (current.isLoaded || current.$ghost)) {
       self.canTap = false;
       self.isSwiping = false;
@@ -3564,8 +3693,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   };
 
   Guestures.prototype.ontouchmove = function(e) {
-    var self = this,
-      $target = $(e.target);
+    var self = this;
 
     // Make sure user has not released over iframe or disabled element
     if (e.originalEvent.buttons !== undefined && e.originalEvent.buttons === 0) {
@@ -3573,15 +3701,14 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       return;
     }
 
-    if (self.isScrolling || !($target.is(self.$stage) || self.$stage.find($target).length)) {
+    if (self.isScrolling) {
       self.canTap = false;
-
       return;
     }
 
     self.newPoints = getPointerXY(e);
 
-    if (!(self.opts || self.instance.canPan()) || !self.newPoints.length || !self.newPoints.length) {
+    if (!(self.opts || self.canPan) || !self.newPoints.length || !self.newPoints.length) {
       return;
     }
 
@@ -3623,14 +3750,14 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         } else if (self.instance.isDragging || self.opts.vertical === false || (self.opts.vertical === "auto" && $(window).width() > 800)) {
           self.isSwiping = "x";
         } else {
-          angle = Math.abs(Math.atan2(self.distanceY, self.distanceX) * 180 / Math.PI);
+          angle = Math.abs((Math.atan2(self.distanceY, self.distanceX) * 180) / Math.PI);
 
           self.isSwiping = angle > 45 && angle < 135 ? "y" : "x";
         }
 
         self.canTap = false;
 
-        if (self.isSwiping === "y" && $.fancybox.isMobile && (isScrollable(self.$target) || isScrollable(self.$target.parent()))) {
+        if (self.isSwiping === "y" && $.fancybox.isMobile && self.isScrollable) {
           self.isScrolling = true;
 
           return;
@@ -3892,7 +4019,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
     self.endPoints = getPointerXY(e);
 
-    self.$container.removeClass("fancybox-controls--isGrabbing");
+    self.$container.removeClass("fancybox-is-grabbing");
 
     $(document).off(".fb.touch");
 
@@ -3918,10 +4045,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     self.speed = 366;
 
     // Speed in px/ms
-    self.velocityX = self.distanceX / dMs * 0.5;
-    self.velocityY = self.distanceY / dMs * 0.5;
+    self.velocityX = (self.distanceX / dMs) * 0.5;
+    self.velocityY = (self.distanceY / dMs) * 0.5;
 
-    self.speedX = Math.max(self.speed * 0.5, Math.min(self.speed * 1.5, 1 / Math.abs(self.velocityX) * self.speed));
+    self.speedX = Math.max(self.speed * 0.5, Math.min(self.speed * 1.5, (1 / Math.abs(self.velocityX)) * self.speed));
 
     if (panning) {
       self.endPanning();
@@ -4189,10 +4316,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     btnTpl: {
       slideShow:
         '<button data-fancybox-play class="fancybox-button fancybox-button--play" title="{{PLAY_START}}">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M13,12 L27,20 L13,27 Z" />' +
-        '<path d="M15,10 v19 M23,10 v19" />' +
-        "</svg>" +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 5.4v13.2l11-6.6z"/></svg>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.33 5.75h2.2v12.5h-2.2V5.75zm5.15 0h2.2v12.5h-2.2V5.75z"/></svg>' +
         "</button>"
     },
     slideShow: {
@@ -4257,14 +4382,18 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       var current = self.instance.current;
 
       if (current) {
-        self.isActive = true;
-
         self.$button
           .attr("title", current.opts.i18n[current.opts.lang].PLAY_STOP)
           .removeClass("fancybox-button--play")
           .addClass("fancybox-button--pause");
 
-        self.set(true);
+        self.isActive = true;
+
+        if (current.isComplete) {
+          self.set(true);
+        }
+
+        self.instance.trigger("onSlideShowChange", true);
       }
     },
 
@@ -4280,6 +4409,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         .addClass("fancybox-button--play");
 
       self.isActive = false;
+
+      self.instance.trigger("onSlideShowChange", false);
     },
 
     toggle: function() {
@@ -4452,10 +4583,9 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   $.extend(true, $.fancybox.defaults, {
     btnTpl: {
       fullScreen:
-        '<button data-fancybox-fullscreen class="fancybox-button fancybox-button--fullscreen" title="{{FULL_SCREEN}}">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M9,12 v16 h22 v-16 h-22 v8" />' +
-        "</svg>" +
+        '<button data-fancybox-fullscreen class="fancybox-button fancybox-button--fsenter" title="{{FULL_SCREEN}}">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5zm3-8H5v2h5V5H8zm6 11h2v-3h3v-2h-5zm2-11V5h-2v5h5V8z"/></svg>' +
         "</button>"
     },
     fullScreen: {
@@ -4521,6 +4651,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       instance.trigger("onFullscreenChange", isFullscreen);
 
       instance.$refs.container.toggleClass("fancybox-is-fullscreen", isFullscreen);
+
+      instance.$refs.toolbar
+        .find("[data-fancybox-fullscreen]")
+        .toggleClass("fancybox-button--fsenter", !isFullscreen)
+        .toggleClass("fancybox-button--fsexit", isFullscreen);
     }
   });
 })(document, window.jQuery || jQuery);
@@ -4535,8 +4670,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   "use strict";
 
   var CLASS = "fancybox-thumbs",
-    CLASS_ACTIVE = CLASS + "-active",
-    CLASS_LOAD = CLASS + "-loading";
+    CLASS_ACTIVE = CLASS + "-active";
 
   // Make sure there are default values
   $.fancybox.defaults = $.extend(
@@ -4545,9 +4679,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       btnTpl: {
         thumbs:
           '<button data-fancybox-thumbs class="fancybox-button fancybox-button--thumbs" title="{{THUMBS}}">' +
-          '<svg viewBox="0 0 120 120">' +
-          '<path d="M30,30 h14 v14 h-14 Z M50,30 h14 v14 h-14 Z M70,30 h14 v14 h-14 Z M30,50 h14 v14 h-14 Z M50,50 h14 v14 h-14 Z M70,50 h14 v14 h-14 Z M30,70 h14 v14 h-14 Z M50,70 h14 v14 h-14 Z M70,70 h14 v14 h-14 Z" />' +
-          "</svg>" +
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.59 14.59h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76V5.65zm-4.47 0h3.76v3.76h-3.76V5.65zm-4.47 0h3.76v3.76H5.65V5.65z"/></svg>' +
           "</button>"
       },
       thumbs: {
@@ -4593,7 +4725,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       self.$button = instance.$refs.toolbar.find("[data-fancybox-thumbs]");
 
-      if (self.opts && first && second && first && second) {
+      if (self.opts && first && second) {
         self.$button.show().on("click", function() {
           self.toggle();
         });
@@ -4621,14 +4753,14 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         );
 
         // Add "click" event that performs gallery navigation
-        self.$grid.on("click", "li", function() {
+        self.$grid.on("click", "a", function() {
           instance.jumpTo($(this).attr("data-index"));
         });
       }
 
       // Build the list
       if (!self.$list) {
-        self.$list = $("<ul>").appendTo(self.$grid);
+        self.$list = $('<div class="' + CLASS + '__list">').appendTo(self.$grid);
       }
 
       $.each(instance.group, function(i, item) {
@@ -4639,13 +4771,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         }
 
         list.push(
-          '<li data-index="' +
+          '<a href="javascript:;" tabindex="0" data-index="' +
             i +
-            '" tabindex="0" class="' +
-            CLASS_LOAD +
-            '"' +
+            '" ' +
             (src && src.length ? ' style="background-image:url(' + src + ')" />' : "") +
-            "></li>"
+            "></a>"
         );
       });
 
@@ -4798,9 +4928,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     btnTpl: {
       share:
         '<button data-fancybox-share class="fancybox-button fancybox-button--share" title="{{SHARE}}">' +
-        '<svg viewBox="0 0 40 40">' +
-        '<path d="M6,30 C8,18 19,16 23,16 L23,16 L23,10 L33,20 L23,29 L23,24 C19,24 8,27 6,30 Z">' +
-        "</svg>" +
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.55 19c1.4-8.4 9.1-9.8 11.9-9.8V5l7 7-7 6.3v-3.5c-2.8 0-10.5 2.1-11.9 4.2z"/></svg>' +
         "</button>"
     },
     share: {
@@ -4826,7 +4954,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         "<span>Pinterest</span>" +
         "</a>" +
         "</p>" +
-        '<p><input class="fancybox-share__input" type="text" value="{{url_raw}}" /></p>' +
+        '<p><input class="fancybox-share__input" type="text" value="{{url_raw}}" onclick="select()" /></p>' +
         "</div>"
     }
   });
@@ -4872,6 +5000,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       src: instance.translate(instance, tpl),
       type: "html",
       opts: {
+        touch: false,
         animationEffect: false,
         afterLoad: function(shareInstance, shareCurrent) {
           // Close self if parent instance is closing
@@ -4880,10 +5009,13 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           });
 
           // Opening links in a popup window
-          shareCurrent.$content.find(".fancybox-share__links a").click(function() {
+          shareCurrent.$content.find(".fancybox-share__button").click(function() {
             window.open(this.href, "Share", "width=550, height=450");
             return false;
           });
+        },
+        mobile: {
+          autoFocus: false
         }
       }
     });
@@ -4939,12 +5071,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
   // Trigger click evnt on links to open new fancyBox instance
   function triggerFromUrl(url) {
-    var $el;
-
     if (url.gallery !== "") {
       // If we can find element matching 'data-fancybox' atribute, then trigger click event for that.
       // It should start fancyBox
-      $el = $("[data-fancybox='" + $.escapeSelector(url.gallery) + "']")
+      $("[data-fancybox='" + $.escapeSelector(url.gallery) + "']")
         .eq(url.index - 1)
         .trigger("click.fb-start");
     }
@@ -4959,7 +5089,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     }
 
     opts = instance.current ? instance.current.opts : instance.opts;
-    ret = opts.hash || (opts.$orig ? opts.$orig.data("fancybox") : "");
+    ret = opts.hash || (opts.$orig ? opts.$orig.data("fancybox") || opts.$orig.data("fancybox-trigger") : "");
 
     return ret === "" ? false : ret;
   }
@@ -5041,13 +5171,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       },
 
       "beforeClose.fb": function(e, instance, current) {
-        var gallery;
-
         if (current.opts.hash === false) {
           return;
         }
 
-        gallery = getGalleryID(instance);
+        clearTimeout(instance.hashTimer);
 
         // Goto previous history entry
         if (instance.currentHash && instance.hasCreatedHistory) {
@@ -5061,15 +5189,13 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         }
 
         instance.currentHash = null;
-
-        clearTimeout(instance.hashTimer);
       }
     });
 
     // Check if need to start/close after url has changed
     $(window).on("hashchange.fb", function() {
       var url = parseUrl(),
-        fb;
+        fb = null;
 
       // Find last fancyBox instance that has "hash"
       $.each(
@@ -5078,8 +5204,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           .reverse(),
         function(index, value) {
           var tmp = $(value).data("FancyBox");
-          //isClosing
-          if (tmp.currentHash) {
+
+          if (tmp && tmp.currentHash) {
             fb = tmp;
             return false;
           }
@@ -5088,7 +5214,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       if (fb) {
         // Now, compare hash values
-        if (fb.currentHash && fb.currentHash !== url.gallery + "-" + url.index && !(url.index === 1 && fb.currentHash == url.gallery)) {
+        if (fb.currentHash !== url.gallery + "-" + url.index && !(url.index === 1 && fb.currentHash == url.gallery)) {
           fb.currentHash = null;
 
           fb.close();
@@ -5184,7 +5310,13 @@ g.os)};this.getResult=function(){return{ua:this.getUA(),browser:this.getBrowser(
 EMBEDDED:"embedded"};l.ENGINE={NAME:"name",VERSION:"version"};l.OS={NAME:"name",VERSION:"version"};"undefined"!==typeof f?("undefined"!==typeof g&&g.exports&&(f=g.exports=l),f.UAParser=l):e.UAParser=l;var m=e.jQuery||e.Zepto;if("undefined"!==typeof m){var q=new l;m.ua=q.getResult();m.ua.get=function(){return q.getUA()};m.ua.set=function(a){q.setUA(a);a=q.getResult();for(var b in a)m.ua[b]=a[b]}}})("object"===typeof window?window:this)},{}],7:[function(b,g,f){g.exports=function(b){for(var c=1;c<arguments.length;c++){var a=
 arguments[c],d;for(d in a)a.hasOwnProperty(d)&&(b[d]=a[d])}return b}},{}]},{},[1])(1)});
 
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.moment=t()}(this,function(){"use strict";var e,i;function c(){return e.apply(null,arguments)}function o(e){return e instanceof Array||"[object Array]"===Object.prototype.toString.call(e)}function u(e){return null!=e&&"[object Object]"===Object.prototype.toString.call(e)}function l(e){return void 0===e}function d(e){return"number"==typeof e||"[object Number]"===Object.prototype.toString.call(e)}function h(e){return e instanceof Date||"[object Date]"===Object.prototype.toString.call(e)}function f(e,t){var n,s=[];for(n=0;n<e.length;++n)s.push(t(e[n],n));return s}function m(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function _(e,t){for(var n in t)m(t,n)&&(e[n]=t[n]);return m(t,"toString")&&(e.toString=t.toString),m(t,"valueOf")&&(e.valueOf=t.valueOf),e}function y(e,t,n,s){return Ot(e,t,n,s,!0).utc()}function g(e){return null==e._pf&&(e._pf={empty:!1,unusedTokens:[],unusedInput:[],overflow:-2,charsLeftOver:0,nullInput:!1,invalidMonth:null,invalidFormat:!1,userInvalidated:!1,iso:!1,parsedDateParts:[],meridiem:null,rfc2822:!1,weekdayMismatch:!1}),e._pf}function p(e){if(null==e._isValid){var t=g(e),n=i.call(t.parsedDateParts,function(e){return null!=e}),s=!isNaN(e._d.getTime())&&t.overflow<0&&!t.empty&&!t.invalidMonth&&!t.invalidWeekday&&!t.weekdayMismatch&&!t.nullInput&&!t.invalidFormat&&!t.userInvalidated&&(!t.meridiem||t.meridiem&&n);if(e._strict&&(s=s&&0===t.charsLeftOver&&0===t.unusedTokens.length&&void 0===t.bigHour),null!=Object.isFrozen&&Object.isFrozen(e))return s;e._isValid=s}return e._isValid}function v(e){var t=y(NaN);return null!=e?_(g(t),e):g(t).userInvalidated=!0,t}i=Array.prototype.some?Array.prototype.some:function(e){for(var t=Object(this),n=t.length>>>0,s=0;s<n;s++)if(s in t&&e.call(this,t[s],s,t))return!0;return!1};var r=c.momentProperties=[];function w(e,t){var n,s,i;if(l(t._isAMomentObject)||(e._isAMomentObject=t._isAMomentObject),l(t._i)||(e._i=t._i),l(t._f)||(e._f=t._f),l(t._l)||(e._l=t._l),l(t._strict)||(e._strict=t._strict),l(t._tzm)||(e._tzm=t._tzm),l(t._isUTC)||(e._isUTC=t._isUTC),l(t._offset)||(e._offset=t._offset),l(t._pf)||(e._pf=g(t)),l(t._locale)||(e._locale=t._locale),0<r.length)for(n=0;n<r.length;n++)l(i=t[s=r[n]])||(e[s]=i);return e}var t=!1;function M(e){w(this,e),this._d=new Date(null!=e._d?e._d.getTime():NaN),this.isValid()||(this._d=new Date(NaN)),!1===t&&(t=!0,c.updateOffset(this),t=!1)}function S(e){return e instanceof M||null!=e&&null!=e._isAMomentObject}function D(e){return e<0?Math.ceil(e)||0:Math.floor(e)}function k(e){var t=+e,n=0;return 0!==t&&isFinite(t)&&(n=D(t)),n}function a(e,t,n){var s,i=Math.min(e.length,t.length),r=Math.abs(e.length-t.length),a=0;for(s=0;s<i;s++)(n&&e[s]!==t[s]||!n&&k(e[s])!==k(t[s]))&&a++;return a+r}function Y(e){!1===c.suppressDeprecationWarnings&&"undefined"!=typeof console&&console.warn&&console.warn("Deprecation warning: "+e)}function n(i,r){var a=!0;return _(function(){if(null!=c.deprecationHandler&&c.deprecationHandler(null,i),a){for(var e,t=[],n=0;n<arguments.length;n++){if(e="","object"==typeof arguments[n]){for(var s in e+="\n["+n+"] ",arguments[0])e+=s+": "+arguments[0][s]+", ";e=e.slice(0,-2)}else e=arguments[n];t.push(e)}Y(i+"\nArguments: "+Array.prototype.slice.call(t).join("")+"\n"+(new Error).stack),a=!1}return r.apply(this,arguments)},r)}var s,O={};function T(e,t){null!=c.deprecationHandler&&c.deprecationHandler(e,t),O[e]||(Y(t),O[e]=!0)}function x(e){return e instanceof Function||"[object Function]"===Object.prototype.toString.call(e)}function b(e,t){var n,s=_({},e);for(n in t)m(t,n)&&(u(e[n])&&u(t[n])?(s[n]={},_(s[n],e[n]),_(s[n],t[n])):null!=t[n]?s[n]=t[n]:delete s[n]);for(n in e)m(e,n)&&!m(t,n)&&u(e[n])&&(s[n]=_({},s[n]));return s}function P(e){null!=e&&this.set(e)}c.suppressDeprecationWarnings=!1,c.deprecationHandler=null,s=Object.keys?Object.keys:function(e){var t,n=[];for(t in e)m(e,t)&&n.push(t);return n};var W={};function H(e,t){var n=e.toLowerCase();W[n]=W[n+"s"]=W[t]=e}function R(e){return"string"==typeof e?W[e]||W[e.toLowerCase()]:void 0}function C(e){var t,n,s={};for(n in e)m(e,n)&&(t=R(n))&&(s[t]=e[n]);return s}var F={};function L(e,t){F[e]=t}function U(e,t,n){var s=""+Math.abs(e),i=t-s.length;return(0<=e?n?"+":"":"-")+Math.pow(10,Math.max(0,i)).toString().substr(1)+s}var N=/(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g,G=/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,V={},E={};function I(e,t,n,s){var i=s;"string"==typeof s&&(i=function(){return this[s]()}),e&&(E[e]=i),t&&(E[t[0]]=function(){return U(i.apply(this,arguments),t[1],t[2])}),n&&(E[n]=function(){return this.localeData().ordinal(i.apply(this,arguments),e)})}function A(e,t){return e.isValid()?(t=j(t,e.localeData()),V[t]=V[t]||function(s){var e,i,t,r=s.match(N);for(e=0,i=r.length;e<i;e++)E[r[e]]?r[e]=E[r[e]]:r[e]=(t=r[e]).match(/\[[\s\S]/)?t.replace(/^\[|\]$/g,""):t.replace(/\\/g,"");return function(e){var t,n="";for(t=0;t<i;t++)n+=x(r[t])?r[t].call(e,s):r[t];return n}}(t),V[t](e)):e.localeData().invalidDate()}function j(e,t){var n=5;function s(e){return t.longDateFormat(e)||e}for(G.lastIndex=0;0<=n&&G.test(e);)e=e.replace(G,s),G.lastIndex=0,n-=1;return e}var Z=/\d/,z=/\d\d/,$=/\d{3}/,q=/\d{4}/,J=/[+-]?\d{6}/,B=/\d\d?/,Q=/\d\d\d\d?/,X=/\d\d\d\d\d\d?/,K=/\d{1,3}/,ee=/\d{1,4}/,te=/[+-]?\d{1,6}/,ne=/\d+/,se=/[+-]?\d+/,ie=/Z|[+-]\d\d:?\d\d/gi,re=/Z|[+-]\d\d(?::?\d\d)?/gi,ae=/[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i,oe={};function ue(e,n,s){oe[e]=x(n)?n:function(e,t){return e&&s?s:n}}function le(e,t){return m(oe,e)?oe[e](t._strict,t._locale):new RegExp(de(e.replace("\\","").replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g,function(e,t,n,s,i){return t||n||s||i})))}function de(e){return e.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&")}var he={};function ce(e,n){var t,s=n;for("string"==typeof e&&(e=[e]),d(n)&&(s=function(e,t){t[n]=k(e)}),t=0;t<e.length;t++)he[e[t]]=s}function fe(e,i){ce(e,function(e,t,n,s){n._w=n._w||{},i(e,n._w,n,s)})}var me=0,_e=1,ye=2,ge=3,pe=4,ve=5,we=6,Me=7,Se=8;function De(e){return ke(e)?366:365}function ke(e){return e%4==0&&e%100!=0||e%400==0}I("Y",0,0,function(){var e=this.year();return e<=9999?""+e:"+"+e}),I(0,["YY",2],0,function(){return this.year()%100}),I(0,["YYYY",4],0,"year"),I(0,["YYYYY",5],0,"year"),I(0,["YYYYYY",6,!0],0,"year"),H("year","y"),L("year",1),ue("Y",se),ue("YY",B,z),ue("YYYY",ee,q),ue("YYYYY",te,J),ue("YYYYYY",te,J),ce(["YYYYY","YYYYYY"],me),ce("YYYY",function(e,t){t[me]=2===e.length?c.parseTwoDigitYear(e):k(e)}),ce("YY",function(e,t){t[me]=c.parseTwoDigitYear(e)}),ce("Y",function(e,t){t[me]=parseInt(e,10)}),c.parseTwoDigitYear=function(e){return k(e)+(68<k(e)?1900:2e3)};var Ye,Oe=Te("FullYear",!0);function Te(t,n){return function(e){return null!=e?(be(this,t,e),c.updateOffset(this,n),this):xe(this,t)}}function xe(e,t){return e.isValid()?e._d["get"+(e._isUTC?"UTC":"")+t]():NaN}function be(e,t,n){e.isValid()&&!isNaN(n)&&("FullYear"===t&&ke(e.year())&&1===e.month()&&29===e.date()?e._d["set"+(e._isUTC?"UTC":"")+t](n,e.month(),Pe(n,e.month())):e._d["set"+(e._isUTC?"UTC":"")+t](n))}function Pe(e,t){if(isNaN(e)||isNaN(t))return NaN;var n,s=(t%(n=12)+n)%n;return e+=(t-s)/12,1===s?ke(e)?29:28:31-s%7%2}Ye=Array.prototype.indexOf?Array.prototype.indexOf:function(e){var t;for(t=0;t<this.length;++t)if(this[t]===e)return t;return-1},I("M",["MM",2],"Mo",function(){return this.month()+1}),I("MMM",0,0,function(e){return this.localeData().monthsShort(this,e)}),I("MMMM",0,0,function(e){return this.localeData().months(this,e)}),H("month","M"),L("month",8),ue("M",B),ue("MM",B,z),ue("MMM",function(e,t){return t.monthsShortRegex(e)}),ue("MMMM",function(e,t){return t.monthsRegex(e)}),ce(["M","MM"],function(e,t){t[_e]=k(e)-1}),ce(["MMM","MMMM"],function(e,t,n,s){var i=n._locale.monthsParse(e,s,n._strict);null!=i?t[_e]=i:g(n).invalidMonth=e});var We=/D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/,He="January_February_March_April_May_June_July_August_September_October_November_December".split("_");var Re="Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_");function Ce(e,t){var n;if(!e.isValid())return e;if("string"==typeof t)if(/^\d+$/.test(t))t=k(t);else if(!d(t=e.localeData().monthsParse(t)))return e;return n=Math.min(e.date(),Pe(e.year(),t)),e._d["set"+(e._isUTC?"UTC":"")+"Month"](t,n),e}function Fe(e){return null!=e?(Ce(this,e),c.updateOffset(this,!0),this):xe(this,"Month")}var Le=ae;var Ue=ae;function Ne(){function e(e,t){return t.length-e.length}var t,n,s=[],i=[],r=[];for(t=0;t<12;t++)n=y([2e3,t]),s.push(this.monthsShort(n,"")),i.push(this.months(n,"")),r.push(this.months(n,"")),r.push(this.monthsShort(n,""));for(s.sort(e),i.sort(e),r.sort(e),t=0;t<12;t++)s[t]=de(s[t]),i[t]=de(i[t]);for(t=0;t<24;t++)r[t]=de(r[t]);this._monthsRegex=new RegExp("^("+r.join("|")+")","i"),this._monthsShortRegex=this._monthsRegex,this._monthsStrictRegex=new RegExp("^("+i.join("|")+")","i"),this._monthsShortStrictRegex=new RegExp("^("+s.join("|")+")","i")}function Ge(e){var t=new Date(Date.UTC.apply(null,arguments));return e<100&&0<=e&&isFinite(t.getUTCFullYear())&&t.setUTCFullYear(e),t}function Ve(e,t,n){var s=7+t-n;return-((7+Ge(e,0,s).getUTCDay()-t)%7)+s-1}function Ee(e,t,n,s,i){var r,a,o=1+7*(t-1)+(7+n-s)%7+Ve(e,s,i);return o<=0?a=De(r=e-1)+o:o>De(e)?(r=e+1,a=o-De(e)):(r=e,a=o),{year:r,dayOfYear:a}}function Ie(e,t,n){var s,i,r=Ve(e.year(),t,n),a=Math.floor((e.dayOfYear()-r-1)/7)+1;return a<1?s=a+Ae(i=e.year()-1,t,n):a>Ae(e.year(),t,n)?(s=a-Ae(e.year(),t,n),i=e.year()+1):(i=e.year(),s=a),{week:s,year:i}}function Ae(e,t,n){var s=Ve(e,t,n),i=Ve(e+1,t,n);return(De(e)-s+i)/7}I("w",["ww",2],"wo","week"),I("W",["WW",2],"Wo","isoWeek"),H("week","w"),H("isoWeek","W"),L("week",5),L("isoWeek",5),ue("w",B),ue("ww",B,z),ue("W",B),ue("WW",B,z),fe(["w","ww","W","WW"],function(e,t,n,s){t[s.substr(0,1)]=k(e)});I("d",0,"do","day"),I("dd",0,0,function(e){return this.localeData().weekdaysMin(this,e)}),I("ddd",0,0,function(e){return this.localeData().weekdaysShort(this,e)}),I("dddd",0,0,function(e){return this.localeData().weekdays(this,e)}),I("e",0,0,"weekday"),I("E",0,0,"isoWeekday"),H("day","d"),H("weekday","e"),H("isoWeekday","E"),L("day",11),L("weekday",11),L("isoWeekday",11),ue("d",B),ue("e",B),ue("E",B),ue("dd",function(e,t){return t.weekdaysMinRegex(e)}),ue("ddd",function(e,t){return t.weekdaysShortRegex(e)}),ue("dddd",function(e,t){return t.weekdaysRegex(e)}),fe(["dd","ddd","dddd"],function(e,t,n,s){var i=n._locale.weekdaysParse(e,s,n._strict);null!=i?t.d=i:g(n).invalidWeekday=e}),fe(["d","e","E"],function(e,t,n,s){t[s]=k(e)});var je="Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_");var Ze="Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_");var ze="Su_Mo_Tu_We_Th_Fr_Sa".split("_");var $e=ae;var qe=ae;var Je=ae;function Be(){function e(e,t){return t.length-e.length}var t,n,s,i,r,a=[],o=[],u=[],l=[];for(t=0;t<7;t++)n=y([2e3,1]).day(t),s=this.weekdaysMin(n,""),i=this.weekdaysShort(n,""),r=this.weekdays(n,""),a.push(s),o.push(i),u.push(r),l.push(s),l.push(i),l.push(r);for(a.sort(e),o.sort(e),u.sort(e),l.sort(e),t=0;t<7;t++)o[t]=de(o[t]),u[t]=de(u[t]),l[t]=de(l[t]);this._weekdaysRegex=new RegExp("^("+l.join("|")+")","i"),this._weekdaysShortRegex=this._weekdaysRegex,this._weekdaysMinRegex=this._weekdaysRegex,this._weekdaysStrictRegex=new RegExp("^("+u.join("|")+")","i"),this._weekdaysShortStrictRegex=new RegExp("^("+o.join("|")+")","i"),this._weekdaysMinStrictRegex=new RegExp("^("+a.join("|")+")","i")}function Qe(){return this.hours()%12||12}function Xe(e,t){I(e,0,0,function(){return this.localeData().meridiem(this.hours(),this.minutes(),t)})}function Ke(e,t){return t._meridiemParse}I("H",["HH",2],0,"hour"),I("h",["hh",2],0,Qe),I("k",["kk",2],0,function(){return this.hours()||24}),I("hmm",0,0,function(){return""+Qe.apply(this)+U(this.minutes(),2)}),I("hmmss",0,0,function(){return""+Qe.apply(this)+U(this.minutes(),2)+U(this.seconds(),2)}),I("Hmm",0,0,function(){return""+this.hours()+U(this.minutes(),2)}),I("Hmmss",0,0,function(){return""+this.hours()+U(this.minutes(),2)+U(this.seconds(),2)}),Xe("a",!0),Xe("A",!1),H("hour","h"),L("hour",13),ue("a",Ke),ue("A",Ke),ue("H",B),ue("h",B),ue("k",B),ue("HH",B,z),ue("hh",B,z),ue("kk",B,z),ue("hmm",Q),ue("hmmss",X),ue("Hmm",Q),ue("Hmmss",X),ce(["H","HH"],ge),ce(["k","kk"],function(e,t,n){var s=k(e);t[ge]=24===s?0:s}),ce(["a","A"],function(e,t,n){n._isPm=n._locale.isPM(e),n._meridiem=e}),ce(["h","hh"],function(e,t,n){t[ge]=k(e),g(n).bigHour=!0}),ce("hmm",function(e,t,n){var s=e.length-2;t[ge]=k(e.substr(0,s)),t[pe]=k(e.substr(s)),g(n).bigHour=!0}),ce("hmmss",function(e,t,n){var s=e.length-4,i=e.length-2;t[ge]=k(e.substr(0,s)),t[pe]=k(e.substr(s,2)),t[ve]=k(e.substr(i)),g(n).bigHour=!0}),ce("Hmm",function(e,t,n){var s=e.length-2;t[ge]=k(e.substr(0,s)),t[pe]=k(e.substr(s))}),ce("Hmmss",function(e,t,n){var s=e.length-4,i=e.length-2;t[ge]=k(e.substr(0,s)),t[pe]=k(e.substr(s,2)),t[ve]=k(e.substr(i))});var et,tt=Te("Hours",!0),nt={calendar:{sameDay:"[Today at] LT",nextDay:"[Tomorrow at] LT",nextWeek:"dddd [at] LT",lastDay:"[Yesterday at] LT",lastWeek:"[Last] dddd [at] LT",sameElse:"L"},longDateFormat:{LTS:"h:mm:ss A",LT:"h:mm A",L:"MM/DD/YYYY",LL:"MMMM D, YYYY",LLL:"MMMM D, YYYY h:mm A",LLLL:"dddd, MMMM D, YYYY h:mm A"},invalidDate:"Invalid date",ordinal:"%d",dayOfMonthOrdinalParse:/\d{1,2}/,relativeTime:{future:"in %s",past:"%s ago",s:"a few seconds",ss:"%d seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"},months:He,monthsShort:Re,week:{dow:0,doy:6},weekdays:je,weekdaysMin:ze,weekdaysShort:Ze,meridiemParse:/[ap]\.?m?\.?/i},st={},it={};function rt(e){return e?e.toLowerCase().replace("_","-"):e}function at(e){var t=null;if(!st[e]&&"undefined"!=typeof module&&module&&module.exports)try{t=et._abbr,require("./locale/"+e),ot(t)}catch(e){}return st[e]}function ot(e,t){var n;return e&&((n=l(t)?lt(e):ut(e,t))?et=n:"undefined"!=typeof console&&console.warn&&console.warn("Locale "+e+" not found. Did you forget to load it?")),et._abbr}function ut(e,t){if(null!==t){var n,s=nt;if(t.abbr=e,null!=st[e])T("defineLocaleOverride","use moment.updateLocale(localeName, config) to change an existing locale. moment.defineLocale(localeName, config) should only be used for creating a new locale See http://momentjs.com/guides/#/warnings/define-locale/ for more info."),s=st[e]._config;else if(null!=t.parentLocale)if(null!=st[t.parentLocale])s=st[t.parentLocale]._config;else{if(null==(n=at(t.parentLocale)))return it[t.parentLocale]||(it[t.parentLocale]=[]),it[t.parentLocale].push({name:e,config:t}),null;s=n._config}return st[e]=new P(b(s,t)),it[e]&&it[e].forEach(function(e){ut(e.name,e.config)}),ot(e),st[e]}return delete st[e],null}function lt(e){var t;if(e&&e._locale&&e._locale._abbr&&(e=e._locale._abbr),!e)return et;if(!o(e)){if(t=at(e))return t;e=[e]}return function(e){for(var t,n,s,i,r=0;r<e.length;){for(t=(i=rt(e[r]).split("-")).length,n=(n=rt(e[r+1]))?n.split("-"):null;0<t;){if(s=at(i.slice(0,t).join("-")))return s;if(n&&n.length>=t&&a(i,n,!0)>=t-1)break;t--}r++}return et}(e)}function dt(e){var t,n=e._a;return n&&-2===g(e).overflow&&(t=n[_e]<0||11<n[_e]?_e:n[ye]<1||n[ye]>Pe(n[me],n[_e])?ye:n[ge]<0||24<n[ge]||24===n[ge]&&(0!==n[pe]||0!==n[ve]||0!==n[we])?ge:n[pe]<0||59<n[pe]?pe:n[ve]<0||59<n[ve]?ve:n[we]<0||999<n[we]?we:-1,g(e)._overflowDayOfYear&&(t<me||ye<t)&&(t=ye),g(e)._overflowWeeks&&-1===t&&(t=Me),g(e)._overflowWeekday&&-1===t&&(t=Se),g(e).overflow=t),e}function ht(e,t,n){return null!=e?e:null!=t?t:n}function ct(e){var t,n,s,i,r,a=[];if(!e._d){var o,u;for(o=e,u=new Date(c.now()),s=o._useUTC?[u.getUTCFullYear(),u.getUTCMonth(),u.getUTCDate()]:[u.getFullYear(),u.getMonth(),u.getDate()],e._w&&null==e._a[ye]&&null==e._a[_e]&&function(e){var t,n,s,i,r,a,o,u;if(null!=(t=e._w).GG||null!=t.W||null!=t.E)r=1,a=4,n=ht(t.GG,e._a[me],Ie(Tt(),1,4).year),s=ht(t.W,1),((i=ht(t.E,1))<1||7<i)&&(u=!0);else{r=e._locale._week.dow,a=e._locale._week.doy;var l=Ie(Tt(),r,a);n=ht(t.gg,e._a[me],l.year),s=ht(t.w,l.week),null!=t.d?((i=t.d)<0||6<i)&&(u=!0):null!=t.e?(i=t.e+r,(t.e<0||6<t.e)&&(u=!0)):i=r}s<1||s>Ae(n,r,a)?g(e)._overflowWeeks=!0:null!=u?g(e)._overflowWeekday=!0:(o=Ee(n,s,i,r,a),e._a[me]=o.year,e._dayOfYear=o.dayOfYear)}(e),null!=e._dayOfYear&&(r=ht(e._a[me],s[me]),(e._dayOfYear>De(r)||0===e._dayOfYear)&&(g(e)._overflowDayOfYear=!0),n=Ge(r,0,e._dayOfYear),e._a[_e]=n.getUTCMonth(),e._a[ye]=n.getUTCDate()),t=0;t<3&&null==e._a[t];++t)e._a[t]=a[t]=s[t];for(;t<7;t++)e._a[t]=a[t]=null==e._a[t]?2===t?1:0:e._a[t];24===e._a[ge]&&0===e._a[pe]&&0===e._a[ve]&&0===e._a[we]&&(e._nextDay=!0,e._a[ge]=0),e._d=(e._useUTC?Ge:function(e,t,n,s,i,r,a){var o=new Date(e,t,n,s,i,r,a);return e<100&&0<=e&&isFinite(o.getFullYear())&&o.setFullYear(e),o}).apply(null,a),i=e._useUTC?e._d.getUTCDay():e._d.getDay(),null!=e._tzm&&e._d.setUTCMinutes(e._d.getUTCMinutes()-e._tzm),e._nextDay&&(e._a[ge]=24),e._w&&void 0!==e._w.d&&e._w.d!==i&&(g(e).weekdayMismatch=!0)}}var ft=/^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/,mt=/^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/,_t=/Z|[+-]\d\d(?::?\d\d)?/,yt=[["YYYYYY-MM-DD",/[+-]\d{6}-\d\d-\d\d/],["YYYY-MM-DD",/\d{4}-\d\d-\d\d/],["GGGG-[W]WW-E",/\d{4}-W\d\d-\d/],["GGGG-[W]WW",/\d{4}-W\d\d/,!1],["YYYY-DDD",/\d{4}-\d{3}/],["YYYY-MM",/\d{4}-\d\d/,!1],["YYYYYYMMDD",/[+-]\d{10}/],["YYYYMMDD",/\d{8}/],["GGGG[W]WWE",/\d{4}W\d{3}/],["GGGG[W]WW",/\d{4}W\d{2}/,!1],["YYYYDDD",/\d{7}/]],gt=[["HH:mm:ss.SSSS",/\d\d:\d\d:\d\d\.\d+/],["HH:mm:ss,SSSS",/\d\d:\d\d:\d\d,\d+/],["HH:mm:ss",/\d\d:\d\d:\d\d/],["HH:mm",/\d\d:\d\d/],["HHmmss.SSSS",/\d\d\d\d\d\d\.\d+/],["HHmmss,SSSS",/\d\d\d\d\d\d,\d+/],["HHmmss",/\d\d\d\d\d\d/],["HHmm",/\d\d\d\d/],["HH",/\d\d/]],pt=/^\/?Date\((\-?\d+)/i;function vt(e){var t,n,s,i,r,a,o=e._i,u=ft.exec(o)||mt.exec(o);if(u){for(g(e).iso=!0,t=0,n=yt.length;t<n;t++)if(yt[t][1].exec(u[1])){i=yt[t][0],s=!1!==yt[t][2];break}if(null==i)return void(e._isValid=!1);if(u[3]){for(t=0,n=gt.length;t<n;t++)if(gt[t][1].exec(u[3])){r=(u[2]||" ")+gt[t][0];break}if(null==r)return void(e._isValid=!1)}if(!s&&null!=r)return void(e._isValid=!1);if(u[4]){if(!_t.exec(u[4]))return void(e._isValid=!1);a="Z"}e._f=i+(r||"")+(a||""),kt(e)}else e._isValid=!1}var wt=/^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;function Mt(e,t,n,s,i,r){var a=[function(e){var t=parseInt(e,10);{if(t<=49)return 2e3+t;if(t<=999)return 1900+t}return t}(e),Re.indexOf(t),parseInt(n,10),parseInt(s,10),parseInt(i,10)];return r&&a.push(parseInt(r,10)),a}var St={UT:0,GMT:0,EDT:-240,EST:-300,CDT:-300,CST:-360,MDT:-360,MST:-420,PDT:-420,PST:-480};function Dt(e){var t,n,s,i=wt.exec(e._i.replace(/\([^)]*\)|[\n\t]/g," ").replace(/(\s\s+)/g," ").replace(/^\s\s*/,"").replace(/\s\s*$/,""));if(i){var r=Mt(i[4],i[3],i[2],i[5],i[6],i[7]);if(t=i[1],n=r,s=e,t&&Ze.indexOf(t)!==new Date(n[0],n[1],n[2]).getDay()&&(g(s).weekdayMismatch=!0,!(s._isValid=!1)))return;e._a=r,e._tzm=function(e,t,n){if(e)return St[e];if(t)return 0;var s=parseInt(n,10),i=s%100;return(s-i)/100*60+i}(i[8],i[9],i[10]),e._d=Ge.apply(null,e._a),e._d.setUTCMinutes(e._d.getUTCMinutes()-e._tzm),g(e).rfc2822=!0}else e._isValid=!1}function kt(e){if(e._f!==c.ISO_8601)if(e._f!==c.RFC_2822){e._a=[],g(e).empty=!0;var t,n,s,i,r,a,o,u,l=""+e._i,d=l.length,h=0;for(s=j(e._f,e._locale).match(N)||[],t=0;t<s.length;t++)i=s[t],(n=(l.match(le(i,e))||[])[0])&&(0<(r=l.substr(0,l.indexOf(n))).length&&g(e).unusedInput.push(r),l=l.slice(l.indexOf(n)+n.length),h+=n.length),E[i]?(n?g(e).empty=!1:g(e).unusedTokens.push(i),a=i,u=e,null!=(o=n)&&m(he,a)&&he[a](o,u._a,u,a)):e._strict&&!n&&g(e).unusedTokens.push(i);g(e).charsLeftOver=d-h,0<l.length&&g(e).unusedInput.push(l),e._a[ge]<=12&&!0===g(e).bigHour&&0<e._a[ge]&&(g(e).bigHour=void 0),g(e).parsedDateParts=e._a.slice(0),g(e).meridiem=e._meridiem,e._a[ge]=function(e,t,n){var s;if(null==n)return t;return null!=e.meridiemHour?e.meridiemHour(t,n):(null!=e.isPM&&((s=e.isPM(n))&&t<12&&(t+=12),s||12!==t||(t=0)),t)}(e._locale,e._a[ge],e._meridiem),ct(e),dt(e)}else Dt(e);else vt(e)}function Yt(e){var t,n,s,i,r=e._i,a=e._f;return e._locale=e._locale||lt(e._l),null===r||void 0===a&&""===r?v({nullInput:!0}):("string"==typeof r&&(e._i=r=e._locale.preparse(r)),S(r)?new M(dt(r)):(h(r)?e._d=r:o(a)?function(e){var t,n,s,i,r;if(0===e._f.length)return g(e).invalidFormat=!0,e._d=new Date(NaN);for(i=0;i<e._f.length;i++)r=0,t=w({},e),null!=e._useUTC&&(t._useUTC=e._useUTC),t._f=e._f[i],kt(t),p(t)&&(r+=g(t).charsLeftOver,r+=10*g(t).unusedTokens.length,g(t).score=r,(null==s||r<s)&&(s=r,n=t));_(e,n||t)}(e):a?kt(e):l(n=(t=e)._i)?t._d=new Date(c.now()):h(n)?t._d=new Date(n.valueOf()):"string"==typeof n?(s=t,null===(i=pt.exec(s._i))?(vt(s),!1===s._isValid&&(delete s._isValid,Dt(s),!1===s._isValid&&(delete s._isValid,c.createFromInputFallback(s)))):s._d=new Date(+i[1])):o(n)?(t._a=f(n.slice(0),function(e){return parseInt(e,10)}),ct(t)):u(n)?function(e){if(!e._d){var t=C(e._i);e._a=f([t.year,t.month,t.day||t.date,t.hour,t.minute,t.second,t.millisecond],function(e){return e&&parseInt(e,10)}),ct(e)}}(t):d(n)?t._d=new Date(n):c.createFromInputFallback(t),p(e)||(e._d=null),e))}function Ot(e,t,n,s,i){var r,a={};return!0!==n&&!1!==n||(s=n,n=void 0),(u(e)&&function(e){if(Object.getOwnPropertyNames)return 0===Object.getOwnPropertyNames(e).length;var t;for(t in e)if(e.hasOwnProperty(t))return!1;return!0}(e)||o(e)&&0===e.length)&&(e=void 0),a._isAMomentObject=!0,a._useUTC=a._isUTC=i,a._l=n,a._i=e,a._f=t,a._strict=s,(r=new M(dt(Yt(a))))._nextDay&&(r.add(1,"d"),r._nextDay=void 0),r}function Tt(e,t,n,s){return Ot(e,t,n,s,!1)}c.createFromInputFallback=n("value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.",function(e){e._d=new Date(e._i+(e._useUTC?" UTC":""))}),c.ISO_8601=function(){},c.RFC_2822=function(){};var xt=n("moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var e=Tt.apply(null,arguments);return this.isValid()&&e.isValid()?e<this?this:e:v()}),bt=n("moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var e=Tt.apply(null,arguments);return this.isValid()&&e.isValid()?this<e?this:e:v()});function Pt(e,t){var n,s;if(1===t.length&&o(t[0])&&(t=t[0]),!t.length)return Tt();for(n=t[0],s=1;s<t.length;++s)t[s].isValid()&&!t[s][e](n)||(n=t[s]);return n}var Wt=["year","quarter","month","week","day","hour","minute","second","millisecond"];function Ht(e){var t=C(e),n=t.year||0,s=t.quarter||0,i=t.month||0,r=t.week||0,a=t.day||0,o=t.hour||0,u=t.minute||0,l=t.second||0,d=t.millisecond||0;this._isValid=function(e){for(var t in e)if(-1===Ye.call(Wt,t)||null!=e[t]&&isNaN(e[t]))return!1;for(var n=!1,s=0;s<Wt.length;++s)if(e[Wt[s]]){if(n)return!1;parseFloat(e[Wt[s]])!==k(e[Wt[s]])&&(n=!0)}return!0}(t),this._milliseconds=+d+1e3*l+6e4*u+1e3*o*60*60,this._days=+a+7*r,this._months=+i+3*s+12*n,this._data={},this._locale=lt(),this._bubble()}function Rt(e){return e instanceof Ht}function Ct(e){return e<0?-1*Math.round(-1*e):Math.round(e)}function Ft(e,n){I(e,0,0,function(){var e=this.utcOffset(),t="+";return e<0&&(e=-e,t="-"),t+U(~~(e/60),2)+n+U(~~e%60,2)})}Ft("Z",":"),Ft("ZZ",""),ue("Z",re),ue("ZZ",re),ce(["Z","ZZ"],function(e,t,n){n._useUTC=!0,n._tzm=Ut(re,e)});var Lt=/([\+\-]|\d\d)/gi;function Ut(e,t){var n=(t||"").match(e);if(null===n)return null;var s=((n[n.length-1]||[])+"").match(Lt)||["-",0,0],i=60*s[1]+k(s[2]);return 0===i?0:"+"===s[0]?i:-i}function Nt(e,t){var n,s;return t._isUTC?(n=t.clone(),s=(S(e)||h(e)?e.valueOf():Tt(e).valueOf())-n.valueOf(),n._d.setTime(n._d.valueOf()+s),c.updateOffset(n,!1),n):Tt(e).local()}function Gt(e){return 15*-Math.round(e._d.getTimezoneOffset()/15)}function Vt(){return!!this.isValid()&&(this._isUTC&&0===this._offset)}c.updateOffset=function(){};var Et=/^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/,It=/^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;function At(e,t){var n,s,i,r=e,a=null;return Rt(e)?r={ms:e._milliseconds,d:e._days,M:e._months}:d(e)?(r={},t?r[t]=e:r.milliseconds=e):(a=Et.exec(e))?(n="-"===a[1]?-1:1,r={y:0,d:k(a[ye])*n,h:k(a[ge])*n,m:k(a[pe])*n,s:k(a[ve])*n,ms:k(Ct(1e3*a[we]))*n}):(a=It.exec(e))?(n="-"===a[1]?-1:(a[1],1),r={y:jt(a[2],n),M:jt(a[3],n),w:jt(a[4],n),d:jt(a[5],n),h:jt(a[6],n),m:jt(a[7],n),s:jt(a[8],n)}):null==r?r={}:"object"==typeof r&&("from"in r||"to"in r)&&(i=function(e,t){var n;if(!e.isValid()||!t.isValid())return{milliseconds:0,months:0};t=Nt(t,e),e.isBefore(t)?n=Zt(e,t):((n=Zt(t,e)).milliseconds=-n.milliseconds,n.months=-n.months);return n}(Tt(r.from),Tt(r.to)),(r={}).ms=i.milliseconds,r.M=i.months),s=new Ht(r),Rt(e)&&m(e,"_locale")&&(s._locale=e._locale),s}function jt(e,t){var n=e&&parseFloat(e.replace(",","."));return(isNaN(n)?0:n)*t}function Zt(e,t){var n={milliseconds:0,months:0};return n.months=t.month()-e.month()+12*(t.year()-e.year()),e.clone().add(n.months,"M").isAfter(t)&&--n.months,n.milliseconds=+t-+e.clone().add(n.months,"M"),n}function zt(s,i){return function(e,t){var n;return null===t||isNaN(+t)||(T(i,"moment()."+i+"(period, number) is deprecated. Please use moment()."+i+"(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info."),n=e,e=t,t=n),$t(this,At(e="string"==typeof e?+e:e,t),s),this}}function $t(e,t,n,s){var i=t._milliseconds,r=Ct(t._days),a=Ct(t._months);e.isValid()&&(s=null==s||s,a&&Ce(e,xe(e,"Month")+a*n),r&&be(e,"Date",xe(e,"Date")+r*n),i&&e._d.setTime(e._d.valueOf()+i*n),s&&c.updateOffset(e,r||a))}At.fn=Ht.prototype,At.invalid=function(){return At(NaN)};var qt=zt(1,"add"),Jt=zt(-1,"subtract");function Bt(e,t){var n=12*(t.year()-e.year())+(t.month()-e.month()),s=e.clone().add(n,"months");return-(n+(t-s<0?(t-s)/(s-e.clone().add(n-1,"months")):(t-s)/(e.clone().add(n+1,"months")-s)))||0}function Qt(e){var t;return void 0===e?this._locale._abbr:(null!=(t=lt(e))&&(this._locale=t),this)}c.defaultFormat="YYYY-MM-DDTHH:mm:ssZ",c.defaultFormatUtc="YYYY-MM-DDTHH:mm:ss[Z]";var Xt=n("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.",function(e){return void 0===e?this.localeData():this.locale(e)});function Kt(){return this._locale}function en(e,t){I(0,[e,e.length],0,t)}function tn(e,t,n,s,i){var r;return null==e?Ie(this,s,i).year:((r=Ae(e,s,i))<t&&(t=r),function(e,t,n,s,i){var r=Ee(e,t,n,s,i),a=Ge(r.year,0,r.dayOfYear);return this.year(a.getUTCFullYear()),this.month(a.getUTCMonth()),this.date(a.getUTCDate()),this}.call(this,e,t,n,s,i))}I(0,["gg",2],0,function(){return this.weekYear()%100}),I(0,["GG",2],0,function(){return this.isoWeekYear()%100}),en("gggg","weekYear"),en("ggggg","weekYear"),en("GGGG","isoWeekYear"),en("GGGGG","isoWeekYear"),H("weekYear","gg"),H("isoWeekYear","GG"),L("weekYear",1),L("isoWeekYear",1),ue("G",se),ue("g",se),ue("GG",B,z),ue("gg",B,z),ue("GGGG",ee,q),ue("gggg",ee,q),ue("GGGGG",te,J),ue("ggggg",te,J),fe(["gggg","ggggg","GGGG","GGGGG"],function(e,t,n,s){t[s.substr(0,2)]=k(e)}),fe(["gg","GG"],function(e,t,n,s){t[s]=c.parseTwoDigitYear(e)}),I("Q",0,"Qo","quarter"),H("quarter","Q"),L("quarter",7),ue("Q",Z),ce("Q",function(e,t){t[_e]=3*(k(e)-1)}),I("D",["DD",2],"Do","date"),H("date","D"),L("date",9),ue("D",B),ue("DD",B,z),ue("Do",function(e,t){return e?t._dayOfMonthOrdinalParse||t._ordinalParse:t._dayOfMonthOrdinalParseLenient}),ce(["D","DD"],ye),ce("Do",function(e,t){t[ye]=k(e.match(B)[0])});var nn=Te("Date",!0);I("DDD",["DDDD",3],"DDDo","dayOfYear"),H("dayOfYear","DDD"),L("dayOfYear",4),ue("DDD",K),ue("DDDD",$),ce(["DDD","DDDD"],function(e,t,n){n._dayOfYear=k(e)}),I("m",["mm",2],0,"minute"),H("minute","m"),L("minute",14),ue("m",B),ue("mm",B,z),ce(["m","mm"],pe);var sn=Te("Minutes",!1);I("s",["ss",2],0,"second"),H("second","s"),L("second",15),ue("s",B),ue("ss",B,z),ce(["s","ss"],ve);var rn,an=Te("Seconds",!1);for(I("S",0,0,function(){return~~(this.millisecond()/100)}),I(0,["SS",2],0,function(){return~~(this.millisecond()/10)}),I(0,["SSS",3],0,"millisecond"),I(0,["SSSS",4],0,function(){return 10*this.millisecond()}),I(0,["SSSSS",5],0,function(){return 100*this.millisecond()}),I(0,["SSSSSS",6],0,function(){return 1e3*this.millisecond()}),I(0,["SSSSSSS",7],0,function(){return 1e4*this.millisecond()}),I(0,["SSSSSSSS",8],0,function(){return 1e5*this.millisecond()}),I(0,["SSSSSSSSS",9],0,function(){return 1e6*this.millisecond()}),H("millisecond","ms"),L("millisecond",16),ue("S",K,Z),ue("SS",K,z),ue("SSS",K,$),rn="SSSS";rn.length<=9;rn+="S")ue(rn,ne);function on(e,t){t[we]=k(1e3*("0."+e))}for(rn="S";rn.length<=9;rn+="S")ce(rn,on);var un=Te("Milliseconds",!1);I("z",0,0,"zoneAbbr"),I("zz",0,0,"zoneName");var ln=M.prototype;function dn(e){return e}ln.add=qt,ln.calendar=function(e,t){var n=e||Tt(),s=Nt(n,this).startOf("day"),i=c.calendarFormat(this,s)||"sameElse",r=t&&(x(t[i])?t[i].call(this,n):t[i]);return this.format(r||this.localeData().calendar(i,this,Tt(n)))},ln.clone=function(){return new M(this)},ln.diff=function(e,t,n){var s,i,r;if(!this.isValid())return NaN;if(!(s=Nt(e,this)).isValid())return NaN;switch(i=6e4*(s.utcOffset()-this.utcOffset()),t=R(t)){case"year":r=Bt(this,s)/12;break;case"month":r=Bt(this,s);break;case"quarter":r=Bt(this,s)/3;break;case"second":r=(this-s)/1e3;break;case"minute":r=(this-s)/6e4;break;case"hour":r=(this-s)/36e5;break;case"day":r=(this-s-i)/864e5;break;case"week":r=(this-s-i)/6048e5;break;default:r=this-s}return n?r:D(r)},ln.endOf=function(e){return void 0===(e=R(e))||"millisecond"===e?this:("date"===e&&(e="day"),this.startOf(e).add(1,"isoWeek"===e?"week":e).subtract(1,"ms"))},ln.format=function(e){e||(e=this.isUtc()?c.defaultFormatUtc:c.defaultFormat);var t=A(this,e);return this.localeData().postformat(t)},ln.from=function(e,t){return this.isValid()&&(S(e)&&e.isValid()||Tt(e).isValid())?At({to:this,from:e}).locale(this.locale()).humanize(!t):this.localeData().invalidDate()},ln.fromNow=function(e){return this.from(Tt(),e)},ln.to=function(e,t){return this.isValid()&&(S(e)&&e.isValid()||Tt(e).isValid())?At({from:this,to:e}).locale(this.locale()).humanize(!t):this.localeData().invalidDate()},ln.toNow=function(e){return this.to(Tt(),e)},ln.get=function(e){return x(this[e=R(e)])?this[e]():this},ln.invalidAt=function(){return g(this).overflow},ln.isAfter=function(e,t){var n=S(e)?e:Tt(e);return!(!this.isValid()||!n.isValid())&&("millisecond"===(t=R(l(t)?"millisecond":t))?this.valueOf()>n.valueOf():n.valueOf()<this.clone().startOf(t).valueOf())},ln.isBefore=function(e,t){var n=S(e)?e:Tt(e);return!(!this.isValid()||!n.isValid())&&("millisecond"===(t=R(l(t)?"millisecond":t))?this.valueOf()<n.valueOf():this.clone().endOf(t).valueOf()<n.valueOf())},ln.isBetween=function(e,t,n,s){return("("===(s=s||"()")[0]?this.isAfter(e,n):!this.isBefore(e,n))&&(")"===s[1]?this.isBefore(t,n):!this.isAfter(t,n))},ln.isSame=function(e,t){var n,s=S(e)?e:Tt(e);return!(!this.isValid()||!s.isValid())&&("millisecond"===(t=R(t||"millisecond"))?this.valueOf()===s.valueOf():(n=s.valueOf(),this.clone().startOf(t).valueOf()<=n&&n<=this.clone().endOf(t).valueOf()))},ln.isSameOrAfter=function(e,t){return this.isSame(e,t)||this.isAfter(e,t)},ln.isSameOrBefore=function(e,t){return this.isSame(e,t)||this.isBefore(e,t)},ln.isValid=function(){return p(this)},ln.lang=Xt,ln.locale=Qt,ln.localeData=Kt,ln.max=bt,ln.min=xt,ln.parsingFlags=function(){return _({},g(this))},ln.set=function(e,t){if("object"==typeof e)for(var n=function(e){var t=[];for(var n in e)t.push({unit:n,priority:F[n]});return t.sort(function(e,t){return e.priority-t.priority}),t}(e=C(e)),s=0;s<n.length;s++)this[n[s].unit](e[n[s].unit]);else if(x(this[e=R(e)]))return this[e](t);return this},ln.startOf=function(e){switch(e=R(e)){case"year":this.month(0);case"quarter":case"month":this.date(1);case"week":case"isoWeek":case"day":case"date":this.hours(0);case"hour":this.minutes(0);case"minute":this.seconds(0);case"second":this.milliseconds(0)}return"week"===e&&this.weekday(0),"isoWeek"===e&&this.isoWeekday(1),"quarter"===e&&this.month(3*Math.floor(this.month()/3)),this},ln.subtract=Jt,ln.toArray=function(){var e=this;return[e.year(),e.month(),e.date(),e.hour(),e.minute(),e.second(),e.millisecond()]},ln.toObject=function(){var e=this;return{years:e.year(),months:e.month(),date:e.date(),hours:e.hours(),minutes:e.minutes(),seconds:e.seconds(),milliseconds:e.milliseconds()}},ln.toDate=function(){return new Date(this.valueOf())},ln.toISOString=function(e){if(!this.isValid())return null;var t=!0!==e,n=t?this.clone().utc():this;return n.year()<0||9999<n.year()?A(n,t?"YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]":"YYYYYY-MM-DD[T]HH:mm:ss.SSSZ"):x(Date.prototype.toISOString)?t?this.toDate().toISOString():new Date(this.valueOf()+60*this.utcOffset()*1e3).toISOString().replace("Z",A(n,"Z")):A(n,t?"YYYY-MM-DD[T]HH:mm:ss.SSS[Z]":"YYYY-MM-DD[T]HH:mm:ss.SSSZ")},ln.inspect=function(){if(!this.isValid())return"moment.invalid(/* "+this._i+" */)";var e="moment",t="";this.isLocal()||(e=0===this.utcOffset()?"moment.utc":"moment.parseZone",t="Z");var n="["+e+'("]',s=0<=this.year()&&this.year()<=9999?"YYYY":"YYYYYY",i=t+'[")]';return this.format(n+s+"-MM-DD[T]HH:mm:ss.SSS"+i)},ln.toJSON=function(){return this.isValid()?this.toISOString():null},ln.toString=function(){return this.clone().locale("en").format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")},ln.unix=function(){return Math.floor(this.valueOf()/1e3)},ln.valueOf=function(){return this._d.valueOf()-6e4*(this._offset||0)},ln.creationData=function(){return{input:this._i,format:this._f,locale:this._locale,isUTC:this._isUTC,strict:this._strict}},ln.year=Oe,ln.isLeapYear=function(){return ke(this.year())},ln.weekYear=function(e){return tn.call(this,e,this.week(),this.weekday(),this.localeData()._week.dow,this.localeData()._week.doy)},ln.isoWeekYear=function(e){return tn.call(this,e,this.isoWeek(),this.isoWeekday(),1,4)},ln.quarter=ln.quarters=function(e){return null==e?Math.ceil((this.month()+1)/3):this.month(3*(e-1)+this.month()%3)},ln.month=Fe,ln.daysInMonth=function(){return Pe(this.year(),this.month())},ln.week=ln.weeks=function(e){var t=this.localeData().week(this);return null==e?t:this.add(7*(e-t),"d")},ln.isoWeek=ln.isoWeeks=function(e){var t=Ie(this,1,4).week;return null==e?t:this.add(7*(e-t),"d")},ln.weeksInYear=function(){var e=this.localeData()._week;return Ae(this.year(),e.dow,e.doy)},ln.isoWeeksInYear=function(){return Ae(this.year(),1,4)},ln.date=nn,ln.day=ln.days=function(e){if(!this.isValid())return null!=e?this:NaN;var t,n,s=this._isUTC?this._d.getUTCDay():this._d.getDay();return null!=e?(t=e,n=this.localeData(),e="string"!=typeof t?t:isNaN(t)?"number"==typeof(t=n.weekdaysParse(t))?t:null:parseInt(t,10),this.add(e-s,"d")):s},ln.weekday=function(e){if(!this.isValid())return null!=e?this:NaN;var t=(this.day()+7-this.localeData()._week.dow)%7;return null==e?t:this.add(e-t,"d")},ln.isoWeekday=function(e){if(!this.isValid())return null!=e?this:NaN;if(null!=e){var t=(n=e,s=this.localeData(),"string"==typeof n?s.weekdaysParse(n)%7||7:isNaN(n)?null:n);return this.day(this.day()%7?t:t-7)}return this.day()||7;var n,s},ln.dayOfYear=function(e){var t=Math.round((this.clone().startOf("day")-this.clone().startOf("year"))/864e5)+1;return null==e?t:this.add(e-t,"d")},ln.hour=ln.hours=tt,ln.minute=ln.minutes=sn,ln.second=ln.seconds=an,ln.millisecond=ln.milliseconds=un,ln.utcOffset=function(e,t,n){var s,i=this._offset||0;if(!this.isValid())return null!=e?this:NaN;if(null!=e){if("string"==typeof e){if(null===(e=Ut(re,e)))return this}else Math.abs(e)<16&&!n&&(e*=60);return!this._isUTC&&t&&(s=Gt(this)),this._offset=e,this._isUTC=!0,null!=s&&this.add(s,"m"),i!==e&&(!t||this._changeInProgress?$t(this,At(e-i,"m"),1,!1):this._changeInProgress||(this._changeInProgress=!0,c.updateOffset(this,!0),this._changeInProgress=null)),this}return this._isUTC?i:Gt(this)},ln.utc=function(e){return this.utcOffset(0,e)},ln.local=function(e){return this._isUTC&&(this.utcOffset(0,e),this._isUTC=!1,e&&this.subtract(Gt(this),"m")),this},ln.parseZone=function(){if(null!=this._tzm)this.utcOffset(this._tzm,!1,!0);else if("string"==typeof this._i){var e=Ut(ie,this._i);null!=e?this.utcOffset(e):this.utcOffset(0,!0)}return this},ln.hasAlignedHourOffset=function(e){return!!this.isValid()&&(e=e?Tt(e).utcOffset():0,(this.utcOffset()-e)%60==0)},ln.isDST=function(){return this.utcOffset()>this.clone().month(0).utcOffset()||this.utcOffset()>this.clone().month(5).utcOffset()},ln.isLocal=function(){return!!this.isValid()&&!this._isUTC},ln.isUtcOffset=function(){return!!this.isValid()&&this._isUTC},ln.isUtc=Vt,ln.isUTC=Vt,ln.zoneAbbr=function(){return this._isUTC?"UTC":""},ln.zoneName=function(){return this._isUTC?"Coordinated Universal Time":""},ln.dates=n("dates accessor is deprecated. Use date instead.",nn),ln.months=n("months accessor is deprecated. Use month instead",Fe),ln.years=n("years accessor is deprecated. Use year instead",Oe),ln.zone=n("moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/",function(e,t){return null!=e?("string"!=typeof e&&(e=-e),this.utcOffset(e,t),this):-this.utcOffset()}),ln.isDSTShifted=n("isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information",function(){if(!l(this._isDSTShifted))return this._isDSTShifted;var e={};if(w(e,this),(e=Yt(e))._a){var t=e._isUTC?y(e._a):Tt(e._a);this._isDSTShifted=this.isValid()&&0<a(e._a,t.toArray())}else this._isDSTShifted=!1;return this._isDSTShifted});var hn=P.prototype;function cn(e,t,n,s){var i=lt(),r=y().set(s,t);return i[n](r,e)}function fn(e,t,n){if(d(e)&&(t=e,e=void 0),e=e||"",null!=t)return cn(e,t,n,"month");var s,i=[];for(s=0;s<12;s++)i[s]=cn(e,s,n,"month");return i}function mn(e,t,n,s){"boolean"==typeof e?d(t)&&(n=t,t=void 0):(t=e,e=!1,d(n=t)&&(n=t,t=void 0)),t=t||"";var i,r=lt(),a=e?r._week.dow:0;if(null!=n)return cn(t,(n+a)%7,s,"day");var o=[];for(i=0;i<7;i++)o[i]=cn(t,(i+a)%7,s,"day");return o}hn.calendar=function(e,t,n){var s=this._calendar[e]||this._calendar.sameElse;return x(s)?s.call(t,n):s},hn.longDateFormat=function(e){var t=this._longDateFormat[e],n=this._longDateFormat[e.toUpperCase()];return t||!n?t:(this._longDateFormat[e]=n.replace(/MMMM|MM|DD|dddd/g,function(e){return e.slice(1)}),this._longDateFormat[e])},hn.invalidDate=function(){return this._invalidDate},hn.ordinal=function(e){return this._ordinal.replace("%d",e)},hn.preparse=dn,hn.postformat=dn,hn.relativeTime=function(e,t,n,s){var i=this._relativeTime[n];return x(i)?i(e,t,n,s):i.replace(/%d/i,e)},hn.pastFuture=function(e,t){var n=this._relativeTime[0<e?"future":"past"];return x(n)?n(t):n.replace(/%s/i,t)},hn.set=function(e){var t,n;for(n in e)x(t=e[n])?this[n]=t:this["_"+n]=t;this._config=e,this._dayOfMonthOrdinalParseLenient=new RegExp((this._dayOfMonthOrdinalParse.source||this._ordinalParse.source)+"|"+/\d{1,2}/.source)},hn.months=function(e,t){return e?o(this._months)?this._months[e.month()]:this._months[(this._months.isFormat||We).test(t)?"format":"standalone"][e.month()]:o(this._months)?this._months:this._months.standalone},hn.monthsShort=function(e,t){return e?o(this._monthsShort)?this._monthsShort[e.month()]:this._monthsShort[We.test(t)?"format":"standalone"][e.month()]:o(this._monthsShort)?this._monthsShort:this._monthsShort.standalone},hn.monthsParse=function(e,t,n){var s,i,r;if(this._monthsParseExact)return function(e,t,n){var s,i,r,a=e.toLocaleLowerCase();if(!this._monthsParse)for(this._monthsParse=[],this._longMonthsParse=[],this._shortMonthsParse=[],s=0;s<12;++s)r=y([2e3,s]),this._shortMonthsParse[s]=this.monthsShort(r,"").toLocaleLowerCase(),this._longMonthsParse[s]=this.months(r,"").toLocaleLowerCase();return n?"MMM"===t?-1!==(i=Ye.call(this._shortMonthsParse,a))?i:null:-1!==(i=Ye.call(this._longMonthsParse,a))?i:null:"MMM"===t?-1!==(i=Ye.call(this._shortMonthsParse,a))?i:-1!==(i=Ye.call(this._longMonthsParse,a))?i:null:-1!==(i=Ye.call(this._longMonthsParse,a))?i:-1!==(i=Ye.call(this._shortMonthsParse,a))?i:null}.call(this,e,t,n);for(this._monthsParse||(this._monthsParse=[],this._longMonthsParse=[],this._shortMonthsParse=[]),s=0;s<12;s++){if(i=y([2e3,s]),n&&!this._longMonthsParse[s]&&(this._longMonthsParse[s]=new RegExp("^"+this.months(i,"").replace(".","")+"$","i"),this._shortMonthsParse[s]=new RegExp("^"+this.monthsShort(i,"").replace(".","")+"$","i")),n||this._monthsParse[s]||(r="^"+this.months(i,"")+"|^"+this.monthsShort(i,""),this._monthsParse[s]=new RegExp(r.replace(".",""),"i")),n&&"MMMM"===t&&this._longMonthsParse[s].test(e))return s;if(n&&"MMM"===t&&this._shortMonthsParse[s].test(e))return s;if(!n&&this._monthsParse[s].test(e))return s}},hn.monthsRegex=function(e){return this._monthsParseExact?(m(this,"_monthsRegex")||Ne.call(this),e?this._monthsStrictRegex:this._monthsRegex):(m(this,"_monthsRegex")||(this._monthsRegex=Ue),this._monthsStrictRegex&&e?this._monthsStrictRegex:this._monthsRegex)},hn.monthsShortRegex=function(e){return this._monthsParseExact?(m(this,"_monthsRegex")||Ne.call(this),e?this._monthsShortStrictRegex:this._monthsShortRegex):(m(this,"_monthsShortRegex")||(this._monthsShortRegex=Le),this._monthsShortStrictRegex&&e?this._monthsShortStrictRegex:this._monthsShortRegex)},hn.week=function(e){return Ie(e,this._week.dow,this._week.doy).week},hn.firstDayOfYear=function(){return this._week.doy},hn.firstDayOfWeek=function(){return this._week.dow},hn.weekdays=function(e,t){return e?o(this._weekdays)?this._weekdays[e.day()]:this._weekdays[this._weekdays.isFormat.test(t)?"format":"standalone"][e.day()]:o(this._weekdays)?this._weekdays:this._weekdays.standalone},hn.weekdaysMin=function(e){return e?this._weekdaysMin[e.day()]:this._weekdaysMin},hn.weekdaysShort=function(e){return e?this._weekdaysShort[e.day()]:this._weekdaysShort},hn.weekdaysParse=function(e,t,n){var s,i,r;if(this._weekdaysParseExact)return function(e,t,n){var s,i,r,a=e.toLocaleLowerCase();if(!this._weekdaysParse)for(this._weekdaysParse=[],this._shortWeekdaysParse=[],this._minWeekdaysParse=[],s=0;s<7;++s)r=y([2e3,1]).day(s),this._minWeekdaysParse[s]=this.weekdaysMin(r,"").toLocaleLowerCase(),this._shortWeekdaysParse[s]=this.weekdaysShort(r,"").toLocaleLowerCase(),this._weekdaysParse[s]=this.weekdays(r,"").toLocaleLowerCase();return n?"dddd"===t?-1!==(i=Ye.call(this._weekdaysParse,a))?i:null:"ddd"===t?-1!==(i=Ye.call(this._shortWeekdaysParse,a))?i:null:-1!==(i=Ye.call(this._minWeekdaysParse,a))?i:null:"dddd"===t?-1!==(i=Ye.call(this._weekdaysParse,a))?i:-1!==(i=Ye.call(this._shortWeekdaysParse,a))?i:-1!==(i=Ye.call(this._minWeekdaysParse,a))?i:null:"ddd"===t?-1!==(i=Ye.call(this._shortWeekdaysParse,a))?i:-1!==(i=Ye.call(this._weekdaysParse,a))?i:-1!==(i=Ye.call(this._minWeekdaysParse,a))?i:null:-1!==(i=Ye.call(this._minWeekdaysParse,a))?i:-1!==(i=Ye.call(this._weekdaysParse,a))?i:-1!==(i=Ye.call(this._shortWeekdaysParse,a))?i:null}.call(this,e,t,n);for(this._weekdaysParse||(this._weekdaysParse=[],this._minWeekdaysParse=[],this._shortWeekdaysParse=[],this._fullWeekdaysParse=[]),s=0;s<7;s++){if(i=y([2e3,1]).day(s),n&&!this._fullWeekdaysParse[s]&&(this._fullWeekdaysParse[s]=new RegExp("^"+this.weekdays(i,"").replace(".","\\.?")+"$","i"),this._shortWeekdaysParse[s]=new RegExp("^"+this.weekdaysShort(i,"").replace(".","\\.?")+"$","i"),this._minWeekdaysParse[s]=new RegExp("^"+this.weekdaysMin(i,"").replace(".","\\.?")+"$","i")),this._weekdaysParse[s]||(r="^"+this.weekdays(i,"")+"|^"+this.weekdaysShort(i,"")+"|^"+this.weekdaysMin(i,""),this._weekdaysParse[s]=new RegExp(r.replace(".",""),"i")),n&&"dddd"===t&&this._fullWeekdaysParse[s].test(e))return s;if(n&&"ddd"===t&&this._shortWeekdaysParse[s].test(e))return s;if(n&&"dd"===t&&this._minWeekdaysParse[s].test(e))return s;if(!n&&this._weekdaysParse[s].test(e))return s}},hn.weekdaysRegex=function(e){return this._weekdaysParseExact?(m(this,"_weekdaysRegex")||Be.call(this),e?this._weekdaysStrictRegex:this._weekdaysRegex):(m(this,"_weekdaysRegex")||(this._weekdaysRegex=$e),this._weekdaysStrictRegex&&e?this._weekdaysStrictRegex:this._weekdaysRegex)},hn.weekdaysShortRegex=function(e){return this._weekdaysParseExact?(m(this,"_weekdaysRegex")||Be.call(this),e?this._weekdaysShortStrictRegex:this._weekdaysShortRegex):(m(this,"_weekdaysShortRegex")||(this._weekdaysShortRegex=qe),this._weekdaysShortStrictRegex&&e?this._weekdaysShortStrictRegex:this._weekdaysShortRegex)},hn.weekdaysMinRegex=function(e){return this._weekdaysParseExact?(m(this,"_weekdaysRegex")||Be.call(this),e?this._weekdaysMinStrictRegex:this._weekdaysMinRegex):(m(this,"_weekdaysMinRegex")||(this._weekdaysMinRegex=Je),this._weekdaysMinStrictRegex&&e?this._weekdaysMinStrictRegex:this._weekdaysMinRegex)},hn.isPM=function(e){return"p"===(e+"").toLowerCase().charAt(0)},hn.meridiem=function(e,t,n){return 11<e?n?"pm":"PM":n?"am":"AM"},ot("en",{dayOfMonthOrdinalParse:/\d{1,2}(th|st|nd|rd)/,ordinal:function(e){var t=e%10;return e+(1===k(e%100/10)?"th":1===t?"st":2===t?"nd":3===t?"rd":"th")}}),c.lang=n("moment.lang is deprecated. Use moment.locale instead.",ot),c.langData=n("moment.langData is deprecated. Use moment.localeData instead.",lt);var _n=Math.abs;function yn(e,t,n,s){var i=At(t,n);return e._milliseconds+=s*i._milliseconds,e._days+=s*i._days,e._months+=s*i._months,e._bubble()}function gn(e){return e<0?Math.floor(e):Math.ceil(e)}function pn(e){return 4800*e/146097}function vn(e){return 146097*e/4800}function wn(e){return function(){return this.as(e)}}var Mn=wn("ms"),Sn=wn("s"),Dn=wn("m"),kn=wn("h"),Yn=wn("d"),On=wn("w"),Tn=wn("M"),xn=wn("y");function bn(e){return function(){return this.isValid()?this._data[e]:NaN}}var Pn=bn("milliseconds"),Wn=bn("seconds"),Hn=bn("minutes"),Rn=bn("hours"),Cn=bn("days"),Fn=bn("months"),Ln=bn("years");var Un=Math.round,Nn={ss:44,s:45,m:45,h:22,d:26,M:11};var Gn=Math.abs;function Vn(e){return(0<e)-(e<0)||+e}function En(){if(!this.isValid())return this.localeData().invalidDate();var e,t,n=Gn(this._milliseconds)/1e3,s=Gn(this._days),i=Gn(this._months);t=D((e=D(n/60))/60),n%=60,e%=60;var r=D(i/12),a=i%=12,o=s,u=t,l=e,d=n?n.toFixed(3).replace(/\.?0+$/,""):"",h=this.asSeconds();if(!h)return"P0D";var c=h<0?"-":"",f=Vn(this._months)!==Vn(h)?"-":"",m=Vn(this._days)!==Vn(h)?"-":"",_=Vn(this._milliseconds)!==Vn(h)?"-":"";return c+"P"+(r?f+r+"Y":"")+(a?f+a+"M":"")+(o?m+o+"D":"")+(u||l||d?"T":"")+(u?_+u+"H":"")+(l?_+l+"M":"")+(d?_+d+"S":"")}var In=Ht.prototype;return In.isValid=function(){return this._isValid},In.abs=function(){var e=this._data;return this._milliseconds=_n(this._milliseconds),this._days=_n(this._days),this._months=_n(this._months),e.milliseconds=_n(e.milliseconds),e.seconds=_n(e.seconds),e.minutes=_n(e.minutes),e.hours=_n(e.hours),e.months=_n(e.months),e.years=_n(e.years),this},In.add=function(e,t){return yn(this,e,t,1)},In.subtract=function(e,t){return yn(this,e,t,-1)},In.as=function(e){if(!this.isValid())return NaN;var t,n,s=this._milliseconds;if("month"===(e=R(e))||"year"===e)return t=this._days+s/864e5,n=this._months+pn(t),"month"===e?n:n/12;switch(t=this._days+Math.round(vn(this._months)),e){case"week":return t/7+s/6048e5;case"day":return t+s/864e5;case"hour":return 24*t+s/36e5;case"minute":return 1440*t+s/6e4;case"second":return 86400*t+s/1e3;case"millisecond":return Math.floor(864e5*t)+s;default:throw new Error("Unknown unit "+e)}},In.asMilliseconds=Mn,In.asSeconds=Sn,In.asMinutes=Dn,In.asHours=kn,In.asDays=Yn,In.asWeeks=On,In.asMonths=Tn,In.asYears=xn,In.valueOf=function(){return this.isValid()?this._milliseconds+864e5*this._days+this._months%12*2592e6+31536e6*k(this._months/12):NaN},In._bubble=function(){var e,t,n,s,i,r=this._milliseconds,a=this._days,o=this._months,u=this._data;return 0<=r&&0<=a&&0<=o||r<=0&&a<=0&&o<=0||(r+=864e5*gn(vn(o)+a),o=a=0),u.milliseconds=r%1e3,e=D(r/1e3),u.seconds=e%60,t=D(e/60),u.minutes=t%60,n=D(t/60),u.hours=n%24,o+=i=D(pn(a+=D(n/24))),a-=gn(vn(i)),s=D(o/12),o%=12,u.days=a,u.months=o,u.years=s,this},In.clone=function(){return At(this)},In.get=function(e){return e=R(e),this.isValid()?this[e+"s"]():NaN},In.milliseconds=Pn,In.seconds=Wn,In.minutes=Hn,In.hours=Rn,In.days=Cn,In.weeks=function(){return D(this.days()/7)},In.months=Fn,In.years=Ln,In.humanize=function(e){if(!this.isValid())return this.localeData().invalidDate();var t,n,s,i,r,a,o,u,l,d,h,c=this.localeData(),f=(n=!e,s=c,i=At(t=this).abs(),r=Un(i.as("s")),a=Un(i.as("m")),o=Un(i.as("h")),u=Un(i.as("d")),l=Un(i.as("M")),d=Un(i.as("y")),(h=r<=Nn.ss&&["s",r]||r<Nn.s&&["ss",r]||a<=1&&["m"]||a<Nn.m&&["mm",a]||o<=1&&["h"]||o<Nn.h&&["hh",o]||u<=1&&["d"]||u<Nn.d&&["dd",u]||l<=1&&["M"]||l<Nn.M&&["MM",l]||d<=1&&["y"]||["yy",d])[2]=n,h[3]=0<+t,h[4]=s,function(e,t,n,s,i){return i.relativeTime(t||1,!!n,e,s)}.apply(null,h));return e&&(f=c.pastFuture(+this,f)),c.postformat(f)},In.toISOString=En,In.toString=En,In.toJSON=En,In.locale=Qt,In.localeData=Kt,In.toIsoString=n("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)",En),In.lang=Xt,I("X",0,0,"unix"),I("x",0,0,"valueOf"),ue("x",se),ue("X",/[+-]?\d+(\.\d{1,3})?/),ce("X",function(e,t,n){n._d=new Date(1e3*parseFloat(e,10))}),ce("x",function(e,t,n){n._d=new Date(k(e))}),c.version="2.22.2",e=Tt,c.fn=ln,c.min=function(){return Pt("isBefore",[].slice.call(arguments,0))},c.max=function(){return Pt("isAfter",[].slice.call(arguments,0))},c.now=function(){return Date.now?Date.now():+new Date},c.utc=y,c.unix=function(e){return Tt(1e3*e)},c.months=function(e,t){return fn(e,t,"months")},c.isDate=h,c.locale=ot,c.invalid=v,c.duration=At,c.isMoment=S,c.weekdays=function(e,t,n){return mn(e,t,n,"weekdays")},c.parseZone=function(){return Tt.apply(null,arguments).parseZone()},c.localeData=lt,c.isDuration=Rt,c.monthsShort=function(e,t){return fn(e,t,"monthsShort")},c.weekdaysMin=function(e,t,n){return mn(e,t,n,"weekdaysMin")},c.defineLocale=ut,c.updateLocale=function(e,t){if(null!=t){var n,s,i=nt;null!=(s=at(e))&&(i=s._config),(n=new P(t=b(i,t))).parentLocale=st[e],st[e]=n,ot(e)}else null!=st[e]&&(null!=st[e].parentLocale?st[e]=st[e].parentLocale:null!=st[e]&&delete st[e]);return st[e]},c.locales=function(){return s(st)},c.weekdaysShort=function(e,t,n){return mn(e,t,n,"weekdaysShort")},c.normalizeUnits=R,c.relativeTimeRounding=function(e){return void 0===e?Un:"function"==typeof e&&(Un=e,!0)},c.relativeTimeThreshold=function(e,t){return void 0!==Nn[e]&&(void 0===t?Nn[e]:(Nn[e]=t,"s"===e&&(Nn.ss=t-1),!0))},c.calendarFormat=function(e,t){var n=e.diff(t,"days",!0);return n<-6?"sameElse":n<-1?"lastWeek":n<0?"lastDay":n<1?"sameDay":n<2?"nextDay":n<7?"nextWeek":"sameElse"},c.prototype=ln,c.HTML5_FMT={DATETIME_LOCAL:"YYYY-MM-DDTHH:mm",DATETIME_LOCAL_SECONDS:"YYYY-MM-DDTHH:mm:ss",DATETIME_LOCAL_MS:"YYYY-MM-DDTHH:mm:ss.SSS",DATE:"YYYY-MM-DD",TIME:"HH:mm",TIME_SECONDS:"HH:mm:ss",TIME_MS:"HH:mm:ss.SSS",WEEK:"YYYY-[W]WW",MONTH:"YYYY-MM"},c});
+//! moment.js
+//! version : 2.18.1
+//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
+//! license : MIT
+//! momentjs.com
+!function(a,b){"object"==typeof exports&&"undefined"!=typeof module?module.exports=b():"function"==typeof define&&define.amd?define(b):a.moment=b()}(this,function(){"use strict";function a(){return sd.apply(null,arguments)}function b(a){sd=a}function c(a){return a instanceof Array||"[object Array]"===Object.prototype.toString.call(a)}function d(a){return null!=a&&"[object Object]"===Object.prototype.toString.call(a)}function e(a){var b;for(b in a)return!1;return!0}function f(a){return void 0===a}function g(a){return"number"==typeof a||"[object Number]"===Object.prototype.toString.call(a)}function h(a){return a instanceof Date||"[object Date]"===Object.prototype.toString.call(a)}function i(a,b){var c,d=[];for(c=0;c<a.length;++c)d.push(b(a[c],c));return d}function j(a,b){return Object.prototype.hasOwnProperty.call(a,b)}function k(a,b){for(var c in b)j(b,c)&&(a[c]=b[c]);return j(b,"toString")&&(a.toString=b.toString),j(b,"valueOf")&&(a.valueOf=b.valueOf),a}function l(a,b,c,d){return sb(a,b,c,d,!0).utc()}function m(){return{empty:!1,unusedTokens:[],unusedInput:[],overflow:-2,charsLeftOver:0,nullInput:!1,invalidMonth:null,invalidFormat:!1,userInvalidated:!1,iso:!1,parsedDateParts:[],meridiem:null,rfc2822:!1,weekdayMismatch:!1}}function n(a){return null==a._pf&&(a._pf=m()),a._pf}function o(a){if(null==a._isValid){var b=n(a),c=ud.call(b.parsedDateParts,function(a){return null!=a}),d=!isNaN(a._d.getTime())&&b.overflow<0&&!b.empty&&!b.invalidMonth&&!b.invalidWeekday&&!b.nullInput&&!b.invalidFormat&&!b.userInvalidated&&(!b.meridiem||b.meridiem&&c);if(a._strict&&(d=d&&0===b.charsLeftOver&&0===b.unusedTokens.length&&void 0===b.bigHour),null!=Object.isFrozen&&Object.isFrozen(a))return d;a._isValid=d}return a._isValid}function p(a){var b=l(NaN);return null!=a?k(n(b),a):n(b).userInvalidated=!0,b}function q(a,b){var c,d,e;if(f(b._isAMomentObject)||(a._isAMomentObject=b._isAMomentObject),f(b._i)||(a._i=b._i),f(b._f)||(a._f=b._f),f(b._l)||(a._l=b._l),f(b._strict)||(a._strict=b._strict),f(b._tzm)||(a._tzm=b._tzm),f(b._isUTC)||(a._isUTC=b._isUTC),f(b._offset)||(a._offset=b._offset),f(b._pf)||(a._pf=n(b)),f(b._locale)||(a._locale=b._locale),vd.length>0)for(c=0;c<vd.length;c++)d=vd[c],e=b[d],f(e)||(a[d]=e);return a}function r(b){q(this,b),this._d=new Date(null!=b._d?b._d.getTime():NaN),this.isValid()||(this._d=new Date(NaN)),wd===!1&&(wd=!0,a.updateOffset(this),wd=!1)}function s(a){return a instanceof r||null!=a&&null!=a._isAMomentObject}function t(a){return a<0?Math.ceil(a)||0:Math.floor(a)}function u(a){var b=+a,c=0;return 0!==b&&isFinite(b)&&(c=t(b)),c}function v(a,b,c){var d,e=Math.min(a.length,b.length),f=Math.abs(a.length-b.length),g=0;for(d=0;d<e;d++)(c&&a[d]!==b[d]||!c&&u(a[d])!==u(b[d]))&&g++;return g+f}function w(b){a.suppressDeprecationWarnings===!1&&"undefined"!=typeof console&&console.warn&&console.warn("Deprecation warning: "+b)}function x(b,c){var d=!0;return k(function(){if(null!=a.deprecationHandler&&a.deprecationHandler(null,b),d){for(var e,f=[],g=0;g<arguments.length;g++){if(e="","object"==typeof arguments[g]){e+="\n["+g+"] ";for(var h in arguments[0])e+=h+": "+arguments[0][h]+", ";e=e.slice(0,-2)}else e=arguments[g];f.push(e)}w(b+"\nArguments: "+Array.prototype.slice.call(f).join("")+"\n"+(new Error).stack),d=!1}return c.apply(this,arguments)},c)}function y(b,c){null!=a.deprecationHandler&&a.deprecationHandler(b,c),xd[b]||(w(c),xd[b]=!0)}function z(a){return a instanceof Function||"[object Function]"===Object.prototype.toString.call(a)}function A(a){var b,c;for(c in a)b=a[c],z(b)?this[c]=b:this["_"+c]=b;this._config=a,this._dayOfMonthOrdinalParseLenient=new RegExp((this._dayOfMonthOrdinalParse.source||this._ordinalParse.source)+"|"+/\d{1,2}/.source)}function B(a,b){var c,e=k({},a);for(c in b)j(b,c)&&(d(a[c])&&d(b[c])?(e[c]={},k(e[c],a[c]),k(e[c],b[c])):null!=b[c]?e[c]=b[c]:delete e[c]);for(c in a)j(a,c)&&!j(b,c)&&d(a[c])&&(e[c]=k({},e[c]));return e}function C(a){null!=a&&this.set(a)}function D(a,b,c){var d=this._calendar[a]||this._calendar.sameElse;return z(d)?d.call(b,c):d}function E(a){var b=this._longDateFormat[a],c=this._longDateFormat[a.toUpperCase()];return b||!c?b:(this._longDateFormat[a]=c.replace(/MMMM|MM|DD|dddd/g,function(a){return a.slice(1)}),this._longDateFormat[a])}function F(){return this._invalidDate}function G(a){return this._ordinal.replace("%d",a)}function H(a,b,c,d){var e=this._relativeTime[c];return z(e)?e(a,b,c,d):e.replace(/%d/i,a)}function I(a,b){var c=this._relativeTime[a>0?"future":"past"];return z(c)?c(b):c.replace(/%s/i,b)}function J(a,b){var c=a.toLowerCase();Hd[c]=Hd[c+"s"]=Hd[b]=a}function K(a){return"string"==typeof a?Hd[a]||Hd[a.toLowerCase()]:void 0}function L(a){var b,c,d={};for(c in a)j(a,c)&&(b=K(c),b&&(d[b]=a[c]));return d}function M(a,b){Id[a]=b}function N(a){var b=[];for(var c in a)b.push({unit:c,priority:Id[c]});return b.sort(function(a,b){return a.priority-b.priority}),b}function O(b,c){return function(d){return null!=d?(Q(this,b,d),a.updateOffset(this,c),this):P(this,b)}}function P(a,b){return a.isValid()?a._d["get"+(a._isUTC?"UTC":"")+b]():NaN}function Q(a,b,c){a.isValid()&&a._d["set"+(a._isUTC?"UTC":"")+b](c)}function R(a){return a=K(a),z(this[a])?this[a]():this}function S(a,b){if("object"==typeof a){a=L(a);for(var c=N(a),d=0;d<c.length;d++)this[c[d].unit](a[c[d].unit])}else if(a=K(a),z(this[a]))return this[a](b);return this}function T(a,b,c){var d=""+Math.abs(a),e=b-d.length,f=a>=0;return(f?c?"+":"":"-")+Math.pow(10,Math.max(0,e)).toString().substr(1)+d}function U(a,b,c,d){var e=d;"string"==typeof d&&(e=function(){return this[d]()}),a&&(Md[a]=e),b&&(Md[b[0]]=function(){return T(e.apply(this,arguments),b[1],b[2])}),c&&(Md[c]=function(){return this.localeData().ordinal(e.apply(this,arguments),a)})}function V(a){return a.match(/\[[\s\S]/)?a.replace(/^\[|\]$/g,""):a.replace(/\\/g,"")}function W(a){var b,c,d=a.match(Jd);for(b=0,c=d.length;b<c;b++)Md[d[b]]?d[b]=Md[d[b]]:d[b]=V(d[b]);return function(b){var e,f="";for(e=0;e<c;e++)f+=z(d[e])?d[e].call(b,a):d[e];return f}}function X(a,b){return a.isValid()?(b=Y(b,a.localeData()),Ld[b]=Ld[b]||W(b),Ld[b](a)):a.localeData().invalidDate()}function Y(a,b){function c(a){return b.longDateFormat(a)||a}var d=5;for(Kd.lastIndex=0;d>=0&&Kd.test(a);)a=a.replace(Kd,c),Kd.lastIndex=0,d-=1;return a}function Z(a,b,c){ce[a]=z(b)?b:function(a,d){return a&&c?c:b}}function $(a,b){return j(ce,a)?ce[a](b._strict,b._locale):new RegExp(_(a))}function _(a){return aa(a.replace("\\","").replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g,function(a,b,c,d,e){return b||c||d||e}))}function aa(a){return a.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&")}function ba(a,b){var c,d=b;for("string"==typeof a&&(a=[a]),g(b)&&(d=function(a,c){c[b]=u(a)}),c=0;c<a.length;c++)de[a[c]]=d}function ca(a,b){ba(a,function(a,c,d,e){d._w=d._w||{},b(a,d._w,d,e)})}function da(a,b,c){null!=b&&j(de,a)&&de[a](b,c._a,c,a)}function ea(a,b){return new Date(Date.UTC(a,b+1,0)).getUTCDate()}function fa(a,b){return a?c(this._months)?this._months[a.month()]:this._months[(this._months.isFormat||oe).test(b)?"format":"standalone"][a.month()]:c(this._months)?this._months:this._months.standalone}function ga(a,b){return a?c(this._monthsShort)?this._monthsShort[a.month()]:this._monthsShort[oe.test(b)?"format":"standalone"][a.month()]:c(this._monthsShort)?this._monthsShort:this._monthsShort.standalone}function ha(a,b,c){var d,e,f,g=a.toLocaleLowerCase();if(!this._monthsParse)for(this._monthsParse=[],this._longMonthsParse=[],this._shortMonthsParse=[],d=0;d<12;++d)f=l([2e3,d]),this._shortMonthsParse[d]=this.monthsShort(f,"").toLocaleLowerCase(),this._longMonthsParse[d]=this.months(f,"").toLocaleLowerCase();return c?"MMM"===b?(e=ne.call(this._shortMonthsParse,g),e!==-1?e:null):(e=ne.call(this._longMonthsParse,g),e!==-1?e:null):"MMM"===b?(e=ne.call(this._shortMonthsParse,g),e!==-1?e:(e=ne.call(this._longMonthsParse,g),e!==-1?e:null)):(e=ne.call(this._longMonthsParse,g),e!==-1?e:(e=ne.call(this._shortMonthsParse,g),e!==-1?e:null))}function ia(a,b,c){var d,e,f;if(this._monthsParseExact)return ha.call(this,a,b,c);for(this._monthsParse||(this._monthsParse=[],this._longMonthsParse=[],this._shortMonthsParse=[]),d=0;d<12;d++){if(e=l([2e3,d]),c&&!this._longMonthsParse[d]&&(this._longMonthsParse[d]=new RegExp("^"+this.months(e,"").replace(".","")+"$","i"),this._shortMonthsParse[d]=new RegExp("^"+this.monthsShort(e,"").replace(".","")+"$","i")),c||this._monthsParse[d]||(f="^"+this.months(e,"")+"|^"+this.monthsShort(e,""),this._monthsParse[d]=new RegExp(f.replace(".",""),"i")),c&&"MMMM"===b&&this._longMonthsParse[d].test(a))return d;if(c&&"MMM"===b&&this._shortMonthsParse[d].test(a))return d;if(!c&&this._monthsParse[d].test(a))return d}}function ja(a,b){var c;if(!a.isValid())return a;if("string"==typeof b)if(/^\d+$/.test(b))b=u(b);else if(b=a.localeData().monthsParse(b),!g(b))return a;return c=Math.min(a.date(),ea(a.year(),b)),a._d["set"+(a._isUTC?"UTC":"")+"Month"](b,c),a}function ka(b){return null!=b?(ja(this,b),a.updateOffset(this,!0),this):P(this,"Month")}function la(){return ea(this.year(),this.month())}function ma(a){return this._monthsParseExact?(j(this,"_monthsRegex")||oa.call(this),a?this._monthsShortStrictRegex:this._monthsShortRegex):(j(this,"_monthsShortRegex")||(this._monthsShortRegex=re),this._monthsShortStrictRegex&&a?this._monthsShortStrictRegex:this._monthsShortRegex)}function na(a){return this._monthsParseExact?(j(this,"_monthsRegex")||oa.call(this),a?this._monthsStrictRegex:this._monthsRegex):(j(this,"_monthsRegex")||(this._monthsRegex=se),this._monthsStrictRegex&&a?this._monthsStrictRegex:this._monthsRegex)}function oa(){function a(a,b){return b.length-a.length}var b,c,d=[],e=[],f=[];for(b=0;b<12;b++)c=l([2e3,b]),d.push(this.monthsShort(c,"")),e.push(this.months(c,"")),f.push(this.months(c,"")),f.push(this.monthsShort(c,""));for(d.sort(a),e.sort(a),f.sort(a),b=0;b<12;b++)d[b]=aa(d[b]),e[b]=aa(e[b]);for(b=0;b<24;b++)f[b]=aa(f[b]);this._monthsRegex=new RegExp("^("+f.join("|")+")","i"),this._monthsShortRegex=this._monthsRegex,this._monthsStrictRegex=new RegExp("^("+e.join("|")+")","i"),this._monthsShortStrictRegex=new RegExp("^("+d.join("|")+")","i")}function pa(a){return qa(a)?366:365}function qa(a){return a%4===0&&a%100!==0||a%400===0}function ra(){return qa(this.year())}function sa(a,b,c,d,e,f,g){var h=new Date(a,b,c,d,e,f,g);return a<100&&a>=0&&isFinite(h.getFullYear())&&h.setFullYear(a),h}function ta(a){var b=new Date(Date.UTC.apply(null,arguments));return a<100&&a>=0&&isFinite(b.getUTCFullYear())&&b.setUTCFullYear(a),b}function ua(a,b,c){var d=7+b-c,e=(7+ta(a,0,d).getUTCDay()-b)%7;return-e+d-1}function va(a,b,c,d,e){var f,g,h=(7+c-d)%7,i=ua(a,d,e),j=1+7*(b-1)+h+i;return j<=0?(f=a-1,g=pa(f)+j):j>pa(a)?(f=a+1,g=j-pa(a)):(f=a,g=j),{year:f,dayOfYear:g}}function wa(a,b,c){var d,e,f=ua(a.year(),b,c),g=Math.floor((a.dayOfYear()-f-1)/7)+1;return g<1?(e=a.year()-1,d=g+xa(e,b,c)):g>xa(a.year(),b,c)?(d=g-xa(a.year(),b,c),e=a.year()+1):(e=a.year(),d=g),{week:d,year:e}}function xa(a,b,c){var d=ua(a,b,c),e=ua(a+1,b,c);return(pa(a)-d+e)/7}function ya(a){return wa(a,this._week.dow,this._week.doy).week}function za(){return this._week.dow}function Aa(){return this._week.doy}function Ba(a){var b=this.localeData().week(this);return null==a?b:this.add(7*(a-b),"d")}function Ca(a){var b=wa(this,1,4).week;return null==a?b:this.add(7*(a-b),"d")}function Da(a,b){return"string"!=typeof a?a:isNaN(a)?(a=b.weekdaysParse(a),"number"==typeof a?a:null):parseInt(a,10)}function Ea(a,b){return"string"==typeof a?b.weekdaysParse(a)%7||7:isNaN(a)?null:a}function Fa(a,b){return a?c(this._weekdays)?this._weekdays[a.day()]:this._weekdays[this._weekdays.isFormat.test(b)?"format":"standalone"][a.day()]:c(this._weekdays)?this._weekdays:this._weekdays.standalone}function Ga(a){return a?this._weekdaysShort[a.day()]:this._weekdaysShort}function Ha(a){return a?this._weekdaysMin[a.day()]:this._weekdaysMin}function Ia(a,b,c){var d,e,f,g=a.toLocaleLowerCase();if(!this._weekdaysParse)for(this._weekdaysParse=[],this._shortWeekdaysParse=[],this._minWeekdaysParse=[],d=0;d<7;++d)f=l([2e3,1]).day(d),this._minWeekdaysParse[d]=this.weekdaysMin(f,"").toLocaleLowerCase(),this._shortWeekdaysParse[d]=this.weekdaysShort(f,"").toLocaleLowerCase(),this._weekdaysParse[d]=this.weekdays(f,"").toLocaleLowerCase();return c?"dddd"===b?(e=ne.call(this._weekdaysParse,g),e!==-1?e:null):"ddd"===b?(e=ne.call(this._shortWeekdaysParse,g),e!==-1?e:null):(e=ne.call(this._minWeekdaysParse,g),e!==-1?e:null):"dddd"===b?(e=ne.call(this._weekdaysParse,g),e!==-1?e:(e=ne.call(this._shortWeekdaysParse,g),e!==-1?e:(e=ne.call(this._minWeekdaysParse,g),e!==-1?e:null))):"ddd"===b?(e=ne.call(this._shortWeekdaysParse,g),e!==-1?e:(e=ne.call(this._weekdaysParse,g),e!==-1?e:(e=ne.call(this._minWeekdaysParse,g),e!==-1?e:null))):(e=ne.call(this._minWeekdaysParse,g),e!==-1?e:(e=ne.call(this._weekdaysParse,g),e!==-1?e:(e=ne.call(this._shortWeekdaysParse,g),e!==-1?e:null)))}function Ja(a,b,c){var d,e,f;if(this._weekdaysParseExact)return Ia.call(this,a,b,c);for(this._weekdaysParse||(this._weekdaysParse=[],this._minWeekdaysParse=[],this._shortWeekdaysParse=[],this._fullWeekdaysParse=[]),d=0;d<7;d++){if(e=l([2e3,1]).day(d),c&&!this._fullWeekdaysParse[d]&&(this._fullWeekdaysParse[d]=new RegExp("^"+this.weekdays(e,"").replace(".",".?")+"$","i"),this._shortWeekdaysParse[d]=new RegExp("^"+this.weekdaysShort(e,"").replace(".",".?")+"$","i"),this._minWeekdaysParse[d]=new RegExp("^"+this.weekdaysMin(e,"").replace(".",".?")+"$","i")),this._weekdaysParse[d]||(f="^"+this.weekdays(e,"")+"|^"+this.weekdaysShort(e,"")+"|^"+this.weekdaysMin(e,""),this._weekdaysParse[d]=new RegExp(f.replace(".",""),"i")),c&&"dddd"===b&&this._fullWeekdaysParse[d].test(a))return d;if(c&&"ddd"===b&&this._shortWeekdaysParse[d].test(a))return d;if(c&&"dd"===b&&this._minWeekdaysParse[d].test(a))return d;if(!c&&this._weekdaysParse[d].test(a))return d}}function Ka(a){if(!this.isValid())return null!=a?this:NaN;var b=this._isUTC?this._d.getUTCDay():this._d.getDay();return null!=a?(a=Da(a,this.localeData()),this.add(a-b,"d")):b}function La(a){if(!this.isValid())return null!=a?this:NaN;var b=(this.day()+7-this.localeData()._week.dow)%7;return null==a?b:this.add(a-b,"d")}function Ma(a){if(!this.isValid())return null!=a?this:NaN;if(null!=a){var b=Ea(a,this.localeData());return this.day(this.day()%7?b:b-7)}return this.day()||7}function Na(a){return this._weekdaysParseExact?(j(this,"_weekdaysRegex")||Qa.call(this),a?this._weekdaysStrictRegex:this._weekdaysRegex):(j(this,"_weekdaysRegex")||(this._weekdaysRegex=ye),this._weekdaysStrictRegex&&a?this._weekdaysStrictRegex:this._weekdaysRegex)}function Oa(a){return this._weekdaysParseExact?(j(this,"_weekdaysRegex")||Qa.call(this),a?this._weekdaysShortStrictRegex:this._weekdaysShortRegex):(j(this,"_weekdaysShortRegex")||(this._weekdaysShortRegex=ze),this._weekdaysShortStrictRegex&&a?this._weekdaysShortStrictRegex:this._weekdaysShortRegex)}function Pa(a){return this._weekdaysParseExact?(j(this,"_weekdaysRegex")||Qa.call(this),a?this._weekdaysMinStrictRegex:this._weekdaysMinRegex):(j(this,"_weekdaysMinRegex")||(this._weekdaysMinRegex=Ae),this._weekdaysMinStrictRegex&&a?this._weekdaysMinStrictRegex:this._weekdaysMinRegex)}function Qa(){function a(a,b){return b.length-a.length}var b,c,d,e,f,g=[],h=[],i=[],j=[];for(b=0;b<7;b++)c=l([2e3,1]).day(b),d=this.weekdaysMin(c,""),e=this.weekdaysShort(c,""),f=this.weekdays(c,""),g.push(d),h.push(e),i.push(f),j.push(d),j.push(e),j.push(f);for(g.sort(a),h.sort(a),i.sort(a),j.sort(a),b=0;b<7;b++)h[b]=aa(h[b]),i[b]=aa(i[b]),j[b]=aa(j[b]);this._weekdaysRegex=new RegExp("^("+j.join("|")+")","i"),this._weekdaysShortRegex=this._weekdaysRegex,this._weekdaysMinRegex=this._weekdaysRegex,this._weekdaysStrictRegex=new RegExp("^("+i.join("|")+")","i"),this._weekdaysShortStrictRegex=new RegExp("^("+h.join("|")+")","i"),this._weekdaysMinStrictRegex=new RegExp("^("+g.join("|")+")","i")}function Ra(){return this.hours()%12||12}function Sa(){return this.hours()||24}function Ta(a,b){U(a,0,0,function(){return this.localeData().meridiem(this.hours(),this.minutes(),b)})}function Ua(a,b){return b._meridiemParse}function Va(a){return"p"===(a+"").toLowerCase().charAt(0)}function Wa(a,b,c){return a>11?c?"pm":"PM":c?"am":"AM"}function Xa(a){return a?a.toLowerCase().replace("_","-"):a}function Ya(a){for(var b,c,d,e,f=0;f<a.length;){for(e=Xa(a[f]).split("-"),b=e.length,c=Xa(a[f+1]),c=c?c.split("-"):null;b>0;){if(d=Za(e.slice(0,b).join("-")))return d;if(c&&c.length>=b&&v(e,c,!0)>=b-1)break;b--}f++}return null}function Za(a){var b=null;if(!Fe[a]&&"undefined"!=typeof module&&module&&module.exports)try{b=Be._abbr,require("./locale/"+a),$a(b)}catch(a){}return Fe[a]}function $a(a,b){var c;return a&&(c=f(b)?bb(a):_a(a,b),c&&(Be=c)),Be._abbr}function _a(a,b){if(null!==b){var c=Ee;if(b.abbr=a,null!=Fe[a])y("defineLocaleOverride","use moment.updateLocale(localeName, config) to change an existing locale. moment.defineLocale(localeName, config) should only be used for creating a new locale See http://momentjs.com/guides/#/warnings/define-locale/ for more info."),c=Fe[a]._config;else if(null!=b.parentLocale){if(null==Fe[b.parentLocale])return Ge[b.parentLocale]||(Ge[b.parentLocale]=[]),Ge[b.parentLocale].push({name:a,config:b}),null;c=Fe[b.parentLocale]._config}return Fe[a]=new C(B(c,b)),Ge[a]&&Ge[a].forEach(function(a){_a(a.name,a.config)}),$a(a),Fe[a]}return delete Fe[a],null}function ab(a,b){if(null!=b){var c,d=Ee;null!=Fe[a]&&(d=Fe[a]._config),b=B(d,b),c=new C(b),c.parentLocale=Fe[a],Fe[a]=c,$a(a)}else null!=Fe[a]&&(null!=Fe[a].parentLocale?Fe[a]=Fe[a].parentLocale:null!=Fe[a]&&delete Fe[a]);return Fe[a]}function bb(a){var b;if(a&&a._locale&&a._locale._abbr&&(a=a._locale._abbr),!a)return Be;if(!c(a)){if(b=Za(a))return b;a=[a]}return Ya(a)}function cb(){return Ad(Fe)}function db(a){var b,c=a._a;return c&&n(a).overflow===-2&&(b=c[fe]<0||c[fe]>11?fe:c[ge]<1||c[ge]>ea(c[ee],c[fe])?ge:c[he]<0||c[he]>24||24===c[he]&&(0!==c[ie]||0!==c[je]||0!==c[ke])?he:c[ie]<0||c[ie]>59?ie:c[je]<0||c[je]>59?je:c[ke]<0||c[ke]>999?ke:-1,n(a)._overflowDayOfYear&&(b<ee||b>ge)&&(b=ge),n(a)._overflowWeeks&&b===-1&&(b=le),n(a)._overflowWeekday&&b===-1&&(b=me),n(a).overflow=b),a}function eb(a){var b,c,d,e,f,g,h=a._i,i=He.exec(h)||Ie.exec(h);if(i){for(n(a).iso=!0,b=0,c=Ke.length;b<c;b++)if(Ke[b][1].exec(i[1])){e=Ke[b][0],d=Ke[b][2]!==!1;break}if(null==e)return void(a._isValid=!1);if(i[3]){for(b=0,c=Le.length;b<c;b++)if(Le[b][1].exec(i[3])){f=(i[2]||" ")+Le[b][0];break}if(null==f)return void(a._isValid=!1)}if(!d&&null!=f)return void(a._isValid=!1);if(i[4]){if(!Je.exec(i[4]))return void(a._isValid=!1);g="Z"}a._f=e+(f||"")+(g||""),lb(a)}else a._isValid=!1}function fb(a){var b,c,d,e,f,g,h,i,j={" GMT":" +0000"," EDT":" -0400"," EST":" -0500"," CDT":" -0500"," CST":" -0600"," MDT":" -0600"," MST":" -0700"," PDT":" -0700"," PST":" -0800"},k="YXWVUTSRQPONZABCDEFGHIKLM";if(b=a._i.replace(/\([^\)]*\)|[\n\t]/g," ").replace(/(\s\s+)/g," ").replace(/^\s|\s$/g,""),c=Ne.exec(b)){if(d=c[1]?"ddd"+(5===c[1].length?", ":" "):"",e="D MMM "+(c[2].length>10?"YYYY ":"YY "),f="HH:mm"+(c[4]?":ss":""),c[1]){var l=new Date(c[2]),m=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][l.getDay()];if(c[1].substr(0,3)!==m)return n(a).weekdayMismatch=!0,void(a._isValid=!1)}switch(c[5].length){case 2:0===i?h=" +0000":(i=k.indexOf(c[5][1].toUpperCase())-12,h=(i<0?" -":" +")+(""+i).replace(/^-?/,"0").match(/..$/)[0]+"00");break;case 4:h=j[c[5]];break;default:h=j[" GMT"]}c[5]=h,a._i=c.splice(1).join(""),g=" ZZ",a._f=d+e+f+g,lb(a),n(a).rfc2822=!0}else a._isValid=!1}function gb(b){var c=Me.exec(b._i);return null!==c?void(b._d=new Date(+c[1])):(eb(b),void(b._isValid===!1&&(delete b._isValid,fb(b),b._isValid===!1&&(delete b._isValid,a.createFromInputFallback(b)))))}function hb(a,b,c){return null!=a?a:null!=b?b:c}function ib(b){var c=new Date(a.now());return b._useUTC?[c.getUTCFullYear(),c.getUTCMonth(),c.getUTCDate()]:[c.getFullYear(),c.getMonth(),c.getDate()]}function jb(a){var b,c,d,e,f=[];if(!a._d){for(d=ib(a),a._w&&null==a._a[ge]&&null==a._a[fe]&&kb(a),null!=a._dayOfYear&&(e=hb(a._a[ee],d[ee]),(a._dayOfYear>pa(e)||0===a._dayOfYear)&&(n(a)._overflowDayOfYear=!0),c=ta(e,0,a._dayOfYear),a._a[fe]=c.getUTCMonth(),a._a[ge]=c.getUTCDate()),b=0;b<3&&null==a._a[b];++b)a._a[b]=f[b]=d[b];for(;b<7;b++)a._a[b]=f[b]=null==a._a[b]?2===b?1:0:a._a[b];24===a._a[he]&&0===a._a[ie]&&0===a._a[je]&&0===a._a[ke]&&(a._nextDay=!0,a._a[he]=0),a._d=(a._useUTC?ta:sa).apply(null,f),null!=a._tzm&&a._d.setUTCMinutes(a._d.getUTCMinutes()-a._tzm),a._nextDay&&(a._a[he]=24)}}function kb(a){var b,c,d,e,f,g,h,i;if(b=a._w,null!=b.GG||null!=b.W||null!=b.E)f=1,g=4,c=hb(b.GG,a._a[ee],wa(tb(),1,4).year),d=hb(b.W,1),e=hb(b.E,1),(e<1||e>7)&&(i=!0);else{f=a._locale._week.dow,g=a._locale._week.doy;var j=wa(tb(),f,g);c=hb(b.gg,a._a[ee],j.year),d=hb(b.w,j.week),null!=b.d?(e=b.d,(e<0||e>6)&&(i=!0)):null!=b.e?(e=b.e+f,(b.e<0||b.e>6)&&(i=!0)):e=f}d<1||d>xa(c,f,g)?n(a)._overflowWeeks=!0:null!=i?n(a)._overflowWeekday=!0:(h=va(c,d,e,f,g),a._a[ee]=h.year,a._dayOfYear=h.dayOfYear)}function lb(b){if(b._f===a.ISO_8601)return void eb(b);if(b._f===a.RFC_2822)return void fb(b);b._a=[],n(b).empty=!0;var c,d,e,f,g,h=""+b._i,i=h.length,j=0;for(e=Y(b._f,b._locale).match(Jd)||[],c=0;c<e.length;c++)f=e[c],d=(h.match($(f,b))||[])[0],d&&(g=h.substr(0,h.indexOf(d)),g.length>0&&n(b).unusedInput.push(g),h=h.slice(h.indexOf(d)+d.length),j+=d.length),Md[f]?(d?n(b).empty=!1:n(b).unusedTokens.push(f),da(f,d,b)):b._strict&&!d&&n(b).unusedTokens.push(f);n(b).charsLeftOver=i-j,h.length>0&&n(b).unusedInput.push(h),b._a[he]<=12&&n(b).bigHour===!0&&b._a[he]>0&&(n(b).bigHour=void 0),n(b).parsedDateParts=b._a.slice(0),n(b).meridiem=b._meridiem,b._a[he]=mb(b._locale,b._a[he],b._meridiem),jb(b),db(b)}function mb(a,b,c){var d;return null==c?b:null!=a.meridiemHour?a.meridiemHour(b,c):null!=a.isPM?(d=a.isPM(c),d&&b<12&&(b+=12),d||12!==b||(b=0),b):b}function nb(a){var b,c,d,e,f;if(0===a._f.length)return n(a).invalidFormat=!0,void(a._d=new Date(NaN));for(e=0;e<a._f.length;e++)f=0,b=q({},a),null!=a._useUTC&&(b._useUTC=a._useUTC),b._f=a._f[e],lb(b),o(b)&&(f+=n(b).charsLeftOver,f+=10*n(b).unusedTokens.length,n(b).score=f,(null==d||f<d)&&(d=f,c=b));k(a,c||b)}function ob(a){if(!a._d){var b=L(a._i);a._a=i([b.year,b.month,b.day||b.date,b.hour,b.minute,b.second,b.millisecond],function(a){return a&&parseInt(a,10)}),jb(a)}}function pb(a){var b=new r(db(qb(a)));return b._nextDay&&(b.add(1,"d"),b._nextDay=void 0),b}function qb(a){var b=a._i,d=a._f;return a._locale=a._locale||bb(a._l),null===b||void 0===d&&""===b?p({nullInput:!0}):("string"==typeof b&&(a._i=b=a._locale.preparse(b)),s(b)?new r(db(b)):(h(b)?a._d=b:c(d)?nb(a):d?lb(a):rb(a),o(a)||(a._d=null),a))}function rb(b){var e=b._i;f(e)?b._d=new Date(a.now()):h(e)?b._d=new Date(e.valueOf()):"string"==typeof e?gb(b):c(e)?(b._a=i(e.slice(0),function(a){return parseInt(a,10)}),jb(b)):d(e)?ob(b):g(e)?b._d=new Date(e):a.createFromInputFallback(b)}function sb(a,b,f,g,h){var i={};return f!==!0&&f!==!1||(g=f,f=void 0),(d(a)&&e(a)||c(a)&&0===a.length)&&(a=void 0),i._isAMomentObject=!0,i._useUTC=i._isUTC=h,i._l=f,i._i=a,i._f=b,i._strict=g,pb(i)}function tb(a,b,c,d){return sb(a,b,c,d,!1)}function ub(a,b){var d,e;if(1===b.length&&c(b[0])&&(b=b[0]),!b.length)return tb();for(d=b[0],e=1;e<b.length;++e)b[e].isValid()&&!b[e][a](d)||(d=b[e]);return d}function vb(){var a=[].slice.call(arguments,0);return ub("isBefore",a)}function wb(){var a=[].slice.call(arguments,0);return ub("isAfter",a)}function xb(a){for(var b in a)if(Re.indexOf(b)===-1||null!=a[b]&&isNaN(a[b]))return!1;for(var c=!1,d=0;d<Re.length;++d)if(a[Re[d]]){if(c)return!1;parseFloat(a[Re[d]])!==u(a[Re[d]])&&(c=!0)}return!0}function yb(){return this._isValid}function zb(){return Sb(NaN)}function Ab(a){var b=L(a),c=b.year||0,d=b.quarter||0,e=b.month||0,f=b.week||0,g=b.day||0,h=b.hour||0,i=b.minute||0,j=b.second||0,k=b.millisecond||0;this._isValid=xb(b),this._milliseconds=+k+1e3*j+6e4*i+1e3*h*60*60,this._days=+g+7*f,this._months=+e+3*d+12*c,this._data={},this._locale=bb(),this._bubble()}function Bb(a){return a instanceof Ab}function Cb(a){return a<0?Math.round(-1*a)*-1:Math.round(a)}function Db(a,b){U(a,0,0,function(){var a=this.utcOffset(),c="+";return a<0&&(a=-a,c="-"),c+T(~~(a/60),2)+b+T(~~a%60,2)})}function Eb(a,b){var c=(b||"").match(a);if(null===c)return null;var d=c[c.length-1]||[],e=(d+"").match(Se)||["-",0,0],f=+(60*e[1])+u(e[2]);return 0===f?0:"+"===e[0]?f:-f}function Fb(b,c){var d,e;return c._isUTC?(d=c.clone(),e=(s(b)||h(b)?b.valueOf():tb(b).valueOf())-d.valueOf(),d._d.setTime(d._d.valueOf()+e),a.updateOffset(d,!1),d):tb(b).local()}function Gb(a){return 15*-Math.round(a._d.getTimezoneOffset()/15)}function Hb(b,c,d){var e,f=this._offset||0;if(!this.isValid())return null!=b?this:NaN;if(null!=b){if("string"==typeof b){if(b=Eb(_d,b),null===b)return this}else Math.abs(b)<16&&!d&&(b=60*b);return!this._isUTC&&c&&(e=Gb(this)),this._offset=b,this._isUTC=!0,null!=e&&this.add(e,"m"),f!==b&&(!c||this._changeInProgress?Xb(this,Sb(b-f,"m"),1,!1):this._changeInProgress||(this._changeInProgress=!0,a.updateOffset(this,!0),this._changeInProgress=null)),this}return this._isUTC?f:Gb(this)}function Ib(a,b){return null!=a?("string"!=typeof a&&(a=-a),this.utcOffset(a,b),this):-this.utcOffset()}function Jb(a){return this.utcOffset(0,a)}function Kb(a){return this._isUTC&&(this.utcOffset(0,a),this._isUTC=!1,a&&this.subtract(Gb(this),"m")),this}function Lb(){if(null!=this._tzm)this.utcOffset(this._tzm,!1,!0);else if("string"==typeof this._i){var a=Eb($d,this._i);null!=a?this.utcOffset(a):this.utcOffset(0,!0)}return this}function Mb(a){return!!this.isValid()&&(a=a?tb(a).utcOffset():0,(this.utcOffset()-a)%60===0)}function Nb(){return this.utcOffset()>this.clone().month(0).utcOffset()||this.utcOffset()>this.clone().month(5).utcOffset()}function Ob(){if(!f(this._isDSTShifted))return this._isDSTShifted;var a={};if(q(a,this),a=qb(a),a._a){var b=a._isUTC?l(a._a):tb(a._a);this._isDSTShifted=this.isValid()&&v(a._a,b.toArray())>0}else this._isDSTShifted=!1;return this._isDSTShifted}function Pb(){return!!this.isValid()&&!this._isUTC}function Qb(){return!!this.isValid()&&this._isUTC}function Rb(){return!!this.isValid()&&(this._isUTC&&0===this._offset)}function Sb(a,b){var c,d,e,f=a,h=null;return Bb(a)?f={ms:a._milliseconds,d:a._days,M:a._months}:g(a)?(f={},b?f[b]=a:f.milliseconds=a):(h=Te.exec(a))?(c="-"===h[1]?-1:1,f={y:0,d:u(h[ge])*c,h:u(h[he])*c,m:u(h[ie])*c,s:u(h[je])*c,ms:u(Cb(1e3*h[ke]))*c}):(h=Ue.exec(a))?(c="-"===h[1]?-1:1,f={y:Tb(h[2],c),M:Tb(h[3],c),w:Tb(h[4],c),d:Tb(h[5],c),h:Tb(h[6],c),m:Tb(h[7],c),s:Tb(h[8],c)}):null==f?f={}:"object"==typeof f&&("from"in f||"to"in f)&&(e=Vb(tb(f.from),tb(f.to)),f={},f.ms=e.milliseconds,f.M=e.months),d=new Ab(f),Bb(a)&&j(a,"_locale")&&(d._locale=a._locale),d}function Tb(a,b){var c=a&&parseFloat(a.replace(",","."));return(isNaN(c)?0:c)*b}function Ub(a,b){var c={milliseconds:0,months:0};return c.months=b.month()-a.month()+12*(b.year()-a.year()),a.clone().add(c.months,"M").isAfter(b)&&--c.months,c.milliseconds=+b-+a.clone().add(c.months,"M"),c}function Vb(a,b){var c;return a.isValid()&&b.isValid()?(b=Fb(b,a),a.isBefore(b)?c=Ub(a,b):(c=Ub(b,a),c.milliseconds=-c.milliseconds,c.months=-c.months),c):{milliseconds:0,months:0}}function Wb(a,b){return function(c,d){var e,f;return null===d||isNaN(+d)||(y(b,"moment()."+b+"(period, number) is deprecated. Please use moment()."+b+"(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info."),f=c,c=d,d=f),c="string"==typeof c?+c:c,e=Sb(c,d),Xb(this,e,a),this}}function Xb(b,c,d,e){var f=c._milliseconds,g=Cb(c._days),h=Cb(c._months);b.isValid()&&(e=null==e||e,f&&b._d.setTime(b._d.valueOf()+f*d),g&&Q(b,"Date",P(b,"Date")+g*d),h&&ja(b,P(b,"Month")+h*d),e&&a.updateOffset(b,g||h))}function Yb(a,b){var c=a.diff(b,"days",!0);return c<-6?"sameElse":c<-1?"lastWeek":c<0?"lastDay":c<1?"sameDay":c<2?"nextDay":c<7?"nextWeek":"sameElse"}function Zb(b,c){var d=b||tb(),e=Fb(d,this).startOf("day"),f=a.calendarFormat(this,e)||"sameElse",g=c&&(z(c[f])?c[f].call(this,d):c[f]);return this.format(g||this.localeData().calendar(f,this,tb(d)))}function $b(){return new r(this)}function _b(a,b){var c=s(a)?a:tb(a);return!(!this.isValid()||!c.isValid())&&(b=K(f(b)?"millisecond":b),"millisecond"===b?this.valueOf()>c.valueOf():c.valueOf()<this.clone().startOf(b).valueOf())}function ac(a,b){var c=s(a)?a:tb(a);return!(!this.isValid()||!c.isValid())&&(b=K(f(b)?"millisecond":b),"millisecond"===b?this.valueOf()<c.valueOf():this.clone().endOf(b).valueOf()<c.valueOf())}function bc(a,b,c,d){return d=d||"()",("("===d[0]?this.isAfter(a,c):!this.isBefore(a,c))&&(")"===d[1]?this.isBefore(b,c):!this.isAfter(b,c))}function cc(a,b){var c,d=s(a)?a:tb(a);return!(!this.isValid()||!d.isValid())&&(b=K(b||"millisecond"),"millisecond"===b?this.valueOf()===d.valueOf():(c=d.valueOf(),this.clone().startOf(b).valueOf()<=c&&c<=this.clone().endOf(b).valueOf()))}function dc(a,b){return this.isSame(a,b)||this.isAfter(a,b)}function ec(a,b){return this.isSame(a,b)||this.isBefore(a,b)}function fc(a,b,c){var d,e,f,g;return this.isValid()?(d=Fb(a,this),d.isValid()?(e=6e4*(d.utcOffset()-this.utcOffset()),b=K(b),"year"===b||"month"===b||"quarter"===b?(g=gc(this,d),"quarter"===b?g/=3:"year"===b&&(g/=12)):(f=this-d,g="second"===b?f/1e3:"minute"===b?f/6e4:"hour"===b?f/36e5:"day"===b?(f-e)/864e5:"week"===b?(f-e)/6048e5:f),c?g:t(g)):NaN):NaN}function gc(a,b){var c,d,e=12*(b.year()-a.year())+(b.month()-a.month()),f=a.clone().add(e,"months");return b-f<0?(c=a.clone().add(e-1,"months"),d=(b-f)/(f-c)):(c=a.clone().add(e+1,"months"),d=(b-f)/(c-f)),-(e+d)||0}function hc(){return this.clone().locale("en").format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")}function ic(){if(!this.isValid())return null;var a=this.clone().utc();return a.year()<0||a.year()>9999?X(a,"YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]"):z(Date.prototype.toISOString)?this.toDate().toISOString():X(a,"YYYY-MM-DD[T]HH:mm:ss.SSS[Z]")}function jc(){if(!this.isValid())return"moment.invalid(/* "+this._i+" */)";var a="moment",b="";this.isLocal()||(a=0===this.utcOffset()?"moment.utc":"moment.parseZone",b="Z");var c="["+a+'("]',d=0<=this.year()&&this.year()<=9999?"YYYY":"YYYYYY",e="-MM-DD[T]HH:mm:ss.SSS",f=b+'[")]';return this.format(c+d+e+f)}function kc(b){b||(b=this.isUtc()?a.defaultFormatUtc:a.defaultFormat);var c=X(this,b);return this.localeData().postformat(c)}function lc(a,b){return this.isValid()&&(s(a)&&a.isValid()||tb(a).isValid())?Sb({to:this,from:a}).locale(this.locale()).humanize(!b):this.localeData().invalidDate()}function mc(a){return this.from(tb(),a)}function nc(a,b){return this.isValid()&&(s(a)&&a.isValid()||tb(a).isValid())?Sb({from:this,to:a}).locale(this.locale()).humanize(!b):this.localeData().invalidDate()}function oc(a){return this.to(tb(),a)}function pc(a){var b;return void 0===a?this._locale._abbr:(b=bb(a),null!=b&&(this._locale=b),this)}function qc(){return this._locale}function rc(a){switch(a=K(a)){case"year":this.month(0);case"quarter":case"month":this.date(1);case"week":case"isoWeek":case"day":case"date":this.hours(0);case"hour":this.minutes(0);case"minute":this.seconds(0);case"second":this.milliseconds(0)}return"week"===a&&this.weekday(0),"isoWeek"===a&&this.isoWeekday(1),"quarter"===a&&this.month(3*Math.floor(this.month()/3)),this}function sc(a){return a=K(a),void 0===a||"millisecond"===a?this:("date"===a&&(a="day"),this.startOf(a).add(1,"isoWeek"===a?"week":a).subtract(1,"ms"))}function tc(){return this._d.valueOf()-6e4*(this._offset||0)}function uc(){return Math.floor(this.valueOf()/1e3)}function vc(){return new Date(this.valueOf())}function wc(){var a=this;return[a.year(),a.month(),a.date(),a.hour(),a.minute(),a.second(),a.millisecond()]}function xc(){var a=this;return{years:a.year(),months:a.month(),date:a.date(),hours:a.hours(),minutes:a.minutes(),seconds:a.seconds(),milliseconds:a.milliseconds()}}function yc(){return this.isValid()?this.toISOString():null}function zc(){return o(this)}function Ac(){
+return k({},n(this))}function Bc(){return n(this).overflow}function Cc(){return{input:this._i,format:this._f,locale:this._locale,isUTC:this._isUTC,strict:this._strict}}function Dc(a,b){U(0,[a,a.length],0,b)}function Ec(a){return Ic.call(this,a,this.week(),this.weekday(),this.localeData()._week.dow,this.localeData()._week.doy)}function Fc(a){return Ic.call(this,a,this.isoWeek(),this.isoWeekday(),1,4)}function Gc(){return xa(this.year(),1,4)}function Hc(){var a=this.localeData()._week;return xa(this.year(),a.dow,a.doy)}function Ic(a,b,c,d,e){var f;return null==a?wa(this,d,e).year:(f=xa(a,d,e),b>f&&(b=f),Jc.call(this,a,b,c,d,e))}function Jc(a,b,c,d,e){var f=va(a,b,c,d,e),g=ta(f.year,0,f.dayOfYear);return this.year(g.getUTCFullYear()),this.month(g.getUTCMonth()),this.date(g.getUTCDate()),this}function Kc(a){return null==a?Math.ceil((this.month()+1)/3):this.month(3*(a-1)+this.month()%3)}function Lc(a){var b=Math.round((this.clone().startOf("day")-this.clone().startOf("year"))/864e5)+1;return null==a?b:this.add(a-b,"d")}function Mc(a,b){b[ke]=u(1e3*("0."+a))}function Nc(){return this._isUTC?"UTC":""}function Oc(){return this._isUTC?"Coordinated Universal Time":""}function Pc(a){return tb(1e3*a)}function Qc(){return tb.apply(null,arguments).parseZone()}function Rc(a){return a}function Sc(a,b,c,d){var e=bb(),f=l().set(d,b);return e[c](f,a)}function Tc(a,b,c){if(g(a)&&(b=a,a=void 0),a=a||"",null!=b)return Sc(a,b,c,"month");var d,e=[];for(d=0;d<12;d++)e[d]=Sc(a,d,c,"month");return e}function Uc(a,b,c,d){"boolean"==typeof a?(g(b)&&(c=b,b=void 0),b=b||""):(b=a,c=b,a=!1,g(b)&&(c=b,b=void 0),b=b||"");var e=bb(),f=a?e._week.dow:0;if(null!=c)return Sc(b,(c+f)%7,d,"day");var h,i=[];for(h=0;h<7;h++)i[h]=Sc(b,(h+f)%7,d,"day");return i}function Vc(a,b){return Tc(a,b,"months")}function Wc(a,b){return Tc(a,b,"monthsShort")}function Xc(a,b,c){return Uc(a,b,c,"weekdays")}function Yc(a,b,c){return Uc(a,b,c,"weekdaysShort")}function Zc(a,b,c){return Uc(a,b,c,"weekdaysMin")}function $c(){var a=this._data;return this._milliseconds=df(this._milliseconds),this._days=df(this._days),this._months=df(this._months),a.milliseconds=df(a.milliseconds),a.seconds=df(a.seconds),a.minutes=df(a.minutes),a.hours=df(a.hours),a.months=df(a.months),a.years=df(a.years),this}function _c(a,b,c,d){var e=Sb(b,c);return a._milliseconds+=d*e._milliseconds,a._days+=d*e._days,a._months+=d*e._months,a._bubble()}function ad(a,b){return _c(this,a,b,1)}function bd(a,b){return _c(this,a,b,-1)}function cd(a){return a<0?Math.floor(a):Math.ceil(a)}function dd(){var a,b,c,d,e,f=this._milliseconds,g=this._days,h=this._months,i=this._data;return f>=0&&g>=0&&h>=0||f<=0&&g<=0&&h<=0||(f+=864e5*cd(fd(h)+g),g=0,h=0),i.milliseconds=f%1e3,a=t(f/1e3),i.seconds=a%60,b=t(a/60),i.minutes=b%60,c=t(b/60),i.hours=c%24,g+=t(c/24),e=t(ed(g)),h+=e,g-=cd(fd(e)),d=t(h/12),h%=12,i.days=g,i.months=h,i.years=d,this}function ed(a){return 4800*a/146097}function fd(a){return 146097*a/4800}function gd(a){if(!this.isValid())return NaN;var b,c,d=this._milliseconds;if(a=K(a),"month"===a||"year"===a)return b=this._days+d/864e5,c=this._months+ed(b),"month"===a?c:c/12;switch(b=this._days+Math.round(fd(this._months)),a){case"week":return b/7+d/6048e5;case"day":return b+d/864e5;case"hour":return 24*b+d/36e5;case"minute":return 1440*b+d/6e4;case"second":return 86400*b+d/1e3;case"millisecond":return Math.floor(864e5*b)+d;default:throw new Error("Unknown unit "+a)}}function hd(){return this.isValid()?this._milliseconds+864e5*this._days+this._months%12*2592e6+31536e6*u(this._months/12):NaN}function id(a){return function(){return this.as(a)}}function jd(a){return a=K(a),this.isValid()?this[a+"s"]():NaN}function kd(a){return function(){return this.isValid()?this._data[a]:NaN}}function ld(){return t(this.days()/7)}function md(a,b,c,d,e){return e.relativeTime(b||1,!!c,a,d)}function nd(a,b,c){var d=Sb(a).abs(),e=uf(d.as("s")),f=uf(d.as("m")),g=uf(d.as("h")),h=uf(d.as("d")),i=uf(d.as("M")),j=uf(d.as("y")),k=e<=vf.ss&&["s",e]||e<vf.s&&["ss",e]||f<=1&&["m"]||f<vf.m&&["mm",f]||g<=1&&["h"]||g<vf.h&&["hh",g]||h<=1&&["d"]||h<vf.d&&["dd",h]||i<=1&&["M"]||i<vf.M&&["MM",i]||j<=1&&["y"]||["yy",j];return k[2]=b,k[3]=+a>0,k[4]=c,md.apply(null,k)}function od(a){return void 0===a?uf:"function"==typeof a&&(uf=a,!0)}function pd(a,b){return void 0!==vf[a]&&(void 0===b?vf[a]:(vf[a]=b,"s"===a&&(vf.ss=b-1),!0))}function qd(a){if(!this.isValid())return this.localeData().invalidDate();var b=this.localeData(),c=nd(this,!a,b);return a&&(c=b.pastFuture(+this,c)),b.postformat(c)}function rd(){if(!this.isValid())return this.localeData().invalidDate();var a,b,c,d=wf(this._milliseconds)/1e3,e=wf(this._days),f=wf(this._months);a=t(d/60),b=t(a/60),d%=60,a%=60,c=t(f/12),f%=12;var g=c,h=f,i=e,j=b,k=a,l=d,m=this.asSeconds();return m?(m<0?"-":"")+"P"+(g?g+"Y":"")+(h?h+"M":"")+(i?i+"D":"")+(j||k||l?"T":"")+(j?j+"H":"")+(k?k+"M":"")+(l?l+"S":""):"P0D"}var sd,td;td=Array.prototype.some?Array.prototype.some:function(a){for(var b=Object(this),c=b.length>>>0,d=0;d<c;d++)if(d in b&&a.call(this,b[d],d,b))return!0;return!1};var ud=td,vd=a.momentProperties=[],wd=!1,xd={};a.suppressDeprecationWarnings=!1,a.deprecationHandler=null;var yd;yd=Object.keys?Object.keys:function(a){var b,c=[];for(b in a)j(a,b)&&c.push(b);return c};var zd,Ad=yd,Bd={sameDay:"[Today at] LT",nextDay:"[Tomorrow at] LT",nextWeek:"dddd [at] LT",lastDay:"[Yesterday at] LT",lastWeek:"[Last] dddd [at] LT",sameElse:"L"},Cd={LTS:"h:mm:ss A",LT:"h:mm A",L:"MM/DD/YYYY",LL:"MMMM D, YYYY",LLL:"MMMM D, YYYY h:mm A",LLLL:"dddd, MMMM D, YYYY h:mm A"},Dd="Invalid date",Ed="%d",Fd=/\d{1,2}/,Gd={future:"in %s",past:"%s ago",s:"a few seconds",ss:"%d seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"},Hd={},Id={},Jd=/(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g,Kd=/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,Ld={},Md={},Nd=/\d/,Od=/\d\d/,Pd=/\d{3}/,Qd=/\d{4}/,Rd=/[+-]?\d{6}/,Sd=/\d\d?/,Td=/\d\d\d\d?/,Ud=/\d\d\d\d\d\d?/,Vd=/\d{1,3}/,Wd=/\d{1,4}/,Xd=/[+-]?\d{1,6}/,Yd=/\d+/,Zd=/[+-]?\d+/,$d=/Z|[+-]\d\d:?\d\d/gi,_d=/Z|[+-]\d\d(?::?\d\d)?/gi,ae=/[+-]?\d+(\.\d{1,3})?/,be=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,ce={},de={},ee=0,fe=1,ge=2,he=3,ie=4,je=5,ke=6,le=7,me=8;zd=Array.prototype.indexOf?Array.prototype.indexOf:function(a){var b;for(b=0;b<this.length;++b)if(this[b]===a)return b;return-1};var ne=zd;U("M",["MM",2],"Mo",function(){return this.month()+1}),U("MMM",0,0,function(a){return this.localeData().monthsShort(this,a)}),U("MMMM",0,0,function(a){return this.localeData().months(this,a)}),J("month","M"),M("month",8),Z("M",Sd),Z("MM",Sd,Od),Z("MMM",function(a,b){return b.monthsShortRegex(a)}),Z("MMMM",function(a,b){return b.monthsRegex(a)}),ba(["M","MM"],function(a,b){b[fe]=u(a)-1}),ba(["MMM","MMMM"],function(a,b,c,d){var e=c._locale.monthsParse(a,d,c._strict);null!=e?b[fe]=e:n(c).invalidMonth=a});var oe=/D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/,pe="January_February_March_April_May_June_July_August_September_October_November_December".split("_"),qe="Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),re=be,se=be;U("Y",0,0,function(){var a=this.year();return a<=9999?""+a:"+"+a}),U(0,["YY",2],0,function(){return this.year()%100}),U(0,["YYYY",4],0,"year"),U(0,["YYYYY",5],0,"year"),U(0,["YYYYYY",6,!0],0,"year"),J("year","y"),M("year",1),Z("Y",Zd),Z("YY",Sd,Od),Z("YYYY",Wd,Qd),Z("YYYYY",Xd,Rd),Z("YYYYYY",Xd,Rd),ba(["YYYYY","YYYYYY"],ee),ba("YYYY",function(b,c){c[ee]=2===b.length?a.parseTwoDigitYear(b):u(b)}),ba("YY",function(b,c){c[ee]=a.parseTwoDigitYear(b)}),ba("Y",function(a,b){b[ee]=parseInt(a,10)}),a.parseTwoDigitYear=function(a){return u(a)+(u(a)>68?1900:2e3)};var te=O("FullYear",!0);U("w",["ww",2],"wo","week"),U("W",["WW",2],"Wo","isoWeek"),J("week","w"),J("isoWeek","W"),M("week",5),M("isoWeek",5),Z("w",Sd),Z("ww",Sd,Od),Z("W",Sd),Z("WW",Sd,Od),ca(["w","ww","W","WW"],function(a,b,c,d){b[d.substr(0,1)]=u(a)});var ue={dow:0,doy:6};U("d",0,"do","day"),U("dd",0,0,function(a){return this.localeData().weekdaysMin(this,a)}),U("ddd",0,0,function(a){return this.localeData().weekdaysShort(this,a)}),U("dddd",0,0,function(a){return this.localeData().weekdays(this,a)}),U("e",0,0,"weekday"),U("E",0,0,"isoWeekday"),J("day","d"),J("weekday","e"),J("isoWeekday","E"),M("day",11),M("weekday",11),M("isoWeekday",11),Z("d",Sd),Z("e",Sd),Z("E",Sd),Z("dd",function(a,b){return b.weekdaysMinRegex(a)}),Z("ddd",function(a,b){return b.weekdaysShortRegex(a)}),Z("dddd",function(a,b){return b.weekdaysRegex(a)}),ca(["dd","ddd","dddd"],function(a,b,c,d){var e=c._locale.weekdaysParse(a,d,c._strict);null!=e?b.d=e:n(c).invalidWeekday=a}),ca(["d","e","E"],function(a,b,c,d){b[d]=u(a)});var ve="Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),we="Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),xe="Su_Mo_Tu_We_Th_Fr_Sa".split("_"),ye=be,ze=be,Ae=be;U("H",["HH",2],0,"hour"),U("h",["hh",2],0,Ra),U("k",["kk",2],0,Sa),U("hmm",0,0,function(){return""+Ra.apply(this)+T(this.minutes(),2)}),U("hmmss",0,0,function(){return""+Ra.apply(this)+T(this.minutes(),2)+T(this.seconds(),2)}),U("Hmm",0,0,function(){return""+this.hours()+T(this.minutes(),2)}),U("Hmmss",0,0,function(){return""+this.hours()+T(this.minutes(),2)+T(this.seconds(),2)}),Ta("a",!0),Ta("A",!1),J("hour","h"),M("hour",13),Z("a",Ua),Z("A",Ua),Z("H",Sd),Z("h",Sd),Z("k",Sd),Z("HH",Sd,Od),Z("hh",Sd,Od),Z("kk",Sd,Od),Z("hmm",Td),Z("hmmss",Ud),Z("Hmm",Td),Z("Hmmss",Ud),ba(["H","HH"],he),ba(["k","kk"],function(a,b,c){var d=u(a);b[he]=24===d?0:d}),ba(["a","A"],function(a,b,c){c._isPm=c._locale.isPM(a),c._meridiem=a}),ba(["h","hh"],function(a,b,c){b[he]=u(a),n(c).bigHour=!0}),ba("hmm",function(a,b,c){var d=a.length-2;b[he]=u(a.substr(0,d)),b[ie]=u(a.substr(d)),n(c).bigHour=!0}),ba("hmmss",function(a,b,c){var d=a.length-4,e=a.length-2;b[he]=u(a.substr(0,d)),b[ie]=u(a.substr(d,2)),b[je]=u(a.substr(e)),n(c).bigHour=!0}),ba("Hmm",function(a,b,c){var d=a.length-2;b[he]=u(a.substr(0,d)),b[ie]=u(a.substr(d))}),ba("Hmmss",function(a,b,c){var d=a.length-4,e=a.length-2;b[he]=u(a.substr(0,d)),b[ie]=u(a.substr(d,2)),b[je]=u(a.substr(e))});var Be,Ce=/[ap]\.?m?\.?/i,De=O("Hours",!0),Ee={calendar:Bd,longDateFormat:Cd,invalidDate:Dd,ordinal:Ed,dayOfMonthOrdinalParse:Fd,relativeTime:Gd,months:pe,monthsShort:qe,week:ue,weekdays:ve,weekdaysMin:xe,weekdaysShort:we,meridiemParse:Ce},Fe={},Ge={},He=/^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/,Ie=/^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/,Je=/Z|[+-]\d\d(?::?\d\d)?/,Ke=[["YYYYYY-MM-DD",/[+-]\d{6}-\d\d-\d\d/],["YYYY-MM-DD",/\d{4}-\d\d-\d\d/],["GGGG-[W]WW-E",/\d{4}-W\d\d-\d/],["GGGG-[W]WW",/\d{4}-W\d\d/,!1],["YYYY-DDD",/\d{4}-\d{3}/],["YYYY-MM",/\d{4}-\d\d/,!1],["YYYYYYMMDD",/[+-]\d{10}/],["YYYYMMDD",/\d{8}/],["GGGG[W]WWE",/\d{4}W\d{3}/],["GGGG[W]WW",/\d{4}W\d{2}/,!1],["YYYYDDD",/\d{7}/]],Le=[["HH:mm:ss.SSSS",/\d\d:\d\d:\d\d\.\d+/],["HH:mm:ss,SSSS",/\d\d:\d\d:\d\d,\d+/],["HH:mm:ss",/\d\d:\d\d:\d\d/],["HH:mm",/\d\d:\d\d/],["HHmmss.SSSS",/\d\d\d\d\d\d\.\d+/],["HHmmss,SSSS",/\d\d\d\d\d\d,\d+/],["HHmmss",/\d\d\d\d\d\d/],["HHmm",/\d\d\d\d/],["HH",/\d\d/]],Me=/^\/?Date\((\-?\d+)/i,Ne=/^((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d?\d\s(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(?:\d\d)?\d\d\s)(\d\d:\d\d)(\:\d\d)?(\s(?:UT|GMT|[ECMP][SD]T|[A-IK-Za-ik-z]|[+-]\d{4}))$/;a.createFromInputFallback=x("value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.",function(a){a._d=new Date(a._i+(a._useUTC?" UTC":""))}),a.ISO_8601=function(){},a.RFC_2822=function(){};var Oe=x("moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var a=tb.apply(null,arguments);return this.isValid()&&a.isValid()?a<this?this:a:p()}),Pe=x("moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var a=tb.apply(null,arguments);return this.isValid()&&a.isValid()?a>this?this:a:p()}),Qe=function(){return Date.now?Date.now():+new Date},Re=["year","quarter","month","week","day","hour","minute","second","millisecond"];Db("Z",":"),Db("ZZ",""),Z("Z",_d),Z("ZZ",_d),ba(["Z","ZZ"],function(a,b,c){c._useUTC=!0,c._tzm=Eb(_d,a)});var Se=/([\+\-]|\d\d)/gi;a.updateOffset=function(){};var Te=/^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/,Ue=/^(-)?P(?:(-?[0-9,.]*)Y)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)W)?(?:(-?[0-9,.]*)D)?(?:T(?:(-?[0-9,.]*)H)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)S)?)?$/;Sb.fn=Ab.prototype,Sb.invalid=zb;var Ve=Wb(1,"add"),We=Wb(-1,"subtract");a.defaultFormat="YYYY-MM-DDTHH:mm:ssZ",a.defaultFormatUtc="YYYY-MM-DDTHH:mm:ss[Z]";var Xe=x("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.",function(a){return void 0===a?this.localeData():this.locale(a)});U(0,["gg",2],0,function(){return this.weekYear()%100}),U(0,["GG",2],0,function(){return this.isoWeekYear()%100}),Dc("gggg","weekYear"),Dc("ggggg","weekYear"),Dc("GGGG","isoWeekYear"),Dc("GGGGG","isoWeekYear"),J("weekYear","gg"),J("isoWeekYear","GG"),M("weekYear",1),M("isoWeekYear",1),Z("G",Zd),Z("g",Zd),Z("GG",Sd,Od),Z("gg",Sd,Od),Z("GGGG",Wd,Qd),Z("gggg",Wd,Qd),Z("GGGGG",Xd,Rd),Z("ggggg",Xd,Rd),ca(["gggg","ggggg","GGGG","GGGGG"],function(a,b,c,d){b[d.substr(0,2)]=u(a)}),ca(["gg","GG"],function(b,c,d,e){c[e]=a.parseTwoDigitYear(b)}),U("Q",0,"Qo","quarter"),J("quarter","Q"),M("quarter",7),Z("Q",Nd),ba("Q",function(a,b){b[fe]=3*(u(a)-1)}),U("D",["DD",2],"Do","date"),J("date","D"),M("date",9),Z("D",Sd),Z("DD",Sd,Od),Z("Do",function(a,b){return a?b._dayOfMonthOrdinalParse||b._ordinalParse:b._dayOfMonthOrdinalParseLenient}),ba(["D","DD"],ge),ba("Do",function(a,b){b[ge]=u(a.match(Sd)[0],10)});var Ye=O("Date",!0);U("DDD",["DDDD",3],"DDDo","dayOfYear"),J("dayOfYear","DDD"),M("dayOfYear",4),Z("DDD",Vd),Z("DDDD",Pd),ba(["DDD","DDDD"],function(a,b,c){c._dayOfYear=u(a)}),U("m",["mm",2],0,"minute"),J("minute","m"),M("minute",14),Z("m",Sd),Z("mm",Sd,Od),ba(["m","mm"],ie);var Ze=O("Minutes",!1);U("s",["ss",2],0,"second"),J("second","s"),M("second",15),Z("s",Sd),Z("ss",Sd,Od),ba(["s","ss"],je);var $e=O("Seconds",!1);U("S",0,0,function(){return~~(this.millisecond()/100)}),U(0,["SS",2],0,function(){return~~(this.millisecond()/10)}),U(0,["SSS",3],0,"millisecond"),U(0,["SSSS",4],0,function(){return 10*this.millisecond()}),U(0,["SSSSS",5],0,function(){return 100*this.millisecond()}),U(0,["SSSSSS",6],0,function(){return 1e3*this.millisecond()}),U(0,["SSSSSSS",7],0,function(){return 1e4*this.millisecond()}),U(0,["SSSSSSSS",8],0,function(){return 1e5*this.millisecond()}),U(0,["SSSSSSSSS",9],0,function(){return 1e6*this.millisecond()}),J("millisecond","ms"),M("millisecond",16),Z("S",Vd,Nd),Z("SS",Vd,Od),Z("SSS",Vd,Pd);var _e;for(_e="SSSS";_e.length<=9;_e+="S")Z(_e,Yd);for(_e="S";_e.length<=9;_e+="S")ba(_e,Mc);var af=O("Milliseconds",!1);U("z",0,0,"zoneAbbr"),U("zz",0,0,"zoneName");var bf=r.prototype;bf.add=Ve,bf.calendar=Zb,bf.clone=$b,bf.diff=fc,bf.endOf=sc,bf.format=kc,bf.from=lc,bf.fromNow=mc,bf.to=nc,bf.toNow=oc,bf.get=R,bf.invalidAt=Bc,bf.isAfter=_b,bf.isBefore=ac,bf.isBetween=bc,bf.isSame=cc,bf.isSameOrAfter=dc,bf.isSameOrBefore=ec,bf.isValid=zc,bf.lang=Xe,bf.locale=pc,bf.localeData=qc,bf.max=Pe,bf.min=Oe,bf.parsingFlags=Ac,bf.set=S,bf.startOf=rc,bf.subtract=We,bf.toArray=wc,bf.toObject=xc,bf.toDate=vc,bf.toISOString=ic,bf.inspect=jc,bf.toJSON=yc,bf.toString=hc,bf.unix=uc,bf.valueOf=tc,bf.creationData=Cc,bf.year=te,bf.isLeapYear=ra,bf.weekYear=Ec,bf.isoWeekYear=Fc,bf.quarter=bf.quarters=Kc,bf.month=ka,bf.daysInMonth=la,bf.week=bf.weeks=Ba,bf.isoWeek=bf.isoWeeks=Ca,bf.weeksInYear=Hc,bf.isoWeeksInYear=Gc,bf.date=Ye,bf.day=bf.days=Ka,bf.weekday=La,bf.isoWeekday=Ma,bf.dayOfYear=Lc,bf.hour=bf.hours=De,bf.minute=bf.minutes=Ze,bf.second=bf.seconds=$e,bf.millisecond=bf.milliseconds=af,bf.utcOffset=Hb,bf.utc=Jb,bf.local=Kb,bf.parseZone=Lb,bf.hasAlignedHourOffset=Mb,bf.isDST=Nb,bf.isLocal=Pb,bf.isUtcOffset=Qb,bf.isUtc=Rb,bf.isUTC=Rb,bf.zoneAbbr=Nc,bf.zoneName=Oc,bf.dates=x("dates accessor is deprecated. Use date instead.",Ye),bf.months=x("months accessor is deprecated. Use month instead",ka),bf.years=x("years accessor is deprecated. Use year instead",te),bf.zone=x("moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/",Ib),bf.isDSTShifted=x("isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information",Ob);var cf=C.prototype;cf.calendar=D,cf.longDateFormat=E,cf.invalidDate=F,cf.ordinal=G,cf.preparse=Rc,cf.postformat=Rc,cf.relativeTime=H,cf.pastFuture=I,cf.set=A,cf.months=fa,cf.monthsShort=ga,cf.monthsParse=ia,cf.monthsRegex=na,cf.monthsShortRegex=ma,cf.week=ya,cf.firstDayOfYear=Aa,cf.firstDayOfWeek=za,cf.weekdays=Fa,cf.weekdaysMin=Ha,cf.weekdaysShort=Ga,cf.weekdaysParse=Ja,cf.weekdaysRegex=Na,cf.weekdaysShortRegex=Oa,cf.weekdaysMinRegex=Pa,cf.isPM=Va,cf.meridiem=Wa,$a("en",{dayOfMonthOrdinalParse:/\d{1,2}(th|st|nd|rd)/,ordinal:function(a){var b=a%10,c=1===u(a%100/10)?"th":1===b?"st":2===b?"nd":3===b?"rd":"th";return a+c}}),a.lang=x("moment.lang is deprecated. Use moment.locale instead.",$a),a.langData=x("moment.langData is deprecated. Use moment.localeData instead.",bb);var df=Math.abs,ef=id("ms"),ff=id("s"),gf=id("m"),hf=id("h"),jf=id("d"),kf=id("w"),lf=id("M"),mf=id("y"),nf=kd("milliseconds"),of=kd("seconds"),pf=kd("minutes"),qf=kd("hours"),rf=kd("days"),sf=kd("months"),tf=kd("years"),uf=Math.round,vf={ss:44,s:45,m:45,h:22,d:26,M:11},wf=Math.abs,xf=Ab.prototype;return xf.isValid=yb,xf.abs=$c,xf.add=ad,xf.subtract=bd,xf.as=gd,xf.asMilliseconds=ef,xf.asSeconds=ff,xf.asMinutes=gf,xf.asHours=hf,xf.asDays=jf,xf.asWeeks=kf,xf.asMonths=lf,xf.asYears=mf,xf.valueOf=hd,xf._bubble=dd,xf.get=jd,xf.milliseconds=nf,xf.seconds=of,xf.minutes=pf,xf.hours=qf,xf.days=rf,xf.weeks=ld,xf.months=sf,xf.years=tf,xf.humanize=qd,xf.toISOString=rd,xf.toString=rd,xf.toJSON=rd,xf.locale=pc,xf.localeData=qc,xf.toIsoString=x("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)",rd),xf.lang=Xe,U("X",0,0,"unix"),U("x",0,0,"valueOf"),Z("x",Zd),Z("X",ae),ba("X",function(a,b,c){c._d=new Date(1e3*parseFloat(a,10))}),ba("x",function(a,b,c){c._d=new Date(u(a))}),a.version="2.18.1",b(tb),a.fn=bf,a.min=vb,a.max=wb,a.now=Qe,a.utc=l,a.unix=Pc,a.months=Vc,a.isDate=h,a.locale=$a,a.invalid=p,a.duration=Sb,a.isMoment=s,a.weekdays=Xc,a.parseZone=Qc,a.localeData=bb,a.isDuration=Bb,a.monthsShort=Wc,a.weekdaysMin=Zc,a.defineLocale=_a,a.updateLocale=ab,a.locales=cb,a.weekdaysShort=Yc,a.normalizeUnits=K,a.relativeTimeRounding=od,a.relativeTimeThreshold=pd,a.calendarFormat=Yb,a.prototype=bf,a});
 /*!
  * Font Awesome Free 5.0.8 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -58488,9 +58620,9 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 "undefined"!=typeof module&&"undefined"!=typeof exports&&module.exports===exports&&(module.exports="ui.router"),function(a,b,c){"use strict";function d(a,b){return S(new(S(function(){},{prototype:a})),b)}function e(a){return R(arguments,function(b){b!==a&&R(b,function(b,c){a.hasOwnProperty(c)||(a[c]=b)})}),a}function f(a,b){var c=[];for(var d in a.path){if(a.path[d]!==b.path[d])break;c.push(a.path[d])}return c}function g(a){if(Object.keys)return Object.keys(a);var b=[];return R(a,function(a,c){b.push(c)}),b}function h(a,b){if(Array.prototype.indexOf)return a.indexOf(b,Number(arguments[2])||0);var c=a.length>>>0,d=Number(arguments[2])||0;for(d=d<0?Math.ceil(d):Math.floor(d),d<0&&(d+=c);d<c;d++)if(d in a&&a[d]===b)return d;return-1}function i(a,b,c,d){var e,i=f(c,d),j={},k=[];for(var l in i)if(i[l]&&i[l].params&&(e=g(i[l].params),e.length))for(var m in e)h(k,e[m])>=0||(k.push(e[m]),j[e[m]]=a[e[m]]);return S({},j,b)}function j(a,b,c){if(!c){c=[];for(var d in a)c.push(d)}for(var e=0;e<c.length;e++){var f=c[e];if(a[f]!=b[f])return!1}return!0}function k(a,b){var c={};return R(a,function(a){c[a]=b[a]}),c}function l(a){var b={},c=Array.prototype.concat.apply(Array.prototype,Array.prototype.slice.call(arguments,1));return R(c,function(c){c in a&&(b[c]=a[c])}),b}function m(a){var b={},c=Array.prototype.concat.apply(Array.prototype,Array.prototype.slice.call(arguments,1));for(var d in a)h(c,d)==-1&&(b[d]=a[d]);return b}function n(a,b){var c=Q(a),d=c?[]:{};return R(a,function(a,e){b(a,e)&&(d[c?d.length:e]=a)}),d}function o(a,b){var c=Q(a)?[]:{};return R(a,function(a,d){c[d]=b(a,d)}),c}function p(a){return a.then(c,function(){})&&a}function q(a,b){var d=1,f=2,i={},j=[],k=i,l=S(a.when(i),{$$promises:i,$$values:i});this.study=function(i){function n(a,c){if(s[c]!==f){if(r.push(c),s[c]===d)throw r.splice(0,h(r,c)),new Error("Cyclic dependency: "+r.join(" -> "));if(s[c]=d,O(a))q.push(c,[function(){return b.get(a)}],j);else{var e=b.annotate(a);R(e,function(a){a!==c&&i.hasOwnProperty(a)&&n(i[a],a)}),q.push(c,a,e)}r.pop(),s[c]=f}}function o(a){return P(a)&&a.then&&a.$$promises}if(!P(i))throw new Error("'invocables' must be an object");var p=g(i||{}),q=[],r=[],s={};return R(i,n),i=r=s=null,function(d,f,g){function h(){--u||(v||e(t,f.$$values),r.$$values=t,r.$$promises=r.$$promises||!0,delete r.$$inheritedValues,n.resolve(t))}function i(a){r.$$failure=a,n.reject(a)}function j(c,e,f){function j(a){l.reject(a),i(a)}function k(){if(!M(r.$$failure))try{l.resolve(b.invoke(e,g,t)),l.promise.then(function(a){t[c]=a,h()},j)}catch(a){j(a)}}var l=a.defer(),m=0;R(f,function(a){s.hasOwnProperty(a)&&!d.hasOwnProperty(a)&&(m++,s[a].then(function(b){t[a]=b,--m||k()},j))}),m||k(),s[c]=l.promise}if(o(d)&&g===c&&(g=f,f=d,d=null),d){if(!P(d))throw new Error("'locals' must be an object")}else d=k;if(f){if(!o(f))throw new Error("'parent' must be a promise returned by $resolve.resolve()")}else f=l;var n=a.defer(),r=n.promise,s=r.$$promises={},t=S({},d),u=1+q.length/3,v=!1;if(M(f.$$failure))return i(f.$$failure),r;f.$$inheritedValues&&e(t,m(f.$$inheritedValues,p)),S(s,f.$$promises),f.$$values?(v=e(t,m(f.$$values,p)),r.$$inheritedValues=m(f.$$values,p),h()):(f.$$inheritedValues&&(r.$$inheritedValues=m(f.$$inheritedValues,p)),f.then(h,i));for(var w=0,x=q.length;w<x;w+=3)d.hasOwnProperty(q[w])?h():j(q[w],q[w+1],q[w+2]);return r}},this.resolve=function(a,b,c,d){return this.study(a)(b,c,d)}}function r(a,b,c){this.fromConfig=function(a,b,c){return M(a.template)?this.fromString(a.template,b):M(a.templateUrl)?this.fromUrl(a.templateUrl,b):M(a.templateProvider)?this.fromProvider(a.templateProvider,b,c):null},this.fromString=function(a,b){return N(a)?a(b):a},this.fromUrl=function(c,d){return N(c)&&(c=c(d)),null==c?null:a.get(c,{cache:b,headers:{Accept:"text/html"}}).then(function(a){return a.data})},this.fromProvider=function(a,b,d){return c.invoke(a,null,d||{params:b})}}function s(a,b,e){function f(b,c,d,e){if(q.push(b),o[b])return o[b];if(!/^\w+([-.]+\w+)*(?:\[\])?$/.test(b))throw new Error("Invalid parameter name '"+b+"' in pattern '"+a+"'");if(p[b])throw new Error("Duplicate parameter name '"+b+"' in pattern '"+a+"'");return p[b]=new V.Param(b,c,d,e),p[b]}function g(a,b,c,d){var e=["",""],f=a.replace(/[\\\[\]\^$*+?.()|{}]/g,"\\$&");if(!b)return f;switch(c){case!1:e=["(",")"+(d?"?":"")];break;case!0:f=f.replace(/\/$/,""),e=["(?:/(",")|/)?"];break;default:e=["("+c+"|",")?"]}return f+e[0]+b+e[1]}function h(e,f){var g,h,i,j,k;return g=e[2]||e[3],k=b.params[g],i=a.substring(m,e.index),h=f?e[4]:e[4]||("*"==e[1]?".*":null),h&&(j=V.type(h)||d(V.type("string"),{pattern:new RegExp(h,b.caseInsensitive?"i":c)})),{id:g,regexp:h,segment:i,type:j,cfg:k}}b=S({params:{}},P(b)?b:{});var i,j=/([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,k=/([:]?)([\w\[\].-]+)|\{([\w\[\].-]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,l="^",m=0,n=this.segments=[],o=e?e.params:{},p=this.params=e?e.params.$$new():new V.ParamSet,q=[];this.source=a;for(var r,s,t;(i=j.exec(a))&&(r=h(i,!1),!(r.segment.indexOf("?")>=0));)s=f(r.id,r.type,r.cfg,"path"),l+=g(r.segment,s.type.pattern.source,s.squash,s.isOptional),n.push(r.segment),m=j.lastIndex;t=a.substring(m);var u=t.indexOf("?");if(u>=0){var v=this.sourceSearch=t.substring(u);if(t=t.substring(0,u),this.sourcePath=a.substring(0,m+u),v.length>0)for(m=0;i=k.exec(v);)r=h(i,!0),s=f(r.id,r.type,r.cfg,"search"),m=j.lastIndex}else this.sourcePath=a,this.sourceSearch="";l+=g(t)+(b.strict===!1?"/?":"")+"$",n.push(t),this.regexp=new RegExp(l,b.caseInsensitive?"i":c),this.prefix=n[0],this.$$paramNames=q}function t(a){S(this,a)}function u(){function a(a){return null!=a?a.toString().replace(/(~|\/)/g,function(a){return{"~":"~~","/":"~2F"}[a]}):a}function e(a){return null!=a?a.toString().replace(/(~~|~2F)/g,function(a){return{"~~":"~","~2F":"/"}[a]}):a}function f(){return{strict:p,caseInsensitive:m}}function i(a){return N(a)||Q(a)&&N(a[a.length-1])}function j(){for(;w.length;){var a=w.shift();if(a.pattern)throw new Error("You cannot override a type's .pattern at runtime.");b.extend(r[a.name],l.invoke(a.def))}}function k(a){S(this,a||{})}V=this;var l,m=!1,p=!0,q=!1,r={},v=!0,w=[],x={string:{encode:a,decode:e,is:function(a){return null==a||!M(a)||"string"==typeof a},pattern:/[^\/]*/},int:{encode:a,decode:function(a){return parseInt(a,10)},is:function(a){return M(a)&&this.decode(a.toString())===a},pattern:/\d+/},bool:{encode:function(a){return a?1:0},decode:function(a){return 0!==parseInt(a,10)},is:function(a){return a===!0||a===!1},pattern:/0|1/},date:{encode:function(a){return this.is(a)?[a.getFullYear(),("0"+(a.getMonth()+1)).slice(-2),("0"+a.getDate()).slice(-2)].join("-"):c},decode:function(a){if(this.is(a))return a;var b=this.capture.exec(a);return b?new Date(b[1],b[2]-1,b[3]):c},is:function(a){return a instanceof Date&&!isNaN(a.valueOf())},equals:function(a,b){return this.is(a)&&this.is(b)&&a.toISOString()===b.toISOString()},pattern:/[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2][0-9]|3[0-1])/,capture:/([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/},json:{encode:b.toJson,decode:b.fromJson,is:b.isObject,equals:b.equals,pattern:/[^\/]*/},any:{encode:b.identity,decode:b.identity,equals:b.equals,pattern:/.*/}};u.$$getDefaultValue=function(a){if(!i(a.value))return a.value;if(!l)throw new Error("Injectable functions cannot be called at configuration time");return l.invoke(a.value)},this.caseInsensitive=function(a){return M(a)&&(m=a),m},this.strictMode=function(a){return M(a)&&(p=a),p},this.defaultSquashPolicy=function(a){if(!M(a))return q;if(a!==!0&&a!==!1&&!O(a))throw new Error("Invalid squash policy: "+a+". Valid policies: false, true, arbitrary-string");return q=a,a},this.compile=function(a,b){return new s(a,S(f(),b))},this.isMatcher=function(a){if(!P(a))return!1;var b=!0;return R(s.prototype,function(c,d){N(c)&&(b=b&&M(a[d])&&N(a[d]))}),b},this.type=function(a,b,c){if(!M(b))return r[a];if(r.hasOwnProperty(a))throw new Error("A type named '"+a+"' has already been defined.");return r[a]=new t(S({name:a},b)),c&&(w.push({name:a,def:c}),v||j()),this},R(x,function(a,b){r[b]=new t(S({name:b},a))}),r=d(r,{}),this.$get=["$injector",function(a){return l=a,v=!1,j(),R(x,function(a,b){r[b]||(r[b]=new t(a))}),this}],this.Param=function(a,d,e,f){function j(a){var b=P(a)?g(a):[],c=h(b,"value")===-1&&h(b,"type")===-1&&h(b,"squash")===-1&&h(b,"array")===-1;return c&&(a={value:a}),a.$$fn=i(a.value)?a.value:function(){return a.value},a}function k(c,d,e){if(c.type&&d)throw new Error("Param '"+a+"' has two type configurations.");return d?d:c.type?b.isString(c.type)?r[c.type]:c.type instanceof t?c.type:new t(c.type):"config"===e?r.any:r.string}function m(){var b={array:"search"===f&&"auto"},c=a.match(/\[\]$/)?{array:!0}:{};return S(b,c,e).array}function p(a,b){var c=a.squash;if(!b||c===!1)return!1;if(!M(c)||null==c)return q;if(c===!0||O(c))return c;throw new Error("Invalid squash policy: '"+c+"'. Valid policies: false, true, or arbitrary string")}function s(a,b,d,e){var f,g,i=[{from:"",to:d||b?c:""},{from:null,to:d||b?c:""}];return f=Q(a.replace)?a.replace:[],O(e)&&f.push({from:e,to:c}),g=o(f,function(a){return a.from}),n(i,function(a){return h(g,a.from)===-1}).concat(f)}function u(){if(!l)throw new Error("Injectable functions cannot be called at configuration time");var a=l.invoke(e.$$fn);if(null!==a&&a!==c&&!x.type.is(a))throw new Error("Default value ("+a+") for parameter '"+x.id+"' is not an instance of Type ("+x.type.name+")");return a}function v(a){function b(a){return function(b){return b.from===a}}function c(a){var c=o(n(x.replace,b(a)),function(a){return a.to});return c.length?c[0]:a}return a=c(a),M(a)?x.type.$normalize(a):u()}function w(){return"{Param:"+a+" "+d+" squash: '"+A+"' optional: "+z+"}"}var x=this;e=j(e),d=k(e,d,f);var y=m();d=y?d.$asArray(y,"search"===f):d,"string"!==d.name||y||"path"!==f||e.value!==c||(e.value="");var z=e.value!==c,A=p(e,z),B=s(e,y,z,A);S(this,{id:a,type:d,location:f,array:y,squash:A,replace:B,isOptional:z,value:v,dynamic:c,config:e,toString:w})},k.prototype={$$new:function(){return d(this,S(new k,{$$parent:this}))},$$keys:function(){for(var a=[],b=[],c=this,d=g(k.prototype);c;)b.push(c),c=c.$$parent;return b.reverse(),R(b,function(b){R(g(b),function(b){h(a,b)===-1&&h(d,b)===-1&&a.push(b)})}),a},$$values:function(a){var b={},c=this;return R(c.$$keys(),function(d){b[d]=c[d].value(a&&a[d])}),b},$$equals:function(a,b){var c=!0,d=this;return R(d.$$keys(),function(e){var f=a&&a[e],g=b&&b[e];d[e].type.equals(f,g)||(c=!1)}),c},$$validates:function(a){var d,e,f,g,h,i=this.$$keys();for(d=0;d<i.length&&(e=this[i[d]],f=a[i[d]],f!==c&&null!==f||!e.isOptional);d++){if(g=e.type.$normalize(f),!e.type.is(g))return!1;if(h=e.type.encode(g),b.isString(h)&&!e.type.pattern.exec(h))return!1}return!0},$$parent:c},this.ParamSet=k}function v(a,d){function e(a){var b=/^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(a.source);return null!=b?b[1].replace(/\\(.)/g,"$1"):""}function f(a,b){return a.replace(/\$(\$|\d{1,2})/,function(a,c){return b["$"===c?0:Number(c)]})}function g(a,b,c){if(!c)return!1;var d=a.invoke(b,b,{$match:c});return!M(d)||d}function h(d,e,f,g,h){function m(a,b,c){return"/"===q?a:b?q.slice(0,-1)+a:c?q.slice(1)+a:a}function n(a){function b(a){var b=a(f,d);return!!b&&(O(b)&&d.replace().url(b),!0)}if(!a||!a.defaultPrevented){p&&d.url()===p;p=c;var e,g=j.length;for(e=0;e<g;e++)if(b(j[e]))return;k&&b(k)}}function o(){return i=i||e.$on("$locationChangeSuccess",n)}var p,q=g.baseHref(),r=d.url();return l||o(),{sync:function(){n()},listen:function(){return o()},update:function(a){return a?void(r=d.url()):void(d.url()!==r&&(d.url(r),d.replace()))},push:function(a,b,e){var f=a.format(b||{});null!==f&&b&&b["#"]&&(f+="#"+b["#"]),d.url(f),p=e&&e.$$avoidResync?d.url():c,e&&e.replace&&d.replace()},href:function(c,e,f){if(!c.validates(e))return null;var g=a.html5Mode();b.isObject(g)&&(g=g.enabled),g=g&&h.history;var i=c.format(e);if(f=f||{},g||null===i||(i="#"+a.hashPrefix()+i),null!==i&&e&&e["#"]&&(i+="#"+e["#"]),i=m(i,g,f.absolute),!f.absolute||!i)return i;var j=!g&&i?"/":"",k=d.port();return k=80===k||443===k?"":":"+k,[d.protocol(),"://",d.host(),k,j,i].join("")}}}var i,j=[],k=null,l=!1;this.rule=function(a){if(!N(a))throw new Error("'rule' must be a function");return j.push(a),this},this.otherwise=function(a){if(O(a)){var b=a;a=function(){return b}}else if(!N(a))throw new Error("'rule' must be a function");return k=a,this},this.when=function(a,b){var c,h=O(b);if(O(a)&&(a=d.compile(a)),!h&&!N(b)&&!Q(b))throw new Error("invalid 'handler' in when()");var i={matcher:function(a,b){return h&&(c=d.compile(b),b=["$match",function(a){return c.format(a)}]),S(function(c,d){return g(c,b,a.exec(d.path(),d.search()))},{prefix:O(a.prefix)?a.prefix:""})},regex:function(a,b){if(a.global||a.sticky)throw new Error("when() RegExp must not be global or sticky");return h&&(c=b,b=["$match",function(a){return f(c,a)}]),S(function(c,d){return g(c,b,a.exec(d.path()))},{prefix:e(a)})}},j={matcher:d.isMatcher(a),regex:a instanceof RegExp};for(var k in j)if(j[k])return this.rule(i[k](a,b));throw new Error("invalid 'what' in when()")},this.deferIntercept=function(a){a===c&&(a=!0),l=a},this.$get=h,h.$inject=["$location","$rootScope","$injector","$browser","$sniffer"]}function w(a,e){function f(a){return 0===a.indexOf(".")||0===a.indexOf("^")}function m(a,b){if(!a)return c;var d=O(a),e=d?a:a.name,g=f(e);if(g){if(!b)throw new Error("No reference point given for path '"+e+"'");b=m(b);for(var h=e.split("."),i=0,j=h.length,k=b;i<j;i++)if(""!==h[i]||0!==i){if("^"!==h[i])break;if(!k.parent)throw new Error("Path '"+e+"' not valid for state '"+b.name+"'");k=k.parent}else k=b;h=h.slice(i).join("."),e=k.name+(k.name&&h?".":"")+h}var l=A[e];return!l||!d&&(d||l!==a&&l.self!==a)?c:l}function n(a,b){B[a]||(B[a]=[]),B[a].push(b)}function q(a){for(var b=B[a]||[];b.length;)r(b.shift())}function r(b){b=d(b,{self:b,resolve:b.resolve||{},toString:function(){return this.name}});var c=b.name;if(!O(c)||c.indexOf("@")>=0)throw new Error("State must have a valid name");if(A.hasOwnProperty(c))throw new Error("State '"+c+"' is already defined");var e=c.indexOf(".")!==-1?c.substring(0,c.lastIndexOf(".")):O(b.parent)?b.parent:P(b.parent)&&O(b.parent.name)?b.parent.name:"";if(e&&!A[e])return n(e,b.self);for(var f in D)N(D[f])&&(b[f]=D[f](b,D.$delegates[f]));return A[c]=b,!b[C]&&b.url&&a.when(b.url,["$match","$stateParams",function(a,c){z.$current.navigable==b&&j(a,c)||z.transitionTo(b,a,{inherit:!0,location:!1})}]),q(c),b}function s(a){return a.indexOf("*")>-1}function t(a){for(var b=a.split("."),c=z.$current.name.split("."),d=0,e=b.length;d<e;d++)"*"===b[d]&&(c[d]="*");return"**"===b[0]&&(c=c.slice(h(c,b[1])),c.unshift("**")),"**"===b[b.length-1]&&(c.splice(h(c,b[b.length-2])+1,Number.MAX_VALUE),c.push("**")),b.length==c.length&&c.join("")===b.join("")}function u(a,b){return O(a)&&!M(b)?D[a]:N(b)&&O(a)?(D[a]&&!D.$delegates[a]&&(D.$delegates[a]=D[a]),D[a]=b,this):this}function v(a,b){return P(a)?b=a:b.name=a,r(b),this}function w(a,e,f,h,l,n,q,r,u){function v(b,c,d,f){var g=a.$broadcast("$stateNotFound",b,c,d);if(g.defaultPrevented)return q.update(),F;if(!g.retry)return null;if(f.$retry)return q.update(),G;var h=z.transition=e.when(g.retry);return h.then(function(){return h!==z.transition?(a.$broadcast("$stateChangeCancel",b.to,b.toParams,c,d),D):(b.options.$retry=!0,z.transitionTo(b.to,b.toParams,b.options))},function(){return F}),q.update(),h}function w(a,c,d,g,i,j){function m(){var c=[];return R(a.views,function(d,e){var g=d.resolve&&d.resolve!==a.resolve?d.resolve:{};g.$template=[function(){return f.load(e,{view:d,locals:i.globals,params:n,notify:j.notify})||""}],c.push(l.resolve(g,i.globals,i.resolve,a).then(function(c){if(N(d.controllerProvider)||Q(d.controllerProvider)){var f=b.extend({},g,i.globals);c.$$controller=h.invoke(d.controllerProvider,null,f)}else c.$$controller=d.controller;c.$$state=a,c.$$controllerAs=d.controllerAs,c.$$resolveAs=d.resolveAs,i[e]=c}))}),e.all(c).then(function(){return i.globals})}var n=d?c:k(a.params.$$keys(),c),o={$stateParams:n};i.resolve=l.resolve(a.resolve,o,i.resolve,a);var p=[i.resolve.then(function(a){i.globals=a})];return g&&p.push(g),e.all(p).then(m).then(function(a){return i})}var B=new Error("transition superseded"),D=p(e.reject(B)),E=p(e.reject(new Error("transition prevented"))),F=p(e.reject(new Error("transition aborted"))),G=p(e.reject(new Error("transition failed")));return y.locals={resolve:null,globals:{$stateParams:{}}},z={params:{},current:y.self,$current:y,transition:null},z.reload=function(a){return z.transitionTo(z.current,n,{reload:a||!0,inherit:!1,notify:!0})},z.go=function(a,b,c){return z.transitionTo(a,b,S({inherit:!0,relative:z.$current},c))},z.transitionTo=function(b,c,f){c=c||{},f=S({location:!0,inherit:!1,relative:null,notify:!0,reload:!1,$retry:!1},f||{});var g,j=z.$current,l=z.params,o=j.path,p=m(b,f.relative),r=c["#"];if(!M(p)){var s={to:b,toParams:c,options:f},t=v(s,j.self,l,f);if(t)return t;if(b=s.to,c=s.toParams,f=s.options,p=m(b,f.relative),!M(p)){if(!f.relative)throw new Error("No such state '"+b+"'");throw new Error("Could not resolve '"+b+"' from state '"+f.relative+"'")}}if(p[C])throw new Error("Cannot transition to abstract state '"+b+"'");if(f.inherit&&(c=i(n,c||{},z.$current,p)),!p.params.$$validates(c))return G;c=p.params.$$values(c),b=p;var u=b.path,A=0,F=u[A],H=y.locals,I=[];if(f.reload){if(O(f.reload)||P(f.reload)){if(P(f.reload)&&!f.reload.name)throw new Error("Invalid reload state object");var J=f.reload===!0?o[0]:m(f.reload);if(f.reload&&!J)throw new Error("No such reload state '"+(O(f.reload)?f.reload:f.reload.name)+"'");for(;F&&F===o[A]&&F!==J;)H=I[A]=F.locals,A++,F=u[A]}}else for(;F&&F===o[A]&&F.ownParams.$$equals(c,l);)H=I[A]=F.locals,A++,F=u[A];if(x(b,c,j,l,H,f))return r&&(c["#"]=r),z.params=c,T(z.params,n),T(k(b.params.$$keys(),n),b.locals.globals.$stateParams),f.location&&b.navigable&&b.navigable.url&&(q.push(b.navigable.url,c,{$$avoidResync:!0,replace:"replace"===f.location}),q.update(!0)),z.transition=null,e.when(z.current);if(c=k(b.params.$$keys(),c||{}),r&&(c["#"]=r),f.notify&&a.$broadcast("$stateChangeStart",b.self,c,j.self,l,f).defaultPrevented)return a.$broadcast("$stateChangeCancel",b.self,c,j.self,l),null==z.transition&&q.update(),E;for(var K=e.when(H),L=A;L<u.length;L++,F=u[L])H=I[L]=d(H),K=w(F,c,F===b,K,H,f);var N=z.transition=K.then(function(){var d,e,g;if(z.transition!==N)return a.$broadcast("$stateChangeCancel",b.self,c,j.self,l),D;for(d=o.length-1;d>=A;d--)g=o[d],g.self.onExit&&h.invoke(g.self.onExit,g.self,g.locals.globals),g.locals=null;for(d=A;d<u.length;d++)e=u[d],e.locals=I[d],e.self.onEnter&&h.invoke(e.self.onEnter,e.self,e.locals.globals);return z.transition!==N?(a.$broadcast("$stateChangeCancel",b.self,c,j.self,l),D):(z.$current=b,z.current=b.self,z.params=c,T(z.params,n),z.transition=null,f.location&&b.navigable&&q.push(b.navigable.url,b.navigable.locals.globals.$stateParams,{$$avoidResync:!0,replace:"replace"===f.location}),f.notify&&a.$broadcast("$stateChangeSuccess",b.self,c,j.self,l),q.update(!0),z.current)}).then(null,function(d){return d===B?D:z.transition!==N?(a.$broadcast("$stateChangeCancel",b.self,c,j.self,l),D):(z.transition=null,g=a.$broadcast("$stateChangeError",b.self,c,j.self,l,d),g.defaultPrevented||q.update(),e.reject(d))});return N},z.is=function(a,b,d){d=S({relative:z.$current},d||{});var e=m(a,d.relative);return M(e)?z.$current===e&&(!b||j(e.params.$$values(b),n)):c},z.includes=function(a,b,d){if(d=S({relative:z.$current},d||{}),O(a)&&s(a)){if(!t(a))return!1;a=z.$current.name}var e=m(a,d.relative);if(!M(e))return c;if(!M(z.$current.includes[e.name]))return!1;if(!b)return!0;for(var f=g(b),h=0;h<f.length;h++){var i=f[h],j=e.params[i];if(j&&!j.type.equals(n[i],b[i]))return!1}return!0},z.href=function(a,b,d){d=S({lossy:!0,inherit:!0,absolute:!1,relative:z.$current},d||{});var e=m(a,d.relative);if(!M(e))return null;d.inherit&&(b=i(n,b||{},z.$current,e));var f=e&&d.lossy?e.navigable:e;return f&&f.url!==c&&null!==f.url?q.href(f.url,k(e.params.$$keys().concat("#"),b||{}),{absolute:d.absolute}):null},z.get=function(a,b){if(0===arguments.length)return o(g(A),function(a){return A[a].self});var c=m(a,b||z.$current);return c&&c.self?c.self:null},z}function x(a,b,c,d,e,f){function g(a,b,c){function d(b){return"search"!=a.params[b].location}var e=a.params.$$keys().filter(d),f=l.apply({},[a.params].concat(e)),g=new V.ParamSet(f);return g.$$equals(b,c)}if(!f.reload&&a===c&&(e===c.locals||a.self.reloadOnSearch===!1&&g(c,d,b)))return!0}var y,z,A={},B={},C="abstract",D={parent:function(a){if(M(a.parent)&&a.parent)return m(a.parent);var b=/^(.+)\.[^.]+$/.exec(a.name);return b?m(b[1]):y},data:function(a){return a.parent&&a.parent.data&&(a.data=a.self.data=d(a.parent.data,a.data)),a.data},url:function(a){var b=a.url,c={params:a.params||{}};if(O(b))return"^"==b.charAt(0)?e.compile(b.substring(1),c):(a.parent.navigable||y).url.concat(b,c);if(!b||e.isMatcher(b))return b;throw new Error("Invalid url '"+b+"' in state '"+a+"'")},navigable:function(a){return a.url?a:a.parent?a.parent.navigable:null},ownParams:function(a){var b=a.url&&a.url.params||new V.ParamSet;return R(a.params||{},function(a,c){b[c]||(b[c]=new V.Param(c,null,a,"config"))}),b},params:function(a){var b=l(a.ownParams,a.ownParams.$$keys());return a.parent&&a.parent.params?S(a.parent.params.$$new(),b):new V.ParamSet},views:function(a){var b={};return R(M(a.views)?a.views:{"":a},function(c,d){d.indexOf("@")<0&&(d+="@"+a.parent.name),c.resolveAs=c.resolveAs||a.resolveAs||"$resolve",b[d]=c}),b},path:function(a){return a.parent?a.parent.path.concat(a):[]},includes:function(a){var b=a.parent?S({},a.parent.includes):{};return b[a.name]=!0,b},$delegates:{}};y=r({name:"",url:"^",views:null,abstract:!0}),y.navigable=null,this.decorator=u,this.state=v,this.$get=w,w.$inject=["$rootScope","$q","$view","$injector","$resolve","$stateParams","$urlRouter","$location","$urlMatcherFactory"]}function x(){function a(a,b){return{load:function(a,c){var d,e={template:null,controller:null,view:null,locals:null,notify:!0,async:!0,params:{}};return c=S(e,c),c.view&&(d=b.fromConfig(c.view,c.params,c.locals)),d}}}this.$get=a,a.$inject=["$rootScope","$templateFactory"]}function y(){var a=!1;this.useAnchorScroll=function(){a=!0},this.$get=["$anchorScroll","$timeout",function(b,c){return a?b:function(a){return c(function(){a[0].scrollIntoView()},0,!1)}}]}function z(a,c,d,e,f){function g(){return c.has?function(a){return c.has(a)?c.get(a):null}:function(a){try{return c.get(a)}catch(a){return null}}}function h(a,c){var d=function(){return{enter:function(a,b,c){b.after(a),c()},leave:function(a,b){a.remove(),b()}}};if(k)return{enter:function(a,c,d){b.version.minor>2?k.enter(a,null,c).then(d):k.enter(a,null,c,d)},leave:function(a,c){b.version.minor>2?k.leave(a).then(c):k.leave(a,c)}};if(j){var e=j&&j(c,a);return{enter:function(a,b,c){e.enter(a,null,b),c()},leave:function(a,b){e.leave(a),b()}}}return d()}var i=g(),j=i("$animator"),k=i("$animate"),l={restrict:"ECA",terminal:!0,priority:400,transclude:"element",compile:function(c,g,i){return function(c,g,j){function k(){if(m&&(m.remove(),m=null),o&&(o.$destroy(),o=null),n){var a=n.data("$uiViewAnim");s.leave(n,function(){a.$$animLeave.resolve(),m=null}),m=n,n=null}}function l(h){var l,m=B(c,j,g,e),t=m&&a.$current&&a.$current.locals[m];if(h||t!==p){l=c.$new(),p=a.$current.locals[m],l.$emit("$viewContentLoading",m);var u=i(l,function(a){var e=f.defer(),h=f.defer(),i={$animEnter:e.promise,$animLeave:h.promise,$$animLeave:h};a.data("$uiViewAnim",i),s.enter(a,g,function(){e.resolve(),o&&o.$emit("$viewContentAnimationEnded"),(b.isDefined(r)&&!r||c.$eval(r))&&d(a)}),k()});n=u,o=l,o.$emit("$viewContentLoaded",m),o.$eval(q)}}var m,n,o,p,q=j.onload||"",r=j.autoscroll,s=h(j,c);g.inheritedData("$uiView");c.$on("$stateChangeSuccess",function(){l(!1)}),l(!0)}}};return l}function A(a,c,d,e){return{restrict:"ECA",priority:-400,compile:function(f){var g=f.html();return function(f,h,i){var j=d.$current,k=B(f,i,h,e),l=j&&j.locals[k];if(l){h.data("$uiView",{name:k,state:l.$$state}),h.html(l.$template?l.$template:g);var m=b.extend({},l);f[l.$$resolveAs]=m;var n=a(h.contents());if(l.$$controller){l.$scope=f,l.$element=h;var o=c(l.$$controller,l);l.$$controllerAs&&(f[l.$$controllerAs]=o,f[l.$$controllerAs][l.$$resolveAs]=m),N(o.$onInit)&&o.$onInit(),h.data("$ngControllerController",o),h.children().data("$ngControllerController",o)}n(f)}}}}}function B(a,b,c,d){var e=d(b.uiView||b.name||"")(a),f=c.inheritedData("$uiView");return e.indexOf("@")>=0?e:e+"@"+(f?f.state.name:"")}function C(a,b){var c,d=a.match(/^\s*({[^}]*})\s*$/);if(d&&(a=b+"("+d[1]+")"),c=a.replace(/\n/g," ").match(/^([^(]+?)\s*(\((.*)\))?$/),!c||4!==c.length)throw new Error("Invalid state ref '"+a+"'");return{state:c[1],paramExpr:c[3]||null}}function D(a){var b=a.parent().inheritedData("$uiView");if(b&&b.state&&b.state.name)return b.state}function E(a){var b="[object SVGAnimatedString]"===Object.prototype.toString.call(a.prop("href")),c="FORM"===a[0].nodeName;return{attr:c?"action":b?"xlink:href":"href",isAnchor:"A"===a.prop("tagName").toUpperCase(),clickable:!c}}function F(a,b,c,d,e){return function(f){var g=f.which||f.button,h=e();if(!(g>1||f.ctrlKey||f.metaKey||f.shiftKey||a.attr("target"))){var i=c(function(){b.go(h.state,h.params,h.options)});f.preventDefault();var j=d.isAnchor&&!h.href?1:0;f.preventDefault=function(){j--<=0&&c.cancel(i)}}}}function G(a,b){return{relative:D(a)||b.$current,inherit:!0}}function H(a,c){return{restrict:"A",require:["?^uiSrefActive","?^uiSrefActiveEq"],link:function(d,e,f,g){var h,i=C(f.uiSref,a.current.name),j={state:i.state,href:null,params:null},k=E(e),l=g[1]||g[0],m=null;j.options=S(G(e,a),f.uiSrefOpts?d.$eval(f.uiSrefOpts):{});var n=function(c){c&&(j.params=b.copy(c)),j.href=a.href(i.state,j.params,j.options),m&&m(),l&&(m=l.$$addStateInfo(i.state,j.params)),null!==j.href&&f.$set(k.attr,j.href)};i.paramExpr&&(d.$watch(i.paramExpr,function(a){a!==j.params&&n(a)},!0),j.params=b.copy(d.$eval(i.paramExpr))),n(),k.clickable&&(h=F(e,a,c,k,function(){return j}),e[e.on?"on":"bind"]("click",h),d.$on("$destroy",function(){e[e.off?"off":"unbind"]("click",h)}))}}}function I(a,b){return{restrict:"A",require:["?^uiSrefActive","?^uiSrefActiveEq"],link:function(c,d,e,f){function g(b){m.state=b[0],m.params=b[1],m.options=b[2],m.href=a.href(m.state,m.params,m.options),n&&n(),j&&(n=j.$$addStateInfo(m.state,m.params)),m.href&&e.$set(i.attr,m.href)}var h,i=E(d),j=f[1]||f[0],k=[e.uiState,e.uiStateParams||null,e.uiStateOpts||null],l="["+k.map(function(a){return a||"null"}).join(", ")+"]",m={state:null,params:null,options:null,href:null},n=null;c.$watch(l,g,!0),g(c.$eval(l)),i.clickable&&(h=F(d,a,b,i,function(){return m}),d[d.on?"on":"bind"]("click",h),c.$on("$destroy",function(){d[d.off?"off":"unbind"]("click",h)}))}}}function J(a,b,c){return{restrict:"A",controller:["$scope","$element","$attrs","$timeout",function(b,d,e,f){function g(b,c,e){var f=a.get(b,D(d)),g=h(b,c),i={state:f||{name:b},params:c,hash:g};return p.push(i),q[g]=e,function(){var a=p.indexOf(i);a!==-1&&p.splice(a,1)}}function h(a,c){if(!O(a))throw new Error("state should be a string");return P(c)?a+U(c):(c=b.$eval(c),P(c)?a+U(c):a)}function i(){for(var a=0;a<p.length;a++)l(p[a].state,p[a].params)?j(d,q[p[a].hash]):k(d,q[p[a].hash]),m(p[a].state,p[a].params)?j(d,n):k(d,n)}function j(a,b){f(function(){a.addClass(b)})}function k(a,b){a.removeClass(b)}function l(b,c){return a.includes(b.name,c)}function m(b,c){return a.is(b.name,c)}var n,o,p=[],q={};n=c(e.uiSrefActiveEq||"",!1)(b);try{o=b.$eval(e.uiSrefActive)}catch(a){}o=o||c(e.uiSrefActive||"",!1)(b),P(o)&&R(o,function(c,d){if(O(c)){var e=C(c,a.current.name);g(e.state,b.$eval(e.paramExpr),d)}}),this.$$addStateInfo=function(a,b){if(!(P(o)&&p.length>0)){var c=g(a,b,o);return i(),c}},b.$on("$stateChangeSuccess",i),i()}]}}function K(a){var b=function(b,c){return a.is(b,c)};return b.$stateful=!0,b}function L(a){var b=function(b,c,d){return a.includes(b,c,d)};return b.$stateful=!0,b}var M=b.isDefined,N=b.isFunction,O=b.isString,P=b.isObject,Q=b.isArray,R=b.forEach,S=b.extend,T=b.copy,U=b.toJson;b.module("ui.router.util",["ng"]),b.module("ui.router.router",["ui.router.util"]),b.module("ui.router.state",["ui.router.router","ui.router.util"]),b.module("ui.router",["ui.router.state"]),b.module("ui.router.compat",["ui.router"]),q.$inject=["$q","$injector"],b.module("ui.router.util").service("$resolve",q),r.$inject=["$http","$templateCache","$injector"],b.module("ui.router.util").service("$templateFactory",r);var V;s.prototype.concat=function(a,b){var c={caseInsensitive:V.caseInsensitive(),strict:V.strictMode(),squash:V.defaultSquashPolicy()};return new s(this.sourcePath+a+this.sourceSearch,S(c,b),this)},s.prototype.toString=function(){return this.source},s.prototype.exec=function(a,b){function c(a){function b(a){return a.split("").reverse().join("")}function c(a){return a.replace(/\\-/g,"-")}var d=b(a).split(/-(?!\\)/),e=o(d,b);return o(e,c).reverse()}var d=this.regexp.exec(a);if(!d)return null;b=b||{};var e,f,g,h=this.parameters(),i=h.length,j=this.segments.length-1,k={};if(j!==d.length-1)throw new Error("Unbalanced capture group in route '"+this.source+"'");var l,m;for(e=0;e<j;e++){for(g=h[e],l=this.params[g],m=d[e+1],f=0;f<l.replace.length;f++)l.replace[f].from===m&&(m=l.replace[f].to);m&&l.array===!0&&(m=c(m)),M(m)&&(m=l.type.decode(m)),k[g]=l.value(m)}for(;e<i;e++){for(g=h[e],k[g]=this.params[g].value(b[g]),l=this.params[g],m=b[g],f=0;f<l.replace.length;f++)l.replace[f].from===m&&(m=l.replace[f].to);M(m)&&(m=l.type.decode(m)),k[g]=l.value(m)}return k},s.prototype.parameters=function(a){return M(a)?this.params[a]||null:this.$$paramNames},s.prototype.validates=function(a){return this.params.$$validates(a)},s.prototype.format=function(a){function b(a){return encodeURIComponent(a).replace(/-/g,function(a){return"%5C%"+a.charCodeAt(0).toString(16).toUpperCase()})}a=a||{};var c=this.segments,d=this.parameters(),e=this.params;if(!this.validates(a))return null;var f,g=!1,h=c.length-1,i=d.length,j=c[0];for(f=0;f<i;f++){var k=f<h,l=d[f],m=e[l],n=m.value(a[l]),p=m.isOptional&&m.type.equals(m.value(),n),q=!!p&&m.squash,r=m.type.encode(n);if(k){var s=c[f+1],t=f+1===h;if(q===!1)null!=r&&(j+=Q(r)?o(r,b).join("-"):encodeURIComponent(r)),j+=s;else if(q===!0){var u=j.match(/\/$/)?/\/?(.*)/:/(.*)/;j+=s.match(u)[1]}else O(q)&&(j+=q+s);t&&m.squash===!0&&"/"===j.slice(-1)&&(j=j.slice(0,-1))}else{if(null==r||p&&q!==!1)continue;if(Q(r)||(r=[r]),0===r.length)continue;r=o(r,encodeURIComponent).join("&"+l+"="),j+=(g?"&":"?")+(l+"="+r),g=!0}}return j},t.prototype.is=function(a,b){return!0},t.prototype.encode=function(a,b){return a},t.prototype.decode=function(a,b){return a},t.prototype.equals=function(a,b){return a==b},t.prototype.$subPattern=function(){var a=this.pattern.toString();return a.substr(1,a.length-2)},t.prototype.pattern=/.*/,t.prototype.toString=function(){return"{Type:"+this.name+"}"},t.prototype.$normalize=function(a){return this.is(a)?a:this.decode(a)},t.prototype.$asArray=function(a,b){function d(a,b){function d(a,b){return function(){return a[b].apply(a,arguments)}}function e(a){return Q(a)?a:M(a)?[a]:[]}function f(a){switch(a.length){case 0:return c;case 1:return"auto"===b?a[0]:a;default:return a}}function g(a){return!a}function h(a,b){return function(c){if(Q(c)&&0===c.length)return c;c=e(c);var d=o(c,a);return b===!0?0===n(d,g).length:f(d)}}function i(a){return function(b,c){var d=e(b),f=e(c);if(d.length!==f.length)return!1;for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a,"encode")),this.decode=h(d(a,"decode")),this.is=h(d(a,"is"),!0),this.equals=i(d(a,"equals")),this.pattern=a.pattern,this.$normalize=h(d(a,"$normalize")),this.name=a.name,this.$arrayMode=b}if(!a)return this;if("auto"===a&&!b)throw new Error("'auto' array mode is for query parameters only");return new d(this,a);
 },b.module("ui.router.util").provider("$urlMatcherFactory",u),b.module("ui.router.util").run(["$urlMatcherFactory",function(a){}]),v.$inject=["$locationProvider","$urlMatcherFactoryProvider"],b.module("ui.router.router").provider("$urlRouter",v),w.$inject=["$urlRouterProvider","$urlMatcherFactoryProvider"],b.module("ui.router.state").factory("$stateParams",function(){return{}}).constant("$state.runtime",{autoinject:!0}).provider("$state",w).run(["$injector",function(a){a.get("$state.runtime").autoinject&&a.get("$state")}]),x.$inject=[],b.module("ui.router.state").provider("$view",x),b.module("ui.router.state").provider("$uiViewScroll",y),z.$inject=["$state","$injector","$uiViewScroll","$interpolate","$q"],A.$inject=["$compile","$controller","$state","$interpolate"],b.module("ui.router.state").directive("uiView",z),b.module("ui.router.state").directive("uiView",A),H.$inject=["$state","$timeout"],I.$inject=["$state","$timeout"],J.$inject=["$state","$stateParams","$interpolate"],b.module("ui.router.state").directive("uiSref",H).directive("uiSrefActive",J).directive("uiSrefActiveEq",J).directive("uiState",I),K.$inject=["$state"],L.$inject=["$state"],b.module("ui.router.state").filter("isState",K).filter("includedByState",L)}(window,window.angular);
 /*!
- * angular-translate - v2.18.1 - 2018-05-19
+ * angular-translate - v2.15.2 - 2017-06-22
  * 
- * Copyright (c) 2018 The angular-translate team, Pascal Precht; Licensed MIT
+ * Copyright (c) 2017 The angular-translate team, Pascal Precht; Licensed MIT
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -58930,29 +59062,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
       bcp47 : function (tag) {
         var temp = (tag || '').split('_').join('-');
         var parts = temp.split('-');
-
-        switch (parts.length) {
-          case 1: // language only
-            parts[0] = parts[0].toLowerCase();
-            break;
-          case 2: // language-script or language-region
-            parts[0] = parts[0].toLowerCase();
-            if (parts[1].length === 4) { // parts[1] is script
-              parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1).toLowerCase();
-            } else { // parts[1] is region
-              parts[1] = parts[1].toUpperCase();
-            }
-            break;
-          case 3: // language-script-region
-            parts[0] = parts[0].toLowerCase();
-            parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1).toLowerCase();
-            parts[2] = parts[2].toUpperCase();
-            break;
-          default:
-            return temp;
-        }
-
-        return parts.join('-');
+        return parts.length > 1 ? (parts[0].toLowerCase() + '-' + parts[1].toUpperCase()) : temp;
       },
       'iso639-1' : function (tag) {
         var temp = (tag || '').split('_').join('-');
@@ -58961,7 +59071,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
       }
     };
 
-  var version = '2.18.1';
+  var version = '2.15.2';
 
   // tries to determine the browsers language
   var getFirstBrowserLanguage = function () {
@@ -59042,37 +59152,23 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
     return this.toString().replace(/^\s+|\s+$/g, '');
   };
 
-  /**
-   * @name lowercase
-   * @private
-   *
-   * @description
-   * Return the lowercase string only if the type is string
-   *
-   * @returns {string} The string all in lowercase
-   */
-  var lowercase = function (string) {
-    return angular.isString(string) ? string.toLowerCase() : string;
-  };
-
   var negotiateLocale = function (preferred) {
     if (!preferred) {
       return;
     }
 
     var avail = [],
-      locale = lowercase(preferred),
+      locale = angular.lowercase(preferred),
       i = 0,
       n = $availableLanguageKeys.length;
 
     for (; i < n; i++) {
-      avail.push(lowercase($availableLanguageKeys[i]));
+      avail.push(angular.lowercase($availableLanguageKeys[i]));
     }
 
     // Check for an exact match in our list of available keys
-    i = indexOf(avail, locale);
-    if (i > -1) {
-      return $availableLanguageKeys[i];
+    if (indexOf(avail, locale) > -1) {
+      return preferred;
     }
 
     if ($languageKeyAliases) {
@@ -59081,14 +59177,14 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
         if ($languageKeyAliases.hasOwnProperty(langKeyAlias)) {
           var hasWildcardKey = false;
           var hasExactKey = Object.prototype.hasOwnProperty.call($languageKeyAliases, langKeyAlias) &&
-            lowercase(langKeyAlias) === lowercase(preferred);
+            angular.lowercase(langKeyAlias) === angular.lowercase(preferred);
 
           if (langKeyAlias.slice(-1) === '*') {
-            hasWildcardKey = lowercase(langKeyAlias.slice(0, -1)) === lowercase(preferred.slice(0, langKeyAlias.length - 1));
+            hasWildcardKey = langKeyAlias.slice(0, -1) === preferred.slice(0, langKeyAlias.length - 1);
           }
           if (hasExactKey || hasWildcardKey) {
             alias = $languageKeyAliases[langKeyAlias];
-            if (indexOf(avail, lowercase(alias)) > -1) {
+            if (indexOf(avail, angular.lowercase(alias)) > -1) {
               return alias;
             }
           }
@@ -59099,7 +59195,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
     // Check for a language code without region
     var parts = preferred.split('_');
 
-    if (parts.length > 1 && indexOf(avail, lowercase(parts[0])) > -1) {
+    if (parts.length > 1 && indexOf(avail, angular.lowercase(parts[0])) > -1) {
       return parts[0];
     }
 
@@ -59312,7 +59408,6 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
    * Tells the module which of the registered translation tables to use for translation
    * at initial startup by passing a language key. Similar to `$translateProvider#use`
    * only that it says which language to **prefer**.
-   * It is recommended to call this after {@link pascalprecht.translate.$translate#fallbackLanguage fallbackLanguage()}.
    *
    * @param {string} langKey A language key.
    */
@@ -59721,12 +59816,9 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
    *     en_US => en_US
    *     en-us => en_US
    * * BCP 47 (RFC 4646 & 4647)
-   *     EN => en
    *     en-US => en-US
    *     en_US => en-US
    *     en-us => en-US
-   *     sr-latn => sr-Latn
-   *     sr-latn-rs => sr-Latn-RS
    *
    * See also:
    * * http://en.wikipedia.org/wiki/IETF_language_tag
@@ -59952,12 +60044,11 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
    *                                     This can be optionally an array of translation ids which
    *                                     results that the function returns an object where each key
    *                                     is the translation id and the value the translation.
-   * @param {object=} [interpolateParams={}] An object hash for dynamic values
-   * @param {string=} [interpolationId=undefined] The id of the interpolation to use (use default unless set via useInterpolation())
-   * @param {string=} [defaultTranslationText=undefined] the optional default translation text that is written as
+   * @param {object=} interpolateParams An object hash for dynamic values
+   * @param {string} interpolationId The id of the interpolation to use
+   * @param {string} defaultTranslationText the optional default translation text that is written as
    *                                        as default text in case it is not found in any configured language
-   * @param {string=} [forceLanguage=false] A language to be used instead of the current language
-   * @param {string=} [sanitizeStrategy=undefined] force sanitize strategy for this call instead of using the configured one (use default unless set)
+   * @param {string} forceLanguage A language to be used instead of the current language
    * @returns {object} promise
    */
   this.$get = ['$log', '$injector', '$rootScope', '$q', function ($log, $injector, $rootScope, $q) {
@@ -59970,7 +60061,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
       fallbackIndex,
       startFallbackIteration;
 
-    var $translate = function (translationId, interpolateParams, interpolationId, defaultTranslationText, forceLanguage, sanitizeStrategy) {
+    var $translate = function (translationId, interpolateParams, interpolationId, defaultTranslationText, forceLanguage) {
       if (!$uses && $preferredLanguage) {
         $uses = $preferredLanguage;
       }
@@ -59999,7 +60090,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
               deferred.resolve([translationId, value]);
             };
             // we don't care whether the promise was resolved or rejected; just store the values
-            $translate(translationId, interpolateParams, interpolationId, defaultTranslationText, forceLanguage, sanitizeStrategy).then(regardless, regardless);
+            $translate(translationId, interpolateParams, interpolationId, defaultTranslationText, forceLanguage).then(regardless, regardless);
             return deferred.promise;
           };
           for (var i = 0, c = translationIds.length; i < c; i++) {
@@ -60022,7 +60113,9 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
       }
 
       var promiseToWaitFor = (function () {
-        var promise = langPromises[uses] || langPromises[$preferredLanguage];
+        var promise = $preferredLanguage ?
+          langPromises[$preferredLanguage] :
+          langPromises[uses];
 
         fallbackIndex = 0;
 
@@ -60054,14 +60147,14 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
         // no promise to wait for? okay. Then there's no loader registered
         // nor is a one pending for language that comes from storage.
         // We can just translate.
-        determineTranslation(translationId, interpolateParams, interpolationId, defaultTranslationText, uses, sanitizeStrategy).then(deferred.resolve, deferred.reject);
+        determineTranslation(translationId, interpolateParams, interpolationId, defaultTranslationText, uses).then(deferred.resolve, deferred.reject);
       } else {
         var promiseResolved = function () {
           // $uses may have changed while waiting
           if (!forceLanguage) {
             uses = $uses;
           }
-          determineTranslation(translationId, interpolateParams, interpolationId, defaultTranslationText, uses, sanitizeStrategy).then(deferred.resolve, deferred.reject);
+          determineTranslation(translationId, interpolateParams, interpolationId, defaultTranslationText, uses).then(deferred.resolve, deferred.reject);
         };
         promiseResolved.displayName = 'promiseResolved';
 
@@ -60475,7 +60568,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
         // If using link, rerun $translate with linked translationId and return it
         if (translation.substr(0, 2) === '@:') {
 
-          $translate(translation.substr(2), interpolateParams, interpolationId, defaultTranslationText, uses, sanitizeStrategy)
+          $translate(translation.substr(2), interpolateParams, interpolationId, defaultTranslationText, uses)
             .then(deferred.resolve, deferred.reject);
         } else {
           //
@@ -60654,7 +60747,6 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
      *
      * @description
      * Returns the language key for the fallback languages or sets a new fallback stack.
-     * It is recommended to call this before {@link pascalprecht.translate.$translateProvider#preferredLanguage preferredLanguage()}.
      *
      * @param {string=} langKey language String or Array of fallback languages to be used (to change stack at runtime)
      *
@@ -60778,7 +60870,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
        *   $scope.text = $translate("HELLO");
        * });
      *
-     * @param {string=} key Language key
+     * @param {string} [key] Language key
      * @return {object|string} Promise with loaded language data or the language key if a falsy param was given.
      */
     $translate.use = function (key) {
@@ -61031,10 +61123,10 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
      *                                     This can be optionally an array of translation ids which
      *                                     results that the function's promise returns an object where
      *                                     each key is the translation id and the value the translation.
-     * @param {object=} [interpolateParams={}] Params
-     * @param {string=} [interpolationId=undefined] The id of the interpolation to use (use default unless set via useInterpolation())
-     * @param {string=} [forceLanguage=false] A language to be used instead of the current language
-     * @param {string=} [sanitizeStrategy=undefined] force sanitize strategy for this call instead of using the configured one (use default unless set)
+     * @param {object} interpolateParams Params
+     * @param {string} interpolationId The id of the interpolation to use
+     * @param {string} forceLanguage A language to be used instead of the current language
+     * @param {string} sanitizeStrategy force sanitize strategy for this call instead of using the configured one
      *
      * @return {string|object} translation
      */
@@ -61369,9 +61461,9 @@ function $translateDefaultInterpolation ($interpolate, $translateSanitization) {
    * Since AngularJS 1.5, `value` must not be a string but can be anything input.
    *
    * @param {string} value translation
-   * @param {object} [interpolationParams={}] interpolation params
-   * @param {string} [context=undefined] current context (filter, directive, service)
-   * @param {string} [sanitizeStrategy=undefined] sanitize strategy (use default unless set)
+   * @param {object} interpolationParams interpolation params
+   * @param {string} context current context (filter, directive, service)
+   * @param {string} sanitizeStrategy sanitize strategy
    * @param {string} translationId current translationId
    *
    * @returns {string} interpolated string
@@ -61407,9 +61499,9 @@ angular.module('pascalprecht.translate')
 /**
  * @ngdoc directive
  * @name pascalprecht.translate.directive:translate
- * @requires $interpolate,
- * @requires $compile,
- * @requires $parse,
+ * @requires $interpolate, 
+ * @requires $compile, 
+ * @requires $parse, 
  * @requires $rootScope
  * @restrict AE
  *
@@ -61422,7 +61514,6 @@ angular.module('pascalprecht.translate')
  * @param {string=} translate-values Values to pass into translation id. Can be passed as object literal string or interpolated object.
  * @param {string=} translate-attr-ATTR translate Translation id and put it into ATTR attribute.
  * @param {string=} translate-default will be used unless translation was successful
- * @param {string=} translate-sanitize-strategy defines locally sanitize strategy
  * @param {boolean=} translate-compile (default true if present) defines locally activation of {@link pascalprecht.translate.$translateProvider#methods_usePostCompiling}
  * @param {boolean=} translate-keep-content (default true if present) defines that in case a KEY could not be translated, that the existing content is left in the innerHTML}
  *
@@ -61517,19 +61608,6 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
     return this.toString().replace(/^\s+|\s+$/g, '');
   };
 
-  /**
-   * @name lowercase
-   * @private
-   *
-   * @description
-   * Return the lowercase string only if the type is string
-   *
-   * @returns {string} The string all in lowercase
-   */
-  var lowercase = function (string) {
-    return angular.isString(string) ? string.toLowerCase() : string;
-  };
-
   return {
     restrict: 'AE',
     scope: true,
@@ -61541,9 +61619,6 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
 
       var translateInterpolation = (tAttr.translateInterpolation) ?
         tAttr.translateInterpolation : undefined;
-
-      var translateSanitizeStrategyExist = (tAttr.translateSanitizeStrategy) ?
-        tAttr.translateSanitizeStrategy : undefined;
 
       var translateValueExist = tElement[0].outerHTML.match(/translate-value-+/i);
 
@@ -61567,7 +61642,7 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
           if (translateValueExist) {
             for (var attr in tAttr) {
               if (Object.prototype.hasOwnProperty.call(iAttr, attr) && attr.substr(0, 14) === 'translateValue' && attr !== 'translateValues') {
-                var attributeName = lowercase(attr.substr(14, 1)) + attr.substr(15);
+                var attributeName = angular.lowercase(attr.substr(14, 1)) + attr.substr(15);
                 interpolateParams[attributeName] = tAttr[attr];
               }
             }
@@ -61648,13 +61723,6 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
           updateTranslations();
         });
 
-        if (translateSanitizeStrategyExist) {
-          iAttr.$observe('translateSanitizeStrategy', function (value) {
-            scope.sanitizeStrategy = $parse(value)(scope.$parent);
-            updateTranslations();
-          });
-        }
-
         if (translateValuesExist) {
           iAttr.$observe('translateValues', function (interpolateParams) {
             if (interpolateParams) {
@@ -61668,7 +61736,7 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
         if (translateValueExist) {
           var observeValueAttribute = function (attrName) {
             iAttr.$observe(attrName, function (value) {
-              var attributeName = lowercase(attrName.substr(14, 1)) + attrName.substr(15);
+              var attributeName = angular.lowercase(attrName.substr(14, 1)) + attrName.substr(15);
               scope.interpolateParams[attributeName] = value;
             });
           };
@@ -61696,7 +61764,7 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
               translationId = translateNamespace + translationId;
             }
 
-            $translate(translationId, interpolateParams, translateInterpolation, defaultTranslationText, scope.translateLanguage, scope.sanitizeStrategy)
+            $translate(translationId, interpolateParams, translateInterpolation, defaultTranslationText, scope.translateLanguage)
               .then(function (translation) {
                 applyTranslation(translation, scope, true, translateAttr);
               }, function (translationId) {
@@ -61797,7 +61865,6 @@ angular.module('pascalprecht.translate')
  *
  * @param {string=} translate-attr Object literal mapping attributes to translation ids.
  * @param {string=} translate-values Values to pass into the translation ids. Can be passed as object literal string.
- * @param {string=} translate-sanitize-strategy defines locally sanitize strategy
  *
  * @example
    <example module="ngView">
@@ -61854,7 +61921,6 @@ function translateAttrDirective($translate, $rootScope) {
 
       var translateAttr,
           translateValues,
-          translateSanitizeStrategy,
           previousAttributes = {};
 
       // Main update translations function
@@ -61869,7 +61935,7 @@ function translateAttrDirective($translate, $rootScope) {
           if (scope.translateNamespace && translationId.charAt(0) === '.') {
             translationId = scope.translateNamespace + translationId;
           }
-          $translate(translationId, translateValues, attr.translateInterpolation, undefined, scope.translateLanguage, translateSanitizeStrategy)
+          $translate(translationId, translateValues, attr.translateInterpolation, undefined, scope.translateLanguage)
             .then(function (translation) {
               element.attr(attributeName, translation);
             }, function (translationId) {
@@ -61898,13 +61964,6 @@ function translateAttrDirective($translate, $rootScope) {
         scope,
         attr.translateValues,
         function (newValue) { translateValues = newValue; },
-        updateTranslations
-      );
-      // Watch for sanitize strategy changes
-      watchAttribute(
-        scope,
-        attr.translateSanitizeStrategy,
-        function (newValue) { translateSanitizeStrategy = newValue; },
         updateTranslations
       );
 
@@ -62009,7 +62068,7 @@ angular.module('pascalprecht.translate')
  *
  * @description
  * Translates given translation id either through attribute or DOM content.
- * Internally it uses `translate` filter to translate translation id. It is possible to
+ * Internally it uses `translate` filter to translate translation id. It possible to
  * pass an optional `translate-values` object literal as string into translation id.
  *
  * @param {string=} translate namespace name which could be either string or interpolated string.
@@ -62063,7 +62122,7 @@ function translateNamespaceDirective() {
     compile: function () {
       return {
         pre: function (scope, iElement, iAttrs) {
-          scope.translateNamespace = _getTranslateNamespace(scope);
+          scope.translateNamespace = getTranslateNamespace(scope);
 
           if (scope.translateNamespace && iAttrs.translateNamespace.charAt(0) === '.') {
             scope.translateNamespace += iAttrs.translateNamespace;
@@ -62082,13 +62141,13 @@ function translateNamespaceDirective() {
  * @param scope
  * @returns {string}
  */
-function _getTranslateNamespace(scope) {
+function getTranslateNamespace(scope) {
   'use strict';
   if (scope.translateNamespace) {
     return scope.translateNamespace;
   }
   if (scope.$parent) {
-    return _getTranslateNamespace(scope.$parent);
+    return getTranslateNamespace(scope.$parent);
   }
 }
 
@@ -62295,7 +62354,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.10';
+  var VERSION = '4.17.4';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -62426,6 +62485,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
   /** Used to match property names within property paths. */
   var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
       reIsPlainProp = /^\w*$/,
+      reLeadingDot = /^\./,
       rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
   /**
@@ -62525,8 +62585,8 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
       reOptMod = rsModifier + '?',
       rsOptVar = '[' + rsVarRange + ']?',
       rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
-      rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])',
-      rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])',
+      rsOrdLower = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)',
+      rsOrdUpper = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)',
       rsSeq = rsOptVar + reOptMod + rsOptJoin,
       rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
       rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
@@ -62719,14 +62779,6 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
   /** Used to access faster Node.js helpers. */
   var nodeUtil = (function() {
     try {
-      // Use `util.types` for Node.js 10+.
-      var types = freeModule && freeModule.require && freeModule.require('util').types;
-
-      if (types) {
-        return types;
-      }
-
-      // Legacy `process.binding('util')` for Node.js < 10.
       return freeProcess && freeProcess.binding && freeProcess.binding('util');
     } catch (e) {}
   }());
@@ -62740,6 +62792,34 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
       nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
 
   /*--------------------------------------------------------------------------*/
+
+  /**
+   * Adds the key-value `pair` to `map`.
+   *
+   * @private
+   * @param {Object} map The map to modify.
+   * @param {Array} pair The key-value pair to add.
+   * @returns {Object} Returns `map`.
+   */
+  function addMapEntry(map, pair) {
+    // Don't return `map.set` because it's not chainable in IE 11.
+    map.set(pair[0], pair[1]);
+    return map;
+  }
+
+  /**
+   * Adds `value` to `set`.
+   *
+   * @private
+   * @param {Object} set The set to modify.
+   * @param {*} value The value to add.
+   * @returns {Object} Returns `set`.
+   */
+  function addSetEntry(set, value) {
+    // Don't return `set.add` because it's not chainable in IE 11.
+    set.add(value);
+    return set;
+  }
 
   /**
    * A faster alternative to `Function#apply`, this function invokes `func`
@@ -63505,20 +63585,6 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
       }
     }
     return result;
-  }
-
-  /**
-   * Gets the value at `key`, unless `key` is "__proto__".
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @param {string} key The key of the property to get.
-   * @returns {*} Returns the property value.
-   */
-  function safeGet(object, key) {
-    return key == '__proto__'
-      ? undefined
-      : object[key];
   }
 
   /**
@@ -64953,7 +65019,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
           if (!cloneableTags[tag]) {
             return object ? value : {};
           }
-          result = initCloneByTag(value, tag, isDeep);
+          result = initCloneByTag(value, tag, baseClone, isDeep);
         }
       }
       // Check for circular references and return its corresponding clone.
@@ -64963,22 +65029,6 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
         return stacked;
       }
       stack.set(value, result);
-
-      if (isSet(value)) {
-        value.forEach(function(subValue) {
-          result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
-        });
-
-        return result;
-      }
-
-      if (isMap(value)) {
-        value.forEach(function(subValue, key) {
-          result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
-        });
-
-        return result;
-      }
 
       var keysFunc = isFull
         ? (isFlat ? getAllKeysIn : getAllKeys)
@@ -65907,7 +65957,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
         }
         else {
           var newValue = customizer
-            ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
+            ? customizer(object[key], srcValue, (key + ''), object, source, stack)
             : undefined;
 
           if (newValue === undefined) {
@@ -65934,8 +65984,8 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      *  counterparts.
      */
     function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
-      var objValue = safeGet(object, key),
-          srcValue = safeGet(source, key),
+      var objValue = object[key],
+          srcValue = source[key],
           stacked = stack.get(srcValue);
 
       if (stacked) {
@@ -66844,6 +66894,20 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
     }
 
     /**
+     * Creates a clone of `map`.
+     *
+     * @private
+     * @param {Object} map The map to clone.
+     * @param {Function} cloneFunc The function to clone values.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned map.
+     */
+    function cloneMap(map, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(mapToArray(map), CLONE_DEEP_FLAG) : mapToArray(map);
+      return arrayReduce(array, addMapEntry, new map.constructor);
+    }
+
+    /**
      * Creates a clone of `regexp`.
      *
      * @private
@@ -66854,6 +66918,20 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
       var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
       result.lastIndex = regexp.lastIndex;
       return result;
+    }
+
+    /**
+     * Creates a clone of `set`.
+     *
+     * @private
+     * @param {Object} set The set to clone.
+     * @param {Function} cloneFunc The function to clone values.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned set.
+     */
+    function cloneSet(set, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(setToArray(set), CLONE_DEEP_FLAG) : setToArray(set);
+      return arrayReduce(array, addSetEntry, new set.constructor);
     }
 
     /**
@@ -68450,7 +68528,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      */
     function initCloneArray(array) {
       var length = array.length,
-          result = new array.constructor(length);
+          result = array.constructor(length);
 
       // Add properties assigned by `RegExp#exec`.
       if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
@@ -68477,15 +68555,16 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      * Initializes an object clone based on its `toStringTag`.
      *
      * **Note:** This function only supports cloning values with tags of
-     * `Boolean`, `Date`, `Error`, `Map`, `Number`, `RegExp`, `Set`, or `String`.
+     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
      *
      * @private
      * @param {Object} object The object to clone.
      * @param {string} tag The `toStringTag` of the object to clone.
+     * @param {Function} cloneFunc The function to clone values.
      * @param {boolean} [isDeep] Specify a deep clone.
      * @returns {Object} Returns the initialized clone.
      */
-    function initCloneByTag(object, tag, isDeep) {
+    function initCloneByTag(object, tag, cloneFunc, isDeep) {
       var Ctor = object.constructor;
       switch (tag) {
         case arrayBufferTag:
@@ -68504,7 +68583,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
           return cloneTypedArray(object, isDeep);
 
         case mapTag:
-          return new Ctor;
+          return cloneMap(object, isDeep, cloneFunc);
 
         case numberTag:
         case stringTag:
@@ -68514,7 +68593,7 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
           return cloneRegExp(object);
 
         case setTag:
-          return new Ctor;
+          return cloneSet(object, isDeep, cloneFunc);
 
         case symbolTag:
           return cloneSymbol(object);
@@ -68561,13 +68640,10 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
      */
     function isIndex(value, length) {
-      var type = typeof value;
       length = length == null ? MAX_SAFE_INTEGER : length;
-
       return !!length &&
-        (type == 'number' ||
-          (type != 'symbol' && reIsUint.test(value))) &&
-            (value > -1 && value % 1 == 0 && value < length);
+        (typeof value == 'number' || reIsUint.test(value)) &&
+        (value > -1 && value % 1 == 0 && value < length);
     }
 
     /**
@@ -69017,11 +69093,11 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      */
     var stringToPath = memoizeCapped(function(string) {
       var result = [];
-      if (string.charCodeAt(0) === 46 /* . */) {
+      if (reLeadingDot.test(string)) {
         result.push('');
       }
-      string.replace(rePropName, function(match, number, quote, subString) {
-        result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
+      string.replace(rePropName, function(match, number, quote, string) {
+        result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
       });
       return result;
     });
@@ -72629,11 +72705,9 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
       function remainingWait(time) {
         var timeSinceLastCall = time - lastCallTime,
             timeSinceLastInvoke = time - lastInvokeTime,
-            timeWaiting = wait - timeSinceLastCall;
+            result = wait - timeSinceLastCall;
 
-        return maxing
-          ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
-          : timeWaiting;
+        return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
       }
 
       function shouldInvoke(time) {
@@ -75065,35 +75139,9 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
      * // => { 'a': 1, 'b': 2 }
      */
-    var defaults = baseRest(function(object, sources) {
-      object = Object(object);
-
-      var index = -1;
-      var length = sources.length;
-      var guard = length > 2 ? sources[2] : undefined;
-
-      if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-        length = 1;
-      }
-
-      while (++index < length) {
-        var source = sources[index];
-        var props = keysIn(source);
-        var propsIndex = -1;
-        var propsLength = props.length;
-
-        while (++propsIndex < propsLength) {
-          var key = props[propsIndex];
-          var value = object[key];
-
-          if (value === undefined ||
-              (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))) {
-            object[key] = source[key];
-          }
-        }
-      }
-
-      return object;
+    var defaults = baseRest(function(args) {
+      args.push(undefined, customDefaultsAssignIn);
+      return apply(assignInWith, undefined, args);
     });
 
     /**
@@ -75490,11 +75538,6 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      * // => { '1': 'c', '2': 'b' }
      */
     var invert = createInverter(function(result, value, key) {
-      if (value != null &&
-          typeof value.toString != 'function') {
-        value = nativeObjectToString.call(value);
-      }
-
       result[value] = key;
     }, constant(identity));
 
@@ -75525,11 +75568,6 @@ e.put("bootstrap/match.tpl.html",'<div class="ui-select-match" ng-hide="$select.
      * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
      */
     var invertBy = createInverter(function(result, value, key) {
-      if (value != null &&
-          typeof value.toString != 'function') {
-        value = nativeObjectToString.call(value);
-      }
-
       if (hasOwnProperty.call(result, value)) {
         result[value].push(key);
       } else {
@@ -80043,17 +80081,16 @@ function e(b,e,f){
 // Do not add a handler if developerMode is true
 if(!j.developerMode){p[b]=c(b,e,f);var g=j[b],h=g?g.bufferFlushDelay:null,i=null!==h?h:j.bufferFlushDelay;a.forEach(m[b],function(a,b){d(function(){e.apply(this,a)},b*i)})}}function f(a){return a.replace(/^./,function(a){return a.toUpperCase()})}
 // Adds to the provider a 'register#{handlerName}' function that manages multiple plugins and buffer flushing.
-function g(a){var d="register"+f(a);q[d]=function(b,c){e(a,b,c)},p[a]=c(a,b(a))}function h(b,c,d){a.forEach(c,d);for(var e in b)i[e]=b[e]}var i=this,j={pageTracking:{autoTrackFirstPage:!0,autoTrackVirtualPages:!0,trackRelativePath:!1,trackRoutes:!0,trackStates:!0,autoBasePath:!1,basePath:"",excludedRoutes:[],queryKeysWhitelisted:[],queryKeysBlacklisted:[],filterUrlSegments:[]},eventTracking:{},bufferFlushDelay:1e3,// Support only one configuration for buffer flush delay to simplify buffering
+function g(a){var d="register"+f(a);q[d]=function(b,c){e(a,b,c)},p[a]=c(a,b(a))}function h(b,c,d){a.forEach(c,d);for(var e in b)i[e]=b[e]}var i=this,j={pageTracking:{autoTrackFirstPage:!0,autoTrackVirtualPages:!0,trackRelativePath:!1,trackRoutes:!0,trackStates:!0,autoBasePath:!1,basePath:"",excludedRoutes:[],queryKeysWhitelisted:[],queryKeysBlacklisted:[]},eventTracking:{},bufferFlushDelay:1e3,// Support only one configuration for buffer flush delay to simplify buffering
 trackExceptions:!1,optOut:!1,developerMode:!1},l=["pageTrack","eventTrack","exceptionTrack","transactionTrack","setAlias","setUsername","setUserProperties","setUserPropertiesOnce","setSuperProperties","setSuperPropertiesOnce","incrementProperty","userTimings","clearCookies"],m={},n={},o={},p={settings:j};
 // Opt in and opt out functions
-p.setOptOut=function(a){this.settings.optOut=a,s()},p.getOptOut=function(){return this.settings.optOut};var q={$get:["$injector",function(a){return r(a)}],api:p,settings:j,virtualPageviews:function(a){this.settings.pageTracking.autoTrackVirtualPages=a},trackStates:function(a){this.settings.pageTracking.trackStates=a},trackRoutes:function(a){this.settings.pageTracking.trackRoutes=a},excludeRoutes:function(a){this.settings.pageTracking.excludedRoutes=a},queryKeysWhitelist:function(a){this.settings.pageTracking.queryKeysWhitelisted=a},queryKeysBlacklist:function(a){this.settings.pageTracking.queryKeysBlacklisted=a},filterUrlSegments:function(a){this.settings.pageTracking.filterUrlSegments=a},firstPageview:function(a){this.settings.pageTracking.autoTrackFirstPage=a},withBase:function(b){this.settings.pageTracking.basePath=b?a.element(document).find("base").attr("href"):""},withAutoBase:function(a){this.settings.pageTracking.autoBasePath=a},trackExceptions:function(a){this.settings.trackExceptions=a},developerMode:function(a){this.settings.developerMode=a}},r=function(b){return a.extend(p,{$inject:b.invoke})},s=function(){h(q,l,g)};
+p.setOptOut=function(a){this.settings.optOut=a,s()},p.getOptOut=function(){return this.settings.optOut};var q={$get:["$injector",function(a){return r(a)}],api:p,settings:j,virtualPageviews:function(a){this.settings.pageTracking.autoTrackVirtualPages=a},trackStates:function(a){this.settings.pageTracking.trackStates=a},trackRoutes:function(a){this.settings.pageTracking.trackRoutes=a},excludeRoutes:function(a){this.settings.pageTracking.excludedRoutes=a},queryKeysWhitelist:function(a){this.settings.pageTracking.queryKeysWhitelisted=a},queryKeysBlacklist:function(a){this.settings.pageTracking.queryKeysBlacklisted=a},firstPageview:function(a){this.settings.pageTracking.autoTrackFirstPage=a},withBase:function(b){this.settings.pageTracking.basePath=b?a.element(document).find("base").attr("href"):""},withAutoBase:function(a){this.settings.pageTracking.autoBasePath=a},trackExceptions:function(a){this.settings.trackExceptions=a},developerMode:function(a){this.settings.developerMode=a}},r=function(b){return a.extend(p,{$inject:b.invoke})},s=function(){h(q,l,g)};
 // Initial register
-h(q,l,g)}function d(b,c,d,e){function f(a){for(var b=0;b<d.settings.pageTracking.excludedRoutes.length;b++){var c=d.settings.pageTracking.excludedRoutes[b];if(c instanceof RegExp&&c.test(a)||a.indexOf(c)>-1)return!0}return!1}function g(a,b){for(var c=[],d=0;d<a.length;d++)b.indexOf(a[d])===-1&&c.push(a[d]);return c}function h(a,b,c){if(/\?/.test(a)&&b.length>0){for(var d=a.split("?"),e=d[0],f=d[1].split("&"),h=[],i=0;i<b.length;i++)for(var j=b[i],k=0;k<f.length;k++)(j instanceof RegExp&&j.test(f[k])||f[k].indexOf(j)>-1)&&h.push(f[k]);var l="white"==c?h:g(f,h);return l.length>0?e+"?"+l.join("&"):e}return a}function i(a){return h(a,d.settings.pageTracking.queryKeysWhitelisted,"white")}function j(a){return h(a,d.settings.pageTracking.queryKeysBlacklisted,"black")}function k(a){var b=d.settings.pageTracking.filterUrlSegments;if(b.length>0){for(var c=a.split("?"),e=c[0],f=e.split("/"),g=0;g<b.length;g++)for(var h=b[g],i=1;i<f.length;i++)/* First segment will be host/protocol or base path. */
-(h instanceof RegExp&&h.test(f[i])||f[i].indexOf(h)>-1)&&(f[i]="FILTERED");return f.join("/")}return a}function l(a,b){f(a)||(a=i(a),a=j(a),a=k(a),d.pageTrack(a,b))}if(d.settings.pageTracking.autoTrackFirstPage){/* Only track the 'first page' if there are no routes or states on the page */
-var m=!0;if(e.has("$route")){var n=e.get("$route");if(n)for(var o in n.routes){m=!1;break}else null===n&&(m=!1)}else if(e.has("$state")){var p=e.get("$state");p.get().length>1&&(m=!1)}m&&(d.settings.pageTracking.autoBasePath&&(d.settings.pageTracking.basePath=c.location.pathname),e.invoke(["$location",function(a){if(d.settings.pageTracking.trackRelativePath){var b=d.settings.pageTracking.basePath+a.url();l(b,a)}else l(a.absUrl(),a)}]))}if(d.settings.pageTracking.autoTrackVirtualPages){d.settings.pageTracking.autoBasePath&&(/* Add the full route to the base. */
-d.settings.pageTracking.basePath=c.location.pathname+"#");var m=!0;if(d.settings.pageTracking.trackRoutes&&e.has("$route")){var n=e.get("$route");if(n)for(var o in n.routes){m=!1;break}else null===n&&(m=!1);b.$on("$routeChangeSuccess",function(a,b){b&&(b.$$route||b).redirectTo||e.invoke(["$location",function(a){var b=d.settings.pageTracking.basePath+a.url();l(b,a)}])})}d.settings.pageTracking.trackStates&&(e.has("$state")&&!e.has("$transitions")&&(m=!1,b.$on("$stateChangeSuccess",function(a,b){e.invoke(["$location",function(a){var b=d.settings.pageTracking.basePath+a.url();l(b,a)}])})),e.has("$state")&&e.has("$transitions")&&(m=!1,e.invoke(["$transitions",function(a){a.onSuccess({},function(a){var b=a.options();
+h(q,l,g)}function d(b,c,d,e){function f(a){for(var b=0;b<d.settings.pageTracking.excludedRoutes.length;b++){var c=d.settings.pageTracking.excludedRoutes[b];if(c instanceof RegExp&&c.test(a)||a.indexOf(c)>-1)return!0}return!1}function g(a,b){for(var c=[],d=0;d<a.length;d++)b.indexOf(a[d])===-1&&c.push(a[d]);return c}function h(a,b,c){if(/\?/.test(a)&&b.length>0){for(var d=a.split("?"),e=d[0],f=d[1].split("&"),h=[],i=0;i<b.length;i++)for(var j=b[i],k=0;k<f.length;k++)(j instanceof RegExp&&j.test(f[k])||f[k].indexOf(j)>-1)&&h.push(f[k]);var l="white"==c?h:g(f,h);return l.length>0?e+"?"+l.join("&"):e}return a}function i(a){return h(a,d.settings.pageTracking.queryKeysWhitelisted,"white")}function j(a){return h(a,d.settings.pageTracking.queryKeysBlacklisted,"black")}function k(a,b){f(a)||(a=i(a),a=j(a),d.pageTrack(a,b))}d.settings.pageTracking.autoTrackFirstPage&&e.invoke(["$location",function(a){/* Only track the 'first page' if there are no routes or states on the page */
+var b=!0;if(e.has("$route")){var f=e.get("$route");if(f)for(var g in f.routes){b=!1;break}else null===f&&(b=!1)}else if(e.has("$state")){var h=e.get("$state");for(var i in h.get()){b=!1;break}}if(b)if(d.settings.pageTracking.autoBasePath&&(d.settings.pageTracking.basePath=c.location.pathname),d.settings.pageTracking.trackRelativePath){var j=d.settings.pageTracking.basePath+a.url();k(j,a)}else k(a.absUrl(),a)}]),d.settings.pageTracking.autoTrackVirtualPages&&e.invoke(["$location",function(a){d.settings.pageTracking.autoBasePath&&(/* Add the full route to the base. */
+d.settings.pageTracking.basePath=c.location.pathname+"#");var f=!0;if(d.settings.pageTracking.trackRoutes&&e.has("$route")){var g=e.get("$route");if(g)for(var h in g.routes){f=!1;break}else null===g&&(f=!1);b.$on("$routeChangeSuccess",function(b,c){if(!c||!(c.$$route||c).redirectTo){var e=d.settings.pageTracking.basePath+a.url();k(e,a)}})}d.settings.pageTracking.trackStates&&(e.has("$state")&&!e.has("$transitions")&&(f=!1,b.$on("$stateChangeSuccess",function(b,c){var e=d.settings.pageTracking.basePath+a.url();k(e,a)})),e.has("$state")&&e.has("$transitions")&&(f=!1,e.invoke(["$transitions",function(b){b.onSuccess({},function(b){var c=b.options();
 // only track for transitions that would have triggered $stateChangeSuccess
-b.notify&&e.invoke(["$location",function(a){var b=d.settings.pageTracking.basePath+a.url();l(b,a)}])})}]))),m&&b.$on("$locationChangeSuccess",function(a,b){b&&(b.$$route||b).redirectTo||e.invoke(["$location",function(a){if(d.settings.pageTracking.trackRelativePath){var b=d.settings.pageTracking.basePath+a.url();l(b,a)}else l(a.absUrl(),a)}])})}d.settings.developerMode&&a.forEach(d,function(a,b){"function"==typeof a&&(d[b]=function(){})})}function e(b){return{restrict:"A",link:function(c,d,e){var f=e.analyticsOn||"click",g={};a.forEach(e.$attr,function(a,b){i(b)&&(g[j(b)]=e[b],e.$observe(b,function(a){g[j(b)]=a}))}),a.element(d[0]).on(f,function(f){var i=e.analyticsEvent||h(d[0]);g.eventType=f.type,e.analyticsIf&&!c.$eval(e.analyticsIf)||(
+if(c.notify){var e=d.settings.pageTracking.basePath+a.url();k(e,a)}})}]))),f&&b.$on("$locationChangeSuccess",function(b,c){if(!c||!(c.$$route||c).redirectTo)if(d.settings.pageTracking.trackRelativePath){var e=d.settings.pageTracking.basePath+a.url();k(e,a)}else k(a.absUrl(),a)})}]),d.settings.developerMode&&a.forEach(d,function(a,b){"function"==typeof a&&(d[b]=function(){})})}function e(b){return{restrict:"A",link:function(c,d,e){var f=e.analyticsOn||"click",g={};a.forEach(e.$attr,function(a,b){i(b)&&(g[j(b)]=e[b],e.$observe(b,function(a){g[j(b)]=a}))}),a.element(d[0]).bind(f,function(f){var i=e.analyticsEvent||h(d[0]);g.eventType=f.type,e.analyticsIf&&!c.$eval(e.analyticsIf)||(
 // Allow components to pass through an expression that gets merged on to the event properties
 // eg. analytics-properites='myComponentScope.someConfigExpression.$analyticsProperties'
 e.analyticsProperties&&a.extend(g,c.$eval(e.analyticsProperties)),b.eventTrack(i,g))})}}}function f(a){a.decorator("$exceptionHandler",["$delegate","$injector",function(a,b){return function(c,d){var e=a(c,d),f=b.get("$analytics");return f.settings.trackExceptions&&f.exceptionTrack(c,d),e}}])}function g(a){return["a:","button:","button:button","button:submit","input:button","input:submit"].indexOf(a.tagName.toLowerCase()+":"+(a.type||""))>=0}function h(a){return g(a)?a.innerText||a.value:a.id||a.name||a.tagName}function i(a){return"analytics"===a.substr(0,9)&&["On","Event","If","Properties","EventType"].indexOf(a.substr(9))===-1}function j(a){var b=a.slice(9);// slice off the 'analytics' prefix
@@ -81841,7 +81878,7 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
     })
 
     //controller for thought of the day
-    .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout,$state) {
+    .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout, $state) {
         $scope.template = TemplateService.getHTML("content/thought.html");
         TemplateService.title = "Thought Of The Day"; // This is the Title of the Website
         $scope.navigation = NavigationService.getNavigation();
@@ -81854,12 +81891,12 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
             $.jStorage.set("showQuotes", true);
             console.log("**********************");
             $("#overlay").hide();
-            $state.go("home");            
+            $state.go("home");
         }
-        $timeout(function(){
+        $timeout(function () {
             $("#overlay").hide();
             $state.go("home");
-        },10000);
+        }, 10000);
     })
 
     // Example API Controller
@@ -81873,14 +81910,20 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
     .controller('FooterCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $state, $uibModal, $document, $location) {
         console.log("inside footer ctrl");
         $scope.goToAnchor = function (id) {
-            $state.go("home");
-            console.log("went to home 8000");
-            $timeout(function () {
-                var someElement = angular.element(document.getElementById(id));
-                $document.scrollToElement(someElement, 70, 1000);
-                console.log(id);
-                $location.path("/" + id);
-            }, 1000);
+            var current = $state.current;
+            if ($state.current.name == "homeid") {
+                var someElement = angular.element(document.getElementById(id));                
+                $document.scrollToElement(someElement, 70, 1500);
+            }
+            else{
+                $state.go("home");
+                $timeout(function () {
+                    var someElement = angular.element(document.getElementById(id));
+                    $document.scrollToElement(someElement, 70, 1500);
+                    console.log(id);
+                    $location.path("/" + id);
+                }, 800);
+            }
         };
         //modal example
         $scope.modalOpen = function () {
@@ -81893,14 +81936,14 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
         };
     });
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, apiService,$location,$document) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, apiService, $location, $document) {
     $scope.template = TemplateService.getHTML("content/home/home.html");
     TemplateService.title = "Home"; //This is the Title of the Website
     $scope.navigation = NavigationService.getNavigation();
 
     $scope.goToAnchor = function (id) {
         var someElement = angular.element(document.getElementById(id));
-        $document.scrollToElement(someElement, 70, 2500);
+        $document.scrollToElement(someElement, 70, 1500);
         console.log(id);
         $location.path("/" + id);
     };
@@ -81950,25 +81993,25 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         img: 'img/mike.png'
     }];
 
-//about more modal
-$scope.aboutMore = function () {
-    $scope.aboutModal= $uibModal.open({
-        animation: true,
-        templateUrl: 'views/modal/about.html',
-        scope: $scope,
-        size: 'lg',
-        backdrop:'static',
-    });
-};
+    //about more modal
+    $scope.aboutMore = function () {
+        $scope.aboutModal = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modal/about.html',
+            scope: $scope,
+            size: 'lg',
+            backdrop: 'static',
+        });
+    };
 
     //modal example
     $scope.modalOpen = function () {
-        $scope.loginModal= $uibModal.open({
+        $scope.loginModal = $uibModal.open({
             animation: true,
             templateUrl: 'views/modal/login.html',
             scope: $scope,
             size: 'lg',
-            backdrop:'static',
+            backdrop: 'static',
         });
     };
 
@@ -81976,42 +82019,28 @@ $scope.aboutMore = function () {
     $scope.login = function (data) {
         console.log("data", data);
         NavigationService.apiCallWithData("DigitalUser/saveValidUser", data, function (data) {
-            console.log("%%%%%%%%%%%%%%%%%%%%%%%", data)
-            if (data.data._id) {
+            console.log("%%%%%%%%%%%%%%%%%%%%%%%", data);
+            if (data.data._id && (data.data.testGiven.length < 1)) {
                 $state.go("digital-course", {
                     'userId': data.data._id
                 });
                 $scope.loginModal.close();
             } else {
-                console.log("invalid Email");
+                $scope.error = "Test already has been given from this email."
             }
         });
     }
 
     $scope.homeSlide = [
-        'img/season4/1.jpg',
-        'img/season4/2.jpg',
-        'img/season4/3.jpg',
-        'img/season4/4.jpg',
-        'img/season4/5.jpg',
-        'img/season4/6.jpg',
-        'img/season4/7.jpg',
-        'img/season4/8.jpg',
-        'img/season4/9.jpg',
-        'img/season4/10.jpg',
-        'img/season4/11.jpg',
-        'img/season4/12.jpg',
-        'img/season4/13.jpg',
-        'img/season4/14.jpg',
-        'img/season4/15.jpg',
-        'img/season4/16.jpg',
-        'img/season4/17.jpg',
-        'img/season4/18.jpg',
-        'img/season4/19.jpg',
-        'img/season4/20.jpg',
-        'img/season4/21.jpg',
-        'img/season4/22.jpg',
-        'img/season4/23.jpg'
+        'img/season4/24.jpg',
+        'img/season4/25.jpg',
+        'img/season4/26.jpg',
+        'img/season4/27.jpg',
+        'img/season4/28.jpg',
+        'img/season4/29.jpg',
+        'img/season4/30.jpg',
+        'img/season4/31.jpg',
+        'img/season4/32.jpg'
     ];
 })
 myApp.controller('headerCtrl', function ($scope, TemplateService,$timeout) {
@@ -82022,11 +82051,11 @@ myApp.controller('headerCtrl', function ($scope, TemplateService,$timeout) {
     $.fancybox.close(true);
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
-            $(".img-width-change").css("width", '7%');
+            $(".img-width-change").css("width", '13%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.8)');
 
         } else {
-            $(".img-width-change").css("width", '13%');
+            $(".img-width-change").css("width", '28%');
             $(".navbar-color-change").css("background", 'transparent');
         }
     });
@@ -82338,21 +82367,21 @@ myApp.controller('ContestCtrl', function ($scope, TemplateService, NavigationSer
     $scope.navigation = NavigationService.getNavigation();
     TemplateService.cssMain = "header-icons";
     $scope.season4 = [{
-        imageUrl: "QHkTqmexZjg",
-        videoUrl: "QHkTqmexZjg",
+        imageUrl: "ZOkWJZgERNE",
+        videoUrl: "ZOkWJZgERNE",
         episodeno: "Tip No. 1",
         searchName: "Debts Assets",
     }, {
-        imageUrl: "ZOkWJZgERNE",
-        videoUrl: "ZOkWJZgERNE",
+        imageUrl: "QHkTqmexZjg",
+        videoUrl: "QHkTqmexZjg",
         episodeno: "Tip No. 2",
-        searchName: "Tips Equity",
+        searchName: "Equity",
     },
     {
         imageUrl: "vUbwfD_G9Jg",
         videoUrl: "vUbwfD_G9Jg",
         episodeno: "Tip No. 3",
-        searchName: "Tips Real States",
+        searchName: "Real States",
     }];
 })
 
@@ -83228,51 +83257,99 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
         data: [{
             id: "15-mistakes",
             title: "15 mistakes to avoid while filing ITR",
-            content: "<p>As per a leading Indian newspaper the last date for filing income tax for the year 2017 &ndash; 2018 has now been extended to 31st August 2018. For those of you who have missed the July 31st deadline, this is great news indeed. You can now file your tax before the 31st August to avoid any penalties up to rupees 10 000/- if you fail to adhere to deadlines.</p> <p>If you are someone who is technically savvy and plans to file the tax returns on your own, kindly have a checklist of the common mistakes that one should avoid during this process. We have highlighted 15 points as your checklist.</p> <h5>1) Evading filing your tax returns every year:</h5> <p>Please avoid this mistake, as it could be costly for you in the long run, eventually the long arm of the law will catch up with you. Even if you are not eligible for income tax, you should file your returns as &ldquo;Zero&rdquo;</p> <h5>2) Incorrect ITR Form:</h5> <p>You should be disclosing all income sources, like rent from house if any, annual interest on savings accounts, fixed deposits or any other investments that you may have made. If you choose the wrong ITR form, then the income tax department will tag it as faulty and will return the same to you. The income tax department will provide you with 15 days&rsquo; time to fill in the correct form. The assessing officer may or may not extend the time limit. If you do not revert within the time limit then the officer will tag it as a void return. This is equivalent to not filing tax for the year. And the same penalties will apply as mentioned in point number1. Before filing your returns you need to check your form 26 AS, to verify if your employer has done all the necessary deductions like TDS at their end. If not you will have to get it rectified and then file for returns.</p> <h5>3) Not declaring incomes which are Tax free:</h5> <p>As mentioned above you have to declare all sources of income even if some of the income is tax free. Not reporting these in your returns could attract penalties and actions. You can however claim exemptions and report it under Exempt Income part in the ITR form.</p> <h5>4) Not reporting all your bank accounts:</h5> <p>You may hold multiple bank accounts in your name, like your personal savings, account, joint accounts with your spouse, parents or children, or salary accounts, or current accounts if you have business interests. If the account is dormant then you may not report it. </p> <h5>5) Correction to your tax filing mistakes:</h5> <p>If you discover at a later stage that is after filing the tax returns that you have made a mistake, then as per the income tax laws the department allows you time up to one year to correct the mistakes and file the revised returns. The one year rule came into effect from the year 2017 &ndash; 2018.</p> <h5>6) Submitting false documents:</h5> <p>If you submit documentations which are false for items like rent, house rent allowance (HRA), Leave travel allowance (LTA) in the form of fake tickets, fake insurance receipts for claiming under section 80 C or false mediclaim receipts. It will be considered as a fraud and accordingly you will be penalized under the Indian law for fraud and evasion. 7) Non-disclosure of part time jobs: If you have a part time job or jobs, it is important that you club the income received from these jobs to your income tax returns. Only disclosing salary</p> <h5>8) Unexplained income drop:</h5><p> Income drop can happen due to a number of reasons, for the salaried class this could happen if you have changed jobs and have not reported the income from the previous employer to the new employer. It could happen during global recession, that if you lose your job or have to take a significant cut in the salary. When the income tax department sees a sudden drop in the salary, this is a red flag for them as they would think that you are concealing income. The same would apply to business class, though the very nature of business is at times to have a sudden drop in income. But this might be understood as tax evasion, or concealment.</p> <h5>9) Unusually high refunds:</h5><p> Tax paying persons, who tend to claim an unusually high amount of refunds, will come under the radar of the income tax. The income tax department generally does not like to give out tax refunds, as they expect the tax payer to have correctly filled in the form and submitted all the necessary documents of investments. The tax officers may serve you a notice, and ask you to substantiate your claims in such situations and you need to have all the necessary documents in place.</p> <h5>10) Inflating donations to charity or NGO&rsquo;s:</h5><p> Tax exemptions are allowed if you can furnish receipts and documents for monies submitted to charitable institutions, NGO&rsquo;s or to political organizations. Such donations will fall under scrutiny if the amount shows in very high. If you have also created fake documents to show donations you will be served an income tax notice.</p> <h5>11) Investments for minors:</h5><p> If you have done long term investing for your children who are minors and if there is income generated from these investments on an annual basis then you have to join this income along with your primary income when you are filing income tax returns.</p> <h5>12) Landlord PAN number:</h5><p> Gone are the days when one could submit HRA to the maximum limit, submit the receipts and claim tax exemptions. From now on the income tax departments also wants to know the PAN number of your landlord as if the amount is high then they would like to collect tax from the landlord as well. So ensure that you have your landlord&rsquo;s PAN number. The income tax department can also ask you to provide the registered rent agreement copy to verify the amount of rent claimed.</p> <h5>13) Form 15H and 15G:</h5><p> If you have income which comes under the tax bracket, you are not eligible to fill in form 15H and form 15G. Be aware that this should be filled only if your overall income does not cross the taxable limit imposed.</p> <h5>14) Advance tax and self-assessment tax:</h5><p> You need to disclose to the income tax authorities in advance if you are liable for self-assessment or advance tax and the same should be paid on time.</p> <h5>15) Return signed copy to Income tax department:</h5><p> When the income tax department sends you the ITRV after you have filed the ITR, then you have to sign the copy as an acknowledgement and send it back to the income tax department by ordinary post only and not through courier. This has to be done within 120 days. </p> <p>Please follow the above guidelines, to ensure a smooth process for filing of ITR, so that you do not come under the scrutiny of the income tax department.</p>"
+            content: "<p>As per a leading Indian newspaper the last date for filing income tax for the year 2017 &ndash; 2018 has now been extended to 31st August 2018. For those of you who have missed the July 31st deadline, this is great news indeed. You can now file your tax before the 31st August to avoid any penalties up to rupees 10 000/- if you fail to adhere to deadlines.</p> <p>If you are someone who is technically savvy and plans to file the tax returns on your own, kindly have a checklist of the common mistakes that one should avoid during this process. We have highlighted 15 points as your checklist.</p> <h5>1) Evading filing your tax returns every year:</h5> <p>Please avoid this mistake, as it could be costly for you in the long run, eventually the long arm of the law will catch up with you. Even if you are not eligible for income tax, you should file your returns as &ldquo;Zero&rdquo;</p> <h5>2) Incorrect ITR Form:</h5> <p>You should be disclosing all income sources, like rent from house if any, annual interest on savings accounts, fixed deposits or any other investments that you may have made. If you choose the wrong ITR form, then the income tax department will tag it as faulty and will return the same to you. The income tax department will provide you with 15 days&rsquo; time to fill in the correct form. The assessing officer may or may not extend the time limit. If you do not revert within the time limit then the officer will tag it as a void return. This is equivalent to not filing tax for the year. And the same penalties will apply as mentioned in point number1. Before filing your returns you need to check your form 26 AS, to verify if your employer has done all the necessary deductions like TDS at their end. If not you will have to get it rectified and then file for returns.</p> <h5>3) Not declaring incomes which are Tax free:</h5> <p>As mentioned above you have to declare all sources of income even if some of the income is tax free. Not reporting these in your returns could attract penalties and actions. You can however claim exemptions and report it under Exempt Income part in the ITR form.</p> <h5>4) Not reporting all your bank accounts:</h5> <p>You may hold multiple bank accounts in your name, like your personal savings, account, joint accounts with your spouse, parents or children, or salary accounts, or current accounts if you have business interests. If the account is dormant then you may not report it. </p> <h5>5) Correction to your tax filing mistakes:</h5> <p>If you discover at a later stage that is after filing the tax returns that you have made a mistake, then as per the income tax laws the department allows you time up to one year to correct the mistakes and file the revised returns. The one year rule came into effect from the year 2017 &ndash; 2018.</p> <h5>6) Submitting false documents:</h5> <p>If you submit documentations which are false for items like rent, house rent allowance (HRA), Leave travel allowance (LTA) in the form of fake tickets, fake insurance receipts for claiming under section 80 C or false mediclaim receipts. It will be considered as a fraud and accordingly you will be penalized under the Indian law for fraud and evasion. 7) Non-disclosure of part time jobs: If you have a part time job or jobs, it is important that you club the income received from these jobs to your income tax returns. Only disclosing salary</p> <h5>8) Unexplained income drop:</h5><p> Income drop can happen due to a number of reasons, for the salaried class this could happen if you have changed jobs and have not reported the income from the previous employer to the new employer. It could happen during global recession, that if you lose your job or have to take a significant cut in the salary. When the income tax department sees a sudden drop in the salary, this is a red flag for them as they would think that you are concealing income. The same would apply to business class, though the very nature of business is at times to have a sudden drop in income. But this might be understood as tax evasion, or concealment.</p> <h5>9) Unusually high refunds:</h5><p> Tax paying persons, who tend to claim an unusually high amount of refunds, will come under the radar of the income tax. The income tax department generally does not like to give out tax refunds, as they expect the tax payer to have correctly filled in the form and submitted all the necessary documents of investments. The tax officers may serve you a notice, and ask you to substantiate your claims in such situations and you need to have all the necessary documents in place.</p> <h5>10) Inflating donations to charity or NGO&rsquo;s:</h5><p> Tax exemptions are allowed if you can furnish receipts and documents for monies submitted to charitable institutions, NGO&rsquo;s or to political organizations. Such donations will fall under scrutiny if the amount shows in very high. If you have also created fake documents to show donations you will be served an income tax notice.</p> <h5>11) Investments for minors:</h5><p> If you have done long term investing for your children who are minors and if there is income generated from these investments on an annual basis then you have to join this income along with your primary income when you are filing income tax returns.</p> <h5>12) Landlord PAN number:</h5><p> Gone are the days when one could submit HRA to the maximum limit, submit the receipts and claim tax exemptions. From now on the income tax departments also wants to know the PAN number of your landlord as if the amount is high then they would like to collect tax from the landlord as well. So ensure that you have your landlord&rsquo;s PAN number. The income tax department can also ask you to provide the registered rent agreement copy to verify the amount of rent claimed.</p> <h5>13) Form 15H and 15G:</h5><p> If you have income which comes under the tax bracket, you are not eligible to fill in form 15H and form 15G. Be aware that this should be filled only if your overall income does not cross the taxable limit imposed.</p> <h5>14) Advance tax and self-assessment tax:</h5><p> You need to disclose to the income tax authorities in advance if you are liable for self-assessment or advance tax and the same should be paid on time.</p> <h5>15) Return signed copy to Income tax department:</h5><p> When the income tax department sends you the ITRV after you have filed the ITR, then you have to sign the copy as an acknowledgement and send it back to the income tax department by ordinary post only and not through courier. This has to be done within 120 days. </p> <p>Please follow the above guidelines, to ensure a smooth process for filing of ITR, so that you do not come under the scrutiny of the income tax department.</p>",
+            seo: [{
+                desc: "Common mistakes people make while filing ITR and tips to avoid the same.",
+                keywords: "Tax deadline, tax returns, incorrect ITR, income, savings account, fixed deposit, income tax officer, tax free, salary account, ITR, tax filing, income tax laws, 80C, 26 AS"
+            }]
         }, {
             id: "tax-evasion",
             title: "Tax evasion topics you must avoid",
-            content: "<p>The first question that comes to mind is what is tax evasion? Is tax avoidance the same as tax evasion? The answer is a resounding no. Both are different. Tax avoidance at a simplistic level is reducing the tax that you have to pay via various legal laws provided by the government. For salaried class some of the ways to avoid tax are by investing in section 80C and various other sections in order to reduce the tax outgo. For the business class it is by submitting bills and receipts of all expenses incurred like telephone bill, electricity bill etc. Tax avoidance is to find ways and means to reduce your tax liability within the legal ambit of the law. </p> <p>Coming to the main top of tax evasion it basically means not paying taxes which are owed to the government. The intention is to deliberately conceal the various ways and means by which this can be done. It can be practiced by both the salaried as well as the business class.</p> <p>Mentioned below are some of the means that you must completely avoid to evade tax. The prominent means that make it to the top of the list are: <ul><li>Under valuing your income or not disclosing your income or other sources of income</li><li> Evading duty on imported goods (Customs duty)</li> <li>Not disclosing your accumulated wealth (Wealth Tax)</li><li> Forging your balance sheet or finance related statements</li><li> Black money or bribery in the form of cash for services rendered</li><li> Providing the incorrect PAN number or not providing the PAN number</li><li> Not checking the self-assessment documents carefully, In India it is form 26AS before filing the tax returns</li></ul></p> <p>Sometimes salaried individual are under the impression that since tax is deducted by the employer, they do not have to do anything. This is due to lack of knowledge, you have to submit your investment details like post office investment, interest on Fixed Deposits and interest accrued from savings bank account or if you have any other source of income which needs to be clubbed with your salary income. Not having the required knowledge is not an excuse that the income tax department will accept. Hence it is better to gain knowledge or have the taxes filed via a tax accountant who is an expert in the field of finance.</p> <p>If you are caught doing any of the above or the income tax office raises a scrutiny on you, you have to furnish extensive documentation of your finances, like bank statements, credit card statements, for all family members. Once you are served a notice by the income tax department you have to appear before the income tax officer within a specified time period. It is not necessary that you have to appear in person, you may send your chartered accountant (if you have one) to represent your case and who will plead on your behalf.</p> <p> The reasons why you should avoid tax evasions are; it is an illegal activity in India under the Indian penal code. Which means it is a crime to willfully conceal income to evade income tax and you are liable to be fined hefty penalties if you care caught evading tax. The penalties levied could be as high as three times the income, which you may have hidden from scrutiny. For example if the scrutiny finds that you have not declared income to the tune of 1 lakh rupees, you could be charged a penalty up to 3 lakh rupees. In case of extreme cases of non-compliance you could also be served a jail sentence depending up on the gravity of the situation.</p> <p>In closing now that you know the ways and implications of tax evasion, we sincerely hope that you will not evade tax; instead you will avoid tax by being under the legal scope defined by the government and income tax act.</p>"
+            content: "<p>The first question that comes to mind is what is tax evasion? Is tax avoidance the same as tax evasion? The answer is a resounding no. Both are different. Tax avoidance at a simplistic level is reducing the tax that you have to pay via various legal laws provided by the government. For salaried class some of the ways to avoid tax are by investing in section 80C and various other sections in order to reduce the tax outgo. For the business class it is by submitting bills and receipts of all expenses incurred like telephone bill, electricity bill etc. Tax avoidance is to find ways and means to reduce your tax liability within the legal ambit of the law. </p> <p>Coming to the main top of tax evasion it basically means not paying taxes which are owed to the government. The intention is to deliberately conceal the various ways and means by which this can be done. It can be practiced by both the salaried as well as the business class.</p> <p>Mentioned below are some of the means that you must completely avoid to evade tax. The prominent means that make it to the top of the list are: <ul><li>Under valuing your income or not disclosing your income or other sources of income</li><li> Evading duty on imported goods (Customs duty)</li> <li>Not disclosing your accumulated wealth (Wealth Tax)</li><li> Forging your balance sheet or finance related statements</li><li> Black money or bribery in the form of cash for services rendered</li><li> Providing the incorrect PAN number or not providing the PAN number</li><li> Not checking the self-assessment documents carefully, In India it is form 26AS before filing the tax returns</li></ul></p> <p>Sometimes salaried individual are under the impression that since tax is deducted by the employer, they do not have to do anything. This is due to lack of knowledge, you have to submit your investment details like post office investment, interest on Fixed Deposits and interest accrued from savings bank account or if you have any other source of income which needs to be clubbed with your salary income. Not having the required knowledge is not an excuse that the income tax department will accept. Hence it is better to gain knowledge or have the taxes filed via a tax accountant who is an expert in the field of finance.</p> <p>If you are caught doing any of the above or the income tax office raises a scrutiny on you, you have to furnish extensive documentation of your finances, like bank statements, credit card statements, for all family members. Once you are served a notice by the income tax department you have to appear before the income tax officer within a specified time period. It is not necessary that you have to appear in person, you may send your chartered accountant (if you have one) to represent your case and who will plead on your behalf.</p> <p> The reasons why you should avoid tax evasions are; it is an illegal activity in India under the Indian penal code. Which means it is a crime to willfully conceal income to evade income tax and you are liable to be fined hefty penalties if you care caught evading tax. The penalties levied could be as high as three times the income, which you may have hidden from scrutiny. For example if the scrutiny finds that you have not declared income to the tune of 1 lakh rupees, you could be charged a penalty up to 3 lakh rupees. In case of extreme cases of non-compliance you could also be served a jail sentence depending up on the gravity of the situation.</p> <p>In closing now that you know the ways and implications of tax evasion, we sincerely hope that you will not evade tax; instead you will avoid tax by being under the legal scope defined by the government and income tax act.</p>",
+            seo: [{
+                desc: "Understand the difference between tax evasion and tax avoidance. How to legally lower your tax outgo.",
+                keywords: "tax evasion, tax avoidance, avoid tax, evade tax, reduce tax, tax laws India, taxation India,  tax outgo, duty on imported goods, PAN number, 26 AS, TDS, income tax"
+            }]
         }, {
             id: "education-loan",
             title: "Education loan or student loan for higher studies",
-            content: "<p>Now a day&rsquo;s education costs; are going through the roof, fees for learning in a reputed institution is already very high. Hence student loans are gaining popularity as it enables us to obtain higher education when one does not have the required funding upfront.</p><p> When it comes to paying for school fees, college fees or higher studies fees we have multiple finance option. These are Personal loans and student loans. But which is right for your situation?</p><p> Let us analyze some of the reason why it makes sound financial decision to take education loan also known as student loan, instead of personal loan to fund higher studies.</p> <p>Read further to see how personal loans and student loans compare and how education loan is better than personal loan for higher studies:</p><h5> How to utilize the funds</h5><p> While student loan is restricted only for paying school fees or college related expenses or refinance student debts. Personal loan can fill the financial gaps and help you pay for non-college costs. &#160;A personal loan is a type of financing that can be used for personal purpose like to cover travel expenses, paying old debt, credit card expenses, including student fees etc.</p><h5> Interest Rate</h5><p>Rate of Interest for student loan is lesser as compared to personal loans. The rate of interest for education loan usually falls in between 9 % to 24%. Whereas personal loan interest is between 12 % to 24%. Hence before taking any important decision one should need to visit online the marketplace to compare the same.</p> <h5>Eligibility amount</h5><p> Student loan depends upon students need and financial conditions. The amount can fluctuate from rupees fifty thousand to rupees one crore fifty lakhs. For short term loan the amount can be as small as rupees 5000. Personal loan amount is decided and approved based on your income from your salary and other sources if any, and the banks will demand proof of income for the same.</p> <h5>How to apply and what documents are required</h5><p> Student loan is simple to apply, citizen of India are eligible to apply for the loan. The applicant should furnish proof of admittance into a university. The bank requires certain documentation which is mandatory. Some of them are: </p><p>1) Letter of admission from the institution</p><p> 2) The institution fees chart </p><p>3) The students mark sheets and / or degree certificates from the existing institution Loan providers like banks may provide up to hundred percent of the amount required.</p><p> Margins are not required if the amount of the loan taken is up to rupees four lakhs. Indian rules and regulations mandate that 5% of the loan has to be financed by the student themselves; this may vary from bank to bank depending on their policies. Please check with multiple loan providers to arrive at a decision. If you are studying in a foreign country the margin amount on the loan can be as high as 15% of the loan amount that is being requested.</p><p> Personal loan documents differ from bank to bank, but basically you will be required to furnish your salary slips for the past 6 months to 1 year, bank account statements for a period of 6 months to 1 year and other documents like PAN, or Aadhar card. These will again differ from bank to bank.</p><h5> Disbursal Amount</h5><p> Banks will deposit the loan amount for student education, directly into the account of the college or university for you which you have procured admission based on the fee chart that was provided by the institution. Once the personal loan application is accepted, banks or financial institution directly deposit the approved amount into applicant&rsquo;s bank account.</p> <h5>Repayment</h5><p> The student loan needs to be repaid, after the student completes the college education. Some banks or financial institution provide a relaxation period of 6 months to one year, till such time the student secures a job after the completion of studies. During this period the student is exempt from paying the loan amount. This period is also known as a moratorium period. Five to seven years is usually the period of tenure of EMI&rsquo;s (Equated monthly installments) but this can be spread further based on circumstances. Simple interest is calculated by the banks, for the duration of the course on the loan amount. Whereas personal loan, generally repayment starts immediately after the first month from the time the loan is paid out into the account of the borrower. The tenure of the personal loan is fixed at five years and cannot be extended.</p><h5> Tax Benefits</h5><p> While choosing student loan, interest paid is often deductible from your annual taxes. A personal loan comes with virtually no tax benefits.</p> <h5>Conclusion</h5> <p>Given above facts taking a student loan is a better option for higher studies.</p>"
+            content: "<p>Now a day&rsquo;s education costs; are going through the roof, fees for learning in a reputed institution is already very high. Hence student loans are gaining popularity as it enables us to obtain higher education when one does not have the required funding upfront.</p><p> When it comes to paying for school fees, college fees or higher studies fees we have multiple finance option. These are Personal loans and student loans. But which is right for your situation?</p><p> Let us analyze some of the reason why it makes sound financial decision to take education loan also known as student loan, instead of personal loan to fund higher studies.</p> <p>Read further to see how personal loans and student loans compare and how education loan is better than personal loan for higher studies:</p><h5> How to utilize the funds</h5><p> While student loan is restricted only for paying school fees or college related expenses or refinance student debts. Personal loan can fill the financial gaps and help you pay for non-college costs. &#160;A personal loan is a type of financing that can be used for personal purpose like to cover travel expenses, paying old debt, credit card expenses, including student fees etc.</p><h5> Interest Rate</h5><p>Rate of Interest for student loan is lesser as compared to personal loans. The rate of interest for education loan usually falls in between 9 % to 24%. Whereas personal loan interest is between 12 % to 24%. Hence before taking any important decision one should need to visit online the marketplace to compare the same.</p> <h5>Eligibility amount</h5><p> Student loan depends upon students need and financial conditions. The amount can fluctuate from rupees fifty thousand to rupees one crore fifty lakhs. For short term loan the amount can be as small as rupees 5000. Personal loan amount is decided and approved based on your income from your salary and other sources if any, and the banks will demand proof of income for the same.</p> <h5>How to apply and what documents are required</h5><p> Student loan is simple to apply, citizen of India are eligible to apply for the loan. The applicant should furnish proof of admittance into a university. The bank requires certain documentation which is mandatory. Some of them are: </p><p>1) Letter of admission from the institution</p><p> 2) The institution fees chart </p><p>3) The students mark sheets and / or degree certificates from the existing institution Loan providers like banks may provide up to hundred percent of the amount required.</p><p> Margins are not required if the amount of the loan taken is up to rupees four lakhs. Indian rules and regulations mandate that 5% of the loan has to be financed by the student themselves; this may vary from bank to bank depending on their policies. Please check with multiple loan providers to arrive at a decision. If you are studying in a foreign country the margin amount on the loan can be as high as 15% of the loan amount that is being requested.</p><p> Personal loan documents differ from bank to bank, but basically you will be required to furnish your salary slips for the past 6 months to 1 year, bank account statements for a period of 6 months to 1 year and other documents like PAN, or Aadhar card. These will again differ from bank to bank.</p><h5> Disbursal Amount</h5><p> Banks will deposit the loan amount for student education, directly into the account of the college or university for you which you have procured admission based on the fee chart that was provided by the institution. Once the personal loan application is accepted, banks or financial institution directly deposit the approved amount into applicant&rsquo;s bank account.</p> <h5>Repayment</h5><p> The student loan needs to be repaid, after the student completes the college education. Some banks or financial institution provide a relaxation period of 6 months to one year, till such time the student secures a job after the completion of studies. During this period the student is exempt from paying the loan amount. This period is also known as a moratorium period. Five to seven years is usually the period of tenure of EMI&rsquo;s (Equated monthly installments) but this can be spread further based on circumstances. Simple interest is calculated by the banks, for the duration of the course on the loan amount. Whereas personal loan, generally repayment starts immediately after the first month from the time the loan is paid out into the account of the borrower. The tenure of the personal loan is fixed at five years and cannot be extended.</p><h5> Tax Benefits</h5><p> While choosing student loan, interest paid is often deductible from your annual taxes. A personal loan comes with virtually no tax benefits.</p> <h5>Conclusion</h5> <p>Given above facts taking a student loan is a better option for higher studies.</p>",
+            seo: [{
+                desc: "Check out the differences between education loan and personal loan, they may appear similar but are totally different.",
+                keywords: "education, education loan, student, student loan, personal loan, college education, university, institution, fees, school fees, college fees, interest rate, finance, moratorium, loan repayment, tax benefits ."
+            }]
         }, {
             id: "personal-loan",
             title: "Top-up loan or Personal loan",
-            content: "<p>Wondering which loan to apply for? Let us decode the two choices for you. Choosing a loan or rather any kind of loan is an important decision, and having said that, it also should be used as a last resort, if all other avenues are closed. </p> <p>Let us answer some basic questions and then move onto the recommendations.</p> <h5>Who can avail of a Top-up loan?</h5> <p>Any entities who hold a home loan to their names can apply for a Top-up loan. By far this is the most common form of Top-up loan available. However some providers also provide Top-up loans for personal loans as well, but they are generally more expensive and not recommended.</p> <h5>Pros of a Top-up loan</h5><p> The interest is much cheaper as compared to a personal loan, although it will be slightly more than the interest on the existing home loan by approximately 1.5 % to 2 %. Providers generally charge a processing fee for availing a Top-up loan up to 2.5 %. This is still cheaper compared interest charged on personal loans. &#160;A top-up loan is more easily available, as you already have an existing home loan for which documentation has already been done by the lending institution earlier. If your repayment history for the existing loan is good, that is you have not defaulted on any of the EMI&rsquo;s then your chances of getting a Top-up loan become much higher. You can also avail tax benefits by taking a Top-up loan.</p> <h5>Cons of a Top-up loan</h5><p> A Top-up loan can be availed only, if you already have an existing home loan. The money that is disbursed is to be only used for the purpose of constructing property or for renovation of the house that the loan is taken for.</p> <h5>Who can avail of a personal loan?</h5><p>As the name states, an individual entity can apply for a personal loans for various reasons as per his own choice. The basic documents a person needs to furnish at the time of applying a personal loan are minimum last 6 months bank statement of your salary account.</p> <h5>Pros of a Personal loan</h5><p> The monies availed from personal loans can be used for clearing existing debts, investing, for further education, marriage expenses and just about anything that one can think of including renovating the house.</p> <h5>Cons of a Personal loan</h5><p> The interest rates applicable for personal loans are much higher as compared to Top-up loans. A personal loan has a rigorous verification process and is generally more time consuming and difficult to obtain. Also the documentation needs are extensive. As there is no collateral while applying for a personal, loan, banks and institutions will give priority to people with good credit history and rating. They will check your CIBIL score and have the discretion to approve and reject your loan based on your past history. No tax benefits can be availed by taking a personal loan</p> <h5>Joint Personal or joint Top-up loan</h5><p> You can also apply for joint personal or joint Top-up loans, which are an added advantage; if both the applicants are working entities. This increases the potential to get a higher loan as the loan providers consider joint applications as less risky and also the loan providers like banks can always recover the loan from the second entity if either of them defaults.</p> <h5>Recommendations:<h5><p> The choice whether to choose a Top-up loan or personal loan depends on one's needs. If you require the loan where the sole intention is for constructing a house or renovating the house then you should avail the Top-up loan facility provided for the reasons mentioned above. If your intention is any other aspect, then a personal loan will be the way to go.</p> <p>As the clich&eacute; goes, read all subject matter related documents carefully. One cannot stress enough the importance of this point. As different providers will have different terms and conditions, it is best to narrow down your search by doing a thorough research on the terms and conditions of individual loan providers and then identify a provider who meets your check list.</p> <p><strong>Note:</strong> GST will be applicable on all banking services availed.</p>"
+            content: "<p>Wondering which loan to apply for? Let us decode the two choices for you. Choosing a loan or rather any kind of loan is an important decision, and having said that, it also should be used as a last resort, if all other avenues are closed. </p> <p>Let us answer some basic questions and then move onto the recommendations.</p> <h5>Who can avail of a Top-up loan?</h5> <p>Any entities who hold a home loan to their names can apply for a Top-up loan. By far this is the most common form of Top-up loan available. However some providers also provide Top-up loans for personal loans as well, but they are generally more expensive and not recommended.</p> <h5>Pros of a Top-up loan</h5><p> The interest is much cheaper as compared to a personal loan, although it will be slightly more than the interest on the existing home loan by approximately 1.5 % to 2 %. Providers generally charge a processing fee for availing a Top-up loan up to 2.5 %. This is still cheaper compared interest charged on personal loans. &#160;A top-up loan is more easily available, as you already have an existing home loan for which documentation has already been done by the lending institution earlier. If your repayment history for the existing loan is good, that is you have not defaulted on any of the EMI&rsquo;s then your chances of getting a Top-up loan become much higher. You can also avail tax benefits by taking a Top-up loan.</p> <h5>Cons of a Top-up loan</h5><p> A Top-up loan can be availed only, if you already have an existing home loan. The money that is disbursed is to be only used for the purpose of constructing property or for renovation of the house that the loan is taken for.</p> <h5>Who can avail of a personal loan?</h5><p>As the name states, an individual entity can apply for a personal loans for various reasons as per his own choice. The basic documents a person needs to furnish at the time of applying a personal loan are minimum last 6 months bank statement of your salary account.</p> <h5>Pros of a Personal loan</h5><p> The monies availed from personal loans can be used for clearing existing debts, investing, for further education, marriage expenses and just about anything that one can think of including renovating the house.</p> <h5>Cons of a Personal loan</h5><p> The interest rates applicable for personal loans are much higher as compared to Top-up loans. A personal loan has a rigorous verification process and is generally more time consuming and difficult to obtain. Also the documentation needs are extensive. As there is no collateral while applying for a personal, loan, banks and institutions will give priority to people with good credit history and rating. They will check your CIBIL score and have the discretion to approve and reject your loan based on your past history. No tax benefits can be availed by taking a personal loan</p> <h5>Joint Personal or joint Top-up loan</h5><p> You can also apply for joint personal or joint Top-up loans, which are an added advantage; if both the applicants are working entities. This increases the potential to get a higher loan as the loan providers consider joint applications as less risky and also the loan providers like banks can always recover the loan from the second entity if either of them defaults.</p> <h5>Recommendations:<h5><p> The choice whether to choose a Top-up loan or personal loan depends on one's needs. If you require the loan where the sole intention is for constructing a house or renovating the house then you should avail the Top-up loan facility provided for the reasons mentioned above. If your intention is any other aspect, then a personal loan will be the way to go.</p> <p>As the clich&eacute; goes, read all subject matter related documents carefully. One cannot stress enough the importance of this point. As different providers will have different terms and conditions, it is best to narrow down your search by doing a thorough research on the terms and conditions of individual loan providers and then identify a provider who meets your check list.</p> <p><strong>Note:</strong> GST will be applicable on all banking services availed.</p>",
+            seo: [{
+                desc: "How to choose the correct parameters to obtain a top up loan on an existing loan or take a fresh personal loan. ",
+                keywords: "top up loan, personal loan, home loan, interest rate, processing fee, cheap loan, repayment history, EMI, existing home loan, bank statement, education expense, marriage expense, documentation, tax benefit, GST on loans."
+            }]
         }, {
             id: "reason-save",
             title: "6 reasons to start saving from today",
-            content: "<p>If you are one of those people who wonder where all the money went as the month end nears, you are not alone. Majority of the people are in this situation. If you are also working and having a regular source of income, but yet have not got any savings to your name then it is high time that you introspect and make a plan to save money. </p> <p>Why you may ask do I need to save? The reasons outlined below should give you an idea why you should start saving as soon as possible. Does not matter what age group you are in, you may be young, you may be in your middle ages, but you have to start somewhere and the sooner the better.</p> <h5>1) Increasing life span due to advancement in medical technologies</h5><p> As medical science makes new breakthroughs in ailments and diseases, the longevity of your life is increasing. Ailments that were considered life threatening decades ago, have now got cures, or prolong your life. If you are salaried, you will be working till the age of 58, maximum 60 if your company allows it. So where will you have monthly income to spend from age 60 onward if you do not have any savings. </p> <h5>2) Economic downturn</h5><p> The economy may undergo a sudden upheaval due to increasing geopolitical situations. In case of a meltdown in economy, you never know you may suddenly lose your job or may be asked to take a salary cut by your employers. If that happens then to maintain your monthly outgoings you need to have contingency plans and savings in place which will help you to tide over during your moment of financial crisis. .</p> <h5>3) Medical Emergency</h5><p> Even if the economy is stable and you are working, you could come across a medical emergency for yourself or for your near and dear ones. If you have planned for it via medi-claim insurance, then good, but you will still have overheads as medi-claims do not cover all the expenses and you still will have to shell out a substantial amount for that. If you do not have medi-claim insurance, then you will be incurring huge medical costs, which you will have to come up with on your own or will have to dig into whatever little savings that you may have and may end up having to borrow money landing yourself in a debt.</p> <h5>4) Education</h5><p> Higher education and college education fees are going through the roof. You may have always wanted to pursue higher education, but for whatever reasons may have had to postpone your plans. Parents too want the best education for their children. Whatever the case may be, you will need ample amount of monies to fund education. Education cost is forever growing, for example, the cost of engineering was rupees 10000/- per annum in the year 1988. Today the cost of can go up to a few lakhs per rupees per annum in an institution of repute. And if you have to get admission to private colleges, then the fees will be even higher. Considering that costs are climbing at a conservative estimate of 6% to 7% year on year, do your calculations now if you are planning for your child&rsquo;s future education. Find out the current costs and then use a calculator to do the calculation.</p> <h5>5) The power of compounding</h5><p> Compounding them say is the eighth wonder of the world. The early you start the more the effect of compounding gets amplified. Let us take a simple example of two people &ldquo;A&rdquo; and &ldquo;B&rdquo;. Person &ldquo;A&rdquo; is 20 years old and person &ldquo;B&rdquo; is 25 years old. Both start investing the same amount let us say rupees 10000 every year and that the money simply doubles every year for ease of calculation, you can do the math&rsquo;s using an interest percentage between 8 to 12 % depending on how conservative or aggressive your estimates are going to be. The target is to calculate the amount when both of them are 30 years of age. See the table below for calculations</p> <p> <table border='1'> <tr> <td>Age for 'A'</td> <td>Amount for 'A'</td> <td>Age for 'B'</td> <td>Amount for 'B'</td> </tr> <tr> <td>20</td> <td>10000</td> <td>25</td> <td>10000</td> </tr> <tr> <td>21</td> <td>20000</td> <td>26</td> <td>20000</td> </tr> <tr> <td>22</td> <td>40000</td> <td>27</td> <td>40000</td> </tr> <tr> <td>23</td> <td>80000</td> <td>28</td> <td>80000</td> </tr> <tr> <td>24</td> <td>160000</td> <td>29</td> <td>160000</td> </tr> <tr> <td>25</td> <td>320000</td> <td>30</td> <td>3,20,000</td> </tr> <tr> <td>26</td> <td>640000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>27</td> <td>1280000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>28</td> <td>2560000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>29</td> <td>5120000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>30</td> <td>1,02,40,000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> </table> </p> <p>As you can see from the above table Person &ldquo;A&rdquo; who has started five years earlier than person &ldquo;B&rdquo; makes more than rupees 1 crore till the age of 30, while person &ldquo;B&rdquo; makes just above 3 lakhs by the time he reaches 30 years of age. Hence you will see the power of compounding when you start early.</p> <h5>6) Security, retirement and a stress free life</h5><p> You will need the approximately the same amount of money after your retirement to sustain your current lifestyle. So you need to calculate your current monthly expenses and calculate the monies required per month after taking into account the average rate of inflation up to the age you think you may require money for. If you can invest early, you can make your hard earned money work for you in a way that the interest that you obtain from your investments becomes more or less equal to your monthly outflow. In such a situation, you would have a stress free life, and could take up jobs that give you more satisfaction (maybe lesser pay) or give you the chance to fulfill your dreams, without any help from anyone. So the next time you get a bonus or some extra cash from other sources, think before splurging it all, instead use the above mentioned reasons as guidelines to a healthy and wealthy living.</p>"
+            content: "<p>If you are one of those people who wonder where all the money went as the month end nears, you are not alone. Majority of the people are in this situation. If you are also working and having a regular source of income, but yet have not got any savings to your name then it is high time that you introspect and make a plan to save money. </p> <p>Why you may ask do I need to save? The reasons outlined below should give you an idea why you should start saving as soon as possible. Does not matter what age group you are in, you may be young, you may be in your middle ages, but you have to start somewhere and the sooner the better.</p> <h5>1) Increasing life span due to advancement in medical technologies</h5><p> As medical science makes new breakthroughs in ailments and diseases, the longevity of your life is increasing. Ailments that were considered life threatening decades ago, have now got cures, or prolong your life. If you are salaried, you will be working till the age of 58, maximum 60 if your company allows it. So where will you have monthly income to spend from age 60 onward if you do not have any savings. </p> <h5>2) Economic downturn</h5><p> The economy may undergo a sudden upheaval due to increasing geopolitical situations. In case of a meltdown in economy, you never know you may suddenly lose your job or may be asked to take a salary cut by your employers. If that happens then to maintain your monthly outgoings you need to have contingency plans and savings in place which will help you to tide over during your moment of financial crisis. .</p> <h5>3) Medical Emergency</h5><p> Even if the economy is stable and you are working, you could come across a medical emergency for yourself or for your near and dear ones. If you have planned for it via medi-claim insurance, then good, but you will still have overheads as medi-claims do not cover all the expenses and you still will have to shell out a substantial amount for that. If you do not have medi-claim insurance, then you will be incurring huge medical costs, which you will have to come up with on your own or will have to dig into whatever little savings that you may have and may end up having to borrow money landing yourself in a debt.</p> <h5>4) Education</h5><p> Higher education and college education fees are going through the roof. You may have always wanted to pursue higher education, but for whatever reasons may have had to postpone your plans. Parents too want the best education for their children. Whatever the case may be, you will need ample amount of monies to fund education. Education cost is forever growing, for example, the cost of engineering was rupees 10000/- per annum in the year 1988. Today the cost of can go up to a few lakhs per rupees per annum in an institution of repute. And if you have to get admission to private colleges, then the fees will be even higher. Considering that costs are climbing at a conservative estimate of 6% to 7% year on year, do your calculations now if you are planning for your child&rsquo;s future education. Find out the current costs and then use a calculator to do the calculation.</p> <h5>5) The power of compounding</h5><p> Compounding them say is the eighth wonder of the world. The early you start the more the effect of compounding gets amplified. Let us take a simple example of two people &ldquo;A&rdquo; and &ldquo;B&rdquo;. Person &ldquo;A&rdquo; is 20 years old and person &ldquo;B&rdquo; is 25 years old. Both start investing the same amount let us say rupees 10000 every year and that the money simply doubles every year for ease of calculation, you can do the math&rsquo;s using an interest percentage between 8 to 12 % depending on how conservative or aggressive your estimates are going to be. The target is to calculate the amount when both of them are 30 years of age. See the table below for calculations</p> <p> <table border='1'> <tr> <td>Age for 'A'</td> <td>Amount for 'A'</td> <td>Age for 'B'</td> <td>Amount for 'B'</td> </tr> <tr> <td>20</td> <td>10000</td> <td>25</td> <td>10000</td> </tr> <tr> <td>21</td> <td>20000</td> <td>26</td> <td>20000</td> </tr> <tr> <td>22</td> <td>40000</td> <td>27</td> <td>40000</td> </tr> <tr> <td>23</td> <td>80000</td> <td>28</td> <td>80000</td> </tr> <tr> <td>24</td> <td>160000</td> <td>29</td> <td>160000</td> </tr> <tr> <td>25</td> <td>320000</td> <td>30</td> <td>3,20,000</td> </tr> <tr> <td>26</td> <td>640000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>27</td> <td>1280000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>28</td> <td>2560000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>29</td> <td>5120000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td>30</td> <td>1,02,40,000</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> </table> </p> <p>As you can see from the above table Person &ldquo;A&rdquo; who has started five years earlier than person &ldquo;B&rdquo; makes more than rupees 1 crore till the age of 30, while person &ldquo;B&rdquo; makes just above 3 lakhs by the time he reaches 30 years of age. Hence you will see the power of compounding when you start early.</p> <h5>6) Security, retirement and a stress free life</h5><p> You will need the approximately the same amount of money after your retirement to sustain your current lifestyle. So you need to calculate your current monthly expenses and calculate the monies required per month after taking into account the average rate of inflation up to the age you think you may require money for. If you can invest early, you can make your hard earned money work for you in a way that the interest that you obtain from your investments becomes more or less equal to your monthly outflow. In such a situation, you would have a stress free life, and could take up jobs that give you more satisfaction (maybe lesser pay) or give you the chance to fulfill your dreams, without any help from anyone. So the next time you get a bonus or some extra cash from other sources, think before splurging it all, instead use the above mentioned reasons as guidelines to a healthy and wealthy living.</p>",
+            seo: [{
+                desc: "Realize the reasons for having the habit of savings for everybody. Why  should one start saving money immediately",
+                keywords: "saving, reasons for saving, saving habit, regular income, source of income, increase ife span, economic downturn, economic meltdown, salary cut, recession,  monthly outgo, college education, marriage expense,  compounding,  security, retirement, inflation"
+            }]
         }, {
             id: "housewife-salary",
             title: "Calculate the salary of a housewife",
-            content: "<p>When faced with a challenge like the like the title above, where does one begin? It&rsquo;s not easy an easy job to put numbers to something that is just not quantifiable. We will attempt to put vague estimate in rupee terms and try and arrive at a suitable monthly take home pay that a house wife should ideally be entitled to. Having said that, the estimates will vary from every family to family and the assumptions given below should be used only as guide lines and not to be taken as actual numbers. Now that the disclaimer is clear, let us endeavor to decode the mathematics to compute the salary of a house wife.</p> <p>Miss India Manushi Chillar was spot on when she said that mothers deserve the highest salary in the world. The jobs that an average stay at home mother or wife does are completely taken for granted by majority of the families, not only in India, but around the world. This makes it one of the most thankless jobs in the world. A house wife has to juggle multiple roles around the clock, and this she has to do it 365 days in a year, weekend holidays, falling sick, or time offs are not an option.</p> <p>Some of the most common roles and the approximate averages and conservative costs associated with them are provided below. But feel free to add any more that you may think deserve but not covered in this list and come up with your own computation.</p> <table border='1'> <tr> <th>Job</th> <th>Description</th> <th>Approximate cost per month in rupees</th> </tr> <tr> <td>Day Care Centre</td> <td>Taking care of two kids, throughout the day, keeping up with their hyper activity, smiling through their tantrums, cleaning the mess that they make, feeding them, and taking care of their personal hygiene.</td> <td>10000 - 12000</td> </tr> <tr> <td>Cook</td> <td>Cooking for the entire family, if you live with your parents then the count of heads increases accordingly. This includes, breakfast, lunch, snacks, dinner and any other tidbits.</td> <td>6000 - 8000</td> </tr> <tr> <td>Accountant</td> <td>Balancing the household expenses, and budgeting for a multitude of chores, like shopping of groceries, clothes, paying of household bills</td> <td>10000 – 15000</td> </tr> <tr> <td>Tuition Teacher</td> <td>Taking care of the school studies for the children, ensuring that they do their home- work and other activities on time and tutoring them on their school related studies for all the subjects.</td> <td>1200 – 3000</td> </tr> <tr> <td>Supervisor</td> <td>If you have hired help for basic chores, then supervising them to ensure that the services are up to the mark. This includes at times supervising the plumbing, electrical, furnishings etc. </td> <td>5000 – 8000</td> </tr> <tr> <td>Private Nurse</td> <td>Taking care of the family when the kids fall sick, or taking care of the elderly and tending to their ailments</td> <td>7000 – 10000</td> </tr> <tr> <td>Personal Assistant</td> <td>Whilst doing all of the above, it requires her to be adept at multitasking in terms of coordinating with various services and their stake holders, to ensure timely completion of work. Organizing family holidays and outings.</td> <td>8000 - 10000</td> </tr> <tr> <td colspan='2' style='text-align:right'><strong>Total</strong></td> <td><strong>47200*</strong></td> </tr> </table><p>*The total number of 47200 denotes the total of the minimum number in each column.</p> <p>If you would like to scrutinize more details, there are lots of websites which research and provide data on how much money a house wife should earn in a month.</p> <p>You really cannot put a price tag to the multiple roles that a house wife essays. The above are just a few major roles that come to mind, but there are countless other small tasks that need to be done on a daily basis. One should be thankful and gratuitous that if you have a spouse who is a housewife, then you really need to start paying her a salary or pocket money as per the above. So that she really does not have to seek anyone&rsquo;s permission on how to spend the money and can do so at her own discretion.</p>"
+            content: "<p>When faced with a challenge like the like the title above, where does one begin? It&rsquo;s not easy an easy job to put numbers to something that is just not quantifiable. We will attempt to put vague estimate in rupee terms and try and arrive at a suitable monthly take home pay that a house wife should ideally be entitled to. Having said that, the estimates will vary from every family to family and the assumptions given below should be used only as guide lines and not to be taken as actual numbers. Now that the disclaimer is clear, let us endeavor to decode the mathematics to compute the salary of a house wife.</p> <p>Miss India Manushi Chillar was spot on when she said that mothers deserve the highest salary in the world. The jobs that an average stay at home mother or wife does are completely taken for granted by majority of the families, not only in India, but around the world. This makes it one of the most thankless jobs in the world. A house wife has to juggle multiple roles around the clock, and this she has to do it 365 days in a year, weekend holidays, falling sick, or time offs are not an option.</p> <p>Some of the most common roles and the approximate averages and conservative costs associated with them are provided below. But feel free to add any more that you may think deserve but not covered in this list and come up with your own computation.</p> <table border='1'> <tr> <th>Job</th> <th>Description</th> <th>Approximate cost per month in rupees</th> </tr> <tr> <td>Day Care Centre</td> <td>Taking care of two kids, throughout the day, keeping up with their hyper activity, smiling through their tantrums, cleaning the mess that they make, feeding them, and taking care of their personal hygiene.</td> <td>10000 - 12000</td> </tr> <tr> <td>Cook</td> <td>Cooking for the entire family, if you live with your parents then the count of heads increases accordingly. This includes, breakfast, lunch, snacks, dinner and any other tidbits.</td> <td>6000 - 8000</td> </tr> <tr> <td>Accountant</td> <td>Balancing the household expenses, and budgeting for a multitude of chores, like shopping of groceries, clothes, paying of household bills</td> <td>10000 – 15000</td> </tr> <tr> <td>Tuition Teacher</td> <td>Taking care of the school studies for the children, ensuring that they do their home- work and other activities on time and tutoring them on their school related studies for all the subjects.</td> <td>1200 – 3000</td> </tr> <tr> <td>Supervisor</td> <td>If you have hired help for basic chores, then supervising them to ensure that the services are up to the mark. This includes at times supervising the plumbing, electrical, furnishings etc. </td> <td>5000 – 8000</td> </tr> <tr> <td>Private Nurse</td> <td>Taking care of the family when the kids fall sick, or taking care of the elderly and tending to their ailments</td> <td>7000 – 10000</td> </tr> <tr> <td>Personal Assistant</td> <td>Whilst doing all of the above, it requires her to be adept at multitasking in terms of coordinating with various services and their stake holders, to ensure timely completion of work. Organizing family holidays and outings.</td> <td>8000 - 10000</td> </tr> <tr> <td colspan='2' style='text-align:right'><strong>Total</strong></td> <td><strong>47200*</strong></td> </tr> </table><p>*The total number of 47200 denotes the total of the minimum number in each column.</p> <p>If you would like to scrutinize more details, there are lots of websites which research and provide data on how much money a house wife should earn in a month.</p> <p>You really cannot put a price tag to the multiple roles that a house wife essays. The above are just a few major roles that come to mind, but there are countless other small tasks that need to be done on a daily basis. One should be thankful and gratuitous that if you have a spouse who is a housewife, then you really need to start paying her a salary or pocket money as per the above. So that she really does not have to seek anyone&rsquo;s permission on how to spend the money and can do so at her own discretion.</p>",
+            seo: [{
+                desc: "A house wife works hard throughout the day and at the end of the day it is a thankless job, without any salary. Here is an attempt to calculate her salary for her day to day activities.",
+                keywords: "salary, housewife,  manushi chillar, highest salary, thankless job,  day care center, cook, chef, accountant, tuition teacher, mother, 	supervisor, nurse, personal assistant"
+            }]
         }, {
             id: "personal-expense-budget",
             title: "How to build a personal expense budget",
-            content: "<p>If you do not have an expense budget created, it&rsquo;s about time you made one. The benefits that you derive from it will be of great help. It will take some time to get used to making one as it requires discipline which is quite easy to break. But once you see the benefits, you will not be able to do without it. If you know how to use spreadsheets then this task becomes even easier, as you can automate it to some extent. If you are not tech savvy, we still recommend that you maintain a dairy or a note book and pen down your expenses</p> <p>The very first thing that you need to calculate is the net income that you receive monthly. This is the amount of money that you actually get in the hand, after deductions like tax, provident fund etc. Once you have figured out a number that you will get month on month, you use this number as your base for further calculations and for making of the budget.</p> <p>Now that you have a number to work with, the next thing to do is start keeping a tab on your daily expenditure. Jot down everything, no matter how small the amount or how big the amount. This way at the end of the month you will be able to figure out if you are over spending or are able to save money or are just at break even.</p> <p>After you have kept tab on the spending&rsquo;s for about a month, the next thing to do is to start categorizing the line items that you have written. A few examples of categories would be Travel, Food, Salary for maids, School fees (if you have children), and EMI&rsquo;s (if you carry a home loan). Also wrote down any premiums for insurance or medi-claim etc. that you may have to pay. Once you start categorizing from the second month, you can start fine tuning the categorization to suit your requirements. Further categories to the above examples can be, Travel for office, Travel for work, Food for home, Food for entertainment in hotels, or parties, or treats. Keep refining your spends and eventually you will have more clarity on what you are spending your hard earned monies on.</p> <p>After three months of meticulously keeping a tab on the spending&rsquo;s, you are now ready for an analysis of the spending&rsquo;s. You will now be able to figure out between, static spends and flexible spends. Examples of flexible spends can be petrol money, or taxi money which will vary from month to month. Static spends it will be very difficult to try and make cuts upon. Examples of static expenses are your electricity bill, rent, or maintenance bill, etc. Flexible spends can be controlled to a certain extent. You can also take help of your credit card monthly statements as they provide an item wise listing of your spending habits.</p> <p>Now that you have a good amount of clarity on your spending patterns, it&rsquo;s time to define goals. You can break up the goals into two parts, one is short term goals and the other is long term goals. Short term goals horizon can be as small as 6 months up to a year or max two years like, planning a vacation, or planning to buy a car, or to buy household electronic items, like refrigerator, television, washing machine etc. Long term goals can vary anywhere from 5 year onward, depending on your requirements. You could have a goal, to buy a house of your own, or to fund your children&rsquo;s education or marriage. Once you have a list of goals, you need to prioritize them. There are goals that are a must have, and there are goals that are nice to have. Give priority to the former. Remember goals can be flexible too and can be changed or interchanged. Your budget which you have now started tracking will help you in your goal setting. If you find that you are overspending, it would be a good idea to reduce your credit card spending&rsquo;s.</p> <p>The next step is to plan, now that you have your goals and spending metrics in place. You will need to sit back and make adjustments. If you are someone who watches movies in a theatre, then chances are you are also eating outside and traveling in a cab, which add to the expenses. It just might be a good idea to consider, watching a movie at home, which will help you curtail your expenses. This is one of the example and they will vary from individual to individual. Do a thorough analysis of where you can cut costs and then take a firm decision to stick to it.</p> <p>You will now be in a better position to take calls, as to where you need to invest your savings, and towards which goal you will apportion how much money based on the priority and the short term or long term goal. As we mentioned earlier, if after adjusting the variable expenses you still need to save more money, then it&rsquo;s time to take a hard look at your static expenses and see if you can cut some corners somewhere.</p> <p>Now that you have created an expense budget and have learned to maintain it, analyze it and track it regularly, one last thing remains, and that is to ensure, to keep reviewing your expenses budget regularly. While a few components of your budget may be non- negotiable, you should always review, your company may give you a raise, or you may get an unexpected bonus, or your short term goal may have been accomplished and you now need to plan for a new short term goal. Reasons will come and go, but keep reviewing and analyzing continuously.</p>"
+            content: "<p>If you do not have an expense budget created, it&rsquo;s about time you made one. The benefits that you derive from it will be of great help. It will take some time to get used to making one as it requires discipline which is quite easy to break. But once you see the benefits, you will not be able to do without it. If you know how to use spreadsheets then this task becomes even easier, as you can automate it to some extent. If you are not tech savvy, we still recommend that you maintain a dairy or a note book and pen down your expenses</p> <p>The very first thing that you need to calculate is the net income that you receive monthly. This is the amount of money that you actually get in the hand, after deductions like tax, provident fund etc. Once you have figured out a number that you will get month on month, you use this number as your base for further calculations and for making of the budget.</p> <p>Now that you have a number to work with, the next thing to do is start keeping a tab on your daily expenditure. Jot down everything, no matter how small the amount or how big the amount. This way at the end of the month you will be able to figure out if you are over spending or are able to save money or are just at break even.</p> <p>After you have kept tab on the spending&rsquo;s for about a month, the next thing to do is to start categorizing the line items that you have written. A few examples of categories would be Travel, Food, Salary for maids, School fees (if you have children), and EMI&rsquo;s (if you carry a home loan). Also wrote down any premiums for insurance or medi-claim etc. that you may have to pay. Once you start categorizing from the second month, you can start fine tuning the categorization to suit your requirements. Further categories to the above examples can be, Travel for office, Travel for work, Food for home, Food for entertainment in hotels, or parties, or treats. Keep refining your spends and eventually you will have more clarity on what you are spending your hard earned monies on.</p> <p>After three months of meticulously keeping a tab on the spending&rsquo;s, you are now ready for an analysis of the spending&rsquo;s. You will now be able to figure out between, static spends and flexible spends. Examples of flexible spends can be petrol money, or taxi money which will vary from month to month. Static spends it will be very difficult to try and make cuts upon. Examples of static expenses are your electricity bill, rent, or maintenance bill, etc. Flexible spends can be controlled to a certain extent. You can also take help of your credit card monthly statements as they provide an item wise listing of your spending habits.</p> <p>Now that you have a good amount of clarity on your spending patterns, it&rsquo;s time to define goals. You can break up the goals into two parts, one is short term goals and the other is long term goals. Short term goals horizon can be as small as 6 months up to a year or max two years like, planning a vacation, or planning to buy a car, or to buy household electronic items, like refrigerator, television, washing machine etc. Long term goals can vary anywhere from 5 year onward, depending on your requirements. You could have a goal, to buy a house of your own, or to fund your children&rsquo;s education or marriage. Once you have a list of goals, you need to prioritize them. There are goals that are a must have, and there are goals that are nice to have. Give priority to the former. Remember goals can be flexible too and can be changed or interchanged. Your budget which you have now started tracking will help you in your goal setting. If you find that you are overspending, it would be a good idea to reduce your credit card spending&rsquo;s.</p> <p>The next step is to plan, now that you have your goals and spending metrics in place. You will need to sit back and make adjustments. If you are someone who watches movies in a theatre, then chances are you are also eating outside and traveling in a cab, which add to the expenses. It just might be a good idea to consider, watching a movie at home, which will help you curtail your expenses. This is one of the example and they will vary from individual to individual. Do a thorough analysis of where you can cut costs and then take a firm decision to stick to it.</p> <p>You will now be in a better position to take calls, as to where you need to invest your savings, and towards which goal you will apportion how much money based on the priority and the short term or long term goal. As we mentioned earlier, if after adjusting the variable expenses you still need to save more money, then it&rsquo;s time to take a hard look at your static expenses and see if you can cut some corners somewhere.</p> <p>Now that you have created an expense budget and have learned to maintain it, analyze it and track it regularly, one last thing remains, and that is to ensure, to keep reviewing your expenses budget regularly. While a few components of your budget may be non- negotiable, you should always review, your company may give you a raise, or you may get an unexpected bonus, or your short term goal may have been accomplished and you now need to plan for a new short term goal. Reasons will come and go, but keep reviewing and analyzing continuously.</p>",
+            seo: [{
+                desc: "Health is wealth, but how do you arrive or calculate your own custom personal expenditure budget?",
+                keywords: "wealth, budget, expense, discipline, excel sheet, automate,  net income, deductions, over spending, amount, monthly spend, static spends, maintenance bill,  education, marriage expense, track budget."
+            }]
         }, {
             id: "financial-goals",
             title: "How to set financial goals",
-            content: "<p>What are financial goals and how does one go about achieving them? That is a question that most of us have asked at some point in our life. Having a financial goal, will give you a sense of purpose and once you have created it, it will also give you a purpose and a meaning of fulfilment. So without wasting any more time let us try and understand the steps to setting a financial goal. Remember planning is the key and it has to be as detailed as possible. First of all you need to assess the ground reality and calculate how much your current net worth is. This can easily be done, by adding up all the monies that you have in your banks, or mutual funds, or equities or any other savings instruments. You then need to figure out your current debts in form of any loans, or credit card outstanding that you may have. You need to subtract your debts from your savings to arrive at your net worth. Now that you know what your net worth is, the next step is to have a budget for your daily expenses which needs to be monitored regularly, so that you know what savings you have at the end of every month. Before starting out on goal setting, as a general rule, ensure that you have no outstanding debts. You need to have a contingency or emergency fund in place. As a thumb rule set up an emergency fund first, this is usually around 3 to 6 months of your expenses and will give you the comfort in case of any medical emergency or job loss or any other disaster that may occur. If the outstanding on loans or credit card payment are high, then it is recommended that you take care of this first and then move towards a contingency fund. If you have multiple outstanding debts then it is suggested that you evaluate the interest component on each one and calculate which has the highest interest rate and then pay the highest interest rate debt off first, as against an outstanding where the base amount may be higher, but interest is lower. Paying off your outstanding debts should be one of your short term financial goals. The next step is now to jot down your goals, it can be as simple as noting it down on paper or a simple excel spreadsheet. Recommend the latter; as it is easier to put in formulas for calculations. You can start of by dividing the goals into three sections, namely, longer duration goals with a horizon of more than 10 years, mid &ndash; term goals with a view of 5 years to 10 years and short term goals having a duration of anywhere between 1 year to 5 years. You can tweak the numbers to suit your requirements. Once you have identified the range, it is time to come up with specific goals to go under each range. Let us look at some examples for each range to give you an idea to come up with your own set of goals. </p><h5>Short term goals:</h5> <p>If you have always wanted to have a vacation in a foreign country, or you want to furnish your apartment, or plan a treat for your near and dear ones at a fancy restaurant on special occasions.</p><h5> Medium term goals:</h5><p> You may want to purchase a car at the end of give years, or renovate your dwellings completely, you will need to save a substantial amount of money for these activities. </p><h5>Long term goals:</h5><p> These are generally savings for retirement or higher education for your children, or their marriage, you may want to retire early etc. Now that you have a draft of your goals, the next step is to prioritize. Figure out which goals you want to give priority and apportion a higher amount from your savings towards the same. Analyze your cash flow and other outgo like insurance premiums. Do not over insure as the extra money can be allocated towards a goal. Have just enough insurance to cover contingencies. Try and create multiple streams of revenue. Having alternate streams of incomes, is an important financial goal. Adjust your lifestyle so that you are spending less than what you are earning. As a thumb rule try the 30 / 30 / 40 combination for savings from your income. That is 30% of your income savings to be spent for your day to day expenses. 30 % of your income should be allotted for home loans, or other outstanding debts, and 40 % in investments in the form of mutual funds, equities, fixed deposits etc. These percentage numbers can be tweaked to suit your requirements. Over a period of time once your loans and outstanding are paid off, then the 30 % which was allocated towards outstanding, should be reallocated. 10% of the 30% to be added to your day to day expenses which will take it to 40% and 20% of the 30% towards investment which will take it to 60% in investments. It is also advisable to take help from someone who is an expert to aid you in your financial planning and goals. There are a lot of people out there who call themselves financial experts, so do your research, check up on their credentials and past track record and choose wisely. With the above guidance you will have taken your first step towards financial planning for yourself, which in the long term will be beneficial to tackle any obstacles that may arise.</p>"
+            content: "<p>What are financial goals and how does one go about achieving them? That is a question that most of us have asked at some point in our life. Having a financial goal, will give you a sense of purpose and once you have created it, it will also give you a purpose and a meaning of fulfilment. So without wasting any more time let us try and understand the steps to setting a financial goal. Remember planning is the key and it has to be as detailed as possible. First of all you need to assess the ground reality and calculate how much your current net worth is. This can easily be done, by adding up all the monies that you have in your banks, or mutual funds, or equities or any other savings instruments. You then need to figure out your current debts in form of any loans, or credit card outstanding that you may have. You need to subtract your debts from your savings to arrive at your net worth. Now that you know what your net worth is, the next step is to have a budget for your daily expenses which needs to be monitored regularly, so that you know what savings you have at the end of every month. Before starting out on goal setting, as a general rule, ensure that you have no outstanding debts. You need to have a contingency or emergency fund in place. As a thumb rule set up an emergency fund first, this is usually around 3 to 6 months of your expenses and will give you the comfort in case of any medical emergency or job loss or any other disaster that may occur. If the outstanding on loans or credit card payment are high, then it is recommended that you take care of this first and then move towards a contingency fund. If you have multiple outstanding debts then it is suggested that you evaluate the interest component on each one and calculate which has the highest interest rate and then pay the highest interest rate debt off first, as against an outstanding where the base amount may be higher, but interest is lower. Paying off your outstanding debts should be one of your short term financial goals. The next step is now to jot down your goals, it can be as simple as noting it down on paper or a simple excel spreadsheet. Recommend the latter; as it is easier to put in formulas for calculations. You can start of by dividing the goals into three sections, namely, longer duration goals with a horizon of more than 10 years, mid &ndash; term goals with a view of 5 years to 10 years and short term goals having a duration of anywhere between 1 year to 5 years. You can tweak the numbers to suit your requirements. Once you have identified the range, it is time to come up with specific goals to go under each range. Let us look at some examples for each range to give you an idea to come up with your own set of goals. </p><h5>Short term goals:</h5> <p>If you have always wanted to have a vacation in a foreign country, or you want to furnish your apartment, or plan a treat for your near and dear ones at a fancy restaurant on special occasions.</p><h5> Medium term goals:</h5><p> You may want to purchase a car at the end of give years, or renovate your dwellings completely, you will need to save a substantial amount of money for these activities. </p><h5>Long term goals:</h5><p> These are generally savings for retirement or higher education for your children, or their marriage, you may want to retire early etc. Now that you have a draft of your goals, the next step is to prioritize. Figure out which goals you want to give priority and apportion a higher amount from your savings towards the same. Analyze your cash flow and other outgo like insurance premiums. Do not over insure as the extra money can be allocated towards a goal. Have just enough insurance to cover contingencies. Try and create multiple streams of revenue. Having alternate streams of incomes, is an important financial goal. Adjust your lifestyle so that you are spending less than what you are earning. As a thumb rule try the 30 / 30 / 40 combination for savings from your income. That is 30% of your income savings to be spent for your day to day expenses. 30 % of your income should be allotted for home loans, or other outstanding debts, and 40 % in investments in the form of mutual funds, equities, fixed deposits etc. These percentage numbers can be tweaked to suit your requirements. Over a period of time once your loans and outstanding are paid off, then the 30 % which was allocated towards outstanding, should be reallocated. 10% of the 30% to be added to your day to day expenses which will take it to 40% and 20% of the 30% towards investment which will take it to 60% in investments. It is also advisable to take help from someone who is an expert to aid you in your financial planning and goals. There are a lot of people out there who call themselves financial experts, so do your research, check up on their credentials and past track record and choose wisely. With the above guidance you will have taken your first step towards financial planning for yourself, which in the long term will be beneficial to tackle any obstacles that may arise.</p>",
+            seo: [{
+                desc: "Steps to set financial goals that one must adhere to so that you are on your way to being financially independent.",
+                keywords: "financial planning, financial expenditure, buying a house, loan, liabilities, existing liabilities, financial goal, net worth, planning, savings, budget, daily expense, emergency fund, contingency fund, outstanding debts, long term goals, medium term goals, short term goals, cash flow, revenue streams, alternate income, financial expert."
+            }]
         }, {
             id: "retire-early",
             title: "How to retire early from a job",
-            content: "<p>In India the age of retirement in pegged at 58 years for most companies, some companies allow their employees an extension up to 2 years, taking the age of retirement to 60 years. All of us at some point of time have had the desire to retire early and have secretly wished to ourselves that one day we will quit from the rat race, but these just remain pipe dreams for majority of the people. There are however a minority, who retire early. How do they do it? It is one of the most difficult tasks to achieve, but not impossible. You need to have a lot of grit and determination and lots of self-control to make it happen. The first thing to do is introspect and figure out an age that you may want to retire at, depending up on what your current age is. If you are young and have just started working then the goal to retire early could be at 45 years of age. The older you are the more aggressive approach is what you will have to consider. Why would one consider retiring early? The obvious answer is the benefits that one can derive. When you retire early, you have ample amount of time at your disposal. You will save your commute time to work, and the work time itself which is a bulk of the time. You can pursue hobbies and interests that you may have had when you were younger, but have had to forgo, due to the responsibilities of earning for you and your family. You can travel, to different places, without having to apply for leaves and waiting for approvals. You can start a second career which is your passion. You can opt for part time work which is productive and fulfilling, or you can take up freelancing to supplement your income after retirement. After you retire early, some of the main challenges that you may have to face are, not having enough funds to live on as per your existing lifestyle and catering to any emergencies. You need to build this in while you do your retirement planning. You may also want to consider your life span as an approximation. If you do retire at 45; which is a number that we are going to use in this article. Then your life expectancy may be 80, 85, and 90. You need to account for your longevity. Let us take a sample and theoretical calculation. Please note you will have to do research on the current status of the numbers and adjust the same accordingly to come up with your own set of numbers. The example below is hypothetical and numbers are an approximate calculation. Let us say person &ldquo;A&rdquo; earns around 1 lakh rupees a month. His necessary expenses per month are 30% which is Rs/- 30,000 per month. So for person &ldquo;A&rdquo; to retire he must be able to produce Rs/- 30000 per month. At a conservative estimate of 7 % interest rate per annum, he will currently require a corpus of Rs/- 52 lakhs to produce Rs 30,000 per month equivalent of today, twenty years from now.  Twenty years from now if you consider inflation at 8% per annum, the corpus required works out to 1.7 crores. This works out to 8.5 lakhs per annum for the next twenty years or approximately investments of Rs 71000 per month. It is indeed a mammoth task to set aside Rs 71000 per month for the average Indian.  So what are the strategies that one could apply in order to achieve this number. Let us know put into place a macro strategy, you can fine tune it suit your retirement goals. </p><h5>Make your hard earned money work for you</h5><p> The route to making your money work for you is by investing it and using the power of compounding work in your favor. While you may allocate some funds towards safe instruments like fixed deposit and government bonds. It is recommended to invest into equity based mutual funds. If you are not financially savvy then engage the services of an expert to guide you. You could invest in aggressive or conservative mutual funds or both, depending on your risk appetite. Even if you do hire an expert, ensure that you monitor and track your investments regularly on your own. </p><h5>Alternative careers to supplement existing to fund early retirement</h5><p> While having a primary job, look out for opportunities in part time career or consultancy to add to the monthly income. This way you will be able to save more and add to the number of Rs 71000/- . </p><h5>Modification to existing lifestyle</h5></p> Discipline is the key, you will have to make major changes to your lifestyle and it will take all your willpower and self-control to ensure that you maintain the necessary only lifestyle. You can categorize your expenses into somethings that are absolutely necessary, somethings which provide you comfort and lastly things which are purely luxury. Once you identify the above it becomes easy to put a number to each of the categories. This will help you in overspending. Build a corpus first for the necessary things and then for the other categories. You can also consider moving cities and relocating to places where the spending is relatively less and more affordable. Cutting out excess spending, and making these small additions will create a huge impact I the long run. The only challenges one must be aware of are the bad habits of needless spending and one&rsquo;s inability to get an alternate revenue stream. These could act as deterrents to limit your ability to attain early retirement. Create a roadmap and stick to it, you may modify it as you go along, but it should not compromise your retirement goals. The goal should be non-negotiable. Once you have a roadmap in place and have made a resolve to stick to it, you will be on your way to financial freedom, once you attain financial freedom you will be on auto pilot toward an early retirement.</p>"
+            content: "<p>In India the age of retirement in pegged at 58 years for most companies, some companies allow their employees an extension up to 2 years, taking the age of retirement to 60 years. All of us at some point of time have had the desire to retire early and have secretly wished to ourselves that one day we will quit from the rat race, but these just remain pipe dreams for majority of the people. There are however a minority, who retire early. How do they do it? It is one of the most difficult tasks to achieve, but not impossible. You need to have a lot of grit and determination and lots of self-control to make it happen. The first thing to do is introspect and figure out an age that you may want to retire at, depending up on what your current age is. If you are young and have just started working then the goal to retire early could be at 45 years of age. The older you are the more aggressive approach is what you will have to consider. Why would one consider retiring early? The obvious answer is the benefits that one can derive. When you retire early, you have ample amount of time at your disposal. You will save your commute time to work, and the work time itself which is a bulk of the time. You can pursue hobbies and interests that you may have had when you were younger, but have had to forgo, due to the responsibilities of earning for you and your family. You can travel, to different places, without having to apply for leaves and waiting for approvals. You can start a second career which is your passion. You can opt for part time work which is productive and fulfilling, or you can take up freelancing to supplement your income after retirement. After you retire early, some of the main challenges that you may have to face are, not having enough funds to live on as per your existing lifestyle and catering to any emergencies. You need to build this in while you do your retirement planning. You may also want to consider your life span as an approximation. If you do retire at 45; which is a number that we are going to use in this article. Then your life expectancy may be 80, 85, and 90. You need to account for your longevity. Let us take a sample and theoretical calculation. Please note you will have to do research on the current status of the numbers and adjust the same accordingly to come up with your own set of numbers. The example below is hypothetical and numbers are an approximate calculation. Let us say person &ldquo;A&rdquo; earns around 1 lakh rupees a month. His necessary expenses per month are 30% which is Rs/- 30,000 per month. So for person &ldquo;A&rdquo; to retire he must be able to produce Rs/- 30000 per month. At a conservative estimate of 7 % interest rate per annum, he will currently require a corpus of Rs/- 52 lakhs to produce Rs 30,000 per month equivalent of today, twenty years from now.  Twenty years from now if you consider inflation at 8% per annum, the corpus required works out to 1.7 crores. This works out to 8.5 lakhs per annum for the next twenty years or approximately investments of Rs 71000 per month. It is indeed a mammoth task to set aside Rs 71000 per month for the average Indian.  So what are the strategies that one could apply in order to achieve this number. Let us know put into place a macro strategy, you can fine tune it suit your retirement goals. </p><h5>Make your hard earned money work for you</h5><p> The route to making your money work for you is by investing it and using the power of compounding work in your favor. While you may allocate some funds towards safe instruments like fixed deposit and government bonds. It is recommended to invest into equity based mutual funds. If you are not financially savvy then engage the services of an expert to guide you. You could invest in aggressive or conservative mutual funds or both, depending on your risk appetite. Even if you do hire an expert, ensure that you monitor and track your investments regularly on your own. </p><h5>Alternative careers to supplement existing to fund early retirement</h5><p> While having a primary job, look out for opportunities in part time career or consultancy to add to the monthly income. This way you will be able to save more and add to the number of Rs 71000/- . </p><h5>Modification to existing lifestyle</h5></p> Discipline is the key, you will have to make major changes to your lifestyle and it will take all your willpower and self-control to ensure that you maintain the necessary only lifestyle. You can categorize your expenses into somethings that are absolutely necessary, somethings which provide you comfort and lastly things which are purely luxury. Once you identify the above it becomes easy to put a number to each of the categories. This will help you in overspending. Build a corpus first for the necessary things and then for the other categories. You can also consider moving cities and relocating to places where the spending is relatively less and more affordable. Cutting out excess spending, and making these small additions will create a huge impact I the long run. The only challenges one must be aware of are the bad habits of needless spending and one&rsquo;s inability to get an alternate revenue stream. These could act as deterrents to limit your ability to attain early retirement. Create a roadmap and stick to it, you may modify it as you go along, but it should not compromise your retirement goals. The goal should be non-negotiable. Once you have a roadmap in place and have made a resolve to stick to it, you will be on your way to financial freedom, once you attain financial freedom you will be on auto pilot toward an early retirement.</p>",
+            seo: [{
+                desc: "Advantages of retiring early and achieve financial independence to pursue your dreams and passion.",
+                keywords: "financial freedom, financial independence, retirement planning, retirement, dreams, passion, rat race, retirement age, retire early, pursue hobbies, funds, retirement funds, corpus, life expectancy, investing, compounding, power of compounding, alternative careers, part time jobs, retirement goals, early retirement."
+            }]
         }, {
             id: "need-credit-card",
             title: "Do you really need a credit card",
-            content: "<p>Let us begin by saying that one should try to avoid getting into a debt, no matter how small or large and especially credit card debts. Credit card debts are the dangerous and can easily spiral out of control if you do not know how to wield your monies wisely. Let us try and analyze, whether we really need to have a credit card in today&rsquo;s digital era. If you do not have a credit card, then it is one less bill to track and pay at the end of every month. It is a must for one to pay off by the due date. If you pay your dues after the due date, the credit card institutions will levy a huge late fee. If you do not pay or pay only the minimum amount due then the interest component charged is on the entire amount and this can range between a minimum of 18% per annum to as high as 36% per annum. This will go on compounding and before you know it, the amount will be so high that you may actually have to apply for a loan to pay off the credit card dues, or declare bankruptcy. Having credit cards, lulls you into a false sense of security and you tend to lose control when you are doing the actual spends. If you are someone who has a monthly budget chalked out, then having a credit card can directly hamper the budget and make you lose control. It&rsquo;s easy to be tempted when there is a sale going on at a mall or if you are just window shopping. Alternatively if you tend to pay cash, the mind will be forced to think about the money that you need to pay from your wallet in physical form and this may help to curb your instinct of buying at the spur of the moment. At times small but multiple purchases throughout the month may add up and put a big dent in your budget. You may be at a restaurant with friends or family and may be tempted to pay the entire bill, you may purchase a souvenir or some fancy small ticket item for the house which you may not really need, or buy something just because it is the latest fashion to do so. If you are not tech savvy, you could fall prey to the numerous credit card scams both online and offline, where scammers, will skim your credit card details and go on a purchasing spree and you will end up footing the bill. It is a myth that you need credit card spending to generate a good credit score. While this may be true to a certain extent, this will only happen if you pay of all your dues on time and in full before the due date. There are other options to creating a good credit score like paying your EMI&rsquo;s of your home loans on time and paying your utility bills like telephone and electricity on time. This too will help you to generate a good credit rating. Another myth is that the rewards that I get from credit card purchases. This again will hold good if you pay off your bills on time, if however you miss a payment then the late fees and interest alone will wipe out any gains that you may receive against the rewards. Also check for any annual fees, which may outweigh the rewards gains. Banks prefer to provide credit cards to almost everyone who is in employment. They make their monies on the people who are defaulters who are a majority. To be debt free is to be free from any tensions. If you do not have a credit card, you will be unable to fall into the credit card trap and be free from any worries, as you will be actually spending on what you need rather than what you want. The difference between need and want is huge, while a need is a must have and one cannot do without it, a want is something that is nice to have but one can do without it. If you arrive at a decision to get rid of your existing card or do without one, then one should plan ahead for any emergencies or contingencies that may arise due to a job loss, or medical situation or any unforeseen circumstances. In such case one must build an emergency fund consisting of minimum of three months to six months to one year in expenses, based on your needs. Credit cards however have their advantages too; you get a credit period of up to 45 days from the date of making a purchase, which means you have time to roll your money. Credit card companies&rsquo; give you cash back offers, wherein a certain amount of cash is given back to you based on the purchase and it differs with every vendor. If you used wisely, you can benefit from the reward points that you get on credit cards. These can be used to redeem gifts or gift vouchers. In case you are making a bulk payment it can be converted to flexi payment in the form of EMI. So if you pay off your complete dues on or before the due date, then credit cards are a hand tool to have. Having said that, debit cards can be substituted in lieu of credit cards. They help you to control your spends as you need to have the amount of money in your account before making the spend. Only in extenuating circumstances where it warrants the use of a credit card for online booking or other avenues where credit card is the only option, one must use a credit card.</p>"
+            content: "<p>Let us begin by saying that one should try to avoid getting into a debt, no matter how small or large and especially credit card debts. Credit card debts are the dangerous and can easily spiral out of control if you do not know how to wield your monies wisely.</p><p> Let us try and analyze, whether we really need to have a credit card in today&rsquo;s digital era. </p><p>If you do not have a credit card, then it is one less bill to track and pay at the end of every month. It is a must for one to pay off by the due date. If you pay your dues after the due date, the credit card institutions will levy a huge late fee. If you do not pay or pay only the minimum amount due then the interest component charged is on the entire amount and this can range between a minimum of 18% per annum to as high as 36% per annum. This will go on compounding and before you know it, the amount will be so high that you may actually have to apply for a loan to pay off the credit card dues, or declare bankruptcy.</p><p> Having credit cards, lulls you into a false sense of security and you tend to lose control when you are doing the actual spends. If you are someone who has a monthly budget chalked out, then having a credit card can directly hamper the budget and make you lose control. It&rsquo;s easy to be tempted when there is a sale going on at a mall or if you are just window shopping. Alternatively if you tend to pay cash, the mind will be forced to think about the money that you need to pay from your wallet in physical form and this may help to curb your instinct of buying at the spur of the moment. At times small but multiple purchases throughout the month may add up and put a big dent in your budget. You may be at a restaurant with friends or family and may be tempted to pay the entire bill, you may purchase a souvenir or some fancy small ticket item for the house which you may not really need, or buy something just because it is the latest fashion to do so.</p><p> If you are not tech savvy, you could fall prey to the numerous credit card scams both online and offline, where scammers, will skim your credit card details and go on a purchasing spree and you will end up footing the bill. It is a myth that you need credit card spending to generate a good credit score. While this may be true to a certain extent, this will only happen if you pay of all your dues on time and in full before the due date. There are other options to creating a good credit score like paying your EMI&rsquo;s of your home loans on time and paying your utility bills like telephone and electricity on time. This too will help you to generate a good credit rating.</p><p> Another myth is that the rewards that I get from credit card purchases. This again will hold good if you pay off your bills on time, if however you miss a payment then the late fees and interest alone will wipe out any gains that you may receive against the rewards. Also check for any annual fees, which may outweigh the rewards gains.</p><p> Banks prefer to provide credit cards to almost everyone who is in employment. They make their monies on the people who are defaulters who are a majority.</p><p> To be debt free is to be free from any tensions. If you do not have a credit card, you will be unable to fall into the credit card trap and be free from any worries, as you will be actually spending on what you need rather than what you want. The difference between need and want is huge, while a need is a must have and one cannot do without it, a want is something that is nice to have but one can do without it.</p><p> If you arrive at a decision to get rid of your existing card or do without one, then one should plan ahead for any emergencies or contingencies that may arise due to a job loss, or medical situation or any unforeseen circumstances. In such case one must build an emergency fund consisting of minimum of three months to six months to one year in expenses, based on your needs.</p><p> Credit cards however have their advantages too; you get a credit period of up to 45 days from the date of making a purchase, which means you have time to roll your money. Credit card companies&rsquo; give you cash back offers, wherein a certain amount of cash is given back to you based on the purchase and it differs with every vendor. If you used wisely, you can benefit from the reward points that you get on credit cards. These can be used to redeem gifts or gift vouchers. In case you are making a bulk payment it can be converted to flexi payment in the form of EMI. So if you pay off your complete dues on or before the due date, then credit cards are a hand tool to have.</p><p> Having said that, debit cards can be substituted in lieu of credit cards. They help you to control your spends as you need to have the amount of money in your account before making the spend. Only in extenuating circumstances where it warrants the use of a credit card for online booking or other avenues where credit card is the only option, one must use a credit card.</p>",
+            seo: [{
+                desc: "Analyze the reasons if you really do require a credit card, work out the pros and the cons and then decide if it’s worth having a credit card",
+                keywords: "debt, credit, credit card, debit card, digital era, due date, late fee, per annum, interest, dues, bankruptcy, window shopping, credit card scams, credit score, EMI, loans, annual fees, default, defaulters."
+            }]
         }, {
             id: "cheque-dishonoured",
             title: "7 reasons why your cheque is dishonored",
-            content: "<p>First of all, let us define what it means when a cheque is dishonored. If person A, issues a cheque to person B and for whatever reason, the bank does not pay the amount to person B, the cheque is considered to be dishonored.</p> <p>The bank will also issue a memo to person A stating the reason for the dishonor. Person A can correct the details as per the memo issued by the bank and then re-submit the cheque within three months from the date it was issued.</p><p> Person A also needs to pay the amount to person B within a period of thirty days from the date of issue, failing which person B can initiate legal proceedings against person B. Section 138 of the negotiable instruments Act, 1881 will be applicable for cases of dishonor of cheque. Violation of this will carry a penalty or a prison sentence up to two years or both.</p> <p>Let us know understand seven reasons as to why the bank may dishonor your cheque.</p> <h5>Bank balance insufficient:</h5><p> This is by far the most common reason for dishonor of cheque. You may inadvertently issue a cheque for the 1st of the month, but for some reason if your salary is delayed then your bank will have insufficient funds due to which the cheque will get dishonored. Always ensure that you have sufficient bank balance before issuing any cheque.</p><h5> Missing out on writing the payee name: </h5><p>While writing cheque in a hurry, you may unintentionally miss out on writing the name of the person you are issuing the cheque to. At times you may write the amount in figures, but forget to write it in words, or the amount in words will not match the amount written in numbers, the banks will then reject the cheque in such instances.</p><h5> Modification of cheque:</h5><p> Once you have written all the details on the cheque, no modification is allowed, you cannot do a re-correction anywhere on the details, or cannot strike out a word and add another one in its place. Even if you overwrite with your pen on a single letter or a digit the cheque will be dishonored. So take your time and have the details before hand with you.</p><h5> Issue date expired:</h5><p> The validity of a cheque is for three months from the date of issue. If for any reason you submit the cheque in the bank after the validity period, the bank will reject the cheque. Always submit the cheque well before the date of expiry.</p><h5> Signature mismatch:</h5><p> This is again one of the collective causes for cheque dishonor. If the signature that you have on the cheque does not match with the signature in the bank records then banks will dishonor the cheque. This could happen for a number of reasons, your signature may have changed over the years and you have forgotten the specimen signature that you had made at the time of opening the account. In such case, resubmit your current signature to the bank for the records to be updated.</p><h5> Stop Payment:</h5><p> This could happen due to a variety of purposes. The person issuing the cheque could have issued a stop payment mandate if there is a loss in the form of theft or cheque is misplaced. The account may have been frozen due to order by government or by the court of law. If for some reason the account is closed by the person issuing the cheque and the cheque is deposited afterward. The bank will decline from making the payment in such cases.</p><h5> Dormant account:</h5><p> Banks can dishonor the cheque issued, if the account is lying dormant or has been inoperative for some time. Now that you know the main causes, ensure that you take care of the above points while writing out a cheque to someone or while depositing a cheque, so that the amount gets cleared seamlessly.</p>"
+            content: "<p>First of all, let us define what it means when a cheque is dishonored. If person A, issues a cheque to person B and for whatever reason, the bank does not pay the amount to person B, the cheque is considered to be dishonored.</p> <p>The bank will also issue a memo to person A stating the reason for the dishonor. Person A can correct the details as per the memo issued by the bank and then re-submit the cheque within three months from the date it was issued.</p><p> Person A also needs to pay the amount to person B within a period of thirty days from the date of issue, failing which person B can initiate legal proceedings against person B. Section 138 of the negotiable instruments Act, 1881 will be applicable for cases of dishonor of cheque. Violation of this will carry a penalty or a prison sentence up to two years or both.</p> <p>Let us know understand seven reasons as to why the bank may dishonor your cheque.</p> <h5>Bank balance insufficient:</h5><p> This is by far the most common reason for dishonor of cheque. You may inadvertently issue a cheque for the 1st of the month, but for some reason if your salary is delayed then your bank will have insufficient funds due to which the cheque will get dishonored. Always ensure that you have sufficient bank balance before issuing any cheque.</p><h5> Missing out on writing the payee name: </h5><p>While writing cheque in a hurry, you may unintentionally miss out on writing the name of the person you are issuing the cheque to. At times you may write the amount in figures, but forget to write it in words, or the amount in words will not match the amount written in numbers, the banks will then reject the cheque in such instances.</p><h5> Modification of cheque:</h5><p> Once you have written all the details on the cheque, no modification is allowed, you cannot do a re-correction anywhere on the details, or cannot strike out a word and add another one in its place. Even if you overwrite with your pen on a single letter or a digit the cheque will be dishonored. So take your time and have the details before hand with you.</p><h5> Issue date expired:</h5><p> The validity of a cheque is for three months from the date of issue. If for any reason you submit the cheque in the bank after the validity period, the bank will reject the cheque. Always submit the cheque well before the date of expiry.</p><h5> Signature mismatch:</h5><p> This is again one of the collective causes for cheque dishonor. If the signature that you have on the cheque does not match with the signature in the bank records then banks will dishonor the cheque. This could happen for a number of reasons, your signature may have changed over the years and you have forgotten the specimen signature that you had made at the time of opening the account. In such case, resubmit your current signature to the bank for the records to be updated.</p><h5> Stop Payment:</h5><p> This could happen due to a variety of purposes. The person issuing the cheque could have issued a stop payment mandate if there is a loss in the form of theft or cheque is misplaced. The account may have been frozen due to order by government or by the court of law. If for some reason the account is closed by the person issuing the cheque and the cheque is deposited afterward. The bank will decline from making the payment in such cases.</p><h5> Dormant account:</h5><p> Banks can dishonor the cheque issued, if the account is lying dormant or has been inoperative for some time. Now that you know the main causes, ensure that you take care of the above points while writing out a cheque to someone or while depositing a cheque, so that the amount gets cleared seamlessly.</p>",
+            seo: [{
+                desc: "Know the important reasons why banks will reject the cheque that you have deposited and take steps to avoid the same.",
+                keywords: "cheque, check, dishonor, dishonored,  cheque deposit, memo, section 138, instruments act, bank balance, payee name, modify cheque, over writing, date of issue, signature mismatch, wrong signature, stop payment, dormant account ."
+            }]
         }, {
             id: "rejection-home-loan",
             title: "Reasons for rejection of home loan",
-            content: "<p>The moment that you have been waiting is finally upon you. After painstakingly hunting around, you have identified the perfect house, which meets all your requirements. It is in a good locality, with all the amenities that one requires nearby to the house. You joyfully approach a bank or a home loan institution to obtain a loan. After some waiting, you are told that your home loan has been rejected. Your mind goes blank, trying to figure out what went wrong and you see your dream come crashing down on you like a ton of bricks.</p><p>   Let us see some of the pitfalls that one might face for rejection of loans. </p><p>  The most important one being your CIBIL score (Credit Reports and Risk Management Solutions). If you currently have a bad score, then the chances of rejection of not only your home loan but any other loan that you may take will be very high. At times you may have a good credit rating, but still find that the loan is getting rejected. This may be due to your past track record of defaulting on other loans, or missing payments of credit cards and sometimes even not paying of telephone bills are considered. If your income tax filing is also irregular, this too will affect your credit score. The first thing to do is obtain your CIBIL score, analyze it and try and fix it before you proceed to apply for a home loan. Sometimes the credit rating agency may also have made an error which you need to rectify. Credit score is calculated over a period; hence it makes sense to pay all your bills on time and not to default on even the smallest of bills.</p><p>   The prospective builder or his property may not have been approved by the bank. This is slightly tricky as certain builders maybe approved by the bank; however certain projects of the builder have not yet been approved. Or the property may be approved by the bank, but the builder may not yet have been approved by the bank that you have approached to take a loan from. It is also possible that some other bank or institution may have approved both the property and the builder, in which case you will have to do your homework and approach the bank that has approved both the parameters.</p><p>   The sale price is another important factor. If the buyer and the seller have agreed to a price, then it is not necessary that the bank will consider your price. They will have their own methods of evaluation, which is generally based on the ready reckoner for the area where the property is located. The bank will then decide upon a price which they think is fair value of the property and sanction a loan based on that fair value instead of your buy price. If the fair price is higher than your price, you will have no issues, but if the fair value is lesser than your buy price, then the amount of loan sanctioned will be much lesser than your expectation. Please note that this general happens when there is a re-sale of property and especially when the house under consideration is very old. </p><p>  If you have just started your career either as a business person or are an employee, then it will be difficult to get a loan in the first few years, as banks will consider you as a risk, till such time you are well settled and have a proven track record over a few years of having growth. For the salaried class if you if you keep changing jobs frequently, banks will consider the instability of holding onto a job as one of the factor for rejection. Research says that the salaried class holds onto to a job for a minimum of three years to avoid your loan being rejected. Your age too is considered, as banks generally give the tenure as 15 to 20 years, and the more closer you are to your retirement age, the EMI&rsquo;s will be quite high so that one may not be able to afford it.</p><p>   The above are some of the major reasons for banks for rejecting loans. In conclusion, one should start early, keep a clean track record of payments no matter how small they are, this will help to keep ones credit rating high and the chances for rejection will then become low.</p>"
+            content: "<p>The moment that you have been waiting is finally upon you. After painstakingly hunting around, you have identified the perfect house, which meets all your requirements. It is in a good locality, with all the amenities that one requires nearby to the house. You joyfully approach a bank or a home loan institution to obtain a loan. After some waiting, you are told that your home loan has been rejected. Your mind goes blank, trying to figure out what went wrong and you see your dream come crashing down on you like a ton of bricks.</p><p>   Let us see some of the pitfalls that one might face for rejection of loans. </p><p>  The most important one being your CIBIL score (Credit Reports and Risk Management Solutions). If you currently have a bad score, then the chances of rejection of not only your home loan but any other loan that you may take will be very high. At times you may have a good credit rating, but still find that the loan is getting rejected. This may be due to your past track record of defaulting on other loans, or missing payments of credit cards and sometimes even not paying of telephone bills are considered. If your income tax filing is also irregular, this too will affect your credit score. The first thing to do is obtain your CIBIL score, analyze it and try and fix it before you proceed to apply for a home loan. Sometimes the credit rating agency may also have made an error which you need to rectify. Credit score is calculated over a period; hence it makes sense to pay all your bills on time and not to default on even the smallest of bills.</p><p>   The prospective builder or his property may not have been approved by the bank. This is slightly tricky as certain builders maybe approved by the bank; however certain projects of the builder have not yet been approved. Or the property may be approved by the bank, but the builder may not yet have been approved by the bank that you have approached to take a loan from. It is also possible that some other bank or institution may have approved both the property and the builder, in which case you will have to do your homework and approach the bank that has approved both the parameters.</p><p>   The sale price is another important factor. If the buyer and the seller have agreed to a price, then it is not necessary that the bank will consider your price. They will have their own methods of evaluation, which is generally based on the ready reckoner for the area where the property is located. The bank will then decide upon a price which they think is fair value of the property and sanction a loan based on that fair value instead of your buy price. If the fair price is higher than your price, you will have no issues, but if the fair value is lesser than your buy price, then the amount of loan sanctioned will be much lesser than your expectation. Please note that this general happens when there is a re-sale of property and especially when the house under consideration is very old. </p><p>  If you have just started your career either as a business person or are an employee, then it will be difficult to get a loan in the first few years, as banks will consider you as a risk, till such time you are well settled and have a proven track record over a few years of having growth. For the salaried class if you if you keep changing jobs frequently, banks will consider the instability of holding onto a job as one of the factor for rejection. Research says that the salaried class holds onto to a job for a minimum of three years to avoid your loan being rejected. Your age too is considered, as banks generally give the tenure as 15 to 20 years, and the more closer you are to your retirement age, the EMI&rsquo;s will be quite high so that one may not be able to afford it.</p><p>   The above are some of the major reasons for banks for rejecting loans. In conclusion, one should start early, keep a clean track record of payments no matter how small they are, this will help to keep ones credit rating high and the chances for rejection will then become low.</p>",
+            seo: [{
+                desc: "Why do banks or lending institutions, reject your home loan, be prepared and comprehend the reasons for the same.",
+                keywords: "home loan, banks, lending institution, reject loan, reject home loan, CIBIL score, default, defaulter, credit score, builder, approval, sale price, old property, evaluation, re sale property, new property, under construction,."
+            }]
         }]
     }, {
         month: "July",
@@ -83280,61 +83357,109 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
         data: [{
                 id: "stock-market",
                 title: "Learn About Stock Markets Without Risking Your Money",
-                content: "<p>The stock market has always been an allure for people who want to trade and invest. Here are the best virtual sites or apps where you can learn about the <strong>stock market</strong> without losing your money. </p> <h5>Moneybhai</h5> <p>It is a <strong>virtual stock trading</strong> game by MoneyControl, a virtual <strong>trading</strong> platform. Once you create an account in this game, you will receive virtual money worth Rs. 1 crore. The trading limit in this game is 1 crore. It means that you can buy and sell stocks and other financial instruments worth Rs. 1 crore on any given day. The different instruments that you can invest in include stocks, mutual funds, bonds and many more. In this game, you can <strong>invest</strong> the virtual money in different <strong>virtual</strong> options and pay a virtual brokerage fee as well. This game is a good way to get a feel of how the stock market works and to learn about the performance of different <strong>financial</strong> instruments. This game also has the option of reset; so, whenever you feel that you made a mistake while <strong>investing</strong> or trading, you can reset the game to the initial corpus of Rs. 1 crore. </p> <h5>TrakInvest</h5> <p>As the name suggests, TrakInvest is an <strong>investment guide</strong>. If you have a vague idea about the stock market and want to learn the basics related to it, then this is a good platform. This website is best suited for <strong>beginners</strong> who have no idea what the stock market is all about. The informative and useful content of this website along with the simple interface make it a good guide. You can create your portfolio that’s free of all risks and you can hone your market knowledge. </p> <h5>Dalal Street</h5> <p>Dalal Street is a platform that is similar to Moneybhai. It is an investment journal that offers the user a virtual sum of Rs. 1,000,000. You can engage in real-time trades with the help of your virtual trade portfolio. The best way to learn about the stock market is to participate in it. This website allows you to participate in a <strong>virtual stock exchange</strong> to improve your skills so that you can move onto a real stock exchange. Not just that, this website also allows you to share and discuss your strategies with other like-minded people.</p> <h5>Moneypot</h5> <p>It is a virtual trading game that is quite popular in India. It is a stock trading platform that students, corporates and investors will thoroughly enjoy. It strives to create an online investors community through a socially open trading platform. </p> <p>Virtual stock trading is ideal for beginners because it allows them to indulge in direct <strong>buying and selling of stocks</strong>. There is no real money involved, so the investor doesn’t stand to lose anything, and it is low risk. It provides a <strong>real-time trading</strong> experience and the investor will understand the operation of the stock market and the functioning of different instruments. Even if the investor makes a mistake, it will not cost him or her anything. Instead of merely reading about the stock market, a virtual stock market will help the to test their theoretical knowledge.</p>"
+                content: "<p>The stock market has always been an allure for people who want to trade and invest. Here are the best virtual sites or apps where you can learn about the <strong>stock market</strong> without losing your money. </p> <h5>Moneybhai</h5> <p>It is a <strong>virtual stock trading</strong> game by MoneyControl, a virtual <strong>trading</strong> platform. Once you create an account in this game, you will receive virtual money worth Rs. 1 crore. The trading limit in this game is 1 crore. It means that you can buy and sell stocks and other financial instruments worth Rs. 1 crore on any given day. The different instruments that you can invest in include stocks, mutual funds, bonds and many more. In this game, you can <strong>invest</strong> the virtual money in different <strong>virtual</strong> options and pay a virtual brokerage fee as well. This game is a good way to get a feel of how the stock market works and to learn about the performance of different <strong>financial</strong> instruments. This game also has the option of reset; so, whenever you feel that you made a mistake while <strong>investing</strong> or trading, you can reset the game to the initial corpus of Rs. 1 crore. </p> <h5>TrakInvest</h5> <p>As the name suggests, TrakInvest is an <strong>investment guide</strong>. If you have a vague idea about the stock market and want to learn the basics related to it, then this is a good platform. This website is best suited for <strong>beginners</strong> who have no idea what the stock market is all about. The informative and useful content of this website along with the simple interface make it a good guide. You can create your portfolio that’s free of all risks and you can hone your market knowledge. </p> <h5>Dalal Street</h5> <p>Dalal Street is a platform that is similar to Moneybhai. It is an investment journal that offers the user a virtual sum of Rs. 1,000,000. You can engage in real-time trades with the help of your virtual trade portfolio. The best way to learn about the stock market is to participate in it. This website allows you to participate in a <strong>virtual stock exchange</strong> to improve your skills so that you can move onto a real stock exchange. Not just that, this website also allows you to share and discuss your strategies with other like-minded people.</p> <h5>Moneypot</h5> <p>It is a virtual trading game that is quite popular in India. It is a stock trading platform that students, corporates and investors will thoroughly enjoy. It strives to create an online investors community through a socially open trading platform. </p> <p>Virtual stock trading is ideal for beginners because it allows them to indulge in direct <strong>buying and selling of stocks</strong>. There is no real money involved, so the investor doesn’t stand to lose anything, and it is low risk. It provides a <strong>real-time trading</strong> experience and the investor will understand the operation of the stock market and the functioning of different instruments. Even if the investor makes a mistake, it will not cost him or her anything. Instead of merely reading about the stock market, a virtual stock market will help the to test their theoretical knowledge.</p>",
+                seo: [{
+                    desc: "",
+                    keywords: "virtual stock trading,  trading platform, virtual money, financial,  investing,investment guide, beginners,virtual stock exchange,buying and selling of stocks, real-time trading"
+                }]
             }, {
                 id: "5big-mistakes",
                 title: "5 Big Mistakes That Investors Make And Its Impact",
-                content: "<p>Common mistakes that investors make unknowingly and the impact of these mistakes on their lives. </p> <h5>Mistake#2: Not saving for the future</h5> <p>We all tend to live in the present and not many of us plan for the future. It is good to not worry too much about the future, but that doesn’t mean that you completely ignore your future. You need to understand that there might come a day when you can no longer earn steadily. What will happen if you don’t have a steady source of income? You cannot afford your lifestyle and face a severe money shortage. Imagine, if you retire at the age of 60 years with a bank balance that will serve you for only five years? Well, you need to avoid that and therefore, you need to save! </p> <h5>Mistake#3: No term plan</h5> <p>An <strong>accident</strong> can change everything. No one can foresee an accident or even prevent one. However, the one thing that we can do is plan such that we can reduce our losses from an accident. There are numerous accidents that take place daily and it makes sense to protect yourself from such contingencies than to suffer a huge and unexpected loss. Therefore, it is a good idea to insure your life and the lives of your family members as well. In case of the unavoidable, at least the ones you care for will not suffer. </p> <h5>Mistake#4: Over investing in fixed deposits</h5> <p><strong>Fixed deposit</strong> is a secure investment. You simply need to park your funds in a secured account and it will grow in value over the years. So, what is the problem with this investment? Unlike other investments, fixed deposits don’t outgrow the inflation in the economy. It means that you might think that your <strong>investments</strong> increase but their purchasing power stays the same.</p> <h5>Mistake#5: Incurring too much debt </h5> <p>Investors are usually of two kinds – on who buy things with the money they save and the other who usually makes purchases with their future earnings (loans). The ‘purchase now and pay later’ attitude just increases the <strong>debt</strong> while the income might or might not increase. This is a wrong attitude to go about your expenses. Before you know it, you will be knee deep in debt. </p>"
+                content: "<p>Common mistakes that investors make unknowingly and the impact of these mistakes on their lives. </p> <h5>Mistake#2: Not saving for the future</h5> <p>We all tend to live in the present and not many of us plan for the future. It is good to not worry too much about the future, but that doesn’t mean that you completely ignore your future. You need to understand that there might come a day when you can no longer earn steadily. What will happen if you don’t have a steady source of income? You cannot afford your lifestyle and face a severe money shortage. Imagine, if you retire at the age of 60 years with a bank balance that will serve you for only five years? Well, you need to avoid that and therefore, you need to save! </p> <h5>Mistake#3: No term plan</h5> <p>An <strong>accident</strong> can change everything. No one can foresee an accident or even prevent one. However, the one thing that we can do is plan such that we can reduce our losses from an accident. There are numerous accidents that take place daily and it makes sense to protect yourself from such contingencies than to suffer a huge and unexpected loss. Therefore, it is a good idea to insure your life and the lives of your family members as well. In case of the unavoidable, at least the ones you care for will not suffer. </p> <h5>Mistake#4: Over investing in fixed deposits</h5> <p><strong>Fixed deposit</strong> is a secure investment. You simply need to park your funds in a secured account and it will grow in value over the years. So, what is the problem with this investment? Unlike other investments, fixed deposits don’t outgrow the inflation in the economy. It means that you might think that your <strong>investments</strong> increase but their purchasing power stays the same.</p> <h5>Mistake#5: Incurring too much debt </h5> <p>Investors are usually of two kinds – on who buy things with the money they save and the other who usually makes purchases with their future earnings (loans). The ‘purchase now and pay later’ attitude just increases the <strong>debt</strong> while the income might or might not increase. This is a wrong attitude to go about your expenses. Before you know it, you will be knee deep in debt. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Health insurance, Medical care,Accident,Fixed deposit,  investments,debt"
+                }]
             },
             {
                 id: "budget-2018",
                 title: "12 Things About The Budget-2018, Related To The Middle Class",
-                content: "<p>The <strong>annual budget</strong> means different things for different people. What does the budget mean for the <strong>middle class</strong> ? <br><br>There are no changes in the <strong>taxation</strong> slab rates. It means that you will pay taxes as usual. Perhaps this is one of the biggest disappointments of the 2018 budget.</p> <ul> <li>The standard <strong>deduction</strong> that you are entitled to is Rs 40,000. It means that you can reduce the taxable income by Rs 40,000 along with any other deductions and benefits available. However, transport allowance and medical reimbursement equivalent to Rs 19,200 and Rs 15,000 are no longer considered as benefits. </li> <li>There is a 10% tax applicable on long-term capital gains on equity without indexation benefits. Up until now, if you sold equity funds or stocks after holding for at least one year, then the profit on such sale was exempt from taxation. However, now you need to pay a tax @10% if the profit is over 1 lakh. </li> <li>The dividends you receive from equity funds and stocks will be taxed at 10%. However, this deduction is made at source and will be deducted by the company. So, the amount of dividend you receive is the remainder after deducting tax.</li> <li>The health and education cess are increased from 3% to 4%. Cess is the additional tax you pay on the income tax. For instance, if your income tax is around Rs 50,000, then the cess you need to pay is Rs 2000.</li> <li><strong>Senior citizens</strong> no longer have to pay tax on interest on all deposits as well as bank interest up to the amount of Rs 50,000. Senior citizens don’t have to worry about any TDS deductions for interests from deposits up to Rs 50,000. The limit is increased from Rs 10,000 to Rs 50,000 now. </li> <li>According to the new budget, the deduction for health insurance under section 80c for senior citizens is increased from Rs 30,000 to Rs 50,000. The 2018 budget is quite a boon for senior citizens. </li> <li>According to section 80DDB, all senior citizens are eligible for a tax deduction up to Rs 60,000 and Rs 80,000 for very senior citizens for medical expenses for the treatment of certain critical illnesses. The limit is increased to Rs 1 lakh now</li> <li>The corporate tax for companies with a turnover of less than Rs 250 crores per year is reduced from 30% to 25%.</li> <li>The EPF contribution for new women workers is reduced from 12% to 8%, for the first three years. Apart from this, the government will now have to make a 12% contribution for the same. </li> <li>The <strong>government</strong> will now introduce a health insurance scheme for the weaker sections of the society. According to this scheme, every family will be entitled for health insurance for the sum of Rs 5 lakhs.</li> </ul> <p>The financial budget for the year 2018 is quite different from the previous budgets and is favorable especially for the senior citizens in the country. </p>"
+                content: "<p>The <strong>annual budget</strong> means different things for different people. What does the budget mean for the <strong>middle class</strong> ? <br><br>There are no changes in the <strong>taxation</strong> slab rates. It means that you will pay taxes as usual. Perhaps this is one of the biggest disappointments of the 2018 budget.</p> <ul> <li>The standard <strong>deduction</strong> that you are entitled to is Rs 40,000. It means that you can reduce the taxable income by Rs 40,000 along with any other deductions and benefits available. However, transport allowance and medical reimbursement equivalent to Rs 19,200 and Rs 15,000 are no longer considered as benefits. </li> <li>There is a 10% tax applicable on long-term capital gains on equity without indexation benefits. Up until now, if you sold equity funds or stocks after holding for at least one year, then the profit on such sale was exempt from taxation. However, now you need to pay a tax @10% if the profit is over 1 lakh. </li> <li>The dividends you receive from equity funds and stocks will be taxed at 10%. However, this deduction is made at source and will be deducted by the company. So, the amount of dividend you receive is the remainder after deducting tax.</li> <li>The health and education cess are increased from 3% to 4%. Cess is the additional tax you pay on the income tax. For instance, if your income tax is around Rs 50,000, then the cess you need to pay is Rs 2000.</li> <li><strong>Senior citizens</strong> no longer have to pay tax on interest on all deposits as well as bank interest up to the amount of Rs 50,000. Senior citizens don’t have to worry about any TDS deductions for interests from deposits up to Rs 50,000. The limit is increased from Rs 10,000 to Rs 50,000 now. </li> <li>According to the new budget, the deduction for health insurance under section 80c for senior citizens is increased from Rs 30,000 to Rs 50,000. The 2018 budget is quite a boon for senior citizens. </li> <li>According to section 80DDB, all senior citizens are eligible for a tax deduction up to Rs 60,000 and Rs 80,000 for very senior citizens for medical expenses for the treatment of certain critical illnesses. The limit is increased to Rs 1 lakh now</li> <li>The corporate tax for companies with a turnover of less than Rs 250 crores per year is reduced from 30% to 25%.</li> <li>The EPF contribution for new women workers is reduced from 12% to 8%, for the first three years. Apart from this, the government will now have to make a 12% contribution for the same. </li> <li>The <strong>government</strong> will now introduce a health insurance scheme for the weaker sections of the society. According to this scheme, every family will be entitled for health insurance for the sum of Rs 5 lakhs.</li> </ul> <p>The financial budget for the year 2018 is quite different from the previous budgets and is favorable especially for the senior citizens in the country. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "annual budget , middle class, taxation,  deduction, Senior citizens, government"
+                }]
             },
             {
                 id: "fake-gst",
                 title: "How To Check A Fake GST Number?",
-                content: "<p>Learn how to check a fake GST number is less than 30 seconds.</p> <p>These days, a lot of restaurants as well as business are using <strong>fake GST</strong> numbers on the bill. You probably came across restaurants that never mentioned any taxes in their previous bills have started to charge 18% taxes in the name of GST. You might wonder why you must learn about this. Well, fake GST numbers allow the businesses to charge <strong>tax</strong> from the customers even when the business is not registered with the GST department.</p> <p>A common man might think that with the introduction of GST, everything is costlier by 12-18%. However, if the <strong>business</strong> does not register itself with the GST department, all the so-called GST they charge directly goes into their pocket. You no longer have to fall prey to this seemingly vicious scheme. It is quite easy to verify the GST number and you can do so in less than 30 seconds. </p> <p>The GST number consists of 15 characters and it can be broken down into 5 parts. The first two digits show the state code, the next 10 digits show the PAN of the registered business, the 13th digit is the registration number of the business, the 14th digit is ‘Z’ by default and the last digit is the check code. </p> <p>The first step is to check the GST number printed on the bill or the receipt. The business needs to mention their GST number and if it isn’t, then you don’t have to pay the tax. Not just that, but it is illegal to charge GST if the number is not mentioned on the <strong>invoice</strong>. </p> <p>Once you see the GST number, you need to visit the GST website of the <strong>government</strong> and enter the given GST number. Then enter the Captcha as displayed and click on Submit. </p> <p>If the GST number is not fake, then you will see the registered business name on the website and it needs to match the one that’s printed on the invoice. </p> <p>There are some businesses that don’t have a confirmed <strong>registration</strong> number but instead have a provisional GST number. Well, don’t you worry! You can still verify the same. You need to visit the official GST website, then select the option of “verify provisional ID status.” You need to enter the necessary details like the state, ID type, ID number and the verification code. Once you enter the necessary details, you can check if the concerned business does in fact have a provisional GST number or not. </p> <p>A business can have a registered GST number or a provisional GST number. Regardless of the status of approval, no one can charge you for GST if they don’t mention the number on the invoice. </p> <p>If you ever come across any business or establishment with a fake GST number or no GST number, then you can contact the following. You can also contact the same for any queries related to GST. </p> <p><strong>GST Complaint mail ID : </strong><a href='mailto:helpdesk@gst.gov.in'>helpdesk@gst.gov.in</a></p> <p><strong>GST Helpline Number : </strong> <a href='tel:0124-4688999'>0124-4688999</a> or <a href='tel:0120-4888999'>0120-4888999</a></p>"
+                content: "<p>Learn how to check a fake GST number is less than 30 seconds.</p> <p>These days, a lot of restaurants as well as business are using <strong>fake GST</strong> numbers on the bill. You probably came across restaurants that never mentioned any taxes in their previous bills have started to charge 18% taxes in the name of GST. You might wonder why you must learn about this. Well, fake GST numbers allow the businesses to charge <strong>tax</strong> from the customers even when the business is not registered with the GST department.</p> <p>A common man might think that with the introduction of GST, everything is costlier by 12-18%. However, if the <strong>business</strong> does not register itself with the GST department, all the so-called GST they charge directly goes into their pocket. You no longer have to fall prey to this seemingly vicious scheme. It is quite easy to verify the GST number and you can do so in less than 30 seconds. </p> <p>The GST number consists of 15 characters and it can be broken down into 5 parts. The first two digits show the state code, the next 10 digits show the PAN of the registered business, the 13th digit is the registration number of the business, the 14th digit is ‘Z’ by default and the last digit is the check code. </p> <p>The first step is to check the GST number printed on the bill or the receipt. The business needs to mention their GST number and if it isn’t, then you don’t have to pay the tax. Not just that, but it is illegal to charge GST if the number is not mentioned on the <strong>invoice</strong>. </p> <p>Once you see the GST number, you need to visit the GST website of the <strong>government</strong> and enter the given GST number. Then enter the Captcha as displayed and click on Submit. </p> <p>If the GST number is not fake, then you will see the registered business name on the website and it needs to match the one that’s printed on the invoice. </p> <p>There are some businesses that don’t have a confirmed <strong>registration</strong> number but instead have a provisional GST number. Well, don’t you worry! You can still verify the same. You need to visit the official GST website, then select the option of “verify provisional ID status.” You need to enter the necessary details like the state, ID type, ID number and the verification code. Once you enter the necessary details, you can check if the concerned business does in fact have a provisional GST number or not. </p> <p>A business can have a registered GST number or a provisional GST number. Regardless of the status of approval, no one can charge you for GST if they don’t mention the number on the invoice. </p> <p>If you ever come across any business or establishment with a fake GST number or no GST number, then you can contact the following. You can also contact the same for any queries related to GST. </p> <p><strong>GST Complaint mail ID : </strong><a href='mailto:helpdesk@gst.gov.in'>helpdesk@gst.gov.in</a></p> <p><strong>GST Helpline Number : </strong> <a href='tel:0124-4688999'>0124-4688999</a> or <a href='tel:0120-4888999'>0120-4888999</a></p>",
+                seo: [{
+                    desc: "",
+                    keywords: "fake GST, business ,  invoice, government, registration, GST Complaint mail ID, GST Helpline Number"
+                }]
             },
             {
                 id: "bank-balance",
                 title: "How To Check Your Bank Balance On The Phone Without Internet",
-                content: "<p>You don’t need Internet to check your <strong>bank balance</strong>; all you need is your phone! That’s it! </p> <p>&nbsp;India is certainly in the midst of the technology revolution, in terms of mobile and <strong>Internet usage</strong>. However, it doesn’t mean that everyone has access to Internet on their <strong>mobile phones</strong>. Well, the good news is that you can check your bank balance even if you don’t have Internet on your phone. Not just that, you can perform basic banking facilities like generating the mini statement and even transfer funds. There are two ways in which you can check your mobile balance and they are the missed call facility and the other one is to dial *99# form your mobile phone. </p> <h5>Missed call facility</h5> <p>According to the new rules imposed by banks, usage of ATM is chargeable after certain number of transactions. However, with the missed call facility to, you can check your bank balance without any hassle. To use this facility, you need to activate a few features before you use this free facility. You need to register your mobile number with the concerned bank. With the missed call facility, you can check the previous 5 transactions along with the bank balance. Every bank has a specific missed call number and you need to obtain this number from your bank. Any call that you make to the given number from the <strong>registered phone number</strong> will get disconnected automatically after a couple of rings. Once you call that number, you will receive messages with information about your bank balance along with the transaction log of the previous 5 transactions. If you didn’t register your number, then you will receive a message with the text “Your mobile number is not registered for this service.” If you have different types of accounts like the savings account, current account, or even an overdraft account, then a default account will be selected in the following order of priority- savings account, current account, overdraft account, cash credit and any other account. If you have more than one similar account, then the latest opened account will automatically become the default account for the registered phone number with your bank. </p> <h5>*99# facility</h5> <p>NPCI (National Payment Corporation of India) initiated a unique service system for all GSM mobile subscribers all over India, which allows a customer to check their bank balance without any Internet access. You need to dial *99#USSD code from your handset. The code *99# is common for all telecom operators. There are no roaming charges applicable on this service and you don’t need to download any app. Also, this facility is available in 12 Indian regional languages.</p> <ul> <li>To use this service, you need to dial *99# from your handset. </li> <li>The next step is to enter the 3 letters for the bank’s short name or the initial four letters of the IFS code.</li> <li>Once you enter either of these details, a menu with different banking services options will appear. </li> <li>Select a suitable option and voila! It is as simple as that.</li> </ul>"
+                content: "<p>You don’t need Internet to check your <strong>bank balance</strong>; all you need is your phone! That’s it! </p> <p>&nbsp;India is certainly in the midst of the technology revolution, in terms of mobile and <strong>Internet usage</strong>. However, it doesn’t mean that everyone has access to Internet on their <strong>mobile phones</strong>. Well, the good news is that you can check your bank balance even if you don’t have Internet on your phone. Not just that, you can perform basic banking facilities like generating the mini statement and even transfer funds. There are two ways in which you can check your mobile balance and they are the missed call facility and the other one is to dial *99# form your mobile phone. </p> <h5>Missed call facility</h5> <p>According to the new rules imposed by banks, usage of ATM is chargeable after certain number of transactions. However, with the missed call facility to, you can check your bank balance without any hassle. To use this facility, you need to activate a few features before you use this free facility. You need to register your mobile number with the concerned bank. With the missed call facility, you can check the previous 5 transactions along with the bank balance. Every bank has a specific missed call number and you need to obtain this number from your bank. Any call that you make to the given number from the <strong>registered phone number</strong> will get disconnected automatically after a couple of rings. Once you call that number, you will receive messages with information about your bank balance along with the transaction log of the previous 5 transactions. If you didn’t register your number, then you will receive a message with the text “Your mobile number is not registered for this service.” If you have different types of accounts like the savings account, current account, or even an overdraft account, then a default account will be selected in the following order of priority- savings account, current account, overdraft account, cash credit and any other account. If you have more than one similar account, then the latest opened account will automatically become the default account for the registered phone number with your bank. </p> <h5>*99# facility</h5> <p>NPCI (National Payment Corporation of India) initiated a unique service system for all GSM mobile subscribers all over India, which allows a customer to check their bank balance without any Internet access. You need to dial *99#USSD code from your handset. The code *99# is common for all telecom operators. There are no roaming charges applicable on this service and you don’t need to download any app. Also, this facility is available in 12 Indian regional languages.</p> <ul> <li>To use this service, you need to dial *99# from your handset. </li> <li>The next step is to enter the 3 letters for the bank’s short name or the initial four letters of the IFS code.</li> <li>Once you enter either of these details, a menu with different banking services options will appear. </li> <li>Select a suitable option and voila! It is as simple as that.</li> </ul>",
+                seo: [{
+                    desc: "",
+                    keywords: "bank balance, Internet , mobile phones,registered phone number"
+                }]
             },
             {
                 id: "tax-return",
                 title: "Do I Need To File My Income Tax Return?",
-                content: "<p>File income tax return and earn the 'refund' you rightly deserve.</p> <p>Benjamin Franklin was absolutely right when he said, “In this world nothing is certain, except death and taxes.”</p> <p><strong>Income tax</strong> is a direct tax and it is levied on your personal income. Income tax is the tax that you need to pay on your income or your earnings. In fact, it is one of the most popular taxes and the least understood concept of personal finance. Why do you have to pay income tax? Tax is the source of revenue for the <strong>government</strong> and it helps fund all governmental activities and services for the public. Everyone who earns an income needs to file income tax returns. </p> <p>Evert taxpayer needs to declare their income to the <strong>IT department</strong> at the end of the financial year in the form prescribed by the government. This form is the ITR and it is summarized statement of your incomes in a given time frame. The different forms of income include salaries, pensions, income from business or a profession, other sources like interest and dividends, capital gains, income from house property and the like. The CBDT prescribes seven forms and you can use any of these forms to file your IT returns. The forms are ITR 1, ITR2A, ITR 2, ITR 3, ITR 4S, ITR 4, ITR 5, ITR 6 and ITR 7.</p> <p>There are different benefits of filing <strong>Income Tax Returns</strong>. If you want to take a loan or even apply for a Visa, then you need a proof of income tax return that you file. You don’t need to have taxable income to file IT returns. It helps to build a proof of your finances or your source of income. If your income is less than the taxable limit, but your employer has charged <strong>TDS</strong> (Tax Deducted at Source) or if you earn some income from any part-time consultancy work and the company deducted TDS @ 10%, then you can claim a refund of the TDS hence deducted. You are entitled to this refund, if your income is below the taxable limit. If you want to claim this refund, then you must file your IT returns.</p> <p>The ITR is not only a proof of your income, but it is also a proof that you have duly paid your taxes for the income you earn in any financial year.</p> <p>You need to file ITR in the following cases: </p> <ul> <li>If your gross total income exceeds 2.5 lakhs. </li> <li>The income earned or accrued by an NRI in India. </li> <li>If you want to carry forward any losses incurred like capital losses or business losses. </li> <li>If you want to claim a refund. </li> <li>If TDS is deducted on any income you earn. </li> </ul> <p>Did you know that in a country with a population of more than 1 billion, only 3% are liable to pay their income tax? Tax evasion and the non-filing of Income Tax Returns is illegal (it means that it can be penalized). So, file your income tax returns on time and avoid all the hassle.</p>"
+                content: "<p>File income tax return and earn the 'refund' you rightly deserve.</p> <p>Benjamin Franklin was absolutely right when he said, “In this world nothing is certain, except death and taxes.”</p> <p><strong>Income tax</strong> is a direct tax and it is levied on your personal income. Income tax is the tax that you need to pay on your income or your earnings. In fact, it is one of the most popular taxes and the least understood concept of personal finance. Why do you have to pay income tax? Tax is the source of revenue for the <strong>government</strong> and it helps fund all governmental activities and services for the public. Everyone who earns an income needs to file income tax returns. </p> <p>Evert taxpayer needs to declare their income to the <strong>IT department</strong> at the end of the financial year in the form prescribed by the government. This form is the ITR and it is summarized statement of your incomes in a given time frame. The different forms of income include salaries, pensions, income from business or a profession, other sources like interest and dividends, capital gains, income from house property and the like. The CBDT prescribes seven forms and you can use any of these forms to file your IT returns. The forms are ITR 1, ITR2A, ITR 2, ITR 3, ITR 4S, ITR 4, ITR 5, ITR 6 and ITR 7.</p> <p>There are different benefits of filing <strong>Income Tax Returns</strong>. If you want to take a loan or even apply for a Visa, then you need a proof of income tax return that you file. You don’t need to have taxable income to file IT returns. It helps to build a proof of your finances or your source of income. If your income is less than the taxable limit, but your employer has charged <strong>TDS</strong> (Tax Deducted at Source) or if you earn some income from any part-time consultancy work and the company deducted TDS @ 10%, then you can claim a refund of the TDS hence deducted. You are entitled to this refund, if your income is below the taxable limit. If you want to claim this refund, then you must file your IT returns.</p> <p>The ITR is not only a proof of your income, but it is also a proof that you have duly paid your taxes for the income you earn in any financial year.</p> <p>You need to file ITR in the following cases: </p> <ul> <li>If your gross total income exceeds 2.5 lakhs. </li> <li>The income earned or accrued by an NRI in India. </li> <li>If you want to carry forward any losses incurred like capital losses or business losses. </li> <li>If you want to claim a refund. </li> <li>If TDS is deducted on any income you earn. </li> </ul> <p>Did you know that in a country with a population of more than 1 billion, only 3% are liable to pay their income tax? Tax evasion and the non-filing of Income Tax Returns is illegal (it means that it can be penalized). So, file your income tax returns on time and avoid all the hassle.</p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Income tax, government ,  IT department,  Income Tax Returns, TDS"
+                }]
             },
             {
                 id: "buy-healthinsurance",
                 title: "Things To Keep In Mind Before Buying Health Insurance",
-                content: "<p>Health is wealth, but how do you select the perfect health insurance plan?</p> <p>Here are the important factors that you need to consider before you decide to buy any <strong>health insurance. </strong></p> <h5>Claim Process</h5> <p>Claim process is the time that’s necessary for settlement. It is vital that you select an insurance policy with a simple <strong>claim</strong> process and cashless benefit. Look for good customer support service as well.</p> <h5>Waiting Period</h5> <p>The period that you need to wait for before you can apply to claim your insurance for a pre-existing medical condition. Regardless of the insurance company you choose, all policies have a waiting period. You need to select one that doesn’t have a lengthy waiting period. </p> <h5>Lifetime renewal</h5> <p>Policies tend to have different rules regarding renewability. Some are limited up to 60-70 years and others offer lifetime renewability. Always opt for a policy that offers lifetime renewability.</p> <h5>Room rent cap</h5> <p>In case of any <strong>hospitalization</strong>, the insured person is entitled to the room rent payable. So, you need to check the cap on the room rent chargeable. Make sure that the policy will pay for a major or the entire rent of the room.</p> <h5>Claim ratio</h5> <p>There are various instances where an insurance claim is either delayed or even rejected by the insurer company. To avoid such troubles, it is a good idea to do a background check and read about the IRDA ratio for claim settlements. A higher ratio implies that the insurance company is trustworthy. </p> <h5>Hospital networks </h5> <p>Carefully go through the information about cashless hospital networks before you purchase a health insurance policy. In case of a medical emergency, it is helpful if you have the option for cashless settlement. </p> <h5>Maternity benefits </h5> <p>There are only a few insurance policies that offer full maternity benefits. If you are recently married or are starting a family soon, then you must check for maternity benefits the policy offers. The cost of pregnancy is increasing steadily by the day and it is better to be prepared for such an expense. </p> <h5>Sub-limit</h5> <p>The sub limit is the monetary cap that the insurer has for an insurance claim. Sub-limits are applicable to different expenses like the room rent, consultation charges of doctors, ambulance charges and any other medical procedures. Either opt for a policy with a high or no sub-limit.</p> <h5>Pre and post hospitalization </h5> <p>Medical treatments usually require pre and post hospitalization and the same is applicable for medicines. Therefore, it is prudent to opt for a policy that covers pre and post hospitalization expenses. </p> <h5>Coverage for critical illnesses </h5> <p>There are certain illnesses that can lead to permanent disability or even death. A good <strong>health insurance policy</strong> needs to provide for such circumstances. </p> <p>The other things that you need to consider are the sum assured, OPD expenses, dental treatments and no claim bonus. Apart from this, you must also check if the insurance policy is for only the insured individual or if it is a family floater.</p>"
+                content: "<p>Health is wealth, but how do you select the perfect health insurance plan?</p> <p>Here are the important factors that you need to consider before you decide to buy any <strong>health insurance. </strong></p> <h5>Claim Process</h5> <p>Claim process is the time that’s necessary for settlement. It is vital that you select an insurance policy with a simple <strong>claim</strong> process and cashless benefit. Look for good customer support service as well.</p> <h5>Waiting Period</h5> <p>The period that you need to wait for before you can apply to claim your insurance for a pre-existing medical condition. Regardless of the insurance company you choose, all policies have a waiting period. You need to select one that doesn’t have a lengthy waiting period. </p> <h5>Lifetime renewal</h5> <p>Policies tend to have different rules regarding renewability. Some are limited up to 60-70 years and others offer lifetime renewability. Always opt for a policy that offers lifetime renewability.</p> <h5>Room rent cap</h5> <p>In case of any <strong>hospitalization</strong>, the insured person is entitled to the room rent payable. So, you need to check the cap on the room rent chargeable. Make sure that the policy will pay for a major or the entire rent of the room.</p> <h5>Claim ratio</h5> <p>There are various instances where an insurance claim is either delayed or even rejected by the insurer company. To avoid such troubles, it is a good idea to do a background check and read about the IRDA ratio for claim settlements. A higher ratio implies that the insurance company is trustworthy. </p> <h5>Hospital networks </h5> <p>Carefully go through the information about cashless hospital networks before you purchase a health insurance policy. In case of a medical emergency, it is helpful if you have the option for cashless settlement. </p> <h5>Maternity benefits </h5> <p>There are only a few insurance policies that offer full maternity benefits. If you are recently married or are starting a family soon, then you must check for maternity benefits the policy offers. The cost of pregnancy is increasing steadily by the day and it is better to be prepared for such an expense. </p> <h5>Sub-limit</h5> <p>The sub limit is the monetary cap that the insurer has for an insurance claim. Sub-limits are applicable to different expenses like the room rent, consultation charges of doctors, ambulance charges and any other medical procedures. Either opt for a policy with a high or no sub-limit.</p> <h5>Pre and post hospitalization </h5> <p>Medical treatments usually require pre and post hospitalization and the same is applicable for medicines. Therefore, it is prudent to opt for a policy that covers pre and post hospitalization expenses. </p> <h5>Coverage for critical illnesses </h5> <p>There are certain illnesses that can lead to permanent disability or even death. A good <strong>health insurance policy</strong> needs to provide for such circumstances. </p> <p>The other things that you need to consider are the sum assured, OPD expenses, dental treatments and no claim bonus. Apart from this, you must also check if the insurance policy is for only the insured individual or if it is a family floater.</p>",
+                seo: [{
+                    desc: "",
+                    keywords: "health insurance,Claim,medical condition,Hospitalization,health insurance policy"
+                }]
             },
             {
                 id: "save-moretax",
                 title: "How To Save More Tax!",
-                content: "<p>You can save on your <strong>taxes</strong> if you use deductions and exemptions!</p> <p>There is certainly no limit to the question “How much do you want to earn?” However, with an increase in your income, the tax payable increases as well. Well, don’t you worry! There are a couple of simple ways in which you can save the tax payable. Yes, all the tips mentioned in this section are legal.</p> <p>80C</p> <p>Section 80C of the Income Tax Act provides different categories of income that are deductible from your income. If you deduct certain incomes, then the tax payable will automatically reduce. Items that are exempt under this section include </p> <ul> <li>Public Provident Fund (PPF),</li> <li>National Savings Certificate (NSC),</li> <li>Principal that you repay on home loan, </li> <li>Life insurance premium</li> <li>Deposits with maturity period of minimum five years in bank and the post office.</li> </ul> <h5>Maturity amount or life insurance claim </h5> <p>The amount that you receive on the maturity or by the claim of a life insurance policy is exempt from taxation. However, the precondition that the annual premium assured on the policy doesn’t exceed 20% of the amount assured. If the premium exceeds 20%, then the entire amount you receive is taxable.</p> <h5>Education scholarship </h5> <p>If you receive an education scholarship either from the government or from a private trust, the same is exempt from taxation. The amount you receive as scholarship money is not to be included in the calculation of total income.</p> <h5>Profits from the sale of equity mutual funds/shares </h5> <p>If you hold any equity mutual funds or shares for one year before you sell it, then any profits that you receive from such a sale is exempt from taxation. Such a sale is a long-term capital gain and it is exempt. You need to wait for a period of more than 365 days (366 in a leap year) if you want to claim this exemption. Any sale made before the completion of one year is taxable.</p> <h5>Dividend on equity mutual funds or shares </h5> <p>If you receive any periodical dividends from equity mutual funds or shares, then such a dividend is exempt from taxation. For instance, if you purchase stock and receive a dividend of Rs 30,000 within a period of 10 months, it will still be exempt.</p> <h5>Any gift received on marriage </h5> <p>The gifts you receive on marriage are not taxable. However, this exemption is a one-time benefit. So, any monetary gift (cash or cheque) that you receive on occasion of marriage is not to be included in the calculation of total income. </p> <h5>Interest on savings account</h5> <p>The interest that you receive from your savings account is exempt from taxation up to the amount of Rs 10,000. If the interest you receive is more than Rs 10,000, then the rest will be taxable.</p> <h5>Medical insurance </h5> <p>Any medical insurance claim you receive up to the amount of Rs 15,000 on an insurance policy for self, spouse or dependent children is exempt from taxation. </p> <h5>Any charity </h5> <p>The provisions of 80G specify that any money given, as charity is exempt from the provisions of taxation. </p>"
+                content: "<p>You can save on your <strong>taxes</strong> if you use deductions and exemptions!</p> <p>There is certainly no limit to the question “How much do you want to earn?” However, with an increase in your income, the tax payable increases as well. Well, don’t you worry! There are a couple of simple ways in which you can save the tax payable. Yes, all the tips mentioned in this section are legal.</p> <p>80C</p> <p>Section 80C of the Income Tax Act provides different categories of income that are deductible from your income. If you deduct certain incomes, then the tax payable will automatically reduce. Items that are exempt under this section include </p> <ul> <li>Public Provident Fund (PPF),</li> <li>National Savings Certificate (NSC),</li> <li>Principal that you repay on home loan, </li> <li>Life insurance premium</li> <li>Deposits with maturity period of minimum five years in bank and the post office.</li> </ul> <h5>Maturity amount or life insurance claim </h5> <p>The amount that you receive on the maturity or by the claim of a life insurance policy is exempt from taxation. However, the precondition that the annual premium assured on the policy doesn’t exceed 20% of the amount assured. If the premium exceeds 20%, then the entire amount you receive is taxable.</p> <h5>Education scholarship </h5> <p>If you receive an education scholarship either from the government or from a private trust, the same is exempt from taxation. The amount you receive as scholarship money is not to be included in the calculation of total income.</p> <h5>Profits from the sale of equity mutual funds/shares </h5> <p>If you hold any equity mutual funds or shares for one year before you sell it, then any profits that you receive from such a sale is exempt from taxation. Such a sale is a long-term capital gain and it is exempt. You need to wait for a period of more than 365 days (366 in a leap year) if you want to claim this exemption. Any sale made before the completion of one year is taxable.</p> <h5>Dividend on equity mutual funds or shares </h5> <p>If you receive any periodical dividends from equity mutual funds or shares, then such a dividend is exempt from taxation. For instance, if you purchase stock and receive a dividend of Rs 30,000 within a period of 10 months, it will still be exempt.</p> <h5>Any gift received on marriage </h5> <p>The gifts you receive on marriage are not taxable. However, this exemption is a one-time benefit. So, any monetary gift (cash or cheque) that you receive on occasion of marriage is not to be included in the calculation of total income. </p> <h5>Interest on savings account</h5> <p>The interest that you receive from your savings account is exempt from taxation up to the amount of Rs 10,000. If the interest you receive is more than Rs 10,000, then the rest will be taxable.</p> <h5>Medical insurance </h5> <p>Any medical insurance claim you receive up to the amount of Rs 15,000 on an insurance policy for self, spouse or dependent children is exempt from taxation. </p> <h5>Any charity </h5> <p>The provisions of 80G specify that any money given, as charity is exempt from the provisions of taxation. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Taxes, Income Tax Act,Taxation,Exempt"
+                }]
             },
             {
                 id: "save-money",
                 title: "15 Tricks To Save Money!",
-                content: "<p>You don’t need to earn more to save more. Simple tricks can help you save more than ever before.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Envelope system </p> <p>You need to set a couple of envelopes aside for different monthly <strong>expenses</strong>. Select a couple of categories where you face difficult while saving money. Take an envelope, write the expense’s name and place a little cash in it. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Cash back credit card </p> <p>You probably use a <strong>credit card</strong>. Just make sure that you use one that offers cash back. You can save while you spend with this feature.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Transportation cost </p> <p>It is perhaps amongst the costliest household expense. Fuel prices seem to increase every day. Use public transport whenever possible or try to pool your travels with others.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Mobile bill </p> <p>If you use a post-paid plan, then it is a good idea to shift to a pre-paid plan. It will help you to keep track of your bill and they are cheaper too.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Online shopping </p> <p>The merchandise available online is cheaper these days when compared to regular stores. Always compare the online and offline prices before you make a purchase. Use coupons and mobile wallets to pay for <strong>shopping</strong>. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Grocery shopping</p> <p>Always make a list before you shop for groceries. Don’t just make a list but stick to the list that you make as well. Shop from wholesale outlets instead of the retail ones.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Entertainment expenses </p> <p>If you don’t read the newspaper or a magazine regularly, cancel the subscription. Use a free app on your mobile instead. Use online portals to book movie tickets (they offer cash back). Reduce or try to eliminate TV subscription altogether. If you have Wi-Fi at home, you can do away with television. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. Utility bills</p> <p>A simple step like switching off the lights and fans when you aren’t in a room can help reduce your <strong>utility bills</strong>. Use energy saving lights. Try to minimize the wastage of water and electricity as much as possible.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9. Save on food </p> <p>TYou can save on food, if you reduce wastage of food. Try to cook at home as often as possible and eat at home. Order food through those apps that provide cash back or discounts.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10. Don’t splurge unnecessarily </p> <p>Don’t splurge on an unnecessary gym membership, on expensive branded products and the like. Don’t buy anything unless it is an absolute necessity. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11. Unhealthy habits</p> <p>Try to break free of any unhealthy habits like drinking alcohol or smoking cigarettes. Not only are these expensive habits to maintain, but they ruin your health as well.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12. No-spend days </p> <p>Fix a couple of no-spend days for yourself like a Sunday where you don’t spend any money</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13. Save a little</p> <p>Make it a point to save a fixed sum every week. You don’t necessarily have to save a huge amount, but even small savings add up to a lot in the end.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14. Reduce Internet cost </p> <p>Select an ideal Internet plan for usage. Pay only for what you use and don’t select an expensive plan. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15. Use cash</p> <p>Try to use <strong>cash</strong> as much as you can and avoid paying by cards. Most businesses levy a charge on cashless transactions. </p>"
+                content: "<p>You don’t need to earn more to save more. Simple tricks can help you save more than ever before.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Envelope system </p> <p>You need to set a couple of envelopes aside for different monthly <strong>expenses</strong>. Select a couple of categories where you face difficult while saving money. Take an envelope, write the expense’s name and place a little cash in it. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Cash back credit card </p> <p>You probably use a <strong>credit card</strong>. Just make sure that you use one that offers cash back. You can save while you spend with this feature.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Transportation cost </p> <p>It is perhaps amongst the costliest household expense. Fuel prices seem to increase every day. Use public transport whenever possible or try to pool your travels with others.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Mobile bill </p> <p>If you use a post-paid plan, then it is a good idea to shift to a pre-paid plan. It will help you to keep track of your bill and they are cheaper too.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Online shopping </p> <p>The merchandise available online is cheaper these days when compared to regular stores. Always compare the online and offline prices before you make a purchase. Use coupons and mobile wallets to pay for <strong>shopping</strong>. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Grocery shopping</p> <p>Always make a list before you shop for groceries. Don’t just make a list but stick to the list that you make as well. Shop from wholesale outlets instead of the retail ones.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Entertainment expenses </p> <p>If you don’t read the newspaper or a magazine regularly, cancel the subscription. Use a free app on your mobile instead. Use online portals to book movie tickets (they offer cash back). Reduce or try to eliminate TV subscription altogether. If you have Wi-Fi at home, you can do away with television. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. Utility bills</p> <p>A simple step like switching off the lights and fans when you aren’t in a room can help reduce your <strong>utility bills</strong>. Use energy saving lights. Try to minimize the wastage of water and electricity as much as possible.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9. Save on food </p> <p>TYou can save on food, if you reduce wastage of food. Try to cook at home as often as possible and eat at home. Order food through those apps that provide cash back or discounts.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10. Don’t splurge unnecessarily </p> <p>Don’t splurge on an unnecessary gym membership, on expensive branded products and the like. Don’t buy anything unless it is an absolute necessity. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11. Unhealthy habits</p> <p>Try to break free of any unhealthy habits like drinking alcohol or smoking cigarettes. Not only are these expensive habits to maintain, but they ruin your health as well.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12. No-spend days </p> <p>Fix a couple of no-spend days for yourself like a Sunday where you don’t spend any money</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13. Save a little</p> <p>Make it a point to save a fixed sum every week. You don’t necessarily have to save a huge amount, but even small savings add up to a lot in the end.</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14. Reduce Internet cost </p> <p>Select an ideal Internet plan for usage. Pay only for what you use and don’t select an expensive plan. </p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15. Use cash</p> <p>Try to use <strong>cash</strong> as much as you can and avoid paying by cards. Most businesses levy a charge on cashless transactions. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Expenses, credit card,  household expense, shopping, utility bills,  cash"
+                }]
             },
             {
                 id: "cc-limit-enhancement",
                 title: "Credit Card Limit Enhancement - Good Or Bad?",
-                content: "<p>A higher <strong>credit card limit</strong> is not just a status symbol, but something that is quite useful. </p> <p>What exactly does a credit limit mean? As the name suggests, it is the maximum sum of <strong>money</strong> that you can <strong>borrow</strong> from a bank on a given credit card. You can use the credit limit to make any purchases like you normally do. The only difference is that, instead of drawing your funds from your savings account, you create a debt account with your bank. The bank will keep a track of your transactions and will accordingly revise your credit limit based on your transactional history and repayment capacity. </p> <p>There are different parameters that a bank uses to decide the credit limit for individual <strong>credit card applicants</strong>. These criteria include income, credit score and monthly <strong>salary</strong> of a person. According to their credit policy, then bank will decide the credit limit after scrutinizing all these criteria. Don’t fret if the bank offers you a low credit limit. Banks usually revise the credit limit within a period of six to eighteen months, according to the financials and the repayment record. If you pay your bills on time and improve your financial health, then the bank will increase your credit limit as well.</p> <h5>Benefits of a higher credit limit </h5> <p>A major advantage of a <strong>high credit limit</strong> on your credit card is that you can reduce your credit utilization ration, provided you use it judiciously. A lower credit utilization ratio will improve your credit score. For instance, if the credit limit on your card is Rs 50,0000 and you use Rs 25,000 a month, then your credit utilization ratio is 50%. Now, if the credit limit is increased to Rs 75,000 and you spend Rs 25,000 a month, then your credit utilization ratio is 33%. It means that your credit score will improve. </p> <p>If you want to obtain a loan with a bank, then you can use your credit limit to get a better deal for yourself. Banks are prudent when they offer higher credit limits to their customers. If a bank issues a higher credit limit, it means that the bank considers the said individual to be a safe asset. </p> <p>It is always better to have one high-limit credit card than to have different credit cards with lower limits. If it is just one card, then you simply need to track the expenses made with the concerned card and don’t have to worry about keeping a track of different expenses made on different cards. </p> <p>In the face of a financial emergency, a high credit limit certainly comes in handy. You can use the same to obtain loans for self, family members or even friends. You can even obtain personal loans if you have a high credit limit. </p> <p>Another benefit of a high credit limit are all the rewards that you are entitled to on the transactions you make.</p>"
+                content: "<p>A higher <strong>credit card limit</strong> is not just a status symbol, but something that is quite useful. </p> <p>What exactly does a credit limit mean? As the name suggests, it is the maximum sum of <strong>money</strong> that you can <strong>borrow</strong> from a bank on a given credit card. You can use the credit limit to make any purchases like you normally do. The only difference is that, instead of drawing your funds from your savings account, you create a debt account with your bank. The bank will keep a track of your transactions and will accordingly revise your credit limit based on your transactional history and repayment capacity. </p> <p>There are different parameters that a bank uses to decide the credit limit for individual <strong>credit card applicants</strong>. These criteria include income, credit score and monthly <strong>salary</strong> of a person. According to their credit policy, then bank will decide the credit limit after scrutinizing all these criteria. Don’t fret if the bank offers you a low credit limit. Banks usually revise the credit limit within a period of six to eighteen months, according to the financials and the repayment record. If you pay your bills on time and improve your financial health, then the bank will increase your credit limit as well.</p> <h5>Benefits of a higher credit limit </h5> <p>A major advantage of a <strong>high credit limit</strong> on your credit card is that you can reduce your credit utilization ration, provided you use it judiciously. A lower credit utilization ratio will improve your credit score. For instance, if the credit limit on your card is Rs 50,0000 and you use Rs 25,000 a month, then your credit utilization ratio is 50%. Now, if the credit limit is increased to Rs 75,000 and you spend Rs 25,000 a month, then your credit utilization ratio is 33%. It means that your credit score will improve. </p> <p>If you want to obtain a loan with a bank, then you can use your credit limit to get a better deal for yourself. Banks are prudent when they offer higher credit limits to their customers. If a bank issues a higher credit limit, it means that the bank considers the said individual to be a safe asset. </p> <p>It is always better to have one high-limit credit card than to have different credit cards with lower limits. If it is just one card, then you simply need to track the expenses made with the concerned card and don’t have to worry about keeping a track of different expenses made on different cards. </p> <p>In the face of a financial emergency, a high credit limit certainly comes in handy. You can use the same to obtain loans for self, family members or even friends. You can even obtain personal loans if you have a high credit limit. </p> <p>Another benefit of a high credit limit are all the rewards that you are entitled to on the transactions you make.</p>",
+                seo: [{
+                    desc: "",
+                    keywords: "credit card limit, money, borrow,  credit card applicants,high credit limit"
+                }]
             },
             {
                 id: "home-purchase",
                 title: "How To Plan A Home Purchase?",
-                content: "<p>Eight steps of financial planning that you must follow before you purchase your dream house.</p> <p><strong>Financial planning</strong> is quite critical, if you want to purchase a house. Follow the easy steps mentioned in this post to make the process of <strong>buying a house</strong> simpler. </p> <h5>1) Monthly household expenditure</h5> <p>For any middle-class household in India, buying a house is a major <strong>financial expenditure</strong>. Given that the real estate prices are on a steady incline, it is not possible to buy any property without some financial stretch. If you want to borrow money to purchase a house, then you must cut down on your monthly household expenditure between 25 to 40%. </p> <h5>2) Loan amount </h5> <p>At present, banks provide house loans worth 80% of the value of the property. If you want to borrow from a bank, then you need to be able to fund the remaining 20% on your own. This amount must not be raised through another loan or debt. Ideally, it is advisable that you contribute at least 40% of the down payment from your savings to reduce a financial strain. </p> <h5>3) Liabilities</h5> <p>It is important that you make a list of all the liabilities that you might face in the next six months. Liabilities can include tuition fee, insurance premium and so on. Ensure that you have sufficient funds to fulfill all these liabilities. </p> <h5>4) Existing loans or debts</h5> <p>You need to clear all the <strong>exiting loans</strong> or debts that you might have before you apply for a housing loan. It is highly unlikely that you will be able to pay off two loans simultaneously. You need to clear all the unsecured loans you might have to improve your CBIL score.</p> <h5>5) EMI reserve</h5> <p>It might be a small amount, but it is important that you set aside the amount necessary to pay off the EMIs on the loan for the next three months. The EMI reserve will come in handy in case of any unforeseeable circumstances that might lead to the non-payment of the EMI.</p> <h5>6) Budget</h5> <p>Most people tend to go a little overboard when furnishing and designing their house. Home furnishings or interiors are a major expense and you must fix a budget for the same.</p> <h5>7) Regular source of income </h5> <p>Financial planning is not possible if you don’t have a steady income. If you work in a sector that is susceptible to recession or any other economic conditions, then you might want to postpone the decision to purchase a house until you have a steady and regular income. </p> <h5>8) Emergency fund</h5> <p>Life is quite uncertain, and it is not humanly possible to foresee all expenditures that you can incur. There can be a contingency and you must not be caught unaware. You need to prepare for all sorts of emergencies. The best way to prepare for an emergency is to set aside an emergency fund. When you calculate your ability to repay a loan, take the contribution to the emergency fund into account as well. </p>"
+                content: "<p>Eight steps of financial planning that you must follow before you purchase your dream house.</p> <p><strong>Financial planning</strong> is quite critical, if you want to purchase a house. Follow the easy steps mentioned in this post to make the process of <strong>buying a house</strong> simpler. </p> <h5>1) Monthly household expenditure</h5> <p>For any middle-class household in India, buying a house is a major <strong>financial expenditure</strong>. Given that the real estate prices are on a steady incline, it is not possible to buy any property without some financial stretch. If you want to borrow money to purchase a house, then you must cut down on your monthly household expenditure between 25 to 40%. </p> <h5>2) Loan amount </h5> <p>At present, banks provide house loans worth 80% of the value of the property. If you want to borrow from a bank, then you need to be able to fund the remaining 20% on your own. This amount must not be raised through another loan or debt. Ideally, it is advisable that you contribute at least 40% of the down payment from your savings to reduce a financial strain. </p> <h5>3) Liabilities</h5> <p>It is important that you make a list of all the liabilities that you might face in the next six months. Liabilities can include tuition fee, insurance premium and so on. Ensure that you have sufficient funds to fulfill all these liabilities. </p> <h5>4) Existing loans or debts</h5> <p>You need to clear all the <strong>exiting loans</strong> or debts that you might have before you apply for a housing loan. It is highly unlikely that you will be able to pay off two loans simultaneously. You need to clear all the unsecured loans you might have to improve your CBIL score.</p> <h5>5) EMI reserve</h5> <p>It might be a small amount, but it is important that you set aside the amount necessary to pay off the EMIs on the loan for the next three months. The EMI reserve will come in handy in case of any unforeseeable circumstances that might lead to the non-payment of the EMI.</p> <h5>6) Budget</h5> <p>Most people tend to go a little overboard when furnishing and designing their house. Home furnishings or interiors are a major expense and you must fix a budget for the same.</p> <h5>7) Regular source of income </h5> <p>Financial planning is not possible if you don’t have a steady income. If you work in a sector that is susceptible to recession or any other economic conditions, then you might want to postpone the decision to purchase a house until you have a steady and regular income. </p> <h5>8) Emergency fund</h5> <p>Life is quite uncertain, and it is not humanly possible to foresee all expenditures that you can incur. There can be a contingency and you must not be caught unaware. You need to prepare for all sorts of emergencies. The best way to prepare for an emergency is to set aside an emergency fund. When you calculate your ability to repay a loan, take the contribution to the emergency fund into account as well. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Financial planning,  buying a house,financial expenditure,Liabilities,exiting loans,"
+                }]
             },
             {
                 id: "retirement-savings",
                 title: "5 Ways To Boost Retirement Savings",
-                content: "<p>Learn to save more for your retirement with five simple tips.</p> <h5>Start saving </h5> <p>If you want to boost your <strong>retirement fund</strong>, then you need to start <strong>saving</strong> early. All those in their mid-thirties to early forties need to save, if they want to retire by the age of 60 years. However, it is advisable that the younger crowd starts saving right now. All the work pressure that the youngsters face these days make it seem like they will be ready to retire by the age of 40. You need to save, but that doesn’t mean that you invest all your funds in a FD or a RD. Invest in equity mutual funds or share. Remember that you are young, and you can afford to take a risk or two, especially when it will help create a bigger retirement nest egg. </p> <h5>Insurance</h5> <p>A category that a lot of people make mistake in is that they tend to choose the wrong <strong>insurance policy</strong>. If you don’t select the proper insurance policy, it can cause a financial loss. Instead of wasting your funds on a policy that doesn’t meet your requirements, it is certainly better to invest in a policy that does meet your needs. If you want to retire early, then look for policies that will helpful for you. You also need to check the liquidity of the insurance policies. For instance, it is a good idea to select an insurance policy that will allow you to make withdrawals up until the age of 95. </p> <h5>Spend less </h5> <p>You can save more if you spend less. If you want to be able to afford an <strong>early retirement</strong>, then you need to cut down on your expenses. Instead of making frivolous purchases, invest your money in all those assets whose value will appreciate in the future. Instead of buying the latest gadgets and gizmos, investing in real estate is a sensible investment. The idea is to reduce your debts as much as you can before you retire. </p> <h5>Tax saving</h5> <p>A significant chunk of your income goes towards the payment of taxes. Don’t feel disheartened by it, because there are different ways in which you can reduce the tax payable. It is not just about tax saving, but it is about investing in those tools that will allow you to save tax in the future and increase your wealth. If you want to invest your money, then opt for one of the investments that is exempt from taxation like PPF or equity linked saving schemes. </p> <h5>Business after retirement</h5> <p>If you are of the opinion that your savings will not be sufficient after you retire, then think of different business avenues that are available to you after retirement as well. For instance, you can purchase a house or an apartment and then give the same away on rent. You can start a restaurant or use any of your other skills or talents to earn some extra money. After all, once you retire the one thing that you will never fall short of is time. </p>"
+                content: "<p>Learn to save more for your retirement with five simple tips.</p> <h5>Start saving </h5> <p>If you want to boost your <strong>retirement fund</strong>, then you need to start <strong>saving</strong> early. All those in their mid-thirties to early forties need to save, if they want to retire by the age of 60 years. However, it is advisable that the younger crowd starts saving right now. All the work pressure that the youngsters face these days make it seem like they will be ready to retire by the age of 40. You need to save, but that doesn’t mean that you invest all your funds in a FD or a RD. Invest in equity mutual funds or share. Remember that you are young, and you can afford to take a risk or two, especially when it will help create a bigger retirement nest egg. </p> <h5>Insurance</h5> <p>A category that a lot of people make mistake in is that they tend to choose the wrong <strong>insurance policy</strong>. If you don’t select the proper insurance policy, it can cause a financial loss. Instead of wasting your funds on a policy that doesn’t meet your requirements, it is certainly better to invest in a policy that does meet your needs. If you want to retire early, then look for policies that will helpful for you. You also need to check the liquidity of the insurance policies. For instance, it is a good idea to select an insurance policy that will allow you to make withdrawals up until the age of 95. </p> <h5>Spend less </h5> <p>You can save more if you spend less. If you want to be able to afford an <strong>early retirement</strong>, then you need to cut down on your expenses. Instead of making frivolous purchases, invest your money in all those assets whose value will appreciate in the future. Instead of buying the latest gadgets and gizmos, investing in real estate is a sensible investment. The idea is to reduce your debts as much as you can before you retire. </p> <h5>Tax saving</h5> <p>A significant chunk of your income goes towards the payment of taxes. Don’t feel disheartened by it, because there are different ways in which you can reduce the tax payable. It is not just about tax saving, but it is about investing in those tools that will allow you to save tax in the future and increase your wealth. If you want to invest your money, then opt for one of the investments that is exempt from taxation like PPF or equity linked saving schemes. </p> <h5>Business after retirement</h5> <p>If you are of the opinion that your savings will not be sufficient after you retire, then think of different business avenues that are available to you after retirement as well. For instance, you can purchase a house or an apartment and then give the same away on rent. You can start a restaurant or use any of your other skills or talents to earn some extra money. After all, once you retire the one thing that you will never fall short of is time. </p>",
+                seo: [{
+                    desc: "",
+                    keywords: "Retirement,retirement fund, saving,insurance policy,early retirement,payment of taxes,"
+                }]
             }
         ]
     }];
