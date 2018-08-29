@@ -5,13 +5,13 @@ myApp.controller('ContestCtrl', function ($scope, TemplateService, NavigationSer
     $scope.navigation = NavigationService.getNavigation();
     TemplateService.cssMain = "header-icons";
     $scope.season4 = [{
-        imageUrl: "QHkTqmexZjg",
-        videoUrl: "QHkTqmexZjg",
+        imageUrl: "ZOkWJZgERNE",
+        videoUrl: "ZOkWJZgERNE",
         episodeno: "Tip No. 1",
         searchName: "Debts Assets",
     }, {
-        imageUrl: "ZOkWJZgERNE",
-        videoUrl: "ZOkWJZgERNE",
+        imageUrl: "QHkTqmexZjg",
+        videoUrl: "QHkTqmexZjg",
         episodeno: "Tip No. 2",
         searchName: "Equity",
     },
