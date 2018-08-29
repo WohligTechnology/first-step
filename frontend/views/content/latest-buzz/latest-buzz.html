@@ -13,12 +13,12 @@
                     <div ng-repeat="individualBlog in blog.data" ng-if="individualBlog.id==blogData">
                         <div class="d-flex justify-content-sm-start align-items-center justify-content-lg-end mb-2">
                             <div class="mr-1"><b>Share : </b></div>
-                            <a ng-href="https://www.facebook.com/sharer/sharer.php?u={{myUrl|urlEncode}}" target="_blank">
+                            <a ng-href="https://www.facebook.com/sharer/sharer.php?u={{myUrl|urlEncode}}/&quote={{individualBlog.title}}" target="_blank">
                                 <img width="80%" src="img/header/facebook.png" class="img-fluid">
                                 </a>
-                            <a href="https://twitter.com/intent/tweet?url={{individualBlog.title}}" target="_blank">
-                                <img width="80%" src="img/header/twitter.png" class="img-fluid">
-                            </a>
+                                <a ng-href="https://twitter.com/intent/tweet?url={{myUrl|urlEncode}}" target="_blank">
+                                    <img width="80%" src="img/header/twitter.png" class="img-fluid">
+                                </a>
                         </div>
                         <h4 class="pl-2 pb-1 text-center blog-title yellow-bg font-D-Regular">{{individualBlog.title}}</h4>
                         <div ng-bind-html="individualBlog.content"></div>
