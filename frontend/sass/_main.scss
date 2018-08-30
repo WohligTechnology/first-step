@@ -479,6 +479,9 @@ header {
 }
 
 //digital-inside
+.digital-scroll{
+    overflow: auto;
+}
 .digital-hover {
     .num-alpha {
         &:hover {

@@ -6,7 +6,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService,$timeout) {
     $.fancybox.close(true);
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
-            $(".img-width-change").css("width", '13%');
+            $(".img-width-change").css("width", '18%');
             $(".navbar-color-change").css("background", 'rgba(0, 0, 0, 0.8)');
 
         } else {

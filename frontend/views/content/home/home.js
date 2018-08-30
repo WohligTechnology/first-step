@@ -82,7 +82,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         console.log("data", data);
         NavigationService.apiCallWithData("DigitalUser/saveValidUser", data, function (data) {
             console.log("%%%%%%%%%%%%%%%%%%%%%%%", data);
-            if (data.data._id && (data.data.testGiven.length < 1)) {
+            if (data.data._id) {
                 $state.go("digital-course", {
                     'userId': data.data._id
                 });

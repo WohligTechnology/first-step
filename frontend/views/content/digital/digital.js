@@ -15,14 +15,15 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
     console.log("State param id is:", $scope.id)
     $scope.banking = false;
     $scope.equity = false;
-    $scope.mutualfund = false;
+    $scope.mutualfund1 = false;
+    $scope.mutualfund2 = false;
     $scope.commodities = false;
     $scope.insurance = false;
     $scope.realestate = false;
 
     /*******api for bringing all course******** */
     apiService.apiWithoutData("DigitalCourse/search", function (result) {
-        console.log(result.data.results);
+        console.log("courses in backend", result.data.results);
         $scope.courses = result.data.results;
     })
     /******bringing all course end****** */
@@ -34,7 +35,9 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
 
     $scope.isBanking = true;
     $scope.isInsurance = true;
-    $scope.isMutualFund = true;
+    $scope.isMutualFund1 = true;
+    $scope.isMutualFund2 = true;
+    $scope.isEquity = true;
     $scope.isRealEstate = true;
 
     apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (data) {
@@ -47,7 +50,9 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
                     $scope.isBanking = false;
                 } else if (obj.name == "INSURANCE") {
                     $scope.isInsurance = false;
-                } else if (obj.name == "MUTUAL FUNDS") {
+                } else if (obj.name == "MUTUAL FUNDS (MODULE 1)") {
+                    $scope.isMutualFund = false;
+                } else if (obj.name == "MUTUAL FUNDS (MODULE 2)") {
                     $scope.isMutualFund = false;
                 } else if (obj.name == "REAL ESTATE") {
                     $scope.isRealEstate = false;
@@ -132,33 +137,54 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.insurance = false;
             $scope.realestate = false;
             $scope.equity = false;
-            $scope.mutualfunds = false;
-        }else if (data == 'EQUITY') {
+            $scope.mutualfunds1 = false;
+            $scope.mutualfunds2 = false;
+        } else if (data == 'EQUITY') {
             $scope.banking = false;
             $scope.equity = true;
             $scope.insurance = false;
             $scope.realestate = false;
-            $scope.mutualfunds = false;
+            $scope.mutualfunds2 = false;
+            $scope.mutualfunds1 = false;
         } else if (data == 'INSURANCE') {
             $scope.banking = false;
             $scope.insurance = true;
             $scope.realestate = false;
             $scope.equity = false;
-            $scope.mutualfunds = false;
-        } else if (data == 'MUTUAL FUNDS') {
+            $scope.mutualfunds2 = false;
+            $scope.mutualfunds1 = false;
+        } else if (data == 'MUTUAL FUNDS (MODULE 1)') {
             $scope.banking = false;
             $scope.insurance = false;
             $scope.realestate = false;
             $scope.equity = false;
-            $scope.mutualfunds = true;
+            $scope.mutualfunds2 = false;
+            $scope.mutualfunds1 = true;
+        } else if (data == 'MUTUAL FUNDS (MODULE 2)') {
+            $scope.banking = false;
+            $scope.insurance = false;
+            $scope.realestate = false;
+            $scope.equity = false;
+            $scope.mutualfunds1 = false;
+            $scope.mutualfunds2 = true;
         } else if (data == 'REAL ESTATE') {
             $scope.banking = false;
             $scope.insurance = false;
             $scope.equity = false;
-            $scope.mutualfunds = false;
+            $scope.mutualfunds2 = false;
+            $scope.mutualfunds1 = false;
             $scope.realestate = true;
         }
-
+        $scope.coursedata = [{
+            id: "equity",
+            video: "xB6yOcIOhMs"
+        }, {
+            id: "mutualfunds1",
+            video: "Rj7SHz4xB4Q"
+        }, {
+            id: "mutualfunds2",
+            video: "pKt6evGdEPY"
+        }]
         //     if ($scope.banking) {
         //         $scope.banking = false;
         //     } else {
