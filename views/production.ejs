@@ -15,6 +15,7 @@
     <!-- SEO -->
     <meta name="author" content="Node Framework">
     <meta name="description" content="<%= ((typeof description) == " undefined ") ? "Node Framework " : description  %>">
+    <meta name="abstract" content="<%= ((typeof abstract) == " undefined ") ? "Node Framework " : abstract  %>">
     <meta name="keywords" content="<%= ((typeof keywords) == " undefined ") ? "Node Framework " : keywords  %>">
 
     <!-- Facebook -->
@@ -46,7 +47,9 @@
 
     <link rel="stylesheet" type="text/css" href="frontend/css/main.min.css" />
     <script>
-        var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
+        var adminurl = "<%= ((typeof adminurl) == "
+        undefined ") ? "
+        " : adminurl  %>";
         var isproduction = true;
     </script>
 

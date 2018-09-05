@@ -3,6 +3,7 @@ myApp.service('TemplateService', function () {
     this.meta = "";
     this.metadesc = "";
     this.desc = "Demo";
+    this.abstract = "Demo";
     this.keywords = "Demo";
 
     var d = new Date();

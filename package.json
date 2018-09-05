@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "A Wohlig Application",
+  "abstract": [],
   "keywords": [],
   "dependencies": {
     "autoprefixer": "^6.7.7",

@@ -10,6 +10,7 @@ module.exports = function (data, options) {
         jsFiles: jsFiles,
         title: data.title,
         description: data.description,
+        abstract: data.abstract,
         keywords: data.keywords,
         adminurl: env.realHost + "/api/",
         image: env.realHost + "/api/download/" + data.image,
