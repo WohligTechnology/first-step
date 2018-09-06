@@ -622,6 +622,9 @@ header {
 
 //end partners
 //latest-inside
+.card-body{
+    min-height: 88px;
+}
 .latest-inside {
     .blog-title {
         @extend .purple-color;
