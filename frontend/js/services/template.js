@@ -2,9 +2,9 @@ myApp.service('TemplateService', function () {
     this.title = "Season4";
     this.meta = "";
     this.metadesc = "";
-    this.desc = "Demo";
-    this.abstract = "Demo";
-    this.keywords = "Demo";
+    this.desc = "";
+    this.abstract = "";
+    this.keywords = "";
 
     var d = new Date();
     this.year = d.getFullYear();
