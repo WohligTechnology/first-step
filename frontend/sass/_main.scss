@@ -322,14 +322,14 @@ header {
         top: 18%;
         .quote-text {
             margin-top: 25px;
-            width: 20%;
+            width: 45%;
             color: white;
             font-size: 50px;
             line-height: 50px;
             font-family: D-Regular;
         }
         .quote {
-            width: 35%;
+            width: 80%;
             @extend .text-white;
             font-size: 30px;
             line-height: 30px;
@@ -479,14 +479,14 @@ header {
 }
 
 //digital-inside
-.digital-scroll{
+.digital-scroll {
     overflow: auto;
 }
+
 .digital-hover {
     .num-alpha {
         &:hover {
-            background-color: #013a67;
-            // .num-alpha{
+            background-color: #013a67; // .num-alpha{
             //     transform: rotateY(360deg);
             // }
         }
@@ -504,7 +504,7 @@ header {
     background-repeat: repeat;
     background-size: cover;
     min-height: 94vh;
-    .common-btn-bg{
+    .common-btn-bg {
         width: 150px;
     }
     .num-alpha {
@@ -561,15 +561,17 @@ header {
             letter-spacing: 2px;
         }
     }
-    input,.input-group-addon{
+    input,
+    .input-group-addon {
         background-color: transparent;
-        border-color:  #013a66 ;
+        border-color: #013a66;
         border: solid 1px #013a66;
     }
-    .input-group-addon{
+    .input-group-addon {
         border-left: 0;
     }
-    .form-control:focus, .form-control:active{
+    .form-control:focus,
+    .form-control:active {
         border-color: #013a66;
         outline: 0;
         background-color: transparent;
@@ -622,9 +624,10 @@ header {
 
 //end partners
 //latest-inside
-.card-body{
+.card-body {
     min-height: 88px;
 }
+
 .latest-inside {
     .blog-title {
         @extend .purple-color;
@@ -660,9 +663,10 @@ header {
             @extend .purple-color;
         }
     }
-    table{
+    table {
         border-collapse: collapse;
-        th,td{
+        th,
+        td {
             text-align: center;
         }
     }
@@ -732,9 +736,11 @@ input[type=number]::-webkit-outer-spin-button {
     top: 0;
     right: 0;
 }
+
 .app-modal-window {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 //end of modal scss
