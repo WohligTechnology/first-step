@@ -71,7 +71,9 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "connect": "ssh -p 18122 root@180.179.160.60",
+    "password": "PEhL@Kad@M2018"
   },
   "main": "app.js",
   "repository": {
