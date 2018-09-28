@@ -55,6 +55,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'LatestCtrl'
         })
+        .state('galat-fehmi', {
+            url: "/galat-fehmi",
+            templateUrl: tempateURL,
+            controller: 'GalatFehmiCtrl'
+        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,
