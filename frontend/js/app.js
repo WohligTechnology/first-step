@@ -31,6 +31,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'ThoughtCtrl'
         })
         .state('digital-course', {
+            cache: false,
             url: "/digital-course/:userId",
             templateUrl: tempateURL,
             controller: 'DigitalCtrl'

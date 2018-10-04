@@ -22,12 +22,15 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
     $scope.realestate = false;
 
     /*******api for bringing all course******** */
-    apiService.apiWithoutData("DigitalCourse/search", function (result) {
-        console.log("courses in backend", result.data.results);
-        $scope.courses = result.data.results;
-    })
+    $scope.getAllCourse = function () {
+        apiService.apiWithoutData("DigitalCourse/search", function (result) {
+            console.log("courses in backend", result.data.results);
+            $scope.courses = result.data.results;
+            $scope.getPageData();
+        })
+    }
     /******bringing all course end****** */
-
+    $scope.getAllCourse();
     //getDigitalUserFromId
     $scope.digitalUserId = $stateParams.userId;
     var data1 = {};
@@ -76,7 +79,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
         });
     };
 
-    $scope.getPageData();
+
 
     $scope.variableName = "";
     $scope.variableNameBanking = true;
