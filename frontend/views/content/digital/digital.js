@@ -55,15 +55,17 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
                         }
                     });
                 });
-
+                console.log("$scope.courses", $scope.courses);
                 _.find($scope.testGiven, function (obj) {
                     if (obj.name == "BANKING") {
                         $scope.isBanking = false;
                     } else if (obj.name == "INSURANCE") {
                         $scope.isInsurance = false;
-                    } else if (obj.name == "MUTUAL FUNDS (MODULE 1)") {
+                    } else if (obj.name == "COURSE 1") {
                         $scope.isMutualFund = false;
-                    } else if (obj.name == "MUTUAL FUNDS (MODULE 2)") {
+                    } else if (obj.name == "COURSE 2") {
+                        $scope.isMutualFund = false;
+                    } else if (obj.name == "COURSE 3") {
                         $scope.isMutualFund = false;
                     } else if (obj.name == "REAL ESTATE") {
                         $scope.isRealEstate = false;
@@ -96,7 +98,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds1 = false;
             $scope.mutualfunds2 = false;
-        } else if (data == 'EQUITY') {
+        } else if (data == 'COURSE 3') {
             $scope.banking = false;
             $scope.equity = true;
             $scope.insurance = false;
@@ -110,14 +112,14 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = false;
-        } else if (data == 'MUTUAL FUNDS (MODULE 1)') {
+        } else if (data == 'COURSE 1') {
             $scope.banking = false;
             $scope.insurance = false;
             $scope.realestate = false;
             $scope.equity = false;
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = true;
-        } else if (data == 'MUTUAL FUNDS (MODULE 2)') {
+        } else if (data == 'COURSE 2') {
             $scope.banking = false;
             $scope.insurance = false;
             $scope.realestate = false;
