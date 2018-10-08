@@ -10,7 +10,7 @@
     <meta name="description" content="{{template.desc}}">
     <meta name="keywords" content="{{template.keywords}}">
     <meta name="abstract" content="{{template.abstract}}" />
-    <meta name="keywords" content="{{template.keywords}}">
+    <!-- <meta name="keywords" content="{{template.keywords}}"> -->
 
     <meta property="og:image" content="http://pehlakadam.in/img/header/fb_banner.jpg">
     <meta name="robots" content="noindex">
@@ -107,7 +107,9 @@
     <link rel="stylesheet" type="text/css" href="css/production.css" />
 
     <script>
-        var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
+        var adminurl = "<%= ((typeof adminurl) == "
+        undefined ") ? "
+        " : adminurl  %>";
         var isproduction = true;
         var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
