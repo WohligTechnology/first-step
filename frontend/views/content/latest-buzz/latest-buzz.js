@@ -158,7 +158,7 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
                 title: "Pehla Kadam|How to save money from salary in India|Importance of saving money for the future",
                 desc: "Realize the Importance for having the habit of savings money for everybody. Why  should you start saving money immediately for future in India",
                 abstract: "Realize the Importance for having the habit of savings money for everybody. Why  should you start saving money immediately for future in India",
-                keywords: "India,Importance of saving money for the future,How to save money from salary in India,saving money for the future,save money from salary,save money from salary for future"
+                keywords: "importance of saving money for the future,India,Importance of saving money for the future,How to save money from salary in India,saving money for the future,save money from salary,save money from salary for future"
             }]
         }, {
             id: "Calculate-salary-housewife-services-India",

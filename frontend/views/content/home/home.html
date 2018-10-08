@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-5 px-3 align-self-end">
-                        <img src="img/home/about-profile.png" class="img-fluid">
+                        <img alt="financial goal setting" src="img/home/about-profile.png" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@
                     <!-- Swiper -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" ng-repeat="s in homeSlide track by $index"><img src="{{s}}" class="img-fluid"></div>
+                            <div class="swiper-slide" ng-repeat="s in homeSlide track by $index"><img src="{{s.img}}" alt="{{s.alt}}" class="img-fluid"></div>
                         </div>
                     </div>
                     <div ui-sref="photo-gallery" class="text-center">

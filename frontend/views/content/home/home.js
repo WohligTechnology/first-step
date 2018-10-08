@@ -95,16 +95,45 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         });
     }
 
-    $scope.homeSlide = [
-        'img/season4/33.jpg',
-        'img/season4/34.jpg',
-        'img/season4/35.jpg',
-        'img/season4/36.jpg',
-        'img/season4/37.jpg',
-        'img/season4/38.jpg',
-        'img/season4/39.jpg',
-        'img/season4/40.jpg',
-        'img/season4/41.jpg',
-        'img/season4/42.jpg'
+    $scope.homeSlide = [{
+            img: 'img/season4/33.jpg',
+            alt: "long term financial goals"
+        },
+        {
+            img: 'img/season4/34.jpg',
+            alt: "is tax evasion a criminal offence in india"
+        },
+        {
+            img: 'img/season4/35.jpg',
+            alt: "Indian family monthly budget"
+        },
+        {
+            img: 'img/season4/36.jpg',
+            alt: "cheque dishonour charges"
+        },
+        {
+            img: 'img/season4/37.jpg',
+            alt: "investment guide"
+        },
+        {
+            img: 'img/season4/38.jpg',
+            alt: "retirement fund"
+        },
+        {
+            img: 'img/season4/39.jpg',
+            alt: "education loan"
+        },
+        {
+            img: 'img/season4/40.jpg',
+            alt: "monthly spend"
+        },
+        {
+            img: 'img/season4/41.jpg',
+            alt: "reject home loan"
+        },
+        {
+            img: 'img/season4/42.jpg',
+            alt: "buying a house"
+        }
     ];
 })
