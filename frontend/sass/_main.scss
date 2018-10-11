@@ -661,6 +661,9 @@ header {
         h5 {
             text-transform: uppercase;
             @extend .purple-color;
+            a {
+                @extend .purple-color;
+            }
         }
     }
     table {
@@ -669,6 +672,13 @@ header {
         td {
             text-align: center;
         }
+    }
+}
+
+.content-latest {
+    a {
+        text-decoration: none;
+        color: #212529;
     }
 }
 

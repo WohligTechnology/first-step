@@ -39,10 +39,9 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
         $scope.goToAnchor = function (id) {
             var current = $state.current;
             if ($state.current.name == "homeid") {
-                var someElement = angular.element(document.getElementById(id));                
+                var someElement = angular.element(document.getElementById(id));
                 $document.scrollToElement(someElement, 70, 1500);
-            }
-            else{
+            } else {
                 $state.go("home");
                 $timeout(function () {
                     var someElement = angular.element(document.getElementById(id));
