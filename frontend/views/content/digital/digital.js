@@ -20,6 +20,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
     $scope.commodities = false;
     $scope.insurance = false;
     $scope.realestate = false;
+    $scope.course4 = false;
 
     /*******api for bringing all course******** */
     $scope.getAllCourse = function () {
@@ -42,6 +43,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
     $scope.isMutualFund2 = true;
     $scope.isEquity = true;
     $scope.isRealEstate = true;
+    $scope.isCourse4 = true;
 
     $scope.getPageData = function () {
         apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (data) {
@@ -70,6 +72,8 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
                         $scope.isMutualFund = false;
                     } else if (obj.name == "COURSE 3") {
                         $scope.isMutualFund = false;
+                    } else if (obj.name == "COURSE 4") {
+                        $scope.isMutualFund = false;
                     } else if (obj.name == "REAL ESTATE") {
                         $scope.isRealEstate = false;
                     }
@@ -78,8 +82,6 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             }
         });
     };
-
-
 
     $scope.variableName = "";
     $scope.variableNameBanking = true;
@@ -101,6 +103,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds1 = false;
             $scope.mutualfunds2 = false;
+            $scope.course4 = false;
         } else if (data == 'COURSE 3') {
             $scope.banking = false;
             $scope.equity = true;
@@ -108,6 +111,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.realestate = false;
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = false;
+            $scope.course4 = false;
         } else if (data == 'INSURANCE') {
             $scope.banking = false;
             $scope.insurance = true;
@@ -115,6 +119,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = false;
+            $scope.course4 = false;
         } else if (data == 'COURSE 1') {
             $scope.banking = false;
             $scope.insurance = false;
@@ -122,6 +127,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = true;
+            $scope.course4 = false;
         } else if (data == 'COURSE 2') {
             $scope.banking = false;
             $scope.insurance = false;
@@ -129,6 +135,15 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.equity = false;
             $scope.mutualfunds1 = false;
             $scope.mutualfunds2 = true;
+            $scope.course4 = false;
+        } else if (data == 'COURSE 4') {
+            $scope.banking = false;
+            $scope.insurance = false;
+            $scope.realestate = false;
+            $scope.equity = false;
+            $scope.mutualfunds1 = false;
+            $scope.mutualfunds2 = false;
+            $scope.course4 = true;
         } else if (data == 'REAL ESTATE') {
             $scope.banking = false;
             $scope.insurance = false;
@@ -136,6 +151,7 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
             $scope.mutualfunds2 = false;
             $scope.mutualfunds1 = false;
             $scope.realestate = true;
+            $scope.course4 = false;
         }
         $scope.coursedata = [{
             id: "equity",
@@ -146,6 +162,9 @@ myApp.controller('DigitalCtrl', function ($scope, TemplateService, NavigationSer
         }, {
             id: "mutualfunds2",
             video: "pKt6evGdEPY"
+        }, {
+            id: "course4",
+            video: "Oae5WPsIHqk"
         }];
     };
     $scope.digitalMutualfund = [{
