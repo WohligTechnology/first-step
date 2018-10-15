@@ -99,6 +99,171 @@ myApp.controller('GalleryCtrl', function ($scope, TemplateService, NavigationSer
     }, {
         img1: 'img/season4/32.jpg',
         alt: "education loan"
+    }, {
+        img1: 'img/season4/33.jpg',
+        alt: "investment guide"
+    }, {
+        img1: 'img/season4/34.jpg',
+        alt: "buying and selling of stocks"
+    }, {
+        img1: 'img/season4/35.jpg',
+        alt: "What does the budget mean for the middle class?"
+    }, {
+        img1: 'img/season4/36.jpg',
+        alt: "health insurance policy"
+    }, {
+        img1: 'img/season4/37.jpg',
+        alt: "Financial planning"
+    }, {
+        img1: 'img/season4/38.jpg',
+        alt: "retirement fund"
+    }, {
+        img1: 'img/season4/39.jpg',
+        alt: "payment of taxes."
+    }, {
+        img1: 'img/season4/40.jpg',
+        alt: "Business after retirement "
+    }, {
+        img1: 'img/season4/41.jpg',
+        alt: "Tax deadline"
+    }, {
+        img1: 'img/season4/42.jpg',
+        alt: "tax laws India"
+    }, {
+        img1: 'img/season4/43.jpg',
+        alt: "education loan"
+    }, {
+        img1: 'img/season4/44.jpg',
+        alt: "investment guide"
+    }, {
+        img1: 'img/season4/45.jpg',
+        alt: "buying and selling of stocks"
+    }, {
+        img1: 'img/season4/46.jpg',
+        alt: "What does the budget mean for the middle class?"
+    }, {
+        img1: 'img/season4/47.jpg',
+        alt: "health insurance policy"
+    }, {
+        img1: 'img/season4/48.jpg',
+        alt: "Financial planning"
+    }, {
+        img1: 'img/season4/49.jpg',
+        alt: "retirement fund"
+    }, {
+        img1: 'img/season4/50.jpg',
+        alt: "payment of taxes."
+    }, {
+        img1: 'img/season4/51.jpg',
+        alt: "Business after retirement "
+    }, {
+        img1: 'img/season4/52.jpg',
+        alt: "Tax deadline"
+    }, {
+        img1: 'img/season4/53.jpg',
+        alt: "tax laws India"
+    }, {
+        img1: 'img/season4/54.jpg',
+        alt: "education loan"
+    }, {
+        img1: 'img/season4/55.jpg',
+        alt: "investment guide"
+    }, {
+        img1: 'img/season4/56.jpg',
+        alt: "buying and selling of stocks"
+    }, {
+        img1: 'img/season4/57.jpg',
+        alt: "What does the budget mean for the middle class?"
+    }, {
+        img1: 'img/season4/58.jpg',
+        alt: "health insurance policy"
+    }, {
+        img1: 'img/season4/59.jpg',
+        alt: "Financial planning"
+    }, {
+        img1: 'img/season4/60.jpg',
+        alt: "retirement fund"
+    }, {
+        img1: 'img/season4/61.jpg',
+        alt: "payment of taxes."
+    }, {
+        img1: 'img/season4/62.jpg',
+        alt: "Business after retirement "
+    }, {
+        img1: 'img/season4/63.jpg',
+        alt: "Tax deadline"
+    }, {
+        img1: 'img/season4/64.jpg',
+        alt: "tax laws India"
+    }, {
+        img1: 'img/season4/65.jpg',
+        alt: "education loan"
+    }, {
+        img1: 'img/season4/66.jpg',
+        alt: "investment guide"
+    }, {
+        img1: 'img/season4/67.jpg',
+        alt: "buying and selling of stocks"
+    }, {
+        img1: 'img/season4/68.jpg',
+        alt: "What does the budget mean for the middle class?"
+    }, {
+        img1: 'img/season4/69.jpg',
+        alt: "health insurance policy"
+    }, {
+        img1: 'img/season4/70.jpg',
+        alt: "Financial planning"
+    }, {
+        img1: 'img/season4/71.jpg',
+        alt: "retirement fund"
+    }, {
+        img1: 'img/season4/72.jpg',
+        alt: "payment of taxes."
+    }, {
+        img1: 'img/season4/73.jpg',
+        alt: "Business after retirement "
+    }, {
+        img1: 'img/season4/74.jpg',
+        alt: "Tax deadline"
+    }, {
+        img1: 'img/season4/75.jpg',
+        alt: "tax laws India"
+    }, {
+        img1: 'img/season4/76.jpg',
+        alt: "education loan"
+    }, {
+        img1: 'img/season4/77.jpg',
+        alt: "investment guide"
+    }, {
+        img1: 'img/season4/78.jpg',
+        alt: "buying and selling of stocks"
+    }, {
+        img1: 'img/season4/79.jpg',
+        alt: "What does the budget mean for the middle class?"
+    }, {
+        img1: 'img/season4/80.jpg',
+        alt: "health insurance policy"
+    }, {
+        img1: 'img/season4/81.jpg',
+        alt: "Financial planning"
+    }, {
+        img1: 'img/season4/82.jpg',
+        alt: "retirement fund"
+    }, {
+        img1: 'img/season4/83.jpg',
+        alt: "payment of taxes."
+    }, {
+        img1: 'img/season4/84.jpg',
+        alt: "Business after retirement "
+    }, {
+        img1: 'img/season4/85.jpg',
+        alt: "Tax deadline"
+    }, {
+        img1: 'img/season4/86.jpg',
+        alt: "tax laws India"
+    }, {
+        img1: 'img/season4/87.jpg',
+        alt: "education loan"
     }]
     $scope.season3 = [{
             img1: 'img/season3/235.jpg',

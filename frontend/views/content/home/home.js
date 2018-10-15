@@ -96,43 +96,43 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
     }
 
     $scope.homeSlide = [{
-            img: 'img/season4/33.jpg',
+            img: 'img/season4/78.jpg',
             alt: "long term financial goals"
         },
         {
-            img: 'img/season4/34.jpg',
+            img: 'img/season4/79.jpg',
             alt: "is tax evasion a criminal offence in india"
         },
         {
-            img: 'img/season4/35.jpg',
+            img: 'img/season4/60.jpg',
             alt: "Indian family monthly budget"
         },
         {
-            img: 'img/season4/36.jpg',
+            img: 'img/season4/81.jpg',
             alt: "cheque dishonour charges"
         },
         {
-            img: 'img/season4/37.jpg',
+            img: 'img/season4/82.jpg',
             alt: "investment guide"
         },
         {
-            img: 'img/season4/38.jpg',
+            img: 'img/season4/63.jpg',
             alt: "retirement fund"
         },
         {
-            img: 'img/season4/39.jpg',
+            img: 'img/season4/74.jpg',
             alt: "education loan"
         },
         {
-            img: 'img/season4/40.jpg',
+            img: 'img/season4/85.jpg',
             alt: "monthly spend"
         },
         {
-            img: 'img/season4/41.jpg',
+            img: 'img/season4/66.jpg',
             alt: "reject home loan"
         },
         {
-            img: 'img/season4/42.jpg',
+            img: 'img/season4/87.jpg',
             alt: "buying a house"
         }
     ];
