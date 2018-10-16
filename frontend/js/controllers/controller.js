@@ -5,26 +5,26 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
     })
 
     //controller for thought of the day
-    .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout, $state) {
-        $scope.template = TemplateService.getHTML("content/thought.html");
-        TemplateService.title = "Thought Of The Day"; // This is the Title of the Website
-        $scope.navigation = NavigationService.getNavigation();
-        TemplateService.header = "";
-        TemplateService.footer = "";
+    // .controller('ThoughtCtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout, $state) {
+    //     $scope.template = TemplateService.getHTML("content/thought.html");
+    //     TemplateService.title = "Thought Of The Day"; // This is the Title of the Website
+    //     $scope.navigation = NavigationService.getNavigation();
+    //     TemplateService.header = "";
+    //     TemplateService.footer = "";
 
-        $scope.showQuotes = $.jStorage.get("showQuotes");
+    //     $scope.showQuotes = $.jStorage.get("showQuotes");
 
-        $scope.closeOverlay = function () {
-            $.jStorage.set("showQuotes", true);
-            console.log("**********************");
-            $("#overlay").hide();
-            $state.go("home");
-        }
-        $timeout(function () {
-            $("#overlay").hide();
-            $state.go("home");
-        }, 10000);
-    })
+    //     $scope.closeOverlay = function () {
+    //         $.jStorage.set("showQuotes", true);
+    //         console.log("**********************");
+    //         $("#overlay").hide();
+    //         $state.go("home");
+    //     }
+    //     $timeout(function () {
+    //         $("#overlay").hide();
+    //         $state.go("home");
+    //     }, 10000);
+    // })
 
     // Example API Controller
     .controller('DemoAPICtrl', function ($scope, TemplateService, apiService, NavigationService, $timeout) {

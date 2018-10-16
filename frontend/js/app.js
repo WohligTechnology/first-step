@@ -21,15 +21,15 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $httpProvider.defaults.withCredentials = true;
     $stateProvider
         .state('home', {
-            url: "/home",
+            url: "/",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
-        .state('thought-of-the-day', {
-            url: "/",
-            templateUrl: tempateURL,
-            controller: 'ThoughtCtrl'
-        })
+        // .state('thought-of-the-day', {
+        //     url: "/",
+        //     templateUrl: tempateURL,
+        //     controller: 'ThoughtCtrl'
+        // })
         .state('digital-course', {
             cache: false,
             url: "/digital-course/:userId",
