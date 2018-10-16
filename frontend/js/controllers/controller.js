@@ -42,13 +42,17 @@ myApp.controller('LinksCtrl', function ($scope, TemplateService, NavigationServi
                 var someElement = angular.element(document.getElementById(id));
                 $document.scrollToElement(someElement, 70, 1500);
             } else {
-                $state.go("home");
-                $timeout(function () {
-                    var someElement = angular.element(document.getElementById(id));
-                    $document.scrollToElement(someElement, 70, 1500);
-                    console.log(id);
-                    $location.path("/" + id);
-                }, 800);
+                if (id == "home") {
+                    $state.go("home");
+                } else {
+                    $state.go("home");
+                    $timeout(function () {
+                        var someElement = angular.element(document.getElementById(id));
+                        $document.scrollToElement(someElement, 70, 1500);
+                        console.log(id);
+                        $location.path("/" + id);
+                    }, 800);
+                }
             }
         };
         //modal example
