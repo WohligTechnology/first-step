@@ -80,11 +80,12 @@
     }
 }
 
-.about-us{
+.about-us {
     font-size: 16px;
     line-height: 18px;
 }
-.activity-space{
+
+.activity-space {
     padding: 0 5rem;
 }
 
@@ -108,80 +109,69 @@
     background: white;
     width: 50%;
 }
-#social{
-    iframe{
+
+#social {
+    iframe {
         -webkit-box-sizing: content-box;
         -moz-box-sizing: content-box;
         -moz-box-sizing: content-box;
         box-sizing: content-box;
     }
 }
+
 .gallery-section {
     .swiper-container {
         width: 100%;
         padding-top: 50px;
         padding-bottom: 50px;
-      }
-      .swiper-slide {
+    }
+    .swiper-slide {
         background-position: center;
         background-size: cover;
         width: 300px;
         height: 187px;
-      }
-      
-      // Carousel configuration parameters
-      $n: 8; // Number of images
-      $item-width: 400px; // Width of an image. In the Js version this value can be a percentage
-      $item-separation: 80px; // The space between the images. This will decrease the effective item width
-      $viewer-distance: 500px;
-      
-      // Derived variables
-      $theta: 2 * 3.141592653589793 / $n;
-      $apothem: 482.842712474619px; // == $item-width / (2 * tan(PI / $n))
-      
-      .carousel {
+    } // Carousel configuration parameters
+    $n: 8; // Number of images
+    $item-width: 400px; // Width of an image. In the Js version this value can be a percentage
+    $item-separation: 80px; // The space between the images. This will decrease the effective item width
+    $viewer-distance: 500px; // Derived variables
+    $theta: 2 * 3.141592653589793 / $n;
+    $apothem: 482.842712474619px; // == $item-width / (2 * tan(PI / $n))
+    .carousel {
         padding: 20px;
-      
         perspective: $viewer-distance;
         overflow: hidden;
-      
         display: flex;
         flex-direction: column;
         align-items: center;
-        > * {
-          flex: 0 0 auto;
+        >* {
+            flex: 0 0 auto;
         }
-      
         figure {
-          margin: 0;
-      
-          width: $item-width;
-          transform-style: preserve-3d;
-          transition: transform 0.5s;
-          transform-origin: 50% 50% (-$apothem);
-      
-          .one-slide {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 0 $item-separation / 2;
-      
-            opacity: 0.9; // Just to better illustrate the placement of the carousel sides
-      
-            &:not(:first-of-type) {
-              position: absolute;
-              left: 0;
-              top: 0;
-              transform-origin: 50% 50% (-$apothem);
+            margin: 0;
+            width: $item-width;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            transform-origin: 50% 50% (-$apothem);
+            .one-slide {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 $item-separation / 2;
+                opacity: 0.9; // Just to better illustrate the placement of the carousel sides
+                &:not(:first-of-type) {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform-origin: 50% 50% (-$apothem);
+                }
+                @for $i from 2 through $n {
+                    &:nth-child(#{$i}) {
+                        transform: rotateY(#{($i - 1) * $theta}rad);
+                    }
+                }
             }
-      
-            @for $i from 2 through $n {
-              &:nth-child(#{$i}) {
-                transform: rotateY(#{($i - 1) * $theta}rad);
-              }
-            }
-          }
         }
-      }      
+    }
 }
 
 .num-alpha {
@@ -216,8 +206,8 @@
     }
 }
 
-#partners{
-    a{
+#partners {
+    a {
         text-decoration: none;
     }
 }
@@ -226,25 +216,26 @@
     border: 10px solid rgba(255, 212, 90, 1);
     background-color: white;
     color: #081f4e;
-    min-height: 250px;
+    min-height: 225px;
     position: relative;
-    .partner-text{
+    .partner-text {
         font-family: D-Regular;
         font-size: 30px;
         letter-spacing: 9px;
+        margin-left: 10px;
     }
-    .tb-border{
-        &:before{
+    .tb-border {
+        &:before {
             top: 40px;
         }
-        &:after{
+        &:after {
             bottom: 40px;
         }
     }
-    .partners-alpha-hover{
-position: absolute;
-opacity: 0;
-transition: opacity 0.1s ease-in-out;
+    .partners-alpha-hover {
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
     }
     &:hover {
         .tb-border {
@@ -262,7 +253,8 @@ transition: opacity 0.1s ease-in-out;
         letter-spacing: 0;
     }
 }
-.twitter-width{
+
+.twitter-width {
     width: 340px;
 }
 
@@ -291,6 +283,7 @@ transition: opacity 0.1s ease-in-out;
         font-size: 1.4375rem;
     }
 }
-.footer-end{
+
+.footer-end {
     border-bottom: solid 100px #071f4e;
 }
