@@ -13,7 +13,7 @@
                     <h3 class="text-uppercase">Season 4</h3>
                 </div>
                 <div class="row season-scroll">
-                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season4 | orderBy : '-img1'">
+                    <div class="col-4 col-lg-2 mb-2" ng-repeat="img in season4 | reverse">
                         <div class="p-2 mb-4 gallery-images blue-border-light">
                             <a fancybox-box data-fancybox="gallery" href="{{img.img1}}" rel="gal">
                                  <img ng-src="{{img.img1}}" alt="{{img.alt}}" class="img-fluid fancy-image">
