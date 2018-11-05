@@ -137,18 +137,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }
     ];
     $scope.season4 = [{
-            imageUrl: "iVK1ZfHwxZ4",
-            videoUrl: "iVK1ZfHwxZ4",
-            title: "Episode 7"
-        }, {
-            imageUrl: "18ewrtgZwOE",
-            videoUrl: "18ewrtgZwOE",
-            title: "AMBALA"
-        },
-        {
-            imageUrl: "pKt6evGdEPY",
-            videoUrl: "pKt6evGdEPY",
-            title: "Raipur"
-        }
-    ];
+        imageUrl: "iVK1ZfHwxZ4",
+        videoUrl: "iVK1ZfHwxZ4",
+        title: "Episode 7"
+    }, {
+        imageUrl: "3m8fi0XIH2U",
+        videoUrl: "3m8fi0XIH2U",
+        title: "Episode 6"
+    }, {
+        imageUrl: "18ewrtgZwOE",
+        videoUrl: "18ewrtgZwOE",
+        title: "AMBALA"
+    }, {
+        imageUrl: "pKt6evGdEPY",
+        videoUrl: "pKt6evGdEPY",
+        title: "Raipur"
+    }];
 })
