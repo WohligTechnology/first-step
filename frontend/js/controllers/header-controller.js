@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService,$timeout) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, NavigationService, $timeout) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);

@@ -38,12 +38,43 @@ module.exports.routes = {
         skipAssets: true,
         skipRegex: /api|backend/i
     },
-    'GET /gitPull/:data': {
+    'GET /digital-course/:id': {
         controller: "WebController",
-        action: "gitPull",
+        action: "digitalCourse",
         skipAssets: true,
         skipRegex: /api|backend/i
     },
+    'GET /latest-buzz/:name': {
+        controller: "WebController",
+        action: "latestBuzz",
+        skipAssets: true,
+        skipRegex: /api|backend/i
+    },
+    // 'GET /digital-question/*': {
+    //     controller: "WebController",
+    //     action: "digitalQuestion",
+    //     skipAssets: true,
+    //     skipRegex: /api|backend/i
+    // },
+    // 'GET /1minute-tips/*': {
+    //     controller: "WebController",
+    //     action: "1minuteTips",
+    //     skipAssets: true,
+    //     skipRegex: /api|backend/i
+    // },
+    // 'GET /photo-gallery/*': {
+    //     controller: "WebController",
+    //     action: "photoGallery",
+    //     skipAssets: true,
+    //     skipRegex: /api|backend/i
+    // },
+
+    // 'GET /gitPull/:data': {
+    //     controller: "WebController",
+    //     action: "gitPull",
+    //     skipAssets: true,
+    //     skipRegex: /api|backend/i
+    // },
     'GET /*': {
         controller: "WebController",
         action: "index",
