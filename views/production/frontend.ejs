@@ -7,10 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{template.desc}}">
-    <meta name="keywords" content="{{template.keywords}}">
-    <meta name="abstract" content="{{template.abstract}}" />
-    <meta name="keywords" content="{{template.keywords}}">
+    <!-- SEO -->
+    <meta name="author" content="Pehla Kadam" />
+    <meta name="description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>" />
+    <meta name="keywords" content="<%= ((typeof keywords) == " undefined") ? "Pehla Kadam " : keywords %>" />
+    <meta name="abstract" content="<%= ((typeof abstract) == " undefined") ? "Pehla Kadam " : abstract %>" /
+    >
+    <meta name="keywords" content="<%= ((typeof keywords) == " undefined") ? "Pehla Kadam " : keywords %>" />
+
+    <!-- Facebook -->
+    <meta property="og:site_name" content="Pehla Kadam">
+    <meta property="og:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
+    <meta property="og:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
+        %>" />
+    <meta property="og:image" content="<%= ((typeof image) == " undefined") ?
+        "https://storage.googleapis.com/twit-banner/tw-banner.jpg" : image %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= ((typeof url) == " undefined") ? "Pehla Kadam" : url %>" />
+
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PehlaKadam" />
+    <meta name="twitter:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
+    <meta name="twitter:image" content="https://storage.googleapis.com/twit-banner/tw-banner.jpg" />
+    <meta name="twitter:image:alt" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>"
+    />
+    <meta name="twitter:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
+        %>" />
 
     <meta property="og:image" content="http://pehlakadam.in/img/header/fb_banner.jpg">
     <meta name="robots" content="noindex">
@@ -74,8 +98,7 @@
         fbq('init', '739477492819387'); // Insert your pixel ID here.
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=739477492819387&ev=PageView&noscript=1"
-        /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=739477492819387&ev=PageView&noscript=1" /></noscript>
     <!-- DO NOT MODIFY -->
 
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->

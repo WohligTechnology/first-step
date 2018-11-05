@@ -23,10 +23,40 @@ module.exports = {
     digitalCourse: function (req, res) {
         if (req.params && req.params.id) {
             res.metaView({
-                title: "Digital",
-                description: "Pehla Kadam is a strategically designed platform that provides ideas and creates products for people who are looking for a better way to manage their finances. Everything in this world is related to finance and therefore it is important to learn about it.",
-                keywords: "file Income Tax Return Form in India,common mistakes in filing income tax return,tax avoidance cases in india,punishment for tax evasion in india,difference between tax evasion and tax avoidance,how to get education loan in india,education loan in india,what is top up loan or personal loan,top up loan eligibility,how to save money from salary in india,importance of saving money for the future,Calculate the salary of a housewife,housewife salary in india,how to manage Indian family monthly budget,middle class family monthly budget in India,reasons to have a credit card,disadvantages of credit card in india,cheque dishonour reasons in india,what are cheque dishonour charges,reasons for rejection of home loan,Home loan rejection in India,what is financial goal setting,long term financial goals,best way to retire early,how to retire early calculator,Mistakes while filing ITR,income tax penalty for undisclosed income,eligibility for personal loan,personal loan rejection reasons,Short term financial goals,is tax evasion a criminal offence in india,tax evasion cases in india,file Income Tax Return Form,file Income Tax Return in India,Income Tax Return Form,mistakes in filing income tax return, tax avoidance cases,tax avoidance in India,punishment for tax evasion,tax evasion and tax avoidance,get education loan in India,get education loan in India,Top up loan or personal loan,top up loan,personal loan,save money from salary in India,saving money for the future,salary of a housewife,Indian family monthly budget,middle class family monthly budget,disadvantages of credit card,cheque dishonour reasons,cheque dishonour charges,rejection of home loan,Home loan rejection,financial goal setting,how to retire early,income tax penalty,tax evasion a criminal offence,tax evasion cases,Delhi,Mumbai,India",
-                abstract: "Pehla Kadam is a strategically designed platform that provides ideas and creates products for people who are looking for a better way to manage their finances. Everything in this world is related to finance and therefore it is important to learn about it.",
+                title: "Pehla Kadam | Digital",
+                description: "",
+                keywords: "",
+                abstract: "",
+            });
+        }
+    },
+    digitalQuestion: function (req, res) {
+        if (req.params && req.params.id) {
+            res.metaView({
+                title: "Pehla Kadam | Digital Question",
+                description: "",
+                keywords: "",
+                abstract: "",
+            });
+        }
+    },
+    minuteTips: function (req, res) {
+        if (req.params && req.params.id) {
+            res.metaView({
+                title: "Pehla Kadam | Contest",
+                description: "",
+                keywords: "",
+                abstract: "",
+            });
+        }
+    },
+    photoGallery: function (req, res) {
+        if (req.params && req.params.id) {
+            res.metaView({
+                title: "Pehla Kadam | Gallery",
+                description: "",
+                keywords: "",
+                abstract: "",
             });
         }
     },
