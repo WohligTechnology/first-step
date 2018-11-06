@@ -67,7 +67,8 @@
     "sails-disk": "~0.10.9",
     "sails-wohlig-controller": "latest",
     "sails-wohlig-service": "latest",
-    "sendgrid": "^5.0.0"
+    "sendgrid": "^5.0.0",
+    "socket.io-redis": "1.1.1"
   },
   "scripts": {
     "debug": "node debug app.js",
