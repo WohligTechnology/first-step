@@ -50,21 +50,27 @@ module.exports.routes = {
         skipAssets: true,
         skipRegex: /api|backend/i
     },
-    'GET /digital-question/*': {
+    'GET /digital-question/:id': {
         controller: "WebController",
         action: "digitalQuestion",
         skipAssets: true,
         skipRegex: /api|backend/i
     },
-    'GET /1minute-tips/*': {
+    'GET /1minute-tips': {
         controller: "WebController",
         action: "minuteTips",
         skipAssets: true,
         skipRegex: /api|backend/i
     },
-    'GET /photo-gallery/*': {
+    'GET /photo-gallery': {
         controller: "WebController",
         action: "photoGallery",
+        skipAssets: true,
+        skipRegex: /api|backend/i
+    },
+    'GET /galat-fehmi': {
+        controller: "WebController",
+        action: "galatFehmi",
         skipAssets: true,
         skipRegex: /api|backend/i
     },
