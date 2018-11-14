@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0">
     <!-- SEO -->
     <meta name="author" content="Pehla Kadam" />
     <meta name="description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>" />
@@ -132,7 +133,9 @@
     <link rel="stylesheet" type="text/css" href="css/production.css" />
 
     <script>
-        var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
+        var adminurl = "<%= ((typeof adminurl) == "
+        undefined ") ? "
+        " : adminurl  %>";
         var isproduction = true;
         var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
