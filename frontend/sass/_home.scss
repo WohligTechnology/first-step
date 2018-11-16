@@ -284,6 +284,20 @@
     }
 }
 
+.blog-content {
+    .link {
+        color: #0D78EB;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.blog-content img {
+    opacity: 1;
+    padding: 20px 0;
+}
+
 .footer-end {
     border-bottom: solid 100px #071f4e;
 }
