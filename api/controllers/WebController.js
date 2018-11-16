@@ -313,21 +313,21 @@ module.exports = {
             } else if (req.params.name == "lock-unlock-biometric-details-of-aadhar-card") {
                 res.metaView({
                     title: "Pehla Kadam | Lock and unlock online the biometric details of your Aadhar Card",
-                    description: "",
+                    description: "Easy steps on how one can lock the aadhar card biometric details either temporarily and how to unlock the same when you need to use it.",
                     keywords: "lock biometrics online, unlock biometrics online, aadhar card, proof of identity, verification, obtain sim card, aadhar card school admission, retinal scan aadhar card, finger print aadhar card, biometric format aadhar card, disable biometric lock, registered mobile number, OTP aadhar card, uidai, security code aadhar cardPAN card"
 
                 });
             } else if (req.params.name == "link-PAN-Aadhar-to-process-insurance-claims") {
                 res.metaView({
                     title: "Pehla Kadam | Link your PAN or Aadhar to process insurance claims",
-                    description: "",
+                    description: "In this article we will show you, how you can easily link your PAN or Aadhar card to your existing insurance policies, in just a few steps",
                     keywords: "Form 60, Form 61, IRDA, PAN card, Aadhar card, insurance policy, insurance policies, insurance companies, insurance company, link Aadhar card, link PAN card, link to insurance, insurance claims"
 
                 });
             } else if (req.params.name == "know-bank-balance-using-smart-phone-without-internet") {
                 res.metaView({
                     title: "Pehla Kadam | Know your bank balance using your smart phone without internet",
-                    description: "",
+                    description: "How to access basic data like bank balance without internet connectivity.",
                     keywords: "bank balance offline, bank balance without internet, internet banking offline, missed call alert, dial *99#, NPCI, IFSC code, MMID, dual factor authentication"
 
                 });
