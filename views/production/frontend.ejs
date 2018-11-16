@@ -9,31 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO -->
     <meta name="author" content="Pehla Kadam" />
-    <meta name="description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>" />
-    <meta name="keywords" content="<%= ((typeof keywords) == " undefined") ? "Pehla Kadam " : keywords %>" />
-    <meta name="abstract" content="<%= ((typeof abstract) == " undefined") ? "Pehla Kadam " : abstract %>" /
+    <meta name="description" content="<%= ((typeof description) == "undefined") ? "Pehla Kadam " : description %>" />
+    <meta name="keywords" content="<%= ((typeof keywords) == "undefined") ? "Pehla Kadam " : keywords %>" />
+    <meta name="abstract" content="<%= ((typeof abstract) == "undefined") ? "Pehla Kadam " : abstract %>" /
     >
-    <meta name="keywords" content="<%= ((typeof keywords) == " undefined") ? "Pehla Kadam " : keywords %>" />
+    <meta name="keywords" content="<%= ((typeof keywords) == "undefined") ? "Pehla Kadam " : keywords %>" />
 
     <!-- Facebook -->
     <meta property="og:site_name" content="Pehla Kadam">
-    <meta property="og:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
+    <meta property="og:title" content="<%= ((typeof title) == "undefined") ? "Pehla Kadam " : title %>" />
     <meta property="og:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
         %>" />
-    <meta property="og:image" content="<%= ((typeof image) == " undefined") ?
-        "http://pehlakadam.in/img/header/fb_banner.jpg" )%>" />
+    <meta property="og:image" content="<%= ((typeof image) == "undefined") ?
+        "http://pehlakadam.in/img/header/fb_banner.jpg" : image %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="<%= ((typeof url) == " undefined") ? "Pehla Kadam" : url %>" />
+    <meta property="og:url" content="<%= ((typeof url) == "undefined") ? "Pehla Kadam" : url %>" />
 
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@PehlaKadam" />
-    <meta name="twitter:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
+    <meta name="twitter:title" content="<%= ((typeof title) == "undefined") ? "Pehla Kadam " : title %>" />
     <meta name="twitter:image" content="http://pehlakadam.in/img/header/fb_banner.jpg" />
-    <meta name="twitter:image:alt" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>"
+    <meta name="twitter:image:alt" content="<%= ((typeof description) == "undefined") ? "Pehla Kadam " : description %>"
     />
-    <meta name="twitter:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
+    <meta name="twitter:description" content="<%= ((typeof description) == "undefined") ? "Pehla Kadam " : description
         %>" />
 
     <meta property="og:image" content="http://pehlakadam.in/img/header/fb_banner.jpg">
@@ -133,9 +133,7 @@
     <link rel="stylesheet" type="text/css" href="css/production.css" />
 
     <script>
-        var adminurl = "<%= ((typeof adminurl) == "
-        undefined ") ? "
-        " : adminurl  %>";
+        var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
         var isproduction = true;
         var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
