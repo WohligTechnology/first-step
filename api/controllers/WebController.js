@@ -317,9 +317,9 @@ module.exports = {
                     keywords: "lock biometrics online, unlock biometrics online, aadhar card, proof of identity, verification, obtain sim card, aadhar card school admission, retinal scan aadhar card, finger print aadhar card, biometric format aadhar card, disable biometric lock, registered mobile number, OTP aadhar card, uidai, security code aadhar cardPAN card"
 
                 });
-            } else if (req.params.name == "link-PAN-AAdhar-to-process-insurance-claims") {
+            } else if (req.params.name == "link-PAN-Aadhar-to-process-insurance-claims") {
                 res.metaView({
-                    title: "Pehla Kadam | Link your PAN or AAdhar to process insurance claims",
+                    title: "Pehla Kadam | Link your PAN or Aadhar to process insurance claims",
                     description: "",
                     keywords: "Form 60, Form 61, IRDA, PAN card, Aadhar card, insurance policy, insurance policies, insurance companies, insurance company, link Aadhar card, link PAN card, link to insurance, insurance claims"
 
