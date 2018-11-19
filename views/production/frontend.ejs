@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="'Pehla Kadam | ' + template.title">
+        <%= ((typeof title) == "undefined") ? "Pehla Kadam" : title  %>
+    </title>
+
     <!-- SEO -->
     <meta name="author" content="Pehla Kadam" />
     <meta name="description" content="<%= ((typeof description) == "undefined") ? "Pehla Kadam " : description %>" />
@@ -36,14 +40,8 @@
         %>" />
 
     <meta property="og:image" content="http://pehlakadam.in/img/header/fb_banner.jpg">
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
     <meta name="msvalidate.01" content="57507A68060970332F2C95DF34D7A8C7" />
     <link rel="shortcut icon" href="img/favicon.ico" />
-
-    <title ng-bind="'Pehla Kadam | ' + template.title">
-        <%= ((typeof title) == "undefined") ? "Pehla Kadam" : title  %>
-    </title>
 
     <meta name="robots" content="INDEX,FOLLOW" />
 
