@@ -534,6 +534,17 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         if (!$scope.type.type) {
             $scope.type.type = "text";
         }
+        $scope.tinymceOptions = {
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern imagetools"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true
+        };
         $scope.json = JsonService;
         $scope.tags = {};
         $scope.model = [];
@@ -670,6 +681,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
         //  TAGS STATIC AND FROM TABLE
         $scope.refreshTags = function (search) {
+            console.log(search)
             if ($scope.type.url !== "") {
                 NavigationService.searchCall($scope.type.url, {
                     keyword: search
@@ -685,6 +697,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         }
 
         $scope.tagClicked = function (select, index) {
+            console.log(select)
             if ($scope.type.fieldType === "array") {
                 $scope.formData[$scope.type.tableRef] = [];
                 _.each(select, function (n) {

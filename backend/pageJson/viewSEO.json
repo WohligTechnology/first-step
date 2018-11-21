@@ -1,0 +1,54 @@
+{
+    "title": "SEO",
+    "description": "List of SEO's",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "isSort": "",
+        "tableRef": "name"
+    }, {
+        "name": "Email",
+        "isSort": "",
+        "tableRef": "email"
+    }, {
+        "name": "Mobile",
+        "isSort": "",
+        "tableRef": "mobile"
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createSEO"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil-alt",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editSEO",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash-alt",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete User",
+        "content": "Are you sure you want to delete SEO?",
+        "api": "SeoBackend/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+
+    "apiCall": {
+        "url": "SeoBackend/search",
+        "params": "_id"
+    }
+}

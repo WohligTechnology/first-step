@@ -1,0 +1,85 @@
+{
+    "title": "Edit SEO",
+    "name": "SEO",
+    "jsonPage": "viewSEO",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Name",
+            "type": "text",
+            "tableRef": "name",
+            "placeholder": "Enter Name",
+            "id": "name",
+            "validation": ["required", "trim", "unique"],
+            "url": ""
+        }, {
+            "name": "Title",
+            "type": "text",
+            "tableRef": "title",
+            "placeholder": "Enter Title",
+            "id": "title",
+            "url": ""
+        }, {
+            "name": "Description",
+            "type": "wysiwyg",
+            "tableRef": "description",
+            "placeholder": "Enter Description",
+            "id": "description",
+            "url": ""
+        }, {
+            "name": "Abstract",
+            "type": "text",
+            "tableRef": "abstract",
+            "placeholder": "Enter Abstract",
+            "id": "abstract",
+            "url": ""
+        },
+        {
+            "name": "Keywords",
+            "type": "tags",
+            "dropDownType": "multiple",
+            "tableRef": "keywords",
+            "placeholder": "Enter keywords",
+            "id": "keywords",
+            "url": "",
+            "dropDownField": ""
+        },
+        {
+            "name": "Page",
+            "type": "text",
+            "tableRef": "page",
+            "placeholder": "Enter Page",
+            "id": "page",
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitUser",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSEO"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSEO"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "SeoBackend/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "SeoBackend/getOne",
+        "params": "_id"
+    }
+
+}
