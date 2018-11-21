@@ -9,13 +9,13 @@
         "isSort": "",
         "tableRef": "name"
     }, {
-        "name": "Email",
+        "name": "Title",
         "isSort": "",
-        "tableRef": "email"
+        "tableRef": "title"
     }, {
-        "name": "Mobile",
+        "name": "Keywords",
         "isSort": "",
-        "tableRef": "mobile"
+        "tableRef": "keywords"
     }],
     "button": [{
         "name": "Create",

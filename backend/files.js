@@ -1,4 +1,5 @@
 module.exports = [
+    'backend/js/tinymce/tinymce.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/jStorage/jstorage.js',
     'bower_components/jquery-ui/jquery-ui.js',
@@ -34,10 +35,8 @@ module.exports = [
     'bower_components/textAngular/dist/textAngular-rangy.min.js',
     'bower_components/textAngular/dist/textAngular-sanitize.min.js',
     'bower_components/textAngular/dist/textAngular.min.js',
-
     //App.js
     'backend/js/app.js',
-
     // Languages
     'backend/js/languages/language.js',
 

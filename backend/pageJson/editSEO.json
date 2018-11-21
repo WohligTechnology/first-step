@@ -74,7 +74,7 @@
         }
     }],
     "apiCall": {
-        "url": "SeoBackend/save",
+        "url": "SeoBackend/saveSEO",
         "params": "_id"
     },
     "preApi": {
