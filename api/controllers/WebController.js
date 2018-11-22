@@ -69,45 +69,45 @@ module.exports = {
             console.log(req.params);
             if (req.params.name == "how-to-deal-with-a-job-loss") {
                 res.metaView({
-                    title: "Pehla Kadam | How to deal with a job loss",
-                    description: "If you are ever unfortunate enough to face a situation where you have been asked to leave a job, the article below will give you tips and advice on how to deal when one is faced with such a situation.",
-                    abstract: "",
-                    keywords: "job loss, financial planning, economic meltdown, bad performance, panic, self-control, rational, job network, job websites, existing office, colleagues, resume, CV, update skills, counsellor, contingency fund, monthly salary, expenses"
+                    title: "How to deal with a job loss|Pehla Kadam",
+                    description: "Get advice to help you deal with job loss, How to deal with a job loss and financially traumatic. Learn how to move on from this life-altering event..",
+                    abstract: "Get advice to help you deal with job loss, How to deal with a job loss and financially traumatic. Learn how to move on from this life-altering event.",
+                    keywords: "How to deal with a job loss,job loss,deal with a job loss,Pehla Kadam, India, Delhi, Mumbai, Trading"
                 });
             } else if (req.params.name == "difference-between-rupay-visa-mastercard") {
                 res.metaView({
-                    title: "Pehla Kadam | Difference between Rupay, Visa and MasterCard",
-                    description: "Find out what is the difference between the Rupay debit card launched in India and the international cards companies VISA and Master Card.",
-                    abstract: "",
-                    keywords: "Rupay, master card, visa card, debit card, credit card, processing fee, charges banks, payment gateway, NPCI, Pradhan Mantri Jan Dhan Yojana, quarterly charges, international transactions"
+                    title: "DIFFERENCE BETWEEN RUPAY, VISA AND MASTERCARD|Pehla Kadam",
+                    description: "Find out what is the difference between the Rupay RUPAY, VISA AND MASTERCARD card launched in India and the international cards companies VISA and Master Card.",
+                    abstract: "Find out what is the difference between the Rupay RUPAY, VISA AND MASTERCARD card launched in India and the international cards companies VISA and Master Card.",
+                    keywords: "Difference between rupay, visa and mastercard,rupay, visa and mastercard,Pehla Kadam, India, Delhi, Mumbai"
                 });
             } else if (req.params.name == "advantages-disadvantages-of-virtual-trading") {
                 res.metaView({
-                    title: "Pehla Kadam | Advantages and disadvantages of virtual trading",
-                    description: "Virtual trading or paper trading as it was knows has its advantages as well as disadvantages. Let us look at pros and cons of the same to make a sound decision.",
-                    abstract: "",
-                    keywords: "virtual trading, paper trading, virtual trading platform, trading simulator, stock market, stock exchange, stock index, stock indices, stocks, trading, traders, brokers, financial institutions,  real markets, virtual cash, virtual currency, invest, investing, brokerage, margin money, technical analysis, back testing, real time analysis, market conditions"
+                    title: "Advantages and Disadvantages of Virtual Trading|Pehla Kadam",
+                    description: "Know what is meant by Advantages and Disadvantages of Virtual Trading. Online investing is made easier with free virtual stock trading.",
+                    abstract: "Know what is meant by Advantages and Disadvantages of Virtual Trading. Online investing is made easier with free virtual stock trading.",
+                    keywords: "Advantages and Disadvantages of Virtual Trading,Virtual Trading,Disadvantages of Virtual Trading,Advantages of Virtual Trading,Pehla Kadam, India, Delhi, Mumbai, Trading"
                 });
             } else if (req.params.name == "how-to-save-during-the-festive-season") {
                 res.metaView({
-                    title: "Pehla Kadam | How to save during the festive season",
-                    description: "How to manage your finance and enthusiasm of overspending, with the festival season around the corner.",
-                    abstract: "",
-                    keywords: "splurge, shopping, buying , gifts, customers, business owner, festive season, over spending, finances, plan, spending habit, corpus, festivities, budget, planning, percentage of income, bonus, Diwali bonus, expensive gifts, sale, online sale, tax benefits, loans, max out credit cards."
+                    title: "HOW TO SAVE DURING THE FESTIVE SEASON|Pehla Kadam",
+                    description: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
+                    abstract: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
+                    keywords: "HOW TO SAVE DURING THE FESTIVE SEASON,FESTIVE SEASON,Pehla Kadam,India, Delhi, Mumbai"
                 });
             } else if (req.params.name == "eligibility-criteria-for-postal-life-insurance") {
                 res.metaView({
-                    title: "Pehla Kadam | Eligibility criteria for Postal Life Insurance",
-                    description: "What are the eligibility parameters to check if you are entitled to apply for postal loan insurance (PLI)",
-                    abstract: "",
-                    keywords: "postal life insurance, postal, life insurance, welfare scheme, postal service, telegraph department, high rate of returns, premium, whole life assurance, endowment assurance, section 88, Central Government, Defence Services, Para Military forces,  State Government, Local Bodies,    Government-aided Educational Institutions,  Reserve Bank of India, Public Sector Undertakings, Financial Institutions, Nationalized Banks,  Autonomous Bodies, Extra Departmental Agents in Department of Posts, Employees Engaged/ Appointed on  Contract basis by central/ State Government where the contract is extendable, Employees of all scheduled Commercial Banks."
+                    title: "ELIGIBILITY CRITERIA FOR POSTAL LIFE INSURANCE|Pehla Kadam",
+                    description: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
+                    abstract: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
+                    keywords: "ELIGIBILITY CRITERIA FOR POSTAL LIFE INSURANCE,LIFE INSURANCE,ELIGIBILITY CRITERIA,Pehla Kadam,India, Delhi, Mumbai"
                 });
             } else if (req.params.name == "how-to-calculate-MAB") {
                 res.metaView({
-                    title: "Pehla Kadam | How to calculate MAB (Monthly Average Balance)",
-                    description: "Simple steps to calculate the formula to compute the average monthly balance for your savings bank account.",
-                    abstract: "",
-                    keywords: "Monthly average balance, calculate, MAB, savings account, bank, penalty, operational costs, close of day, end of day, EOD, consolidate bank accounts, private sector banks, public sector banks, internet banking, interest, section 80TTA, account balance."
+                    title: "HOW TO CALCULATE MAB (MONTHLY AVERAGE BALANCE)|Pehla Kadam",
+                    description: "Calculate your average monthly balance to know the amount to be maintained in your account. How to Calculate MAB (MONTHLY AVERAGE BALANCE) is often used by creditors to know your income stability.",
+                    abstract: "Calculate your average monthly balance to know the amount to be maintained in your account. How to Calculate MAB (MONTHLY AVERAGE BALANCE) is often used by creditors to know your income stability.",
+                    keywords: "HOW TO CALCULATE MAB (MONTHLY AVERAGE BALANCE),MONTHLY AVERAGE BALANCE,Pehla Kadam,India, Delhi, Mumbai"
                 });
             } else if (req.params.name == "things-to-know-about-new-tax-form") {
                 res.metaView({
