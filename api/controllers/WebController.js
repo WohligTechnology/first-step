@@ -91,8 +91,8 @@ module.exports = {
             } else if (req.params.name == "how-to-save-during-the-festive-season") {
                 res.metaView({
                     title: "HOW TO SAVE DURING THE FESTIVE SEASON|Pehla Kadam",
-                    description: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
-                    abstract: "What are the eligibility Eligibility Criteria for Postal Life Insurance to check if you are entitled to apply for postal  loan insurance.",
+                    description: "The best time of getting value for your money by saving is when How to save during the festive season One of the best times to get good deals is during the festive season.",
+                    abstract: "The best time of getting value for your money by saving is when How to save during the festive season One of the best times to get good deals is during the festive season.",
                     keywords: "HOW TO SAVE DURING THE FESTIVE SEASON,FESTIVE SEASON,Pehla Kadam,India, Delhi, Mumbai"
                 });
             } else if (req.params.name == "eligibility-criteria-for-postal-life-insurance") {
