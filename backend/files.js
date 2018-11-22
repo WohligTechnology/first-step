@@ -1,4 +1,5 @@
 module.exports = [
+    'backend/js/tinymce/tinymce.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/jStorage/jstorage.js',
     'bower_components/jquery-ui/jquery-ui.js',
@@ -19,6 +20,7 @@ module.exports = [
     'bower_components/angulartics/dist/angulartics.min.js',
     'bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js',
     'bower_components/angular-ui-tinymce/src/tinymce.js',
+    'bower_components/angular-ui-tinymce/dist/tinymce.min.js',
     'bower_components/angularjs-imageupload-directive/public/javascripts/imageupload.js',
     'bower_components/ngmap/build/scripts/ng-map.min.js',
     "bower_components/angular-bootstrap-toggle-switch/angular-toggle-switch.min.js",
@@ -33,10 +35,8 @@ module.exports = [
     'bower_components/textAngular/dist/textAngular-rangy.min.js',
     'bower_components/textAngular/dist/textAngular-sanitize.min.js',
     'bower_components/textAngular/dist/textAngular.min.js',
-
     //App.js
     'backend/js/app.js',
-
     // Languages
     'backend/js/languages/language.js',
 

@@ -14,7 +14,8 @@ var myApp = angular.module('myApp', [
     'angular-flexslider',
     'toggle-switch',
     'cfp.hotkeys',
-    'ui.sortable'
+    'ui.sortable',
+    "ui.tinymce"
 ]);
 
 myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
@@ -84,7 +85,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/jagz",
             templateUrl: "views/jagz.html",
             controller: 'JagzCtrl'
-        }) 
+        })
         .state('contestFilter', {
             url: "/contestFilter",
             templateUrl: "views/template.html",
