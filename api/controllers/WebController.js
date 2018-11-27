@@ -331,6 +331,48 @@ module.exports = {
                     keywords: "bank balance offline, bank balance without internet, internet banking offline, missed call alert, dial *99#, NPCI, IFSC code, MMID, dual factor authentication"
 
                 });
+            } else if (req.params.name == "basic-demat-account-services-for-you") {
+                res.metaView({
+                    title: "Pehla Kadam | Basic Demat account services for you",
+                    description: "What is a basic demat account (BSDA). How and why it can be useful to have one.",
+                    abstract: "",
+                    keywords: "basic demat, demat account, BSDA, equities, stocks, stock market, mutual funds, investors, multiple demat account, no frills account, SEBI, banks, financial institutions, demat service providers, 	annual maintenance charges, AMC, SMS alerts, annual statement"
+                });
+            } else if (req.params.name == "irctc-norms-travel-insurance-norms-train-passengers") {
+                res.metaView({
+                    title: "Pehla Kadam | IRCTC norms for travel insurance norms for train passengers",
+                    description: "IRCTC has come up with revised rules train travel insurance for passengers. Below is a description of what these new norms are.",
+                    abstract: "",
+                    keywords: "travel insurance, train travel, train insurance, accidents, IRCTC, Indian railways, train accident, insurance premium, ICICI Lombard general insurance company, Shriram general insurance, royal sundaram general insurance, settlement of claims, policy document, nominee, legal heir"
+                });
+            } else if (req.params.name == "do-you-get-interest-from-inactive-epf-accounts") {
+                res.metaView({
+                    title: "Pehla Kadam | Do you get interest from inactive EPF ACCOUNTS?",
+                    description: "The question that is widely asked in India is, inactive or dormant EPF accounts generate any interest. The article outlines the details under which an inactive EPF account generates interest for the salaried individual. Read on to find out more.",
+                    abstract: "",
+                    keywords: "inactive EPF account, interest on EPF account, interest on inactive EPF account, EPF account, EPF withdrawal, EPF transfer, UAN, Universal Account Number, EPFO, tax free EPF interest"
+                });
+            } else if (req.params.name == "subscription-services-by-cibil") {
+                res.metaView({
+                    title: "Pehla Kadam | Subscription services by CIBIL",
+                    description: "CIBIL has started subscription services for users to avail of unlimited access to their score based on monthly, half yearly and annual plans. The article lists the details of those plans, which is useful for people who are in the process of obtaining loans in the distant future.",
+                    abstract: "",
+                    keywords: "CIBIL, CIC, TU-CIBIL, Trans Union, credit score, repayment history, credit cards, loans, individual credit score, banks, financial lending institutions, CIBIL subscription, unlimited access to CIBIL score, CIBIL score history, CIBIL score analysis, CIBIL report, CIBIL credit summary"
+                });
+            } else if (req.params.name == "steps-to-avoid-investment-mistakes") {
+                res.metaView({
+                    title: "Pehla Kadam | Steps to avoid investment mistakes",
+                    description: "Some of the most common mistakes that people make while doing long term investment planning. This article will inform you about the same so that you can avoid them in your investment planning.",
+                    abstract: "",
+                    keywords: "investment mistakes, future financial benefit, return on investment, holding period, types of investments, investment decision, common investment mistakes, investment planner, retirement planning, power of compounding, financial benefits, health insurance, term insurance, fixed deposits, bond funds, fixed maturity plan, rate of inflation, tax on FD, credit card spending, loans"
+                });
+            } else if (req.params.name == "government-india-digi-locker-facility-for-documents") {
+                res.metaView({
+                    title: "Pehla Kadam | Government of India Digi-Locker facility for documents",
+                    description: "What is online Digi-locker that the government of India has initiated and the steps to open your own Digi-locker explained in simple steps.",
+                    abstract: "",
+                    keywords: "Digi locker, digital locker, online documents, electronic documents, passport, driving licence, mark sheets, voters id, important documents, vehicle registration certificate, physical documents, digital format, e-sign, paperless"
+                });
             }
         }
     },
