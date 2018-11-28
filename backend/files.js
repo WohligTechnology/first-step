@@ -1,5 +1,5 @@
 module.exports = [
-    'backend/js/tinymce/tinymce.js',
+    // 'backend/js/tinymce/tinymce.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/jStorage/jstorage.js',
     'bower_components/jquery-ui/jquery-ui.js',
