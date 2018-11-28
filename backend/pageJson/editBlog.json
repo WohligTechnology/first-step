@@ -1,0 +1,129 @@
+{
+    "title": "Edit Blog",
+    "name": "Blog",
+    "jsonPage": "viewBlog",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Blog Id",
+            "type": "text",
+            "tableRef": "blogId",
+            "placeholder": "Enter Blog Id",
+            "id": "blogId",
+            "validation": ["required", "trim"],
+            "url": ""
+        },
+        {
+            "name": "Blog Title",
+            "type": "text",
+            "tableRef": "title",
+            "placeholder": "Enter Blog Title",
+            "id": "title",
+            "validation": ["required", "trim"],
+            "url": ""
+        },
+        {
+            "name": "Date",
+            "type": "date",
+            "tableRef": "date",
+            "placeholder": "Enter Blog Date",
+            "id": "date",
+            "validation": ["required", "trim"],
+            "url": ""
+        },
+        {
+            "name": "Blog Content",
+            "type": "wysiwyg",
+            "tableRef": "content",
+            "placeholder": "Enter Blog Content",
+            "id": "content",
+            "validation": ["required", "trim"],
+            "url": ""
+        },
+        {
+            "name": "All SEO",
+            "type": "box",
+            "tableRef": "seo",
+            "validation": ["trim", ""],
+            "fields": [{
+                    "name": "Name",
+                    "type": "text",
+                    "tableRef": "name",
+                    "placeholder": "Enter Name",
+                    "id": "name",
+                    "validation": ["required", "trim", "unique"],
+                    "url": ""
+                }, {
+                    "name": "Title",
+                    "type": "text",
+                    "tableRef": "title",
+                    "placeholder": "Enter Title",
+                    "id": "title",
+                    "url": ""
+                },
+                {
+                    "name": "Description",
+                    "type": "wysiwyg",
+                    "tableRef": "description",
+                    "placeholder": "Enter Description",
+                    "id": "description",
+                    "url": ""
+                }, {
+                    "name": "Abstract",
+                    "type": "text",
+                    "tableRef": "abstract",
+                    "placeholder": "Enter Abstract",
+                    "id": "abstract",
+                    "url": ""
+                },
+                {
+                    "name": "Keywords",
+                    "type": "tags",
+                    "dropDownType": "multiple",
+                    "tableRef": "keywords",
+                    "placeholder": "Enter keywords",
+                    "id": "keywords",
+                    "url": "",
+                    "dropDownField": ""
+                },
+                {
+                    "name": "Page",
+                    "type": "text",
+                    "tableRef": "page",
+                    "placeholder": "Enter Page",
+                    "id": "page",
+                    "url": ""
+                }
+            ]
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitBlog",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewBlog"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewBlog"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Blog/saveBlog",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Blog/getOne",
+        "params": "_id"
+    }
+
+}

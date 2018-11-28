@@ -480,7 +480,8 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
 
 
 
-    _.each($scope.blogs, function (n) {
+    _.each($scope.blogs, function (n, key) {
+        console.log(n.data.length, key)
         _.each(n.data, function (m) {
             if ($stateParams.name == m.id) {
                 $scope.individualBlog = m;

@@ -1,9 +1,10 @@
 var schema = new Schema({
-    id: {
+    blogId: {
         type: String
     },
     title: String,
     content: String,
+    date: Date,
     seo: [{
         title: String,
         description: String,
@@ -20,5 +21,10 @@ schema.plugin(timestamps);
 module.exports = mongoose.model('Blog', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
-var model = {};
+var model = {
+    saveBlog: function (data, callback) {
+        delete data.createdAt;
+        Blog.saveData(data, callback);
+    }
+};
 module.exports = _.assign(module.exports, exports, model);
