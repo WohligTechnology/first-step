@@ -34,7 +34,7 @@
         },
         {
             "name": "Blog Content",
-            "type": "text",
+            "type": "wysiwyg",
             "tableRef": "content",
             "placeholder": "Enter Blog Content",
             "id": "content",
