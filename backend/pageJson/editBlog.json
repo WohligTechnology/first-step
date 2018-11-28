@@ -47,14 +47,6 @@
             "tableRef": "seo",
             "validation": ["trim", ""],
             "fields": [{
-                    "name": "Name",
-                    "type": "text",
-                    "tableRef": "name",
-                    "placeholder": "Enter Name",
-                    "id": "name",
-                    "validation": ["required", "trim", "unique"],
-                    "url": ""
-                }, {
                     "name": "Title",
                     "type": "text",
                     "tableRef": "title",
