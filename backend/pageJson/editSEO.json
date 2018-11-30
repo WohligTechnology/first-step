@@ -37,13 +37,11 @@
         },
         {
             "name": "Keywords",
-            "type": "tags",
-            "dropDownType": "multiple",
+            "type": "text",
             "tableRef": "keywords",
             "placeholder": "Enter keywords",
             "id": "keywords",
-            "url": "",
-            "dropDownField": ""
+            "url": ""
         },
         {
             "name": "Page",
