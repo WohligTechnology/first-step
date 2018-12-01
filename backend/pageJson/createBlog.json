@@ -33,6 +33,15 @@
             "url": ""
         },
         {
+            "name": "ShortName",
+            "type": "text",
+            "tableRef": "shortName",
+            "placeholder": "Enter Blog Short Name",
+            "id": "shortName",
+            "validation": ["required", "trim"],
+            "url": ""
+        },
+        {
             "name": "Blog Content",
             "type": "wysiwyg",
             "tableRef": "content",

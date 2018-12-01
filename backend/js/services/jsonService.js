@@ -51,7 +51,6 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
     //   modalInstance.close("cancel");
     // };
   };
-
   var openCustomModal = function (size, title, message) {
     // var actionToPerformOnConfirm = action;
     console.log("in model");
@@ -80,6 +79,15 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
     console.log("ACTION-->", action);
     console.log("VALUE-->", value);
 
+    if (action.name == 'toggle') {
+      console.log('here');
+      NavigationService.apiCall(action.api, value, function (data) {
+        toastr.success(JsonService.json.title + " updated successfully.", JsonService.json.title + " updated");
+        JsonService.refreshView();
+      });
+    }
+
+
 
     if (action.type == "box") {
       JsonService.modal = action;
@@ -100,8 +108,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
       } else if (action && action.type == "custompage") {
         console.log("IN CUSTOMPAGE TYPE");
         $state.go("custompage", sendTo);
-      } 
-     else if (action && action.type == "contest") {
+      } else if (action && action.type == "contest") {
         if (action.fieldsToSend) {
           var keyword = {};
           _.each(action.fieldsToSend, function (n, key) {
@@ -110,7 +117,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
           sendTo.keyword = JSON.stringify(keyword);
         }
         $state.go("contest", sendTo);
-      }else if (action && action.type == "externalUrl") {
+      } else if (action && action.type == "externalUrl") {
         window.location.href = adminurl + "../institute-form";
       } else if (action && action.type == "statepage") {
         console.log("IN statePAGE TYPE");

@@ -10,14 +10,16 @@
         "tableRef": "date",
         "type": "date"
     }, {
-        "name": "Blog Id",
-        "isSort": "",
-        "tableRef": "blogId"
-    }, {
         "name": "Blog Title",
         "isSort": "",
         "tableRef": "title"
     }],
+    "toggle": {
+        "name": "toggle",
+        "tableRef": "displayHome",
+        "api": "Blog/saveBlog",
+        "type": "Display on Home"
+    },
     "action": [{
         "name": "edit",
         "icon": "fa-pencil-alt",

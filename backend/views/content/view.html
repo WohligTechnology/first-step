@@ -22,7 +22,8 @@
                             <div class="pull-right ">
                                 <form class="search-form mr-form" ng-hide="json.json.removeSearch">
                                     <input type="text " ng-change="getAllItems(true) " placeholder="Search Here...
-                        " ng-model="search.keyword " />
+                        "
+                                        ng-model="search.keyword " />
                                 </form>
                                 <a ng-repeat="btn in json.json.button " class="btn " ng-class="btn.class " ng-click="json.eventAction(btn) ">{{btn.name}}</a>
                                 <a class="btn btn-default" ng-if="json.json.filter" ng-click="showFilter();">Filter</a>
@@ -37,7 +38,8 @@
                                         <th ng-repeat="field in json.json.fields">
                                             {{field.name}}
                                         </th>
-                                        <th ng-if="json.json.action.lenght > 0">Actions </th>
+                                        <th ng-if="json.json.toggle">{{json.json.toggle.type}}</th>
+                                        <th>Actions </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,6 +48,13 @@
                                         <td ng-repeat="field in json.json.fields">
                                             <view-field type="field" value="item">
                                             </view-field>
+                                        </td>
+                                        <td ng-if="json.json.toggle">
+                                            <label class="switch">
+                                                <input type="checkbox" ng-model="item.displayHome" ng-click="json.eventAction(json.json.toggle,item)"
+                                                    checked>
+                                                <span class="slider round"></span>
+                                            </label>
                                         </td>
                                         <td ng-repeat="but in json.json.action">
                                             <a class="btn" ng-class="but.buttonClass" ng-click="json.eventAction(but,item) ">
@@ -63,9 +72,10 @@
                             <h5>Loading Data</h5>
                         </div>
                         <ul ng-if="totalItems " ng-change="changePage(currentPage); " uib-pagination total-items="totalItems
-                                            " items-per-page="maxRow " ng-model="currentPage " max-size="template.pageMax "
-                            class="pagination-sm
-                                            " boundary-links="true " force-ellipses="true "></ul>
+                                            "
+                            items-per-page="maxRow " ng-model="currentPage " max-size="template.pageMax " class="pagination-sm
+                                            "
+                            boundary-links="true " force-ellipses="true "></ul>
                     </div>
                 </div>
             </div>

@@ -237,7 +237,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         JsonService.getJson($stateParams.id, function () {});
-
         globalfunction.confDel = function (callback) {
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -250,6 +249,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 modalInstance.close("cancel");
             };
         };
+
+
 
         globalfunction.openModal = function (callback) {
             var modalInstance = $uibModal.open({
@@ -313,7 +314,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
     .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
         $scope.json = JsonService;
         $scope.template = TemplateService;
-
         $scope.showFilter = function () {
             console.log("Filter Clicked");
             $scope.modalInstance = $uibModal.open({
@@ -323,7 +323,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 scope: $scope
             });
         };
-
 
         var i = 0;
         var rightAnswer = false;
@@ -477,7 +476,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
         JsonService.refreshView = $scope.getAllItems;
         $scope.getAllItems();
-
     })
 
     .controller('DetailCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, toastr) {

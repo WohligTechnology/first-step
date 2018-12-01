@@ -5,6 +5,8 @@ var schema = new Schema({
     title: String,
     content: String,
     date: Date,
+    displayHome: Boolean,
+    shortName: String,
     seo: [{
         title: String,
         description: String,
