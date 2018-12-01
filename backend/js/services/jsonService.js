@@ -83,7 +83,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
       console.log('here');
       NavigationService.apiCall(action.api, value, function (data) {
         toastr.success(JsonService.json.title + " updated successfully.", JsonService.json.title + " updated");
-        JsonService.refreshView();
+        // JsonService.refreshView();
       });
     }
 
