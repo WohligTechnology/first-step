@@ -5,6 +5,9 @@ var controller = {
     },
     getBlogs: function (req, res) {
         Blog.getBlogs(req.body, res.callback);
+    },
+    getHomeScreenBlogs: function (req, res) {
+        Blog.getHomeScreenBlogs(req.body, res.callback);
     }
 };
 module.exports = _.assign(module.exports, controller);

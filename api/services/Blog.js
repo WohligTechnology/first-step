@@ -58,6 +58,11 @@ var model = {
                     }
                 }
             ]).exec(callback);
+    },
+    getHomeScreenBlogs: function (data, callback) {
+        Blog.find({
+            displayHome: true
+        }).limit(3).exec(callback);
     }
 };
 module.exports = _.assign(module.exports, exports, model);
