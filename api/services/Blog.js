@@ -40,6 +40,7 @@ var model = {
                         },
                         "blogs": {
                             "$push": {
+                                "date": "$date",
                                 "_id": "$_id",
                                 "id": "$blogId",
                                 "title": "$title",
