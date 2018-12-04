@@ -30,8 +30,8 @@
                 <div class="pl-3 all-blogs">
                     <h5 class="text-center pt-1 yellow-bg font-D-Regular purple-color previous">Previous Blogs</h5>
                     <div ng-repeat="blog in blogs">
-                        <h6 class="text-center pt-1 yellow-bg font-D-Regular purple-color mt-4">{{blog.month}}</h6>
-                        <div ng-repeat="individualBlog in blog.data">
+                        <h6 class="text-center pt-1 yellow-bg font-D-Regular purple-color mt-4">{{blog.blogs[0].date|date:"MMMM"}}</h6>
+                        <div ng-repeat="individualBlog in blog.blogs">
                             <div class="blog" ui-sref="latest-buzz({name:individualBlog.id})">
                                 <h6>{{individualBlog.title}}</h6>
                             </div>

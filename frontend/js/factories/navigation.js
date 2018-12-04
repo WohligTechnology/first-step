@@ -1,4 +1,4 @@
-myApp.factory('NavigationService', function ( $http) {
+myApp.factory('NavigationService', function ($http) {
     var navigation = [
         //     {
         //     name: "Home",
@@ -36,5 +36,23 @@ myApp.factory('NavigationService', function ( $http) {
                 callback(data);
             });
         },
+        getBlogs: function (callback) {
+            $http.post(adminurl + "Blog/getBlogs").then(function (data) {
+                data = data.data;
+                callback(data);
+            });
+        },
+        getselectedBlog: function (data, callback) {
+            $http.post(adminurl + "Blog/search", data).then(function (data) {
+                data = data.data;
+                callback(data.data.results[0]);
+            });
+        },
+        getHomeScreenBlogs: function (callback) {
+            $http.post(adminurl + "Blog/getHomeScreenBlogs").then(function (data) {
+                data = data.data;
+                callback(data);
+            });
+        }
     };
 });

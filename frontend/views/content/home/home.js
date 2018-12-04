@@ -177,4 +177,15 @@ myApp.controller("HomeCtrl", function (
       title: "Raipur"
     }
   ];
+
+
+  // home screen blog
+  NavigationService.getHomeScreenBlogs(function (result) {
+    console.log(result.data);
+    _.each(result.data, function (n, key) {
+      n.image = "img/home/" + (key + 4) + ".jpg";
+    });
+    $scope.blogs = result.data;
+  });
+
 });
