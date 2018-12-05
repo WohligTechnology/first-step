@@ -13,9 +13,9 @@
         "isSort": "",
         "tableRef": "title"
     }, {
-        "name": "Keywords",
+        "name": "Page",
         "isSort": "",
-        "tableRef": "keywords"
+        "tableRef": "page"
     }],
     "button": [{
         "name": "Create",
