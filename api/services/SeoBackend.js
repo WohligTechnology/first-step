@@ -25,6 +25,9 @@ var model = {
     saveSEO: function (data, callback) {
         delete data.createdAt;
         SeoBackend.saveData(data, callback);
+    },
+    getOneSEO: function (data, callback) {
+        SeoBackend.findOne(data).exec(callback)
     }
 };
 module.exports = _.assign(module.exports, exports, model);
