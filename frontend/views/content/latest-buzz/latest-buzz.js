@@ -1,6 +1,6 @@
 myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $state, $location, $stateParams) {
     $scope.template = TemplateService.getHTML("content/latest-buzz/latest-buzz.html");
-    // TemplateService.title = "Latest Buzz"; //This is the Title of the Website
+    TemplateService.title = "Latest Buzz"; //This is the Title of the Website
     NavigationService.getSeo($stateParams.name, function (seo) {
         console.log(seo)
         TemplateService.title = "Latest Buzz | " + seo.data.title;
