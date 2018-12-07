@@ -5,11 +5,10 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
     TemplateService.cssMain = "header-icons";
     $scope.myUrl = $location.absUrl();
     $scope.currentMonth = new Date().getMonth();
-    console.log("$scope.myUrl", $scope.myUrl);
+    // console.log("$scope.myUrl", $scope.myUrl);
     $scope.blogData = 'Common-mistakes-while-filing-Income-Tax-Return-Form-India';
-    console.log("$stateParams.name..............", $stateParams.name);
+    // console.log("$stateParams.name..............", $stateParams.name);
     NavigationService.getBlogs(function (result) {
-        console.log(result);
         $scope.blogs = result.data;
     });
     $scope.blogData = {};
@@ -17,8 +16,13 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
         blogId: $stateParams.name
     };
     NavigationService.getselectedBlog($scope.blogData, function (result) {
-        console.log(result)
         $scope.individualBlog = result;
+        NavigationService.getSeo(result.blogId, function (seo) {
+            TemplateService.title = seo.data.title;
+            TemplateService.desc = seo.data.description;
+            TemplateService.abstract = seo.data.abstract;
+            TemplateService.keywords = seo.data.keywords;
+        });
     });
 
 

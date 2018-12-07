@@ -48,6 +48,13 @@ myApp.factory('NavigationService', function ($http) {
                 callback(data.data.results[0]);
             });
         },
+        getSeo: function (data, callback) {
+            $http.post(adminurl + "SeoBackend/getOneSEO", {
+                name: data
+            }, function (data) {
+                callback(data);
+            })
+        },
         getHomeScreenBlogs: function (callback) {
             $http.post(adminurl + "Blog/getHomeScreenBlogs").then(function (data) {
                 data = data.data;
