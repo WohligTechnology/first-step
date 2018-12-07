@@ -5,7 +5,7 @@
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
     "fields": [{
-        "name": "Name",
+        "name": "Blog-URL",
         "isSort": "",
         "tableRef": "name"
     }, {
@@ -13,9 +13,9 @@
         "isSort": "",
         "tableRef": "title"
     }, {
-        "name": "Page",
+        "name": "Keywords",
         "isSort": "",
-        "tableRef": "page"
+        "tableRef": "keywords"
     }],
     "button": [{
         "name": "Create",

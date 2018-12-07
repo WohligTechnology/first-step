@@ -6,7 +6,7 @@
     "pageType": "edit",
     "urlFields": ["_id"],
     "fields": [{
-            "name": "Name",
+            "name": "Blog-URL",
             "type": "text",
             "tableRef": "name",
             "placeholder": "Enter Name",
@@ -22,7 +22,7 @@
             "url": ""
         }, {
             "name": "Description",
-            "type": "wysiwyg",
+            "type": "text",
             "tableRef": "description",
             "placeholder": "Enter Description",
             "id": "description",
@@ -41,14 +41,6 @@
             "tableRef": "keywords",
             "placeholder": "Enter keywords",
             "id": "keywords",
-            "url": ""
-        },
-        {
-            "name": "Page",
-            "type": "text",
-            "tableRef": "page",
-            "placeholder": "Enter Page",
-            "id": "page",
             "url": ""
         }
     ],

@@ -49,51 +49,6 @@
             "id": "content",
             "validation": ["required", "trim"],
             "url": ""
-        },
-        {
-            "name": "All SEO",
-            "type": "box",
-            "tableRef": "seo",
-            "validation": ["trim", ""],
-            "fields": [{
-                    "name": "Title",
-                    "type": "text",
-                    "tableRef": "title",
-                    "placeholder": "Enter Title",
-                    "id": "title",
-                    "url": ""
-                }, {
-                    "name": "Description",
-                    "type": "wysiwyg",
-                    "tableRef": "description",
-                    "placeholder": "Enter Description",
-                    "id": "description",
-                    "url": ""
-                }, {
-                    "name": "Abstract",
-                    "type": "text",
-                    "tableRef": "abstract",
-                    "placeholder": "Enter Abstract",
-                    "id": "abstract",
-                    "url": ""
-                },
-                {
-                    "name": "Keywords",
-                    "type": "text",
-                    "tableRef": "keywords",
-                    "placeholder": "Enter keywords",
-                    "id": "keywords",
-                    "url": ""
-                },
-                {
-                    "name": "Page",
-                    "type": "text",
-                    "tableRef": "page",
-                    "placeholder": "Enter Page",
-                    "id": "page",
-                    "url": ""
-                }
-            ]
         }
     ],
     "action": [{
