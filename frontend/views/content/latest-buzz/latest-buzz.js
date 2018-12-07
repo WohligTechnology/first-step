@@ -3,7 +3,7 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
     TemplateService.title = "Latest Buzz"; //This is the Title of the Website
     NavigationService.getSeo($stateParams.name, function (seo) {
         console.log(seo)
-        TemplateService.title = "Latest Buzz | " + seo.data.title;
+        TemplateService.title = seo.data.title;
         TemplateService.desc = seo.data.description;
         TemplateService.abstract = seo.data.abstract;
         TemplateService.keywords = seo.data.keywords;
