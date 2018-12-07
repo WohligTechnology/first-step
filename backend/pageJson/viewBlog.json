@@ -13,6 +13,10 @@
         "name": "Blog Title",
         "isSort": "",
         "tableRef": "title"
+    }, {
+        "name": "Blog Url",
+        "isSort": "",
+        "tableRef": "blogId"
     }],
     "toggle": {
         "name": "toggle",
