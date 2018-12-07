@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 
-<head ng-controller="headerCtrl">
+<head>
     <meta charset="utf-8">
     <base href="/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,29 +31,28 @@
 
     <!-- SEO -->
     <meta name="author" content="Pehla Kadam" />
-    <meta name="description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>" />
-    <meta name="keywords" content="<%= ((typeof keywords) == " undefined") ? "Pehla Kadam " : keywords %>" />
-    <meta name="abstract" content="<%= ((typeof abstract) == " undefined") ? "Pehla Kadam " : abstract %>" />
+    <meta name="description" content="<%= ((typeof description) == " undefined ") ? "Pehla Kadam " : description %>" />
+    <meta name="keywords" content="<%= ((typeof keywords) == " undefined ") ? "Pehla Kadam " : keywords %>" />
+    <meta name="abstract" content="<%= ((typeof abstract) == " undefined ") ? "Pehla Kadam " : abstract %>" />
 
     <!-- Facebook -->
     <meta property="og:site_name" content="Pehla Kadam">
-    <meta property="og:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
-    <meta property="og:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
+    <meta property="og:title" content="<%= ((typeof title) == " undefined ") ? "Pehla Kadam " : title %>" />
+    <meta property="og:description" content="<%= ((typeof description) == " undefined ") ? "Pehla Kadam " : description
         %>" />
-    <meta property="og:image" content="<%= ((typeof image) == " undefined") ?
-        "https://storage.googleapis.com/twit-banner/tw-banner.jpg" : image %>" />
+    <meta property="og:image" content="<%= ((typeof image) == " undefined ") ?
+        "https://storage.googleapis.com/twit-banner/tw-banner.jpg " : image %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="<%= ((typeof url) == " undefined") ? "Pehla Kadam" : url %>" />
+    <meta property="og:url" content="<%= ((typeof url) == " undefined ") ? "Pehla Kadam " : url %>" />
 
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@PehlaKadam" />
-    <meta name="twitter:title" content="<%= ((typeof title) == " undefined") ? "Pehla Kadam " : title %>" />
+    <meta name="twitter:title" content="<%= ((typeof title) == " undefined ") ? "Pehla Kadam " : title %>" />
     <meta name="twitter:image" content="https://storage.googleapis.com/twit-banner/tw-banner.jpg" />
-    <meta name="twitter:image:alt" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description %>"
-    />
-    <meta name="twitter:description" content="<%= ((typeof description) == " undefined") ? "Pehla Kadam " : description
+    <meta name="twitter:image:alt" content="<%= ((typeof description) == " undefined ") ? "Pehla Kadam " : description %>" />
+    <meta name="twitter:description" content="<%= ((typeof description) == " undefined ") ? "Pehla Kadam " : description
         %>" />
 
 
@@ -95,7 +94,8 @@
         fbq('init', '739477492819387'); // Insert your pixel ID here.
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=739477492819387&ev=PageView&noscript=1" /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=739477492819387&ev=PageView&noscript=1"
+        /></noscript>
     <!-- DO NOT MODIFY -->
     <link rel="shortcut icon" href="img/favicon.ico" />
 
@@ -117,7 +117,9 @@
     <link rel="stylesheet" type="text/css" href="css/import.css" />
 
     <script>
-        var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
+        var adminurl = "<%= ((typeof adminurl) == "
+        undefined ") ? "
+        " : adminurl  %>";
         var isproduction = true;
         var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
@@ -126,52 +128,52 @@
         };
     </script>
     <% _.each(jsFiles,function(file) {  %>
-    <script src="<%= file %>"></script>
-    <% }); %>
+        <script src="<%= file %>"></script>
+        <% }); %>
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-104237499-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-104237499-1', 'auto');
+                ga('send', 'pageview');
+            </script>
+            <div id="fb-root"></div>
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-104237499-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+                ga('create', 'UA-104237499-1', 'auto');
+                ga('send', 'pageview');
+            </script>
 </body>
 
 </html>
