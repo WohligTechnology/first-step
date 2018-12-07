@@ -1,6 +1,13 @@
 myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $state, $location, $stateParams) {
     $scope.template = TemplateService.getHTML("content/latest-buzz/latest-buzz.html");
     // TemplateService.title = "Latest Buzz"; //This is the Title of the Website
+    NavigationService.getSeo($stateParams.name, function (seo) {
+        console.log(seo)
+        TemplateService.title = seo.data.title;
+        TemplateService.desc = seo.data.description;
+        TemplateService.abstract = seo.data.abstract;
+        TemplateService.keywords = seo.data.keywords;
+    });
     $scope.navigation = NavigationService.getNavigation();
     TemplateService.cssMain = "header-icons";
     $scope.myUrl = $location.absUrl();
@@ -19,13 +26,7 @@ myApp.controller('LatestCtrl', function ($scope, TemplateService, NavigationServ
         $scope.individualBlog = result;
     });
 
-    NavigationService.getSeo($stateParams.name, function (seo) {
-        console.log(seo)
-        TemplateService.title = seo.data.title;
-        TemplateService.desc = seo.data.description;
-        TemplateService.abstract = seo.data.abstract;
-        TemplateService.keywords = seo.data.keywords;
-    });
+
     // $scope.blogs = [{
     //     month: "November",
     //     monthNo: 10,
