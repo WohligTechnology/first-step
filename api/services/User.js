@@ -89,7 +89,6 @@ var model = {
 
     saveUser: function (data, callback) {
         data.password = md5(data.password);
-        data.accessLevel = 'admin'
         User.saveData(data, callback);
     },
     login: function (data, callback) {
