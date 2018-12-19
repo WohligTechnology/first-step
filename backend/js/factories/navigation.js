@@ -9,7 +9,7 @@ myApp.factory('NavigationService', function ($http) {
     var navigation = [{
             name: "Admin Users",
             classis: "active",
-            sref: "#!/page/viewUserweb//",
+            sref: "#!/page/viewUser//",
             icon: "phone"
         }, {
             name: "Ask The Experts",
