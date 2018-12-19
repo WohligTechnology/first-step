@@ -3,6 +3,45 @@
         <div class="account-top-bar">
             <div class="container">
                 <div class="logo">
+                    <a ui-sref="login" title="Admin">
+                        <img src="http://pehlakadam.in/img/header/logo.png" alt="Absolute" height="50">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="acount-sec">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="contact-sec">
+                            <form ng-submit="login()">
+                                <div class="form-group">
+                                    <label for="email">Email address:</label>
+                                    <input type="email" class="form-control" id="email" ng-model="formData.email"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="pwd" ng-model="formData.password"
+                                        required>
+                                </div>
+                                <div class=" text-center">
+                                    <button type="submit" class="btn btn-primary" promise-btn="loginPromise">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="account-user-sec">
+    <div class="account-sec">
+        <div class="account-top-bar">
+            <div class="container">
+                <div class="logo">
                     <a ui-sref="login" title="Admin"><img src="img/logo.png" alt="Absolute" height="45"></a>
                 </div>
             </div>
@@ -24,4 +63,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

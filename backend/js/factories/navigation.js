@@ -222,6 +222,11 @@ myApp.factory('NavigationService', function ($http) {
                 // console.log("data-----------------------------", data);
                 callback(data, i);
             });
+        },
+        login: function (data, callback) {
+            return $http.post(adminurl + "User/login", data).then(function (result) {
+                callback(result.data);
+            });
         }
     };
 });

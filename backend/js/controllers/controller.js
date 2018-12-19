@@ -8,11 +8,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
     })
 
     .controller('AccessController', function ($scope, TemplateService, NavigationService, $timeout, $state) {
-        // if ($.jStorage.get("accessToken")) {
+        if ($.jStorage.get("profile")) {
 
-        // } else {
-        //     $state.go("login");
-        // }
+        } else {
+            $state.go("login");
+        }
     })
 
     .controller('JagzCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $interval) {
@@ -127,8 +127,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                     console.log("Making this happen2");
                     $scope.sendData(null, null);
                 }
-
-
             });
         };
 
@@ -713,20 +711,37 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         TemplateService.title = $scope.menutitle;
         $scope.template = TemplateService;
         $scope.currentHost = window.location.origin;
-        if ($stateParams.id) {
-            if ($stateParams.id === "AccessNotAvailable") {
-                toastr.error("You do not have access for the Backend.");
-            } else {
-                NavigationService.parseAccessToken($stateParams.id, function () {
-                    NavigationService.profile(function () {
-                        $state.go("dashboard");
-                    }, function () {
-                        // $state.go("login");
-                    });
-                });
-            }
-        } else {
-            NavigationService.removeAccessToken();
+        // if ($stateParams.id) {
+        //     if ($stateParams.id === "AccessNotAvailable") {
+        //         toastr.error("You do not have access for the Backend.");
+        //     } else {
+        //         NavigationService.parseAccessToken($stateParams.id, function () {
+        //             NavigationService.profile(function () {
+        //                 $state.go("dashboard");
+        //             }, function () {
+        //                 $state.go("login");
+        //             });
+        //         });
+        //     }
+        // } else {
+        //     NavigationService.removeAccessToken();
+        // }
+        $scope.formData = {};
+        $scope.login = function () {
+            console.log($scope.formData);
+            $scope.loginPromise = NavigationService.login($scope.formData, function (result) {
+                console.log(result);
+                if (result.value) {
+                    $.jStorage.set('profile', result.data)
+                    $state.go('page', {
+                        id: 'viewUserweb'
+                    })
+                } else if ('emailNotFound') {
+                    toastr.error('email or password incorrect')
+                } else {
+                    toastr.error('something went wrong')
+                }
+            })
         }
 
     })
@@ -1295,12 +1310,15 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
     })
 
-    .controller('headerctrl', function ($scope, TemplateService, $uibModal) {
+    .controller('headerctrl', function ($scope, $state, TemplateService, $uibModal) {
         $scope.template = TemplateService;
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $(window).scrollTop(0);
         });
-
+        $scope.logout = function () {
+            $.jStorage.flush();
+            $state.go('login');
+        }
     })
 
     .controller('languageCtrl', function ($scope, TemplateService, $translate, $rootScope) {

@@ -92,6 +92,9 @@ global["json2xls"] = require('json2xls');
 global["xlsx"] = require('node-xlsx').default;
 // global["pdf"] = require('html-pdf');
 
+// md5 encryption
+global.md5 = require('md5');
+
 // passport Globals
 global["passport"] = require('passport');
 global["LocalStrategy"] = require('passport-local').Strategy;

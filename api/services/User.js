@@ -87,6 +87,28 @@ module.exports = mongoose.model('User', schema);
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user", "user"));
 var model = {
 
+    saveUser: function (data, callback) {
+        data.password = md5(data.password);
+        data.accessLevel = 'admin'
+        User.saveData(data, callback);
+    },
+    login: function (data, callback) {
+        data.password = md5(data.password)
+        User.findOne({
+            email: data.email,
+            password: data.password
+        }, {
+            password: 0
+        }).exec(function (err, userData) {
+            if (err) {
+                callback(err)
+            } else if (_.isEmpty(userData)) {
+                callback("emailNotFound")
+            } else {
+                callback(null, userData);
+            }
+        })
+    },
     existsSocial: function (user, callback) {
         var Model = this;
         Model.findOne({
