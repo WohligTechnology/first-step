@@ -13,8 +13,19 @@
         "isSort": "",
         "tableRef": "email"
     }],
-
-
+    "action": [{
+        "name": "delete",
+        "icon": "fa-trash-alt",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete User",
+        "content": "Are you sure you want to delete User?",
+        "api": "user/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
     "apiCall": {
         "url": "User/search",
         "params": "_id"

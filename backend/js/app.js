@@ -108,7 +108,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'ContestCtrl',
         });
 
-    $urlRouterProvider.otherwise("/page/viewUserweb//");
+    $urlRouterProvider.otherwise("/page/viewUser//");
     $locationProvider.html5Mode(isproduction);
 });
 

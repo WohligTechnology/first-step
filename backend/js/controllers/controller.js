@@ -734,7 +734,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 if (result.value) {
                     $.jStorage.set('profile', result.data)
                     $state.go('page', {
-                        id: 'viewUserweb'
+                        id: 'viewUser'
                     })
                 } else if ('emailNotFound') {
                     toastr.error('email or password incorrect')
