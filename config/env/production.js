@@ -11,7 +11,6 @@
  */
 
 module.exports = {
-
   /***************************************************************************
    * Set the default database connection for models in the production        *
    * environment (see config/connections.js and config/models.js )           *
@@ -26,8 +25,18 @@ module.exports = {
    ***************************************************************************/
 
   port: 8080,
-  realHost: "http://pehlakadam.in",
-  emails: ["chintan@wohlig.com", "jagruti@wohlig.com", "tushar@wohlig.com", "chirag@wohlig.com", "harsh@wohlig.com", "sohan@wohlig.com", "rohan.khule@wohlig.com", "snehal.thakare@wohlig.com", "karan.shah@wohlig.com"]
+  realHost: "https://pehlakadam.in",
+  emails: [
+    "chintan@wohlig.com",
+    "jagruti@wohlig.com",
+    "tushar@wohlig.com",
+    "chirag@wohlig.com",
+    "harsh@wohlig.com",
+    "sohan@wohlig.com",
+    "rohan.khule@wohlig.com",
+    "snehal.thakare@wohlig.com",
+    "karan.shah@wohlig.com"
+  ]
 
   /***************************************************************************
    * Set the log level in production environment to "silent"                 *
@@ -36,5 +45,4 @@ module.exports = {
   // log: {
   //   level: "silent"
   // }
-
 };
