@@ -1,0 +1,36 @@
+
+server {
+  listen 80;
+  server_name www.pehlakadam.in pehlakadam.in;
+  expires $expires;
+  proxy_set_header X-Prerender-Token XJuhplJ1yB7haYUk2u4r;
+  rewrite ^/latest-buzz/15-mistakes$ http://pehlakadam.in/latest-buzz/Common-mistakes-while-filing-Income-Tax-Return-Form-India redirect;
+  rewrite ^/latest-buzz/tax-evasion$ http://pehlakadam.in/latest-buzz/Penalty-Income-Tax-evasion-avoidance-criminal-offence-India redirect;
+  rewrite ^/latest-buzz/education-loan$ http://pehlakadam.in/latest-buzz/How-apply-student-education-loan-with-lowest-interest-rates-India redirect;
+  rewrite ^/latest-buzz/personal-loan$ http://pehlakadam.in/latest-buzz/what-top-up-loan-personal-loan-eligibility redirect;
+  rewrite ^/latest-buzz/reason-save$ http://pehlakadam.in/latest-buzz/How-save-money-from-salary-India-Future redirect;
+  rewrite ^/latest-buzz/housewife-salary$ http://pehlakadam.in/latest-buzz/Calculate-salary-housewife-services-India redirect;
+  rewrite ^/latest-buzz/personal-expense-budget$ http://pehlakadam.in/latest-buzz/How-manage-middle-class-Indian-family-monthly-budget-India redirect;
+  rewrite ^/latest-buzz/financial-goals$ http://pehlakadam.in/latest-buzz/What-is-Long-Short-term-financial-goal-setting redirect;
+  rewrite ^/latest-buzz/retire-early$ http://pehlakadam.in/latest-buzz/How-retire-early-calculator redirect;
+  rewrite ^/latest-buzz/need-credit-card$ http://pehlakadam.in/latest-buzz/Best-reasons-have-credit-card-for-salaried-person-India redirect;
+  rewrite ^/latest-buzz/cheque-dishonoured$ http://pehlakadam.in/latest-buzz/What-are-charges-cheque-dishonour-India redirect;
+  rewrite ^/latest-buzz/rejection-home-loan$ http://pehlakadam.in/latest-buzz/What-are-reasons-rejection-home-loan-India redirect;
+  location / {
+    proxy_pass http://127.0.0.1:8080;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+  location /backend {
+    root /wohlig/first-step;
+    index index.html index.htm;
+    try_files $uri $uri/ /index.html =404;
+  }
+  location /pdf {
+    root /wohlig/first-step;
+    index index.html index.htm;
+    try_files $uri $uri/ /index.html =404;
+  }
+}
