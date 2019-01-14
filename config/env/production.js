@@ -25,7 +25,7 @@ module.exports = {
    ***************************************************************************/
 
   port: 8080,
-  realHost: "https://pehlakadam.in",
+  realHost: "http://pehlakadam.in",
   emails: [
     "chintan@wohlig.com",
     "jagruti@wohlig.com",
