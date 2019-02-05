@@ -1,4 +1,4 @@
-myApp.controller("DigitalCtrl", function(
+myApp.controller("DigitalCtrl", function (
   $scope,
   TemplateService,
   NavigationService,
@@ -12,11 +12,11 @@ myApp.controller("DigitalCtrl", function(
   TemplateService.title = "Digital"; //This is the Title of the Website
   $scope.navigation = NavigationService.getNavigation();
   TemplateService.cssMain = "header-icons";
-  $scope.changeURL = function(id) {
+  $scope.changeURL = function (id) {
     console.log(id);
     $location.path("" + id);
   };
-  $scope.submitForm = function(data) {
+  $scope.submitForm = function (data) {
     console.log(data);
     $scope.formSubmitted = true;
   };
@@ -36,10 +36,16 @@ myApp.controller("DigitalCtrl", function(
   $scope.course8 = false;
   $scope.course9 = false;
   $scope.course10 = false;
+  $scope.course11 = false;
+  $scope.course12 = false;
+  $scope.course13 = false;
+  $scope.course14 = false;
+
+
 
   /*******api for bringing all course******** */
-  $scope.getAllCourse = function() {
-    apiService.apiWithoutData("DigitalCourse/search", function(result) {
+  $scope.getAllCourse = function () {
+    apiService.apiWithoutData("DigitalCourse/search", function (result) {
       console.log("courses in backend", result.data.results);
       $scope.courses = result.data.results;
       $scope.getPageData();
@@ -65,9 +71,14 @@ myApp.controller("DigitalCtrl", function(
   $scope.isCourse8 = true;
   $scope.isCourse9 = true;
   $scope.isCourse10 = true;
+  $scope.isCourse11 = true;
+  $scope.isCourse12 = true;
+  $scope.isCourse13 = true;
+  $scope.isCourse14 = true;
 
-  $scope.getPageData = function() {
-    apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function(
+
+  $scope.getPageData = function () {
+    apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (
       data
     ) {
       console.log("UserData:", data);
@@ -75,16 +86,16 @@ myApp.controller("DigitalCtrl", function(
         $scope.allUserData = data.data;
         $scope.testGiven = data.data.testGiven;
 
-        _.each($scope.courses, function(data, index) {
+        _.each($scope.courses, function (data, index) {
           var checkName = data.name;
-          _.each($scope.testGiven, function(data) {
+          _.each($scope.testGiven, function (data) {
             if (checkName == data.name) {
               $scope.courses[index].testGiven = true;
             }
           });
         });
         console.log("$scope.courses", $scope.courses);
-        _.find($scope.testGiven, function(obj) {
+        _.find($scope.testGiven, function (obj) {
           if (obj.name == "BANKING") {
             $scope.isBanking = false;
           } else if (obj.name == "INSURANCE") {
@@ -111,6 +122,14 @@ myApp.controller("DigitalCtrl", function(
             $scope.isMutualFund = false;
           } else if (obj.name == "COURSE 10") {
             $scope.isMutualFund = false;
+          } else if (obj.name == "COURSE 11") {
+            $scope.isMutualFund = false;
+          } else if (obj.name == "COURSE 12") {
+            $scope.isMutualFund = false;
+          } else if (obj.name == "COURSE 13") {
+            $scope.isMutualFund = false;
+          } else if (obj.name == "COURSE 14") {
+            $scope.isMutualFund = false;
           }
         });
       }
@@ -122,7 +141,8 @@ myApp.controller("DigitalCtrl", function(
   $scope.variableNameInsurance = true;
 
   $scope.showCourses = undefined;
-  $scope.displayQuestionSection = function(data, id, testGiven) {
+  $scope.displayQuestionSection = function (data, id, testGiven) {
+    // console.log("displayQuestionSection////////", data, id, testGiven);
     if (!testGiven) {
       $scope.showCourses = true;
     } else {
@@ -144,6 +164,12 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+
     } else if (data == "COURSE 3") {
       $scope.banking = false;
       $scope.equity = true;
@@ -158,6 +184,12 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+
     } else if (data == "INSURANCE") {
       $scope.banking = false;
       $scope.insurance = true;
@@ -172,6 +204,12 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+
     } else if (data == "COURSE 1") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -186,6 +224,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 2") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -200,6 +243,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 4") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -214,6 +262,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "REAL ESTATE") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -228,6 +281,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 5") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -242,6 +300,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 6") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -256,6 +319,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 7") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -270,6 +338,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 8") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -284,6 +357,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = true;
       $scope.course9 = false;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 9") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -298,6 +376,11 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = true;
       $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
     } else if (data == "COURSE 10") {
       $scope.banking = false;
       $scope.insurance = false;
@@ -312,9 +395,89 @@ myApp.controller("DigitalCtrl", function(
       $scope.course8 = false;
       $scope.course9 = false;
       $scope.course10 = true;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+    } else if (data == "COURSE 11") {
+      $scope.banking = false;
+      $scope.insurance = false;
+      $scope.realestate = false;
+      $scope.equity = false;
+      $scope.mutualfunds1 = false;
+      $scope.mutualfunds2 = false;
+      $scope.course4 = false;
+      $scope.course5 = false;
+      $scope.course6 = false;
+      $scope.course7 = false;
+      $scope.course8 = false;
+      $scope.course9 = false;
+      $scope.course10 = false;
+      $scope.course11 = true;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+    } else if (data == "COURSE 12") {
+      $scope.banking = false;
+      $scope.insurance = false;
+      $scope.realestate = false;
+      $scope.equity = false;
+      $scope.mutualfunds1 = false;
+      $scope.mutualfunds2 = false;
+      $scope.course4 = false;
+      $scope.course5 = false;
+      $scope.course6 = false;
+      $scope.course7 = false;
+      $scope.course8 = false;
+      $scope.course9 = false;
+      $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = true;
+      $scope.course13 = false;
+      $scope.course14 = false;
+
+    } else if (data == "COURSE 13") {
+      $scope.banking = false;
+      $scope.insurance = false;
+      $scope.realestate = false;
+      $scope.equity = false;
+      $scope.mutualfunds1 = false;
+      $scope.mutualfunds2 = false;
+      $scope.course4 = false;
+      $scope.course5 = false;
+      $scope.course6 = false;
+      $scope.course7 = false;
+      $scope.course8 = false;
+      $scope.course9 = false;
+      $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = true;
+      $scope.course14 = false;
+
+    } else if (data == "COURSE 14") {
+      $scope.banking = false;
+      $scope.insurance = false;
+      $scope.realestate = false;
+      $scope.equity = false;
+      $scope.mutualfunds1 = false;
+      $scope.mutualfunds2 = false;
+      $scope.course4 = false;
+      $scope.course5 = false;
+      $scope.course6 = false;
+      $scope.course7 = false;
+      $scope.course8 = false;
+      $scope.course9 = false;
+      $scope.course10 = false;
+      $scope.course11 = false;
+      $scope.course12 = false;
+      $scope.course13 = false;
+      $scope.course14 = true;
+
     }
-    $scope.coursedata = [
-      {
+    $scope.coursedata = [{
         id: "equity",
         video: "xB6yOcIOhMs"
       },
@@ -353,11 +516,24 @@ myApp.controller("DigitalCtrl", function(
       {
         id: "course10",
         video: "qZekb2T1vFk"
+      },
+      {
+        id: "course11",
+        video: "3RrllsPsYEI"
+      },
+      {
+        id: "course12",
+        video: "WPH0axg-XlE"
+      }, {
+        id: "course13",
+        video: "ZbDPfy7Kej8"
+      }, {
+        id: "course13",
+        video: "BwtInI5iWT8"
       }
     ];
   };
-  $scope.digitalMutualfund = [
-    {
+  $scope.digitalMutualfund = [{
       img: "F1zxABRFV8g",
       url: "F1zxABRFV8g"
     },
@@ -382,7 +558,7 @@ myApp.controller("DigitalCtrl", function(
       url: "2THf7pPNkIo"
     }
   ];
-  $scope.thankyou = function() {
+  $scope.thankyou = function () {
     console.log("clla");
     $uibModal.open({
       animation: true,

@@ -2,13 +2,13 @@ Arguments:
   /usr/local/bin/node /usr/local/bin/yarn connect
 
 PATH: 
-  /home/wohlig/bin:/home/wohlig/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  8.0.0
+  6.12.0
 
 Platform: 
   linux x64
@@ -7649,10 +7649,11 @@ Trace:
   Directory: /home/wohlig/Documents/first-step
   Output:
   
+      at ProcessTermError.Error (native)
       at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
       at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
       at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
-      at emitTwo (events.js:125:13)
-      at ChildProcess.emit (events.js:213:7)
-      at maybeClose (internal/child_process.js:887:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:208:5)
+      at emitTwo (events.js:106:13)
+      at ChildProcess.emit (events.js:191:7)
+      at maybeClose (internal/child_process.js:920:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)
