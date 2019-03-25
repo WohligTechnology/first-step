@@ -1,4 +1,4 @@
-myApp.controller("DigitalCtrl", function (
+myApp.controller("DigitalCtrl", function(
   $scope,
   TemplateService,
   NavigationService,
@@ -12,11 +12,11 @@ myApp.controller("DigitalCtrl", function (
   TemplateService.title = "Digital"; //This is the Title of the Website
   $scope.navigation = NavigationService.getNavigation();
   TemplateService.cssMain = "header-icons";
-  $scope.changeURL = function (id) {
+  $scope.changeURL = function(id) {
     console.log(id);
     $location.path("" + id);
   };
-  $scope.submitForm = function (data) {
+  $scope.submitForm = function(data) {
     console.log(data);
     $scope.formSubmitted = true;
   };
@@ -42,14 +42,15 @@ myApp.controller("DigitalCtrl", function (
   $scope.course14 = false;
 
   /*******api for bringing all course******** */
-  $scope.getAllCourse = function () {
+  $scope.getAllCourse = function() {
     $scope.data = {};
-    apiService.apiCallWithData("DigitalCourse/getCourses",$scope.data,function (result) {
-        console.log("courses in backend", result.data);
-        $scope.courses = result.data;
-        $scope.getPageData();
-      }
-    );
+    apiService.apiWithData("DigitalCourse/getCourses", $scope.data, function(
+      result
+    ) {
+      console.log("courses in backend", result.data);
+      $scope.courses = result.data;
+      $scope.getPageData();
+    });
   };
   /******bringing all course end****** */
   $scope.getAllCourse();
@@ -76,8 +77,8 @@ myApp.controller("DigitalCtrl", function (
   $scope.isCourse13 = true;
   $scope.isCourse14 = true;
 
-  $scope.getPageData = function () {
-    apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function (
+  $scope.getPageData = function() {
+    apiService.apiWithData("DigitalUser/getDigitalUserFromId", data1, function(
       data
     ) {
       console.log("UserData:", data);
@@ -85,16 +86,16 @@ myApp.controller("DigitalCtrl", function (
         $scope.allUserData = data.data;
         $scope.testGiven = data.data.testGiven;
 
-        _.each($scope.courses, function (data, index) {
+        _.each($scope.courses, function(data, index) {
           var checkName = data.name;
-          _.each($scope.testGiven, function (data) {
+          _.each($scope.testGiven, function(data) {
             if (checkName == data.name) {
               $scope.courses[index].testGiven = true;
             }
           });
         });
         console.log("$scope.courses", $scope.courses);
-        _.find($scope.testGiven, function (obj) {
+        _.find($scope.testGiven, function(obj) {
           if (obj.name == "BANKING") {
             $scope.isBanking = false;
           } else if (obj.name == "INSURANCE") {
@@ -140,7 +141,7 @@ myApp.controller("DigitalCtrl", function (
   $scope.variableNameInsurance = true;
 
   $scope.showCourses = undefined;
-  $scope.displayQuestionSection = function (data, id, testGiven) {
+  $scope.displayQuestionSection = function(data, id, testGiven) {
     // console.log("displayQuestionSection////////", data, id, testGiven);
     if (!testGiven) {
       $scope.showCourses = true;
@@ -541,7 +542,7 @@ myApp.controller("DigitalCtrl", function (
       url: "2THf7pPNkIo"
     }
   ];
-  $scope.thankyou = function () {
+  $scope.thankyou = function() {
     console.log("clla");
     $uibModal.open({
       animation: true,
